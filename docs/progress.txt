@@ -1725,8 +1725,8 @@ typedef enum GAME_OBJECT_ID {
 0040C650    00000223    +       void __cdecl Output_DrawScaledSpriteC(const int16_t *obj_ptr);
 
 # game/bird.c
-0040C880    00000089    -       void __cdecl Eagle_Initialise(int16_t item_num);
-0040C910    00000200    -       void __cdecl Eagle_Control(int16_t item_num);
+0040C880    00000089    +       void __cdecl Bird_Initialise(int16_t item_num);
+0040C910    00000200    -       void __cdecl Bird_Control(int16_t item_num);
 
 # game/boat.c
 0040CB30    0000003C    -       void __cdecl Boat_Initialise(int16_t item_num);

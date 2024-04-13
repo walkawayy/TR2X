@@ -15,6 +15,7 @@
 #include "game/math_misc.h"
 #include "game/matrix.h"
 #include "game/music.h"
+#include "game/objects/creatures/bird.h"
 #include "game/output.h"
 #include "game/overlay.h"
 #include "game/random.h"
@@ -47,6 +48,9 @@ static void Inject_Lara_Look(void);
 static void Inject_Lara_Misc(void);
 static void Inject_Lara_State(void);
 static void Inject_Lara_Col(void);
+
+static void Inject_Objects(void);
+
 static void Inject_S_Audio_Sample(void);
 static void Inject_S_Input(void);
 static void Inject_S_FlaggedString(void);
@@ -505,6 +509,11 @@ static void Inject_Lara_Col(void)
     INJECT(1, 0x00432440, Lara_Col_UWDeath);
 }
 
+static void Inject_Objects(void)
+{
+    INJECT(1, 0x0040C880, Bird_Initialise);
+}
+
 static void Inject_S_Audio_Sample(void)
 {
     INJECT(1, 0x00447BC0, S_Audio_Sample_GetAdapter);
@@ -571,6 +580,8 @@ void Inject_Exec(void)
     Inject_Lara_Misc();
     Inject_Lara_State();
     Inject_Lara_Col();
+
+    Inject_Objects();
 
     Inject_S_Audio_Sample();
     Inject_S_Input();

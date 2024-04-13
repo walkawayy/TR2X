@@ -81,6 +81,7 @@ dll_sources = [
   'src/game/math_misc.c',
   'src/game/matrix.c',
   'src/game/music.c',
+  'src/game/objects/creatures/bird.c',
   'src/game/output.c',
   'src/game/overlay.c',
   'src/game/random.c',

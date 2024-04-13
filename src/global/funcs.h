@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Bird_Control ((void __cdecl (*)(int16_t item_num))0x0040C910)
 #define Boat_Initialise ((void __cdecl (*)(int16_t item_num))0x0040CB30)
 #define Boat_CheckGeton ((int32_t __cdecl (*)(int16_t item_num, struct COLL_INFO *coll))0x0040CB70)
 #define Boat_Collision ((void __cdecl (*)(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll))0x0040CCE0)

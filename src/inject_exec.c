@@ -512,6 +512,7 @@ static void Inject_Lara_Col(void)
 static void Inject_Objects(void)
 {
     INJECT(1, 0x0040C880, Bird_Initialise);
+    INJECT(1, 0x0040C910, Bird_Control);
 }
 
 static void Inject_S_Audio_Sample(void)

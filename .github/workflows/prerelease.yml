@@ -1,30 +1,23 @@
-name: Publish a prerelease
+name: Publish a pre-release
 
 permissions:
   contents: write
 
 on:
   push:
-    branch: develop
+    branches:
+    - develop
 
 jobs:
-  tag_latest:
-    name: 'Tag the repository'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout code'
-        uses: actions/checkout@v3
-
-      - name: 'Update the tag'
-        uses: EndBug/latest-tag@latest
-
   publish_prerelease:
     name: 'Create a prerelease'
-    needs:
-      - tag_latest
     uses: ./.github/workflows/release.yml
+    if: |
+      github.ref == 'refs/heads/develop' &&
+      vars.RELEASE_ENABLE == 'true'
     with:
       release_name: 'Development snapshot'
       draft: false
       prerelease: true
-      tag_name: latest
+      tag_name: 'latest'
+    secrets: inherit

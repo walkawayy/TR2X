@@ -308,7 +308,7 @@ int32_t __cdecl LOS_CheckSmashable(
             const enum DIRECTION direction = Math_GetDirection(item->pos.y_rot);
             const int16_t *const bounds = Item_GetBoundsAccurate(item);
             const int16_t *x_extent;
-            const int16_t *z_extent;
+            const int16_t *z_extent = NULL;
             switch (direction) {
             case DIR_EAST:
             case DIR_WEST:
@@ -321,9 +321,9 @@ int32_t __cdecl LOS_CheckSmashable(
                 z_extent = &bounds[FBBOX_MIN_Z];
                 break;
             default:
-                assert(false);
                 break;
             }
+            assert(z_extent != NULL);
 
             int32_t failure = 0;
             if (ABS(dz) > ABS(dx)) {

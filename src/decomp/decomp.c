@@ -275,7 +275,7 @@ void __cdecl ScreenshotTGA(IDirectDrawSurface3 *screen, int32_t bpp)
 
     FILE *handle = fopen(file_name, "wb");
     if (!handle) {
-        goto cleanup;
+        return;
     }
 
     const TGA_HEADER header = {

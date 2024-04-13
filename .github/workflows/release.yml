@@ -7,82 +7,138 @@ on:
   push:
     branch: stable
     tags:
-      - 'v?[0-9]*'
+      - "v?[0-9]*"
+
   workflow_call:
     inputs:
-      release_name:
-        description: 'Release name'
-        required: true
-        default: 'Release ${{ github.ref_name }}'
-        type: string
-      tag_name:
-        description: 'Tag name'
-        required: false
-        default: '${{ github.ref }}'
-        type: string
       draft:
-        description: 'Draft'
+        type: boolean
+        description: "Draft"
         required: true
         default: false
-        type: boolean
       prerelease:
-        description: 'Prerelease'
+        type: boolean
+        description: "Prerelease"
+        required: true
+        default: false
+      release_name:
+        type: string
+        description: "Release name"
+        required: true
+        default: "Release ${{ github.ref_name }}"
+      tag_name:
+        type: string
+        description: "Tag name"
+        required: false
+        default: github.ref_name
+
+  workflow_dispatch:
+    inputs:
+      draft:
+        description: "Draft"
         required: true
         type: boolean
+        default: false
+      prerelease:
+        description: "Prerelease"
+        required: true
+        type: boolean
+        default: false
+      release_name:
+        description: "Release name"
+        required: true
+        type: string
+        default: "Release name"
+      tag_name:
+        description: "Tag name"
+        required: false
+        type: string
+        default: github.ref_Name
 
 jobs:
+  package_multiplatform:
+    name: Build release assets
+    runs-on: ubuntu-latest
+    if: vars.RELEASE_ENABLE == 'true'
+    strategy:
+      matrix:
+        include:
+          - platform: win
+            just_target: package-win
+    steps:
+      - name: Install dependencies
+        uses: taiki-e/install-action@just
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Package asset (${{ matrix.platform }})
+        run: just ${{ matrix.just_target }}
+
+      - name: Upload the artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: packaged_asset-${{ matrix.platform }}
+          path: |
+            *.zip
+            *.exe
+
   publish_release:
-    name: 'Create a GitHub release'
+    if: vars.RELEASE_ENABLE == 'true'
+    name: Create a GitHub release
     runs-on: ubuntu-latest
     needs:
-      - package_game_win
+      - package_multiplatform
+
     steps:
-      - name: 'Checkout code'
-        uses: actions/checkout@v3
-        with:
-          path: .
-          fetch-tags: true
+      - name: "Install dependencies"
+        uses: taiki-e/install-action@just
 
-      - name: 'Download built assets'
-        uses: actions/download-artifact@v1
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+
+      - name: "Download built game assets"
+        uses: actions/download-artifact@v4
         with:
-          name: game_win_zip
           path: artifacts/
+          merge-multiple: true
 
-      - name: 'Prepare the changelog'
-        id: prepare_changelog
-        uses: ./.github/actions/prepare_changelog
-
-      - name: 'Get version'
-        id: get_version
-        uses: ./.github/actions/get_version
-
-      - name: 'Prepare for the release'
+      - name: "Generate changelog"
         run: |
-          echo "${{steps.prepare_changelog.outputs.changelog }}" >artifacts/changes.txt
-          mv artifacts/game-win.zip artifacts/TR2X-${{ steps.get_version.outputs.version }}-Windows.zip
+          just output-current-changelog > _changes.txt
 
-      - name: 'Delete old release assets'
+      - name: "Get information on the latest pre-release"
+        if: ${{ inputs.prerelease == true || inputs.prerelease == 'true' }}
+        id: last_release
+        uses: InsonusK/get-latest-release@v1.0.1
+        with:
+          myToken: ${{ github.token }}
+          exclude_types: "draft|release"
+
+      - name: 'Mark the pre-release as latest'
+        if: ${{ inputs.prerelease == true || inputs.prerelease == 'true' }}
+        uses: EndBug/latest-tag@latest
+
+      - name: "Delete old pre-release assets"
+        if: ${{ inputs.prerelease == true || inputs.prerelease == 'true' }}
         uses: mknejp/delete-release-assets@v1
         continue-on-error: true
         with:
           token: ${{ github.token }}
-          tag: ${{ inputs.tag_name }}
-          assets: '*.*'
+          tag: ${{ steps.last_release.outputs.tag_name }}
+          assets: "*.*"
 
-      - name: 'Publish the release'
-        uses: softprops/action-gh-release@v1
+      - name: "Publish a release"
+        uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ inputs.release_name }}
-          body_path: artifacts/changes.txt
-          draft: ${{ inputs.draft }}
-          prerelease: ${{ inputs.prerelease }}
-          fail_on_unmatched_files: true
           tag_name: ${{ inputs.tag_name }}
+          body_path: _changes.txt
+          draft: ${{ inputs.draft == true || inputs.draft == 'true' }}
+          prerelease: ${{ inputs.prerelease == true || inputs.prerelease == 'true' }}
+          fail_on_unmatched_files: true
           files: |
-            artifacts/TR2X-${{ steps.get_version.outputs.VERSION }}-Windows.zip
-
-  package_game_win:
-    name: 'Package the game (Windows)'
-    uses: ./.github/workflows/build_game_win.yml
+            artifacts/*

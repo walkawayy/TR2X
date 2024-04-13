@@ -13,26 +13,50 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: .
-          fetch-tags: true
+          fetch-depth: 0
 
-      - name: 'Install dependencies'
+      - name: Check JSON files validity
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          errors = False
+          for path in Path('.').rglob('**/*.json'):
+              try:
+                  json.loads(path.read_text())
+              except json.JSONDecodeError as ex:
+                  print(f'Malformed JSON in {path}: {ex}')
+                  errors = True
+          if errors:
+              exit(1)
+
+      - name: Install dependencies
         run: |
           wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-          echo 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-12 main' | sudo tee -a /etc/apt/sources.list
-          echo 'deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-12 main' | sudo tee -a /etc/apt/sources.list
+          echo 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main' | sudo tee -a /etc/apt/sources.list
+          echo 'deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main' | sudo tee -a /etc/apt/sources.list
           sudo apt update
-          sudo apt-get install -y clang-format-12 iwyu
-          sudo ln -s /usr/bin/clang-format-12 /usr/local/bin/clang-format
-          sudo apt-get install -y make python3-pip
-          sudo python3 -m pip install pyjson5
+          sudo apt-get install -y clang-format-18 iwyu
+          sudo snap install --edge --classic just
+          sudo ln -s /usr/bin/clang-format-18 /usr/local/bin/clang-format
+          sudo apt-get install -y python3-pip
+          sudo python3 -m pip install pyjson5 pre-commit
 
-      - name: 'Check imports'
+      - name: Check formatted code differences
+        run: |
+          just lint-format || /bin/true
+          git diff --exit-code || (
+            clang-format --version
+            echo 'Please run `just lint` and commit the changes.'
+            exit 1
+          )
+
+      - name: Check imports
         run: |
           git add -A
-          python3 tools/sort_imports
-          git diff --exit-code || ( echo 'Please run `make imports` and commit the changes.'; exit 1 )
-
-      - name: 'Check formatted code differences'
-        run: |
-          make lint
-          git diff --exit-code || ( echo 'Please run `make lint` and commit the changes.'; exit 1 )
+          just lint-imports
+          git diff --exit-code || (
+            include-what-you-use --version
+            echo 'Please run `just lint` and commit the changes.'
+            exit 1
+          )

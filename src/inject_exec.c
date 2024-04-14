@@ -527,6 +527,7 @@ static void Inject_Box(void)
     INJECT(1, 0x0040E700, Box_TargetBox);
     INJECT(1, 0x0040E7A0, Box_StalkBox);
     INJECT(1, 0x0040E8A0, Box_EscapeBox);
+    INJECT(1, 0x0040E950, Box_ValidBox);
 }
 
 static void Inject_Objects(void)

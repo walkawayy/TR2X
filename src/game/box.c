@@ -184,3 +184,31 @@ int32_t __cdecl Box_EscapeBox(
     return ((z > 0) == (item->pos.z > enemy->pos.z))
         || ((x > 0) == (item->pos.x > enemy->pos.x));
 }
+
+int32_t __cdecl Box_ValidBox(
+    const struct ITEM_INFO *const item, const int16_t zone_num,
+    const int16_t box_num)
+{
+    const CREATURE_INFO *const creature = item->data;
+    int16_t *zone;
+    if (creature->lot.fly) {
+        zone = g_FlyZone[g_FlipStatus];
+    } else {
+        zone = g_GroundZone[creature->lot.step / STEP_L][g_FlipStatus];
+    }
+
+    if (zone[box_num] != zone_num) {
+        return false;
+    }
+
+    const BOX_INFO *const box = &g_Boxes[box_num];
+    if ((creature->lot.block_mask & box->overlap_index) != 0) {
+        return false;
+    }
+
+    return !(
+        item->pos.z > (box->left << WALL_SHIFT)
+        && item->pos.z < (box->right << WALL_SHIFT)
+        && item->pos.x > (box->top << WALL_SHIFT)
+        && item->pos.x < (box->bottom << WALL_SHIFT));
+}

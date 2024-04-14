@@ -14,3 +14,5 @@ int32_t __cdecl Box_StalkBox(
 int32_t __cdecl Box_EscapeBox(
     const struct ITEM_INFO *item, const struct ITEM_INFO *enemy,
     int16_t box_num);
+int32_t __cdecl Box_ValidBox(
+    const struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);

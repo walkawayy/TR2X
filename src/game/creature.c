@@ -20,8 +20,6 @@ void __cdecl Creature_Initialise(const int16_t item_num)
 
 int32_t __cdecl Creature_Activate(const int16_t item_num)
 {
-    int32_t result; // eax
-
     struct ITEM_INFO *const item = &g_Items[item_num];
     if (item->status != IS_INVISIBLE) {
         return true;
@@ -38,7 +36,7 @@ int32_t __cdecl Creature_Activate(const int16_t item_num)
 void __cdecl Creature_AIInfo(
     struct ITEM_INFO *const item, struct AI_INFO *const info)
 {
-    CREATURE_INFO *creature = (CREATURE_INFO *)item->data;
+    CREATURE_INFO *const creature = (CREATURE_INFO *)item->data;
     if (creature == NULL) {
         return;
     }

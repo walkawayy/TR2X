@@ -10,6 +10,7 @@
 #define BOX_END_BIT 0x8000
 #define BOX_NUM_BITS (~BOX_END_BIT) // = 0x7FFF
 #define BOX_STALK_DIST 3 // tiles
+#define BOX_ESCAPE_DIST 5 // tiles
 
 int32_t __cdecl Box_SearchLOT(
     struct LOT_INFO *const lot, const int32_t expansion)
@@ -162,4 +163,24 @@ int32_t __cdecl Box_StalkBox(
         : (item->pos.x > x ? 3 : 0);
 
     return enemy_quad == baddie_quad && ABS(enemy_quad - box_quad) == 2;
+}
+
+int32_t __cdecl Box_EscapeBox(
+    const struct ITEM_INFO *const item, const struct ITEM_INFO *const enemy,
+    const int16_t box_num)
+{
+    const struct BOX_INFO *const box = &g_Boxes[box_num];
+    const int32_t x =
+        ((box->bottom + box->top) << (WALL_SHIFT - 1)) - enemy->pos.x;
+    const int32_t z =
+        ((box->left + box->right) << (WALL_SHIFT - 1)) - enemy->pos.z;
+
+    const int32_t x_range = BOX_ESCAPE_DIST << WALL_SHIFT;
+    const int32_t z_range = BOX_ESCAPE_DIST << WALL_SHIFT;
+    if (x > -x_range && x < x_range && z > -z_range && z < z_range) {
+        return false;
+    }
+
+    return ((z > 0) == (item->pos.z > enemy->pos.z))
+        || ((x > 0) == (item->pos.x > enemy->pos.x));
 }

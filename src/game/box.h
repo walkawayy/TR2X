@@ -11,3 +11,6 @@ void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);
 int32_t __cdecl Box_StalkBox(
     const struct ITEM_INFO *item, const struct ITEM_INFO *enemy,
     int16_t box_num);
+int32_t __cdecl Box_EscapeBox(
+    const struct ITEM_INFO *item, const struct ITEM_INFO *enemy,
+    int16_t box_num);

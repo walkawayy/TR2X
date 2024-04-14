@@ -18,7 +18,6 @@
 #define Boat_Animation ((void __cdecl (*)(struct ITEM_INFO *boat, int32_t collide))0x0040D950)
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
-#define Box_EscapeBox ((int32_t __cdecl (*)(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num))0x0040E8A0)
 #define Box_ValidBox ((int32_t __cdecl (*)(struct ITEM_INFO *item, int16_t zone_num, int16_t box_num))0x0040E950)
 #define CreatureMood ((void __cdecl (*)(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent))0x0040EA00)
 #define Box_CalculateTarget ((enum TARGET_TYPE __cdecl (*)(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot))0x0040EE70)

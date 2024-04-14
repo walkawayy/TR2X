@@ -523,6 +523,7 @@ static void Inject_Creature(void)
 static void Inject_Box(void)
 {
     INJECT(1, 0x0040E490, Box_SearchLOT);
+    INJECT(1, 0x0040E690, Box_UpdateLOT);
 }
 
 static void Inject_Objects(void)

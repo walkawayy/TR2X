@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.15% (416)</tspan> · <tspan class="known">63.38% (772)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.24% (417)</tspan> · <tspan class="known">63.30% (771)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="255.13" height="6" x="0" y="0" class="decompiled"/>
-<rect width="473.47" height="6" x="255.13" y="0" class="known"/>
+<rect width="255.75" height="6" x="0" y="0" class="decompiled"/>
+<rect width="472.85" height="6" x="255.75" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -179,7 +179,7 @@
 <rect width="12" height="12" x="735" y="15" class="decompiled"><title>int32_t __cdecl Creature_Activate(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="0" y="30" class="decompiled"><title>void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);</title></rect>
 <rect width="12" height="12" x="15" y="30" class="decompiled"><title>int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);</title></rect>
-<rect width="12" height="12" x="30" y="30" class="known"><title>int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);</title></rect>
+<rect width="12" height="12" x="30" y="30" class="decompiled"><title>int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);</title></rect>
 <rect width="12" height="12" x="45" y="30" class="known"><title>void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);</title></rect>
 <rect width="12" height="12" x="60" y="30" class="known"><title>int32_t __cdecl Box_StalkBox(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num);</title></rect>
 <rect width="12" height="12" x="75" y="30" class="known"><title>int32_t __cdecl Box_EscapeBox(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">30.36%</tspan> · <tspan class="known">69.31%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">30.40%</tspan> · <tspan class="known">69.28%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="226.81" height="6" x="0" y="0" class="decompiled"/>
-<rect width="517.75" height="6" x="226.81" y="0" class="known"/>
+<rect width="227.05" height="6" x="0" y="0" class="decompiled"/>
+<rect width="517.51" height="6" x="227.05" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1985,7 +1985,7 @@
 <rect width="6.68" height="6.60" x="588.98" y="255.48" class="known"><title>void __cdecl ready_shotgun(int32_t weapon_type);</title></rect>
 <rect width="6.68" height="6.60" x="588.98" y="265.09" class="decompiled"><title>void __cdecl Lara_State_SurfSwim(struct ITEM_INFO *item, struct COLL_INFO *coll);</title></rect>
 <rect width="6.68" height="6.60" x="588.98" y="274.69" class="known"><title>void __cdecl CreatePictureBuffer(void);</title></rect>
-<rect width="6.68" height="6.52" x="588.98" y="284.29" class="known"><title>int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);</title></rect>
+<rect width="6.68" height="6.52" x="588.98" y="284.29" class="decompiled"><title>int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);</title></rect>
 <rect width="6.68" height="6.52" x="588.98" y="293.81" class="decompiled"><title>void __cdecl Item_RemoveDrawn(int16_t item_num);</title></rect>
 <rect width="6.68" height="6.52" x="588.98" y="303.32" class="decompiled"><title>void __cdecl Music_Play(int16_t track_id, bool is_looped);</title></rect>
 <rect width="6.68" height="6.52" x="588.98" y="312.84" class="known"><title>BOOL __cdecl UT_CenterWindow(HWND hWnd);</title></rect>

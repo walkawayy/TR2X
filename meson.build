@@ -68,6 +68,7 @@ dll_sources = [
   'src/decomp/decomp.c',
   'src/filesystem.c',
   'src/game/camera.c',
+  'src/game/creature.c',
   'src/game/effects.c',
   'src/game/input.c',
   'src/game/items.c',

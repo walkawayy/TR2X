@@ -2,6 +2,7 @@
 
 #include "decomp/decomp.h"
 #include "game/camera.h"
+#include "game/creature.h"
 #include "game/effects.h"
 #include "game/input.h"
 #include "game/items.h"
@@ -49,6 +50,7 @@ static void Inject_Lara_Misc(void);
 static void Inject_Lara_State(void);
 static void Inject_Lara_Col(void);
 
+static void Inject_Creature(void);
 static void Inject_Objects(void);
 
 static void Inject_S_Audio_Sample(void);
@@ -509,6 +511,11 @@ static void Inject_Lara_Col(void)
     INJECT(1, 0x00432440, Lara_Col_UWDeath);
 }
 
+static void Inject_Creature(void)
+{
+    INJECT(1, 0x0040E1B0, Creature_Initialise);
+}
+
 static void Inject_Objects(void)
 {
     INJECT(1, 0x0040C880, Bird_Initialise);
@@ -582,6 +589,7 @@ void Inject_Exec(void)
     Inject_Lara_State();
     Inject_Lara_Col();
 
+    Inject_Creature();
     Inject_Objects();
 
     Inject_S_Audio_Sample();

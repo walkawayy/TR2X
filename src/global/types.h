@@ -896,8 +896,8 @@ typedef struct BOX_INFO {
     uint8_t right;
     uint8_t top;
     uint8_t bottom;
-    uint16_t height;
-    uint16_t overlap_index;
+    int16_t height;
+    int16_t overlap_index;
 } BOX_INFO;
 
 typedef enum LEVEL_TYPE {

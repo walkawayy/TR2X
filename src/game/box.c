@@ -5,7 +5,7 @@
 #include "global/vars.h"
 #include "util.h"
 
-#define BOX_OVERLAP_INDEX 0x3FFF
+#define BOX_OVERLAP_BITS 0x3FFF
 #define BOX_SEARCH_NUM 0x7FFF
 #define BOX_END_BIT 0x8000
 #define BOX_NUM_BITS (~BOX_END_BIT) // = 0x7FFF
@@ -18,8 +18,8 @@ int32_t __cdecl Box_SearchLOT(
     int16_t *zone;
     if (lot->fly) {
         zone = g_FlyZone[g_FlipStatus];
-    } else if (lot->step == STEP_L) {
-        zone = g_GroundZone[lot->step >> 8][g_FlipStatus];
+    } else {
+        zone = g_GroundZone[lot->step / STEP_L][g_FlipStatus];
     }
 
     const int16_t search_zone = zone[lot->head];
@@ -29,11 +29,11 @@ int32_t __cdecl Box_SearchLOT(
             return false;
         }
 
-        BOX_NODE *node = &lot->node[lot->head];
+        struct BOX_NODE *node = &lot->node[lot->head];
         const struct BOX_INFO *box = &g_Boxes[lot->head];
 
         bool done = false;
-        int32_t index = box->overlap_index & BOX_OVERLAP_INDEX;
+        int32_t index = box->overlap_index & BOX_OVERLAP_BITS;
         while (!done) {
             int16_t box_num = g_Overlap[index++];
             if ((box_num & BOX_END_BIT) != 0) {
@@ -57,14 +57,14 @@ int32_t __cdecl Box_SearchLOT(
             }
 
             if ((node->search_num & BOX_BLOCKED_SEARCH) != 0) {
-                if ((node->search_num & BOX_SEARCH_NUM)
-                    == (expand->search_num & BOX_SEARCH_NUM)) {
+                if ((expand->search_num & BOX_SEARCH_NUM)
+                    == (node->search_num & BOX_SEARCH_NUM)) {
                     continue;
                 }
                 expand->search_num = node->search_num;
             } else {
-                if ((node->search_num & BOX_SEARCH_NUM)
-                        == (expand->search_num & BOX_SEARCH_NUM)
+                if ((expand->search_num & BOX_SEARCH_NUM)
+                        == (node->search_num & BOX_SEARCH_NUM)
                     && (expand->search_num & BOX_BLOCKED_SEARCH) == 0) {
                     continue;
                 }

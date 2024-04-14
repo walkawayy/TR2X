@@ -514,6 +514,7 @@ static void Inject_Lara_Col(void)
 static void Inject_Creature(void)
 {
     INJECT(1, 0x0040E1B0, Creature_Initialise);
+    INJECT(1, 0x0040E1E0, Creature_Activate);
 }
 
 static void Inject_Objects(void)

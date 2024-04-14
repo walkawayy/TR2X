@@ -1739,7 +1739,7 @@ typedef enum GAME_OBJECT_ID {
 
 # game/box.c
 0040E1B0    0000002F    +       void __cdecl Creature_Initialise(int16_t item_num);
-0040E1E0    00000047    -       int32_t __cdecl Creature_Activate(int16_t item_num);
+0040E1E0    00000047    +       int32_t __cdecl Creature_Activate(int16_t item_num);
 0040E230    00000242    -       void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);
 0040E490    000001F3    -       int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
 0040E690    0000006F    -       int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);

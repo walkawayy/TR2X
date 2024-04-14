@@ -282,5 +282,6 @@
 #define g_Camera (*(struct CAMERA_INFO*)0x00526320)
 #define g_GroundZone (*(int16_t *(*)[][2])0x00526398)
 #define g_FlyZone (*(int16_t *(*)[2])0x005263C0)
+#define g_Overlap (*(uint16_t **)0x005263C8)
 #define g_Boxes (*(struct BOX_INFO **)0x005263CC)
 // clang-format on

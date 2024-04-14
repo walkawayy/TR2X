@@ -1,6 +1,7 @@
 #include "inject_exec.h"
 
 #include "decomp/decomp.h"
+#include "game/box.h"
 #include "game/camera.h"
 #include "game/creature.h"
 #include "game/effects.h"
@@ -51,6 +52,7 @@ static void Inject_Lara_State(void);
 static void Inject_Lara_Col(void);
 
 static void Inject_Creature(void);
+static void Inject_Box(void);
 static void Inject_Objects(void);
 
 static void Inject_S_Audio_Sample(void);
@@ -518,6 +520,11 @@ static void Inject_Creature(void)
     INJECT(1, 0x0040E230, Creature_AIInfo);
 }
 
+static void Inject_Box(void)
+{
+    INJECT(1, 0x0040E490, Box_SearchLOT);
+}
+
 static void Inject_Objects(void)
 {
     INJECT(1, 0x0040C880, Bird_Initialise);
@@ -592,6 +599,7 @@ void Inject_Exec(void)
     Inject_Lara_Col();
 
     Inject_Creature();
+    Inject_Box();
     Inject_Objects();
 
     Inject_S_Audio_Sample();

@@ -1,5 +1,6 @@
 #include "game/creature.h"
 
+#include "game/box.h"
 #include "game/math.h"
 #include "game/random.h"
 #include "global/const.h"
@@ -8,8 +9,6 @@
 #include "util.h"
 
 #define FRONT_ARC PHD_90
-#define BLOCKED 0x4000
-#define BLOCKED_SEARCH 0x8000
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
@@ -91,8 +90,8 @@ void __cdecl Creature_AIInfo(
     if (((g_Boxes[enemy->box_num].overlap_index & creature->lot.block_mask)
          != 0)
         || (creature->lot.node[item->box_num].search_num
-            == (creature->lot.search_num | BLOCKED_SEARCH))) {
-        info->enemy_zone_num |= BLOCKED;
+            == (creature->lot.search_num | BOX_BLOCKED_SEARCH))) {
+        info->enemy_zone_num |= BOX_BLOCKED;
     }
 
     const struct OBJECT_INFO *const object = &g_Objects[item->object_num];

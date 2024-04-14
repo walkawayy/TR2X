@@ -1741,7 +1741,7 @@ typedef enum GAME_OBJECT_ID {
 0040E1B0    0000002F    +       void __cdecl Creature_Initialise(int16_t item_num);
 0040E1E0    00000047    +       int32_t __cdecl Creature_Activate(int16_t item_num);
 0040E230    00000242    +       void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);
-0040E490    000001F3    -       int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
+0040E490    000001F3    +       int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
 0040E690    0000006F    -       int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);
 0040E700    00000095    -       void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);
 0040E7A0    000000F2    -       int32_t __cdecl Box_StalkBox(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num);
@@ -3252,3 +3252,4 @@ typedef enum GAME_OBJECT_ID {
 00464090    +       struct BITE_INFO g_BirdBite;
 005263C0    -       int16_t *g_FlyZone[2];
 00526398    -       int16_t *g_GroundZone[][2];
+005263C8    -       uint16_t *g_Overlap;

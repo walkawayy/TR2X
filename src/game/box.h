@@ -7,3 +7,4 @@
 
 int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
 int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);
+void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);

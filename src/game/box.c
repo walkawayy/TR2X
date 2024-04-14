@@ -1,5 +1,6 @@
 #include "game/box.h"
 
+#include "game/random.h"
 #include "global/const.h"
 #include "global/vars.h"
 
@@ -108,4 +109,23 @@ int32_t __cdecl Box_UpdateLOT(
 
 end:
     return Box_SearchLOT(lot, expansion);
+}
+
+void __cdecl Box_TargetBox(struct LOT_INFO *const lot, const int16_t box_num)
+{
+    const struct BOX_INFO *const box = &g_Boxes[box_num & BOX_NUM_BITS];
+
+    lot->target.z = ((box->right - box->left - 1) >> (15 - WALL_SHIFT))
+            * Random_GetControl()
+        + (box->left << WALL_SHIFT) + WALL_L / 2;
+    lot->target.x = ((box->bottom - box->top - 1) >> (15 - WALL_SHIFT))
+            * Random_GetControl()
+        + (box->top << WALL_SHIFT) + WALL_L / 2;
+    lot->required_box = box_num & BOX_NUM_BITS;
+
+    if (lot->fly != 0) {
+        lot->target.y = box->height - STEP_L * 3 / 2;
+    } else {
+        lot->target.y = box->height;
+    }
 }

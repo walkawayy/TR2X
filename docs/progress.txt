@@ -1743,7 +1743,7 @@ typedef enum GAME_OBJECT_ID {
 0040E230    00000242    +       void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);
 0040E490    000001F3    +       int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
 0040E690    0000006F    +       int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);
-0040E700    00000095    -       void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);
+0040E700    00000095    +       void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);
 0040E7A0    000000F2    -       int32_t __cdecl Box_StalkBox(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num);
 0040E8A0    000000A4    -       int32_t __cdecl Box_EscapeBox(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num);
 0040E950    000000A7    -       int32_t __cdecl Box_ValidBox(struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);

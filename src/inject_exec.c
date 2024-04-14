@@ -524,6 +524,7 @@ static void Inject_Box(void)
 {
     INJECT(1, 0x0040E490, Box_SearchLOT);
     INJECT(1, 0x0040E690, Box_UpdateLOT);
+    INJECT(1, 0x0040E700, Box_TargetBox);
 }
 
 static void Inject_Objects(void)

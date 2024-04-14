@@ -280,5 +280,7 @@
 #define g_CinePos (*(struct PHD_3DPOS*)0x00526300)
 #define g_CineFrameIdx (*(int16_t*)0x00526314)
 #define g_Camera (*(struct CAMERA_INFO*)0x00526320)
+#define g_GroundZone (*(int16_t *(*)[][2])0x00526398)
+#define g_FlyZone (*(int16_t *(*)[2])0x005263C0)
 #define g_Boxes (*(struct BOX_INFO **)0x005263CC)
 // clang-format on

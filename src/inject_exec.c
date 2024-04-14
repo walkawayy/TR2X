@@ -515,6 +515,7 @@ static void Inject_Creature(void)
 {
     INJECT(1, 0x0040E1B0, Creature_Initialise);
     INJECT(1, 0x0040E1E0, Creature_Activate);
+    INJECT(1, 0x0040E230, Creature_AIInfo);
 }
 
 static void Inject_Objects(void)

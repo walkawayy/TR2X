@@ -636,7 +636,7 @@ typedef struct FX_INFO {
 
 typedef struct AI_INFO {
     int16_t zone_num;
-    int16_t enemy_zone;
+    int16_t enemy_zone_num;
     int32_t distance;
     int32_t ahead;
     int32_t bite;

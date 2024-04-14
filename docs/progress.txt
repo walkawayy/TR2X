@@ -605,7 +605,7 @@ typedef struct __unaligned FX_INFO {
 
 typedef struct __unaligned AI_INFO {
     int16_t zone_num;
-    int16_t enemy_zone;
+    int16_t enemy_zone_num;
     int32_t distance;
     int32_t ahead;
     int32_t bite;
@@ -1740,7 +1740,7 @@ typedef enum GAME_OBJECT_ID {
 # game/box.c
 0040E1B0    0000002F    +       void __cdecl Creature_Initialise(int16_t item_num);
 0040E1E0    00000047    +       int32_t __cdecl Creature_Activate(int16_t item_num);
-0040E230    00000242    -       void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);
+0040E230    00000242    +       void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);
 0040E490    000001F3    -       int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
 0040E690    0000006F    -       int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);
 0040E700    00000095    -       void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);
@@ -3250,3 +3250,5 @@ typedef enum GAME_OBJECT_ID {
 00463150    -       GUID g_IID_IDirectDrawSurface3;
 004640A0    +       struct BITE_INFO g_CrowBite;
 00464090    +       struct BITE_INFO g_BirdBite;
+005263C0    -       int16_t *g_FlyZone[2];
+00526398    -       int16_t *g_GroundZone[][2];

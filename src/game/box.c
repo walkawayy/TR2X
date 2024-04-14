@@ -3,11 +3,13 @@
 #include "game/random.h"
 #include "global/const.h"
 #include "global/vars.h"
+#include "util.h"
 
 #define BOX_OVERLAP_INDEX 0x3FFF
 #define BOX_SEARCH_NUM 0x7FFF
 #define BOX_END_BIT 0x8000
 #define BOX_NUM_BITS (~BOX_END_BIT) // = 0x7FFF
+#define BOX_STALK_DIST 3 // tiles
 
 int32_t __cdecl Box_SearchLOT(
     struct LOT_INFO *const lot, const int32_t expansion)
@@ -128,4 +130,36 @@ void __cdecl Box_TargetBox(struct LOT_INFO *const lot, const int16_t box_num)
     } else {
         lot->target.y = box->height;
     }
+}
+
+int32_t __cdecl Box_StalkBox(
+    const struct ITEM_INFO *const item, const struct ITEM_INFO *const enemy,
+    const int16_t box_num)
+{
+    const struct BOX_INFO *const box = &g_Boxes[box_num];
+
+    const int32_t z =
+        ((box->left + box->right) << (WALL_SHIFT - 1)) - enemy->pos.z;
+    const int32_t x =
+        ((box->top + box->bottom) << (WALL_SHIFT - 1)) - enemy->pos.x;
+
+    const int32_t x_range = (box->bottom - box->top + BOX_STALK_DIST)
+        << WALL_SHIFT;
+    const int32_t z_range = (box->right - box->left + BOX_STALK_DIST)
+        << WALL_SHIFT;
+    if (x > x_range || x < -x_range || z > z_range || z < -z_range) {
+        return false;
+    }
+
+    const int32_t enemy_quad = (enemy->rot.y >> 14) + 2;
+    const int32_t box_quad = (z > 0) ? ((x > 0) ? 2 : 1) : ((x > 0) ? 3 : 0);
+    if (enemy_quad == box_quad) {
+        return false;
+    }
+
+    const int32_t baddie_quad = item->pos.z > enemy->pos.z
+        ? (item->pos.x > x ? 2 : 1)
+        : (item->pos.x > x ? 3 : 0);
+
+    return enemy_quad == baddie_quad && ABS(enemy_quad - box_quad) == 2;
 }

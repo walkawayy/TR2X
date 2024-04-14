@@ -12,19 +12,19 @@
 void __cdecl Lara_SwimTurn(struct ITEM_INFO *const item)
 {
     if (g_Input & IN_FORWARD) {
-        item->pos.x_rot -= LARA_TURN_RATE_UW;
+        item->rot.x -= LARA_TURN_RATE_UW;
     } else if (g_Input & IN_BACK) {
-        item->pos.x_rot += LARA_TURN_RATE_UW;
+        item->rot.x += LARA_TURN_RATE_UW;
     }
 
     if (g_Input & IN_LEFT) {
         g_Lara.turn_rate -= LARA_TURN_RATE;
         CLAMPL(g_Lara.turn_rate, -LARA_MED_TURN);
-        item->pos.z_rot -= LARA_LEAN_RATE_SWIM;
+        item->rot.z -= LARA_LEAN_RATE_SWIM;
     } else if (g_Input & IN_RIGHT) {
         g_Lara.turn_rate += LARA_TURN_RATE;
         CLAMPG(g_Lara.turn_rate, LARA_MED_TURN);
-        item->pos.z_rot += LARA_LEAN_RATE_SWIM;
+        item->rot.z += LARA_LEAN_RATE_SWIM;
     }
 }
 
@@ -73,13 +73,13 @@ void __cdecl Lara_State_Run(struct ITEM_INFO *item, struct COLL_INFO *coll)
     if (g_Input & IN_LEFT) {
         g_Lara.turn_rate -= LARA_TURN_RATE;
         CLAMPL(g_Lara.turn_rate, -LARA_FAST_TURN);
-        item->pos.z_rot -= LARA_LEAN_RATE;
-        CLAMPL(item->pos.z_rot, -LARA_LEAN_MAX);
+        item->rot.z -= LARA_LEAN_RATE;
+        CLAMPL(item->rot.z, -LARA_LEAN_MAX);
     } else if (g_Input & IN_RIGHT) {
         g_Lara.turn_rate += LARA_TURN_RATE;
         CLAMPG(g_Lara.turn_rate, +LARA_FAST_TURN);
-        item->pos.z_rot += LARA_LEAN_RATE;
-        CLAMPG(item->pos.z_rot, +LARA_LEAN_MAX);
+        item->rot.z += LARA_LEAN_RATE;
+        CLAMPG(item->rot.z, +LARA_LEAN_MAX);
     }
 
     if (item->anim_num == LA_RUN_START) {
@@ -323,28 +323,27 @@ void __cdecl Lara_State_Compress(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     if (g_Lara.water_status != LWS_WADE) {
         if ((g_Input & IN_FORWARD)
-            && Lara_FloorFront(item, item->pos.y_rot, STEP_L)
-                >= -STEPUP_HEIGHT) {
+            && Lara_FloorFront(item, item->rot.y, STEP_L) >= -STEPUP_HEIGHT) {
             item->goal_anim_state = LS_FORWARD_JUMP;
-            g_Lara.move_angle = item->pos.y_rot;
+            g_Lara.move_angle = item->rot.y;
         } else if (
             (g_Input & IN_LEFT)
-            && Lara_FloorFront(item, item->pos.y_rot - PHD_90, STEP_L)
+            && Lara_FloorFront(item, item->rot.y - PHD_90, STEP_L)
                 >= -STEPUP_HEIGHT) {
             item->goal_anim_state = LS_LEFT_JUMP;
-            g_Lara.move_angle = item->pos.y_rot - PHD_90;
+            g_Lara.move_angle = item->rot.y - PHD_90;
         } else if (
             (g_Input & IN_RIGHT)
-            && Lara_FloorFront(item, item->pos.y_rot + PHD_90, STEP_L)
+            && Lara_FloorFront(item, item->rot.y + PHD_90, STEP_L)
                 >= -STEPUP_HEIGHT) {
             item->goal_anim_state = LS_RIGHT_JUMP;
-            g_Lara.move_angle = item->pos.y_rot + PHD_90;
+            g_Lara.move_angle = item->rot.y + PHD_90;
         } else if (
             (g_Input & IN_BACK)
-            && Lara_FloorFront(item, item->pos.y_rot + PHD_180, STEP_L)
+            && Lara_FloorFront(item, item->rot.y + PHD_180, STEP_L)
                 >= -STEPUP_HEIGHT) {
             item->goal_anim_state = LS_BACK_JUMP;
-            g_Lara.move_angle = item->pos.y_rot + PHD_180;
+            g_Lara.move_angle = item->rot.y + PHD_180;
         }
     }
 
@@ -654,13 +653,13 @@ void __cdecl Lara_State_Wade(struct ITEM_INFO *item, struct COLL_INFO *coll)
     if (g_Input & IN_LEFT) {
         g_Lara.turn_rate -= LARA_TURN_RATE;
         CLAMPL(g_Lara.turn_rate, -LARA_FAST_TURN);
-        item->pos.z_rot -= LARA_LEAN_RATE;
-        CLAMPL(item->pos.z_rot, -LARA_LEAN_MAX);
+        item->rot.z -= LARA_LEAN_RATE;
+        CLAMPL(item->rot.z, -LARA_LEAN_MAX);
     } else if (g_Input & IN_RIGHT) {
         g_Lara.turn_rate += LARA_TURN_RATE;
         CLAMPG(g_Lara.turn_rate, LARA_FAST_TURN);
-        item->pos.z_rot += LARA_LEAN_RATE;
-        CLAMPG(item->pos.z_rot, LARA_LEAN_MAX);
+        item->rot.z += LARA_LEAN_RATE;
+        CLAMPG(item->rot.z, LARA_LEAN_MAX);
     }
 
     if (g_Input & IN_FORWARD) {
@@ -692,7 +691,7 @@ void __cdecl Lara_State_DeathSlide(
         g_LaraItem->gravity = 1;
         g_LaraItem->speed = 100;
         g_LaraItem->fall_speed = 40;
-        g_Lara.move_angle = item->pos.y_rot;
+        g_Lara.move_angle = item->rot.y;
     }
 }
 
@@ -781,7 +780,7 @@ void __cdecl Lara_State_Extra_PullDagger(
     }
 
     if (item->frame_num == g_Anims[item->anim_num].frame_end) {
-        item->pos.y_rot += PHD_90;
+        item->rot.y += PHD_90;
         int16_t room_num;
         const struct FLOOR_INFO *floor = Room_GetFloor(
             item->pos.x, item->pos.y, item->pos.z, (int16_t *)&room_num);
@@ -887,7 +886,7 @@ void __cdecl Lara_State_ClimbStance(
     } else if ((g_Input & IN_JUMP)) {
         item->goal_anim_state = LS_BACK_JUMP;
         g_Lara.gun_status = LGS_ARMLESS;
-        g_Lara.move_angle = item->pos.y_rot + PHD_180;
+        g_Lara.move_angle = item->rot.y + PHD_180;
     }
 }
 
@@ -923,9 +922,9 @@ void __cdecl Lara_State_SurfSwim(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
     g_Lara.dive_count = 0;
     if (g_Input & IN_LEFT) {
-        item->pos.y_rot -= LARA_SLOW_TURN;
+        item->rot.y -= LARA_SLOW_TURN;
     } else if (g_Input & IN_RIGHT) {
-        item->pos.y_rot += LARA_SLOW_TURN;
+        item->rot.y += LARA_SLOW_TURN;
     }
     if (!(g_Input & LS_RUN) || (g_Input & LS_BACK)) {
         item->goal_anim_state = LS_SURF_TREAD;
@@ -943,9 +942,9 @@ void __cdecl Lara_State_SurfBack(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
     g_Lara.dive_count = 0;
     if (g_Input & IN_LEFT) {
-        item->pos.y_rot -= LARA_SURF_TURN;
+        item->rot.y -= LARA_SURF_TURN;
     } else if (g_Input & IN_RIGHT) {
-        item->pos.y_rot += LARA_SURF_TURN;
+        item->rot.y += LARA_SURF_TURN;
     }
     if (!(g_Input & IN_BACK)) {
         item->goal_anim_state = LS_SURF_TREAD;
@@ -963,9 +962,9 @@ void __cdecl Lara_State_SurfLeft(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
     g_Lara.dive_count = 0;
     if (g_Input & IN_LEFT) {
-        item->pos.y_rot -= LARA_SURF_TURN;
+        item->rot.y -= LARA_SURF_TURN;
     } else if (g_Input & IN_RIGHT) {
-        item->pos.y_rot += LARA_SURF_TURN;
+        item->rot.y += LARA_SURF_TURN;
     }
     if (!(g_Input & IN_STEP_LEFT)) {
         item->goal_anim_state = LS_SURF_TREAD;
@@ -984,9 +983,9 @@ void __cdecl Lara_State_SurfRight(
 
     g_Lara.dive_count = 0;
     if (g_Input & IN_LEFT) {
-        item->pos.y_rot -= LARA_SURF_TURN;
+        item->rot.y -= LARA_SURF_TURN;
     } else if (g_Input & IN_RIGHT) {
-        item->pos.y_rot += LARA_SURF_TURN;
+        item->rot.y += LARA_SURF_TURN;
     }
     if (!(g_Input & IN_STEP_RIGHT)) {
         item->goal_anim_state = LS_SURF_TREAD;
@@ -1011,9 +1010,9 @@ void __cdecl Lara_State_SurfTread(
     }
 
     if (g_Input & IN_LEFT) {
-        item->pos.y_rot -= LARA_SLOW_TURN;
+        item->rot.y -= LARA_SLOW_TURN;
     } else if (g_Input & IN_RIGHT) {
-        item->pos.y_rot += LARA_SLOW_TURN;
+        item->rot.y += LARA_SLOW_TURN;
     }
 
     if (g_Input & IN_FORWARD) {
@@ -1035,7 +1034,7 @@ void __cdecl Lara_State_SurfTread(
             item->frame_num = g_Anims[item->anim_num].frame_base;
             item->goal_anim_state = LS_SWIM;
             item->current_anim_state = LS_DIVE;
-            item->pos.x_rot = -45 * PHD_DEGREE;
+            item->rot.x = -45 * PHD_DEGREE;
             item->fall_speed = 80;
             g_Lara.water_status = LWS_UNDERWATER;
         }
@@ -1122,7 +1121,7 @@ void __cdecl Lara_State_Tread(struct ITEM_INFO *item, struct COLL_INFO *coll)
 void __cdecl Lara_State_Dive(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     if (g_Input & IN_FORWARD) {
-        item->pos.x_rot -= PHD_DEGREE;
+        item->rot.x -= PHD_DEGREE;
     }
 }
 
@@ -1133,12 +1132,12 @@ void __cdecl Lara_State_UWDeath(struct ITEM_INFO *item, struct COLL_INFO *coll)
     CLAMPL(item->fall_speed, 0);
 
     int32_t angle = 2 * PHD_DEGREE;
-    if (item->pos.x_rot >= -angle && item->pos.x_rot <= angle) {
-        item->pos.x_rot = 0;
-    } else if (item->pos.x_rot >= 0) {
-        item->pos.x_rot -= angle;
+    if (item->rot.x >= -angle && item->rot.x <= angle) {
+        item->rot.x = 0;
+    } else if (item->rot.x >= 0) {
+        item->rot.x -= angle;
     } else {
-        item->pos.x_rot += angle;
+        item->rot.x += angle;
     }
 }
 

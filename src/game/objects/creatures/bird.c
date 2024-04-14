@@ -81,7 +81,7 @@ void __cdecl Bird_Control(const int16_t item_num)
             item->speed = 0;
             break;
         }
-        item->pos.x_rot = 0;
+        item->rot.x = 0;
         Creature_Animate(item_num, 0, 0);
         return;
     }

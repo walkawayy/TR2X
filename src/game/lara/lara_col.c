@@ -86,7 +86,7 @@ bool __cdecl Lara_TestWaterClimbOut(
     }
 
     const enum DIRECTION dir =
-        Math_GetDirectionCone(item->pos.y_rot, 35 * PHD_DEGREE);
+        Math_GetDirectionCone(item->rot.y, 35 * PHD_DEGREE);
     if (dir == DIR_UNKNOWN) {
         return false;
     }
@@ -124,9 +124,9 @@ bool __cdecl Lara_TestWaterClimbOut(
 
     item->current_anim_state = LS_WATER_OUT;
     item->goal_anim_state = LS_STOP;
-    item->pos.y_rot = Math_DirectionToAngle(dir);
-    item->pos.x_rot = 0;
-    item->pos.z_rot = 0;
+    item->rot.y = Math_DirectionToAngle(dir);
+    item->rot.x = 0;
+    item->rot.z = 0;
     item->gravity = 0;
     item->speed = 0;
     item->fall_speed = 0;
@@ -162,8 +162,8 @@ bool __cdecl Lara_TestWaterStepOut(
     item->pos.y += coll->side_front.floor + LARA_HEIGHT_SURF - 5;
     Item_UpdateRoom(item, -LARA_HEIGHT / 2);
     item->gravity = 0;
-    item->pos.x_rot = 0;
-    item->pos.z_rot = 0;
+    item->rot.x = 0;
+    item->rot.z = 0;
     item->speed = 0;
     item->fall_speed = 0;
     g_Lara.water_status = LWS_WADE;
@@ -181,9 +181,9 @@ void __cdecl Lara_SurfaceCollision(
     Item_ShiftCol(item, coll);
 
     if (coll->coll_type == COLL_LEFT) {
-        item->pos.y_rot += 5 * PHD_DEGREE;
+        item->rot.y += 5 * PHD_DEGREE;
     } else if (coll->coll_type == COLL_RIGHT) {
-        item->pos.y_rot -= 5 * PHD_DEGREE;
+        item->rot.y -= 5 * PHD_DEGREE;
     } else if (
         coll->coll_type != COLL_NONE
         || (coll->side_mid.floor < 0 && coll->side_mid.type == HT_BIG_SLOPE)) {
@@ -200,7 +200,7 @@ void __cdecl Lara_SurfaceCollision(
         item->goal_anim_state = LS_SWIM;
         item->anim_num = LA_SURF_DIVE;
         item->frame_num = g_Anims[item->anim_num].frame_base;
-        item->pos.x_rot = -45 * PHD_DEGREE;
+        item->rot.x = -45 * PHD_DEGREE;
         item->fall_speed = 80;
         g_Lara.water_status = LWS_UNDERWATER;
         return;
@@ -213,7 +213,7 @@ void __cdecl Lara_Col_Walk(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_pits = 1;
     coll->slopes_are_walls = 1;
     coll->lava_is_pit = 1;
@@ -274,7 +274,7 @@ void __cdecl Lara_Col_Walk(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_Run(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_walls = 1;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
@@ -286,7 +286,7 @@ void __cdecl Lara_Col_Run(struct ITEM_INFO *item, struct COLL_INFO *coll)
     }
 
     if (Lara_DeflectEdge(item, coll)) {
-        item->pos.z_rot = 0;
+        item->rot.z = 0;
         if (item->anim_num != LA_RUN_START
             && Lara_TestWall(item, STEP_L, 0, -STEP_L * 5 / 2)) {
             item->current_anim_state = LS_SPLAT;
@@ -330,7 +330,7 @@ void __cdecl Lara_Col_Stop(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_pits = 1;
     coll->slopes_are_walls = 1;
     coll->bad_pos = STEPUP_HEIGHT;
@@ -351,9 +351,9 @@ void __cdecl Lara_Col_ForwardJump(
     struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     if (item->speed < 0) {
-        g_Lara.move_angle = item->pos.y_rot + PHD_180;
+        g_Lara.move_angle = item->rot.y + PHD_180;
     } else {
-        g_Lara.move_angle = item->pos.y_rot;
+        g_Lara.move_angle = item->rot.y;
     }
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
@@ -362,7 +362,7 @@ void __cdecl Lara_Col_ForwardJump(
     Lara_GetCollisionInfo(item, coll);
     Lara_DeflectEdgeJump(item, coll);
     if (item->speed < 0) {
-        g_Lara.move_angle = item->pos.y_rot;
+        g_Lara.move_angle = item->rot.y;
     }
 
     if (coll->side_mid.floor > 0 || item->fall_speed <= 0) {
@@ -390,7 +390,7 @@ void __cdecl Lara_Col_FastBack(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     coll->slopes_are_pits = 1;
     coll->slopes_are_walls = 1;
     coll->bad_pos = NO_BAD_POS;
@@ -421,7 +421,7 @@ void __cdecl Lara_Col_TurnRight(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_pits = 1;
     coll->slopes_are_walls = 1;
     coll->bad_pos = STEPUP_HEIGHT;
@@ -452,7 +452,7 @@ void __cdecl Lara_Col_TurnLeft(struct ITEM_INFO *item, struct COLL_INFO *coll)
 void __cdecl Lara_Col_Death(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     Sound_StopEffect(SFX_LARA_FALL);
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->bad_pos = STEPUP_HEIGHT;
     coll->bad_neg = -STEPUP_HEIGHT;
     coll->bad_ceiling = 0;
@@ -534,7 +534,7 @@ void __cdecl Lara_Col_Hang(struct ITEM_INFO *item, struct COLL_INFO *coll)
 void __cdecl Lara_Col_Reach(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 1;
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = 0;
     coll->bad_ceiling = BAD_JUMP_CEILING;
@@ -561,7 +561,7 @@ void __cdecl Lara_Col_Reach(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_Splat(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_pits = 1;
     coll->slopes_are_walls = 1;
     coll->bad_pos = STEPUP_HEIGHT;
@@ -613,7 +613,7 @@ void __cdecl Lara_Col_Back(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     if (g_Lara.water_status == LWS_WADE) {
         coll->bad_pos = NO_BAD_POS;
     } else {
@@ -656,9 +656,9 @@ void __cdecl Lara_Col_Back(struct ITEM_INFO *item, struct COLL_INFO *coll)
 void __cdecl Lara_Col_StepRight(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     if (item->current_anim_state == LS_STEP_RIGHT) {
-        g_Lara.move_angle = item->pos.y_rot + PHD_90;
+        g_Lara.move_angle = item->rot.y + PHD_90;
     } else {
-        g_Lara.move_angle = item->pos.y_rot - PHD_90;
+        g_Lara.move_angle = item->rot.y - PHD_90;
     }
 
     item->gravity = 0;
@@ -694,31 +694,31 @@ void __cdecl Lara_Col_StepLeft(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_Slide(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     Lara_SlideSlope(item, coll);
 }
 
 void __cdecl Lara_Col_BackJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     Lara_Col_Jumper(item, coll);
 }
 
 void __cdecl Lara_Col_RightJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_90;
+    g_Lara.move_angle = item->rot.y + PHD_90;
     Lara_Col_Jumper(item, coll);
 }
 
 void __cdecl Lara_Col_LeftJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot - PHD_90;
+    g_Lara.move_angle = item->rot.y - PHD_90;
     Lara_Col_Jumper(item, coll);
 }
 
 void __cdecl Lara_Col_UpJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
     coll->bad_ceiling = BAD_JUMP_CEILING;
@@ -761,7 +761,7 @@ void __cdecl Lara_Col_UpJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_Fallback(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
     coll->bad_ceiling = BAD_JUMP_CEILING;
@@ -786,21 +786,21 @@ void __cdecl Lara_Col_Fallback(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_HangLeft(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot - PHD_90;
+    g_Lara.move_angle = item->rot.y - PHD_90;
     Lara_HangTest(item, coll);
-    g_Lara.move_angle = item->pos.y_rot - PHD_90;
+    g_Lara.move_angle = item->rot.y - PHD_90;
 }
 
 void __cdecl Lara_Col_HangRight(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_90;
+    g_Lara.move_angle = item->rot.y + PHD_90;
     Lara_HangTest(item, coll);
-    g_Lara.move_angle = item->pos.y_rot + PHD_90;
+    g_Lara.move_angle = item->rot.y + PHD_90;
 }
 
 void __cdecl Lara_Col_SlideBack(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     Lara_SlideSlope(item, coll);
 }
 
@@ -813,7 +813,7 @@ void __cdecl Lara_Col_Roll(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_walls = 1;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
@@ -833,7 +833,7 @@ void __cdecl Lara_Col_Roll2(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     coll->slopes_are_walls = 1;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
@@ -859,7 +859,7 @@ void __cdecl Lara_Col_Roll2(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_SwanDive(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
     coll->bad_ceiling = BAD_JUMP_CEILING;
@@ -878,7 +878,7 @@ void __cdecl Lara_Col_SwanDive(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_FastDive(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
     coll->bad_ceiling = BAD_JUMP_CEILING;
@@ -902,7 +902,7 @@ void __cdecl Lara_Col_FastDive(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_Wade(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_walls = 1;
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEPUP_HEIGHT;
@@ -914,7 +914,7 @@ void __cdecl Lara_Col_Wade(struct ITEM_INFO *item, struct COLL_INFO *coll)
     }
 
     if (Lara_DeflectEdge(item, coll)) {
-        item->pos.z_rot = 0;
+        item->rot.z = 0;
         if (coll->side_front.type != COLL_NONE
             && coll->side_front.floor < -STEP_L * 5 / 2) {
             item->current_anim_state = LS_SPLAT;
@@ -956,7 +956,7 @@ void __cdecl Lara_Col_Wade(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
 void __cdecl Lara_Col_Default(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     coll->slopes_are_walls = 1;
     coll->slopes_are_pits = 1;
     coll->bad_pos = STEPUP_HEIGHT;
@@ -992,7 +992,7 @@ void __cdecl Lara_Col_ClimbLeft(struct ITEM_INFO *item, struct COLL_INFO *coll)
     if (Lara_CheckForLetGo(item, coll)) {
         return;
     }
-    g_Lara.move_angle = item->pos.y_rot - PHD_90;
+    g_Lara.move_angle = item->rot.y - PHD_90;
 
     int32_t shift;
     int32_t result = Lara_TestClimbPos(
@@ -1007,7 +1007,7 @@ void __cdecl Lara_Col_ClimbRight(struct ITEM_INFO *item, struct COLL_INFO *coll)
     if (Lara_CheckForLetGo(item, coll)) {
         return;
     }
-    g_Lara.move_angle = item->pos.y_rot + PHD_90;
+    g_Lara.move_angle = item->rot.y + PHD_90;
 
     int32_t shift;
     int32_t result = Lara_TestClimbPos(
@@ -1247,32 +1247,32 @@ void __cdecl Lara_Col_ClimbDown(struct ITEM_INFO *item, struct COLL_INFO *coll)
 void __cdecl Lara_Col_SurfSwim(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
     coll->bad_neg = -STEPUP_HEIGHT;
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     Lara_SurfaceCollision(item, coll);
     Lara_TestWaterClimbOut(item, coll);
 }
 
 void __cdecl Lara_Col_SurfBack(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_180;
+    g_Lara.move_angle = item->rot.y + PHD_180;
     Lara_SurfaceCollision(item, coll);
 }
 
 void __cdecl Lara_Col_SurfLeft(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot - PHD_90;
+    g_Lara.move_angle = item->rot.y - PHD_90;
     Lara_SurfaceCollision(item, coll);
 }
 
 void __cdecl Lara_Col_SurfRight(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot + PHD_90;
+    g_Lara.move_angle = item->rot.y + PHD_90;
     Lara_SurfaceCollision(item, coll);
 }
 
 void __cdecl Lara_Col_SurfTread(struct ITEM_INFO *item, struct COLL_INFO *coll)
 {
-    g_Lara.move_angle = item->pos.y_rot;
+    g_Lara.move_angle = item->rot.y;
     Lara_SurfaceCollision(item, coll);
 }
 

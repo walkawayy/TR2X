@@ -56,8 +56,8 @@ void __cdecl Item_Initialise(const int16_t item_num)
     item->goal_anim_state = g_Anims[item->anim_num].current_anim_state;
     item->current_anim_state = item->goal_anim_state;
     item->required_anim_state = 0;
-    item->pos.x_rot = 0;
-    item->pos.z_rot = 0;
+    item->rot.x = 0;
+    item->rot.z = 0;
     item->speed = 0;
     item->fall_speed = 0;
     item->hit_points = g_Objects[item->object_num].hit_points;
@@ -97,8 +97,8 @@ void __cdecl Item_Initialise(const int16_t item_num)
     item->next_item = room->item_num;
     room->item_num = item_num;
 
-    const int32_t dx = (item->pos.x - room->x) >> WALL_SHIFT;
-    const int32_t dz = (item->pos.z - room->z) >> WALL_SHIFT;
+    const int32_t dx = (item->pos.x - room->pos.x) >> WALL_SHIFT;
+    const int32_t dz = (item->pos.z - room->pos.z) >> WALL_SHIFT;
     const struct FLOOR_INFO *const floor = &room->floor[dx * room->x_size + dz];
     item->floor = floor->floor << 8;
 

@@ -1,6 +1,18 @@
 # TYPES
 typedef int16_t PHD_ANGLE;
 
+typedef struct __unaligned XYZ_32 {
+    int32_t x;
+    int32_t y;
+    int32_t z;
+} XYZ_32;
+
+typedef struct __unaligned XYZ_16 {
+    int16_t x;
+    int16_t y;
+    int16_t z;
+} XYZ_16;
+
 typedef struct IDirect3DDevice2     *LPDIRECT3DDEVICE2;
 typedef void* LPDIRECT3DTEXTURE2;
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
@@ -20,12 +32,6 @@ typedef struct __unaligned BITMAP_RESOURCE {
     HPALETTE hPalette;
     DWORD flags;
 } BITMAP_RESOURCE;
-
-typedef struct __unaligned POS_3D {
-    int16_t x;
-    int16_t y;
-    int16_t z;
-} POS_3D;
 
 typedef struct __unaligned DISPLAY_MODE {
     int32_t width;
@@ -235,19 +241,9 @@ typedef struct __unaligned GOURAUD_ENTRY {
     uint8_t index[32];
 } GOURAUD_ENTRY;
 
-typedef struct __unaligned PHD_VECTOR {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-} PHD_VECTOR;
-
 typedef struct __unaligned PHD_3DPOS {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int16_t x_rot;
-    int16_t y_rot;
-    int16_t z_rot;
+    struct XYZ_32 pos;
+    struct XYZ_16 rot;
 } PHD_3DPOS;
 
 typedef struct __unaligned SPHERE {
@@ -465,8 +461,8 @@ typedef struct __unaligned COLL_INFO {
     int32_t bad_pos;
     int32_t bad_neg;
     int32_t bad_ceiling;
-    struct PHD_VECTOR shift;
-    struct PHD_VECTOR old;
+    struct XYZ_32 shift;
+    struct XYZ_32 old;
     int16_t old_anim_state;
     int16_t old_anim_num;
     int16_t old_frame_num;
@@ -509,7 +505,8 @@ typedef struct __unaligned ITEM_INFO {
     int16_t shade2;
     int16_t carried_item;
     void *data;
-    struct PHD_3DPOS pos;
+    struct XYZ_32 pos;
+    struct XYZ_16 rot;
     uint16_t active:        1; // 0x0001
     uint16_t status:        2; // 0x0002…0x0004
     uint16_t gravity:       1; // 0x0008
@@ -635,7 +632,7 @@ typedef struct __unaligned LOT_INFO {
     int16_t zone_count;
     int16_t target_box;
     int16_t required_box;
-    struct PHD_VECTOR target;
+    struct XYZ_32 target;
 } LOT_INFO;
 
 typedef enum GF_LEVEL_TYPE {
@@ -762,7 +759,7 @@ typedef struct __unaligned DOOR_INFO {
     int16_t x;
     int16_t y;
     int16_t z;
-    struct POS_3D vertex[4];
+    struct XYZ_16 vertex[4];
 } DOOR_INFO;
 
 typedef struct __unaligned DOOR_INFOS {
@@ -831,7 +828,7 @@ typedef struct __unaligned CREATURE_INFO {
     int16_t item_num;
     enum MOOD_TYPE mood;
     struct LOT_INFO lot;
-    struct PHD_VECTOR target;
+    struct XYZ_32 target;
     struct ITEM_INFO *enemy;
 } CREATURE_INFO;
 
@@ -845,9 +842,7 @@ typedef enum CAMERA_TYPE {
 } CAMERA_TYPE;
 
 typedef struct __unaligned GAME_VECTOR {
-    int32_t x;
-    int32_t y;
-    int32_t z;
+    struct XYZ_32 pos;
     int16_t room_num;
     int16_t box_num;
 } GAME_VECTOR;
@@ -988,7 +983,7 @@ typedef struct __unaligned CAMERA_INFO {
     struct ITEM_INFO *last_item;
     struct OBJECT_VECTOR *fixed;
     int32_t is_lara_mic;
-    struct PHD_VECTOR mic_pos;
+    struct XYZ_32 mic_pos;
 } CAMERA_INFO;
 
 typedef struct __unaligned LARA_ARM {
@@ -1037,7 +1032,7 @@ typedef struct __unaligned LARA_INFO {
     uint16_t can_monkey_swing : 1;
     uint16_t pad : 9;
     int32_t water_surface_dist;
-    struct PHD_VECTOR last_pos;
+    struct XYZ_32 last_pos;
     struct FX_INFO *spaz_effect;
     uint32_t mesh_effects;
     int16_t *mesh_ptrs[15];
@@ -1732,7 +1727,7 @@ typedef enum GAME_OBJECT_ID {
 0040CB30    0000003C    -       void __cdecl Boat_Initialise(int16_t item_num);
 0040CB70    00000170    -       int32_t __cdecl Boat_CheckGeton(int16_t item_num, struct COLL_INFO *coll);
 0040CCE0    0000015E    -       void __cdecl Boat_Collision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-0040CE40    000000F8    -       int32_t __cdecl Boat_TestWaterHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct PHD_VECTOR *pos);
+0040CE40    000000F8    -       int32_t __cdecl Boat_TestWaterHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct XYZ_32 *pos);
 0040CF40    000001C1    -       void __cdecl Boat_DoShift(int32_t boat_num);
 0040D110    00000174    -       void __cdecl Boat_DoWakeEffect(struct ITEM_INFO *boat);
 0040D290    0000004B    -       int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
@@ -1753,7 +1748,7 @@ typedef enum GAME_OBJECT_ID {
 0040E8A0    000000A4    -       int32_t __cdecl Box_EscapeBox(struct ITEM_INFO *item, struct ITEM_INFO *enemy, int16_t box_num);
 0040E950    000000A7    -       int32_t __cdecl Box_ValidBox(struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);
 0040EA00    0000043F    -       void __cdecl CreatureMood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);
-0040EE70    00000459    -       enum TARGET_TYPE __cdecl Box_CalculateTarget(struct PHD_VECTOR *target, struct ITEM_INFO *item, struct LOT_INFO *lot);
+0040EE70    00000459    -       enum TARGET_TYPE __cdecl Box_CalculateTarget(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot);
 0040F2D0    000000F8    -       int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);
 0040F3D0    0000008B    -       int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);
 0040F460    000000B8    -       void __cdecl Creature_Die(int16_t item_num, int32_t explode);
@@ -1814,8 +1809,8 @@ typedef enum GAME_OBJECT_ID {
 00413A30    00000306    -       void __cdecl Lara_Push(struct ITEM_INFO *item, struct ITEM_INFO *lara_item, struct COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
 00413D40    000000CB    -       int32_t __cdecl Item_TestBoundsCollide(struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item, int32_t radius);
 00413E10    00000137    -       int32_t __cdecl Item_TestPosition(int16_t *bounds, struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item);
-00413F50    0000013B    -       void __cdecl Item_AlignPosition(struct PHD_VECTOR *vec, struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item);
-00414090    00000187    -       int32_t __cdecl Lara_MovePosition(struct PHD_VECTOR *vec, struct ITEM_INFO *item, struct ITEM_INFO *lara_item);
+00413F50    0000013B    -       void __cdecl Item_AlignPosition(struct XYZ_32 *vec, struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item);
+00414090    00000187    -       int32_t __cdecl Lara_MovePosition(struct XYZ_32 *vec, struct ITEM_INFO *item, struct ITEM_INFO *lara_item);
 00414220    0000016E    -R      int32_t __cdecl Misc_Move3DPosTo3DPos(struct PHD_3DPOS *src_pos, struct PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);
 
 # game/control.c
@@ -2182,8 +2177,8 @@ typedef enum GAME_OBJECT_ID {
 0042B2E0    00000130    +       int32_t __cdecl Lara_TestSlide(struct ITEM_INFO *item, struct COLL_INFO *coll);
 0042B410    00000075    +       int16_t __cdecl Lara_FloorFront(struct ITEM_INFO *item, PHD_ANGLE ang, int32_t dist);
 0042B490    000000BB    +       int32_t __cdecl Lara_LandedBad(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042B550    0000038F    +       void __cdecl Lara_GetJointAbsPosition(struct PHD_VECTOR *vec, int32_t joint);
-0042B8E0    0000031A    +       void __cdecl Lara_GetJointAbsPosition_I(struct ITEM_INFO *item, struct PHD_VECTOR *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
+0042B550    0000038F    +       void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint);
+0042B8E0    0000031A    +       void __cdecl Lara_GetJointAbsPosition_I(struct ITEM_INFO *item, struct XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
 
 # game/lara1gun.c
 0042BC00    00000033    -R      void __cdecl draw_shotgun_meshes(int32_t weapon_type);
@@ -2243,7 +2238,7 @@ typedef enum GAME_OBJECT_ID {
 0042F740    0000003B    -R      int32_t __cdecl WeaponObject(int32_t weapon_type);
 
 # game/laraflare.c
-0042F7A0    0000009D    -R      int32_t __cdecl DoFlareLight(struct PHD_VECTOR *pos, int32_t flare_age);
+0042F7A0    0000009D    -R      int32_t __cdecl DoFlareLight(struct XYZ_32 *pos, int32_t flare_age);
 0042F840    000000D3    -R      void __cdecl DoFlareInHand(int32_t flare_age);
 0042F920    000000F8    -R      void __cdecl DrawFlareInAir(struct ITEM_INFO *item);
 0042FA20    000001D7    -R      void __cdecl CreateFlare(int32_t thrown);
@@ -2428,10 +2423,10 @@ typedef enum GAME_OBJECT_ID {
 0043CE70    000000E1    -R      int32_t __cdecl SkidooCheckGeton(int16_t item_num, struct COLL_INFO *coll);
 0043CF60    000000F8    -R      void __cdecl SkidooCollision(int16_t item_num, struct ITEM_INFO *litem, struct COLL_INFO *coll);
 0043D060    000001F9    -R      void __cdecl SkidooBaddieCollision(struct ITEM_INFO *skidoo);
-0043D260    000000B2    -R      int32_t __cdecl TestHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct PHD_VECTOR *pos);
-0043D320    0000027C    -R      int32_t __cdecl DoShift(struct ITEM_INFO *skidoo, struct PHD_VECTOR *pos, struct PHD_VECTOR *old);
+0043D260    000000B2    -R      int32_t __cdecl TestHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct XYZ_32 *pos);
+0043D320    0000027C    -R      int32_t __cdecl DoShift(struct ITEM_INFO *skidoo, struct XYZ_32 *pos, struct XYZ_32 *old);
 0043D5A0    00000054    -R      int32_t __cdecl DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
-0043D600    00000090    -R      int32_t __cdecl GetCollisionAnim(struct ITEM_INFO *skidoo, struct PHD_VECTOR *moved);
+0043D600    00000090    -R      int32_t __cdecl GetCollisionAnim(struct ITEM_INFO *skidoo, struct XYZ_32 *moved);
 0043D690    00000140    -R      void __cdecl DoSnowEffect(struct ITEM_INFO *skidoo);
 0043D7D0    0000049E    -R      int32_t __cdecl SkidooDynamics(struct ITEM_INFO *skidoo);
 0043DC70    000001B6    -R      int32_t __cdecl SkidooUserControl(struct ITEM_INFO *skidoo, int32_t height, int32_t *pitch);
@@ -2449,7 +2444,7 @@ typedef enum GAME_OBJECT_ID {
 
 # game/sound.c
 0043F380    00000031    *       int32_t __cdecl Music_GetRealTrack(int32_t track);
-0043F3C0    00000484    -       void __cdecl Sound_Effect(int32_t sample_id, const struct PHD_3DPOS *pos, uint32_t flags);
+0043F3C0    00000484    -       void __cdecl Sound_Effect(int32_t sample_id, const struct XYZ_32 *pos, uint32_t flags);
 0043F860    0000005E    -       void __cdecl Sound_StopEffect(int32_t sample_id);
 0043F8C0    00000086    -       void __cdecl Sound_UpdateContinued(void);
 0043F950    00000024    -       void __cdecl Sound_Shutdown(void);
@@ -2458,7 +2453,7 @@ typedef enum GAME_OBJECT_ID {
 # game/sphere.c
 0043F9B0    00000128    -R      int32_t __cdecl TestCollision(struct ITEM_INFO *item, struct ITEM_INFO *lara_item);
 0043FAE0    000002D8    -R      int32_t __cdecl GetSpheres(struct ITEM_INFO *item, struct SPHERE *ptr, int32_t world_space);
-0043FDC0    0000019A    -       void __cdecl Collide_GetJointAbsPosition(struct ITEM_INFO *item, struct PHD_VECTOR *vec, int32_t joint);
+0043FDC0    0000019A    -       void __cdecl Collide_GetJointAbsPosition(struct ITEM_INFO *item, struct XYZ_32 *vec, int32_t joint);
 0043FF60    0000005D    -R      void __cdecl BaddieBiteEffect(struct ITEM_INFO *item, struct BITE_INFO *bite);
 
 # game/spider.c
@@ -3065,7 +3060,7 @@ typedef enum GAME_OBJECT_ID {
 004CAF60    -       void *g_XBuffer; // no-dereferencing
 004D6AE0    -       uint8_t *g_TexturePageBuffer8[32];
 004D6B60    -       float g_FltWinRight;
-004D6B68    -       struct PHD_VECTOR g_LsVectorView;
+004D6B68    -       struct XYZ_32 g_LsVectorView;
 004D6B78    -       float g_WibbleTable[32];
 004D6BF8    -       int32_t g_PhdWinRight;
 004D6BFC    -       int32_t g_SurfaceCount;

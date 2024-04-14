@@ -41,12 +41,12 @@ void __cdecl Matrix_Pop(void)
 void __cdecl Matrix_GenerateW2V(const struct PHD_3DPOS *viewpos)
 {
     g_MatrixPtr = &g_MatrixStack[0];
-    int32_t sx = Math_Sin(viewpos->x_rot);
-    int32_t cx = Math_Cos(viewpos->x_rot);
-    int32_t sy = Math_Sin(viewpos->y_rot);
-    int32_t cy = Math_Cos(viewpos->y_rot);
-    int32_t sz = Math_Sin(viewpos->z_rot);
-    int32_t cz = Math_Cos(viewpos->z_rot);
+    int32_t sx = Math_Sin(viewpos->rot.x);
+    int32_t cx = Math_Cos(viewpos->rot.x);
+    int32_t sy = Math_Sin(viewpos->rot.y);
+    int32_t cy = Math_Cos(viewpos->rot.y);
+    int32_t sz = Math_Sin(viewpos->rot.z);
+    int32_t cz = Math_Cos(viewpos->rot.z);
 
     g_MatrixPtr->_00 = ((cy * cz) >> W2V_SHIFT)
         + ((((sx * sy) >> W2V_SHIFT) * sz) >> W2V_SHIFT);
@@ -61,9 +61,9 @@ void __cdecl Matrix_GenerateW2V(const struct PHD_3DPOS *viewpos)
     g_MatrixPtr->_20 = (sy * cx) >> W2V_SHIFT;
     g_MatrixPtr->_21 = -sx;
     g_MatrixPtr->_22 = (cx * cy) >> W2V_SHIFT;
-    g_MatrixPtr->_03 = viewpos->x;
-    g_MatrixPtr->_13 = viewpos->y;
-    g_MatrixPtr->_23 = viewpos->z;
+    g_MatrixPtr->_03 = viewpos->pos.x;
+    g_MatrixPtr->_13 = viewpos->pos.y;
+    g_MatrixPtr->_23 = viewpos->pos.z;
 
     g_MatrixPtr->_10 *= g_ViewportAspectRatio;
     g_MatrixPtr->_11 *= g_ViewportAspectRatio;
@@ -80,12 +80,12 @@ void __cdecl Matrix_LookAt(
     Math_GetVectorAngles(xtar - xsrc, ytar - ysrc, ztar - zsrc, angles);
 
     struct PHD_3DPOS viewer;
-    viewer.x = xsrc;
-    viewer.y = ysrc;
-    viewer.z = zsrc;
-    viewer.x_rot = angles[1];
-    viewer.y_rot = angles[0];
-    viewer.z_rot = roll;
+    viewer.pos.x = xsrc;
+    viewer.pos.y = ysrc;
+    viewer.pos.z = zsrc;
+    viewer.rot.x = angles[1];
+    viewer.rot.y = angles[0];
+    viewer.rot.z = roll;
     Matrix_GenerateW2V(&viewer);
 }
 

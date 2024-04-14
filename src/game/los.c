@@ -305,7 +305,7 @@ int32_t __cdecl LOS_CheckSmashable(
                 continue;
             }
 
-            const enum DIRECTION direction = Math_GetDirection(item->pos.y_rot);
+            const enum DIRECTION direction = Math_GetDirection(item->rot.y);
             const int16_t *const bounds = Item_GetBoundsAccurate(item);
             const int16_t *x_extent;
             const int16_t *z_extent = NULL;

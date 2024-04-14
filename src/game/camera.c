@@ -93,7 +93,7 @@ void __cdecl Camera_Move(const struct GAME_VECTOR *target, int32_t speed)
         g_Camera.target.y += g_Camera.bounce;
         g_Camera.bounce = 0;
     } else if (g_Camera.bounce < 0) {
-        struct PHD_VECTOR shake = {
+        struct XYZ_32 shake = {
             .x = g_Camera.bounce * (Random_GetControl() - 0x4000) / 0x7FFF,
             .y = g_Camera.bounce * (Random_GetControl() - 0x4000) / 0x7FFF,
             .z = g_Camera.bounce * (Random_GetControl() - 0x4000) / 0x7FFF,
@@ -125,7 +125,7 @@ void __cdecl Camera_Move(const struct GAME_VECTOR *target, int32_t speed)
 
     if (g_Camera.is_lara_mic) {
         g_Camera.actual_angle =
-            g_Lara.torso_y_rot + g_Lara.head_y_rot + g_LaraItem->pos.y_rot;
+            g_Lara.torso_y_rot + g_Lara.head_y_rot + g_LaraItem->rot.y;
         g_Camera.mic_pos.x = g_LaraItem->pos.x;
         g_Camera.mic_pos.y = g_LaraItem->pos.y;
         g_Camera.mic_pos.z = g_LaraItem->pos.z;
@@ -229,8 +229,8 @@ void __cdecl Camera_SmartShift(
     LOS_Check(&g_Camera.target, target);
 
     const struct ROOM_INFO *r = &g_Rooms[g_Camera.target.room_num];
-    int32_t x_floor = (g_Camera.target.z - r->z) >> WALL_SHIFT;
-    int32_t y_floor = (g_Camera.target.x - r->x) >> WALL_SHIFT;
+    int32_t x_floor = (g_Camera.target.z - r->pos.z) >> WALL_SHIFT;
+    int32_t y_floor = (g_Camera.target.x - r->pos.x) >> WALL_SHIFT;
     int16_t item_box = r->floor[x_floor + y_floor * r->x_size].box;
     const struct BOX_INFO *box = &g_Boxes[item_box];
 
@@ -240,8 +240,8 @@ void __cdecl Camera_SmartShift(
     int32_t bottom = ((int32_t)box->bottom << WALL_SHIFT) - 1;
 
     r = &g_Rooms[target->room_num];
-    x_floor = (target->z - r->z) >> WALL_SHIFT;
-    y_floor = (target->x - r->x) >> WALL_SHIFT;
+    x_floor = (target->z - r->pos.z) >> WALL_SHIFT;
+    y_floor = (target->x - r->pos.x) >> WALL_SHIFT;
     int16_t camera_box = r->floor[x_floor + y_floor * r->x_size].box;
 
     if (camera_box != NO_BOX
@@ -443,18 +443,18 @@ void __cdecl Camera_SmartShift(
 
 void __cdecl Camera_Chase(const struct ITEM_INFO *item)
 {
-    g_Camera.target_elevation += item->pos.x_rot;
+    g_Camera.target_elevation += item->rot.x;
     g_Camera.target_elevation = MIN(g_Camera.target_elevation, MAX_ELEVATION);
     g_Camera.target_elevation = MAX(g_Camera.target_elevation, -MAX_ELEVATION);
 
     int32_t distance =
         (g_Camera.target_distance * Math_Cos(g_Camera.target_elevation))
         >> W2V_SHIFT;
-    int16_t angle = g_Camera.target_angle + item->pos.y_rot;
+    int16_t angle = g_Camera.target_angle + item->rot.y;
 
     g_Camera.target_square = SQUARE(distance);
 
-    const struct PHD_VECTOR offset = {
+    const struct XYZ_32 offset = {
         .y = (g_Camera.target_distance * Math_Sin(g_Camera.target_elevation))
             >> W2V_SHIFT,
         .x = -((distance * Math_Sin(angle)) >> W2V_SHIFT),
@@ -521,20 +521,20 @@ void __cdecl Camera_Combat(const struct ITEM_INFO *item)
 
     g_Camera.target_distance = COMBAT_DISTANCE;
     if (g_Lara.target) {
-        g_Camera.target_angle = g_Lara.target_angles[0] + item->pos.y_rot;
-        g_Camera.target_elevation = g_Lara.target_angles[1] + item->pos.x_rot;
+        g_Camera.target_angle = g_Lara.target_angles[0] + item->rot.y;
+        g_Camera.target_elevation = g_Lara.target_angles[1] + item->rot.x;
     } else {
         g_Camera.target_angle =
-            g_Lara.torso_y_rot + g_Lara.head_y_rot + item->pos.y_rot;
+            g_Lara.torso_y_rot + g_Lara.head_y_rot + item->rot.y;
         g_Camera.target_elevation =
-            g_Lara.torso_x_rot + g_Lara.head_x_rot + item->pos.x_rot;
+            g_Lara.torso_x_rot + g_Lara.head_x_rot + item->rot.x;
     }
 
     int32_t distance =
         (COMBAT_DISTANCE * Math_Cos(g_Camera.target_elevation)) >> W2V_SHIFT;
     int16_t angle = g_Camera.target_angle;
 
-    const struct PHD_VECTOR offset = {
+    const struct XYZ_32 offset = {
         .y =
             +((g_Camera.target_distance * Math_Sin(g_Camera.target_elevation))
               >> W2V_SHIFT),
@@ -570,7 +570,7 @@ void __cdecl Camera_Combat(const struct ITEM_INFO *item)
 
 void __cdecl Camera_Look(const struct ITEM_INFO *item)
 {
-    struct PHD_VECTOR old = {
+    struct XYZ_32 old = {
         .x = g_Camera.target.x,
         .y = g_Camera.target.y,
         .z = g_Camera.target.z,
@@ -579,20 +579,18 @@ void __cdecl Camera_Look(const struct ITEM_INFO *item)
     g_Camera.target.z = item->pos.z;
     g_Camera.target.x = item->pos.x;
     g_Camera.target_angle =
-        item->pos.y_rot + g_Lara.torso_y_rot + g_Lara.head_y_rot;
+        item->rot.y + g_Lara.torso_y_rot + g_Lara.head_y_rot;
     g_Camera.target_distance = LOOK_DISTANCE;
     g_Camera.target_elevation =
-        g_Lara.torso_x_rot + g_Lara.head_x_rot + item->pos.x_rot;
+        g_Lara.torso_x_rot + g_Lara.head_x_rot + item->rot.x;
 
     int32_t distance =
         (LOOK_DISTANCE * Math_Cos(g_Camera.target_elevation)) >> W2V_SHIFT;
 
     g_Camera.shift =
         (-STEP_L * 2 * Math_Sin(g_Camera.target_elevation)) >> W2V_SHIFT;
-    g_Camera.target.z +=
-        (g_Camera.shift * Math_Cos(item->pos.y_rot)) >> W2V_SHIFT;
-    g_Camera.target.x +=
-        (g_Camera.shift * Math_Sin(item->pos.y_rot)) >> W2V_SHIFT;
+    g_Camera.target.z += (g_Camera.shift * Math_Cos(item->rot.y)) >> W2V_SHIFT;
+    g_Camera.target.x += (g_Camera.shift * Math_Sin(item->rot.y)) >> W2V_SHIFT;
 
     if (!Camera_GoodPosition(
             g_Camera.target.x, g_Camera.target.y, g_Camera.target.z,
@@ -603,7 +601,7 @@ void __cdecl Camera_Look(const struct ITEM_INFO *item)
 
     g_Camera.target.y += Camera_ShiftClamp(&g_Camera.target, LOOK_CLAMP);
 
-    const struct PHD_VECTOR offset = {
+    const struct XYZ_32 offset = {
         .y =
             +((g_Camera.target_distance * Math_Sin(g_Camera.target_elevation))
               >> W2V_SHIFT),
@@ -693,7 +691,7 @@ void __cdecl Camera_Update(void)
         const int32_t dx = g_Camera.item->pos.x - item->pos.x;
         const int32_t dz = g_Camera.item->pos.z - item->pos.z;
         const int32_t shift = Math_Sqrt(SQUARE(dx) + SQUARE(dz));
-        int16_t angle = Math_Atan(dz, dx) - item->pos.y_rot;
+        int16_t angle = Math_Atan(dz, dx) - item->rot.y;
 
         int16_t tilt = Math_Atan(
             shift,
@@ -752,10 +750,8 @@ void __cdecl Camera_Update(void)
         if (g_Camera.flags == CF_FOLLOW_CENTRE) {
             const int32_t shift =
                 (bounds[FBBOX_MIN_Z] + bounds[FBBOX_MAX_Z]) / 2;
-            g_Camera.target.z +=
-                (shift * Math_Cos(item->pos.y_rot)) >> W2V_SHIFT;
-            g_Camera.target.x +=
-                (shift * Math_Sin(item->pos.y_rot)) >> W2V_SHIFT;
+            g_Camera.target.z += (shift * Math_Cos(item->rot.y)) >> W2V_SHIFT;
+            g_Camera.target.x += (shift * Math_Sin(item->rot.y)) >> W2V_SHIFT;
         }
 
         g_Camera.target.room_num = item->room_num;
@@ -815,15 +811,15 @@ void __cdecl Camera_LoadCutsceneFrame(void)
     int32_t cz = frame->cz;
     int32_t fov = frame->fov;
     int32_t roll = frame->roll;
-    int32_t c = Math_Cos(g_CinePos.y_rot);
-    int32_t s = Math_Sin(g_CinePos.y_rot);
+    int32_t c = Math_Cos(g_CinePos.rot.y);
+    int32_t s = Math_Sin(g_CinePos.rot.y);
 
-    g_Camera.target.x = g_CinePos.x + ((tx * c + tz * s) >> W2V_SHIFT);
-    g_Camera.target.y = g_CinePos.y + ty;
-    g_Camera.target.z = g_CinePos.z + ((tz * c - tx * s) >> W2V_SHIFT);
-    g_Camera.pos.x = g_CinePos.x + ((cx * c + cz * s) >> W2V_SHIFT);
-    g_Camera.pos.y = g_CinePos.y + cy;
-    g_Camera.pos.z = g_CinePos.z + ((cz * c - cx * s) >> W2V_SHIFT);
+    g_Camera.target.x = g_CinePos.pos.x + ((tx * c + tz * s) >> W2V_SHIFT);
+    g_Camera.target.y = g_CinePos.pos.y + ty;
+    g_Camera.target.z = g_CinePos.pos.z + ((tz * c - tx * s) >> W2V_SHIFT);
+    g_Camera.pos.x = g_CinePos.pos.x + ((cx * c + cz * s) >> W2V_SHIFT);
+    g_Camera.pos.y = g_CinePos.pos.y + cy;
+    g_Camera.pos.z = g_CinePos.pos.z + ((cz * c - cx * s) >> W2V_SHIFT);
 
     Output_AlterFOV(fov);
     Matrix_LookAt(
@@ -835,7 +831,7 @@ void __cdecl Camera_LoadCutsceneFrame(void)
 
     if (g_Camera.is_lara_mic) {
         g_Camera.actual_angle =
-            g_Lara.torso_y_rot + g_Lara.head_y_rot + g_LaraItem->pos.y_rot;
+            g_Lara.torso_y_rot + g_Lara.head_y_rot + g_LaraItem->rot.y;
         g_Camera.mic_pos.x = g_LaraItem->pos.x;
         g_Camera.mic_pos.y = g_LaraItem->pos.y;
         g_Camera.mic_pos.z = g_LaraItem->pos.z;
@@ -864,12 +860,12 @@ void __cdecl Camera_UpdateCutscene(void)
     int32_t roll = frame->roll;
     int32_t c = Math_Cos(g_Camera.target_angle);
     int32_t s = Math_Sin(g_Camera.target_angle);
-    const struct PHD_VECTOR camtar = {
+    const struct XYZ_32 camtar = {
         .x = g_LaraItem->pos.x + ((tx * c + tz * s) >> W2V_SHIFT),
         .y = g_LaraItem->pos.y + ty,
         .z = g_LaraItem->pos.z + ((tz * c - tx * s) >> W2V_SHIFT),
     };
-    const struct PHD_VECTOR campos = {
+    const struct XYZ_32 campos = {
         .x = g_LaraItem->pos.x + ((cx * c + cz * s) >> W2V_SHIFT),
         .y = g_LaraItem->pos.y + cy,
         .z = g_LaraItem->pos.z + ((cz * c - cx * s) >> W2V_SHIFT),

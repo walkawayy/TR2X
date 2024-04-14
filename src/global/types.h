@@ -16,6 +16,18 @@ typedef D3DTEXTUREHANDLE HWR_TEX_HANDLE;
 
 typedef int16_t PHD_ANGLE;
 
+typedef struct XYZ_32 {
+    int32_t x;
+    int32_t y;
+    int32_t z;
+} XYZ_32;
+
+typedef struct XYZ_16 {
+    int16_t x;
+    int16_t y;
+    int16_t z;
+} XYZ_16;
+
 typedef struct MATRIX {
     int32_t _00;
     int32_t _01;
@@ -31,15 +43,6 @@ typedef struct MATRIX {
     int32_t _23;
 } MATRIX;
 
-typedef struct PHD_3DPOS {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int16_t x_rot;
-    int16_t y_rot;
-    int16_t z_rot;
-} PHD_3DPOS;
-
 typedef enum VGA_MODE {
     VGA_NO_VGA,
     VGA_256_COLOR,
@@ -53,12 +56,6 @@ typedef struct BITMAP_RESOURCE {
     HPALETTE hPalette;
     DWORD flags;
 } BITMAP_RESOURCE;
-
-typedef struct POS_3D {
-    int16_t x;
-    int16_t y;
-    int16_t z;
-} POS_3D;
 
 typedef struct DISPLAY_MODE {
     int32_t width;
@@ -253,11 +250,12 @@ typedef struct GOURAUD_ENTRY {
     uint8_t index[32];
 } GOURAUD_ENTRY;
 
-typedef struct PHD_VECTOR {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-} PHD_VECTOR;
+typedef struct __unaligned PHD_3DPOS
+{
+    struct XYZ_32 pos;
+    struct XYZ_16 rot;
+}
+PHD_3DPOS;
 
 typedef struct SPHERE {
     int32_t x;
@@ -491,8 +489,8 @@ typedef struct COLL_INFO {
     int32_t bad_pos;
     int32_t bad_neg;
     int32_t bad_ceiling;
-    struct PHD_VECTOR shift;
-    struct PHD_VECTOR old;
+    struct XYZ_32 shift;
+    struct XYZ_32 old;
     int16_t old_anim_state;
     int16_t old_anim_num;
     int16_t old_frame_num;
@@ -535,7 +533,8 @@ typedef struct ITEM_INFO {
     int16_t shade2;
     int16_t carried_item;
     void *data;
-    struct PHD_3DPOS pos;
+    struct XYZ_32 pos;
+    struct XYZ_16 rot;
     // clang-format off
     uint16_t active:        1; // 0x0001
     uint16_t status:        2; // 0x0002…0x0004
@@ -622,7 +621,8 @@ typedef struct WEAPON_INFO {
 } WEAPON_INFO;
 
 typedef struct FX_INFO {
-    struct PHD_3DPOS pos;
+    struct XYZ_32 pos;
+    struct XYZ_16 rot;
     int16_t room_num;
     int16_t object_num;
     int16_t next_fx;
@@ -663,7 +663,7 @@ typedef struct LOT_INFO {
     int16_t zone_count;
     int16_t target_box;
     int16_t required_box;
-    struct PHD_VECTOR target;
+    struct XYZ_32 target;
 } LOT_INFO;
 
 typedef enum GF_LEVEL_TYPE {
@@ -781,7 +781,7 @@ typedef struct DOOR_INFO {
     int16_t x;
     int16_t y;
     int16_t z;
-    struct POS_3D vertex[4];
+    struct XYZ_16 vertex[4];
 } DOOR_INFO;
 
 typedef struct DOOR_INFOS {
@@ -800,9 +800,7 @@ typedef struct LIGHT_INFO {
 } LIGHT_INFO;
 
 typedef struct MESH_INFO {
-    int32_t x;
-    int32_t y;
-    int32_t z;
+    struct XYZ_32 pos;
     int16_t y_rot;
     int16_t shade1;
     int16_t shade2;
@@ -821,9 +819,7 @@ typedef struct ROOM_INFO {
     struct FLOOR_INFO *floor;
     struct LIGHT_INFO *light;
     struct MESH_INFO *mesh;
-    int32_t x;
-    int32_t y;
-    int32_t z;
+    struct XYZ_32 pos;
     int32_t min_floor;
     int32_t max_ceiling;
     int16_t x_size;
@@ -856,7 +852,7 @@ typedef struct CREATURE_INFO {
     int16_t item_num;
     enum MOOD_TYPE mood;
     struct LOT_INFO lot;
-    struct PHD_VECTOR target;
+    struct XYZ_32 target;
     struct ITEM_INFO *enemy;
 } CREATURE_INFO;
 
@@ -870,17 +866,27 @@ typedef enum CAMERA_TYPE {
 } CAMERA_TYPE;
 
 typedef struct GAME_VECTOR {
-    int32_t x;
-    int32_t y;
-    int32_t z;
+    union {
+        struct {
+            int32_t x;
+            int32_t y;
+            int32_t z;
+        };
+        struct XYZ_32 pos;
+    };
     int16_t room_num;
     int16_t box_num;
 } GAME_VECTOR;
 
 typedef struct OBJECT_VECTOR {
-    int32_t x;
-    int32_t y;
-    int32_t z;
+    union {
+        struct {
+            int32_t x;
+            int32_t y;
+            int32_t z;
+        };
+        XYZ_32 pos;
+    };
     int16_t data;
     int16_t flags;
 } OBJECT_VECTOR;
@@ -1026,7 +1032,7 @@ typedef struct CAMERA_INFO {
     struct ITEM_INFO *last_item;
     struct OBJECT_VECTOR *fixed;
     int32_t is_lara_mic;
-    struct PHD_VECTOR mic_pos;
+    struct XYZ_32 mic_pos;
 } CAMERA_INFO;
 
 typedef struct LARA_ARM {
@@ -1083,7 +1089,7 @@ typedef struct LARA_INFO {
     uint16_t can_monkey_swing : 1;
     uint16_t pad : 9;
     int32_t water_surface_dist;
-    struct PHD_VECTOR last_pos;
+    struct XYZ_32 last_pos;
     struct FX_INFO *spaz_effect;
     uint32_t mesh_effects;
     int16_t *mesh_ptrs[15];

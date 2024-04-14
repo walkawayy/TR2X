@@ -51,8 +51,8 @@ int32_t __cdecl Lara_LandedBad(struct ITEM_INFO *item, struct COLL_INFO *coll);
 int32_t __cdecl Lara_CheckForLetGo(
     struct ITEM_INFO *item, struct COLL_INFO *coll);
 
-void __cdecl Lara_GetJointAbsPosition(struct PHD_VECTOR *vec, int32_t joint);
+void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint);
 
 void __cdecl Lara_GetJointAbsPosition_I(
-    struct ITEM_INFO *item, struct PHD_VECTOR *vec, int16_t *frame1,
+    struct ITEM_INFO *item, struct XYZ_32 *vec, int16_t *frame1,
     int16_t *frame2, int32_t frac, int32_t rate);

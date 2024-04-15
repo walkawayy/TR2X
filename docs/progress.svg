@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.73% (423)</tspan> · <tspan class="known">62.81% (765)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.81% (424)</tspan> · <tspan class="known">62.73% (764)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="259.43" height="6" x="0" y="0" class="decompiled"/>
-<rect width="469.17" height="6" x="259.43" y="0" class="known"/>
+<rect width="260.04" height="6" x="0" y="0" class="decompiled"/>
+<rect width="468.56" height="6" x="260.04" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -184,7 +184,7 @@
 <rect width="12" height="12" x="60" y="30" class="decompiled"><title>int32_t __cdecl Box_StalkBox(const struct ITEM_INFO *item, const struct ITEM_INFO *enemy, int16_t box_num);</title></rect>
 <rect width="12" height="12" x="75" y="30" class="decompiled"><title>int32_t __cdecl Box_EscapeBox(const struct ITEM_INFO *item, const struct ITEM_INFO *enemy, int16_t box_num);</title></rect>
 <rect width="12" height="12" x="90" y="30" class="decompiled"><title>int32_t __cdecl Box_ValidBox(const struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);</title></rect>
-<rect width="12" height="12" x="105" y="30" class="known"><title>void __cdecl CreatureMood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);</title></rect>
+<rect width="12" height="12" x="105" y="30" class="decompiled"><title>void __cdecl Creature_Mood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);</title></rect>
 <rect width="12" height="12" x="120" y="30" class="decompiled"><title>enum TARGET_TYPE __cdecl Box_CalculateTarget(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot);</title></rect>
 <rect width="12" height="12" x="135" y="30" class="known"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="150" y="30" class="decompiled"><title>int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);</title></rect>
@@ -312,9 +312,9 @@
 <rect width="12" height="12" x="480" y="60" class="decompiled"><title>void __cdecl Matrix_InterpolateArm(void);</title></rect>
 <rect width="12" height="12" x="495" y="60" class="known"><title>void __cdecl Gun_DrawFlash(int32_t weapon_type, int32_t clip);</title></rect>
 <rect width="12" height="12" x="510" y="60" class="known"><title>void __cdecl Output_CalculateObjectLighting(struct ITEM_INFO *item, int16_t *frame);</title></rect>
-<rect width="12" height="12" x="525" y="60" class="known"><title>int32_t __cdecl Item_GetFrames(struct ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
+<rect width="12" height="12" x="525" y="60" class="known"><title>int32_t __cdecl Item_GetFrames(const struct ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
 <rect width="12" height="12" x="540" y="60" class="known"><title>int16_t *__cdecl Item_GetBoundsAccurate(const struct ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="555" y="60" class="known"><title>int16_t *__cdecl Item_GetBestFrame(struct ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="555" y="60" class="known"><title>int16_t *__cdecl Item_GetBestFrame(const struct ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="570" y="60" class="known"><title>void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);</title></rect>
 <rect width="12" height="12" x="585" y="60" class="known"><title>void __cdecl BigEelControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="600" y="60" class="known"><title>void __cdecl EelControl(int16_t item_num);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">30.97%</tspan> · <tspan class="known">68.70%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">31.29%</tspan> · <tspan class="known">68.38%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="231.37" height="6" x="0" y="0" class="decompiled"/>
-<rect width="513.19" height="6" x="231.37" y="0" class="known"/>
+<rect width="233.75" height="6" x="0" y="0" class="decompiled"/>
+<rect width="510.81" height="6" x="233.75" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1359,7 +1359,7 @@
 <rect width="27.61" height="27.18" x="208.67" y="31.13" class="decompiled"><title>enum TARGET_TYPE __cdecl Box_CalculateTarget(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot);</title></rect>
 <rect width="27.61" height="26.61" x="208.67" y="61.31" class="decompiled"><title>void __cdecl Output_InsertGT4_ZBuffered(const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1, const struct PHD_VBUF *vtx2, const struct PHD_VBUF *vtx3, const struct PHD_TEXTURE *texture);</title></rect>
 <rect width="27.61" height="26.50" x="208.67" y="90.91" class="known"><title>int32_t __cdecl SkidooControl(void);</title></rect>
-<rect width="27.61" height="26.47" x="208.67" y="120.41" class="known"><title>void __cdecl CreatureMood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);</title></rect>
+<rect width="27.61" height="26.47" x="208.67" y="120.41" class="decompiled"><title>void __cdecl Creature_Mood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);</title></rect>
 <rect width="27.61" height="26.36" x="208.67" y="149.89" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4_Sorted(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);</title></rect>
 <rect width="27.61" height="25.90" x="208.67" y="179.25" class="known"><title>void __cdecl Worker2Control(int16_t item_num);</title></rect>
 <rect width="27.61" height="25.77" x="208.67" y="208.16" class="known"><title>void __cdecl ShowEndStatsText(void);</title></rect>
@@ -1877,7 +1877,7 @@
 <rect width="7.88" height="8.22" x="557.01" y="311" class="known"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
 <rect width="7.88" height="8.22" x="557.01" y="322.22" class="decompiled"><title>void __cdecl Effect_NewRoom(int16_t fx_num, int16_t room_num);</title></rect>
 <rect width="7.88" height="8.22" x="557.01" y="333.43" class="known"><title>void __cdecl SE_AdvancedDlgUpdate(HWND hwndDlg);</title></rect>
-<rect width="7.88" height="8.14" x="557.01" y="344.65" class="known"><title>int32_t __cdecl Item_GetFrames(struct ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
+<rect width="7.88" height="8.14" x="557.01" y="344.65" class="known"><title>int32_t __cdecl Item_GetFrames(const struct ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
 <rect width="7.88" height="8.14" x="557.01" y="355.79" class="decompiled"><title>void __cdecl Music_SetVolume(int32_t volume);</title></rect>
 <rect width="7.88" height="8.07" x="557.01" y="366.93" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);</title></rect>
 <rect width="7.91" height="8.03" x="567.89" y="185.54" class="decompiled"><title>void __cdecl Lara_State_Extra_SharkKill(struct ITEM_INFO *item, struct COLL_INFO *coll);</title></rect>
@@ -2240,7 +2240,7 @@
 <rect width="3.70" height="3.57" x="696.39" y="290.21" class="decompiled"><title>void __cdecl Output_DrawPolyTrans(const int16_t *obj_ptr);</title></rect>
 <rect width="3.70" height="3.57" x="703.10" y="290.21" class="decompiled"><title>void __cdecl Output_DrawPolyGouraud(const int16_t *obj_ptr);</title></rect>
 <rect width="3.70" height="3.57" x="709.80" y="290.21" class="known"><title>void __cdecl Creature_Tilt(struct ITEM_INFO *item, int16_t angle);</title></rect>
-<rect width="3.70" height="3.57" x="716.50" y="290.21" class="known"><title>int16_t *__cdecl Item_GetBestFrame(struct ITEM_INFO *item);</title></rect>
+<rect width="3.70" height="3.57" x="716.50" y="290.21" class="known"><title>int16_t *__cdecl Item_GetBestFrame(const struct ITEM_INFO *item);</title></rect>
 <rect width="3.70" height="3.57" x="723.20" y="290.21" class="decompiled"><title>void __cdecl Lara_State_HangLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);</title></rect>
 <rect width="3.70" height="3.57" x="729.90" y="290.21" class="decompiled"><title>void __cdecl Lara_State_HangRight(struct ITEM_INFO *item, struct COLL_INFO *coll);</title></rect>
 <rect width="3.70" height="3.57" x="736.60" y="290.21" class="decompiled"><title>void __cdecl Lara_State_ClimbLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);</title></rect>

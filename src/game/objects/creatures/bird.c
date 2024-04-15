@@ -89,7 +89,7 @@ void __cdecl Bird_Control(const int16_t item_num)
 
     AI_INFO info;
     Creature_AIInfo(item, &info);
-    CreatureMood(item, &info, MOOD_BORED);
+    Creature_Mood(item, &info, MOOD_BORED);
     const int16_t angle = Creature_Turn(item, BIRD_TURN);
 
     switch (item->current_anim_state) {

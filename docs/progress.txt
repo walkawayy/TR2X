@@ -1750,7 +1750,7 @@ typedef enum GAME_OBJECT_ID {
 0040EA00    0000043F    -       void __cdecl CreatureMood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);
 0040EE70    00000459    +       enum TARGET_TYPE __cdecl Box_CalculateTarget(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot);
 0040F2D0    000000F8    -       int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);
-0040F3D0    0000008B    -       int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);
+0040F3D0    0000008B    +       int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);
 0040F460    000000B8    -       void __cdecl Creature_Die(int16_t item_num, int32_t explode);
 0040F520    000008CC    -       int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);
 0040FDF0    000000D5    -       int16_t __cdecl Creature_Turn(struct ITEM_INFO *item, int16_t maximum_turn);

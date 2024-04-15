@@ -529,6 +529,7 @@ static void Inject_Box(void)
     INJECT(1, 0x0040E8A0, Box_EscapeBox);
     INJECT(1, 0x0040E950, Box_ValidBox);
     INJECT(1, 0x0040EE70, Box_CalculateTarget);
+    INJECT(1, 0x0040F3D0, Box_BadFloor);
 }
 
 static void Inject_Objects(void)

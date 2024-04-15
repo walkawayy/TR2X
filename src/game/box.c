@@ -2,6 +2,7 @@
 
 #include "game/random.h"
 #include "global/const.h"
+#include "global/funcs.h"
 #include "global/vars.h"
 #include "util.h"
 
@@ -390,4 +391,36 @@ enum TARGET_TYPE __cdecl Box_CalculateTarget(
     }
 
     return TARGET_NONE;
+}
+
+int32_t __cdecl Box_BadFloor(
+    const int32_t x, const int32_t y, const int32_t z, const int32_t box_height,
+    const int32_t next_height, int16_t room_num,
+    const struct LOT_INFO *const lot)
+{
+    const FLOOR_INFO *const floor = Room_GetFloor(x, y, z, &room_num);
+    int16_t box_num = floor->box;
+    if (box_num == NO_BOX) {
+        return true;
+    }
+
+    const struct BOX_INFO *const box = &g_Boxes[box_num];
+    if ((box->overlap_index & lot->block_mask) != 0) {
+        return true;
+    }
+
+    if (box_height - box->height > lot->step
+        || box_height - box->height < lot->drop) {
+        return true;
+    }
+
+    if (box_height - box->height < -lot->step && box->height > next_height) {
+        return true;
+    }
+
+    if (lot->fly != 0 && y > lot->fly + box->height) {
+        return true;
+    }
+
+    return false;
 }

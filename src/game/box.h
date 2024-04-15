@@ -16,3 +16,5 @@ int32_t __cdecl Box_EscapeBox(
     int16_t box_num);
 int32_t __cdecl Box_ValidBox(
     const struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);
+enum TARGET_TYPE __cdecl Box_CalculateTarget(
+    struct XYZ_32 *target, const struct ITEM_INFO *item, struct LOT_INFO *lot);

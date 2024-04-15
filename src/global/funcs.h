@@ -19,7 +19,6 @@
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
 #define CreatureMood ((void __cdecl (*)(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent))0x0040EA00)
-#define Box_CalculateTarget ((enum TARGET_TYPE __cdecl (*)(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot))0x0040EE70)
 #define Creature_CheckBaddieOverlap ((int32_t __cdecl (*)(int16_t item_num))0x0040F2D0)
 #define Box_BadFloor ((int32_t __cdecl (*)(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot))0x0040F3D0)
 #define Creature_Die ((void __cdecl (*)(int16_t item_num, int32_t explode))0x0040F460)

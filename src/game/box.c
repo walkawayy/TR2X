@@ -11,6 +11,16 @@
 #define BOX_NUM_BITS (~BOX_END_BIT) // = 0x7FFF
 #define BOX_STALK_DIST 3 // tiles
 #define BOX_ESCAPE_DIST 5 // tiles
+#define BOX_MAX_EXPANSION 5
+
+#define BOX_BIFF (WALL_L / 2) // = 0x200 = 512
+#define BOX_CLIP_LEFT 1
+#define BOX_CLIP_RIGHT 2
+#define BOX_CLIP_TOP 4
+#define BOX_CLIP_BOTTOM 8
+#define BOX_CLIP_ALL                                                           \
+    (BOX_CLIP_LEFT | BOX_CLIP_RIGHT | BOX_CLIP_TOP | BOX_CLIP_BOTTOM) // = 15
+#define BOX_CLIP_SECONDARY 16
 
 int32_t __cdecl Box_SearchLOT(
     struct LOT_INFO *const lot, const int32_t expansion)
@@ -211,4 +221,173 @@ int32_t __cdecl Box_ValidBox(
         && item->pos.z < (box->right << WALL_SHIFT)
         && item->pos.x > (box->top << WALL_SHIFT)
         && item->pos.x < (box->bottom << WALL_SHIFT));
+}
+
+enum TARGET_TYPE __cdecl Box_CalculateTarget(
+    struct XYZ_32 *const target, const struct ITEM_INFO *const item,
+    struct LOT_INFO *const lot)
+{
+    Box_UpdateLOT(lot, BOX_MAX_EXPANSION);
+
+    *target = item->pos;
+
+    int32_t box_num = item->box_num;
+    if (box_num == NO_BOX) {
+        return TARGET_NONE;
+    }
+
+    int32_t bottom = 0;
+    int32_t top = 0;
+    int32_t right = 0;
+    int32_t left = 0;
+
+    struct BOX_INFO *box = NULL;
+    int32_t box_left = 0;
+    int32_t box_right = 0;
+    int32_t box_top = 0;
+    int32_t box_bottom = 0;
+
+    int32_t prime_free = BOX_CLIP_ALL;
+    do {
+        box = &g_Boxes[box_num];
+        int32_t height = box->height;
+        if (lot->fly != 0) {
+            height -= WALL_L;
+        }
+        if (target->y > height - WALL_L) {
+            target->y = height - WALL_L;
+        }
+
+        box_left = box->left << WALL_SHIFT;
+        box_right = (box->right << WALL_SHIFT) - 1;
+        box_top = box->top << WALL_SHIFT;
+        box_bottom = (box->bottom << WALL_SHIFT) - 1;
+
+        if (item->pos.z >= box_left && item->pos.z <= box_right
+            && item->pos.x >= box_top && item->pos.x <= box_bottom) {
+            left = box_left;
+            right = box_right;
+            top = box_top;
+            bottom = box_bottom;
+        } else {
+            if (item->pos.z < box_left) {
+                if ((prime_free & BOX_CLIP_LEFT) != 0 && item->pos.x >= box_top
+                    && item->pos.x <= box_bottom) {
+                    CLAMPL(target->z, box_left + BOX_BIFF);
+                    if ((prime_free & BOX_CLIP_SECONDARY) != 0) {
+                        return TARGET_SECONDARY;
+                    }
+                    CLAMPL(top, box_top);
+                    CLAMPG(bottom, box_bottom);
+                    prime_free = BOX_CLIP_LEFT;
+                } else if (prime_free != BOX_CLIP_LEFT) {
+                    target->z = right - BOX_BIFF;
+                    if (prime_free != BOX_CLIP_ALL) {
+                        return TARGET_SECONDARY;
+                    }
+                    prime_free |= BOX_CLIP_SECONDARY;
+                }
+            } else if (item->pos.z > box_right) {
+                if ((prime_free & BOX_CLIP_RIGHT) != 0 && item->pos.x >= box_top
+                    && item->pos.x <= box_bottom) {
+                    CLAMPG(target->z, box_right - BOX_BIFF);
+                    if ((prime_free & BOX_CLIP_SECONDARY) != 0) {
+                        return TARGET_SECONDARY;
+                    }
+                    CLAMPL(top, box_top);
+                    CLAMPG(bottom, box_bottom);
+                    prime_free = BOX_CLIP_RIGHT;
+                } else if (prime_free != BOX_CLIP_RIGHT) {
+                    target->z = left + BOX_BIFF;
+                    if (prime_free != BOX_CLIP_ALL) {
+                        return TARGET_SECONDARY;
+                    }
+                    prime_free |= BOX_CLIP_SECONDARY;
+                }
+            }
+
+            if (item->pos.x < box_top) {
+                if ((prime_free & BOX_CLIP_TOP) != 0
+                    && (item->pos.z >= box_left) && item->pos.z <= box_right) {
+                    CLAMPL(target->x, box_top + BOX_BIFF);
+                    if ((prime_free & BOX_CLIP_SECONDARY) != 0) {
+                        return TARGET_SECONDARY;
+                    }
+                    CLAMPL(left, box_left);
+                    CLAMPG(right, box_right);
+                    prime_free = BOX_CLIP_TOP;
+                } else if (prime_free != BOX_CLIP_TOP) {
+                    target->x = bottom - BOX_BIFF;
+                    if (prime_free != BOX_CLIP_ALL) {
+                        return TARGET_SECONDARY;
+                    }
+                    prime_free |= BOX_CLIP_SECONDARY;
+                }
+            } else if (item->pos.x > box_bottom) {
+                if ((prime_free & BOX_CLIP_BOTTOM) != 0
+                    && item->pos.z >= box_left && item->pos.z <= box_right) {
+                    CLAMPG(target->x, box_bottom - BOX_BIFF);
+                    if ((prime_free & BOX_CLIP_SECONDARY) != 0) {
+                        return TARGET_SECONDARY;
+                    }
+                    CLAMPL(left, box_left);
+                    CLAMPG(right, box_right);
+                    prime_free = BOX_CLIP_BOTTOM;
+                } else if (prime_free != BOX_CLIP_BOTTOM) {
+                    target->x = top + BOX_BIFF;
+                    if (prime_free != BOX_CLIP_ALL) {
+                        return TARGET_SECONDARY;
+                    }
+                    prime_free |= BOX_CLIP_SECONDARY;
+                }
+            }
+        }
+
+        if (box_num == lot->target_box) {
+            if ((prime_free & (BOX_CLIP_LEFT | BOX_CLIP_RIGHT)) != 0) {
+                target->z = lot->target.z;
+            } else if ((prime_free & BOX_CLIP_SECONDARY) == 0) {
+                CLAMP(target->z, box_left + BOX_BIFF, box_right - BOX_BIFF);
+            }
+
+            if ((prime_free & (BOX_CLIP_TOP | BOX_CLIP_BOTTOM)) != 0) {
+                target->x = lot->target.x;
+            } else if ((prime_free & BOX_CLIP_SECONDARY) == 0) {
+                CLAMP(target->x, box_top + BOX_BIFF, box_bottom - BOX_BIFF);
+            }
+
+            target->y = lot->target.y;
+            return TARGET_PRIMARY;
+        }
+
+        box_num = lot->node[box_num].exit_box;
+        if (box_num != NO_BOX
+            && (g_Boxes[box_num].overlap_index & lot->block_mask) != 0) {
+            break;
+        }
+    } while (box_num != NO_BOX);
+
+    if ((prime_free & (BOX_CLIP_LEFT | BOX_CLIP_RIGHT)) != 0) {
+        target->z =
+            (((box_right - box_left - WALL_L) * Random_GetControl()) >> 15)
+            + box_left + WALL_L / 2;
+    } else if ((prime_free & BOX_CLIP_SECONDARY) == 0) {
+        CLAMP(target->z, box_left + BOX_BIFF, box_right - BOX_BIFF);
+    }
+
+    if ((prime_free & (BOX_CLIP_TOP | BOX_CLIP_BOTTOM)) != 0) {
+        target->x =
+            (((box_bottom - box_top - WALL_L) * Random_GetControl()) >> 15)
+            + box_top + WALL_L / 2;
+    } else if ((prime_free & BOX_CLIP_SECONDARY) == 0) {
+        CLAMP(target->x, box_top + BOX_BIFF, box_bottom - BOX_BIFF);
+    }
+
+    if (lot->fly != 0) {
+        target->y = box->height - STEP_L * 3 / 2;
+    } else {
+        target->y = box->height;
+    }
+
+    return TARGET_NONE;
 }

@@ -531,6 +531,7 @@ static void Inject_Creature(void)
     INJECT(1, 0x004100B0, Creature_Effect);
     INJECT(1, 0x00410110, Creature_Vault);
     INJECT(1, 0x00410250, Creature_Kill);
+    INJECT(1, 0x004103C0, Creature_GetBaddieTarget);
 }
 
 static void Inject_Box(void)

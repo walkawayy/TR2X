@@ -18,6 +18,7 @@
 #define MAX_HEAD_CHANGE (5 * PHD_DEGREE) // = 910
 #define HEAD_ARC 0x3000 // = 12288
 #define FLOAT_SPEED 32
+#define TARGET_TOLERANCE 0x400000
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
@@ -797,4 +798,70 @@ void __cdecl Creature_Kill(
     g_Lara.air = -1;
 
     g_Camera.pos.room_num = g_LaraItem->room_num;
+}
+
+void __cdecl Creature_GetBaddieTarget(
+    const int16_t item_num, const int32_t goody)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+    CREATURE_INFO *const creature = item->data;
+
+    ITEM_INFO *best_item = NULL;
+    int32_t best_distance = INT32_MAX;
+    for (int i = 0; i < NUM_SLOTS; i++) {
+        const int16_t target_item_num = g_BaddieSlots[i].item_num;
+        if (target_item_num == NO_ITEM || target_item_num == item_num) {
+            continue;
+        }
+
+        ITEM_INFO *target = &g_Items[target_item_num];
+        const int16_t object_num = target->object_num;
+        if (goody && object_num != O_BANDIT_1 && object_num != O_BANDIT_2) {
+            continue;
+        } else if (!goody && object_num != O_MONK_1 && object_num != O_MONK_2) {
+            continue;
+        }
+
+        const int32_t dx = (target->pos.x - item->pos.x) >> 6;
+        const int32_t dy = (target->pos.y - item->pos.y) >> 6;
+        const int32_t dz = (target->pos.z - item->pos.z) >> 6;
+        const int32_t distance = SQUARE(dx) + SQUARE(dy) + SQUARE(dz);
+        if (distance < best_distance) {
+            best_item = target;
+            best_distance = distance;
+        }
+    }
+
+    if (best_item == NULL) {
+        if (!goody || g_IsMonkAngry) {
+            creature->enemy = g_LaraItem;
+        } else {
+            creature->enemy = NULL;
+        }
+        return;
+    }
+
+    if (!goody || g_IsMonkAngry) {
+        const int32_t dx = (g_LaraItem->pos.x - item->pos.x) >> 6;
+        const int32_t dy = (g_LaraItem->pos.y - item->pos.y) >> 6;
+        const int32_t dz = (g_LaraItem->pos.z - item->pos.z) >> 6;
+        const int32_t distance = SQUARE(dx) + SQUARE(dy) + SQUARE(dz);
+        if (distance < best_distance) {
+            best_item = g_LaraItem;
+            best_distance = distance;
+        }
+    }
+
+    const ITEM_INFO *const target = creature->enemy;
+    if (target == NULL || target->status != IS_ACTIVE) {
+        creature->enemy = best_item;
+    } else {
+        const int32_t dx = (target->pos.x - item->pos.x) >> 6;
+        const int32_t dy = (target->pos.y - item->pos.y) >> 6;
+        const int32_t dz = (target->pos.z - item->pos.z) >> 6;
+        const int32_t distance = SQUARE(dz) + SQUARE(dy) + SQUARE(dx);
+        if (distance < best_distance + TARGET_TOLERANCE) {
+            creature->enemy = best_item;
+        }
+    }
 }

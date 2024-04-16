@@ -250,6 +250,7 @@
 #define g_TextstringBuffers (*(char(*)[64][64])0x0051D6C0)
 #define g_SoundIsActive (*(int32_t*)0x0051E6C4)
 #define g_SaveGame (*(SAVEGAME_INFO*)0x0051E9E0)
+#define g_BaddieSlots (*(CREATURE_INFO **)0x005206C0)
 #define g_Lara (*(LARA_INFO*)0x005206E0)
 #define g_LaraItem (*(ITEM_INFO **)0x005207BC)
 #define g_Effects (*(FX_INFO **)0x005207C0)

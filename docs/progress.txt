@@ -1824,7 +1824,7 @@ typedef struct {
 004100B0    0000005C    +       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*__cdecl spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
 00410110    00000131    +       int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
 00410250    0000016F    +       void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
-004103C0    000001DB    -       void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
+004103C0    000001DB    +       void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
 
 # game/camera.c
 004105A0    000000B0    +       void __cdecl Camera_Initialise(void);
@@ -3315,3 +3315,4 @@ typedef struct {
 005263C0    -       int16_t *g_FlyZone[2];
 00526398    -       int16_t *g_GroundZone[][2];
 005263C8    -       uint16_t *g_Overlap;
+005206C0    -       CREATURE_INFO *g_BaddieSlots;

@@ -733,10 +733,8 @@ typedef enum TARGET_TYPE {
 } TARGET_TYPE;
 
 typedef struct __unaligned BITE_INFO {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int32_t mesh_idx;
+    XYZ_32 pos;
+    int32_t mesh_num;
 } BITE_INFO;
 
 typedef struct __unaligned ANIM_STRUCT {
@@ -1809,7 +1807,7 @@ typedef struct {
 0040FF60    0000004E    +       void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
 0040FFB0    000000A8    +       void __cdecl Creature_Float(int16_t item_num);
 00410060    00000050    +       void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);
-004100B0    0000005C    -       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
+004100B0    0000005C    +       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*__cdecl spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
 00410110    00000131    -       int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
 00410250    0000016F    -       void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
 004103C0    000001DB    -       void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
@@ -2503,7 +2501,7 @@ typedef struct {
 # game/sphere.c
 0043F9B0    00000128    -R      int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);
 0043FAE0    000002D8    -R      int32_t __cdecl GetSpheres(ITEM_INFO *item, SPHERE *ptr, int32_t world_space);
-0043FDC0    0000019A    -       void __cdecl Collide_GetJointAbsPosition(ITEM_INFO *item, XYZ_32 *vec, int32_t joint);
+0043FDC0    0000019A    -       void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);
 0043FF60    0000005D    -R      void __cdecl BaddieBiteEffect(ITEM_INFO *item, BITE_INFO *bite);
 
 # game/spider.c

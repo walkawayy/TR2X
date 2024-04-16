@@ -18,8 +18,14 @@ typedef enum {
     BIRD_ANIM_EAT = 7,
 } BIRD_ANIM;
 
-static BITE_INFO m_BirdBite = { 15, 46, 21, 6 };
-static BITE_INFO m_CrowBite = { 2, 10, 60, 14 };
+static const BITE_INFO m_BirdBite = {
+    .pos = { .x = 15, .y = 46, .z = 21 },
+    .mesh_num = 6,
+};
+static const BITE_INFO m_CrowBite = {
+    .pos = { .x = 2, .y = 10, .z = 60 },
+    .mesh_num = 14,
+};
 
 #define BIRD_DAMAGE 20
 #define BIRD_ATTACK_RANGE SQUARE(WALL_L / 2) // = 262144

@@ -18,3 +18,8 @@ void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);
 void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
 void __cdecl Creature_Float(int16_t item_num);
 void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);
+int16_t __cdecl Creature_Effect(
+    const ITEM_INFO *item, const BITE_INFO *bite,
+    int16_t(__cdecl *spawn)(
+        int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot,
+        int16_t room_num));

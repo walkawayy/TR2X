@@ -693,3 +693,15 @@ void __cdecl Creature_Underwater(ITEM_INFO *const item, const int32_t depth)
         CLAMPG(item->rot.x, 0);
     }
 }
+
+int16_t __cdecl Creature_Effect(
+    const ITEM_INFO *const item, const BITE_INFO *const bite,
+    int16_t(__cdecl *const spawn)(
+        int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot,
+        int16_t room_num))
+{
+    XYZ_32 pos = bite->pos;
+    Collide_GetJointAbsPosition(item, &pos, bite->mesh_num);
+    return (*spawn)(
+        pos.x, pos.y, pos.z, item->speed, item->rot.y, item->room_num);
+}

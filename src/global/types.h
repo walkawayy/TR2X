@@ -757,10 +757,8 @@ typedef enum {
 } TARGET_TYPE;
 
 typedef struct {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int32_t mesh_idx;
+    XYZ_32 pos;
+    int32_t mesh_num;
 } BITE_INFO;
 
 typedef struct {

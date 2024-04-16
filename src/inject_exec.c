@@ -523,6 +523,7 @@ static void Inject_Creature(void)
     INJECT(1, 0x0040F460, Creature_Die);
     INJECT(1, 0x0040F520, Creature_Animate);
     INJECT(1, 0x0040FDF0, Creature_Turn);
+    INJECT(1, 0x0040FED0, Creature_Tilt);
 }
 
 static void Inject_Box(void)

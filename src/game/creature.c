@@ -14,6 +14,7 @@
 #define RECOVER_CHANCE 256
 #define ATTACK_RANGE SQUARE(WALL_L * 3) // = 9437184
 #define MAX_X_ROT (20 * PHD_DEGREE) // = 3640
+#define MAX_TILT (3 * PHD_DEGREE) // = 546
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
@@ -612,4 +613,11 @@ int16_t __cdecl Creature_Turn(struct ITEM_INFO *const item, int16_t max_turn)
     CLAMP(angle, -max_turn, max_turn);
     item->rot.y += angle;
     return angle;
+}
+
+void __cdecl Creature_Tilt(struct ITEM_INFO *const item, int16_t angle)
+{
+    angle = 4 * angle - item->rot.z;
+    CLAMP(angle, -MAX_TILT, MAX_TILT);
+    item->rot.z += angle;
 }

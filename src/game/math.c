@@ -467,12 +467,12 @@ uint32_t __fastcall Math_Sqrt(uint32_t n)
     return result;
 }
 
-enum DIRECTION Math_GetDirection(int16_t angle)
+DIRECTION Math_GetDirection(int16_t angle)
 {
     return (uint16_t)(angle + PHD_45) / PHD_90;
 }
 
-enum DIRECTION Math_GetDirectionCone(int16_t angle, int16_t cone)
+DIRECTION Math_GetDirectionCone(int16_t angle, int16_t cone)
 {
     if (angle >= -cone && angle <= cone) {
         return DIR_NORTH;
@@ -486,7 +486,7 @@ enum DIRECTION Math_GetDirectionCone(int16_t angle, int16_t cone)
     return DIR_UNKNOWN;
 }
 
-int16_t Math_DirectionToAngle(enum DIRECTION dir)
+int16_t Math_DirectionToAngle(DIRECTION dir)
 {
     switch (dir) {
     case DIR_NORTH:

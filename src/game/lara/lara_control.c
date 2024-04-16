@@ -7,8 +7,7 @@
 #include "global/vars.h"
 #include "util.h"
 
-void __cdecl Lara_HandleAboveWater(
-    struct ITEM_INFO *const item, struct COLL_INFO *const coll)
+void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
 {
     coll->old.x = item->pos.x;
     coll->old.y = item->pos.y;
@@ -80,8 +79,7 @@ void __cdecl Lara_HandleAboveWater(
     Room_TestTriggers(coll->trigger, 0);
 }
 
-void __cdecl Lara_HandleSurface(
-    struct ITEM_INFO *const item, struct COLL_INFO *const coll)
+void __cdecl Lara_HandleSurface(ITEM_INFO *const item, COLL_INFO *const coll)
 {
     g_Camera.target_elevation = -22 * PHD_DEGREE;
 
@@ -139,8 +137,7 @@ void __cdecl Lara_HandleSurface(
     Room_TestTriggers(coll->trigger, 0);
 }
 
-void __cdecl Lara_HandleUnderwater(
-    struct ITEM_INFO *const item, struct COLL_INFO *const coll)
+void __cdecl Lara_HandleUnderwater(ITEM_INFO *const item, COLL_INFO *const coll)
 {
     coll->old.x = item->pos.x;
     coll->old.y = item->pos.y;

@@ -2,7 +2,7 @@
 
 #include "global/types.h"
 
-typedef struct S_MUSIC_BACKEND {
+typedef struct {
     const char *name;
     bool (*Init)(void);
     void (*Shutdown)(void);

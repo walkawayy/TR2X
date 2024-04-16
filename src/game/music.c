@@ -5,9 +5,9 @@
 #include "specific/s_music_mm.h"
 #include "specific/s_music_pauld.h"
 
-struct S_MUSIC_BACKEND *m_CurrentBackend = NULL;
-struct S_MUSIC_BACKEND **m_Backends = NULL;
-struct S_MUSIC_BACKEND *(*m_BackendFactories[])(void) = {
+S_MUSIC_BACKEND *m_CurrentBackend = NULL;
+S_MUSIC_BACKEND **m_Backends = NULL;
+S_MUSIC_BACKEND *(*m_BackendFactories[])(void) = {
     S_Music_PaulD_Factory,
     S_Music_MM_Factory,
     NULL,
@@ -21,7 +21,7 @@ bool __cdecl Music_Init(void)
 
     int32_t num_backends = 0;
     for (int32_t i = 0;; i++) {
-        struct S_MUSIC_BACKEND *(*factory)(void) = m_BackendFactories[i];
+        S_MUSIC_BACKEND *(*factory)(void) = m_BackendFactories[i];
         if (!factory) {
             break;
         }
@@ -31,12 +31,12 @@ bool __cdecl Music_Init(void)
     m_Backends = malloc(sizeof(S_MUSIC_BACKEND *) * num_backends);
 
     for (int32_t i = 0; i < num_backends; i++) {
-        struct S_MUSIC_BACKEND *(*factory)(void) = m_BackendFactories[i];
+        S_MUSIC_BACKEND *(*factory)(void) = m_BackendFactories[i];
         m_Backends[i] = factory();
     }
 
     for (int32_t i = 0; i < num_backends; i++) {
-        struct S_MUSIC_BACKEND *backend = m_Backends[i];
+        S_MUSIC_BACKEND *backend = m_Backends[i];
         LOG_DEBUG("querying backend: %s", backend->name);
         if (m_Backends[i]->Init()) {
             LOG_DEBUG("chosen backend: %s", backend->name);

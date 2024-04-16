@@ -18,7 +18,7 @@ void __cdecl Matrix_Push(void)
 
 void __cdecl Matrix_PushUnit(void)
 {
-    struct MATRIX *mptr = ++g_MatrixPtr;
+    MATRIX *mptr = ++g_MatrixPtr;
     mptr->_00 = (1 << W2V_SHIFT);
     mptr->_01 = 0;
     mptr->_02 = 0;
@@ -38,7 +38,7 @@ void __cdecl Matrix_Pop(void)
     g_MatrixPtr--;
 }
 
-void __cdecl Matrix_GenerateW2V(const struct PHD_3DPOS *viewpos)
+void __cdecl Matrix_GenerateW2V(const PHD_3DPOS *viewpos)
 {
     g_MatrixPtr = &g_MatrixStack[0];
     int32_t sx = Math_Sin(viewpos->rot.x);
@@ -79,7 +79,7 @@ void __cdecl Matrix_LookAt(
     PHD_ANGLE angles[2];
     Math_GetVectorAngles(xtar - xsrc, ytar - ysrc, ztar - zsrc, angles);
 
-    struct PHD_3DPOS viewer;
+    PHD_3DPOS viewer;
     viewer.pos.x = xsrc;
     viewer.pos.y = ysrc;
     viewer.pos.z = zsrc;
@@ -95,7 +95,7 @@ void __cdecl Matrix_RotX(PHD_ANGLE rx)
         return;
     }
 
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
     int32_t sx = Math_Sin(rx);
     int32_t cx = Math_Cos(rx);
 
@@ -122,7 +122,7 @@ void __cdecl Matrix_RotY(PHD_ANGLE ry)
         return;
     }
 
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
     int32_t sy = Math_Sin(ry);
     int32_t cy = Math_Cos(ry);
 
@@ -149,7 +149,7 @@ void __cdecl Matrix_RotZ(PHD_ANGLE rz)
         return;
     }
 
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
     int32_t sz = Math_Sin(rz);
     int32_t cz = Math_Cos(rz);
 
@@ -173,7 +173,7 @@ void __cdecl Matrix_RotZ(PHD_ANGLE rz)
 void __cdecl Matrix_RotYXZ(int16_t ry, int16_t rx, int16_t rz)
 {
     int32_t r0, r1;
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
 
     if (ry) {
         int32_t sy = Math_Sin(ry);
@@ -236,7 +236,7 @@ void __cdecl Matrix_RotYXZ(int16_t ry, int16_t rx, int16_t rz)
 
 void __cdecl Matrix_RotYXZpack(uint32_t rpack)
 {
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
     int32_t r0, r1;
 
     PHD_ANGLE rx = (rpack >> 14) & 0xFFC0;
@@ -339,7 +339,7 @@ void __cdecl Matrix_RotYXZsuperpack(int16_t **pprot, int32_t index)
 
 bool __cdecl Matrix_TranslateRel(int32_t x, int32_t y, int32_t z)
 {
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
     mptr->_03 += z * mptr->_02 + y * mptr->_01 + x * mptr->_00;
     mptr->_13 += z * mptr->_12 + y * mptr->_11 + x * mptr->_10;
     mptr->_23 += z * mptr->_22 + y * mptr->_21 + x * mptr->_20;
@@ -351,7 +351,7 @@ bool __cdecl Matrix_TranslateRel(int32_t x, int32_t y, int32_t z)
 
 void __cdecl Matrix_TranslateAbs(int32_t x, int32_t y, int32_t z)
 {
-    struct MATRIX *mptr = g_MatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
     const int32_t dx = x - g_W2VMatrix._03;
     const int32_t dy = y - g_W2VMatrix._13;
     const int32_t dz = z - g_W2VMatrix._23;
@@ -372,8 +372,8 @@ void __cdecl Matrix_Interpolate(void)
 {
     const int32_t frac = g_IMFrac;
     const int32_t rate = g_IMRate;
-    const struct MATRIX *iptr = g_IMMatrixPtr;
-    struct MATRIX *mptr = g_MatrixPtr;
+    const MATRIX *iptr = g_IMMatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
 
     if (g_IMRate == 2) {
         mptr->_00 += (iptr->_00 - mptr->_00) / 2;
@@ -408,8 +408,8 @@ void __cdecl Matrix_InterpolateArm(void)
 {
     const int32_t frac = g_IMFrac;
     const int32_t rate = g_IMRate;
-    const struct MATRIX *iptr = g_IMMatrixPtr;
-    struct MATRIX *mptr = g_MatrixPtr;
+    const MATRIX *iptr = g_IMMatrixPtr;
+    MATRIX *mptr = g_MatrixPtr;
 
     if (g_IMRate == 2) {
         mptr->_00 = mptr[-2]._00;
@@ -456,7 +456,7 @@ void __cdecl Matrix_Pop_I(void)
 void __cdecl Matrix_RotX_I(int16_t ang)
 {
     Matrix_RotX(ang);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_RotX(ang);
     g_MatrixPtr = old_matrix;
@@ -465,7 +465,7 @@ void __cdecl Matrix_RotX_I(int16_t ang)
 void __cdecl Matrix_RotY_I(int16_t ang)
 {
     Matrix_RotY(ang);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_RotY(ang);
     g_MatrixPtr = old_matrix;
@@ -474,7 +474,7 @@ void __cdecl Matrix_RotY_I(int16_t ang)
 void __cdecl Matrix_RotZ_I(int16_t ang)
 {
     Matrix_RotZ(ang);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_RotZ(ang);
     g_MatrixPtr = old_matrix;
@@ -483,7 +483,7 @@ void __cdecl Matrix_RotZ_I(int16_t ang)
 void __cdecl Matrix_RotYXZ_I(int16_t y, int16_t x, int16_t z)
 {
     Matrix_RotYXZ(y, x, z);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_RotYXZ(y, x, z);
     g_MatrixPtr = old_matrix;
@@ -493,7 +493,7 @@ void __cdecl Matrix_RotYXZsuperpack_I(
     int16_t **pprot1, int16_t **pprot2, int32_t index)
 {
     Matrix_RotYXZsuperpack(pprot1, index);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_RotYXZsuperpack(pprot2, index);
     g_MatrixPtr = old_matrix;
@@ -502,7 +502,7 @@ void __cdecl Matrix_RotYXZsuperpack_I(
 void __cdecl Matrix_TranslateRel_I(int32_t x, int32_t y, int32_t z)
 {
     Matrix_TranslateRel(x, y, z);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_TranslateRel(x, y, z);
     g_MatrixPtr = old_matrix;
@@ -512,7 +512,7 @@ void __cdecl Matrix_TranslateRel_ID(
     int32_t x, int32_t y, int32_t z, int32_t x2, int32_t y2, int32_t z2)
 {
     Matrix_TranslateRel(x, y, z);
-    struct MATRIX *old_matrix = g_MatrixPtr;
+    MATRIX *old_matrix = g_MatrixPtr;
     g_MatrixPtr = g_IMMatrixPtr;
     Matrix_TranslateRel(x2, y2, z2);
     g_MatrixPtr = old_matrix;

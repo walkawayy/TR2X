@@ -46,24 +46,23 @@ void __cdecl Output_WGTMapPersp32FP(
     int32_t y1, int32_t y2, const uint8_t *tex_page);
 
 int32_t __cdecl Output_VisibleZClip(
-    const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1,
-    const struct PHD_VBUF *vtx2);
+    const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2);
 int32_t __cdecl Output_ZedClipper(
-    int32_t vtx_count, const struct POINT_INFO *pts, struct VERTEX_INFO *vtx);
-int32_t __cdecl Output_XYClipper(int32_t vtx_count, struct VERTEX_INFO *vtx);
-int32_t __cdecl Output_XYGClipper(int32_t vtx_count, struct VERTEX_INFO *vtx);
-int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, struct VERTEX_INFO *vtx);
+    int32_t vtx_count, const POINT_INFO *pts, VERTEX_INFO *vtx);
+int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx);
+int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx);
+int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *vtx);
 
 const int16_t *__cdecl Output_InsertObjectG3(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 const int16_t *__cdecl Output_InsertObjectG4(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 const int16_t *__cdecl Output_InsertObjectGT3(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 const int16_t *__cdecl Output_InsertObjectGT4(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 
-void __cdecl Output_InsertTrans8(const struct PHD_VBUF *vbuf, int16_t shade);
+void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade);
 void __cdecl Output_InsertTransQuad(
     int32_t x, int32_t y, int32_t width, int32_t height, int32_t z);
 void __cdecl Output_InsertFlatRect(
@@ -74,24 +73,22 @@ void __cdecl Output_InsertLine(
     uint8_t color_idx);
 
 const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 
 void __cdecl Output_InsertGT3_ZBuffered(
-    const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1,
-    const struct PHD_VBUF *vtx2, const struct PHD_TEXTURE *texture,
-    const struct PHD_UV *uv0, const struct PHD_UV *uv1,
-    const struct PHD_UV *uv2);
+    const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2,
+    const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1,
+    const PHD_UV *uv2);
 
 void __cdecl Output_InsertGT4_ZBuffered(
-    const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1,
-    const struct PHD_VBUF *vtx2, const struct PHD_VBUF *vtx3,
-    const struct PHD_TEXTURE *texture);
+    const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2,
+    const PHD_VBUF *vtx3, const PHD_TEXTURE *texture);
 
 void __cdecl Output_InsertFlatRect_ZBuffered(
     int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t z,
@@ -102,27 +99,25 @@ void __cdecl Output_InsertLine_ZBuffered(
     uint8_t color_idx);
 
 const int16_t *__cdecl Output_InsertObjectG3_Sorted(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 
 const int16_t *__cdecl Output_InsertObjectG4_Sorted(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 
 const int16_t *__cdecl Output_InsertObjectGT3_Sorted(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 
 const int16_t *__cdecl Output_InsertObjectGT4_Sorted(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 
 void __cdecl Output_InsertGT3_Sorted(
-    const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1,
-    const struct PHD_VBUF *vtx2, const struct PHD_TEXTURE *texture,
-    const struct PHD_UV *uv0, const struct PHD_UV *uv1,
-    const struct PHD_UV *uv2, enum SORT_TYPE sort_type);
+    const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2,
+    const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1,
+    const PHD_UV *uv2, SORT_TYPE sort_type);
 
 void __cdecl Output_InsertGT4_Sorted(
-    const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1,
-    const struct PHD_VBUF *vtx2, const struct PHD_VBUF *vtx3,
-    const struct PHD_TEXTURE *texture, enum SORT_TYPE sort_type);
+    const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2,
+    const PHD_VBUF *vtx3, const PHD_TEXTURE *texture, SORT_TYPE sort_type);
 
 void __cdecl Output_InsertFlatRect_Sorted(
     int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t z,
@@ -136,8 +131,7 @@ void __cdecl Output_InsertSprite_Sorted(
     int32_t z, int32_t x0, int32_t y0, int32_t x1, int32_t y1,
     int32_t sprite_idx, int16_t shade);
 
-void __cdecl Output_InsertTrans8_Sorted(
-    const struct PHD_VBUF *vbuf, int16_t shade);
+void __cdecl Output_InsertTrans8_Sorted(const PHD_VBUF *vbuf, int16_t shade);
 
 void __cdecl Output_InsertTransQuad_Sorted(
     int32_t x, int32_t y, int32_t width, int32_t height, int32_t z);

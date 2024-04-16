@@ -13,7 +13,7 @@ void __cdecl Item_InitialiseArray(const int32_t num_items)
     g_PrevItemActive = NO_ITEM;
     g_NextItemActive = NO_ITEM;
     for (int i = g_NextItemFree; i < num_items - 1; i++) {
-        struct ITEM_INFO *const item = &g_Items[i];
+        ITEM_INFO *const item = &g_Items[i];
         item->active = 1;
         item->next_item = i + 1;
     }
@@ -35,7 +35,7 @@ void __cdecl Item_Kill(const int16_t item_num)
     Item_RemoveActive(item_num);
     Item_RemoveDrawn(item_num);
 
-    struct ITEM_INFO *const item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     if (item == g_Lara.target) {
         g_Lara.target = NULL;
     }
@@ -50,7 +50,7 @@ void __cdecl Item_Kill(const int16_t item_num)
 
 void __cdecl Item_Initialise(const int16_t item_num)
 {
-    struct ITEM_INFO *const item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     item->anim_num = g_Objects[item->object_num].anim_idx;
     item->frame_num = g_Anims[item->anim_num].frame_base;
     item->goal_anim_state = g_Anims[item->anim_num].current_anim_state;
@@ -93,13 +93,13 @@ void __cdecl Item_Initialise(const int16_t item_num)
         item->status = IS_ACTIVE;
     }
 
-    struct ROOM_INFO *const room = &g_Rooms[item->room_num];
+    ROOM_INFO *const room = &g_Rooms[item->room_num];
     item->next_item = room->item_num;
     room->item_num = item_num;
 
     const int32_t dx = (item->pos.x - room->pos.x) >> WALL_SHIFT;
     const int32_t dz = (item->pos.z - room->pos.z) >> WALL_SHIFT;
-    const struct FLOOR_INFO *const floor = &room->floor[dx * room->x_size + dz];
+    const FLOOR_INFO *const floor = &room->floor[dx * room->x_size + dz];
     item->floor = floor->floor << 8;
 
     if (g_SaveGame.bonus_flag && !g_IsDemoLevelType) {
@@ -113,7 +113,7 @@ void __cdecl Item_Initialise(const int16_t item_num)
 
 void __cdecl Item_RemoveActive(const int16_t item_num)
 {
-    struct ITEM_INFO *const item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     if (!item->active) {
         return;
     }
@@ -137,7 +137,7 @@ void __cdecl Item_RemoveActive(const int16_t item_num)
 
 void __cdecl Item_RemoveDrawn(const int16_t item_num)
 {
-    const struct ITEM_INFO *const item = &g_Items[item_num];
+    const ITEM_INFO *const item = &g_Items[item_num];
     if (item->room_num == NO_ROOM) {
         return;
     }
@@ -176,8 +176,8 @@ void __cdecl Item_AddActive(const int16_t item_num)
 
 void __cdecl Item_NewRoom(const int16_t item_num, const int16_t room_num)
 {
-    struct ITEM_INFO *const item = &g_Items[item_num];
-    struct ROOM_INFO *room = NULL;
+    ITEM_INFO *const item = &g_Items[item_num];
+    ROOM_INFO *room = NULL;
 
     if (item->room_num != NO_ROOM) {
         room = &g_Rooms[item->room_num];
@@ -210,7 +210,7 @@ int32_t __cdecl Item_GlobalReplace(
     for (int i = 0; i < g_RoomCount; i++) {
         int16_t j = g_Rooms[i].item_num;
         while (j != NO_ITEM) {
-            struct ITEM_INFO *const item = &g_Items[j];
+            ITEM_INFO *const item = &g_Items[j];
             if (item->object_num == src_object_num) {
                 item->object_num = dst_object_num;
                 changed++;
@@ -228,7 +228,7 @@ void __cdecl Item_ClearKilled(void)
     // improvements, generously used in Opera House and Barkhang Monastery
     int16_t link_num = g_PrevItemActive;
     while (link_num != NO_ITEM) {
-        struct ITEM_INFO *const item = &g_Items[link_num];
+        ITEM_INFO *const item = &g_Items[link_num];
         Item_Kill(link_num);
         link_num = item->next_active;
         item->next_active = NO_ITEM;
@@ -236,7 +236,7 @@ void __cdecl Item_ClearKilled(void)
     g_PrevItemActive = NO_ITEM;
 }
 
-bool Item_IsSmashable(const struct ITEM_INFO *item)
+bool Item_IsSmashable(const ITEM_INFO *item)
 {
     return (item->object_num == O_WINDOW_1 || item->object_num == O_BELL);
 }

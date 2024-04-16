@@ -19,7 +19,7 @@ static D3DCOLOR Output_ShadeColor(
 static D3DCOLOR Output_ShadeLightColor(
     uint32_t shade, uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha);
 static double Output_CalculatePolyZ(
-    enum SORT_TYPE sort_type, double z0, double z1, double z2, double z3);
+    SORT_TYPE sort_type, double z0, double z1, double z2, double z3);
 
 static void __fastcall Output_FlatA(int32_t y1, int32_t y2, uint8_t color_idx);
 static void __fastcall Output_TransA(int32_t y1, int32_t y2, uint8_t depth_q);
@@ -29,11 +29,11 @@ static void __fastcall Output_GTMapA(
 static void __fastcall Output_WGTMapA(
     int32_t y1, int32_t y2, const uint8_t *tex_page);
 static inline void Output_ClipG(
-    struct VERTEX_INFO *const buf, const struct VERTEX_INFO *const vtx1,
-    const struct VERTEX_INFO *const vtx2, const float clip);
+    VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
+    const VERTEX_INFO *const vtx2, const float clip);
 static inline void Output_ClipGUV(
-    struct VERTEX_INFO *const buf, const struct VERTEX_INFO *const vtx1,
-    const struct VERTEX_INFO *const vtx2, const float clip);
+    VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
+    const VERTEX_INFO *const vtx2, const float clip);
 
 static D3DCOLOR Output_ShadeColor(
     uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha)
@@ -63,7 +63,7 @@ static D3DCOLOR Output_ShadeLightColor(
 }
 
 static double Output_CalculatePolyZ(
-    enum SORT_TYPE sort_type, double z0, double z1, double z2, double z3)
+    SORT_TYPE sort_type, double z0, double z1, double z2, double z3)
 {
     double zv = 0.0;
     switch (sort_type) {
@@ -96,7 +96,7 @@ static void __fastcall Output_FlatA(int32_t y1, int32_t y2, uint8_t color_idx)
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_X *xbuf = (const struct XBUF_X *)g_XBuffer + y1;
+    const XBUF_X *xbuf = (const XBUF_X *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
 
     while (y_size > 0) {
@@ -120,7 +120,7 @@ static void __fastcall Output_TransA(int32_t y1, int32_t y2, uint8_t depth_q)
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_X *xbuf = (const struct XBUF_X *)g_XBuffer + y1;
+    const XBUF_X *xbuf = (const XBUF_X *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
     const DEPTHQ_ENTRY *qt = g_DepthQTable + depth_q;
 
@@ -153,9 +153,9 @@ static void __fastcall Output_GourA(int32_t y1, int32_t y2, uint8_t color_idx)
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_XG *xbuf = (const struct XBUF_XG *)g_XBuffer + y1;
+    const XBUF_XG *xbuf = (const XBUF_XG *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
-    const struct GOURAUD_ENTRY *gt = g_GouraudTable + color_idx;
+    const GOURAUD_ENTRY *gt = g_GouraudTable + color_idx;
 
     while (y_size > 0) {
         const int32_t x = xbuf->x1 / PHD_ONE;
@@ -191,7 +191,7 @@ static void __fastcall Output_GTMapA(
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_XGUV *xbuf = (const struct XBUF_XGUV *)g_XBuffer + y1;
+    const XBUF_XGUV *xbuf = (const XBUF_XGUV *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
 
     while (y_size > 0) {
@@ -236,7 +236,7 @@ static void __fastcall Output_WGTMapA(
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_XGUV *xbuf = (const struct XBUF_XGUV *)g_XBuffer + y1;
+    const XBUF_XGUV *xbuf = (const XBUF_XGUV *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
 
     while (y_size > 0) {
@@ -275,16 +275,16 @@ static void __fastcall Output_WGTMapA(
 }
 
 static inline void Output_ClipG(
-    struct VERTEX_INFO *const buf, const struct VERTEX_INFO *const vtx1,
-    const struct VERTEX_INFO *const vtx2, const float clip)
+    VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
+    const VERTEX_INFO *const vtx2, const float clip)
 {
     buf->rhw = vtx2->rhw + (vtx1->rhw - vtx2->rhw) * clip;
     buf->g = vtx2->g + (vtx1->g - vtx2->g) * clip;
 }
 
 static inline void Output_ClipGUV(
-    struct VERTEX_INFO *const buf, const struct VERTEX_INFO *const vtx1,
-    const struct VERTEX_INFO *const vtx2, const float clip)
+    VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
+    const VERTEX_INFO *const vtx2, const float clip)
 {
     buf->rhw = vtx2->rhw + (vtx1->rhw - vtx2->rhw) * clip;
     buf->g = vtx2->g + (vtx1->g - vtx2->g) * clip;
@@ -454,10 +454,10 @@ const int16_t *__cdecl Output_CalcObjectVertices(const int16_t *obj_ptr)
     const int32_t vtx_count = *obj_ptr++;
 
     for (int i = 0; i < vtx_count; i++) {
-        struct PHD_VBUF *const vbuf = &g_PhdVBuf[i];
+        PHD_VBUF *const vbuf = &g_PhdVBuf[i];
 
         // clang-format off
-        const struct MATRIX *const mptr = g_MatrixPtr;
+        const MATRIX *const mptr = g_MatrixPtr;
         const double xv = (
             mptr->_00 * obj_ptr[0] +
             mptr->_01 * obj_ptr[1] +
@@ -545,7 +545,7 @@ const int16_t *__cdecl Output_CalcVerticeLight(const int16_t *obj_ptr)
     if (vtx_count > 0) {
         if (g_LsDivider) {
             // clang-format off
-            const struct MATRIX *const mptr = g_MatrixPtr;
+            const MATRIX *const mptr = g_MatrixPtr;
             int32_t xv = (
                 g_LsVectorView.x * mptr->_00 +
                 g_LsVectorView.y * mptr->_10 +
@@ -599,10 +599,10 @@ const int16_t *__cdecl Output_CalcRoomVertices(
     int32_t vtx_count = *obj_ptr++;
 
     for (int i = 0; i < vtx_count; i++) {
-        struct PHD_VBUF *const vbuf = &g_PhdVBuf[i];
+        PHD_VBUF *const vbuf = &g_PhdVBuf[i];
 
         // clang-format off
-        const struct MATRIX *const mptr = g_MatrixPtr;
+        const MATRIX *const mptr = g_MatrixPtr;
         const double xv = (
             mptr->_00 * obj_ptr[0] +
             mptr->_01 * obj_ptr[1] +
@@ -708,7 +708,7 @@ void __cdecl Output_RotateLight(int16_t pitch, int16_t yaw)
     int32_t y = -xsin;
     int32_t z = (xcos * wcos) >> W2V_SHIFT;
 
-    const struct MATRIX *const m = &g_W2VMatrix;
+    const MATRIX *const m = &g_W2VMatrix;
     g_LsVectorView.x = (m->_00 * x + m->_01 * y + m->_02 * z) >> W2V_SHIFT;
     g_LsVectorView.y = (m->_10 * x + m->_11 * y + m->_12 * z) >> W2V_SHIFT;
     g_LsVectorView.z = (m->_20 * x + m->_21 * y + m->_22 * z) >> W2V_SHIFT;
@@ -751,7 +751,7 @@ void __cdecl Output_QuickSort(int32_t left, int32_t right)
             break;
         }
 
-        struct SORT_ITEM tmp_item;
+        SORT_ITEM tmp_item;
         SWAP(g_SortBuffer[i], g_SortBuffer[j], tmp_item);
 
         i++;
@@ -977,8 +977,8 @@ void __cdecl Output_DrawPolyWGTMapPersp(const int16_t *obj_ptr)
 int32_t __cdecl Output_XGenX(const int16_t *obj_ptr)
 {
     int32_t pt_count = *obj_ptr++;
-    const struct XGEN_X *pt2 = (const struct XGEN_X *)obj_ptr;
-    const struct XGEN_X *pt1 = pt2 + (pt_count - 1);
+    const XGEN_X *pt2 = (const XGEN_X *)obj_ptr;
+    const XGEN_X *pt1 = pt2 + (pt_count - 1);
 
     int32_t y_min = pt1->y;
     int32_t y_max = pt1->y;
@@ -995,7 +995,7 @@ int32_t __cdecl Output_XGenX(const int16_t *obj_ptr)
             const int32_t x_size = x2 - x1;
             int32_t y_size = y2 - y1;
 
-            struct XBUF_X *x_ptr = (struct XBUF_X *)g_XBuffer + y1;
+            XBUF_X *x_ptr = (XBUF_X *)g_XBuffer + y1;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             int32_t x = x1 * PHD_ONE + (PHD_ONE - 1);
 
@@ -1009,7 +1009,7 @@ int32_t __cdecl Output_XGenX(const int16_t *obj_ptr)
             const int32_t x_size = x1 - x2;
             int32_t y_size = y1 - y2;
 
-            struct XBUF_X *x_ptr = (struct XBUF_X *)g_XBuffer + y2;
+            XBUF_X *x_ptr = (XBUF_X *)g_XBuffer + y2;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             int32_t x = x2 * PHD_ONE + 1;
 
@@ -1033,8 +1033,8 @@ int32_t __cdecl Output_XGenX(const int16_t *obj_ptr)
 int32_t __cdecl Output_XGenXG(const int16_t *obj_ptr)
 {
     int32_t pt_count = *obj_ptr++;
-    const struct XGEN_XG *pt2 = (const struct XGEN_XG *)obj_ptr;
-    const struct XGEN_XG *pt1 = pt2 + (pt_count - 1);
+    const XGEN_XG *pt2 = (const XGEN_XG *)obj_ptr;
+    const XGEN_XG *pt1 = pt2 + (pt_count - 1);
 
     int32_t y_min = pt1->y;
     int32_t y_max = pt1->y;
@@ -1054,7 +1054,7 @@ int32_t __cdecl Output_XGenXG(const int16_t *obj_ptr)
             const int32_t x_size = x2 - x1;
             int32_t y_size = y2 - y1;
 
-            struct XBUF_XG *xg_ptr = (struct XBUF_XG *)g_XBuffer + y1;
+            XBUF_XG *xg_ptr = (XBUF_XG *)g_XBuffer + y1;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             const int32_t g_add = PHD_HALF * g_size / y_size;
             int32_t x = x1 * PHD_ONE + (PHD_ONE - 1);
@@ -1073,7 +1073,7 @@ int32_t __cdecl Output_XGenXG(const int16_t *obj_ptr)
             const int32_t x_size = x1 - x2;
             int32_t y_size = y1 - y2;
 
-            struct XBUF_XG *xg_ptr = (struct XBUF_XG *)g_XBuffer + y2;
+            XBUF_XG *xg_ptr = (XBUF_XG *)g_XBuffer + y2;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             const int32_t g_add = PHD_HALF * g_size / y_size;
             int32_t x = x2 * PHD_ONE + 1;
@@ -1101,8 +1101,8 @@ int32_t __cdecl Output_XGenXG(const int16_t *obj_ptr)
 int32_t __cdecl Output_XGenXGUV(const int16_t *obj_ptr)
 {
     int32_t pt_count = *obj_ptr++;
-    const struct XGEN_XGUV *pt2 = (const struct XGEN_XGUV *)obj_ptr;
-    const struct XGEN_XGUV *pt1 = pt2 + (pt_count - 1);
+    const XGEN_XGUV *pt2 = (const XGEN_XGUV *)obj_ptr;
+    const XGEN_XGUV *pt1 = pt2 + (pt_count - 1);
 
     int32_t y_min = pt1->y;
     int32_t y_max = pt1->y;
@@ -1128,7 +1128,7 @@ int32_t __cdecl Output_XGenXGUV(const int16_t *obj_ptr)
             const int32_t x_size = x2 - x1;
             int32_t y_size = y2 - y1;
 
-            struct XBUF_XGUV *xguv_ptr = (struct XBUF_XGUV *)g_XBuffer + y1;
+            XBUF_XGUV *xguv_ptr = (XBUF_XGUV *)g_XBuffer + y1;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             const int32_t g_add = PHD_HALF * g_size / y_size;
             const int32_t u_add = PHD_HALF * u_size / y_size;
@@ -1157,7 +1157,7 @@ int32_t __cdecl Output_XGenXGUV(const int16_t *obj_ptr)
             const int32_t x_size = x1 - x2;
             int32_t y_size = y1 - y2;
 
-            struct XBUF_XGUV *xguv_ptr = (struct XBUF_XGUV *)g_XBuffer + y2;
+            XBUF_XGUV *xguv_ptr = (XBUF_XGUV *)g_XBuffer + y2;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             const int32_t g_add = PHD_HALF * g_size / y_size;
             const int32_t u_add = PHD_HALF * u_size / y_size;
@@ -1193,8 +1193,8 @@ int32_t __cdecl Output_XGenXGUV(const int16_t *obj_ptr)
 int32_t __cdecl Output_XGenXGUVPerspFP(const int16_t *obj_ptr)
 {
     int32_t pt_count = *obj_ptr++;
-    const struct XGEN_XGUVP *pt2 = (const struct XGEN_XGUVP *)obj_ptr;
-    const struct XGEN_XGUVP *pt1 = pt2 + (pt_count - 1);
+    const XGEN_XGUVP *pt2 = (const XGEN_XGUVP *)obj_ptr;
+    const XGEN_XGUVP *pt1 = pt2 + (pt_count - 1);
 
     int32_t y_min = pt1->y;
     int32_t y_max = pt1->y;
@@ -1225,7 +1225,7 @@ int32_t __cdecl Output_XGenXGUVPerspFP(const int16_t *obj_ptr)
             const int32_t x_size = x2 - x1;
             int32_t y_size = y2 - y1;
 
-            struct XBUF_XGUVP *xguv_ptr = (struct XBUF_XGUVP *)g_XBuffer + y1;
+            XBUF_XGUVP *xguv_ptr = (XBUF_XGUVP *)g_XBuffer + y1;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             const int32_t g_add = PHD_HALF * g_size / y_size;
             const float u_add = u_size / (float)y_size;
@@ -1259,7 +1259,7 @@ int32_t __cdecl Output_XGenXGUVPerspFP(const int16_t *obj_ptr)
             const int32_t x_size = x1 - x2;
             int32_t y_size = y1 - y2;
 
-            struct XBUF_XGUVP *xguv_ptr = (struct XBUF_XGUVP *)g_XBuffer + y2;
+            XBUF_XGUVP *xguv_ptr = (XBUF_XGUVP *)g_XBuffer + y2;
             const int32_t x_add = PHD_ONE * x_size / y_size;
             const int32_t g_add = PHD_HALF * g_size / y_size;
             const float u_add = u_size / (float)y_size;
@@ -1305,7 +1305,7 @@ void __cdecl Output_GTMapPersp32FP(
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_XGUVP *xbuf = (const struct XBUF_XGUVP *)g_XBuffer + y1;
+    const XBUF_XGUVP *xbuf = (const XBUF_XGUVP *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
 
     while (y_size > 0) {
@@ -1434,7 +1434,7 @@ void __cdecl Output_WGTMapPersp32FP(
     }
 
     const int32_t stride = g_PhdScreenWidth;
-    const struct XBUF_XGUVP *xbuf = (const struct XBUF_XGUVP *)g_XBuffer + y1;
+    const XBUF_XGUVP *xbuf = (const XBUF_XGUVP *)g_XBuffer + y1;
     uint8_t *draw_ptr = g_PrintSurfacePtr + y1 * stride;
 
     while (y_size > 0) {
@@ -1569,8 +1569,8 @@ void __cdecl Output_WGTMapPersp32FP(
 }
 
 int32_t __cdecl Output_VisibleZClip(
-    const struct PHD_VBUF *const vtx0, const struct PHD_VBUF *const vtx1,
-    const struct PHD_VBUF *const vtx2)
+    const PHD_VBUF *const vtx0, const PHD_VBUF *const vtx1,
+    const PHD_VBUF *const vtx2)
 {
     // clang-format off
     return (
@@ -1582,12 +1582,12 @@ int32_t __cdecl Output_VisibleZClip(
 }
 
 int32_t __cdecl Output_ZedClipper(
-    const int32_t vtx_count, const struct POINT_INFO *const points,
-    struct VERTEX_INFO *const vtx)
+    const int32_t vtx_count, const POINT_INFO *const points,
+    VERTEX_INFO *const vtx)
 {
     int j = 0;
-    const struct POINT_INFO *pts0 = &points[0];
-    const struct POINT_INFO *pts1 = &points[vtx_count - 1];
+    const POINT_INFO *pts0 = &points[0];
+    const POINT_INFO *pts1 = &points[vtx_count - 1];
 
     for (int i = 0; i < vtx_count; i++) {
         int32_t diff0 = g_FltNearZ - pts0->zv;
@@ -1628,12 +1628,12 @@ int32_t __cdecl Output_ZedClipper(
     return (j < 3) ? 0 : j;
 }
 
-int32_t __cdecl Output_XYClipper(int32_t vtx_count, struct VERTEX_INFO *vtx)
+int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx)
 {
     int j;
-    struct VERTEX_INFO vtx_buf[20];
-    const struct VERTEX_INFO *vtx1;
-    const struct VERTEX_INFO *vtx2;
+    VERTEX_INFO vtx_buf[20];
+    const VERTEX_INFO *vtx1;
+    const VERTEX_INFO *vtx2;
 
     if (vtx_count < 3) {
         return 0;
@@ -1731,11 +1731,11 @@ int32_t __cdecl Output_XYClipper(int32_t vtx_count, struct VERTEX_INFO *vtx)
     return (j < 3) ? 0 : j;
 }
 
-int32_t __cdecl Output_XYGClipper(int32_t vtx_count, struct VERTEX_INFO *vtx)
+int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
 {
-    struct VERTEX_INFO vtx_buf[8];
-    const struct VERTEX_INFO *vtx1;
-    const struct VERTEX_INFO *vtx2;
+    VERTEX_INFO vtx_buf[8];
+    const VERTEX_INFO *vtx1;
+    const VERTEX_INFO *vtx2;
     int j;
 
     if (vtx_count < 3) {
@@ -1830,12 +1830,11 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, struct VERTEX_INFO *vtx)
     return (j < 3) ? 0 : j;
 }
 
-int32_t __cdecl Output_XYGUVClipper(
-    int32_t vtx_count, struct VERTEX_INFO *const vtx)
+int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
 {
-    struct VERTEX_INFO vtx_buf[8];
-    const struct VERTEX_INFO *vtx1;
-    const struct VERTEX_INFO *vtx2;
+    VERTEX_INFO vtx_buf[8];
+    const VERTEX_INFO *vtx1;
+    const VERTEX_INFO *vtx2;
     int j;
 
     if (vtx_count < 3) {
@@ -1931,10 +1930,10 @@ int32_t __cdecl Output_XYGUVClipper(
 }
 
 const int16_t *__cdecl Output_InsertObjectG3(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[3] = {
+        const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -1973,7 +1972,7 @@ const int16_t *__cdecl Output_InsertObjectG3(
                 continue;
             }
 
-            struct POINT_INFO points[3] = {
+            POINT_INFO points[3] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -2036,18 +2035,17 @@ const int16_t *__cdecl Output_InsertObjectG3(
 }
 
 const int16_t *__cdecl Output_InsertObjectGT3(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[3] = {
+        const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
         };
         const int16_t texture_idx = *obj_ptr++;
-        const struct PHD_TEXTURE *const texture =
-            &g_PhdTextureInfo[texture_idx];
-        const struct PHD_UV *const uv = texture->uv;
+        const PHD_TEXTURE *const texture = &g_PhdTextureInfo[texture_idx];
+        const PHD_UV *const uv = texture->uv;
         int32_t num_points = 3;
 
         const int8_t clip_or = vtx[0]->clip | vtx[1]->clip | vtx[2]->clip;
@@ -2159,7 +2157,7 @@ const int16_t *__cdecl Output_InsertObjectGT3(
                 continue;
             }
 
-            const struct POINT_INFO points[3] = {
+            const POINT_INFO points[3] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -2251,10 +2249,10 @@ const int16_t *__cdecl Output_InsertObjectGT3(
 }
 
 const int16_t *__cdecl Output_InsertObjectG4(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[4] = {
+        const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2301,7 +2299,7 @@ const int16_t *__cdecl Output_InsertObjectG4(
                 continue;
             }
 
-            const struct POINT_INFO points[4] = {
+            const POINT_INFO points[4] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -2373,19 +2371,18 @@ const int16_t *__cdecl Output_InsertObjectG4(
 }
 
 const int16_t *__cdecl Output_InsertObjectGT4(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[4] = {
+        const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
         };
         const int16_t texture_idx = *obj_ptr++;
-        const struct PHD_TEXTURE *const texture =
-            &g_PhdTextureInfo[texture_idx];
-        const struct PHD_UV *const uv = texture->uv;
+        const PHD_TEXTURE *const texture = &g_PhdTextureInfo[texture_idx];
+        const PHD_UV *const uv = texture->uv;
         int32_t num_points = 4;
 
         const int8_t clip_or =
@@ -2522,7 +2519,7 @@ const int16_t *__cdecl Output_InsertObjectGT4(
                 continue;
             }
 
-            const struct POINT_INFO points[4] = {
+            const POINT_INFO points[4] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -2624,7 +2621,7 @@ const int16_t *__cdecl Output_InsertObjectGT4(
     return obj_ptr;
 }
 
-void __cdecl Output_InsertTrans8(const struct PHD_VBUF *vbuf, int16_t shade)
+void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade)
 {
     const int32_t vtx_count = 8;
 
@@ -2741,7 +2738,7 @@ void __cdecl Output_InsertLine(
 }
 
 const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     HWR_TexSource(0);
     HWR_EnableColorKey(0);
@@ -2751,7 +2748,7 @@ const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(
     }
 
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *vtx[3] = {
+        const PHD_VBUF *vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2790,7 +2787,7 @@ const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(
                 continue;
             }
 
-            const struct POINT_INFO points[3] = {
+            const POINT_INFO points[3] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -2842,7 +2839,7 @@ const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(
 }
 
 const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     HWR_TexSource(0);
     HWR_EnableColorKey(0);
@@ -2852,7 +2849,7 @@ const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
     }
 
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[4] = {
+        const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2899,7 +2896,7 @@ const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
                 continue;
             }
 
-            const struct POINT_INFO points[4] = {
+            const POINT_INFO points[4] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -2960,16 +2957,16 @@ const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
 }
 
 const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[3] = {
+        const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
         };
-        const struct PHD_TEXTURE *const texture = &g_PhdTextureInfo[*obj_ptr++];
-        const struct PHD_UV *const uv = texture->uv;
+        const PHD_TEXTURE *const texture = &g_PhdTextureInfo[*obj_ptr++];
+        const PHD_UV *const uv = texture->uv;
 
         if (texture->draw_type != DRAW_OPAQUE) {
             Output_InsertGT3_Sorted(
@@ -2985,17 +2982,17 @@ const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(
 }
 
 const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(
-    const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
-        const struct PHD_VBUF *const vtx[4] = {
+        const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
         };
-        const struct PHD_TEXTURE *const texture = &g_PhdTextureInfo[*obj_ptr++];
-        const struct PHD_UV *const uv = texture->uv;
+        const PHD_TEXTURE *const texture = &g_PhdTextureInfo[*obj_ptr++];
+        const PHD_UV *const uv = texture->uv;
 
         if (texture->draw_type != DRAW_OPAQUE) {
             Output_InsertGT4_Sorted(
@@ -3009,10 +3006,9 @@ const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(
 }
 
 void __cdecl Output_InsertGT3_ZBuffered(
-    const struct PHD_VBUF *const vtx0, const struct PHD_VBUF *const vtx1,
-    const struct PHD_VBUF *const vtx2, const struct PHD_TEXTURE *const texture,
-    const struct PHD_UV *const uv0, const struct PHD_UV *const uv1,
-    const struct PHD_UV *const uv2)
+    const PHD_VBUF *const vtx0, const PHD_VBUF *const vtx1,
+    const PHD_VBUF *const vtx2, const PHD_TEXTURE *const texture,
+    const PHD_UV *const uv0, const PHD_UV *const uv1, const PHD_UV *const uv2)
 {
     const int8_t clip_or = vtx0->clip | vtx1->clip | vtx2->clip;
     const int8_t clip_and = vtx0->clip & vtx1->clip & vtx2->clip;
@@ -3086,7 +3082,7 @@ void __cdecl Output_InsertGT3_ZBuffered(
             return;
         }
 
-        const struct POINT_INFO points[3] = {
+        const POINT_INFO points[3] = {
             {
                 .xv = vtx0->xv,
                 .yv = vtx0->yv,
@@ -3141,9 +3137,9 @@ void __cdecl Output_InsertGT3_ZBuffered(
 }
 
 void __cdecl Output_InsertGT4_ZBuffered(
-    const struct PHD_VBUF *const vtx0, const struct PHD_VBUF *const vtx1,
-    const struct PHD_VBUF *const vtx2, const struct PHD_VBUF *const vtx3,
-    const struct PHD_TEXTURE *const texture)
+    const PHD_VBUF *const vtx0, const PHD_VBUF *const vtx1,
+    const PHD_VBUF *const vtx2, const PHD_VBUF *const vtx3,
+    const PHD_TEXTURE *const texture)
 {
     const int8_t clip_and = vtx0->clip & vtx1->clip & vtx2->clip & vtx3->clip;
     const int8_t clip_or = vtx0->clip | vtx1->clip | vtx2->clip | vtx3->clip;
@@ -3288,7 +3284,7 @@ void __cdecl Output_InsertLine_ZBuffered(
 }
 
 const int16_t *__cdecl Output_InsertObjectG3_Sorted(
-    const int16_t *obj_ptr, const int32_t num, const enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
@@ -3297,7 +3293,7 @@ const int16_t *__cdecl Output_InsertObjectG3_Sorted(
         }
 
         int32_t num_points = 3;
-        const struct PHD_VBUF *vtx[3] = {
+        const PHD_VBUF *vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -3338,7 +3334,7 @@ const int16_t *__cdecl Output_InsertObjectG3_Sorted(
                 continue;
             }
 
-            const struct POINT_INFO pts[3] = {
+            const POINT_INFO pts[3] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -3394,7 +3390,7 @@ const int16_t *__cdecl Output_InsertObjectG3_Sorted(
 }
 
 const int16_t *__cdecl Output_InsertObjectG4_Sorted(
-    const int16_t *obj_ptr, const int32_t num, const enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
@@ -3403,7 +3399,7 @@ const int16_t *__cdecl Output_InsertObjectG4_Sorted(
         }
 
         int32_t num_points = 4;
-        struct PHD_VBUF *const vtx[4] = {
+        PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -3452,7 +3448,7 @@ const int16_t *__cdecl Output_InsertObjectG4_Sorted(
                 continue;
             }
 
-            const struct POINT_INFO pts[4] = {
+            const POINT_INFO pts[4] = {
                 {
                     .xv = vtx[0]->xv,
                     .yv = vtx[0]->yv,
@@ -3518,7 +3514,7 @@ const int16_t *__cdecl Output_InsertObjectG4_Sorted(
 }
 
 const int16_t *__cdecl Output_InsertObjectGT3_Sorted(
-    const int16_t *obj_ptr, const int32_t num, const enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
@@ -3526,15 +3522,14 @@ const int16_t *__cdecl Output_InsertObjectGT3_Sorted(
             break;
         }
 
-        const struct PHD_VBUF *const vtx[3] = {
+        const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
         };
         const int16_t texture_idx = *obj_ptr++;
-        const struct PHD_TEXTURE *const texture =
-            &g_PhdTextureInfo[texture_idx];
-        const struct PHD_UV *const uv = texture->uv;
+        const PHD_TEXTURE *const texture = &g_PhdTextureInfo[texture_idx];
+        const PHD_UV *const uv = texture->uv;
 
         Output_InsertGT3_Sorted(
             vtx[0], vtx[1], vtx[2], texture, &uv[0], &uv[1], &uv[2], sort_type);
@@ -3544,7 +3539,7 @@ const int16_t *__cdecl Output_InsertObjectGT3_Sorted(
 }
 
 const int16_t *__cdecl Output_InsertObjectGT4_Sorted(
-    const int16_t *obj_ptr, const int32_t num, const enum SORT_TYPE sort_type)
+    const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
     for (int i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
@@ -3552,15 +3547,14 @@ const int16_t *__cdecl Output_InsertObjectGT4_Sorted(
             break;
         }
 
-        const struct PHD_VBUF *const vtx[4] = {
+        const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
         };
         const int16_t texture_idx = *obj_ptr++;
-        const struct PHD_TEXTURE *const texture =
-            &g_PhdTextureInfo[texture_idx];
+        const PHD_TEXTURE *const texture = &g_PhdTextureInfo[texture_idx];
 
         Output_InsertGT4_Sorted(
             vtx[0], vtx[1], vtx[2], vtx[3], texture, sort_type);
@@ -3570,10 +3564,10 @@ const int16_t *__cdecl Output_InsertObjectGT4_Sorted(
 }
 
 void __cdecl Output_InsertGT3_Sorted(
-    const struct PHD_VBUF *const vtx0, const struct PHD_VBUF *const vtx1,
-    const struct PHD_VBUF *const vtx2, const struct PHD_TEXTURE *const texture,
-    const struct PHD_UV *const uv0, const struct PHD_UV *const uv1,
-    const struct PHD_UV *const uv2, const enum SORT_TYPE sort_type)
+    const PHD_VBUF *const vtx0, const PHD_VBUF *const vtx1,
+    const PHD_VBUF *const vtx2, const PHD_TEXTURE *const texture,
+    const PHD_UV *const uv0, const PHD_UV *const uv1, const PHD_UV *const uv2,
+    const SORT_TYPE sort_type)
 {
     const int8_t clip_or = vtx0->clip | vtx1->clip | vtx2->clip;
     const int8_t clip_and = vtx0->clip & vtx1->clip & vtx2->clip;
@@ -3583,7 +3577,7 @@ void __cdecl Output_InsertGT3_Sorted(
 
     const double zv =
         Output_CalculatePolyZ(sort_type, vtx0->zv, vtx1->zv, vtx2->zv, -1.0);
-    const enum POLY_TYPE poly_type =
+    const POLY_TYPE poly_type =
         texture->draw_type == DRAW_OPAQUE ? POLY_HWR_GTMAP : POLY_HWR_WGTMAP;
 
     int32_t num_points = 3;
@@ -3663,7 +3657,7 @@ void __cdecl Output_InsertGT3_Sorted(
             return;
         }
 
-        const struct POINT_INFO pts[3] = {
+        const POINT_INFO pts[3] = {
             {
                 .xv = vtx0->xv,
                 .yv = vtx0->yv,
@@ -3717,9 +3711,9 @@ void __cdecl Output_InsertGT3_Sorted(
 }
 
 void __cdecl Output_InsertGT4_Sorted(
-    const struct PHD_VBUF *const vtx0, const struct PHD_VBUF *const vtx1,
-    const struct PHD_VBUF *const vtx2, const struct PHD_VBUF *const vtx3,
-    const struct PHD_TEXTURE *const texture, const enum SORT_TYPE sort_type)
+    const PHD_VBUF *const vtx0, const PHD_VBUF *const vtx1,
+    const PHD_VBUF *const vtx2, const PHD_VBUF *const vtx3,
+    const PHD_TEXTURE *const texture, const SORT_TYPE sort_type)
 {
     const int8_t clip_or = vtx0->clip | vtx1->clip | vtx2->clip | vtx3->clip;
     const int8_t clip_and = vtx0->clip & vtx1->clip & vtx2->clip & vtx3->clip;
@@ -3729,7 +3723,7 @@ void __cdecl Output_InsertGT4_Sorted(
 
     const double zv = Output_CalculatePolyZ(
         sort_type, vtx0->zv, vtx1->zv, vtx2->zv, vtx3->zv);
-    const enum POLY_TYPE poly_type =
+    const POLY_TYPE poly_type =
         texture->draw_type == DRAW_OPAQUE ? POLY_HWR_GTMAP : POLY_HWR_WGTMAP;
 
     int32_t num_points = 4;
@@ -3906,7 +3900,7 @@ void __cdecl Output_InsertSprite_Sorted(
 
     int32_t num_points = 4;
 
-    const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+    const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
     const double rhw = g_RhwFactor / (double)z;
     const int32_t u_offset = (sprite->offset & 0xFF) * 256;
     const int32_t v_offset = (sprite->offset >> 8) * 256;
@@ -3963,7 +3957,7 @@ void __cdecl Output_InsertSprite_Sorted(
 }
 
 void __cdecl Output_InsertTrans8_Sorted(
-    const struct PHD_VBUF *const vbuf, const int16_t shade)
+    const PHD_VBUF *const vbuf, const int16_t shade)
 {
     int8_t clip_or = 0x00;
     int8_t clip_and = 0xFF;
@@ -4073,13 +4067,13 @@ const int16_t *__cdecl Output_InsertRoomSprite(
     const int16_t *obj_ptr, const int32_t vtx_count)
 {
     for (int i = 0; i < vtx_count; i++) {
-        const struct PHD_VBUF *vbuf = &g_PhdVBuf[*obj_ptr++];
+        const PHD_VBUF *vbuf = &g_PhdVBuf[*obj_ptr++];
         const int16_t sprite_idx = *obj_ptr++;
         if ((int8_t)vbuf->clip < 0) {
             continue;
         }
 
-        const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+        const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
         const double persp = (double)(vbuf->zv / g_PhdPersp);
         const double x0 =
             g_PhdWinCenterX + (vbuf->xv + (sprite->x0 << W2V_SHIFT)) / persp;
@@ -4214,7 +4208,7 @@ void __cdecl Output_DrawSprite(
     const uint32_t flags, int32_t x, int32_t y, int32_t z,
     const int16_t sprite_idx, int16_t shade, const int16_t scale)
 {
-    const struct MATRIX *const mptr = g_MatrixPtr;
+    const MATRIX *const mptr = g_MatrixPtr;
 
     int32_t xv;
     int32_t yv;
@@ -4251,7 +4245,7 @@ void __cdecl Output_DrawSprite(
         yv = mptr->_13;
     }
 
-    const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+    const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
     int32_t x0 = sprite->x0;
     int32_t y0 = sprite->y0;
     int32_t x1 = sprite->x1;
@@ -4311,7 +4305,7 @@ void __cdecl Output_DrawPickup(
     const int32_t sx, const int32_t sy, const int32_t scale,
     const int16_t sprite_idx, const int16_t shade)
 {
-    const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+    const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
     const int32_t x0 = sx + ((sprite->x0 * scale) / PHD_ONE);
     const int32_t y0 = sy + ((sprite->y0 * scale) / PHD_ONE);
     const int32_t x1 = sx + ((sprite->x1 * scale) / PHD_ONE);
@@ -4326,7 +4320,7 @@ void __cdecl Output_DrawScreenSprite2D(
     const int32_t scale_v, const int16_t sprite_idx, const int16_t shade,
     const uint16_t flags)
 {
-    const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+    const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
     const int32_t x0 = sx + ((sprite->x0 * scale_h) / PHD_ONE);
     const int32_t y0 = sy + ((sprite->y0 * scale_v) / PHD_ONE);
     const int32_t x1 = sx + ((sprite->x1 * scale_h) / PHD_ONE);
@@ -4342,7 +4336,7 @@ void __cdecl Output_DrawScreenSprite(
     const int32_t scale_v, const int16_t sprite_idx, const int16_t shade,
     const uint16_t flags)
 {
-    const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+    const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
     const int32_t x0 = sx + (((sprite->x0 / 8) * scale_h) / PHD_ONE);
     const int32_t x1 = sx + (((sprite->x1 / 8) * scale_h) / PHD_ONE);
     const int32_t y0 = sy + (((sprite->y0 / 8) * scale_v) / PHD_ONE);
@@ -4367,8 +4361,8 @@ void __cdecl Output_DrawScaledSpriteC(const int16_t *const obj_ptr)
         return;
     }
 
-    const struct DEPTHQ_ENTRY *const depth_q = &g_DepthQTable[shade >> 8];
-    const struct PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
+    const DEPTHQ_ENTRY *const depth_q = &g_DepthQTable[shade >> 8];
+    const PHD_SPRITE *const sprite = &g_PhdSprites[sprite_idx];
 
     int32_t u_base = 0x4000;
     int32_t v_base = 0x4000;

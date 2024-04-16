@@ -2,57 +2,48 @@
 
 #include "global/types.h"
 
-void __cdecl Lara_GetCollisionInfo(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll);
 
-void __cdecl Lara_SlideSlope(struct ITEM_INFO *item, struct COLL_INFO *coll);
+void __cdecl Lara_SlideSlope(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_HitCeiling(struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_DeflectEdge(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll);
 
-void __cdecl Lara_DeflectEdgeJump(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll);
 
-void __cdecl Lara_SlideEdgeJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
+void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll);
 
 int32_t __cdecl Lara_TestWall(
-    struct ITEM_INFO *item, int32_t front, int32_t right, int32_t down);
+    ITEM_INFO *item, int32_t front, int32_t right, int32_t down);
 
-int32_t __cdecl Lara_TestHangOnClimbWall(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_TestClimbStance(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_TestClimbStance(ITEM_INFO *item, COLL_INFO *coll);
 
-void __cdecl Lara_HangTest(struct ITEM_INFO *item, struct COLL_INFO *coll);
+void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll);
 
 int32_t __cdecl Lara_TestEdgeCatch(
-    struct ITEM_INFO *item, struct COLL_INFO *coll, int32_t *edge);
+    ITEM_INFO *item, COLL_INFO *coll, int32_t *edge);
 
-int32_t __cdecl Lara_TestHangJumpUp(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_TestHangJump(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_TestHangSwingIn(struct ITEM_INFO *item, PHD_ANGLE angle);
+int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle);
 
-int32_t __cdecl Lara_TestVault(struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_TestSlide(struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll);
 
-int16_t __cdecl Lara_FloorFront(
-    struct ITEM_INFO *item, int16_t ang, int32_t dist);
+int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, int16_t ang, int32_t dist);
 
-int32_t __cdecl Lara_LandedBad(struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll);
 
-int32_t __cdecl Lara_CheckForLetGo(
-    struct ITEM_INFO *item, struct COLL_INFO *coll);
+int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);
 
-void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint);
+void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint);
 
 void __cdecl Lara_GetJointAbsPosition_I(
-    struct ITEM_INFO *item, struct XYZ_32 *vec, int16_t *frame1,
-    int16_t *frame2, int32_t frac, int32_t rate);
+    ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2,
+    int32_t frac, int32_t rate);

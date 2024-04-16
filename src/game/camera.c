@@ -55,7 +55,7 @@ void __cdecl Camera_Initialise(void)
     Camera_Update();
 }
 
-void __cdecl Camera_Move(const struct GAME_VECTOR *target, int32_t speed)
+void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed)
 {
     g_Camera.pos.x += (target->x - g_Camera.pos.x) / speed;
     g_Camera.pos.z += (target->z - g_Camera.pos.z) / speed;
@@ -64,7 +64,7 @@ void __cdecl Camera_Move(const struct GAME_VECTOR *target, int32_t speed)
 
     g_IsChunkyCamera = 0;
 
-    const struct FLOOR_INFO *floor = Room_GetFloor(
+    const FLOOR_INFO *floor = Room_GetFloor(
         g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z, &g_Camera.pos.room_num);
     int32_t height =
         Room_GetHeight(floor, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
@@ -93,7 +93,7 @@ void __cdecl Camera_Move(const struct GAME_VECTOR *target, int32_t speed)
         g_Camera.target.y += g_Camera.bounce;
         g_Camera.bounce = 0;
     } else if (g_Camera.bounce < 0) {
-        struct XYZ_32 shake = {
+        XYZ_32 shake = {
             .x = g_Camera.bounce * (Random_GetControl() - 0x4000) / 0x7FFF,
             .y = g_Camera.bounce * (Random_GetControl() - 0x4000) / 0x7FFF,
             .z = g_Camera.bounce * (Random_GetControl() - 0x4000) / 0x7FFF,
@@ -206,10 +206,10 @@ void __cdecl Camera_Shift(
     }
 }
 
-const struct FLOOR_INFO *__cdecl Camera_GoodPosition(
+const FLOOR_INFO *__cdecl Camera_GoodPosition(
     int32_t x, int32_t y, int32_t z, int16_t room_num)
 {
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
     int32_t height = Room_GetHeight(floor, x, y, z);
     int32_t ceiling = Room_GetCeiling(floor, x, y, z);
     if (y > height || y < ceiling) {
@@ -220,7 +220,7 @@ const struct FLOOR_INFO *__cdecl Camera_GoodPosition(
 }
 
 void __cdecl Camera_SmartShift(
-    struct GAME_VECTOR *target,
+    GAME_VECTOR *target,
     void(__cdecl *shift)(
         int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y,
         int32_t target_h, int32_t left, int32_t top, int32_t right,
@@ -228,11 +228,11 @@ void __cdecl Camera_SmartShift(
 {
     LOS_Check(&g_Camera.target, target);
 
-    const struct ROOM_INFO *r = &g_Rooms[g_Camera.target.room_num];
+    const ROOM_INFO *r = &g_Rooms[g_Camera.target.room_num];
     int32_t x_floor = (g_Camera.target.z - r->pos.z) >> WALL_SHIFT;
     int32_t y_floor = (g_Camera.target.x - r->pos.x) >> WALL_SHIFT;
     int16_t item_box = r->floor[x_floor + y_floor * r->x_size].box;
-    const struct BOX_INFO *box = &g_Boxes[item_box];
+    const BOX_INFO *box = &g_Boxes[item_box];
 
     int32_t left = (int32_t)box->left << WALL_SHIFT;
     int32_t top = (int32_t)box->top << WALL_SHIFT;
@@ -258,7 +258,7 @@ void __cdecl Camera_SmartShift(
     int32_t edge;
 
     test = (target->z - WALL_L) | (WALL_L - 1);
-    const struct FLOOR_INFO *good_left =
+    const FLOOR_INFO *good_left =
         Camera_GoodPosition(target->x, target->y, test, target->room_num);
     if (good_left) {
         camera_box = good_left->box;
@@ -271,7 +271,7 @@ void __cdecl Camera_SmartShift(
     }
 
     test = (target->z + WALL_L) & (~(WALL_L - 1));
-    const struct FLOOR_INFO *good_right =
+    const FLOOR_INFO *good_right =
         Camera_GoodPosition(target->x, target->y, test, target->room_num);
     if (good_right) {
         camera_box = good_right->box;
@@ -284,7 +284,7 @@ void __cdecl Camera_SmartShift(
     }
 
     test = (target->x - WALL_L) | (WALL_L - 1);
-    const struct FLOOR_INFO *good_top =
+    const FLOOR_INFO *good_top =
         Camera_GoodPosition(test, target->y, target->z, target->room_num);
     if (good_top) {
         camera_box = good_top->box;
@@ -297,7 +297,7 @@ void __cdecl Camera_SmartShift(
     }
 
     test = (target->x + WALL_L) & (~(WALL_L - 1));
-    const struct FLOOR_INFO *good_bottom =
+    const FLOOR_INFO *good_bottom =
         Camera_GoodPosition(test, target->y, target->z, target->room_num);
     if (good_bottom) {
         camera_box = good_bottom->box;
@@ -314,14 +314,14 @@ void __cdecl Camera_SmartShift(
     top += STEP_L;
     bottom -= STEP_L;
 
-    struct GAME_VECTOR a = {
+    GAME_VECTOR a = {
         .x = target->x,
         .y = target->y,
         .z = target->z,
         .room_num = target->room_num,
     };
 
-    struct GAME_VECTOR b = {
+    GAME_VECTOR b = {
         .x = target->x,
         .y = target->y,
         .z = target->z,
@@ -441,7 +441,7 @@ void __cdecl Camera_SmartShift(
     Room_GetFloor(target->x, target->y, target->z, &target->room_num);
 }
 
-void __cdecl Camera_Chase(const struct ITEM_INFO *item)
+void __cdecl Camera_Chase(const ITEM_INFO *item)
 {
     g_Camera.target_elevation += item->rot.x;
     g_Camera.target_elevation = MIN(g_Camera.target_elevation, MAX_ELEVATION);
@@ -454,14 +454,14 @@ void __cdecl Camera_Chase(const struct ITEM_INFO *item)
 
     g_Camera.target_square = SQUARE(distance);
 
-    const struct XYZ_32 offset = {
+    const XYZ_32 offset = {
         .y = (g_Camera.target_distance * Math_Sin(g_Camera.target_elevation))
             >> W2V_SHIFT,
         .x = -((distance * Math_Sin(angle)) >> W2V_SHIFT),
         .z = -((distance * Math_Cos(angle)) >> W2V_SHIFT),
     };
 
-    struct GAME_VECTOR target = {
+    GAME_VECTOR target = {
         .x = g_Camera.target.x + offset.x,
         .y = g_Camera.target.y + offset.y,
         .z = g_Camera.target.z + offset.z,
@@ -472,13 +472,13 @@ void __cdecl Camera_Chase(const struct ITEM_INFO *item)
     Camera_Move(&target, g_Camera.speed);
 }
 
-int32_t __cdecl Camera_ShiftClamp(struct GAME_VECTOR *pos, int32_t clamp)
+int32_t __cdecl Camera_ShiftClamp(GAME_VECTOR *pos, int32_t clamp)
 {
     int32_t x = pos->x;
     int32_t y = pos->y;
     int32_t z = pos->z;
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &pos->room_num);
-    const struct BOX_INFO *box = &g_Boxes[floor->box];
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &pos->room_num);
+    const BOX_INFO *box = &g_Boxes[floor->box];
 
     int32_t left = ((int32_t)box->left << WALL_SHIFT) + clamp;
     int32_t right = ((int32_t)box->right << WALL_SHIFT) - clamp - 1;
@@ -514,7 +514,7 @@ int32_t __cdecl Camera_ShiftClamp(struct GAME_VECTOR *pos, int32_t clamp)
     return 0;
 }
 
-void __cdecl Camera_Combat(const struct ITEM_INFO *item)
+void __cdecl Camera_Combat(const ITEM_INFO *item)
 {
     g_Camera.target.z = item->pos.z;
     g_Camera.target.x = item->pos.x;
@@ -534,7 +534,7 @@ void __cdecl Camera_Combat(const struct ITEM_INFO *item)
         (COMBAT_DISTANCE * Math_Cos(g_Camera.target_elevation)) >> W2V_SHIFT;
     int16_t angle = g_Camera.target_angle;
 
-    const struct XYZ_32 offset = {
+    const XYZ_32 offset = {
         .y =
             +((g_Camera.target_distance * Math_Sin(g_Camera.target_elevation))
               >> W2V_SHIFT),
@@ -542,7 +542,7 @@ void __cdecl Camera_Combat(const struct ITEM_INFO *item)
         .z = -((distance * Math_Cos(angle)) >> W2V_SHIFT),
     };
 
-    struct GAME_VECTOR target = {
+    GAME_VECTOR target = {
         .x = g_Camera.target.x + offset.x,
         .y = g_Camera.target.y + offset.y,
         .z = g_Camera.target.z + offset.z,
@@ -568,9 +568,9 @@ void __cdecl Camera_Combat(const struct ITEM_INFO *item)
     Camera_Move(&target, g_Camera.speed);
 }
 
-void __cdecl Camera_Look(const struct ITEM_INFO *item)
+void __cdecl Camera_Look(const ITEM_INFO *item)
 {
-    struct XYZ_32 old = {
+    XYZ_32 old = {
         .x = g_Camera.target.x,
         .y = g_Camera.target.y,
         .z = g_Camera.target.z,
@@ -601,7 +601,7 @@ void __cdecl Camera_Look(const struct ITEM_INFO *item)
 
     g_Camera.target.y += Camera_ShiftClamp(&g_Camera.target, LOOK_CLAMP);
 
-    const struct XYZ_32 offset = {
+    const XYZ_32 offset = {
         .y =
             +((g_Camera.target_distance * Math_Sin(g_Camera.target_elevation))
               >> W2V_SHIFT),
@@ -609,7 +609,7 @@ void __cdecl Camera_Look(const struct ITEM_INFO *item)
         .z = -((distance * Math_Cos(g_Camera.target_angle)) >> W2V_SHIFT),
     };
 
-    struct GAME_VECTOR target = {
+    GAME_VECTOR target = {
         .x = g_Camera.target.x + offset.x,
         .y = g_Camera.target.y + offset.y,
         .z = g_Camera.target.z + offset.z,
@@ -624,8 +624,8 @@ void __cdecl Camera_Look(const struct ITEM_INFO *item)
 
 void __cdecl Camera_Fixed(void)
 {
-    const struct OBJECT_VECTOR *fixed = &g_Camera.fixed[g_Camera.num];
-    struct GAME_VECTOR target = {
+    const OBJECT_VECTOR *fixed = &g_Camera.fixed[g_Camera.num];
+    GAME_VECTOR target = {
         .x = fixed->x,
         .y = fixed->y,
         .z = fixed->z,
@@ -672,8 +672,7 @@ void __cdecl Camera_Update(void)
 
     const int32_t fixed_camera = g_Camera.item != NULL
         && (g_Camera.type == CAM_FIXED || g_Camera.type == CAM_HEAVY);
-    const struct ITEM_INFO *const item =
-        fixed_camera ? g_Camera.item : g_LaraItem;
+    const ITEM_INFO *const item = fixed_camera ? g_Camera.item : g_LaraItem;
 
     const int16_t *bounds = Item_GetBoundsAccurate(item);
 
@@ -764,7 +763,7 @@ void __cdecl Camera_Update(void)
             g_Camera.target.y += (y - g_Camera.target.y) / 4;
         }
 
-        const struct FLOOR_INFO *const floor = Room_GetFloor(
+        const FLOOR_INFO *const floor = Room_GetFloor(
             g_Camera.target.x, y, g_Camera.target.z, &g_Camera.target.room_num);
         const int32_t height = Room_GetHeight(
             floor, g_Camera.target.x, g_Camera.target.y, g_Camera.target.z);
@@ -802,7 +801,7 @@ void __cdecl Camera_LoadCutsceneFrame(void)
         g_CineFrameIdx = g_NumCineFrames - 1;
     }
 
-    const struct CINE_FRAME *frame = &g_CineData[g_CineFrameIdx];
+    const CINE_FRAME *frame = &g_CineData[g_CineFrameIdx];
     int32_t tx = frame->tx;
     int32_t ty = frame->ty;
     int32_t tz = frame->tz;
@@ -849,7 +848,7 @@ void __cdecl Camera_LoadCutsceneFrame(void)
 
 void __cdecl Camera_UpdateCutscene(void)
 {
-    const struct CINE_FRAME *frame = &g_CineData[g_CineFrameIdx];
+    const CINE_FRAME *frame = &g_CineData[g_CineFrameIdx];
     int32_t tx = frame->tx;
     int32_t ty = frame->ty;
     int32_t tz = frame->tz;
@@ -860,12 +859,12 @@ void __cdecl Camera_UpdateCutscene(void)
     int32_t roll = frame->roll;
     int32_t c = Math_Cos(g_Camera.target_angle);
     int32_t s = Math_Sin(g_Camera.target_angle);
-    const struct XYZ_32 camtar = {
+    const XYZ_32 camtar = {
         .x = g_LaraItem->pos.x + ((tx * c + tz * s) >> W2V_SHIFT),
         .y = g_LaraItem->pos.y + ty,
         .z = g_LaraItem->pos.z + ((tz * c - tx * s) >> W2V_SHIFT),
     };
-    const struct XYZ_32 campos = {
+    const XYZ_32 campos = {
         .x = g_LaraItem->pos.x + ((cx * c + cz * s) >> W2V_SHIFT),
         .y = g_LaraItem->pos.y + cy,
         .z = g_LaraItem->pos.z + ((cz * c - cx * s) >> W2V_SHIFT),

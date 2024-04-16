@@ -14,19 +14,19 @@
 #define CD_ALIAS "TR2X"
 #define MAX_CD_TRACKS 60
 
-typedef struct CDAUDIO_TRACK_INFO {
+typedef struct {
     uint64_t from;
     uint64_t to;
     bool active;
 } CDAUDIO_TRACK_INFO;
 
-typedef struct CDAUDIO_SPEC {
+typedef struct {
     char *path;
     char *audio_type;
 } CDAUDIO_SPEC;
 
 const int32_t m_CDAudioSpecCount = 2;
-static struct CDAUDIO_SPEC m_CDAudioSpecs[] = {
+static CDAUDIO_SPEC m_CDAudioSpecs[] = {
     {
         // NOTE: volume control doesn't seem to work with WAV
         .path = "audio/cdaudio.wav",
@@ -42,7 +42,7 @@ static CDAUDIO_TRACK_INFO m_Tracks[MAX_CD_TRACKS];
 
 static bool S_Music_PaulD_Command(
     LPSTR param, UINT param2, const char *cmd_fmt, ...);
-static const struct CDAUDIO_SPEC *S_Music_PaulD_FindSpec(void);
+static const CDAUDIO_SPEC *S_Music_PaulD_FindSpec(void);
 static bool S_Music_PaulD_ParseCDAudio(void);
 
 static bool S_Music_PaulD_Init(void);
@@ -68,9 +68,9 @@ static bool S_Music_PaulD_Command(
     return result == 0;
 }
 
-static const struct CDAUDIO_SPEC *S_Music_PaulD_FindSpec(void)
+static const CDAUDIO_SPEC *S_Music_PaulD_FindSpec(void)
 {
-    const struct CDAUDIO_SPEC *spec = NULL;
+    const CDAUDIO_SPEC *spec = NULL;
 
     for (int32_t i = 0; i < m_CDAudioSpecCount; i++) {
         MYFILE *fp = File_Open(m_CDAudioSpecs[i].path, FILE_OPEN_READ);
@@ -161,7 +161,7 @@ parse_end:
 
 static bool S_Music_PaulD_Init(void)
 {
-    const struct CDAUDIO_SPEC *spec = S_Music_PaulD_FindSpec();
+    const CDAUDIO_SPEC *spec = S_Music_PaulD_FindSpec();
     if (!spec) {
         return false;
     }
@@ -276,7 +276,7 @@ static void S_Music_PaulD_SetVolume(int32_t volume)
     }
 }
 
-static struct S_MUSIC_BACKEND m_Backend = {
+static S_MUSIC_BACKEND m_Backend = {
     .name = "PaulD",
     .Init = S_Music_PaulD_Init,
     .Shutdown = S_Music_PaulD_Shutdown,
@@ -287,7 +287,7 @@ static struct S_MUSIC_BACKEND m_Backend = {
     .SetVolume = S_Music_PaulD_SetVolume,
 };
 
-struct S_MUSIC_BACKEND *S_Music_PaulD_Factory(void)
+S_MUSIC_BACKEND *S_Music_PaulD_Factory(void)
 {
     return &m_Backend;
 }

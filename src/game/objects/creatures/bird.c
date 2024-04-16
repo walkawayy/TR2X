@@ -7,7 +7,7 @@
 #include "global/vars.h"
 #include "util.h"
 
-typedef enum BIRD_ANIM {
+typedef enum {
     BIRD_ANIM_EMPTY = 0,
     BIRD_ANIM_FLY = 1,
     BIRD_ANIM_STOP = 2,
@@ -32,7 +32,7 @@ static BITE_INFO m_CrowBite = { 2, 10, 60, 14 };
 void __cdecl Bird_Initialise(const int16_t item_num)
 {
     Creature_Initialise(item_num);
-    struct ITEM_INFO *const item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     if (item->object_num == O_CROW) {
         item->anim_num = g_Objects[O_CROW].anim_idx + CROW_START_ANIM;
         item->frame_num = g_Anims[item->anim_num].frame_base;
@@ -52,8 +52,8 @@ void __cdecl Bird_Control(const int16_t item_num)
         return;
     }
 
-    struct ITEM_INFO *const item = &g_Items[item_num];
-    struct CREATURE_INFO *const bird = (struct CREATURE_INFO *)item->data;
+    ITEM_INFO *const item = &g_Items[item_num];
+    CREATURE_INFO *const bird = (CREATURE_INFO *)item->data;
 
     if (item->hit_points <= 0) {
         switch (item->current_anim_state) {

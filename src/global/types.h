@@ -10,25 +10,28 @@
 
 #pragma pack(push, 1)
 
+typedef int16_t s16;
+typedef int32_t s32;
+
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
 typedef LPDIRECTDRAWSURFACE3 LPDDS;
 typedef D3DTEXTUREHANDLE HWR_TEX_HANDLE;
 
 typedef int16_t PHD_ANGLE;
 
-typedef struct XYZ_32 {
+typedef struct {
     int32_t x;
     int32_t y;
     int32_t z;
 } XYZ_32;
 
-typedef struct XYZ_16 {
+typedef struct {
     int16_t x;
     int16_t y;
     int16_t z;
 } XYZ_16;
 
-typedef struct MATRIX {
+typedef struct {
     int32_t _00;
     int32_t _01;
     int32_t _02;
@@ -43,21 +46,21 @@ typedef struct MATRIX {
     int32_t _23;
 } MATRIX;
 
-typedef enum VGA_MODE {
+typedef enum {
     VGA_NO_VGA,
     VGA_256_COLOR,
     VGA_MODEX,
     VGA_STANDARD,
 } VGA_MODE;
 
-typedef struct BITMAP_RESOURCE {
+typedef struct {
     LPBITMAPINFO bmp_info;
     void *bmp_data;
     HPALETTE hPalette;
     DWORD flags;
 } BITMAP_RESOURCE;
 
-typedef struct DISPLAY_MODE {
+typedef struct {
     int32_t width;
     int32_t height;
     int32_t bpp;
@@ -67,33 +70,33 @@ typedef struct DISPLAY_MODE {
 typedef struct DISPLAY_MODE_NODE {
     struct DISPLAY_MODE_NODE *next;
     struct DISPLAY_MODE_NODE *previous;
-    struct DISPLAY_MODE body;
+    DISPLAY_MODE body;
 } DISPLAY_MODE_NODE;
 
-typedef struct DISPLAY_MODE_LIST {
-    struct DISPLAY_MODE_NODE *head;
-    struct DISPLAY_MODE_NODE *tail;
+typedef struct {
+    DISPLAY_MODE_NODE *head;
+    DISPLAY_MODE_NODE *tail;
     DWORD count;
 } DISPLAY_MODE_LIST;
 
-typedef struct STRING_FLAGGED {
+typedef struct {
     char *content;
     bool is_valid;
 } STRING_FLAGGED;
 
-typedef struct DISPLAY_ADAPTER {
+typedef struct {
     LPGUID adapter_guid_ptr;
     GUID adapter_guid;
-    struct STRING_FLAGGED driver_desc;
-    struct STRING_FLAGGED driver_name;
+    STRING_FLAGGED driver_desc;
+    STRING_FLAGGED driver_name;
     DDCAPS_DX5 driver_caps;
     DDCAPS_DX5 hel_caps;
     GUID device_guid;
     D3DDEVICEDESC_V2 hw_device_desc;
-    struct DISPLAY_MODE_LIST hw_disp_mode_list;
-    struct DISPLAY_MODE_LIST sw_disp_mode_list;
-    struct DISPLAY_MODE vga_mode1;
-    struct DISPLAY_MODE vga_mode2;
+    DISPLAY_MODE_LIST hw_disp_mode_list;
+    DISPLAY_MODE_LIST sw_disp_mode_list;
+    DISPLAY_MODE vga_mode1;
+    DISPLAY_MODE vga_mode2;
     uint32_t screen_width;
     bool hw_render_supported;
     bool sw_windowed_supported;
@@ -107,19 +110,19 @@ typedef struct DISPLAY_ADAPTER {
     bool shade_restricted;
 } DISPLAY_ADAPTER;
 
-typedef struct DISPLAY_ADAPTER_NODE {
+typedef struct {
     struct DISPLAY_ADAPTER_NODE *next;
     struct DISPLAY_ADAPTER_NODE *previous;
-    struct DISPLAY_ADAPTER body;
+    DISPLAY_ADAPTER body;
 } DISPLAY_ADAPTER_NODE;
 
-typedef struct DISPLAY_ADAPTER_LIST {
-    struct DISPLAY_ADAPTER_NODE *head;
-    struct DISPLAY_ADAPTER_NODE *tail;
+typedef struct {
+    DISPLAY_ADAPTER_NODE *head;
+    DISPLAY_ADAPTER_NODE *tail;
     DWORD count;
 } DISPLAY_ADAPTER_LIST;
 
-typedef struct SOUND_ADAPTER {
+typedef struct {
     GUID *adapter_guid_ptr;
     GUID adapter_guid;
     STRING_FLAGGED description;
@@ -132,58 +135,58 @@ typedef struct SOUND_ADAPTER_NODE {
     SOUND_ADAPTER body;
 } SOUND_ADAPTER_NODE;
 
-typedef struct SOUND_ADAPTER_LIST {
-    struct SOUND_ADAPTER_NODE *head;
-    struct SOUND_ADAPTER_NODE *tail;
+typedef struct {
+    SOUND_ADAPTER_NODE *head;
+    SOUND_ADAPTER_NODE *tail;
     DWORD count;
 } SOUND_ADAPTER_LIST;
 
-typedef struct JOYSTICK {
+typedef struct {
     GUID *lpJoystickGuid;
     GUID joystickGuid;
     STRING_FLAGGED productName;
     STRING_FLAGGED instanceName;
 } JOYSTICK;
 
-typedef struct JOYSTICK_NODE {
+typedef struct {
     struct JOYSTICK_NODE *next;
     struct JOYSTICK_NODE *previous;
     JOYSTICK body;
 } JOYSTICK_NODE;
 
-typedef struct JOYSTICK_LIST {
+typedef struct {
     struct JOYSTICK_LIST *head;
     struct JOYSTICK_LIST *tail;
     DWORD count;
 } JOYSTICK_LIST;
 
-typedef enum RENDER_MODE {
+typedef enum {
     RM_UNKNOWN,
     RM_SOFTWARE,
     RM_HARDWARE,
 } RENDER_MODE;
 
-typedef enum ASPECT_MODE {
+typedef enum {
     AM_4_3,
     AM_16_9,
     AM_ANY,
 } ASPECT_MODE;
 
-typedef enum TEX_ADJUST_MODE {
+typedef enum {
     TAM_DISABLED,
     TAM_BILINEAR_ONLY,
     TAM_ALWAYS,
 } TEX_ADJUST_MODE;
 
-typedef struct APP_SETTINGS {
-    struct DISPLAY_ADAPTER_NODE *preferred_display_adapter;
-    struct SOUND_ADAPTER_NODE *preferred_sound_adapter;
-    struct JOYSTICK_NODE *preferred_joystick;
-    const struct DISPLAY_MODE_NODE *video_mode;
-    enum RENDER_MODE render_mode;
+typedef struct {
+    DISPLAY_ADAPTER_NODE *preferred_display_adapter;
+    SOUND_ADAPTER_NODE *preferred_sound_adapter;
+    JOYSTICK_NODE *preferred_joystick;
+    const DISPLAY_MODE_NODE *video_mode;
+    RENDER_MODE render_mode;
     int32_t window_width;
     int32_t window_height;
-    enum ASPECT_MODE aspect_mode;
+    ASPECT_MODE aspect_mode;
     bool perspective_correct;
     bool dither;
     bool zbuffer;
@@ -202,7 +205,7 @@ typedef struct APP_SETTINGS {
     int32_t linear_adjustment;
 } APP_SETTINGS;
 
-struct TEXPAGE_DESC {
+typedef struct {
     LPDDS sysMemSurface;
     LPDDS vidMemSurface;
     LPDIRECTDRAWPALETTE palette;
@@ -211,15 +214,15 @@ struct TEXPAGE_DESC {
     int32_t width;
     int32_t height;
     int32_t status;
-};
+} TEXPAGE_DESC;
 
-typedef struct RGB888 {
+typedef struct {
     uint8_t red;
     uint8_t green;
     uint8_t blue;
 } RGB888;
 
-typedef struct COLOR_BIT_MASKS {
+typedef struct {
     DWORD dwRBitMask;
     DWORD dwGBitMask;
     DWORD dwBBitMask;
@@ -234,37 +237,37 @@ typedef struct COLOR_BIT_MASKS {
     DWORD dwRGBAlphaBitOffset;
 } COLOR_BIT_MASKS;
 
-typedef struct GOURAUD_FILL {
+typedef struct {
     D3DCOLOR clr[4][4];
 } GOURAUD_FILL;
 
-typedef struct GOURAUD_OUTLINE {
+typedef struct {
     D3DCOLOR clr[9];
 } GOURAUD_OUTLINE;
 
-typedef struct DEPTHQ_ENTRY {
+typedef struct {
     uint8_t index[256];
 } DEPTHQ_ENTRY;
 
-typedef struct GOURAUD_ENTRY {
+typedef struct {
     uint8_t index[32];
 } GOURAUD_ENTRY;
 
 typedef struct __unaligned PHD_3DPOS
 {
-    struct XYZ_32 pos;
-    struct XYZ_16 rot;
+    XYZ_32 pos;
+    XYZ_16 rot;
 }
 PHD_3DPOS;
 
-typedef struct SPHERE {
+typedef struct {
     int32_t x;
     int32_t y;
     int32_t z;
     int32_t r;
 } SPHERE;
 
-typedef struct TEXTSTRING {
+typedef struct {
     union {
         uint32_t all;
         struct {
@@ -315,7 +318,7 @@ typedef struct TEXTSTRING {
     char *text;
 } TEXTSTRING;
 
-typedef struct PHD_VBUF {
+typedef struct {
     float xv;
     float yv;
     float zv;
@@ -328,18 +331,18 @@ typedef struct PHD_VBUF {
     int16_t v;
 } PHD_VBUF;
 
-typedef struct PHD_UV {
+typedef struct {
     uint16_t u;
     uint16_t v;
 } PHD_UV;
 
-typedef struct PHD_TEXTURE {
+typedef struct {
     uint16_t draw_type;
     uint16_t tex_page;
     PHD_UV uv[4];
 } PHD_TEXTURE;
 
-typedef struct PHD_SPRITE {
+typedef struct {
     uint16_t tex_page;
     uint16_t offset;
     uint16_t width;
@@ -351,7 +354,7 @@ typedef struct PHD_SPRITE {
 } PHD_SPRITE;
 
 // clang-format off
-typedef enum SPRITE_FLAG {
+typedef enum {
     SPRF_RGB       = 0x00FFFFFF,
     SPRF_ABS       = 0x01000000,
     SPRF_SEMITRANS = 0x02000000,
@@ -366,7 +369,7 @@ typedef enum SPRITE_FLAG {
 } SPRITE_FLAG;
 // clang-format on
 
-typedef struct POINT_INFO {
+typedef struct {
     float xv;
     float yv;
     float zv;
@@ -378,7 +381,7 @@ typedef struct POINT_INFO {
     float g;
 } POINT_INFO;
 
-typedef struct VERTEX_INFO {
+typedef struct {
     float x;
     float y;
     float rhw;
@@ -387,7 +390,7 @@ typedef struct VERTEX_INFO {
     float g;
 } VERTEX_INFO;
 
-typedef enum KEYMAP {
+typedef enum {
     KM_Forward,
     KM_Back,
     KM_Left,
@@ -404,7 +407,7 @@ typedef enum KEYMAP {
     KM_Option,
 } KEYMAP;
 
-typedef struct REQUEST_INFO {
+typedef struct {
     uint16_t req_flags;
     uint16_t items_count;
     uint16_t selected;
@@ -428,20 +431,20 @@ typedef struct REQUEST_INFO {
     uint32_t moredown_flags;
     uint32_t item_flags1[24];
     uint32_t item_flags2[24];
-    struct TEXTSTRING *heading_text1;
-    struct TEXTSTRING *heading_text2;
-    struct TEXTSTRING *background_text;
-    struct TEXTSTRING *moreup_text;
-    struct TEXTSTRING *moredown_text;
-    struct TEXTSTRING *item_texts1[24];
-    struct TEXTSTRING *item_texts2[24];
+    TEXTSTRING *heading_text1;
+    TEXTSTRING *heading_text2;
+    TEXTSTRING *background_text;
+    TEXTSTRING *moreup_text;
+    TEXTSTRING *moredown_text;
+    TEXTSTRING *item_texts1[24];
+    TEXTSTRING *item_texts2[24];
     char heading_string1[32];
     char heading_string2[32];
     uint32_t render_width;
     uint32_t render_height;
 } REQUEST_INFO;
 
-typedef enum POLY_TYPE {
+typedef enum {
     POLY_GTMAP,
     POLY_WGTMAP,
     POLY_GTMAP_PERSP,
@@ -458,39 +461,39 @@ typedef enum POLY_TYPE {
     POLY_HWR_TRANS,
 } POLY_TYPE;
 
-typedef struct SORT_ITEM {
+typedef struct {
     int32_t _0;
     int32_t _1;
 } SORT_ITEM;
 
-typedef enum SORT_TYPE {
+typedef enum {
     ST_AVG_Z,
     ST_MAX_Z,
     ST_FAR_Z,
 } SORT_TYPE;
 
-typedef enum DRAW_TYPE {
+typedef enum {
     DRAW_OPAQUE,
     DRAW_COLOR_KEY,
 } DRAW_TYPE;
 
-typedef struct COLL_SIDE {
+typedef struct {
     int32_t floor;
     int32_t ceiling;
     int32_t type;
 } COLL_SIDE;
 
-typedef struct COLL_INFO {
-    struct COLL_SIDE side_mid;
-    struct COLL_SIDE side_front;
-    struct COLL_SIDE side_left;
-    struct COLL_SIDE side_right;
+typedef struct {
+    COLL_SIDE side_mid;
+    COLL_SIDE side_front;
+    COLL_SIDE side_left;
+    COLL_SIDE side_right;
     int32_t radius;
     int32_t bad_pos;
     int32_t bad_neg;
     int32_t bad_ceiling;
-    struct XYZ_32 shift;
-    struct XYZ_32 old;
+    XYZ_32 shift;
+    XYZ_32 old;
     int16_t old_anim_state;
     int16_t old_anim_num;
     int16_t old_frame_num;
@@ -510,7 +513,7 @@ typedef struct COLL_INFO {
     uint16_t hit_ceiling : 1;
 } COLL_INFO;
 
-typedef struct ITEM_INFO {
+typedef struct {
     int32_t floor;
     uint32_t touch_bits;
     uint32_t mesh_bits;
@@ -533,8 +536,8 @@ typedef struct ITEM_INFO {
     int16_t shade2;
     int16_t carried_item;
     void *data;
-    struct XYZ_32 pos;
-    struct XYZ_16 rot;
+    XYZ_32 pos;
+    XYZ_16 rot;
     // clang-format off
     uint16_t active:        1; // 0x0001
     uint16_t status:        2; // 0x0002…0x0004
@@ -548,7 +551,7 @@ typedef struct ITEM_INFO {
     // clang-format on
 } ITEM_INFO;
 
-typedef struct STATISTICS_INFO {
+typedef struct {
     uint32_t timer;
     uint32_t shots;
     uint32_t hits;
@@ -558,7 +561,7 @@ typedef struct STATISTICS_INFO {
     uint8_t medipacks;
 } STATISTICS_INFO;
 
-typedef struct START_INFO {
+typedef struct {
     uint16_t pistol_ammo;
     uint16_t magnum_ammo;
     uint16_t uzi_ammo;
@@ -582,12 +585,12 @@ typedef struct START_INFO {
     uint16_t has_harpoon : 1;
     uint16_t pad : 8;
     uint16_t reserved2;
-    struct STATISTICS_INFO statistics;
+    STATISTICS_INFO statistics;
 } START_INFO;
 
-typedef struct SAVEGAME_INFO {
-    struct START_INFO start[24];
-    struct STATISTICS_INFO statistics;
+typedef struct {
+    START_INFO start[24];
+    STATISTICS_INFO statistics;
     int16_t current_level;
     bool bonus_flag;
     uint8_t num_pickup[2];
@@ -597,7 +600,7 @@ typedef struct SAVEGAME_INFO {
     uint8_t buffer[6272];
 } SAVEGAME_INFO;
 
-typedef struct FLOOR_INFO {
+typedef struct {
     int16_t idx;
     int16_t box;
     int8_t pit_room;
@@ -606,7 +609,7 @@ typedef struct FLOOR_INFO {
     int8_t ceiling;
 } FLOOR_INFO;
 
-typedef struct WEAPON_INFO {
+typedef struct {
     int16_t lock_angles[4];
     int16_t left_angles[4];
     int16_t right_angles[4];
@@ -620,9 +623,9 @@ typedef struct WEAPON_INFO {
     int16_t sample_num;
 } WEAPON_INFO;
 
-typedef struct FX_INFO {
-    struct XYZ_32 pos;
-    struct XYZ_16 rot;
+typedef struct {
+    XYZ_32 pos;
+    XYZ_16 rot;
     int16_t room_num;
     int16_t object_num;
     int16_t next_fx;
@@ -634,7 +637,7 @@ typedef struct FX_INFO {
     int16_t shade;
 } FX_INFO;
 
-typedef struct AI_INFO {
+typedef struct {
     int16_t zone_num;
     int16_t enemy_zone_num;
     int32_t distance;
@@ -644,15 +647,15 @@ typedef struct AI_INFO {
     int16_t enemy_facing;
 } AI_INFO;
 
-typedef struct BOX_NODE {
+typedef struct {
     int16_t exit_box;
     uint16_t search_num;
     int16_t next_expansion;
     int16_t box_num;
 } BOX_NODE;
 
-typedef struct LOT_INFO {
-    struct BOX_NODE *node;
+typedef struct {
+    BOX_NODE *node;
     int16_t head;
     int16_t tail;
     uint16_t search_num;
@@ -663,10 +666,10 @@ typedef struct LOT_INFO {
     int16_t zone_count;
     int16_t target_box;
     int16_t required_box;
-    struct XYZ_32 target;
+    XYZ_32 target;
 } LOT_INFO;
 
-typedef enum GF_LEVEL_TYPE {
+typedef enum {
     GFL_NOLEVEL = -1,
     GFL_TITLE,
     GFL_NORMAL,
@@ -678,12 +681,12 @@ typedef enum GF_LEVEL_TYPE {
     GFL_MIDSTORY,
 } GF_LEVEL_TYPE;
 
-typedef struct PICKUP_INFO {
+typedef struct {
     int16_t timer;
     int16_t sprite;
 } PICKUP_INFO;
 
-typedef struct INVENTORY_ITEM {
+typedef struct {
     char *string;
     int16_t obj_num;
     int16_t frames_total;
@@ -714,7 +717,7 @@ typedef struct INVENTORY_ITEM {
     uint32_t reserved4;
 } INVENTORY_ITEM;
 
-typedef enum GF_EVENTS {
+typedef enum {
     GFE_PICTURE,
     GFE_LIST_START,
     GFE_LIST_END,
@@ -740,27 +743,27 @@ typedef enum GF_EVENTS {
     GFE_REMOVE_AMMO,
 } GF_EVENTS;
 
-typedef enum MOOD_TYPE {
+typedef enum {
     MOOD_BORED = 0,
     MOOD_ATTACK = 1,
     MOOD_ESCAPE = 2,
     MOOD_STALK = 3,
 } MOOD_TYPE;
 
-typedef enum TARGET_TYPE {
+typedef enum {
     TARGET_NONE = 0,
     TARGET_PRIMARY = 1,
     TARGET_SECONDARY = 2,
 } TARGET_TYPE;
 
-typedef struct BITE_INFO {
+typedef struct {
     int32_t x;
     int32_t y;
     int32_t z;
     int32_t mesh_idx;
 } BITE_INFO;
 
-typedef struct ANIM_STRUCT {
+typedef struct {
     int16_t *frame_ptr;
     int16_t interpolation;
     int16_t current_anim_state;
@@ -776,20 +779,20 @@ typedef struct ANIM_STRUCT {
     int16_t command_idx;
 } ANIM_STRUCT;
 
-typedef struct DOOR_INFO {
+typedef struct {
     int16_t room;
     int16_t x;
     int16_t y;
     int16_t z;
-    struct XYZ_16 vertex[4];
+    XYZ_16 vertex[4];
 } DOOR_INFO;
 
-typedef struct DOOR_INFOS {
+typedef struct {
     int16_t count;
-    struct DOOR_INFO door[];
+    DOOR_INFO door[];
 } DOOR_INFOS;
 
-typedef struct LIGHT_INFO {
+typedef struct {
     int32_t x;
     int32_t y;
     int32_t z;
@@ -799,27 +802,27 @@ typedef struct LIGHT_INFO {
     int32_t falloff2;
 } LIGHT_INFO;
 
-typedef struct MESH_INFO {
-    struct XYZ_32 pos;
+typedef struct {
+    XYZ_32 pos;
     int16_t y_rot;
     int16_t shade1;
     int16_t shade2;
     int16_t static_num;
 } MESH_INFO;
 
-typedef enum ROOM_FLAG {
+typedef enum {
     RF_UNDERWATER = 0x01,
     RF_OUTSIDE = 0x08,
     RF_INSIDE = 0x40,
 } ROOM_FLAG;
 
-typedef struct ROOM_INFO {
+typedef struct {
     int16_t *data;
-    struct DOOR_INFOS *doors;
-    struct FLOOR_INFO *floor;
-    struct LIGHT_INFO *light;
-    struct MESH_INFO *mesh;
-    struct XYZ_32 pos;
+    DOOR_INFOS *doors;
+    FLOOR_INFO *floor;
+    LIGHT_INFO *light;
+    MESH_INFO *mesh;
+    XYZ_32 pos;
     int32_t min_floor;
     int32_t max_ceiling;
     int16_t x_size;
@@ -844,19 +847,19 @@ typedef struct ROOM_INFO {
     uint16_t flags;
 } ROOM_INFO;
 
-typedef struct CREATURE_INFO {
+typedef struct {
     int16_t head_rotation;
     int16_t neck_rotation;
     int16_t maximum_turn;
     uint16_t flags;
     int16_t item_num;
-    enum MOOD_TYPE mood;
-    struct LOT_INFO lot;
-    struct XYZ_32 target;
-    struct ITEM_INFO *enemy;
+    MOOD_TYPE mood;
+    LOT_INFO lot;
+    XYZ_32 target;
+    ITEM_INFO *enemy;
 } CREATURE_INFO;
 
-typedef enum CAMERA_TYPE {
+typedef enum {
     CAM_CHASE = 0,
     CAM_FIXED = 1,
     CAM_LOOK = 2,
@@ -865,20 +868,20 @@ typedef enum CAMERA_TYPE {
     CAM_HEAVY = 5,
 } CAMERA_TYPE;
 
-typedef struct GAME_VECTOR {
+typedef struct {
     union {
         struct {
             int32_t x;
             int32_t y;
             int32_t z;
         };
-        struct XYZ_32 pos;
+        XYZ_32 pos;
     };
     int16_t room_num;
     int16_t box_num;
 } GAME_VECTOR;
 
-typedef struct OBJECT_VECTOR {
+typedef struct {
     union {
         struct {
             int32_t x;
@@ -891,7 +894,7 @@ typedef struct OBJECT_VECTOR {
     int16_t flags;
 } OBJECT_VECTOR;
 
-typedef struct BOX_INFO {
+typedef struct {
     uint8_t left;
     uint8_t right;
     uint8_t top;
@@ -900,12 +903,12 @@ typedef struct BOX_INFO {
     int16_t overlap_index;
 } BOX_INFO;
 
-typedef enum LEVEL_TYPE {
+typedef enum {
     LV_GYM = 0,
     LV_FIRST = 1,
 } LEVEL_TYPE;
 
-typedef enum INVENTORY_MODE {
+typedef enum {
     INV_GAME_MODE,
     INV_TITLE_MODE,
     INV_KEYS_MODE,
@@ -915,7 +918,7 @@ typedef enum INVENTORY_MODE {
 } INVENTORY_MODE;
 
 // clang-format off
-typedef enum GAME_FLOW_DIR {
+typedef enum {
     GFD_START_GAME       = 0x0000,
     GFD_START_SAVED_GAME = 0x0100,
     GFD_START_CINE       = 0x0200,
@@ -930,7 +933,7 @@ typedef enum GAME_FLOW_DIR {
 // clang-format on
 
 // clang-format off
-typedef enum GAME_FLOW_FLAG {
+typedef enum {
     GFF_DEMO_VERSION              = 0x0001,
     GFF_TITLE_DISABLED            = 0x0002,
     GFF_CHEAT_MODE_CHECK_DISABLED = 0x0004,
@@ -946,7 +949,7 @@ typedef enum GAME_FLOW_FLAG {
 } GAME_FLOW_FLAG;
 // clang-format on
 
-typedef struct GAME_FLOW {
+typedef struct {
     int32_t first_option;
     int32_t title_replace;
     int32_t on_death_demo_mode;
@@ -973,7 +976,7 @@ typedef struct GAME_FLOW {
     uint16_t reserved4[2];
 } GAME_FLOW;
 
-typedef struct OBJECT_INFO {
+typedef struct {
     int16_t mesh_count;
     int16_t mesh_idx;
     int32_t bone_idx;
@@ -982,14 +985,11 @@ typedef struct OBJECT_INFO {
     void (*initialise)(int16_t item_number);
     void (*control)(int16_t item_number);
     void (*floor)(
-        struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
-        int32_t *height);
+        ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
     void (*ceiling)(
-        struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
-        int32_t *height);
-    void (*draw_routine)(struct ITEM_INFO *item);
-    void (*collision)(
-        int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+        ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+    void (*draw_routine)(ITEM_INFO *item);
+    void (*collision)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 
     int16_t anim_idx;
     int16_t hit_points;
@@ -1008,10 +1008,10 @@ typedef struct OBJECT_INFO {
     uint16_t water_creature : 1;
 } OBJECT_INFO;
 
-typedef struct CAMERA_INFO {
-    struct GAME_VECTOR pos;
-    struct GAME_VECTOR target;
-    enum CAMERA_TYPE type;
+typedef struct {
+    GAME_VECTOR pos;
+    GAME_VECTOR target;
+    CAMERA_TYPE type;
     int32_t shift;
     uint32_t flags;
     int32_t fixed_camera;
@@ -1028,14 +1028,14 @@ typedef struct CAMERA_INFO {
     int16_t last;
     int16_t timer;
     int16_t speed;
-    struct ITEM_INFO *item;
-    struct ITEM_INFO *last_item;
-    struct OBJECT_VECTOR *fixed;
+    ITEM_INFO *item;
+    ITEM_INFO *last_item;
+    OBJECT_VECTOR *fixed;
     int32_t is_lara_mic;
-    struct XYZ_32 mic_pos;
+    XYZ_32 mic_pos;
 } CAMERA_INFO;
 
-typedef struct LARA_ARM {
+typedef struct {
     int16_t *frame_base;
     int16_t frame_num;
     int16_t anim_num;
@@ -1046,11 +1046,11 @@ typedef struct LARA_ARM {
     int16_t flash_gun;
 } LARA_ARM;
 
-typedef struct AMMO_INFO {
+typedef struct {
     int32_t ammo;
 } AMMO_INFO;
 
-typedef enum LARA_WATER_STATE {
+typedef enum {
     LWS_ABOVE_WATER = 0,
     LWS_UNDERWATER = 1,
     LWS_SURFACE = 2,
@@ -1058,7 +1058,7 @@ typedef enum LARA_WATER_STATE {
     LWS_WADE = 4,
 } LARA_WATER_STATE;
 
-typedef struct LARA_INFO {
+typedef struct {
     int16_t item_num;
     int16_t gun_status;
     int16_t gun_type;
@@ -1089,11 +1089,11 @@ typedef struct LARA_INFO {
     uint16_t can_monkey_swing : 1;
     uint16_t pad : 9;
     int32_t water_surface_dist;
-    struct XYZ_32 last_pos;
-    struct FX_INFO *spaz_effect;
+    XYZ_32 last_pos;
+    FX_INFO *spaz_effect;
     uint32_t mesh_effects;
     int16_t *mesh_ptrs[15];
-    struct ITEM_INFO *target;
+    ITEM_INFO *target;
     int16_t target_angles[2];
     int16_t turn_rate;
     int16_t move_angle;
@@ -1103,37 +1103,37 @@ typedef struct LARA_INFO {
     int16_t torso_y_rot;
     int16_t torso_x_rot;
     int16_t torso_z_rot;
-    struct LARA_ARM left_arm;
-    struct LARA_ARM right_arm;
-    struct AMMO_INFO pistol_ammo;
-    struct AMMO_INFO magnum_ammo;
-    struct AMMO_INFO uzi_ammo;
-    struct AMMO_INFO shotgun_ammo;
-    struct AMMO_INFO harpoon_ammo;
-    struct AMMO_INFO grenade_ammo;
-    struct AMMO_INFO m16_ammo;
-    struct CREATURE_INFO *creature;
+    LARA_ARM left_arm;
+    LARA_ARM right_arm;
+    AMMO_INFO pistol_ammo;
+    AMMO_INFO magnum_ammo;
+    AMMO_INFO uzi_ammo;
+    AMMO_INFO shotgun_ammo;
+    AMMO_INFO harpoon_ammo;
+    AMMO_INFO grenade_ammo;
+    AMMO_INFO m16_ammo;
+    CREATURE_INFO *creature;
 } LARA_INFO;
 
-typedef enum SOUND_EFFECT_ID {
+typedef enum {
     SFX_LARA_FALL = 30,
     SFX_UNDERWATER = 60,
 } SOUND_EFFECT_ID;
 
-typedef enum SOUND_PLAY_MODE {
+typedef enum {
     SPM_NORMAL = 0,
     SPM_UNDERWATER = 1,
     SPM_ALWAYS = 2,
 } SOUND_PLAY_MODE;
 
-typedef enum CAMERA_FLAGS {
+typedef enum {
     CF_NORMAL = 0,
     CF_FOLLOW_CENTRE = 1,
     CF_NO_CHUNKY = 2,
     CF_CHASE_OBJECT = 3,
 } CAMERA_FLAGS;
 
-typedef enum FRAME_BBOX_INFO {
+typedef enum {
     FBBOX_MIN_X = 0,
     FBBOX_MAX_X = 1,
     FBBOX_MIN_Y = 2,
@@ -1145,7 +1145,7 @@ typedef enum FRAME_BBOX_INFO {
     FBBOX_Z = 8,
 } FRAME_BBOX_INFO;
 
-typedef struct CINE_FRAME {
+typedef struct {
     int16_t tx;
     int16_t ty;
     int16_t tz;
@@ -1157,7 +1157,7 @@ typedef struct CINE_FRAME {
 } CINE_FRAME;
 
 // clang-format off
-typedef enum ITEM_FLAG {
+typedef enum {
     IF_ONE_SHOT  = 0x0100,
     IF_CODE_BITS = 0x3E00,
     IF_REVERSE   = 0x4000,
@@ -1167,7 +1167,7 @@ typedef enum ITEM_FLAG {
 // clang-format on
 
 // clang-format off
-typedef enum ITEM_STATUS {
+typedef enum {
     IS_INACTIVE    = 0,
     IS_ACTIVE      = 1,
     IS_DEACTIVATED = 2,
@@ -1175,12 +1175,12 @@ typedef enum ITEM_STATUS {
 } ITEM_STATUS;
 // clang-format on
 
-typedef struct CONTROL_LAYOUT {
+typedef struct {
     uint16_t key[14];
 } CONTROL_LAYOUT;
 
 // clang-format off
-typedef enum INPUT_STATE {
+typedef enum {
     IN_FORWARD     = 0x00000001,
     IN_BACK        = 0x00000002,
     IN_LEFT        = 0x00000004,
@@ -1209,7 +1209,7 @@ typedef enum INPUT_STATE {
 // clang-format on
 
 // clang-format off
-typedef enum LARA_ANIMATION {
+typedef enum {
     LA_RUN                  = 0,
     LA_WALK_FORWARD         = 1,
     LA_STOP_LEFT            = 2,
@@ -1294,7 +1294,7 @@ typedef enum LARA_ANIMATION {
 // clang-format on
 
 // clang-format off
-typedef enum LARA_STATE {
+typedef enum {
     LS_WALK         = 0,
     LS_RUN          = 1,
     LS_STOP         = 2,
@@ -1377,7 +1377,7 @@ typedef enum LARA_STATE {
 // clang-format on
 
 // clang-format off
-typedef enum LARA_GUN_STATE {
+typedef enum {
     LGS_ARMLESS    = 0,
     LGS_HANDS_BUSY = 1,
     LGS_DRAW       = 2,
@@ -1388,7 +1388,7 @@ typedef enum LARA_GUN_STATE {
 // clang-format on
 
 // clang-format off
-typedef enum LARA_GUN_TYPE {
+typedef enum {
     LGT_UNARMED = 0,
     LGT_PISTOLS = 1,
     LGT_MAGNUMS = 2,
@@ -1404,7 +1404,7 @@ typedef enum LARA_GUN_TYPE {
 // clang-format on
 
 // clang-format off
-typedef enum LARA_MESH {
+typedef enum {
     LM_HIPS      = 0,
     LM_THIGH_L   = 1,
     LM_CALF_L    = 2,
@@ -1425,7 +1425,7 @@ typedef enum LARA_MESH {
 // clang-format on
 
 // clang-format off
-typedef enum GAME_OBJECT_ID {
+typedef enum {
     O_NONE                  = -1,
     O_LARA                  = 0,
     O_LARA_PISTOLS          = 1,
@@ -1697,7 +1697,7 @@ typedef enum GAME_OBJECT_ID {
 // clang-format on
 
 // clang-format off
-typedef enum MUSIC_TRACK_ID {
+typedef enum {
     MX_INACTIVE                = -1,
     MX_UNUSED_0                = 0, // 2.mp3
     MX_UNUSED_1                = 1, // 2.mp3
@@ -1769,7 +1769,7 @@ typedef enum MUSIC_TRACK_ID {
 // clang-format on
 
 // clang-format off
-typedef enum COLL_TYPE {
+typedef enum {
     COLL_NONE     = 0x00,
     COLL_FRONT    = 0x01,
     COLL_LEFT     = 0x02,
@@ -1781,7 +1781,7 @@ typedef enum COLL_TYPE {
 // clang-format on
 
 // clang-format off
-typedef enum HEIGHT_TYPE {
+typedef enum {
     HT_WALL        = 0,
     HT_SMALL_SLOPE = 1,
     HT_BIG_SLOPE   = 2,
@@ -1789,7 +1789,7 @@ typedef enum HEIGHT_TYPE {
 // clang-format on
 
 // clang-format off
-typedef enum DIRECTION {
+typedef enum {
     DIR_UNKNOWN = -1,
     DIR_NORTH   = 0,
     DIR_EAST    = 1,
@@ -1798,30 +1798,30 @@ typedef enum DIRECTION {
 } DIRECTION;
 // clang-format on
 
-typedef struct XGEN_X {
+typedef struct {
     uint16_t x;
     uint16_t y;
 } XGEN_X;
 
-typedef struct XBUF_X {
+typedef struct {
     int32_t x1;
     int32_t x2;
 } XBUF_X;
 
-typedef struct XGEN_XG {
+typedef struct {
     int16_t x;
     int16_t y;
     int16_t g;
 } XGEN_XG;
 
-typedef struct XBUF_XG {
+typedef struct {
     int32_t x1;
     int32_t g1;
     int32_t x2;
     int32_t g2;
 } XBUF_XG;
 
-typedef struct XGEN_XGUV {
+typedef struct {
     uint16_t x;
     uint16_t y;
     uint16_t g;
@@ -1829,7 +1829,7 @@ typedef struct XGEN_XGUV {
     uint16_t v;
 } XGEN_XGUV;
 
-typedef struct XBUF_XGUV {
+typedef struct {
     int32_t x1;
     int32_t g1;
     int32_t u1;
@@ -1840,7 +1840,7 @@ typedef struct XBUF_XGUV {
     int32_t v2;
 } XBUF_XGUV;
 
-typedef struct XGEN_XGUVP {
+typedef struct {
     uint16_t x;
     uint16_t y;
     uint16_t g;
@@ -1849,7 +1849,7 @@ typedef struct XGEN_XGUVP {
     float v;
 } XGEN_XGUVP;
 
-typedef struct XBUF_XGUVP {
+typedef struct {
     int32_t x1;
     int32_t g1;
     float u1;
@@ -1862,7 +1862,7 @@ typedef struct XBUF_XGUVP {
     float rhw2;
 } XBUF_XGUVP;
 
-typedef struct PCX_HEADER {
+typedef struct {
     uint8_t manufacturer;
     uint8_t version;
     uint8_t rle;
@@ -1883,7 +1883,7 @@ typedef struct PCX_HEADER {
     uint8_t reserved_data[54];
 } PCX_HEADER;
 
-typedef struct TGA_HEADER {
+typedef struct {
     uint8_t id_length;
     uint8_t color_map_type;
     uint8_t data_type_code;

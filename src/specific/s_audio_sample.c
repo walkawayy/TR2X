@@ -7,11 +7,10 @@
 #include "log.h"
 #include "specific/s_flagged_string.h"
 
-const struct SOUND_ADAPTER_NODE *__cdecl S_Audio_Sample_GetAdapter(
-    const GUID *guid)
+const SOUND_ADAPTER_NODE *__cdecl S_Audio_Sample_GetAdapter(const GUID *guid)
 {
     if (guid != NULL) {
-        for (const struct SOUND_ADAPTER_NODE *adapter = g_SoundAdapterList.head;
+        for (const SOUND_ADAPTER_NODE *adapter = g_SoundAdapterList.head;
              adapter; adapter = adapter->next) {
             if (!memcmp(&adapter->body.adapter_guid, guid, sizeof(GUID))) {
                 return adapter;
@@ -187,9 +186,9 @@ void __cdecl S_Audio_Sample_CloseTrack(int32_t track_id)
 
 bool __cdecl S_Audio_Sample_Init(void)
 {
-    struct SOUND_ADAPTER_NODE *node = g_SoundAdapterList.head;
+    SOUND_ADAPTER_NODE *node = g_SoundAdapterList.head;
     while (node) {
-        struct SOUND_ADAPTER_NODE *next_node = node->next;
+        SOUND_ADAPTER_NODE *next_node = node->next;
         S_FlaggedString_Delete(&node->body.module);
         S_FlaggedString_Delete(&node->body.description);
         free(node);
@@ -216,8 +215,7 @@ bool __cdecl S_Audio_Sample_Init(void)
     return true;
 }
 
-bool __cdecl S_Audio_Sample_DSoundEnumerate(
-    struct SOUND_ADAPTER_LIST *adapter_list)
+bool __cdecl S_Audio_Sample_DSoundEnumerate(SOUND_ADAPTER_LIST *adapter_list)
 {
     return DirectSoundEnumerateA(
                S_Audio_Sample_DSoundEnumCallback, (LPVOID)adapter_list)
@@ -227,10 +225,8 @@ bool __cdecl S_Audio_Sample_DSoundEnumerate(
 BOOL CALLBACK S_Audio_Sample_DSoundEnumCallback(
     LPGUID guid, LPCTSTR description, LPCTSTR module, LPVOID context)
 {
-    struct SOUND_ADAPTER_LIST *adapter_list =
-        (struct SOUND_ADAPTER_LIST *)context;
-    struct SOUND_ADAPTER_NODE *adapter_node =
-        malloc(sizeof(struct SOUND_ADAPTER_NODE));
+    SOUND_ADAPTER_LIST *adapter_list = (SOUND_ADAPTER_LIST *)context;
+    SOUND_ADAPTER_NODE *adapter_node = malloc(sizeof(SOUND_ADAPTER_NODE));
 
     if (!adapter_node) {
         return TRUE;
@@ -279,7 +275,7 @@ void __cdecl S_Audio_Sample_Init2(HWND hwnd)
         return;
     }
 
-    struct SOUND_ADAPTER *preferred =
+    SOUND_ADAPTER *preferred =
         &g_SavedAppSettings.preferred_sound_adapter->body;
     g_CurrentSoundAdapter = *preferred;
 

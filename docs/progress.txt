@@ -13,10 +13,11 @@ typedef struct __unaligned XYZ_16 {
     int16_t z;
 } XYZ_16;
 
-typedef struct IDirect3DDevice2     *LPDIRECT3DDEVICE2;
+typedef IDirect3DDevice2     *LPDIRECT3DDEVICE2;
 typedef void* LPDIRECT3DTEXTURE2;
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
 typedef LPDIRECTDRAWSURFACE3 LPDDS;
+typedef LPDIRECTDRAW3 LPDD;
 typedef D3DTEXTUREHANDLE HWR_TEX_HANDLE;
 
 typedef enum VGA_MODE {
@@ -41,14 +42,14 @@ typedef struct __unaligned DISPLAY_MODE {
 } DISPLAY_MODE;
 
 typedef struct __unaligned DISPLAY_MODE_NODE {
-    struct DISPLAY_MODE_NODE *next;
-    struct DISPLAY_MODE_NODE *previous;
-    struct DISPLAY_MODE body;
+    DISPLAY_MODE_NODE *next;
+    DISPLAY_MODE_NODE *previous;
+    DISPLAY_MODE body;
 } DISPLAY_MODE_NODE;
 
 typedef struct __unaligned DISPLAY_MODE_LIST {
-    struct DISPLAY_MODE_NODE *head;
-    struct DISPLAY_MODE_NODE *tail;
+    DISPLAY_MODE_NODE *head;
+    DISPLAY_MODE_NODE *tail;
     DWORD count;
 } DISPLAY_MODE_LIST;
 
@@ -60,16 +61,16 @@ typedef struct __unaligned STRING_FLAGGED {
 typedef struct __unaligned DISPLAY_ADAPTER {
     LPGUID adapter_guid_ptr;
     GUID adapter_guid;
-    struct STRING_FLAGGED driver_desc;
-    struct STRING_FLAGGED driver_name;
+    STRING_FLAGGED driver_desc;
+    STRING_FLAGGED driver_name;
     DDCAPS_DX5 driver_caps;
     DDCAPS_DX5 hel_caps;
     GUID device_guid;
     D3DDEVICEDESC_V2 hw_device_desc;
-    struct DISPLAY_MODE_LIST hw_disp_mode_list;
-    struct DISPLAY_MODE_LIST sw_disp_mode_list;
-    struct DISPLAY_MODE vga_mode1;
-    struct DISPLAY_MODE vga_mode2;
+    DISPLAY_MODE_LIST hw_disp_mode_list;
+    DISPLAY_MODE_LIST sw_disp_mode_list;
+    DISPLAY_MODE vga_mode1;
+    DISPLAY_MODE vga_mode2;
     uint32_t screen_width;
     bool hw_render_supported;
     bool sw_windowed_supported;
@@ -84,14 +85,14 @@ typedef struct __unaligned DISPLAY_ADAPTER {
 } DISPLAY_ADAPTER;
 
 typedef struct __unaligned DISPLAY_ADAPTER_NODE {
-    struct DISPLAY_ADAPTER_NODE *next;
-    struct DISPLAY_ADAPTER_NODE *previous;
-    struct DISPLAY_ADAPTER body;
+    DISPLAY_ADAPTER_NODE *next;
+    DISPLAY_ADAPTER_NODE *previous;
+    DISPLAY_ADAPTER body;
 } DISPLAY_ADAPTER_NODE;
 
 typedef struct __unaligned DISPLAY_ADAPTER_LIST {
-    struct DISPLAY_ADAPTER_NODE *head;
-    struct DISPLAY_ADAPTER_NODE *tail;
+    DISPLAY_ADAPTER_NODE *head;
+    DISPLAY_ADAPTER_NODE *tail;
     DWORD count;
 } DISPLAY_ADAPTER_LIST;
 
@@ -103,14 +104,14 @@ typedef struct __unaligned SOUND_ADAPTER {
 } SOUND_ADAPTER;
 
 typedef struct __unaligned SOUND_ADAPTER_NODE {
-    struct SOUND_ADAPTER_NODE *next;
-    struct SOUND_ADAPTER_NODE *previous;
+    SOUND_ADAPTER_NODE *next;
+    SOUND_ADAPTER_NODE *previous;
     SOUND_ADAPTER body;
 } SOUND_ADAPTER_NODE;
 
 typedef struct __unaligned SOUND_ADAPTER_LIST {
-    struct SOUND_ADAPTER_NODE *head;
-    struct SOUND_ADAPTER_NODE *tail;
+    SOUND_ADAPTER_NODE *head;
+    SOUND_ADAPTER_NODE *tail;
     DWORD count;
 } SOUND_ADAPTER_LIST;
 
@@ -122,14 +123,14 @@ typedef struct __unaligned JOYSTICK {
 } JOYSTICK;
 
 typedef struct __unaligned JOYSTICK_NODE {
-    struct JOYSTICK_NODE *next;
-    struct JOYSTICK_NODE *previous;
+    JOYSTICK_NODE *next;
+    JOYSTICK_NODE *previous;
     JOYSTICK body;
 } JOYSTICK_NODE;
 
 typedef struct __unaligned JOYSTICK_LIST {
-    struct JOYSTICK_LIST *head;
-    struct JOYSTICK_LIST *tail;
+    JOYSTICK_LIST *head;
+    JOYSTICK_LIST *tail;
     DWORD count;
 } JOYSTICK_LIST;
 
@@ -152,10 +153,10 @@ typedef enum TEX_ADJUST_MODE {
 } TEX_ADJUST_MODE;
 
 typedef struct __unaligned APP_SETTINGS {
-    struct DISPLAY_ADAPTER_NODE *preferred_display_adapter;
-    struct SOUND_ADAPTER_NODE *preferred_sound_adapter;
-    struct JOYSTICK_NODE *preferred_joystick;
-    struct DISPLAY_MODE_NODE *video_mode;
+    DISPLAY_ADAPTER_NODE *preferred_display_adapter;
+    SOUND_ADAPTER_NODE *preferred_sound_adapter;
+    JOYSTICK_NODE *preferred_joystick;
+    DISPLAY_MODE_NODE *video_mode;
     enum RENDER_MODE render_mode;
     int32_t window_width;
     int32_t window_height;
@@ -242,8 +243,8 @@ typedef struct __unaligned GOURAUD_ENTRY {
 } GOURAUD_ENTRY;
 
 typedef struct __unaligned PHD_3DPOS {
-    struct XYZ_32 pos;
-    struct XYZ_16 rot;
+    XYZ_32 pos;
+    XYZ_16 rot;
 } PHD_3DPOS;
 
 typedef struct __unaligned SPHERE {
@@ -329,7 +330,7 @@ typedef struct __unaligned PHD_TEXTURE {
     PHD_UV uv[4];
 } PHD_TEXTURE;
 
-typedef struct PHD_SPRITE {
+typedef PHD_SPRITE {
     uint16_t tex_page;
     uint16_t offset;
     uint16_t width;
@@ -416,26 +417,26 @@ typedef struct __unaligned REQUEST_INFO {
     uint32_t moredown_flags;
     uint32_t item_flags1[24];
     uint32_t item_flags2[24];
-    struct TEXTSTRING *heading_text1;
-    struct TEXTSTRING *heading_text2;
-    struct TEXTSTRING *background_text;
-    struct TEXTSTRING *moreup_text;
-    struct TEXTSTRING *moredown_text;
-    struct TEXTSTRING *item_texts1[24];
-    struct TEXTSTRING *item_texts2[24];
+    TEXTSTRING *heading_text1;
+    TEXTSTRING *heading_text2;
+    TEXTSTRING *background_text;
+    TEXTSTRING *moreup_text;
+    TEXTSTRING *moredown_text;
+    TEXTSTRING *item_texts1[24];
+    TEXTSTRING *item_texts2[24];
     char heading_string1[32];
     char heading_string2[32];
     uint32_t render_width;
     uint32_t render_height;
 } REQUEST_INFO;
 
-typedef struct ASSAULT_STATS {
+typedef ASSAULT_STATS {
     uint32_t best_time[10];
     uint32_t best_finish[10];
     uint32_t finish_count;
 } ASSAULT_STATS;
 
-typedef struct SORT_ITEM {
+typedef SORT_ITEM {
     int32_t _0;
     int32_t _1;
 } SORT_ITEM;
@@ -453,16 +454,16 @@ typedef struct __unaligned COLL_SIDE {
 } COLL_SIDE;
 
 typedef struct __unaligned COLL_INFO {
-    struct COLL_SIDE side_mid;
-    struct COLL_SIDE side_front;
-    struct COLL_SIDE side_left;
-    struct COLL_SIDE side_right;
+    COLL_SIDE side_mid;
+    COLL_SIDE side_front;
+    COLL_SIDE side_left;
+    COLL_SIDE side_right;
     int32_t radius;
     int32_t bad_pos;
     int32_t bad_neg;
     int32_t bad_ceiling;
-    struct XYZ_32 shift;
-    struct XYZ_32 old;
+    XYZ_32 shift;
+    XYZ_32 old;
     int16_t old_anim_state;
     int16_t old_anim_num;
     int16_t old_frame_num;
@@ -505,8 +506,8 @@ typedef struct __unaligned ITEM_INFO {
     int16_t shade2;
     int16_t carried_item;
     void *data;
-    struct XYZ_32 pos;
-    struct XYZ_16 rot;
+    XYZ_32 pos;
+    XYZ_16 rot;
     uint16_t active:        1; // 0x0001
     uint16_t status:        2; // 0x0002…0x0004
     uint16_t gravity:       1; // 0x0008
@@ -552,12 +553,12 @@ typedef struct __unaligned START_INFO {
     uint16_t has_harpoon : 1;
     uint16_t pad : 8;
     uint16_t reserved2;
-    struct STATISTICS_INFO statistics;
+    STATISTICS_INFO statistics;
 } START_INFO;
 
 typedef struct __unaligned SAVEGAME_INFO {
-    struct START_INFO start[24];
-    struct STATISTICS_INFO statistics;
+    START_INFO start[24];
+    STATISTICS_INFO statistics;
     int16_t current_level;
     bool bonus_flag;
     uint8_t num_pickup[2];
@@ -591,7 +592,7 @@ typedef struct __unaligned WEAPON_INFO {
 } WEAPON_INFO;
 
 typedef struct __unaligned FX_INFO {
-    struct PHD_3DPOS pos;
+    PHD_3DPOS pos;
     int16_t room_num;
     int16_t object_num;
     int16_t next_fx;
@@ -621,7 +622,7 @@ typedef struct __unaligned BOX_NODE {
 } BOX_NODE;
 
 typedef struct __unaligned LOT_INFO {
-    struct BOX_NODE *node;
+    BOX_NODE *node;
     int16_t head;
     int16_t tail;
     uint16_t search_num;
@@ -632,7 +633,7 @@ typedef struct __unaligned LOT_INFO {
     int16_t zone_count;
     int16_t target_box;
     int16_t required_box;
-    struct XYZ_32 target;
+    XYZ_32 target;
 } LOT_INFO;
 
 typedef enum GF_LEVEL_TYPE {
@@ -647,7 +648,7 @@ typedef enum GF_LEVEL_TYPE {
     GFL_MIDSTORY,
 } GF_LEVEL_TYPE;
 
-typedef struct PICKUP_INFO {
+typedef PICKUP_INFO {
     int16_t timer;
     int16_t sprite;
 } PICKUP_INFO;
@@ -759,12 +760,12 @@ typedef struct __unaligned DOOR_INFO {
     int16_t x;
     int16_t y;
     int16_t z;
-    struct XYZ_16 vertex[4];
+    XYZ_16 vertex[4];
 } DOOR_INFO;
 
 typedef struct __unaligned DOOR_INFOS {
     int16_t count;
-    struct DOOR_INFO door[];
+    DOOR_INFO door[];
 } DOOR_INFOS;
 
 typedef struct __unaligned LIGHT_INFO {
@@ -789,10 +790,10 @@ typedef struct __unaligned MESH_INFO {
 
 typedef struct __unaligned ROOM_INFO {
     int16_t *data;
-    struct DOOR_INFOS *doors;
-    struct FLOOR_INFO *floor;
-    struct LIGHT_INFO *light;
-    struct MESH_INFO *mesh;
+    DOOR_INFOS *doors;
+    FLOOR_INFO *floor;
+    LIGHT_INFO *light;
+    MESH_INFO *mesh;
     int32_t x;
     int32_t y;
     int32_t z;
@@ -827,9 +828,9 @@ typedef struct __unaligned CREATURE_INFO {
     uint16_t flags;
     int16_t item_num;
     enum MOOD_TYPE mood;
-    struct LOT_INFO lot;
-    struct XYZ_32 target;
-    struct ITEM_INFO *enemy;
+    LOT_INFO lot;
+    XYZ_32 target;
+    ITEM_INFO *enemy;
 } CREATURE_INFO;
 
 typedef enum CAMERA_TYPE {
@@ -842,7 +843,7 @@ typedef enum CAMERA_TYPE {
 } CAMERA_TYPE;
 
 typedef struct __unaligned GAME_VECTOR {
-    struct XYZ_32 pos;
+    XYZ_32 pos;
     int16_t room_num;
     int16_t box_num;
 } GAME_VECTOR;
@@ -897,7 +898,7 @@ typedef enum GAME_FLOW_DIR {
     GFD_TITLE_DESELECT   = 0x0900,
 } GAME_FLOW_DIR;
 
-typedef struct GAME_FLOW {
+typedef GAME_FLOW {
     int32_t first_option;
     int32_t title_replace;
     int32_t on_death_demo_mode;
@@ -933,14 +934,14 @@ typedef struct __unaligned OBJECT_INFO {
     void (*initialise)(int16_t item_number);
     void (*control)(int16_t item_number);
     void (*floor)(
-        struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
+        ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
     void (*ceiling)(
-        struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
+        ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
-    void (*draw_routine)(struct ITEM_INFO *item);
+    void (*draw_routine)(ITEM_INFO *item);
     void (*collision)(
-        int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+        int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 
     int16_t anim_idx;
     int16_t hit_points;
@@ -960,8 +961,8 @@ typedef struct __unaligned OBJECT_INFO {
 } OBJECT_INFO;
 
 typedef struct __unaligned CAMERA_INFO {
-    struct GAME_VECTOR pos;
-    struct GAME_VECTOR target;
+    GAME_VECTOR pos;
+    GAME_VECTOR target;
     enum CAMERA_TYPE type;
     int32_t shift;
     uint32_t flags;
@@ -979,11 +980,11 @@ typedef struct __unaligned CAMERA_INFO {
     int16_t last;
     int16_t timer;
     int16_t speed;
-    struct ITEM_INFO *item;
-    struct ITEM_INFO *last_item;
-    struct OBJECT_VECTOR *fixed;
+    ITEM_INFO *item;
+    ITEM_INFO *last_item;
+    OBJECT_VECTOR *fixed;
     int32_t is_lara_mic;
-    struct XYZ_32 mic_pos;
+    XYZ_32 mic_pos;
 } CAMERA_INFO;
 
 typedef struct __unaligned LARA_ARM {
@@ -1032,11 +1033,11 @@ typedef struct __unaligned LARA_INFO {
     uint16_t can_monkey_swing : 1;
     uint16_t pad : 9;
     int32_t water_surface_dist;
-    struct XYZ_32 last_pos;
-    struct FX_INFO *spaz_effect;
+    XYZ_32 last_pos;
+    FX_INFO *spaz_effect;
     uint32_t mesh_effects;
     int16_t *mesh_ptrs[15];
-    struct ITEM_INFO *target;
+    ITEM_INFO *target;
     int16_t target_angles[2];
     int16_t turn_rate;
     int16_t move_angle;
@@ -1046,16 +1047,16 @@ typedef struct __unaligned LARA_INFO {
     int16_t torso_y_rot;
     int16_t torso_x_rot;
     int16_t torso_z_rot;
-    struct LARA_ARM left_arm;
-    struct LARA_ARM right_arm;
-    struct AMMO_INFO pistol_ammo;
-    struct AMMO_INFO magnum_ammo;
-    struct AMMO_INFO uzi_ammo;
-    struct AMMO_INFO shotgun_ammo;
-    struct AMMO_INFO harpoon_ammo;
-    struct AMMO_INFO grenade_ammo;
-    struct AMMO_INFO m16_ammo;
-    struct CREATURE_INFO *creature;
+    LARA_ARM left_arm;
+    LARA_ARM right_arm;
+    AMMO_INFO pistol_ammo;
+    AMMO_INFO magnum_ammo;
+    AMMO_INFO uzi_ammo;
+    AMMO_INFO shotgun_ammo;
+    AMMO_INFO harpoon_ammo;
+    AMMO_INFO grenade_ammo;
+    AMMO_INFO m16_ammo;
+    CREATURE_INFO *creature;
 } LARA_INFO;
 
 typedef struct __unaligned CINE_FRAME {
@@ -1069,7 +1070,7 @@ typedef struct __unaligned CINE_FRAME {
     int16_t roll;
 } CINE_FRAME;
 
-typedef struct CONTROL_LAYOUT {
+typedef CONTROL_LAYOUT {
     uint16_t key[14];
 } CONTROL_LAYOUT;
 
@@ -1619,6 +1620,49 @@ typedef enum GAME_OBJECT_ID {
     O_NUMBER_OF             = 265,
 } GAME_OBJECT_ID;
 
+typedef struct imotion_info {
+    int16_t count;
+    int16_t status;
+    int16_t status_target;
+    int16_t radius_target;
+    int16_t radius_rate;
+    int16_t camera_ytarget;
+    int16_t camera_yrate;
+    int16_t camera_pitch_target;
+    int16_t camera_pitch_rate;
+    int16_t rotate_target;
+    int16_t rotate_rate;
+    int16_t item_ptxrot_target;
+    int16_t item_ptxrot_rate;
+    int16_t item_xrot_target;
+    int16_t item_xrot_rate;
+    int32_t item_ytrans_target;
+    int32_t item_ytrans_rate;
+    int32_t item_ztrans_target;
+    int32_t item_ztrans_rate;
+    int32_t misc;
+} IMOTION_INFO;
+
+typedef struct {
+    INVENTORY_ITEM **list;
+    int16_t type;
+    int16_t radius;
+    int16_t camera_pitch;
+    int16_t rotating;
+    int16_t rot_count;
+    int16_t current_object;
+    int16_t target_object;
+    int16_t number_of_objects;
+    int16_t angle_adder;
+    int16_t rot_adder;
+    int16_t rot_adder_l;
+    int16_t rot_adder_r;
+    PHD_3DPOS ringpos;
+    PHD_3DPOS camera;
+    XYZ_32 light;
+    IMOTION_INFO *imo;
+} RING_INFO;
+
 # FUNCTIONS
 #   Flags:
 #   - to do
@@ -1628,7 +1672,7 @@ typedef enum GAME_OBJECT_ID {
 # Offset    Size        Flags   Declaration
 
 # 3dsystem/3d_gen.c
-00401000    000001D0    +       void __cdecl Matrix_GenerateW2V(struct PHD_3DPOS *viewpos);
+00401000    000001D0    +       void __cdecl Matrix_GenerateW2V(PHD_3DPOS *viewpos);
 004011D0    00000072    +       void __cdecl Matrix_LookAt(int32_t xsrc, int32_t ysrc, int32_t zsrc, int32_t xtar, int32_t ytar, int32_t ztar, int16_t roll);
 00401250    00000078    +       void __cdecl Math_GetVectorAngles(int32_t x, int32_t y, int32_t z, int16_t *dest);
 004012D0    000000AA    +       void __cdecl Matrix_RotX(int16_t rx);
@@ -1673,41 +1717,41 @@ typedef enum GAME_OBJECT_ID {
 00405810    00000037    +       void __cdecl Output_DrawPolyWGTMapPersp(const int16_t *obj_ptr);
 
 # 3dsystem/3dinsert.c
-00405850    0000006C    +       int32_t __cdecl Output_VisibleZClip(const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1, const struct PHD_VBUF *vtx2);
-004058C0    00000140    +       int32_t __cdecl Output_ZedClipper(int32_t vtx_count, struct POINT_INFO *pts, struct VERTEX_INFO *vtx);
-00405A00    00000511    +       int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, struct VERTEX_INFO *vtx);
-00405F20    00000A5C    +       const int16_t *__cdecl Output_InsertObjectGT4(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-00406980    00000872    +       const int16_t *__cdecl Output_InsertObjectGT3(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-00407200    00000422    +       int32_t __cdecl Output_XYGClipper(int32_t vtx_count, struct VERTEX_INFO *vtx);
-00407630    000003D1    +       const int16_t *__cdecl Output_InsertObjectG4(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-00407A10    0000031B    +       const int16_t *__cdecl Output_InsertObjectG3(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-00407D30    000002D0    +       int32_t __cdecl Output_XYClipper(int32_t vtx_count, struct VERTEX_INFO *vtx);
-00408000    000004A4    +       void __cdecl Output_InsertTrans8(const struct PHD_VBUF *vbuf, int16_t shade);
+00405850    0000006C    +       int32_t __cdecl Output_VisibleZClip(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2);
+004058C0    00000140    +       int32_t __cdecl Output_ZedClipper(int32_t vtx_count, POINT_INFO *pts, VERTEX_INFO *vtx);
+00405A00    00000511    +       int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *vtx);
+00405F20    00000A5C    +       const int16_t *__cdecl Output_InsertObjectGT4(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+00406980    00000872    +       const int16_t *__cdecl Output_InsertObjectGT3(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+00407200    00000422    +       int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx);
+00407630    000003D1    +       const int16_t *__cdecl Output_InsertObjectG4(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+00407A10    0000031B    +       const int16_t *__cdecl Output_InsertObjectG3(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+00407D30    000002D0    +       int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx);
+00408000    000004A4    +       void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade);
 004084B0    000000D3    +       void __cdecl Output_InsertTransQuad(int32_t x, int32_t y, int32_t width, int32_t height, int32_t z);
 00408590    000000CB    +       void __cdecl Output_InsertFlatRect(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);
 00408660    000000B5    +       void __cdecl Output_InsertLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);
-00408720    00000642    +       void __cdecl Output_InsertGT3_ZBuffered(const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1, const struct PHD_VBUF *vtx2, const struct PHD_TEXTURE *texture, const struct PHD_UV *uv0, const struct PHD_UV *uv1, const struct PHD_UV *uv2);
+00408720    00000642    +       void __cdecl Output_InsertGT3_ZBuffered(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2);
 00408D70    00000140    +       void __cdecl Output_DrawClippedPoly_Textured(int32_t vtx_count);
-00408EB0    00000444    +       void __cdecl Output_InsertGT4_ZBuffered(const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1, const struct PHD_VBUF *vtx2, const struct PHD_VBUF *vtx3, const struct PHD_TEXTURE *texture);
-00409300    00000091    +       const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-004093A0    000000AA    +       const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-00409450    0000039C    +       const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+00408EB0    00000444    +       void __cdecl Output_InsertGT4_ZBuffered(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_VBUF *vtx3, const PHD_TEXTURE *texture);
+00409300    00000091    +       const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+004093A0    000000AA    +       const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+00409450    0000039C    +       const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 004097F0    000000F7    +       void __cdecl Output_DrawPoly_Gouraud(int32_t vtx_count, int32_t red, int32_t green, int32_t blue);
-004098F0    000002D3    +       const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+004098F0    000002D3    +       const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 00409BD0    000001C9    +       void __cdecl Output_InsertFlatRect_ZBuffered(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);
 00409DA0    00000133    +       void __cdecl Output_InsertLine_ZBuffered(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);
-00409EE0    00000706    +       void __cdecl Output_InsertGT3_Sorted(const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1, const struct PHD_VBUF *vtx2, const struct PHD_TEXTURE *texture, const struct PHD_UV *uv0, const struct PHD_UV *uv1, const struct PHD_UV *uv2, enum SORT_TYPE sort_type);
+00409EE0    00000706    +       void __cdecl Output_InsertGT3_Sorted(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2, SORT_TYPE sort_type);
 0040A5F0    000001AC    +       void __cdecl Output_InsertClippedPoly_Textured(int32_t vtx_count, float z, int16_t poly_type, int16_t tex_page);
-0040A7A0    000004D7    +       void __cdecl Output_InsertGT4_Sorted(const struct PHD_VBUF *vtx0, const struct PHD_VBUF *vtx1, const struct PHD_VBUF *vtx2, const struct PHD_VBUF *vtx3, const struct PHD_TEXTURE *texture, enum SORT_TYPE sort_type);
-0040AC80    0000008C    +       const int16_t *__cdecl Output_InsertObjectGT4_Sorted(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-0040AD10    0000009F    +       const int16_t *__cdecl Output_InsertObjectGT3_Sorted(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
-0040ADB0    0000043B    +       const int16_t *__cdecl Output_InsertObjectG4_Sorted(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+0040A7A0    000004D7    +       void __cdecl Output_InsertGT4_Sorted(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_VBUF *vtx3, const PHD_TEXTURE *texture, SORT_TYPE sort_type);
+0040AC80    0000008C    +       const int16_t *__cdecl Output_InsertObjectGT4_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+0040AD10    0000009F    +       const int16_t *__cdecl Output_InsertObjectGT3_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
+0040ADB0    0000043B    +       const int16_t *__cdecl Output_InsertObjectG4_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 0040B1F0    00000175    +       void __cdecl Output_InsertPoly_Gouraud(int32_t vtx_count, float z, int32_t red, int32_t green, int32_t blue, int16_t poly_type);
-0040B370    00000343    +       const int16_t *__cdecl Output_InsertObjectG3_Sorted(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);
+0040B370    00000343    +       const int16_t *__cdecl Output_InsertObjectG3_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);
 0040B6C0    00000347    +       void __cdecl Output_InsertSprite_Sorted(int32_t z, int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t sprite_idx, int16_t shade);
 0040BA10    0000017F    +       void __cdecl Output_InsertFlatRect_Sorted(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);
 0040BB90    0000012B    +       void __cdecl Output_InsertLine_Sorted(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);
-0040BCC0    00000195    +       void __cdecl Output_InsertTrans8_Sorted(const struct PHD_VBUF *vbuf, int16_t shade);
+0040BCC0    00000195    +       void __cdecl Output_InsertTrans8_Sorted(const PHD_VBUF *vbuf, int16_t shade);
 0040BE60    0000013D    +       void __cdecl Output_InsertTransQuad_Sorted(int32_t x, int32_t y, int32_t width, int32_t height, int32_t z);
 0040BFA0    000000A7    +       void __cdecl Output_InsertSprite(int32_t z, int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t sprite_idx, int16_t shade);
 
@@ -1725,56 +1769,56 @@ typedef enum GAME_OBJECT_ID {
 
 # game/boat.c
 0040CB30    0000003C    -       void __cdecl Boat_Initialise(int16_t item_num);
-0040CB70    00000170    -       int32_t __cdecl Boat_CheckGeton(int16_t item_num, struct COLL_INFO *coll);
-0040CCE0    0000015E    -       void __cdecl Boat_Collision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-0040CE40    000000F8    -       int32_t __cdecl Boat_TestWaterHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct XYZ_32 *pos);
+0040CB70    00000170    -       int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);
+0040CCE0    0000015E    -       void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0040CE40    000000F8    -       int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
 0040CF40    000001C1    -       void __cdecl Boat_DoShift(int32_t boat_num);
-0040D110    00000174    -       void __cdecl Boat_DoWakeEffect(struct ITEM_INFO *boat);
+0040D110    00000174    -       void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);
 0040D290    0000004B    -       int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
 0040D2E0    000004DD    -       int32_t __cdecl Boat_Dynamics(int16_t boat_num);
-0040D7C0    00000187    -       int32_t __cdecl Boat_UserControl(struct ITEM_INFO *boat);
-0040D950    00000169    -       void __cdecl Boat_Animation(struct ITEM_INFO *boat, int32_t collide);
+0040D7C0    00000187    -       int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);
+0040D950    00000169    -       void __cdecl Boat_Animation(ITEM_INFO *boat, int32_t collide);
 0040DAC0    0000062A    -       void __cdecl Boat_Control(int16_t item_num);
 0040E0F0    000000B3    -       void __cdecl Gondola_Control(int16_t item_num);
 
 # game/box.c
 0040E1B0    0000002F    +       void __cdecl Creature_Initialise(int16_t item_num);
 0040E1E0    00000047    +       int32_t __cdecl Creature_Activate(int16_t item_num);
-0040E230    00000242    +       void __cdecl Creature_AIInfo(struct ITEM_INFO *item, struct AI_INFO *info);
-0040E490    000001F3    +       int32_t __cdecl Box_SearchLOT(struct LOT_INFO *lot, int32_t expansion);
-0040E690    0000006F    +       int32_t __cdecl Box_UpdateLOT(struct LOT_INFO *lot, int32_t expansion);
-0040E700    00000095    +       void __cdecl Box_TargetBox(struct LOT_INFO *lot, int16_t box_num);
-0040E7A0    000000F2    +       int32_t __cdecl Box_StalkBox(const struct ITEM_INFO *item, const struct ITEM_INFO *enemy, int16_t box_num);
-0040E8A0    000000A4    +       int32_t __cdecl Box_EscapeBox(const struct ITEM_INFO *item, const struct ITEM_INFO *enemy, int16_t box_num);
-0040E950    000000A7    +       int32_t __cdecl Box_ValidBox(const struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);
-0040EA00    0000043F    +       void __cdecl Creature_Mood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);
-0040EE70    00000459    +       enum TARGET_TYPE __cdecl Box_CalculateTarget(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot);
+0040E230    00000242    +       void __cdecl Creature_AIInfo(ITEM_INFO *item, AI_INFO *info);
+0040E490    000001F3    +       int32_t __cdecl Box_SearchLOT(LOT_INFO *lot, int32_t expansion);
+0040E690    0000006F    +       int32_t __cdecl Box_UpdateLOT(LOT_INFO *lot, int32_t expansion);
+0040E700    00000095    +       void __cdecl Box_TargetBox(LOT_INFO *lot, int16_t box_num);
+0040E7A0    000000F2    +       int32_t __cdecl Box_StalkBox(const ITEM_INFO *item, const ITEM_INFO *enemy, int16_t box_num);
+0040E8A0    000000A4    +       int32_t __cdecl Box_EscapeBox(const ITEM_INFO *item, const ITEM_INFO *enemy, int16_t box_num);
+0040E950    000000A7    +       int32_t __cdecl Box_ValidBox(const ITEM_INFO *item, int16_t zone_num, int16_t box_num);
+0040EA00    0000043F    +       void __cdecl Creature_Mood(ITEM_INFO *item, AI_INFO *info, int32_t violent);
+0040EE70    00000459    +       enum TARGET_TYPE __cdecl Box_CalculateTarget(XYZ_32 *target, ITEM_INFO *item, LOT_INFO *lot);
 0040F2D0    000000F8    +       int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);
-0040F3D0    0000008B    +       int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);
+0040F3D0    0000008B    +       int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, LOT_INFO *lot);
 0040F460    000000B8    +       void __cdecl Creature_Die(int16_t item_num, int32_t explode);
 0040F520    000008CC    +       int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);
-0040FDF0    000000D5    +       int16_t __cdecl Creature_Turn(struct ITEM_INFO *item, int16_t maximum_turn);
-0040FED0    00000035    +       void __cdecl Creature_Tilt(struct ITEM_INFO *item, int16_t angle);
-0040FF10    00000049    +       void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);
-0040FF60    0000004E    -       void __cdecl Creature_Neck(struct ITEM_INFO *item, int16_t required);
+0040FDF0    000000D5    +       int16_t __cdecl Creature_Turn(ITEM_INFO *item, int16_t maximum_turn);
+0040FED0    00000035    +       void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);
+0040FF10    00000049    +       void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);
+0040FF60    0000004E    -       void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
 0040FFB0    000000A8    -       void __cdecl Creature_Float(int16_t item_num);
-00410060    00000050    -       void __cdecl Creature_Underwater(struct ITEM_INFO *item, int32_t depth);
-004100B0    0000005C    -       int16_t __cdecl Creature_Effect(struct ITEM_INFO *item, struct BITE_INFO *bite, int16_t (*spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
+00410060    00000050    -       void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);
+004100B0    0000005C    -       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
 00410110    00000131    -       int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
-00410250    0000016F    -       void __cdecl Creature_Kill(struct ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
+00410250    0000016F    -       void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
 004103C0    000001DB    -       void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
 
 # game/camera.c
 004105A0    000000B0    +       void __cdecl Camera_Initialise(void);
-00410650    00000372    +       void __cdecl Camera_Move(const struct GAME_VECTOR *target, int32_t speed);
+00410650    00000372    +       void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed);
 004109D0    000000D7    +       void __cdecl Camera_Clip(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom);
 00410AB0    00000154    +       void __cdecl Camera_Shift(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom);
-00410C10    00000050    +       const struct FLOOR_INFO *__cdecl Camera_GoodPosition(int32_t x, int32_t y, int32_t z, int16_t room_num);
-00410C60    00000781    +       void __cdecl Camera_SmartShift(struct GAME_VECTOR *target, void (*__cdecl shift)(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom));
-004113F0    000000ED    +       void __cdecl Camera_Chase(const struct ITEM_INFO *item);
-004114E0    0000019E    +       int32_t __cdecl Camera_ShiftClamp(struct GAME_VECTOR *pos, int32_t clamp);
-00411680    0000018E    +       void __cdecl Camera_Combat(const struct ITEM_INFO *item);
-00411810    000001E2    +       void __cdecl Camera_Look(const struct ITEM_INFO *item);
+00410C10    00000050    +       const FLOOR_INFO *__cdecl Camera_GoodPosition(int32_t x, int32_t y, int32_t z, int16_t room_num);
+00410C60    00000781    +       void __cdecl Camera_SmartShift(GAME_VECTOR *target, void (*__cdecl shift)(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom));
+004113F0    000000ED    +       void __cdecl Camera_Chase(const ITEM_INFO *item);
+004114E0    0000019E    +       int32_t __cdecl Camera_ShiftClamp(GAME_VECTOR *pos, int32_t clamp);
+00411680    0000018E    +       void __cdecl Camera_Combat(const ITEM_INFO *item);
+00411810    000001E2    +       void __cdecl Camera_Look(const ITEM_INFO *item);
 00411A00    00000099    +       void __cdecl Camera_Fixed(void);
 00411AA0    000004A9    +       void __cdecl Camera_Update(void);
 
@@ -1792,48 +1836,48 @@ typedef enum GAME_OBJECT_ID {
 004126A0    00000245    +       void __cdecl Camera_LoadCutsceneFrame(void);
 
 # game/collide.c
-004128F0    0000067C    -       void __cdecl Collide_GetCollisionInfo(struct COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);
+004128F0    0000067C    -       void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);
 00412FB0    0000002F    -       int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);
-00412FE0    000003D2    -       int32_t __cdecl Collide_CollideStaticObjects(struct COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);
+00412FE0    000003D2    -       int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);
 004133D0    000000C8    -       void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);
 004134A0    00000055    -       void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
-00413500    00000037    -       void __cdecl Item_ShiftCol(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00413540    0000005D    -       void __cdecl Item_UpdateRoom(struct ITEM_INFO *item, int32_t height);
-004135A0    00000099    -       int16_t __cdecl Room_GetTiltType(struct FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
-00413640    00000195    -       void __cdecl Lara_BaddieCollision(struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-004137E0    00000079    -R      void __cdecl Misc_EffectSpaz(struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00413860    00000078    -       void __cdecl Creature_Collision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-004138E0    00000055    -       void __cdecl Object_Collision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00413940    00000077    -       void __cdecl Door_Collision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-004139C0    00000067    -       void __cdecl Object_CollisionTrap(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00413A30    00000306    -       void __cdecl Lara_Push(struct ITEM_INFO *item, struct ITEM_INFO *lara_item, struct COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
-00413D40    000000CB    -       int32_t __cdecl Item_TestBoundsCollide(struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item, int32_t radius);
-00413E10    00000137    -       int32_t __cdecl Item_TestPosition(int16_t *bounds, struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item);
-00413F50    0000013B    -       void __cdecl Item_AlignPosition(struct XYZ_32 *vec, struct ITEM_INFO *src_item, struct ITEM_INFO *dst_item);
-00414090    00000187    -       int32_t __cdecl Lara_MovePosition(struct XYZ_32 *vec, struct ITEM_INFO *item, struct ITEM_INFO *lara_item);
-00414220    0000016E    -R      int32_t __cdecl Misc_Move3DPosTo3DPos(struct PHD_3DPOS *src_pos, struct PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);
+00413500    00000037    -       void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
+00413540    0000005D    -       void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
+004135A0    00000099    -       int16_t __cdecl Room_GetTiltType(FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+00413640    00000195    -       void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);
+004137E0    00000079    -R      void __cdecl Misc_EffectSpaz(ITEM_INFO *lara_item, COLL_INFO *coll);
+00413860    00000078    -       void __cdecl Creature_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+004138E0    00000055    -       void __cdecl Object_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00413940    00000077    -       void __cdecl Door_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+004139C0    00000067    -       void __cdecl Object_CollisionTrap(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00413A30    00000306    -       void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
+00413D40    000000CB    -       int32_t __cdecl Item_TestBoundsCollide(ITEM_INFO *src_item, ITEM_INFO *dst_item, int32_t radius);
+00413E10    00000137    -       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);
+00413F50    0000013B    -       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
+00414090    00000187    -       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
+00414220    0000016E    -R      int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);
 
 # game/control.c
 00414390    00000356    -       int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);
-004146F0    00000338    -       void __cdecl Item_Animate(struct ITEM_INFO *item);
-00414A60    000000AB    -       int32_t __cdecl Item_GetAnimChange(struct ITEM_INFO *item, struct ANIM_STRUCT *anim);
-00414B10    0000005F    -       void __cdecl Item_Translate(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
-00414B70    00000198    *       struct FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);
+004146F0    00000338    -       void __cdecl Item_Animate(ITEM_INFO *item);
+00414A60    000000AB    -       int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, ANIM_STRUCT *anim);
+00414B10    0000005F    -       void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
+00414B70    00000198    *       FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);
 00414D10    00000168    -       int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);
-00414E80    00000265    *       int32_t __cdecl Room_GetHeight(const struct FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+00414E80    00000265    *       int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
 00415100    000000E7    -       void __cdecl Camera_RefreshFromTrigger(int16_t type, int16_t *data);
 004151F0    00000690    -       void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);
-004158D0    00000055    -       int32_t __cdecl Item_IsTriggerActive(struct ITEM_INFO *item);
-00415930    0000023D    *       int32_t __cdecl Room_GetCeiling(const struct FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
-00415B90    0000004E    -       int16_t __cdecl Room_GetDoor(struct FLOOR_INFO *floor);
-00415BE0    000000A0    +       int32_t __cdecl LOS_Check(const struct GAME_VECTOR *start, struct GAME_VECTOR *target);
-00415C80    000002EB    +       int32_t __cdecl LOS_CheckZ(const struct GAME_VECTOR *start, struct GAME_VECTOR *target);
-00415F70    000002EC    +       int32_t __cdecl LOS_CheckX(const struct GAME_VECTOR *start, struct GAME_VECTOR *target);
-00416260    000000DA    +       int32_t __cdecl LOS_ClipTarget(const struct GAME_VECTOR *start, struct GAME_VECTOR *target, const FLOOR_INFO *floor);
-00416340    000002FE    +       int32_t __cdecl LOS_CheckSmashable(const struct GAME_VECTOR *start, struct GAME_VECTOR *target);
+004158D0    00000055    -       int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);
+00415930    0000023D    *       int32_t __cdecl Room_GetCeiling(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+00415B90    0000004E    -       int16_t __cdecl Room_GetDoor(FLOOR_INFO *floor);
+00415BE0    000000A0    +       int32_t __cdecl LOS_Check(const GAME_VECTOR *start, GAME_VECTOR *target);
+00415C80    000002EB    +       int32_t __cdecl LOS_CheckZ(const GAME_VECTOR *start, GAME_VECTOR *target);
+00415F70    000002EC    +       int32_t __cdecl LOS_CheckX(const GAME_VECTOR *start, GAME_VECTOR *target);
+00416260    000000DA    +       int32_t __cdecl LOS_ClipTarget(const GAME_VECTOR *start, GAME_VECTOR *target, const FLOOR_INFO *floor);
+00416340    000002FE    +       int32_t __cdecl LOS_CheckSmashable(const GAME_VECTOR *start, GAME_VECTOR *target);
 00416640    000000B3    -       void __cdecl Room_FlipMap(void);
-00416700    00000096    -       void __cdecl Room_RemoveFlipItems(struct ROOM_INFO *r);
-004167A0    0000005C    -       void __cdecl Room_AddFlipItems(struct ROOM_INFO *r);
+00416700    00000096    -       void __cdecl Room_RemoveFlipItems(ROOM_INFO *r);
+004167A0    0000005C    -       void __cdecl Room_AddFlipItems(ROOM_INFO *r);
 00416800    00000024    -       void __cdecl Control_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);
 00416830    000000DA    -       void __cdecl Control_TriggerMusicNormalTrack(int16_t value, int16_t flags, int16_t type);
 
@@ -1856,7 +1900,7 @@ typedef enum GAME_OBJECT_ID {
 004177B0    0000017F    -R      void __cdecl ControlTwinkle(int16_t fx_num);
 00417930    000000D9    -R      void __cdecl CreateBartoliLight(int16_t item_num);
 00417A10    000000AB    -R      int16_t __cdecl DragonFire(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
-00417AC0    000002ED    -R      void __cdecl DragonCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+00417AC0    000002ED    -R      void __cdecl DragonCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 00417DB0    000000D9    -R      void __cdecl DragonBones(int16_t item_num);
 00417E90    00000519    -R      void __cdecl DragonControl(int16_t back_num);
 004183E0    00000114    -R      void __cdecl InitialiseBartoli(int16_t item_num);
@@ -1869,14 +1913,14 @@ typedef enum GAME_OBJECT_ID {
 004189D0    000002B0    -       void __cdecl Room_DrawAllRooms(int16_t current_room);
 00418C80    000001C6    -       void __cdecl Room_GetBounds(void);
 00418E50    0000037F    -       void __cdecl Room_SetBounds(int16_t *objptr, int32_t room_num, ROOM_INFO *parent);
-004191D0    000003D2    -       void __cdecl Room_Clip(struct ROOM_INFO *r);
+004191D0    000003D2    -       void __cdecl Room_Clip(ROOM_INFO *r);
 004195B0    000000B4    -       void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);
 00419670    00000218    -       void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);
 00419890    00000147    -       void __cdecl Effect_Draw(int16_t fx_num);
-004199E0    00000083    -       void __cdecl Object_DrawSpriteItem(struct ITEM_INFO *item);
-00419A70    00000378    -       void __cdecl Object_DrawAnimatingItem(struct ITEM_INFO *item);
-00419DF0    00000D02    -       void __cdecl Lara_Draw(struct ITEM_INFO *item);
-0041AB20    00000BC6    -       void __cdecl Lara_Draw_I(struct ITEM_INFO *item, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
+004199E0    00000083    -       void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);
+00419A70    00000378    -       void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);
+00419DF0    00000D02    -       void __cdecl Lara_Draw(ITEM_INFO *item);
+0041AB20    00000BC6    -       void __cdecl Lara_Draw_I(ITEM_INFO *item, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
 0041B710    00000034    +       void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);
 0041B750    00000022    +       void __cdecl Matrix_Pop_I(void);
 0041B780    00000027    +       void __cdecl Matrix_Push_I(void);
@@ -1892,10 +1936,10 @@ typedef enum GAME_OBJECT_ID {
 0041BA80    000001A5    +       void __cdecl Matrix_Interpolate(void);
 0041BC30    000000FC    +       void __cdecl Matrix_InterpolateArm(void);
 0041BD30    0000014B    -       void __cdecl Gun_DrawFlash(int32_t weapon_type, int32_t clip);
-0041BEA0    000000E8    -       void __cdecl Output_CalculateObjectLighting(struct ITEM_INFO *item, int16_t *frame);
-0041BF90    00000092    *       int32_t __cdecl Item_GetFrames(const struct ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);
-0041C030    0000007C    *       int16_t *__cdecl Item_GetBoundsAccurate(const struct ITEM_INFO *item);
-0041C0B0    00000035    -       int16_t *__cdecl Item_GetBestFrame(const struct ITEM_INFO *item);
+0041BEA0    000000E8    -       void __cdecl Output_CalculateObjectLighting(ITEM_INFO *item, int16_t *frame);
+0041BF90    00000092    *       int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);
+0041C030    0000007C    *       int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
+0041C0B0    00000035    -       int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
 0041C0F0    00000048    -R      void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);
 
 # game/eel.c
@@ -1903,72 +1947,72 @@ typedef enum GAME_OBJECT_ID {
 0041C2E0    000001E1    -R      void __cdecl EelControl(int16_t item_num);
 
 # game/effects.c
-0041C4D0    0000008C    -R      int32_t __cdecl ItemNearLara(struct PHD_3DPOS *pos, int32_t distance);
+0041C4D0    0000008C    -R      int32_t __cdecl ItemNearLara(PHD_3DPOS *pos, int32_t distance);
 0041C560    00000068    -       void __cdecl Sound_Update(void);
 0041C5D0    00000059    -R      int16_t __cdecl DoBloodSplat(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num);
 0041C630    000000A4    -R      void __cdecl DoLotsOfBlood(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num, int32_t num);
 0041C6E0    00000082    -R      void __cdecl ControlBlood1(int16_t fx_num);
 0041C770    0000007F    -R      void __cdecl ControlExplosion1(int16_t fx_num);
-0041C7F0    00000072    -R      void __cdecl Richochet(struct GAME_VECTOR *pos);
+0041C7F0    00000072    -R      void __cdecl Richochet(GAME_VECTOR *pos);
 0041C870    00000030    -R      void __cdecl ControlRichochet1(int16_t fx_num);
-0041C8A0    00000064    -R      void __cdecl CreateBubble(struct PHD_3DPOS *pos, int16_t room_num);
-0041C910    00000078    -R      void __cdecl LaraBubbles(struct ITEM_INFO *item);
+0041C8A0    00000064    -R      void __cdecl CreateBubble(PHD_3DPOS *pos, int16_t room_num);
+0041C910    00000078    -R      void __cdecl LaraBubbles(ITEM_INFO *item);
 0041C990    000000F3    -R      void __cdecl ControlBubble1(int16_t fx_num);
-0041CA90    000000C2    -R      void __cdecl Splash(struct ITEM_INFO *item);
+0041CA90    000000C2    -R      void __cdecl Splash(ITEM_INFO *item);
 0041CB60    00000071    -R      void __cdecl ControlSplash1(int16_t fx_num);
 0041CBE0    000000AE    -R      void __cdecl ControlWaterSprite(int16_t fx_num);
 0041CC90    0000008C    -R      void __cdecl ControlSnowSprite(int16_t fx_num);
 0041CD20    000000DE    -R      void __cdecl ControlHotLiquid(int16_t fx_num);
 0041CE00    0000013D    -R      void __cdecl WaterFall(int16_t fx_num);
-0041CF40    0000000B    -R      void __cdecl finish_level_effect(struct ITEM_INFO *item);
-0041CF50    00000016    -R      void __cdecl turn180_effect(struct ITEM_INFO *item);
-0041CF70    00000096    -R      void __cdecl floor_shake_effect(struct ITEM_INFO *item);
-0041D010    00000040    -R      void __cdecl lara_normal_effect(struct ITEM_INFO *item);
-0041D050    0000001C    -R      void __cdecl BoilerFX(struct ITEM_INFO *item);
-0041D070    0000008F    -R      void __cdecl FloodFX(struct ITEM_INFO *item);
-0041D100    00000023    -R      void __cdecl RubbleFX(struct ITEM_INFO *item);
-0041D130    0000002C    -R      void __cdecl ChandelierFX(struct ITEM_INFO *item);
-0041D160    00000023    -R      void __cdecl ExplosionFX(struct ITEM_INFO *item);
-0041D190    0000001C    -R      void __cdecl PistonFX(struct ITEM_INFO *item);
-0041D1B0    0000001C    -R      void __cdecl CurtainFX(struct ITEM_INFO *item);
-0041D1D0    0000001C    -R      void __cdecl StatueFX(struct ITEM_INFO *item);
-0041D1F0    0000001C    -R      void __cdecl SetChangeFX(struct ITEM_INFO *item);
+0041CF40    0000000B    -R      void __cdecl finish_level_effect(ITEM_INFO *item);
+0041CF50    00000016    -R      void __cdecl turn180_effect(ITEM_INFO *item);
+0041CF70    00000096    -R      void __cdecl floor_shake_effect(ITEM_INFO *item);
+0041D010    00000040    -R      void __cdecl lara_normal_effect(ITEM_INFO *item);
+0041D050    0000001C    -R      void __cdecl BoilerFX(ITEM_INFO *item);
+0041D070    0000008F    -R      void __cdecl FloodFX(ITEM_INFO *item);
+0041D100    00000023    -R      void __cdecl RubbleFX(ITEM_INFO *item);
+0041D130    0000002C    -R      void __cdecl ChandelierFX(ITEM_INFO *item);
+0041D160    00000023    -R      void __cdecl ExplosionFX(ITEM_INFO *item);
+0041D190    0000001C    -R      void __cdecl PistonFX(ITEM_INFO *item);
+0041D1B0    0000001C    -R      void __cdecl CurtainFX(ITEM_INFO *item);
+0041D1D0    0000001C    -R      void __cdecl StatueFX(ITEM_INFO *item);
+0041D1F0    0000001C    -R      void __cdecl SetChangeFX(ITEM_INFO *item);
 0041D210    0000003F    -R      void __cdecl ControlDingDong(int16_t item_num);
 0041D250    00000037    -R      void __cdecl ControlLaraAlarm(int16_t item_num);
 0041D290    00000067    -R      void __cdecl ControlAlarmSound(int16_t item_num);
 0041D300    0000005D    -R      void __cdecl ControlBirdTweeter(int16_t item_num);
-0041D360    00000059    -R      void __cdecl DoChimeSound(struct ITEM_INFO *item);
+0041D360    00000059    -R      void __cdecl DoChimeSound(ITEM_INFO *item);
 0041D3C0    00000068    -R      void __cdecl ControlClockChimes(int16_t item_num);
-0041D430    00000128    -R      void __cdecl SphereOfDoomCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+0041D430    00000128    -R      void __cdecl SphereOfDoomCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0041D560    000000F0    -R      void __cdecl SphereOfDoom(int16_t item_num);
-0041D650    0000012D    -R      void __cdecl DrawSphereOfDoom(struct ITEM_INFO *item);
-0041D780    0000000A    -R      void __cdecl lara_hands_free(struct ITEM_INFO *item);
-0041D790    00000005    -R      void __cdecl flip_map_effect(struct ITEM_INFO *item);
-0041D7A0    00000043    -R      void __cdecl draw_right_gun(struct ITEM_INFO *item);
-0041D7F0    00000043    -R      void __cdecl draw_left_gun(struct ITEM_INFO *item);
-0041D840    00000063    -R      void __cdecl swap_meshes_with_meshswap1(struct ITEM_INFO *item);
-0041D8B0    00000063    -R      void __cdecl swap_meshes_with_meshswap2(struct ITEM_INFO *item);
-0041D920    0000009A    -R      void __cdecl swap_meshes_with_meshswap3(struct ITEM_INFO *item);
-0041D9C0    00000009    -R      void __cdecl invisibility_on(struct ITEM_INFO *item);
-0041D9D0    00000016    -R      void __cdecl invisibility_off(struct ITEM_INFO *item);
-0041D9F0    00000009    -R      void __cdecl dynamic_light_on(struct ITEM_INFO *item);
-0041DA00    0000000B    -R      void __cdecl dynamic_light_off(struct ITEM_INFO *item);
-0041DA10    00000005    -R      void __cdecl reset_hair(struct ITEM_INFO *item);
-0041DA20    00000024    -R      void __cdecl AssaultStart(struct ITEM_INFO *item);
-0041DA50    0000001F    -R      void __cdecl AssaultStop(struct ITEM_INFO *item);
-0041DA70    00000017    -R      void __cdecl AssaultReset(struct ITEM_INFO *item);
-0041DA90    000000B2    -R      void __cdecl AssaultFinished(struct ITEM_INFO *item);
+0041D650    0000012D    -R      void __cdecl DrawSphereOfDoom(ITEM_INFO *item);
+0041D780    0000000A    -R      void __cdecl lara_hands_free(ITEM_INFO *item);
+0041D790    00000005    -R      void __cdecl flip_map_effect(ITEM_INFO *item);
+0041D7A0    00000043    -R      void __cdecl draw_right_gun(ITEM_INFO *item);
+0041D7F0    00000043    -R      void __cdecl draw_left_gun(ITEM_INFO *item);
+0041D840    00000063    -R      void __cdecl swap_meshes_with_meshswap1(ITEM_INFO *item);
+0041D8B0    00000063    -R      void __cdecl swap_meshes_with_meshswap2(ITEM_INFO *item);
+0041D920    0000009A    -R      void __cdecl swap_meshes_with_meshswap3(ITEM_INFO *item);
+0041D9C0    00000009    -R      void __cdecl invisibility_on(ITEM_INFO *item);
+0041D9D0    00000016    -R      void __cdecl invisibility_off(ITEM_INFO *item);
+0041D9F0    00000009    -R      void __cdecl dynamic_light_on(ITEM_INFO *item);
+0041DA00    0000000B    -R      void __cdecl dynamic_light_off(ITEM_INFO *item);
+0041DA10    00000005    -R      void __cdecl reset_hair(ITEM_INFO *item);
+0041DA20    00000024    -R      void __cdecl AssaultStart(ITEM_INFO *item);
+0041DA50    0000001F    -R      void __cdecl AssaultStop(ITEM_INFO *item);
+0041DA70    00000017    -R      void __cdecl AssaultReset(ITEM_INFO *item);
+0041DA90    000000B2    -R      void __cdecl AssaultFinished(ITEM_INFO *item);
 
 # game/enemies.c
 0041DB50    00000076    -R      int16_t __cdecl Knife(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
 0041DBD0    0000040B    -R      void __cdecl Cult2Control(int16_t item_num);
 0041E000    000004A1    -R      void __cdecl MonkControl(int16_t item_num);
 0041E4D0    000005BD    -R      void __cdecl Worker3Control(int16_t item_num);
-0041EAE0    000003F7    -R      void __cdecl DrawXianLord(struct ITEM_INFO *item);
-0041EEE0    000000A8    -R      void __cdecl XianDamage(struct ITEM_INFO *item, CREATURE_INFO *xian, int32_t damage);
+0041EAE0    000003F7    -R      void __cdecl DrawXianLord(ITEM_INFO *item);
+0041EEE0    000000A8    -R      void __cdecl XianDamage(ITEM_INFO *item, CREATURE_INFO *xian, int32_t damage);
 0041EF90    00000058    -R      void __cdecl InitialiseXianLord(int16_t item_num);
 0041EFF0    00000590    -R      void __cdecl XianLordControl(int16_t item_num);
-0041F5D0    00000098    -R      void __cdecl WarriorSparkleTrail(struct ITEM_INFO *item);
+0041F5D0    00000098    -R      void __cdecl WarriorSparkleTrail(ITEM_INFO *item);
 0041F670    000003BA    -R      void __cdecl WarriorControl(int16_t item_num);
 
 # game/gameflow.c
@@ -2000,54 +2044,54 @@ typedef enum GAME_OBJECT_ID {
 # game/inventory.c
 00422080    0000119E    -R      int32_t __cdecl Display_Inventory(int32_t inventory_mode);
 00423310    00000156    -R      void __cdecl Construct_Inventory(void);
-00423470    00000089    -R      void __cdecl SelectMeshes(struct INVENTORY_ITEM *inv_item);
-00423500    00000081    -R      int32_t __cdecl AnimateInventoryItem(struct INVENTORY_ITEM *inv_item);
-00423590    0000041D    -R      void __cdecl DrawInventoryItem(struct INVENTORY_ITEM *inv_item);
+00423470    00000089    -R      void __cdecl SelectMeshes(INVENTORY_ITEM *inv_item);
+00423500    00000081    -R      int32_t __cdecl AnimateInventoryItem(INVENTORY_ITEM *inv_item);
+00423590    0000041D    -R      void __cdecl DrawInventoryItem(INVENTORY_ITEM *inv_item);
 004239C0    00000019    -R      int32_t __cdecl GetDebouncedInput(int32_t input);
 004239E0    00000005    -R      void __cdecl DoInventoryPicture(void);
 004239F0    00000132    -R      void __cdecl DoInventoryBackground(void);
 
 # game/invfunc.c
 00423B30    0000010A    -R      void __cdecl InitColours(void);
-00423C40    00000167    -R      void __cdecl RingIsOpen(struct RING_INFO *ring);
-00423DB0    00000081    -R      void __cdecl RingIsNotOpen(struct RING_INFO *ring);
-00423E40    00000369    -R      void __cdecl RingNotActive(struct INVENTORY_ITEM *inv_item);
+00423C40    00000167    -R      void __cdecl RingIsOpen(RING_INFO *ring);
+00423DB0    00000081    -R      void __cdecl RingIsNotOpen(RING_INFO *ring);
+00423E40    00000369    -R      void __cdecl RingNotActive(INVENTORY_ITEM *inv_item);
 004242B0    00000032    -R      void __cdecl RingActive(void);
 004242F0    000006BE    -R      int32_t __cdecl Inv_AddItem(int32_t item_num);
-00424B00    00000129    -R      void __cdecl Inv_InsertItem(struct INVENTORY_ITEM *inv_item);
+00424B00    00000129    -R      void __cdecl Inv_InsertItem(INVENTORY_ITEM *inv_item);
 00424C30    00000077    -R      int32_t __cdecl Inv_RequestItem(int32_t item_num);
 00424CB0    0000001B    -R      void __cdecl Inv_RemoveAllItems(void);
 00424CD0    00000110    -R      int32_t __cdecl Inv_RemoveItem(int32_t item_num);
 00424DE0    000000C1    -R      int32_t __cdecl Inv_GetItemOption(int32_t item_num);
 00424FD0    00000024    -R      void __cdecl RemoveInventoryText(void);
-00425000    0000010F    -R      void __cdecl Inv_RingInit(struct RING_INFO *ring, int16_t type, struct INVENTORY_ITEM **list, int16_t qty, int16_t current, struct IMOTION_INFO *imo);
-00425110    00000060    -R      void __cdecl Inv_RingGetView(struct RING_INFO *ring, struct PHD_3DPOS *viewer);
-00425170    00000040    -R      void __cdecl Inv_RingLight(struct RING_INFO *ring);
-004251B0    0000002C    -R      void __cdecl Inv_RingCalcAdders(struct RING_INFO *ring, int16_t rotation_duration);
-004251E0    0000013E    -R      void __cdecl Inv_RingDoMotions(struct RING_INFO *ring);
-00425320    0000002F    -R      void __cdecl Inv_RingRotateLeft(struct RING_INFO *ring);
-00425350    0000002F    -R      void __cdecl Inv_RingRotateRight(struct RING_INFO *ring);
-00425380    00000063    -R      void __cdecl Inv_RingMotionInit(struct RING_INFO *ring, int16_t frames, int16_t status, int16_t status_target);
-004253F0    0000002C    -R      void __cdecl Inv_RingMotionSetup(struct RING_INFO *ring, int16_t status, int16_t status_target, int16_t frames);
-00425420    00000026    -R      void __cdecl Inv_RingMotionRadius(struct RING_INFO *ring, int16_t target);
-00425450    00000022    -R      void __cdecl Inv_RingMotionRotation(struct RING_INFO *ring, int16_t rotation, int16_t target);
-00425480    00000025    -R      void __cdecl Inv_RingMotionCameraPos(struct RING_INFO *ring, int16_t target);
-004254B0    00000020    -R      void __cdecl Inv_RingMotionCameraPitch(struct RING_INFO *ring, int16_t target);
-004254D0    0000005D    -R      void __cdecl Inv_RingMotionItemSelect(struct RING_INFO *ring, struct INVENTORY_ITEM *inv_item);
-00425530    00000063    -R      void __cdecl Inv_RingMotionItemDeselect(struct RING_INFO *ring, struct INVENTORY_ITEM *inv_item);
+00425000    0000010F    -R      void __cdecl Inv_RingInit(RING_INFO *ring, int16_t type, INVENTORY_ITEM **list, int16_t qty, int16_t current, IMOTION_INFO *imo);
+00425110    00000060    -R      void __cdecl Inv_RingGetView(RING_INFO *ring, PHD_3DPOS *viewer);
+00425170    00000040    -R      void __cdecl Inv_RingLight(RING_INFO *ring);
+004251B0    0000002C    -R      void __cdecl Inv_RingCalcAdders(RING_INFO *ring, int16_t rotation_duration);
+004251E0    0000013E    -R      void __cdecl Inv_RingDoMotions(RING_INFO *ring);
+00425320    0000002F    -R      void __cdecl Inv_RingRotateLeft(RING_INFO *ring);
+00425350    0000002F    -R      void __cdecl Inv_RingRotateRight(RING_INFO *ring);
+00425380    00000063    -R      void __cdecl Inv_RingMotionInit(RING_INFO *ring, int16_t frames, int16_t status, int16_t status_target);
+004253F0    0000002C    -R      void __cdecl Inv_RingMotionSetup(RING_INFO *ring, int16_t status, int16_t status_target, int16_t frames);
+00425420    00000026    -R      void __cdecl Inv_RingMotionRadius(RING_INFO *ring, int16_t target);
+00425450    00000022    -R      void __cdecl Inv_RingMotionRotation(RING_INFO *ring, int16_t rotation, int16_t target);
+00425480    00000025    -R      void __cdecl Inv_RingMotionCameraPos(RING_INFO *ring, int16_t target);
+004254B0    00000020    -R      void __cdecl Inv_RingMotionCameraPitch(RING_INFO *ring, int16_t target);
+004254D0    0000005D    -R      void __cdecl Inv_RingMotionItemSelect(RING_INFO *ring, INVENTORY_ITEM *inv_item);
+00425530    00000063    -R      void __cdecl Inv_RingMotionItemDeselect(RING_INFO *ring, INVENTORY_ITEM *inv_item);
 
 # game/invtext.c
-004255A0    00000082    -R      void __cdecl Init_Requester(struct REQUEST_INFO *req);
-00425630    000000A3    -R      void __cdecl Remove_Requester(struct REQUEST_INFO *req);
-004256E0    0000001B    -R      void __cdecl ReqItemCentreAlign(struct REQUEST_INFO *req, struct TEXTSTRING *txt);
-00425700    00000054    -R      void __cdecl ReqItemLeftalign(struct REQUEST_INFO *req, struct TEXTSTRING *txt);
-00425760    00000056    -R      void __cdecl ReqItemRightalign(struct REQUEST_INFO *req, struct TEXTSTRING *txt);
-004257C0    00000866    -R      int32_t __cdecl Display_Requester(struct REQUEST_INFO *req, int32_t des, int32_t backgrounds);
-00426030    000000AA    -R      void __cdecl SetRequesterHeading(struct REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
-004260E0    00000013    -R      void __cdecl RemoveAllReqItems(struct REQUEST_INFO *req);
-00426100    000000C0    -R      void __cdecl ChangeRequesterItem(struct REQUEST_INFO *req, int32_t item, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
-004261C0    000000AC    -R      void __cdecl AddRequesterItem(struct REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
-00426270    00000039    -R      void __cdecl SetPCRequesterSize(struct REQUEST_INFO *req, int32_t maxlines, int32_t ypos);
+004255A0    00000082    -R      void __cdecl Init_Requester(REQUEST_INFO *req);
+00425630    000000A3    -R      void __cdecl Remove_Requester(REQUEST_INFO *req);
+004256E0    0000001B    -R      void __cdecl ReqItemCentreAlign(REQUEST_INFO *req, TEXTSTRING *txt);
+00425700    00000054    -R      void __cdecl ReqItemLeftalign(REQUEST_INFO *req, TEXTSTRING *txt);
+00425760    00000056    -R      void __cdecl ReqItemRightalign(REQUEST_INFO *req, TEXTSTRING *txt);
+004257C0    00000866    -R      int32_t __cdecl Display_Requester(REQUEST_INFO *req, int32_t des, int32_t backgrounds);
+00426030    000000AA    -R      void __cdecl SetRequesterHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
+004260E0    00000013    -R      void __cdecl RemoveAllReqItems(REQUEST_INFO *req);
+00426100    000000C0    -R      void __cdecl ChangeRequesterItem(REQUEST_INFO *req, int32_t item, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
+004261C0    000000AC    -R      void __cdecl AddRequesterItem(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
+00426270    00000039    -R      void __cdecl SetPCRequesterSize(REQUEST_INFO *req, int32_t maxlines, int32_t ypos);
 004262B0    00000081    -R      int32_t __cdecl AddAssaultTime(uint32_t time);
 00426340    000001D6    -R      void __cdecl ShowGymStatsText(char *time_str, int32_t type);
 00426520    00000397    -R      void __cdecl ShowStatsText(char *time_str, int32_t type);
@@ -2070,115 +2114,115 @@ typedef enum GAME_OBJECT_ID {
 00427520    00000058    +       void __cdecl Item_ClearKilled(void);
 
 # game/lara.c
-00427580    00000195    +       void __cdecl Lara_HandleAboveWater(struct ITEM_INFO *item, struct COLL_INFO *coll);
+00427580    00000195    +       void __cdecl Lara_HandleAboveWater(ITEM_INFO *item, COLL_INFO *coll);
 00427720    00000066    +       void __cdecl Lara_LookUpDown(void);
 00427790    00000072    +       void __cdecl Lara_LookLeftRight(void);
 00427810    00000089    +       void __cdecl Lara_ResetLook(void);
-004278A0    0000008B    +       void __cdecl Lara_State_Walk(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427930    00000143    +       void __cdecl Lara_State_Run(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427A80    00000148    +       void __cdecl Lara_State_Stop(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427BD0    000000D3    +       void __cdecl Lara_State_ForwardJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427CB0    00000057    +       void __cdecl Lara_State_FastBack(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427D10    0000008A    +       void __cdecl Lara_State_TurnRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427DA0    00000089    +       void __cdecl Lara_State_TurnLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427E30    00000014    +       void __cdecl Lara_State_Death(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427E50    00000040    +       void __cdecl Lara_State_FastFall(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427E90    00000058    +       void __cdecl Lara_State_Hang(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427EF0    0000001C    +       void __cdecl Lara_State_Reach(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427F10    0000000A    +       void __cdecl Lara_State_Splat(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00427F20    0000010C    +       void __cdecl Lara_State_Compress(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428030    00000084    +       void __cdecl Lara_State_Back(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004280C0    0000000B    +       void __cdecl Lara_State_Null(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004280D0    0000004B    +       void __cdecl Lara_State_FastTurn(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428120    0000007C    +       void __cdecl Lara_State_StepRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004281A0    0000007C    +       void __cdecl Lara_State_StepLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428220    0000002B    +       void __cdecl Lara_State_Slide(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428250    0000004A    +       void __cdecl Lara_State_BackJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004282A0    00000033    +       void __cdecl Lara_State_RightJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004282E0    00000033    +       void __cdecl Lara_State_LeftJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428320    00000013    +       void __cdecl Lara_State_UpJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428340    0000002C    +       void __cdecl Lara_State_Fallback(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428370    00000035    +       void __cdecl Lara_State_HangLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004283B0    00000035    +       void __cdecl Lara_State_HangRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004283F0    00000018    +       void __cdecl Lara_State_SlideBack(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428410    00000030    +       void __cdecl Lara_State_PushBlock(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428440    00000027    +       void __cdecl Lara_State_PPReady(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428470    00000030    +       void __cdecl Lara_State_Pickup(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004284A0    00000058    +       void __cdecl Lara_State_PickupFlare(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428500    00000039    +       void __cdecl Lara_State_SwitchOn(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428540    00000030    +       void __cdecl Lara_State_UseKey(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428570    0000001D    +       void __cdecl Lara_State_Special(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428590    0000002F    +       void __cdecl Lara_State_SwanDive(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004285C0    00000054    +       void __cdecl Lara_State_FastDive(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428620    00000015    +       void __cdecl Lara_State_WaterOut(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428640    000000CA    +       void __cdecl Lara_State_Wade(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428710    00000096    +       void __cdecl Lara_State_DeathSlide(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004287B0    0000004C    +       void __cdecl Lara_State_Extra_Breath(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428800    00000047    +       void __cdecl Lara_State_Extra_YetiKill(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428850    00000091    +       void __cdecl Lara_State_Extra_SharkKill(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004288F0    00000013    +       void __cdecl Lara_State_Extra_Airlock(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428910    0000001D    +       void __cdecl Lara_State_Extra_GongBong(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428930    00000051    +       void __cdecl Lara_State_Extra_DinoKill(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428990    000000BC    +       void __cdecl Lara_State_Extra_PullDagger(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428A50    0000004D    +       void __cdecl Lara_State_Extra_StartAnim(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428AA0    000000A5    +       void __cdecl Lara_State_Extra_StartHouse(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428B50    000000A3    +       void __cdecl Lara_State_Extra_FinalAnim(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428C00    00000051    +       int32_t __cdecl Lara_Fallen(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428C60    0000009B    +       void __cdecl Lara_CollideStop(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428D20    00000191    +       void __cdecl Lara_Col_Walk(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00428EC0    00000176    +       void __cdecl Lara_Col_Run(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429040    00000081    +       void __cdecl Lara_Col_Stop(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004290D0    000000D7    +       void __cdecl Lara_Col_ForwardJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004291B0    000000B3    +       void __cdecl Lara_Col_FastBack(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429270    00000095    +       void __cdecl Lara_Col_TurnRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429310    00000013    +       void __cdecl Lara_Col_TurnLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429330    00000068    +       void __cdecl Lara_Col_Death(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004293A0    00000099    +       void __cdecl Lara_Col_FastFall(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429440    00000127    +       void __cdecl Lara_Col_Hang(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429570    00000090    +       void __cdecl Lara_Col_Reach(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429600    00000059    +       void __cdecl Lara_Col_Splat(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429660    00000013    +       void __cdecl Lara_Col_Land(struct ITEM_INFO *item, struct COLL_INFO *coll);
+004278A0    0000008B    +       void __cdecl Lara_State_Walk(ITEM_INFO *item, COLL_INFO *coll);
+00427930    00000143    +       void __cdecl Lara_State_Run(ITEM_INFO *item, COLL_INFO *coll);
+00427A80    00000148    +       void __cdecl Lara_State_Stop(ITEM_INFO *item, COLL_INFO *coll);
+00427BD0    000000D3    +       void __cdecl Lara_State_ForwardJump(ITEM_INFO *item, COLL_INFO *coll);
+00427CB0    00000057    +       void __cdecl Lara_State_FastBack(ITEM_INFO *item, COLL_INFO *coll);
+00427D10    0000008A    +       void __cdecl Lara_State_TurnRight(ITEM_INFO *item, COLL_INFO *coll);
+00427DA0    00000089    +       void __cdecl Lara_State_TurnLeft(ITEM_INFO *item, COLL_INFO *coll);
+00427E30    00000014    +       void __cdecl Lara_State_Death(ITEM_INFO *item, COLL_INFO *coll);
+00427E50    00000040    +       void __cdecl Lara_State_FastFall(ITEM_INFO *item, COLL_INFO *coll);
+00427E90    00000058    +       void __cdecl Lara_State_Hang(ITEM_INFO *item, COLL_INFO *coll);
+00427EF0    0000001C    +       void __cdecl Lara_State_Reach(ITEM_INFO *item, COLL_INFO *coll);
+00427F10    0000000A    +       void __cdecl Lara_State_Splat(ITEM_INFO *item, COLL_INFO *coll);
+00427F20    0000010C    +       void __cdecl Lara_State_Compress(ITEM_INFO *item, COLL_INFO *coll);
+00428030    00000084    +       void __cdecl Lara_State_Back(ITEM_INFO *item, COLL_INFO *coll);
+004280C0    0000000B    +       void __cdecl Lara_State_Null(ITEM_INFO *item, COLL_INFO *coll);
+004280D0    0000004B    +       void __cdecl Lara_State_FastTurn(ITEM_INFO *item, COLL_INFO *coll);
+00428120    0000007C    +       void __cdecl Lara_State_StepRight(ITEM_INFO *item, COLL_INFO *coll);
+004281A0    0000007C    +       void __cdecl Lara_State_StepLeft(ITEM_INFO *item, COLL_INFO *coll);
+00428220    0000002B    +       void __cdecl Lara_State_Slide(ITEM_INFO *item, COLL_INFO *coll);
+00428250    0000004A    +       void __cdecl Lara_State_BackJump(ITEM_INFO *item, COLL_INFO *coll);
+004282A0    00000033    +       void __cdecl Lara_State_RightJump(ITEM_INFO *item, COLL_INFO *coll);
+004282E0    00000033    +       void __cdecl Lara_State_LeftJump(ITEM_INFO *item, COLL_INFO *coll);
+00428320    00000013    +       void __cdecl Lara_State_UpJump(ITEM_INFO *item, COLL_INFO *coll);
+00428340    0000002C    +       void __cdecl Lara_State_Fallback(ITEM_INFO *item, COLL_INFO *coll);
+00428370    00000035    +       void __cdecl Lara_State_HangLeft(ITEM_INFO *item, COLL_INFO *coll);
+004283B0    00000035    +       void __cdecl Lara_State_HangRight(ITEM_INFO *item, COLL_INFO *coll);
+004283F0    00000018    +       void __cdecl Lara_State_SlideBack(ITEM_INFO *item, COLL_INFO *coll);
+00428410    00000030    +       void __cdecl Lara_State_PushBlock(ITEM_INFO *item, COLL_INFO *coll);
+00428440    00000027    +       void __cdecl Lara_State_PPReady(ITEM_INFO *item, COLL_INFO *coll);
+00428470    00000030    +       void __cdecl Lara_State_Pickup(ITEM_INFO *item, COLL_INFO *coll);
+004284A0    00000058    +       void __cdecl Lara_State_PickupFlare(ITEM_INFO *item, COLL_INFO *coll);
+00428500    00000039    +       void __cdecl Lara_State_SwitchOn(ITEM_INFO *item, COLL_INFO *coll);
+00428540    00000030    +       void __cdecl Lara_State_UseKey(ITEM_INFO *item, COLL_INFO *coll);
+00428570    0000001D    +       void __cdecl Lara_State_Special(ITEM_INFO *item, COLL_INFO *coll);
+00428590    0000002F    +       void __cdecl Lara_State_SwanDive(ITEM_INFO *item, COLL_INFO *coll);
+004285C0    00000054    +       void __cdecl Lara_State_FastDive(ITEM_INFO *item, COLL_INFO *coll);
+00428620    00000015    +       void __cdecl Lara_State_WaterOut(ITEM_INFO *item, COLL_INFO *coll);
+00428640    000000CA    +       void __cdecl Lara_State_Wade(ITEM_INFO *item, COLL_INFO *coll);
+00428710    00000096    +       void __cdecl Lara_State_DeathSlide(ITEM_INFO *item, COLL_INFO *coll);
+004287B0    0000004C    +       void __cdecl Lara_State_Extra_Breath(ITEM_INFO *item, COLL_INFO *coll);
+00428800    00000047    +       void __cdecl Lara_State_Extra_YetiKill(ITEM_INFO *item, COLL_INFO *coll);
+00428850    00000091    +       void __cdecl Lara_State_Extra_SharkKill(ITEM_INFO *item, COLL_INFO *coll);
+004288F0    00000013    +       void __cdecl Lara_State_Extra_Airlock(ITEM_INFO *item, COLL_INFO *coll);
+00428910    0000001D    +       void __cdecl Lara_State_Extra_GongBong(ITEM_INFO *item, COLL_INFO *coll);
+00428930    00000051    +       void __cdecl Lara_State_Extra_DinoKill(ITEM_INFO *item, COLL_INFO *coll);
+00428990    000000BC    +       void __cdecl Lara_State_Extra_PullDagger(ITEM_INFO *item, COLL_INFO *coll);
+00428A50    0000004D    +       void __cdecl Lara_State_Extra_StartAnim(ITEM_INFO *item, COLL_INFO *coll);
+00428AA0    000000A5    +       void __cdecl Lara_State_Extra_StartHouse(ITEM_INFO *item, COLL_INFO *coll);
+00428B50    000000A3    +       void __cdecl Lara_State_Extra_FinalAnim(ITEM_INFO *item, COLL_INFO *coll);
+00428C00    00000051    +       int32_t __cdecl Lara_Fallen(ITEM_INFO *item, COLL_INFO *coll);
+00428C60    0000009B    +       void __cdecl Lara_CollideStop(ITEM_INFO *item, COLL_INFO *coll);
+00428D20    00000191    +       void __cdecl Lara_Col_Walk(ITEM_INFO *item, COLL_INFO *coll);
+00428EC0    00000176    +       void __cdecl Lara_Col_Run(ITEM_INFO *item, COLL_INFO *coll);
+00429040    00000081    +       void __cdecl Lara_Col_Stop(ITEM_INFO *item, COLL_INFO *coll);
+004290D0    000000D7    +       void __cdecl Lara_Col_ForwardJump(ITEM_INFO *item, COLL_INFO *coll);
+004291B0    000000B3    +       void __cdecl Lara_Col_FastBack(ITEM_INFO *item, COLL_INFO *coll);
+00429270    00000095    +       void __cdecl Lara_Col_TurnRight(ITEM_INFO *item, COLL_INFO *coll);
+00429310    00000013    +       void __cdecl Lara_Col_TurnLeft(ITEM_INFO *item, COLL_INFO *coll);
+00429330    00000068    +       void __cdecl Lara_Col_Death(ITEM_INFO *item, COLL_INFO *coll);
+004293A0    00000099    +       void __cdecl Lara_Col_FastFall(ITEM_INFO *item, COLL_INFO *coll);
+00429440    00000127    +       void __cdecl Lara_Col_Hang(ITEM_INFO *item, COLL_INFO *coll);
+00429570    00000090    +       void __cdecl Lara_Col_Reach(ITEM_INFO *item, COLL_INFO *coll);
+00429600    00000059    +       void __cdecl Lara_Col_Splat(ITEM_INFO *item, COLL_INFO *coll);
+00429660    00000013    +       void __cdecl Lara_Col_Land(ITEM_INFO *item, COLL_INFO *coll);
 00429680    00000096    +       void __cdecl Lara_Col_Compress( ITEM_INFO *item, COLL_INFO *coll );
-00429720    000000FB    +       void __cdecl Lara_Col_Back(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429820    000000BE    +       void __cdecl Lara_Col_StepRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004298E0    00000013    +       void __cdecl Lara_Col_StepLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429900    0000001E    +       void __cdecl Lara_Col_Slide(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429920    00000023    +       void __cdecl Lara_Col_BackJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429950    00000023    +       void __cdecl Lara_Col_RightJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429980    00000023    +       void __cdecl Lara_Col_LeftJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004299B0    0000011B    +       void __cdecl Lara_Col_UpJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429AD0    00000083    +       void __cdecl Lara_Col_Fallback(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429B60    00000033    +       void __cdecl Lara_Col_HangLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429BA0    00000033    +       void __cdecl Lara_Col_HangRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429BE0    00000023    +       void __cdecl Lara_Col_SlideBack(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429C10    00000013    +       void __cdecl Lara_Col_Null(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429C30    00000081    +       void __cdecl Lara_Col_Roll(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429CC0    000000B3    +       void __cdecl Lara_Col_Roll2(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429D80    00000069    +       void __cdecl Lara_Col_SwanDive(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429DF0    00000079    +       void __cdecl Lara_Col_FastDive(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429E70    00000162    +       void __cdecl Lara_Col_Wade(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00429FE0    00000036    +       void __cdecl Lara_Col_Default(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A020    00000074    +       void __cdecl Lara_Col_Jumper(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A0A0    00000032    +       void __cdecl Lara_GetCollisionInfo(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A0E0    000000E2    +       void __cdecl Lara_SlideSlope(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A1D0    00000067    +       int32_t __cdecl Lara_HitCeiling(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A240    0000007F    +       int32_t __cdecl Lara_DeflectEdge(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A2C0    00000136    +       void __cdecl Lara_DeflectEdgeJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A440    000000AB    +       void __cdecl Lara_SlideEdgeJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A530    000000E1    +       int32_t __cdecl Lara_TestWall(struct ITEM_INFO *item, int32_t front, int32_t right, int32_t down);
-0042A640    000000F5    +       int32_t __cdecl Lara_TestHangOnClimbWall(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A750    000000BE    +       int32_t __cdecl Lara_TestClimbStance(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042A810    0000033E    +       void __cdecl Lara_HangTest(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042AB70    000000AD    +       int32_t __cdecl Lara_TestEdgeCatch(struct ITEM_INFO *item, struct COLL_INFO *coll, int32_t *edge);
-0042AC20    0000016D    +       int32_t __cdecl Lara_TestHangJumpUp(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042AD90    0000019E    +       int32_t __cdecl Lara_TestHangJump(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042AF30    000000B1    +       int32_t __cdecl Lara_TestHangSwingIn(struct ITEM_INFO *item, PHD_ANGLE angle);
-0042AFF0    000002E7    +       int32_t __cdecl Lara_TestVault(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042B2E0    00000130    +       int32_t __cdecl Lara_TestSlide(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042B410    00000075    +       int16_t __cdecl Lara_FloorFront(struct ITEM_INFO *item, PHD_ANGLE ang, int32_t dist);
-0042B490    000000BB    +       int32_t __cdecl Lara_LandedBad(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042B550    0000038F    +       void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint);
-0042B8E0    0000031A    +       void __cdecl Lara_GetJointAbsPosition_I(struct ITEM_INFO *item, struct XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
+00429720    000000FB    +       void __cdecl Lara_Col_Back(ITEM_INFO *item, COLL_INFO *coll);
+00429820    000000BE    +       void __cdecl Lara_Col_StepRight(ITEM_INFO *item, COLL_INFO *coll);
+004298E0    00000013    +       void __cdecl Lara_Col_StepLeft(ITEM_INFO *item, COLL_INFO *coll);
+00429900    0000001E    +       void __cdecl Lara_Col_Slide(ITEM_INFO *item, COLL_INFO *coll);
+00429920    00000023    +       void __cdecl Lara_Col_BackJump(ITEM_INFO *item, COLL_INFO *coll);
+00429950    00000023    +       void __cdecl Lara_Col_RightJump(ITEM_INFO *item, COLL_INFO *coll);
+00429980    00000023    +       void __cdecl Lara_Col_LeftJump(ITEM_INFO *item, COLL_INFO *coll);
+004299B0    0000011B    +       void __cdecl Lara_Col_UpJump(ITEM_INFO *item, COLL_INFO *coll);
+00429AD0    00000083    +       void __cdecl Lara_Col_Fallback(ITEM_INFO *item, COLL_INFO *coll);
+00429B60    00000033    +       void __cdecl Lara_Col_HangLeft(ITEM_INFO *item, COLL_INFO *coll);
+00429BA0    00000033    +       void __cdecl Lara_Col_HangRight(ITEM_INFO *item, COLL_INFO *coll);
+00429BE0    00000023    +       void __cdecl Lara_Col_SlideBack(ITEM_INFO *item, COLL_INFO *coll);
+00429C10    00000013    +       void __cdecl Lara_Col_Null(ITEM_INFO *item, COLL_INFO *coll);
+00429C30    00000081    +       void __cdecl Lara_Col_Roll(ITEM_INFO *item, COLL_INFO *coll);
+00429CC0    000000B3    +       void __cdecl Lara_Col_Roll2(ITEM_INFO *item, COLL_INFO *coll);
+00429D80    00000069    +       void __cdecl Lara_Col_SwanDive(ITEM_INFO *item, COLL_INFO *coll);
+00429DF0    00000079    +       void __cdecl Lara_Col_FastDive(ITEM_INFO *item, COLL_INFO *coll);
+00429E70    00000162    +       void __cdecl Lara_Col_Wade(ITEM_INFO *item, COLL_INFO *coll);
+00429FE0    00000036    +       void __cdecl Lara_Col_Default(ITEM_INFO *item, COLL_INFO *coll);
+0042A020    00000074    +       void __cdecl Lara_Col_Jumper(ITEM_INFO *item, COLL_INFO *coll);
+0042A0A0    00000032    +       void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll);
+0042A0E0    000000E2    +       void __cdecl Lara_SlideSlope(ITEM_INFO *item, COLL_INFO *coll);
+0042A1D0    00000067    +       int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll);
+0042A240    0000007F    +       int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll);
+0042A2C0    00000136    +       void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll);
+0042A440    000000AB    +       void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll);
+0042A530    000000E1    +       int32_t __cdecl Lara_TestWall(ITEM_INFO *item, int32_t front, int32_t right, int32_t down);
+0042A640    000000F5    +       int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll);
+0042A750    000000BE    +       int32_t __cdecl Lara_TestClimbStance(ITEM_INFO *item, COLL_INFO *coll);
+0042A810    0000033E    +       void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll);
+0042AB70    000000AD    +       int32_t __cdecl Lara_TestEdgeCatch(ITEM_INFO *item, COLL_INFO *coll, int32_t *edge);
+0042AC20    0000016D    +       int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll);
+0042AD90    0000019E    +       int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll);
+0042AF30    000000B1    +       int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle);
+0042AFF0    000002E7    +       int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll);
+0042B2E0    00000130    +       int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll);
+0042B410    00000075    +       int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, PHD_ANGLE ang, int32_t dist);
+0042B490    000000BB    +       int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll);
+0042B550    0000038F    +       void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint);
+0042B8E0    0000031A    +       void __cdecl Lara_GetJointAbsPosition_I(ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
 
 # game/lara1gun.c
 0042BC00    00000033    -R      void __cdecl draw_shotgun_meshes(int32_t weapon_type);
@@ -2196,7 +2240,7 @@ typedef enum GAME_OBJECT_ID {
 0042CBB0    0000037E    -R      void __cdecl AnimateShotgun(int32_t weapon_type);
 
 # game/lara2gun.c
-0042CF60    0000004F    -R      void __cdecl set_arm_info(struct LARA_ARM *arm, int32_t frame);
+0042CF60    0000004F    -R      void __cdecl set_arm_info(LARA_ARM *arm, int32_t frame);
 0042CFB0    0000007C    -R      void __cdecl draw_pistols(int32_t weapon_type);
 0042D030    00000225    -R      void __cdecl undraw_pistols(int32_t weapon_type);
 0042D260    0000005C    -R      void __cdecl ready_pistols(int32_t weapon_type);
@@ -2207,40 +2251,40 @@ typedef enum GAME_OBJECT_ID {
 0042D520    00000330    -R      void __cdecl AnimatePistols(int32_t weapon_type);
 
 # game/laraclimb.c
-0042D850    00000035    +       void __cdecl Lara_State_ClimbLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042D890    00000035    +       void __cdecl Lara_State_ClimbRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042D8D0    00000075    +       void __cdecl Lara_State_ClimbStance(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042D950    00000014    +       void __cdecl Lara_State_Climbing(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042D970    0000001E    +       void __cdecl Lara_State_ClimbEnd(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042D990    00000014    +       void __cdecl Lara_State_ClimbDown(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042D9B0    0000005D    +       void __cdecl Lara_Col_ClimbLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042DA10    00000059    +       void __cdecl Lara_Col_ClimbRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042DA70    0000020D    +       void __cdecl Lara_Col_ClimbStance(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042DC80    0000014D    +       void __cdecl Lara_Col_Climbing(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042DDD0    0000019C    +       void __cdecl Lara_Col_ClimbDown(struct ITEM_INFO *item, struct COLL_INFO *coll);
-0042DF70    000000AA    +       int32_t __cdecl Lara_CheckForLetGo(struct ITEM_INFO *item, struct COLL_INFO *coll);
+0042D850    00000035    +       void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);
+0042D890    00000035    +       void __cdecl Lara_State_ClimbRight(ITEM_INFO *item, COLL_INFO *coll);
+0042D8D0    00000075    +       void __cdecl Lara_State_ClimbStance(ITEM_INFO *item, COLL_INFO *coll);
+0042D950    00000014    +       void __cdecl Lara_State_Climbing(ITEM_INFO *item, COLL_INFO *coll);
+0042D970    0000001E    +       void __cdecl Lara_State_ClimbEnd(ITEM_INFO *item, COLL_INFO *coll);
+0042D990    00000014    +       void __cdecl Lara_State_ClimbDown(ITEM_INFO *item, COLL_INFO *coll);
+0042D9B0    0000005D    +       void __cdecl Lara_Col_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);
+0042DA10    00000059    +       void __cdecl Lara_Col_ClimbRight(ITEM_INFO *item, COLL_INFO *coll);
+0042DA70    0000020D    +       void __cdecl Lara_Col_ClimbStance(ITEM_INFO *item, COLL_INFO *coll);
+0042DC80    0000014D    +       void __cdecl Lara_Col_Climbing(ITEM_INFO *item, COLL_INFO *coll);
+0042DDD0    0000019C    +       void __cdecl Lara_Col_ClimbDown(ITEM_INFO *item, COLL_INFO *coll);
+0042DF70    000000AA    +       int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);
 0042E020    00000263    -       int32_t __cdecl Lara_TestClimb(int32_t x, int32_t y, int32_t z, int32_t xfront, int32_t zfront, int32_t item_height, int16_t item_room, int32_t *shift);
-0042E290    000000BC    -       int32_t __cdecl Lara_TestClimbPos(struct ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);
-0042E360    000000EF    -       void __cdecl Lara_DoClimbLeftRight(struct ITEM_INFO *item, struct COLL_INFO *coll, int32_t result, int32_t shift);
-0042E450    00000235    -       int32_t __cdecl Lara_TestClimbUpPos(struct ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
+0042E290    000000BC    -       int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);
+0042E360    000000EF    -       void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);
+0042E450    00000235    -       int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
 
 # game/larafire.c
 0042E6A0    000004E8    -R      void __cdecl LaraGun(void);
 0042EC10    0000003B    -R      int32_t __cdecl CheckForHoldingState(int32_t state);
 0042EC50    0000011C    -R      void __cdecl InitialiseNewWeapon(void);
-0042ED90    00000194    -R      void __cdecl LaraTargetInfo(struct WEAPON_INFO *winfo);
-0042EF30    0000021C    -R      void __cdecl LaraGetNewTarget(struct WEAPON_INFO *winfo);
-0042F150    000000AA    -R      void __cdecl find_target_point(struct ITEM_INFO *item, struct GAME_VECTOR *target);
-0042F200    000000C1    -R      void __cdecl AimWeapon(struct WEAPON_INFO *winfo, struct LARA_ARM *arm);
-0042F2D0    00000360    -R      int32_t __cdecl FireWeapon(int32_t weapon_type, struct ITEM_INFO *target, struct ITEM_INFO *src, PHD_ANGLE *angles);
-0042F640    00000096    -R      void __cdecl HitTarget(struct ITEM_INFO *item, struct GAME_VECTOR *hitpos, int32_t damage);
+0042ED90    00000194    -R      void __cdecl LaraTargetInfo(WEAPON_INFO *winfo);
+0042EF30    0000021C    -R      void __cdecl LaraGetNewTarget(WEAPON_INFO *winfo);
+0042F150    000000AA    -R      void __cdecl find_target_point(ITEM_INFO *item, GAME_VECTOR *target);
+0042F200    000000C1    -R      void __cdecl AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);
+0042F2D0    00000360    -R      int32_t __cdecl FireWeapon(int32_t weapon_type, ITEM_INFO *target, ITEM_INFO *src, PHD_ANGLE *angles);
+0042F640    00000096    -R      void __cdecl HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);
 0042F6E0    00000051    -R      void __cdecl SmashItem(int16_t item_num, int32_t weapon_type);
 0042F740    0000003B    -R      int32_t __cdecl WeaponObject(int32_t weapon_type);
 
 # game/laraflare.c
-0042F7A0    0000009D    -R      int32_t __cdecl DoFlareLight(struct XYZ_32 *pos, int32_t flare_age);
+0042F7A0    0000009D    -R      int32_t __cdecl DoFlareLight(XYZ_32 *pos, int32_t flare_age);
 0042F840    000000D3    -R      void __cdecl DoFlareInHand(int32_t flare_age);
-0042F920    000000F8    -R      void __cdecl DrawFlareInAir(struct ITEM_INFO *item);
+0042F920    000000F8    -R      void __cdecl DrawFlareInAir(ITEM_INFO *item);
 0042FA20    000001D7    -R      void __cdecl CreateFlare(int32_t thrown);
 0042FC00    0000004B    -R      void __cdecl set_flare_arm(int32_t frame);
 0042FC50    00000169    -R      void __cdecl draw_flare(void);
@@ -2252,7 +2296,7 @@ typedef enum GAME_OBJECT_ID {
 
 # game/laramisc.c
 004302E0    00000668    -       void __cdecl Lara_Control(int16_t item_num);
-00430970    000002CD    -       void __cdecl Lara_Animate(struct ITEM_INFO *item);
+00430970    000002CD    -       void __cdecl Lara_Animate(ITEM_INFO *item);
 00430C70    0000013F    -       void __cdecl Lara_UseItem(int16_t object_num);
 00430E30    000000BA    -       void __cdecl Lara_CheatGetStuff(void);
 00430EF0    0000001B    -       void __cdecl Lara_ControlExtra(int16_t item_num);
@@ -2262,61 +2306,61 @@ typedef enum GAME_OBJECT_ID {
 00431570    000000FA    -       void __cdecl Lara_InitialiseMeshes(int32_t level_num);
 
 # game/larasurf.c
-00431670    00000158    +       void __cdecl Lara_HandleSurface(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004317D0    00000070    +       void __cdecl Lara_State_SurfSwim(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431840    0000005E    +       void __cdecl Lara_State_SurfBack(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004318A0    00000060    +       void __cdecl Lara_State_SurfLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431900    00000060    +       void __cdecl Lara_State_SurfRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431960    000000EB    +       void __cdecl Lara_State_SurfTread(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431A50    00000032    +       void __cdecl Lara_Col_SurfSwim(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431A90    00000023    +       void __cdecl Lara_Col_SurfBack(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431AC0    00000023    +       void __cdecl Lara_Col_SurfLeft(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431AF0    00000023    +       void __cdecl Lara_Col_SurfRight(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431B20    0000001E    +       void __cdecl Lara_Col_SurfTread(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431B40    000000F3    +       void __cdecl Lara_SurfaceCollision(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431C40    000000E7    +       int32_t __cdecl Lara_TestWaterStepOut(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00431D30    0000021C    +       int32_t __cdecl Lara_TestWaterClimbOut(struct ITEM_INFO *item, struct COLL_INFO *coll);
+00431670    00000158    +       void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);
+004317D0    00000070    +       void __cdecl Lara_State_SurfSwim(ITEM_INFO *item, COLL_INFO *coll);
+00431840    0000005E    +       void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);
+004318A0    00000060    +       void __cdecl Lara_State_SurfLeft(ITEM_INFO *item, COLL_INFO *coll);
+00431900    00000060    +       void __cdecl Lara_State_SurfRight(ITEM_INFO *item, COLL_INFO *coll);
+00431960    000000EB    +       void __cdecl Lara_State_SurfTread(ITEM_INFO *item, COLL_INFO *coll);
+00431A50    00000032    +       void __cdecl Lara_Col_SurfSwim(ITEM_INFO *item, COLL_INFO *coll);
+00431A90    00000023    +       void __cdecl Lara_Col_SurfBack(ITEM_INFO *item, COLL_INFO *coll);
+00431AC0    00000023    +       void __cdecl Lara_Col_SurfLeft(ITEM_INFO *item, COLL_INFO *coll);
+00431AF0    00000023    +       void __cdecl Lara_Col_SurfRight(ITEM_INFO *item, COLL_INFO *coll);
+00431B20    0000001E    +       void __cdecl Lara_Col_SurfTread(ITEM_INFO *item, COLL_INFO *coll);
+00431B40    000000F3    +       void __cdecl Lara_SurfaceCollision(ITEM_INFO *item, COLL_INFO *coll);
+00431C40    000000E7    +       int32_t __cdecl Lara_TestWaterStepOut(ITEM_INFO *item, COLL_INFO *coll);
+00431D30    0000021C    +       int32_t __cdecl Lara_TestWaterClimbOut(ITEM_INFO *item, COLL_INFO *coll);
 
 # game/laraswim.c
-00431F50    00000223    +       void __cdecl Lara_HandleUnderwater(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432180    00000086    +       void __cdecl Lara_SwimTurn(struct ITEM_INFO *item);
-00432210    0000006B    +       void __cdecl Lara_State_Swim(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432280    00000076    +       void __cdecl Lara_State_Glide(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432300    00000085    +       void __cdecl Lara_State_Tread(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432390    00000014    +       void __cdecl Lara_State_Dive(struct ITEM_INFO *item, struct COLL_INFO *coll);
-004323B0    00000053    +       void __cdecl Lara_State_UWDeath(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432410    0000000B    +       void __cdecl Lara_State_UWTwist(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432420    00000013    +       void __cdecl Lara_Col_Swim(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432440    0000005B    +       void __cdecl Lara_Col_UWDeath(struct ITEM_INFO *item, struct COLL_INFO *coll);
+00431F50    00000223    +       void __cdecl Lara_HandleUnderwater(ITEM_INFO *item, COLL_INFO *coll);
+00432180    00000086    +       void __cdecl Lara_SwimTurn(ITEM_INFO *item);
+00432210    0000006B    +       void __cdecl Lara_State_Swim(ITEM_INFO *item, COLL_INFO *coll);
+00432280    00000076    +       void __cdecl Lara_State_Glide(ITEM_INFO *item, COLL_INFO *coll);
+00432300    00000085    +       void __cdecl Lara_State_Tread(ITEM_INFO *item, COLL_INFO *coll);
+00432390    00000014    +       void __cdecl Lara_State_Dive(ITEM_INFO *item, COLL_INFO *coll);
+004323B0    00000053    +       void __cdecl Lara_State_UWDeath(ITEM_INFO *item, COLL_INFO *coll);
+00432410    0000000B    +       void __cdecl Lara_State_UWTwist(ITEM_INFO *item, COLL_INFO *coll);
+00432420    00000013    +       void __cdecl Lara_Col_Swim(ITEM_INFO *item, COLL_INFO *coll);
+00432440    0000005B    +       void __cdecl Lara_Col_UWDeath(ITEM_INFO *item, COLL_INFO *coll);
 004324A0    00000192    -       int32_t __cdecl Lara_GetWaterDepth(int32_t x, int32_t y, int32_t z, int16_t room_num);
-00432640    000000CE    -       void __cdecl Lara_TestWaterDepth(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432710    0000015C    -       void __cdecl Lara_SwimCollision(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00432870    000001EC    -       void __cdecl Lara_WaterCurrent(struct COLL_INFO *coll);
+00432640    000000CE    -       void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, COLL_INFO *coll);
+00432710    0000015C    -       void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);
+00432870    000001EC    -       void __cdecl Lara_WaterCurrent(COLL_INFO *coll);
 
 # game/lot.c
 00432A60    00000053    -R      void __cdecl InitialiseLOTarray(void);
 00432AC0    0000004F    -R      void __cdecl DisableBaddieAI(int16_t item_num);
 00432B10    000001B0    -       int32_t __cdecl LOT_EnableBaddieAI(int16_t item_num, int32_t always);
 00432CC0    00000106    -R      void __cdecl InitialiseSlot(int16_t item_num, int32_t slot);
-00432ED0    000000B8    -R      void __cdecl CreateZone(struct ITEM_INFO *item);
-00432F90    00000049    -R      void __cdecl ClearLOT(struct LOT_INFO *LOT);
+00432ED0    000000B8    -R      void __cdecl CreateZone(ITEM_INFO *item);
+00432F90    00000049    -R      void __cdecl ClearLOT(LOT_INFO *LOT);
 
 # game/missile.c
 00432FE0    000002D0    -R      void __cdecl ControlMissile(int16_t fx_num);
-004332B0    000000A7    -R      void __cdecl ShootAtLara(struct FX_INFO *fx);
+004332B0    000000A7    -R      void __cdecl ShootAtLara(FX_INFO *fx);
 00433360    00000386    -       int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);
 004336F0    00000200    -R      void __cdecl ControlBodyPart(int16_t fx_num);
 
 # game/moveblock.c
 004338F0    0000002C    -R      void __cdecl InitialiseMovingBlock(int16_t item_num);
 00433920    00000148    -R      void __cdecl MovableBlock(int16_t item_num);
-00433A70    00000239    -R      void __cdecl MovableBlockCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00433CD0    0000004E    -R      int32_t __cdecl TestBlockMovable(struct ITEM_INFO *item, int32_t block_height);
-00433D20    00000137    -R      int32_t __cdecl TestBlockPush(struct ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
-00433E70    00000225    -R      int32_t __cdecl TestBlockPull(struct ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
-004340B0    000000BB    -R      void __cdecl AlterFloorHeight(struct ITEM_INFO *item, int32_t height);
-00434170    00000022    -R      void __cdecl DrawMovableBlock(struct ITEM_INFO *item);
-004341A0    0000006B    -R      void __cdecl DrawUnclippedItem(struct ITEM_INFO *item);
+00433A70    00000239    -R      void __cdecl MovableBlockCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00433CD0    0000004E    -R      int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);
+00433D20    00000137    -R      int32_t __cdecl TestBlockPush(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
+00433E70    00000225    -R      int32_t __cdecl TestBlockPull(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
+004340B0    000000BB    -R      void __cdecl AlterFloorHeight(ITEM_INFO *item, int32_t height);
+00434170    00000022    -R      void __cdecl DrawMovableBlock(ITEM_INFO *item);
+004341A0    0000006B    -R      void __cdecl DrawUnclippedItem(ITEM_INFO *item);
 
 # game/objects.c
 00434210    000000DB    -R      void __cdecl EarthQuake(int16_t item_num);
@@ -2335,38 +2379,38 @@ typedef enum GAME_OBJECT_ID {
 00434E00    000000C4    -R      void __cdecl SmashWindow(int16_t item_num);
 00434ED0    00000096    -R      void __cdecl WindowControl(int16_t item_num);
 00434F70    000000DC    -R      void __cdecl SmashIceControl(int16_t item_num);
-00435050    00000042    -R      void __cdecl ShutThatDoor(struct DOORPOS_DATA *d);
-004350A0    00000032    -R      void __cdecl OpenThatDoor(struct DOORPOS_DATA *d);
+00435050    00000042    -R      void __cdecl ShutThatDoor(DOORPOS_DATA *d);
+004350A0    00000032    -R      void __cdecl OpenThatDoor(DOORPOS_DATA *d);
 004350E0    000003DC    -R      void __cdecl InitialiseDoor(int16_t item_num);
 004354C0    000000C8    -R      void __cdecl DoorControl(int16_t item_num);
-00435590    000000B1    -R      int32_t __cdecl OnDrawBridge(struct ITEM_INFO *item, int32_t x, int32_t y);
-00435650    00000036    -R      void __cdecl DrawBridgeFloor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435690    0000003B    -R      void __cdecl DrawBridgeCeiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-004356D0    0000002C    -R      void __cdecl DrawBridgeCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+00435590    000000B1    -R      int32_t __cdecl OnDrawBridge(ITEM_INFO *item, int32_t x, int32_t y);
+00435650    00000036    -R      void __cdecl DrawBridgeFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435690    0000003B    -R      void __cdecl DrawBridgeCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+004356D0    0000002C    -R      void __cdecl DrawBridgeCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 00435700    00000035    -R      void __cdecl InitialiseLift(int16_t item_num);
 00435740    000000D4    -R      void __cdecl LiftControl(int16_t item_num);
-00435820    00000179    -R      void __cdecl LiftFloorCeiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *floor, int32_t *ceiling);
-004359A0    00000035    -R      void __cdecl LiftFloor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-004359E0    00000035    -R      void __cdecl LiftCeiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435A20    00000016    -R      void __cdecl BridgeFlatFloor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435A40    0000001B    -R      void __cdecl BridgeFlatCeiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435A60    0000003B    -R      int32_t __cdecl GetOffset(struct ITEM_INFO *item, int32_t x, int32_t z);
-00435AA0    00000030    -R      void __cdecl BridgeTilt1Floor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435AD0    00000035    -R      void __cdecl BridgeTilt1Ceiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435B10    0000002F    -R      void __cdecl BridgeTilt2Floor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00435B40    00000034    -R      void __cdecl BridgeTilt2Ceiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435820    00000179    -R      void __cdecl LiftFloorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *floor, int32_t *ceiling);
+004359A0    00000035    -R      void __cdecl LiftFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+004359E0    00000035    -R      void __cdecl LiftCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435A20    00000016    -R      void __cdecl BridgeFlatFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435A40    0000001B    -R      void __cdecl BridgeFlatCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435A60    0000003B    -R      int32_t __cdecl GetOffset(ITEM_INFO *item, int32_t x, int32_t z);
+00435AA0    00000030    -R      void __cdecl BridgeTilt1Floor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435AD0    00000035    -R      void __cdecl BridgeTilt1Ceiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435B10    0000002F    -R      void __cdecl BridgeTilt2Floor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00435B40    00000034    -R      void __cdecl BridgeTilt2Ceiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
 00435B80    0000010C    -R      void __cdecl CopterControl(int16_t item_num);
 00435C90    000000D2    -R      void __cdecl GeneralControl(int16_t item_num);
 00435D70    0000008D    -R      void __cdecl DetonatorControl(int16_t item_num);
 
 # game/people.c
-00435E00    00000085    -R      int32_t __cdecl Targetable(struct ITEM_INFO *item, AI_INFO *info);
+00435E00    00000085    -R      int32_t __cdecl Targetable(ITEM_INFO *item, AI_INFO *info);
 00435E90    0000003B    -R      void __cdecl ControlGlow(int16_t fx_num);
 00435ED0    0000004E    -R      void __cdecl ControlGunShot(int16_t fx_num);
 00435F20    00000066    -R      int16_t __cdecl GunShot(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
 00435F90    000000B9    -R      int16_t __cdecl GunHit(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
 00436050    000000A7    -R      int16_t __cdecl GunMiss(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
-00436100    000001C4    -R      int32_t __cdecl ShotLara(struct ITEM_INFO *item, AI_INFO *info, struct BITE_INFO *gun, int16_t extra_rotation, int32_t damage);
+00436100    000001C4    -R      int32_t __cdecl ShotLara(ITEM_INFO *item, AI_INFO *info, BITE_INFO *gun, int16_t extra_rotation, int32_t damage);
 004362D0    00000043    -R      void __cdecl InitialiseCult1(int16_t item_num);
 00436320    00000401    -R      void __cdecl Cult1Control(int16_t item_num);
 00436750    00000050    -R      void __cdecl InitialiseCult3(int16_t item_num);
@@ -2378,12 +2422,12 @@ typedef enum GAME_OBJECT_ID {
 00437CF0    00000172    -R      void __cdecl WinstonControl(int16_t item_num);
 
 # game/pickup.c
-00437E70    00000480    -R      void __cdecl PickUpCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-004382F0    0000020A    -R      void __cdecl SwitchCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00438500    000000FC    -R      void __cdecl SwitchCollision2(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00438600    0000023B    -R      void __cdecl DetonatorCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00438840    00000223    -R      void __cdecl KeyHoleCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
-00438A80    00000294    -R      void __cdecl PuzzleHoleCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+00437E70    00000480    -R      void __cdecl PickUpCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+004382F0    0000020A    -R      void __cdecl SwitchCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00438500    000000FC    -R      void __cdecl SwitchCollision2(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00438600    0000023B    -R      void __cdecl DetonatorCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00438840    00000223    -R      void __cdecl KeyHoleCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+00438A80    00000294    -R      void __cdecl PuzzleHoleCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 00438D40    00000039    -R      void __cdecl SwitchControl(int16_t item_num);
 00438D80    000000BD    -R      int32_t __cdecl SwitchTrigger(int16_t item_num, int16_t timer);
 00438E40    0000003D    -R      int32_t __cdecl KeyTrigger(int16_t item_num);
@@ -2420,41 +2464,41 @@ typedef enum GAME_OBJECT_ID {
 
 # game/skidoo.c
 0043CE30    00000040    -R      void __cdecl InitialiseSkidoo(int16_t item_num);
-0043CE70    000000E1    -R      int32_t __cdecl SkidooCheckGeton(int16_t item_num, struct COLL_INFO *coll);
-0043CF60    000000F8    -R      void __cdecl SkidooCollision(int16_t item_num, struct ITEM_INFO *litem, struct COLL_INFO *coll);
-0043D060    000001F9    -R      void __cdecl SkidooBaddieCollision(struct ITEM_INFO *skidoo);
-0043D260    000000B2    -R      int32_t __cdecl TestHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct XYZ_32 *pos);
-0043D320    0000027C    -R      int32_t __cdecl DoShift(struct ITEM_INFO *skidoo, struct XYZ_32 *pos, struct XYZ_32 *old);
+0043CE70    000000E1    -R      int32_t __cdecl SkidooCheckGeton(int16_t item_num, COLL_INFO *coll);
+0043CF60    000000F8    -R      void __cdecl SkidooCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);
+0043D060    000001F9    -R      void __cdecl SkidooBaddieCollision(ITEM_INFO *skidoo);
+0043D260    000000B2    -R      int32_t __cdecl TestHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
+0043D320    0000027C    -R      int32_t __cdecl DoShift(ITEM_INFO *skidoo, XYZ_32 *pos, XYZ_32 *old);
 0043D5A0    00000054    -R      int32_t __cdecl DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
-0043D600    00000090    -R      int32_t __cdecl GetCollisionAnim(struct ITEM_INFO *skidoo, struct XYZ_32 *moved);
-0043D690    00000140    -R      void __cdecl DoSnowEffect(struct ITEM_INFO *skidoo);
-0043D7D0    0000049E    -R      int32_t __cdecl SkidooDynamics(struct ITEM_INFO *skidoo);
-0043DC70    000001B6    -R      int32_t __cdecl SkidooUserControl(struct ITEM_INFO *skidoo, int32_t height, int32_t *pitch);
+0043D600    00000090    -R      int32_t __cdecl GetCollisionAnim(ITEM_INFO *skidoo, XYZ_32 *moved);
+0043D690    00000140    -R      void __cdecl DoSnowEffect(ITEM_INFO *skidoo);
+0043D7D0    0000049E    -R      int32_t __cdecl SkidooDynamics(ITEM_INFO *skidoo);
+0043DC70    000001B6    -R      int32_t __cdecl SkidooUserControl(ITEM_INFO *skidoo, int32_t height, int32_t *pitch);
 0043DE30    00000106    -R      int32_t __cdecl SkidooCheckGetOffOK(int32_t direction);
-0043DF40    000002B9    -R      void __cdecl SkidooAnimation(struct ITEM_INFO *skidoo, int32_t collide, int32_t dead);
-0043E220    0000007C    -R      void __cdecl SkidooExplode(struct ITEM_INFO *skidoo);
+0043DF40    000002B9    -R      void __cdecl SkidooAnimation(ITEM_INFO *skidoo, int32_t collide, int32_t dead);
+0043E220    0000007C    -R      void __cdecl SkidooExplode(ITEM_INFO *skidoo);
 0043E2A0    00000233    -R      int32_t __cdecl SkidooCheckGetOff(void);
 0043E4E0    0000011B    -R      void __cdecl SkidooGuns(void);
 0043E600    00000440    -R      int32_t __cdecl SkidooControl(void);
-0043EA60    000002D5    -R      void __cdecl DrawSkidoo(struct ITEM_INFO *item);
+0043EA60    000002D5    -R      void __cdecl DrawSkidoo(ITEM_INFO *item);
 0043ED40    0000007F    -R      void __cdecl InitialiseSkidman(int16_t item_num);
 0043EDD0    000003E2    -R      void __cdecl SkidManControl(int16_t rider_num);
-0043F1D0    00000119    -R      void __cdecl SkidmanPush(struct ITEM_INFO *item, struct ITEM_INFO *lara_item, int32_t radius);
-0043F2F0    00000081    -R      void __cdecl SkidmanCollision(int16_t item_num, struct ITEM_INFO *lara_item, struct COLL_INFO *coll);
+0043F1D0    00000119    -R      void __cdecl SkidmanPush(ITEM_INFO *item, ITEM_INFO *lara_item, int32_t radius);
+0043F2F0    00000081    -R      void __cdecl SkidmanCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 
 # game/sound.c
 0043F380    00000031    *       int32_t __cdecl Music_GetRealTrack(int32_t track);
-0043F3C0    00000484    -       void __cdecl Sound_Effect(int32_t sample_id, const struct XYZ_32 *pos, uint32_t flags);
+0043F3C0    00000484    -       void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);
 0043F860    0000005E    -       void __cdecl Sound_StopEffect(int32_t sample_id);
 0043F8C0    00000086    -       void __cdecl Sound_UpdateContinued(void);
 0043F950    00000024    -       void __cdecl Sound_Shutdown(void);
 0043F980    0000002A    *       void __cdecl Sound_Init(void);
 
 # game/sphere.c
-0043F9B0    00000128    -R      int32_t __cdecl TestCollision(struct ITEM_INFO *item, struct ITEM_INFO *lara_item);
-0043FAE0    000002D8    -R      int32_t __cdecl GetSpheres(struct ITEM_INFO *item, struct SPHERE *ptr, int32_t world_space);
-0043FDC0    0000019A    -       void __cdecl Collide_GetJointAbsPosition(struct ITEM_INFO *item, struct XYZ_32 *vec, int32_t joint);
-0043FF60    0000005D    -R      void __cdecl BaddieBiteEffect(struct ITEM_INFO *item, struct BITE_INFO *bite);
+0043F9B0    00000128    -R      int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);
+0043FAE0    000002D8    -R      int32_t __cdecl GetSpheres(ITEM_INFO *item, SPHERE *ptr, int32_t world_space);
+0043FDC0    0000019A    -       void __cdecl Collide_GetJointAbsPosition(ITEM_INFO *item, XYZ_32 *vec, int32_t joint);
+0043FF60    0000005D    -R      void __cdecl BaddieBiteEffect(ITEM_INFO *item, BITE_INFO *bite);
 
 # game/spider.c
 0043FFC0    000000AC    -R      void __cdecl SpiderLeap(int16_t item_num, int16_t angle);
@@ -2464,23 +2508,23 @@ typedef enum GAME_OBJECT_ID {
 # game/text.c
 00440450    0000002C    +       void __cdecl Text_Init(void);
 00440480    00000105    +       TEXTSTRING *__cdecl Text_Create(int32_t x, int32_t y, int32_t z, const char *text);
-00440590    00000037    +       void __cdecl Text_ChangeText(struct TEXTSTRING *string, const char *text);
-004405D0    00000017    +       void __cdecl Text_SetScale(struct TEXTSTRING *string, int32_t scale_h, int32_t scale_v);
-004405F0    0000002B    +       void __cdecl Text_Flash(struct TEXTSTRING *string, int16_t enable, int16_t rate);
-00440620    0000008C    +       void __cdecl Text_AddBackground(struct TEXTSTRING *string, int16_t x_size, int16_t y_size, int16_t x_off, int16_t y_off, int16_t z_off, int16_t colour, uint16_t *gour_ptr, uint16_t flags);
-004406B0    00000010    +       void __cdecl Text_RemoveBackground(struct TEXTSTRING *string);
-004406C0    00000029    +       void __cdecl Text_AddOutline(struct TEXTSTRING *string, int16_t enable, int16_t colour, uint16_t *gour_ptr, uint16_t flags);
-004406F0    00000010    +       void __cdecl Text_RemoveOutline(struct TEXTSTRING *string);
-00440700    0000001E    +       void __cdecl Text_CentreH(struct TEXTSTRING *string, int16_t enable);
-00440720    0000001E    +       void __cdecl Text_CentreV(struct TEXTSTRING *string, int16_t enable);
-00440740    0000001E    +       void __cdecl Text_AlignRight(struct TEXTSTRING *string, int16_t enable);
-00440760    0000001E    +       void __cdecl Text_AlignBottom(struct TEXTSTRING *string, int16_t enable);
-00440780    00000107    +       int32_t __cdecl Text_GetWidth(struct TEXTSTRING *string);
-00440890    00000025    +       int32_t __cdecl Text_Remove(struct TEXTSTRING *string);
+00440590    00000037    +       void __cdecl Text_ChangeText(TEXTSTRING *string, const char *text);
+004405D0    00000017    +       void __cdecl Text_SetScale(TEXTSTRING *string, int32_t scale_h, int32_t scale_v);
+004405F0    0000002B    +       void __cdecl Text_Flash(TEXTSTRING *string, int16_t enable, int16_t rate);
+00440620    0000008C    +       void __cdecl Text_AddBackground(TEXTSTRING *string, int16_t x_size, int16_t y_size, int16_t x_off, int16_t y_off, int16_t z_off, int16_t colour, uint16_t *gour_ptr, uint16_t flags);
+004406B0    00000010    +       void __cdecl Text_RemoveBackground(TEXTSTRING *string);
+004406C0    00000029    +       void __cdecl Text_AddOutline(TEXTSTRING *string, int16_t enable, int16_t colour, uint16_t *gour_ptr, uint16_t flags);
+004406F0    00000010    +       void __cdecl Text_RemoveOutline(TEXTSTRING *string);
+00440700    0000001E    +       void __cdecl Text_CentreH(TEXTSTRING *string, int16_t enable);
+00440720    0000001E    +       void __cdecl Text_CentreV(TEXTSTRING *string, int16_t enable);
+00440740    0000001E    +       void __cdecl Text_AlignRight(TEXTSTRING *string, int16_t enable);
+00440760    0000001E    +       void __cdecl Text_AlignBottom(TEXTSTRING *string, int16_t enable);
+00440780    00000107    +       int32_t __cdecl Text_GetWidth(TEXTSTRING *string);
+00440890    00000025    +       int32_t __cdecl Text_Remove(TEXTSTRING *string);
 004408C0    00000024    +       int16_t __cdecl Text_GetTextLength(const char *text);
 004408F0    00000027    +       void __cdecl Text_Draw(void);
 00440920    00000189    +       void __cdecl Text_DrawBorder(int32_t x, int32_t y, int32_t z, int32_t width, int32_t height);
-00440AB0    000003D2    +       void __cdecl Text_DrawText(const struct TEXTSTRING *string);
+00440AB0    000003D2    +       void __cdecl Text_DrawText(const TEXTSTRING *string);
 00440E90    00000037    +       uint32_t __cdecl Text_GetScaleH(uint32_t value);
 00440ED0    00000039    +       uint32_t __cdecl Text_GetScaleV(uint32_t value);
 
@@ -2499,16 +2543,16 @@ typedef enum GAME_OBJECT_ID {
 00441A50    000000DB    -R      void __cdecl SpringBoardControl(int16_t item_num);
 00441B30    0000003C    -R      void __cdecl InitialiseRollingBall(int16_t item_num);
 00441B70    00000347    -R      void __cdecl RollingBallControl(int16_t item_num);
-00441EC0    0000024A    -R      void __cdecl RollingBallCollision(int16_t item_num, struct ITEM_INFO *litem, struct COLL_INFO *coll);
-00442110    00000155    -R      void __cdecl SpikeCollision(int16_t item_num, struct ITEM_INFO *litem, struct COLL_INFO *coll);
+00441EC0    0000024A    -R      void __cdecl RollingBallCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);
+00442110    00000155    -R      void __cdecl SpikeCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);
 00442270    0000004F    -R      void __cdecl TrapDoorControl(int16_t item_num);
-004422C0    0000003A    -R      void __cdecl TrapDoorFloor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00442300    0000003F    -R      void __cdecl TrapDoorCeiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00442340    000000A3    -R      int32_t __cdecl OnTrapDoor(struct ITEM_INFO *item, int32_t x, int32_t z);
+004422C0    0000003A    -R      void __cdecl TrapDoorFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00442300    0000003F    -R      void __cdecl TrapDoorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00442340    000000A3    -R      int32_t __cdecl OnTrapDoor(ITEM_INFO *item, int32_t x, int32_t z);
 004423F0    0000010A    -R      void __cdecl Pendulum(int16_t item_num);
 00442500    00000105    -R      void __cdecl FallingBlock(int16_t item_num);
-00442610    0000003E    -R      void __cdecl FallingBlockFloor(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-00442650    00000044    -R      void __cdecl FallingBlockCeiling(struct ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00442610    0000003E    -R      void __cdecl FallingBlockFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+00442650    00000044    -R      void __cdecl FallingBlockCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
 004426A0    000000BD    -R      void __cdecl TeethTrap(int16_t item_num);
 00442760    000000E0    -R      void __cdecl FallingCeiling(int16_t item_num);
 00442840    0000013E    -R      void __cdecl DartEmitterControl(int16_t item_num);
@@ -2517,7 +2561,7 @@ typedef enum GAME_OBJECT_ID {
 00442B30    00000090    -R      void __cdecl FlameEmitterControl(int16_t item_num);
 00442BC0    00000164    -R      void __cdecl FlameControl(int16_t fx_num);
 00442D30    00000049    -R      void __cdecl LaraBurn(void);
-00442D80    000000E6    -R      void __cdecl LavaBurn(struct ITEM_INFO *item);
+00442D80    000000E6    -R      void __cdecl LavaBurn(ITEM_INFO *item);
 00442E70    000000C5    -R      void __cdecl LavaSpray(int16_t item_num);
 00442F40    0000010B    -R      void __cdecl ControlLavaBlob(int16_t fx_num);
 
@@ -2525,8 +2569,8 @@ typedef enum GAME_OBJECT_ID {
 00443050    000002CA    -R      void __cdecl GiantYetiControl(int16_t item_num);
 00443350    000005ED    -R      void __cdecl YetiControl(int16_t item_num);
 
-00443990    000001B8    -R      void __cdecl BGND_Make640x480(uint8_t *bitmap, struct RGB888 *palette);
-00443B50    000000B9    -R      int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, struct RGB888 *bmp_pal);
+00443990    000001B8    -R      void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB888 *palette);
+00443B50    000000B9    -R      int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB888 *bmp_pal);
 00443C10    00000032    -R      void __cdecl BGND_GetPageHandles(void);
 00443C50    0000005F    -R      void __cdecl BGND_DrawInGameBlack(void);
 00443CB0    000000DC    -R      void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);
@@ -2535,7 +2579,7 @@ typedef enum GAME_OBJECT_ID {
 00444210    0000008B    -R      D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);
 004444C0    0000004D    -R      void __cdecl BGND_Free(void);
 00444510    00000030    -R      bool __cdecl BGND_Init(void);
-00444540    0000003E    -R      void __cdecl Enumerate3DDevices(struct DISPLAY_ADAPTER *adapter);
+00444540    0000003E    -R      void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);
 00444570    0000001F    -R      bool __cdecl D3DCreate(void);
 004445B0    000000BD    -R      HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);
 00444670    00000037    -R      bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);
@@ -2588,10 +2632,10 @@ typedef enum GAME_OBJECT_ID {
 00445A50    000003B1    -R      HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
 00445E10    00000040    -R      bool __cdecl WinVidInit(void);
 00445E50    000000AF    -R      bool __cdecl WinVidGetDisplayAdapters(void);
-00445F00    00000013    +       void __thiscall S_FlaggedString_Delete(struct STRING_FLAGGED *string);
-00445F20    0000001A    -R      bool __cdecl EnumerateDisplayAdapters(struct DISPLAY_ADAPTER_LIST *displayAdapterList);
+00445F00    00000013    +       void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);
+00445F20    0000001A    -R      bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);
 00445F40    000001BE    -R      BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);
-00446100    00000035    +       void __thiscall S_FlaggedString_InitAdapter(struct DISPLAY_ADAPTER *adapter);
+00446100    00000035    +       void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);
 00446140    0000006A    -R      bool __cdecl WinVidRegisterGameWindowClass(void);
 004461B0    0000049F    -R      LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 004467C0    000001C0    -R      void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);
@@ -2621,7 +2665,7 @@ typedef enum GAME_OBJECT_ID {
 004473B0    0000007F    -R      bool __cdecl WinInputInit(void);
 00447430    00000024    -R      bool __cdecl DInputEnumDevices(JOYSTICK_LIST *joystickList);
 00447460    000000E8    -R      BOOL __stdcall DInputEnumDevicesCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef);
-00447550    0000001F    +       void __thiscall S_FlaggedString_Create(struct STRING_FLAGGED *string, int32_t size);
+00447550    0000001F    +       void __thiscall S_FlaggedString_Create(STRING_FLAGGED *string, int32_t size);
 00447570    0000004E    -R      JOYSTICK_NODE *__cdecl GetJoystick(GUID *lpGuid);
 004475C0    000000C9    -R      void __cdecl DInputKeyboardCreate(void);
 00447690    00000029    -R      void __cdecl DInputKeyboardRelease(void);
@@ -2642,7 +2686,7 @@ typedef enum GAME_OBJECT_ID {
 00447B30    00000018    x       sub_447B30
 00447B40    00000039    x       sub_447B40
 00447B90    0000002F    x       sub_447B90
-00447BC0    00000048    +       const struct SOUND_ADAPTER_NODE *__cdecl S_Audio_Sample_GetAdapter(GUID *guid);
+00447BC0    00000048    +       const SOUND_ADAPTER_NODE *__cdecl S_Audio_Sample_GetAdapter(GUID *guid);
 00447C10    0000002E    +       void __cdecl S_Audio_Sample_CloseAllTracks(void);
 00447C40    0000010E    +       bool __cdecl S_Audio_Sample_Load(int32_t sample_id, LPWAVEFORMATEX format, const void *data, int32_t data_size);
 00447D50    00000045    +       bool __cdecl S_Audio_Sample_IsTrackPlaying(int32_t track_id);
@@ -2653,7 +2697,7 @@ typedef enum GAME_OBJECT_ID {
 00447F40    0000002F    +       void __cdecl S_Audio_Sample_CloseTrack(int32_t track_id);
 00447FA0    00000005    x       sub_447FA0
 00447FB0    0000009C    +       bool __cdecl S_Audio_Sample_Init(void);
-00448050    0000001A    +       bool __cdecl S_Audio_Sample_DSoundEnumerate(struct SOUND_ADAPTER_LIST *adapter_list);
+00448050    0000001A    +       bool __cdecl S_Audio_Sample_DSoundEnumerate(SOUND_ADAPTER_LIST *adapter_list);
 00448070    000000E2    +       BOOL __stdcall S_Audio_Sample_DSoundEnumCallback(LPGUID guid, LPCTSTR description, LPCTSTR module, LPVOID context);
 00448160    0000017C    +       void __cdecl S_Audio_Sample_Init2(HWND hwnd);
 004482E0    0000001C    +       bool __cdecl S_Audio_Sample_DSoundCreate(GUID *guid);
@@ -2678,9 +2722,9 @@ typedef enum GAME_OBJECT_ID {
 00448E40    00000003    -R      bool __cdecl RenderInit(void);
 00448E50    000003A5    -R      void __cdecl RenderStart(bool is_reset);
 00449200    000000E6    -R      void __cdecl RenderFinish(bool need_to_clear_textures);
-004492F0    00000204    -R      bool __cdecl ApplySettings(struct APP_SETTINGS *new_settings);
+004492F0    00000204    -R      bool __cdecl ApplySettings(APP_SETTINGS *new_settings);
 00449500    00000105    -R      void __cdecl FmvBackToGame(void);
-00449610    0000023A    *R      void __cdecl GameApplySettings(struct APP_SETTINGS *new_settings);
+00449610    0000023A    *R      void __cdecl GameApplySettings(APP_SETTINGS *new_settings);
 00449850    00000067    -R      void __cdecl UpdateGameResolution(void);
 004498C0    0000000C    +R      LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);
 004498D0    00000049    -R      BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);
@@ -2716,8 +2760,8 @@ typedef enum GAME_OBJECT_ID {
 0044C140    00000088    -R      bool __cdecl IntroFMV(const char *file_name1, const char *file_name2);
 0044C1D0    00000023    -R      uint16_t __cdecl S_COLOUR(int32_t red, int32_t green, int32_t blue);
 0044C200    00000035    -R      void __cdecl S_DrawScreenLine(int32_t x, int32_t y, int32_t z, int32_t x_len, int32_t y_len, BYTE color_idx, D3DCOLOR *gour, uint16_t flags);
-0044C240    00000116    -R      void __cdecl S_DrawScreenBox(int32_t sx, int32_t sy, int32_t z, int32_t width, int32_t height, BYTE color_idx, const struct GOURAUD_OUTLINE *gour, uint16_t flags);
-0044C360    0000002E    -R      void __cdecl S_DrawScreenFBox(int32_t sx, int32_t sy, int32_t z, int32_t width, int32_t height, BYTE color_idx, const struct GOURAUD_FILL *gour, uint16_t flags);
+0044C240    00000116    -R      void __cdecl S_DrawScreenBox(int32_t sx, int32_t sy, int32_t z, int32_t width, int32_t height, BYTE color_idx, const GOURAUD_OUTLINE *gour, uint16_t flags);
+0044C360    0000002E    -R      void __cdecl S_DrawScreenFBox(int32_t sx, int32_t sy, int32_t z, int32_t width, int32_t height, BYTE color_idx, const GOURAUD_FILL *gour, uint16_t flags);
 0044C390    0000000F    -R      void __cdecl S_FinishInventory(void);
 0044C3A0    00000043    *R      void __cdecl S_FadeToBlack(void);
 0044C3F0    00000057    *R      void __cdecl S_Wait(int32_t timeout, BOOL input_check);
@@ -2964,7 +3008,7 @@ typedef enum GAME_OBJECT_ID {
 004640BC    -       int16_t g_CD_TrackID = -1;
 004640C4    -       int32_t g_FlipEffect = -1;
 004641F0    -       int32_t g_AssaultBestTime = -1;
-004641F8    -       void (*__cdecl g_EffectRoutines[32])(struct ITEM_INFO *item);
+004641F8    -       void (*__cdecl g_EffectRoutines[32])(ITEM_INFO *item);
 004642E8    -       int16_t g_GF_NumSecrets = 3;
 00464310    -       int16_t g_CineTargetAngle = 0x4000; // PHD_90
 004644E0    -       int32_t g_OverlayStatus = 1;
@@ -2977,9 +3021,9 @@ typedef enum GAME_OBJECT_ID {
 00465A60    -       int16_t g_OptionMusicVolume = 255; // NOTE: should be 10
 00465AD4    -       int32_t g_JumpPermitted = 1;
 00465AD8    -       int16_t g_LaraOldSlideAngle = 1;
-00465CD0    -       void (*__cdecl g_LaraControlRoutines[71])(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00465DF0    -       void (*__cdecl g_ExtraControlRoutines[11])(struct ITEM_INFO *item, struct COLL_INFO *coll);
-00465E20    -       void (*__cdecl g_LaraCollisionRoutines[71])(struct ITEM_INFO *item, struct COLL_INFO *coll);
+00465CD0    -       void (*__cdecl g_LaraControlRoutines[71])(ITEM_INFO *item, COLL_INFO *coll);
+00465DF0    -       void (*__cdecl g_ExtraControlRoutines[11])(ITEM_INFO *item, COLL_INFO *coll);
+00465E20    -       void (*__cdecl g_LaraCollisionRoutines[71])(ITEM_INFO *item, COLL_INFO *coll);
 00466290    -       int8_t g_TextSpacing[80];
 004662E0    -       int8_t g_TextASCIIMap[];
 00466400    -       int32_t g_BGND_PaletteIndex = -1;
@@ -2991,7 +3035,7 @@ typedef enum GAME_OBJECT_ID {
 004664E8    -       const char *g_ErrorMessages[43];
 00466BB0    +       int32_t g_RandControl;
 00466BB4    +       int32_t g_RandDraw;
-00466F70    -       struct CONTROL_LAYOUT g_Layout[2];
+00466F70    -       CONTROL_LAYOUT g_Layout[2];
 00467DD0    +       const int32_t g_AtanBaseTable[8];
 00467DF0    +       const int16_t g_AtanAngleTable[0x800];
 00468DF4    +       const int16_t g_SinTable[0x402];
@@ -2999,9 +3043,9 @@ typedef enum GAME_OBJECT_ID {
 0046C304    -       float g_ViewportAspectRatio = 0.0f;
 0046C308    -       int32_t g_XGenY1;
 0046C30C    -       int32_t g_XGenY2;
-0046C310    -       struct GOURAUD_ENTRY g_GouraudTable[256];
+0046C310    -       GOURAUD_ENTRY g_GouraudTable[256];
 0046E310    -       int32_t g_PhdWinTop;
-0046E318    -       struct PHD_SPRITE g_PhdSprites[512];
+0046E318    -       PHD_SPRITE g_PhdSprites[512];
 00470318    -       int32_t g_LsAdder;
 0047031C    -       float g_FltWinBottom;
 00470320    -       float g_FltResZBuf;
@@ -3011,9 +3055,9 @@ typedef enum GAME_OBJECT_ID {
 00470330    -       int32_t g_PhdWinCenterX;
 00470334    -       int32_t g_PhdWinCenterY;
 00470338    -       int16_t g_LsYaw;
-0047033C    -       void (*__cdecl g_Output_InsertTrans8)(const struct PHD_VBUF *vbuf, int16_t shade);
+0047033C    -       void (*__cdecl g_Output_InsertTrans8)(const PHD_VBUF *vbuf, int16_t shade);
 00470340    -       float g_FltWinTop;
-00470348    -       struct SORT_ITEM g_SortBuffer[4000];
+00470348    -       SORT_ITEM g_SortBuffer[4000];
 00478048    -       float g_FltWinLeft;
 0047804C    -       int16_t g_PhdWinMinY;
 00478058    -       int32_t g_PhdFarZ;
@@ -3037,38 +3081,38 @@ typedef enum GAME_OBJECT_ID {
 004B2A1C    -       int32_t g_PhdWinMaxY;
 004B2A20    -       void (*__cdecl g_Output_InsertSprite)(int32_t z, int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t sprite_idx, int16_t shade);
 004B2A24    -       float g_FltNearZ;
-004B2A28    -       struct MATRIX *g_MatrixPtr;
-004B2A2C    -       const int16_t *(*__cdecl g_Output_DrawObjectGT3)(const int16_t*, int32_t, enum SORT_TYPE);
-004B2A30    -       const int16_t *(*__cdecl g_Output_DrawObjectGT4)(const int16_t*, int32_t, enum SORT_TYPE);
+004B2A28    -       MATRIX *g_MatrixPtr;
+004B2A2C    -       const int16_t *(*__cdecl g_Output_DrawObjectGT3)(const int16_t*, int32_t, SORT_TYPE);
+004B2A30    -       const int16_t *(*__cdecl g_Output_DrawObjectGT4)(const int16_t*, int32_t, SORT_TYPE);
 004B2A38    -       int32_t g_RandomTable[32];
 004B2AB8    -       float g_FltPersp;
-004B2AC0    -       struct MATRIX g_W2VMatrix;
+004B2AC0    -       MATRIX g_W2VMatrix;
 004B2AF0    -       int16_t *g_Info3DPtr;
 004B2AF4    -       int32_t g_PhdWinWidth;
 004B2AF8    -       void (*__cdecl g_Output_InsertLine)(int32_t, int32_t, int32_t, int32_t, int32_t, uint8_t);
-004B2B00    -       struct PHD_TEXTURE g_PhdTextureInfo[0x800];
+004B2B00    -       PHD_TEXTURE g_PhdTextureInfo[0x800];
 004BCB00    -       int32_t g_PhdViewDistance;
 004BCB04    -       int16_t g_LsPitch;
-004BCB08    -       const int16_t *(*__cdecl g_Output_DrawObjectG4)(const int16_t*,int32_t, enum SORT_TYPE);
+004BCB08    -       const int16_t *(*__cdecl g_Output_DrawObjectG4)(const int16_t*,int32_t, SORT_TYPE);
 004BCB10    -       int16_t g_ShadesTable[32];
-004BCB50    -       const int16_t *(*__cdecl g_Output_DrawObjectG3)(const int16_t*,int32_t, enum SORT_TYPE);
-004BCB58    -       struct MATRIX g_MatrixStack[];
-004BD2D8    -       struct DEPTHQ_ENTRY g_DepthQTable[32];
+004BCB50    -       const int16_t *(*__cdecl g_Output_DrawObjectG3)(const int16_t*,int32_t, SORT_TYPE);
+004BCB58    -       MATRIX g_MatrixStack[];
+004BD2D8    -       DEPTHQ_ENTRY g_DepthQTable[32];
 004BF3D8    -       int32_t g_PhdScreenWidth;
 004BF3DC    -       int32_t g_LsDivider;
-004BF3E0    -       struct PHD_VBUF g_PhdVBuf[1500];
+004BF3E0    -       PHD_VBUF g_PhdVBuf[1500];
 004CAF60    -       void *g_XBuffer; // no-dereferencing
 004D6AE0    -       uint8_t *g_TexturePageBuffer8[32];
 004D6B60    -       float g_FltWinRight;
-004D6B68    -       struct XYZ_32 g_LsVectorView;
+004D6B68    -       XYZ_32 g_LsVectorView;
 004D6B78    -       float g_WibbleTable[32];
 004D6BF8    -       int32_t g_PhdWinRight;
 004D6BFC    -       int32_t g_SurfaceCount;
-004D6C00    -       struct SORT_ITEM *g_Sort3DPtr;
+004D6C00    -       SORT_ITEM *g_Sort3DPtr;
 004D6C0C    -       int32_t g_WibbleOffset;
 004D6C10    -       int32_t g_IsWibbleEffect;
 004D6C14    -       int32_t g_IsWaterEffect;
-004D6CD8    -       struct VERTEX_INFO g_VBuffer[20];
+004D6CD8    -       VERTEX_INFO g_VBuffer[20];
 004D6F78    -       int8_t g_IsShadeEffect;
 004D6F80    -       D3DTLVERTEX g_VBufferD3D[32];
 004D7380    -       PALETTEENTRY g_GamePalette16[256];
@@ -3110,8 +3154,8 @@ typedef enum GAME_OBJECT_ID {
 004D79B4    -       BOOL g_IsInvOptionsDelay;
 004D79B8    -       int32_t g_InvOptionsDelayCounter;
 004D79BC    -       uint16_t g_SoundOptionLine;
-004D79C0    -       struct REQUEST_INFO g_StatsRequester;
-004D7BD8    -       struct ASSAULT_STATS g_Assault;
+004D79C0    -       REQUEST_INFO g_StatsRequester;
+004D7BD8    -       ASSAULT_STATS g_Assault;
 004D7C38    -       int32_t g_LevelItemCount;
 004D7C3C    -       int32_t g_HealthBarTimer;
 004D7C80    -       int32_t g_SoundTrackIds[128];
@@ -3132,12 +3176,12 @@ typedef enum GAME_OBJECT_ID {
 004D7F0C    -       bool g_IsGameWindowMaximized;
 004D7F10    -       HWND g_GameWindowHandle;
 004D7F14    -       int32_t g_GameWindowHeight;
-004D7F18    -       struct DISPLAY_ADAPTER_NODE* g_PrimaryDisplayAdapter;
-004D7F20    -       struct DISPLAY_ADAPTER g_CurrentDisplayAdapter;
+004D7F18    -       DISPLAY_ADAPTER_NODE* g_PrimaryDisplayAdapter;
+004D7F20    -       DISPLAY_ADAPTER g_CurrentDisplayAdapter;
 004D8338    -       uint32_t g_LockedBufferCount;
 004D833C    -       int32_t g_GameWindowPositionX;
 004D8340    -       int32_t g_GameWindowPositionY;
-004D8348    -       struct DISPLAY_ADAPTER_LIST g_DisplayAdapterList;
+004D8348    -       DISPLAY_ADAPTER_LIST g_DisplayAdapterList;
 004D8354    -       int32_t g_MaxWindowClientHeight;
 004D8358    -       bool g_IsMessageLoopClosed;
 004D835C    -       int32_t g_MaxWindowWidth;
@@ -3152,14 +3196,14 @@ typedef enum GAME_OBJECT_ID {
 004D8568    -       int32_t g_ScreenSizer;
 004D856C    -       int32_t g_IsVidSizeLock;
 004D8570    -       DWORD g_SampleFreqs[256];
-004D8970    -       struct SOUND_ADAPTER_LIST g_SoundAdapterList;
+004D8970    -       SOUND_ADAPTER_LIST g_SoundAdapterList;
 004D8980    -       LPDIRECTSOUNDBUFFER g_SampleBuffers[256];
 004D8D80    -       uint8_t g_IsSoundEnabled;
 004D8D84    -       LPDIRECTSOUND g_DSound;
 004D8D88    -       int32_t g_ChannelSamples[32];
 004D8E08    -       LPDIRECTSOUNDBUFFER g_ChannelBuffers[32];
-004D8E8C    -       struct SOUND_ADAPTER g_CurrentSoundAdapter;
-004D8EAC    -       struct SOUND_ADAPTER_NODE *g_PrimarySoundAdapter;
+004D8E8C    -       SOUND_ADAPTER g_CurrentSoundAdapter;
+004D8EAC    -       SOUND_ADAPTER_NODE *g_PrimarySoundAdapter;
 004D8EB0    -       LPDDS g_RenderBufferSurface;
 004D92B8    -       LPDDS g_ThirdBufferSurface;
 004D92BC    -       LPDDS g_PictureBufferSurface;
@@ -3196,47 +3240,47 @@ typedef enum GAME_OBJECT_ID {
 0051B918    -       RECT g_PhdWinRect;
 0051B928    -       int32_t g_HiRes;
 0051B930    -       RGB888 g_GamePalette8[256];
-0051BCC0    -       struct APP_SETTINGS g_SavedAppSettings;
+0051BCC0    -       APP_SETTINGS g_SavedAppSettings;
 0051BD20    -       char g_ErrorMessage[128];
 0051BDA8    -       int32_t g_MasterVolume;
 0051BDAC    -       MCIDEVICEID g_MciDeviceID;
 0051BDB0    -       int32_t g_CD_LoopTrack;
-0051C820    -       struct TEXTSTRING g_TextstringTable[64];
+0051C820    -       TEXTSTRING g_TextstringTable[64];
 0051D6A0    -       int16_t g_TextstringCount = 0;
 0051D6C0    -       char g_TextstringBuffers[64][64];
 0051E6C4    -       int32_t g_SoundIsActive;
-0051E9E0    -       struct SAVEGAME_INFO g_SaveGame;
-005206E0    -       struct LARA_INFO g_Lara;
-005207BC    -       struct ITEM_INFO *g_LaraItem;
-005207C0    -       struct FX_INFO *g_Effects;
+0051E9E0    -       SAVEGAME_INFO g_SaveGame;
+005206E0    -       LARA_INFO g_Lara;
+005207BC    -       ITEM_INFO *g_LaraItem;
+005207C0    -       FX_INFO *g_Effects;
 005207C4    -       int16_t g_NextEffectFree;
 005207C6    -       int16_t g_NextItemFree;
 005207C8    -       int16_t g_NextItemActive;
 005207CA    -       int16_t g_NextEffectActive;
 005207CC    -       int16_t g_PrevItemActive;
-00521CA0    -       struct PICKUP_INFO g_Pickups[12];
-00521DE0    -       struct GAME_FLOW g_GameFlow;
+00521CA0    -       PICKUP_INFO g_Pickups[12];
+00521DE0    -       GAME_FLOW g_GameFlow;
 00521FDC    -       int32_t g_SoundFxCount;
-00522000    -       struct OBJECT_INFO g_Objects[265];
+00522000    -       OBJECT_INFO g_Objects[265];
 005252B0    -       int16_t **g_Meshes;
-005252C0    -       struct MATRIX g_IMMatrixStack[256];
+005252C0    -       MATRIX g_IMMatrixStack[256];
 005258F0    -       int32_t g_IMFrac;
-005258F4    -       struct ANIM_STRUCT *g_Anims;
+005258F4    -       ANIM_STRUCT *g_Anims;
 00525BE8    -       int32_t *g_Bones;
 00526180    -       int32_t g_RoomCount;
 00526184    -       int32_t g_IMRate;
-00526188    -       struct MATRIX *g_IMMatrixPtr;
-0052618C    -       struct ROOM_INFO *g_Rooms;
+00526188    -       MATRIX *g_IMMatrixPtr;
+0052618C    -       ROOM_INFO *g_Rooms;
 00526240    -       int32_t g_FlipStatus;
 00526288    -       int16_t *g_TriggerIndex;
 005262A0    -       int32_t g_LOSRooms[20];
-005262F0    -       struct ITEM_INFO *g_Items;
+005262F0    -       ITEM_INFO *g_Items;
 005262F6    -       int16_t g_NumCineFrames;
 005262F8    -       CINE_FRAME *g_CineData = NULL;
-00526300    -       struct PHD_3DPOS g_CinePos;
+00526300    -       PHD_3DPOS g_CinePos;
 00526314    -       int16_t g_CineFrameIdx;
-00526320    -       struct CAMERA_INFO g_Camera;
-005263CC    -       struct BOX_INFO *g_Boxes;
+00526320    -       CAMERA_INFO g_Camera;
+005263CC    -       BOX_INFO *g_Boxes;
 004D855C    -       LPDIRECTINPUT g_DInput;
 004D8560    -       LPDIRECTINPUTDEVICE IDID_SysKeyboard;
 0051BDA0    -       BOOL g_IsTitleLoaded;
@@ -3248,8 +3292,8 @@ typedef enum GAME_OBJECT_ID {
 004D7EE0    -       LPDIRECTDRAW3 g_DDraw;
 004D8380    -       int32_t g_GameWindowX;
 00463150    -       GUID g_IID_IDirectDrawSurface3;
-004640A0    +       struct BITE_INFO g_CrowBite;
-00464090    +       struct BITE_INFO g_BirdBite;
+004640A0    +       BITE_INFO g_CrowBite;
+00464090    +       BITE_INFO g_BirdBite;
 005263C0    -       int16_t *g_FlyZone[2];
 00526398    -       int16_t *g_GroundZone[][2];
 005263C8    -       uint16_t *g_Overlap;

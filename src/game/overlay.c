@@ -230,7 +230,7 @@ void __cdecl Overlay_DrawPickups(const bool pickup_state)
 
     int32_t column = 0;
     for (int i = 0; i < 12; i++) {
-        struct PICKUP_INFO *const pickup = &g_Pickups[i];
+        PICKUP_INFO *const pickup = &g_Pickups[i];
         if (pickup_state) {
             pickup->timer -= time;
         }
@@ -257,7 +257,7 @@ void __cdecl Overlay_AddDisplayPickup(const int16_t obj_num)
     }
 
     for (int i = 0; i < MAX_PICKUPS; i++) {
-        struct PICKUP_INFO *const pickup = &g_Pickups[i];
+        PICKUP_INFO *const pickup = &g_Pickups[i];
         if (pickup->timer <= 0) {
             pickup->timer = 2.5 * FRAMES_PER_SECOND;
             pickup->sprite = g_Objects[obj_num].mesh_idx;

@@ -23,8 +23,7 @@
     (BOX_CLIP_LEFT | BOX_CLIP_RIGHT | BOX_CLIP_TOP | BOX_CLIP_BOTTOM) // = 15
 #define BOX_CLIP_SECONDARY 16
 
-int32_t __cdecl Box_SearchLOT(
-    struct LOT_INFO *const lot, const int32_t expansion)
+int32_t __cdecl Box_SearchLOT(LOT_INFO *const lot, const int32_t expansion)
 {
     int16_t *zone;
     if (lot->fly) {
@@ -40,8 +39,8 @@ int32_t __cdecl Box_SearchLOT(
             return false;
         }
 
-        struct BOX_NODE *node = &lot->node[lot->head];
-        const struct BOX_INFO *box = &g_Boxes[lot->head];
+        BOX_NODE *node = &lot->node[lot->head];
+        const BOX_INFO *box = &g_Boxes[lot->head];
 
         bool done = false;
         int32_t index = box->overlap_index & BOX_OVERLAP_BITS;
@@ -61,7 +60,7 @@ int32_t __cdecl Box_SearchLOT(
                 continue;
             }
 
-            struct BOX_NODE *const expand = &lot->node[box_num];
+            BOX_NODE *const expand = &lot->node[box_num];
             if ((node->search_num & BOX_SEARCH_NUM)
                 < (expand->search_num & BOX_SEARCH_NUM)) {
                 continue;
@@ -101,15 +100,14 @@ int32_t __cdecl Box_SearchLOT(
     return true;
 }
 
-int32_t __cdecl Box_UpdateLOT(
-    struct LOT_INFO *const lot, const int32_t expansion)
+int32_t __cdecl Box_UpdateLOT(LOT_INFO *const lot, const int32_t expansion)
 {
     if (lot->required_box == NO_BOX || lot->required_box == lot->target_box) {
         goto end;
     }
 
     lot->target_box = lot->required_box;
-    struct BOX_NODE *const expand = &lot->node[lot->target_box];
+    BOX_NODE *const expand = &lot->node[lot->target_box];
     if (expand->next_expansion == NO_BOX && lot->tail != lot->target_box) {
         expand->next_expansion = lot->head;
         if (lot->head == NO_BOX) {
@@ -125,9 +123,9 @@ end:
     return Box_SearchLOT(lot, expansion);
 }
 
-void __cdecl Box_TargetBox(struct LOT_INFO *const lot, const int16_t box_num)
+void __cdecl Box_TargetBox(LOT_INFO *const lot, const int16_t box_num)
 {
-    const struct BOX_INFO *const box = &g_Boxes[box_num & BOX_NUM_BITS];
+    const BOX_INFO *const box = &g_Boxes[box_num & BOX_NUM_BITS];
 
     lot->target.z = ((box->right - box->left - 1) >> (15 - WALL_SHIFT))
             * Random_GetControl()
@@ -145,10 +143,10 @@ void __cdecl Box_TargetBox(struct LOT_INFO *const lot, const int16_t box_num)
 }
 
 int32_t __cdecl Box_StalkBox(
-    const struct ITEM_INFO *const item, const struct ITEM_INFO *const enemy,
+    const ITEM_INFO *const item, const ITEM_INFO *const enemy,
     const int16_t box_num)
 {
-    const struct BOX_INFO *const box = &g_Boxes[box_num];
+    const BOX_INFO *const box = &g_Boxes[box_num];
 
     const int32_t z =
         ((box->left + box->right) << (WALL_SHIFT - 1)) - enemy->pos.z;
@@ -177,10 +175,10 @@ int32_t __cdecl Box_StalkBox(
 }
 
 int32_t __cdecl Box_EscapeBox(
-    const struct ITEM_INFO *const item, const struct ITEM_INFO *const enemy,
+    const ITEM_INFO *const item, const ITEM_INFO *const enemy,
     const int16_t box_num)
 {
-    const struct BOX_INFO *const box = &g_Boxes[box_num];
+    const BOX_INFO *const box = &g_Boxes[box_num];
     const int32_t x =
         ((box->bottom + box->top) << (WALL_SHIFT - 1)) - enemy->pos.x;
     const int32_t z =
@@ -197,8 +195,7 @@ int32_t __cdecl Box_EscapeBox(
 }
 
 int32_t __cdecl Box_ValidBox(
-    const struct ITEM_INFO *const item, const int16_t zone_num,
-    const int16_t box_num)
+    const ITEM_INFO *const item, const int16_t zone_num, const int16_t box_num)
 {
     const CREATURE_INFO *const creature = item->data;
     int16_t *zone;
@@ -224,9 +221,8 @@ int32_t __cdecl Box_ValidBox(
         && item->pos.x < (box->bottom << WALL_SHIFT));
 }
 
-enum TARGET_TYPE __cdecl Box_CalculateTarget(
-    struct XYZ_32 *const target, const struct ITEM_INFO *const item,
-    struct LOT_INFO *const lot)
+TARGET_TYPE __cdecl Box_CalculateTarget(
+    XYZ_32 *const target, const ITEM_INFO *const item, LOT_INFO *const lot)
 {
     Box_UpdateLOT(lot, BOX_MAX_EXPANSION);
 
@@ -242,7 +238,7 @@ enum TARGET_TYPE __cdecl Box_CalculateTarget(
     int32_t right = 0;
     int32_t left = 0;
 
-    struct BOX_INFO *box = NULL;
+    BOX_INFO *box = NULL;
     int32_t box_left = 0;
     int32_t box_right = 0;
     int32_t box_top = 0;
@@ -395,8 +391,7 @@ enum TARGET_TYPE __cdecl Box_CalculateTarget(
 
 int32_t __cdecl Box_BadFloor(
     const int32_t x, const int32_t y, const int32_t z, const int32_t box_height,
-    const int32_t next_height, int16_t room_num,
-    const struct LOT_INFO *const lot)
+    const int32_t next_height, int16_t room_num, const LOT_INFO *const lot)
 {
     const FLOOR_INFO *const floor = Room_GetFloor(x, y, z, &room_num);
     int16_t box_num = floor->box;
@@ -404,7 +399,7 @@ int32_t __cdecl Box_BadFloor(
         return true;
     }
 
-    const struct BOX_INFO *const box = &g_Boxes[box_num];
+    const BOX_INFO *const box = &g_Boxes[box_num];
     if ((box->overlap_index & lot->block_mask) != 0) {
         return true;
     }

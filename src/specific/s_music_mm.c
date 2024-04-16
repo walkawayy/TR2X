@@ -146,7 +146,7 @@ static void __cdecl S_Music_MM_SetVolume(int32_t volume)
     }
 }
 
-static struct S_MUSIC_BACKEND m_Backend = {
+static S_MUSIC_BACKEND m_Backend = {
     .name = "MM",
     .Init = S_Music_MM_Init,
     .Shutdown = S_Music_MM_Shutdown,
@@ -157,7 +157,7 @@ static struct S_MUSIC_BACKEND m_Backend = {
     .SetVolume = S_Music_MM_SetVolume,
 };
 
-struct S_MUSIC_BACKEND *S_Music_MM_Factory(void)
+S_MUSIC_BACKEND *S_Music_MM_Factory(void)
 {
     return &m_Backend;
 }

@@ -72,7 +72,7 @@ bool __cdecl S_Input_Update(void)
     int32_t joy_ypos = 0;
     g_JoyKeys = WinInReadJoystick(&joy_xpos, &joy_ypos);
 
-    enum INPUT_STATE input = 0;
+    INPUT_STATE input = 0;
     if (joy_xpos < -8) {
         input |= IN_LEFT;
     } else if (joy_xpos > 8) {
@@ -197,7 +197,7 @@ bool __cdecl S_Input_Update(void)
         if (KEY_DOWN(DIK_F7)) {
             if (!m_IsF7Pressed) {
                 m_IsF7Pressed = true;
-                struct APP_SETTINGS new_settings = g_SavedAppSettings;
+                APP_SETTINGS new_settings = g_SavedAppSettings;
                 if (!is_shift_pressed) {
                     new_settings.perspective_correct =
                         !new_settings.perspective_correct;
@@ -222,7 +222,7 @@ bool __cdecl S_Input_Update(void)
         if (KEY_DOWN(DIK_F7)) {
             if (!m_IsF7Pressed) {
                 m_IsF7Pressed = true;
-                struct APP_SETTINGS new_settings = g_SavedAppSettings;
+                APP_SETTINGS new_settings = g_SavedAppSettings;
                 if (!is_shift_pressed) {
                     new_settings.zbuffer = !new_settings.zbuffer;
                 } else if (g_SavedAppSettings.fullscreen) {
@@ -239,7 +239,7 @@ bool __cdecl S_Input_Update(void)
         if (KEY_DOWN(DIK_F8)) {
             if (!m_IsF8Pressed) {
                 m_IsF8Pressed = true;
-                struct APP_SETTINGS new_settings = g_SavedAppSettings;
+                APP_SETTINGS new_settings = g_SavedAppSettings;
                 if (!is_shift_pressed) {
                     new_settings.bilinear_filtering =
                         !new_settings.bilinear_filtering;
@@ -257,7 +257,7 @@ bool __cdecl S_Input_Update(void)
         if (KEY_DOWN(DIK_F11)) {
             if (!m_IsF11Pressed) {
                 m_IsF11Pressed = true;
-                struct APP_SETTINGS new_settings = g_SavedAppSettings;
+                APP_SETTINGS new_settings = g_SavedAppSettings;
                 new_settings.dither = !new_settings.dither;
                 GameApplySettings(&new_settings);
             }
@@ -267,7 +267,7 @@ bool __cdecl S_Input_Update(void)
     }
 
     if (!g_IsVidModeLock && KEY_DOWN(DIK_F12)) {
-        struct APP_SETTINGS new_settings = g_SavedAppSettings;
+        APP_SETTINGS new_settings = g_SavedAppSettings;
         // toggle fullscreen (F12)
         if (!is_shift_pressed) {
             new_settings.fullscreen = !new_settings.fullscreen;
@@ -284,20 +284,20 @@ bool __cdecl S_Input_Update(void)
                 g_GameSizerCopy = 1.0;
                 setup_screen_size();
             } else {
-                const struct DISPLAY_MODE_LIST *const mode_list =
+                const DISPLAY_MODE_LIST *const mode_list =
                     new_settings.render_mode == RM_HARDWARE
                     ? &g_CurrentDisplayAdapter.hw_disp_mode_list
                     : &g_CurrentDisplayAdapter.sw_disp_mode_list;
 
                 if (mode_list->count > 0) {
-                    const struct DISPLAY_MODE target_mode = {
+                    const DISPLAY_MODE target_mode = {
                         .width = g_GameVidWidth,
                         .height = g_GameVidHeight,
                         .bpp = g_GameVidBPP,
                         .vga = VGA_NO_VGA,
                     };
 
-                    const struct DISPLAY_MODE_NODE *mode = NULL;
+                    const DISPLAY_MODE_NODE *mode = NULL;
                     for (mode = mode_list->head; mode != NULL;
                          mode = mode->next) {
                         if (!CompareVideoModes(&mode->body, &target_mode)) {
@@ -319,20 +319,20 @@ bool __cdecl S_Input_Update(void)
                 ? RM_SOFTWARE
                 : RM_HARDWARE;
 
-            const struct DISPLAY_MODE_LIST *const mode_list =
+            const DISPLAY_MODE_LIST *const mode_list =
                 new_settings.render_mode == RM_HARDWARE
                 ? &g_CurrentDisplayAdapter.hw_disp_mode_list
                 : &g_CurrentDisplayAdapter.sw_disp_mode_list;
 
             if (mode_list->count > 0) {
-                const struct DISPLAY_MODE target_mode = {
+                const DISPLAY_MODE target_mode = {
                     .width = g_GameVidWidth,
                     .height = g_GameVidHeight,
                     .bpp = new_settings.render_mode == RM_HARDWARE ? 16 : 8,
                     .vga = VGA_NO_VGA,
                 };
 
-                const struct DISPLAY_MODE_NODE *mode = NULL;
+                const DISPLAY_MODE_NODE *mode = NULL;
                 for (mode = mode_list->head; mode != NULL; mode = mode->next) {
                     if (!CompareVideoModes(&mode->body, &target_mode)) {
                         break;
@@ -352,13 +352,13 @@ bool __cdecl S_Input_Update(void)
 
     if (!g_IsVidSizeLock && g_Camera.type != CAM_CINEMATIC
         && !(g_GameFlow.flags & GFF_SCREEN_SIZING_DISABLED)) {
-        struct APP_SETTINGS new_settings = g_SavedAppSettings;
+        APP_SETTINGS new_settings = g_SavedAppSettings;
 
         // decrease resolution or BPP (F1)
         if (KEY_DOWN(DIK_F1) && new_settings.fullscreen) {
-            const struct DISPLAY_MODE_NODE *const current_mode =
+            const DISPLAY_MODE_NODE *const current_mode =
                 new_settings.video_mode;
-            const struct DISPLAY_MODE_NODE *mode = current_mode;
+            const DISPLAY_MODE_NODE *mode = current_mode;
             if (mode != NULL) {
                 mode = mode->previous;
             }
@@ -388,9 +388,9 @@ bool __cdecl S_Input_Update(void)
 
         // increase resolution (F2)
         if (KEY_DOWN(DIK_F2) && new_settings.fullscreen) {
-            const struct DISPLAY_MODE_NODE *const current_mode =
+            const DISPLAY_MODE_NODE *const current_mode =
                 new_settings.video_mode;
-            const struct DISPLAY_MODE_NODE *mode = current_mode;
+            const DISPLAY_MODE_NODE *mode = current_mode;
             if (mode != NULL) {
                 mode = mode->next;
             }

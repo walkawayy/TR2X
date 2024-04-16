@@ -33,7 +33,7 @@ void __cdecl Text_Init(void)
     g_TextstringCount = 0;
 }
 
-struct TEXTSTRING *__cdecl Text_Create(
+TEXTSTRING *__cdecl Text_Create(
     const int32_t x, const int32_t y, const int32_t z, const char *const text)
 {
     if (text == NULL) {
@@ -42,7 +42,7 @@ struct TEXTSTRING *__cdecl Text_Create(
 
     int32_t free_idx = -1;
     for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
-        struct TEXTSTRING *const string = &g_TextstringTable[i];
+        TEXTSTRING *const string = &g_TextstringTable[i];
         if (!string->flags.active) {
             free_idx = i;
             break;
@@ -53,7 +53,7 @@ struct TEXTSTRING *__cdecl Text_Create(
         return NULL;
     }
 
-    struct TEXTSTRING *result = &g_TextstringTable[free_idx];
+    TEXTSTRING *result = &g_TextstringTable[free_idx];
     result->text = g_TextstringBuffers[free_idx];
     result->scale.h = PHD_ONE;
     result->scale.v = PHD_ONE;
@@ -82,8 +82,7 @@ struct TEXTSTRING *__cdecl Text_Create(
     return result;
 }
 
-void __cdecl Text_ChangeText(
-    struct TEXTSTRING *const string, const char *const text)
+void __cdecl Text_ChangeText(TEXTSTRING *const string, const char *const text)
 {
     if (string == NULL) {
         return;
@@ -96,8 +95,7 @@ void __cdecl Text_ChangeText(
 }
 
 void __cdecl Text_SetScale(
-    struct TEXTSTRING *const string, const int32_t scale_h,
-    const int32_t scale_v)
+    TEXTSTRING *const string, const int32_t scale_h, const int32_t scale_v)
 {
     if (string == NULL) {
         return;
@@ -107,7 +105,7 @@ void __cdecl Text_SetScale(
 }
 
 void __cdecl Text_Flash(
-    struct TEXTSTRING *const string, const int16_t enable, const int16_t rate)
+    TEXTSTRING *const string, const int16_t enable, const int16_t rate)
 {
     if (string == NULL) {
         return;
@@ -122,7 +120,7 @@ void __cdecl Text_Flash(
 }
 
 void __cdecl Text_AddBackground(
-    struct TEXTSTRING *const string, const int16_t x_size, const int16_t y_size,
+    TEXTSTRING *const string, const int16_t x_size, const int16_t y_size,
     const int16_t x_off, const int16_t y_off, const int16_t z_off,
     const int16_t colour, const uint16_t *const gour_ptr, const uint16_t flags)
 {
@@ -142,7 +140,7 @@ void __cdecl Text_AddBackground(
     string->bgnd_flags = flags;
 }
 
-void __cdecl Text_RemoveBackground(struct TEXTSTRING *const string)
+void __cdecl Text_RemoveBackground(TEXTSTRING *const string)
 {
     if (string == NULL) {
         return;
@@ -151,7 +149,7 @@ void __cdecl Text_RemoveBackground(struct TEXTSTRING *const string)
 }
 
 void __cdecl Text_AddOutline(
-    struct TEXTSTRING *const string, const int16_t enable, const int16_t colour,
+    TEXTSTRING *const string, const int16_t enable, const int16_t colour,
     const uint16_t *const gour_ptr, const uint16_t flags)
 {
     if (string == NULL) {
@@ -163,7 +161,7 @@ void __cdecl Text_AddOutline(
     string->outl_flags = flags;
 }
 
-void __cdecl Text_RemoveOutline(struct TEXTSTRING *const string)
+void __cdecl Text_RemoveOutline(TEXTSTRING *const string)
 {
     if (string == NULL) {
         return;
@@ -171,7 +169,7 @@ void __cdecl Text_RemoveOutline(struct TEXTSTRING *const string)
     string->flags.outline = 0;
 }
 
-void __cdecl Text_CentreH(struct TEXTSTRING *const string, const int16_t enable)
+void __cdecl Text_CentreH(TEXTSTRING *const string, const int16_t enable)
 {
     if (string == NULL) {
         return;
@@ -179,7 +177,7 @@ void __cdecl Text_CentreH(struct TEXTSTRING *const string, const int16_t enable)
     string->flags.centre_h = enable;
 }
 
-void __cdecl Text_CentreV(struct TEXTSTRING *const string, const int16_t enable)
+void __cdecl Text_CentreV(TEXTSTRING *const string, const int16_t enable)
 {
     if (string == NULL) {
         return;
@@ -187,8 +185,7 @@ void __cdecl Text_CentreV(struct TEXTSTRING *const string, const int16_t enable)
     string->flags.centre_v = enable;
 }
 
-void __cdecl Text_AlignRight(
-    struct TEXTSTRING *const string, const int16_t enable)
+void __cdecl Text_AlignRight(TEXTSTRING *const string, const int16_t enable)
 {
     if (string == NULL) {
         return;
@@ -196,8 +193,7 @@ void __cdecl Text_AlignRight(
     string->flags.right = enable;
 }
 
-void __cdecl Text_AlignBottom(
-    struct TEXTSTRING *const string, const int16_t enable)
+void __cdecl Text_AlignBottom(TEXTSTRING *const string, const int16_t enable)
 {
     if (string == NULL) {
         return;
@@ -205,7 +201,7 @@ void __cdecl Text_AlignBottom(
     string->flags.bottom = enable;
 }
 
-int32_t __cdecl Text_Remove(struct TEXTSTRING *const string)
+int32_t __cdecl Text_Remove(TEXTSTRING *const string)
 {
     if (string == NULL) {
         return 0;
@@ -218,7 +214,7 @@ int32_t __cdecl Text_Remove(struct TEXTSTRING *const string)
     return 1;
 }
 
-int32_t __cdecl Text_GetWidth(struct TEXTSTRING *const string)
+int32_t __cdecl Text_GetWidth(TEXTSTRING *const string)
 {
     if (string == NULL) {
         return 0;
@@ -270,7 +266,7 @@ int32_t __cdecl Text_GetWidth(struct TEXTSTRING *const string)
 void __cdecl Text_Draw(void)
 {
     for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
-        struct TEXTSTRING *const textstring = &g_TextstringTable[i];
+        TEXTSTRING *const textstring = &g_TextstringTable[i];
         if (textstring->flags.active) {
             Text_DrawText(textstring);
         }
@@ -309,7 +305,7 @@ void __cdecl Text_DrawBorder(
     Output_DrawScreenSprite2D(x0, y0, z, scale_h, h, mesh_idx + 7, 0x1000, 0);
 }
 
-void __cdecl Text_DrawText(struct TEXTSTRING *const string)
+void __cdecl Text_DrawText(TEXTSTRING *const string)
 {
     int16_t v14; // cx
     int v15; // ebp
@@ -422,7 +418,7 @@ void __cdecl Text_DrawText(struct TEXTSTRING *const string)
     if (string->flags.background) {
         S_DrawScreenFBox(
             box_x, box_y, string->bgnd_off.z + z + 2, box_w, box_h,
-            string->bgnd_colour, (const struct GOURAUD_FILL *)string->bgnd_gour,
+            string->bgnd_colour, (const GOURAUD_FILL *)string->bgnd_gour,
             string->bgnd_flags);
     }
 

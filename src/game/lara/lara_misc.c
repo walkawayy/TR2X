@@ -7,8 +7,7 @@
 #include "global/vars.h"
 #include "util.h"
 
-void __cdecl Lara_GetCollisionInfo(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll)
 {
     coll->facing = g_Lara.move_angle;
     Collide_GetCollisionInfo(
@@ -16,7 +15,7 @@ void __cdecl Lara_GetCollisionInfo(
         LARA_HEIGHT);
 }
 
-void __cdecl Lara_SlideSlope(struct ITEM_INFO *item, struct COLL_INFO *coll)
+void __cdecl Lara_SlideSlope(ITEM_INFO *item, COLL_INFO *coll)
 {
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEP_L * 2;
@@ -53,7 +52,7 @@ void __cdecl Lara_SlideSlope(struct ITEM_INFO *item, struct COLL_INFO *coll)
     }
 }
 
-int32_t __cdecl Lara_HitCeiling(struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_TOP && coll->coll_type != COLL_CLAMP) {
         return 0;
@@ -72,7 +71,7 @@ int32_t __cdecl Lara_HitCeiling(struct ITEM_INFO *item, struct COLL_INFO *coll)
     return 1;
 }
 
-int32_t __cdecl Lara_DeflectEdge(struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll)
 {
     switch (coll->coll_type) {
     case COLL_FRONT:
@@ -99,8 +98,7 @@ int32_t __cdecl Lara_DeflectEdge(struct ITEM_INFO *item, struct COLL_INFO *coll)
     }
 }
 
-void __cdecl Lara_DeflectEdgeJump(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll)
 {
     Item_ShiftCol(item, coll);
     switch (coll->coll_type) {
@@ -151,7 +149,7 @@ void __cdecl Lara_DeflectEdgeJump(
     }
 }
 
-void __cdecl Lara_SlideEdgeJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
+void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll)
 {
     Item_ShiftCol(item, coll);
 
@@ -185,13 +183,13 @@ void __cdecl Lara_SlideEdgeJump(struct ITEM_INFO *item, struct COLL_INFO *coll)
 }
 
 int32_t __cdecl Lara_TestWall(
-    struct ITEM_INFO *item, int32_t front, int32_t right, int32_t down)
+    ITEM_INFO *item, int32_t front, int32_t right, int32_t down)
 {
     int32_t x = item->pos.x;
     int32_t y = item->pos.y + down;
     int32_t z = item->pos.z;
 
-    enum DIRECTION dir = Math_GetDirection(item->rot.y);
+    DIRECTION dir = Math_GetDirection(item->rot.y);
     switch (dir) {
     case DIR_NORTH:
         x -= right;
@@ -229,7 +227,7 @@ int32_t __cdecl Lara_TestWall(
         break;
     }
 
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
     int32_t height = Room_GetHeight(floor, x, y, z);
     int32_t ceiling = Room_GetCeiling(floor, x, y, z);
     if (height == NO_HEIGHT) {
@@ -241,14 +239,13 @@ int32_t __cdecl Lara_TestWall(
     return 2;
 }
 
-int32_t __cdecl Lara_TestHangOnClimbWall(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll)
 {
     if (!g_Lara.climb_status || item->fall_speed < 0) {
         return 0;
     }
 
-    enum DIRECTION dir = Math_GetDirection(item->rot.y);
+    DIRECTION dir = Math_GetDirection(item->rot.y);
     switch (dir) {
     case DIR_NORTH:
     case DIR_SOUTH:
@@ -289,8 +286,7 @@ int32_t __cdecl Lara_TestHangOnClimbWall(
     }
 }
 
-int32_t __cdecl Lara_TestClimbStance(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_TestClimbStance(ITEM_INFO *item, COLL_INFO *coll)
 {
     int32_t shift_r;
     int32_t result_r = Lara_TestClimbPos(
@@ -332,7 +328,7 @@ int32_t __cdecl Lara_TestClimbStance(
     return 1;
 }
 
-void __cdecl Lara_HangTest(struct ITEM_INFO *item, struct COLL_INFO *coll)
+void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll)
 {
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = NO_BAD_NEG;
@@ -344,7 +340,7 @@ void __cdecl Lara_HangTest(struct ITEM_INFO *item, struct COLL_INFO *coll)
     item->fall_speed = 0;
     g_Lara.move_angle = item->rot.y;
 
-    enum DIRECTION dir = Math_GetDirection(item->rot.y);
+    DIRECTION dir = Math_GetDirection(item->rot.y);
     switch (dir) {
     case DIR_NORTH:
         item->pos.z += 2;
@@ -369,7 +365,7 @@ void __cdecl Lara_HangTest(struct ITEM_INFO *item, struct COLL_INFO *coll)
 
     if (g_Lara.climb_status) {
         if (!(g_Input & IN_ACTION) || item->hit_points <= 0) {
-            struct XYZ_32 pos = {
+            XYZ_32 pos = {
                 .x = 0,
                 .y = 0,
                 .z = 0,
@@ -467,7 +463,7 @@ void __cdecl Lara_HangTest(struct ITEM_INFO *item, struct COLL_INFO *coll)
 }
 
 int32_t __cdecl Lara_TestEdgeCatch(
-    struct ITEM_INFO *item, struct COLL_INFO *coll, int32_t *edge)
+    ITEM_INFO *item, COLL_INFO *coll, int32_t *edge)
 {
     const int16_t *bounds = Item_GetBoundsAccurate(item);
     int32_t hdif1 = coll->side_front.floor - bounds[FBBOX_MIN_Y];
@@ -489,8 +485,7 @@ int32_t __cdecl Lara_TestEdgeCatch(
     return ABS(coll->side_left.floor - coll->side_right.floor) < SLOPE_DIF;
 }
 
-int32_t __cdecl Lara_TestHangJumpUp(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_FRONT || !(g_Input & IN_ACTION)
         || g_Lara.gun_status != LGS_ARMLESS || coll->hit_static
@@ -505,7 +500,7 @@ int32_t __cdecl Lara_TestHangJumpUp(
         return 0;
     }
 
-    enum DIRECTION dir = Math_GetDirectionCone(item->rot.y, LARA_HANG_ANGLE);
+    DIRECTION dir = Math_GetDirectionCone(item->rot.y, LARA_HANG_ANGLE);
     if (dir == DIR_UNKNOWN) {
         return 0;
     }
@@ -532,8 +527,7 @@ int32_t __cdecl Lara_TestHangJumpUp(
     return 1;
 }
 
-int32_t __cdecl Lara_TestHangJump(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_FRONT || !(g_Input & IN_ACTION)
         || g_Lara.gun_status != LGS_ARMLESS || coll->hit_static
@@ -549,7 +543,7 @@ int32_t __cdecl Lara_TestHangJump(
         return 0;
     }
 
-    enum DIRECTION dir = Math_GetDirectionCone(item->rot.y, LARA_HANG_ANGLE);
+    DIRECTION dir = Math_GetDirectionCone(item->rot.y, LARA_HANG_ANGLE);
     if (dir == DIR_UNKNOWN) {
         return 0;
     }
@@ -582,7 +576,7 @@ int32_t __cdecl Lara_TestHangJump(
     return 1;
 }
 
-int32_t __cdecl Lara_TestHangSwingIn(struct ITEM_INFO *item, PHD_ANGLE angle)
+int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle)
 {
     int32_t x = item->pos.x;
     int32_t y = item->pos.y;
@@ -603,20 +597,20 @@ int32_t __cdecl Lara_TestHangSwingIn(struct ITEM_INFO *item, PHD_ANGLE angle)
         break;
     }
 
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
     int32_t height = Room_GetHeight(floor, x, y, z);
     int32_t ceiling = Room_GetCeiling(floor, x, y, z);
     return height != NO_HEIGHT && height - y > 0 && ceiling - y < -400;
 }
 
-int32_t __cdecl Lara_TestVault(struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_FRONT || !(g_Input & IN_ACTION)
         || g_Lara.gun_status != LGS_ARMLESS) {
         return 0;
     }
 
-    enum DIRECTION dir = Math_GetDirectionCone(item->rot.y, LARA_VAULT_ANGLE);
+    DIRECTION dir = Math_GetDirectionCone(item->rot.y, LARA_VAULT_ANGLE);
     if (dir == DIR_UNKNOWN) {
         return 0;
     }
@@ -702,7 +696,7 @@ int32_t __cdecl Lara_TestVault(struct ITEM_INFO *item, struct COLL_INFO *coll)
     return 1;
 }
 
-int32_t __cdecl Lara_TestSlide(struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll)
 {
     if (ABS(coll->x_tilt) <= 2 && ABS(coll->z_tilt) <= 2) {
         return 0;
@@ -751,14 +745,13 @@ int32_t __cdecl Lara_TestSlide(struct ITEM_INFO *item, struct COLL_INFO *coll)
     return 1;
 }
 
-int16_t __cdecl Lara_FloorFront(
-    struct ITEM_INFO *item, int16_t ang, int32_t dist)
+int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, int16_t ang, int32_t dist)
 {
     int32_t x = item->pos.x + ((dist * Math_Sin(ang)) >> W2V_SHIFT);
     int32_t y = item->pos.y - LARA_HEIGHT;
     int32_t z = item->pos.z + ((dist * Math_Cos(ang)) >> W2V_SHIFT);
     int16_t room_num = item->room_num;
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
     int32_t height = Room_GetHeight(floor, x, y, z);
     if (height != NO_HEIGHT) {
         height -= item->pos.y;
@@ -766,13 +759,13 @@ int16_t __cdecl Lara_FloorFront(
     return height;
 }
 
-int32_t __cdecl Lara_LandedBad(struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll)
 {
     int32_t x = item->pos.x;
     int32_t y = item->pos.y;
     int32_t z = item->pos.z;
     int16_t room_num = item->room_num;
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
     int32_t height = Room_GetHeight(floor, x, y - LARA_HEIGHT, z);
     item->pos.y = height;
     item->floor = height;
@@ -791,8 +784,7 @@ int32_t __cdecl Lara_LandedBad(struct ITEM_INFO *item, struct COLL_INFO *coll)
     return item->hit_points <= 0;
 }
 
-int32_t __cdecl Lara_CheckForLetGo(
-    struct ITEM_INFO *item, struct COLL_INFO *coll)
+int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
@@ -801,7 +793,7 @@ int32_t __cdecl Lara_CheckForLetGo(
     int32_t x = item->pos.x;
     int32_t y = item->pos.y;
     int32_t z = item->pos.z;
-    const struct FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
+    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
     Room_GetHeight(floor, x, y, z);
     coll->trigger = g_TriggerIndex;
     if ((g_Input & IN_ACTION) && item->hit_points > 0) {
@@ -819,7 +811,7 @@ int32_t __cdecl Lara_CheckForLetGo(
     return 1;
 }
 
-void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
+void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
 {
     int16_t *frmptr[2] = { NULL, NULL };
     if (g_Lara.hit_direction < 0) {
@@ -833,9 +825,9 @@ void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
     }
 
     int16_t *frame_ptr = NULL;
-    const struct OBJECT_INFO *obj = &g_Objects[g_LaraItem->object_num];
+    const OBJECT_INFO *obj = &g_Objects[g_LaraItem->object_num];
     if (g_Lara.hit_direction >= 0) {
-        enum LARA_ANIMATION anim_num;
+        LARA_ANIMATION anim_num;
         switch (g_Lara.hit_direction) {
         case DIR_EAST:
             anim_num = LA_SPAZ_RIGHT;
@@ -850,7 +842,7 @@ void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
             anim_num = LA_SPAZ_FORWARD;
             break;
         }
-        const struct ANIM_STRUCT *anim = &g_Anims[anim_num];
+        const ANIM_STRUCT *anim = &g_Anims[anim_num];
         int32_t interpolation = anim->interpolation;
         frame_ptr =
             anim->frame_ptr + (int)(g_Lara.hit_frame * (interpolation >> 8));
@@ -874,7 +866,7 @@ void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
     Matrix_RotYXZsuperpack(&rot, 6);
     Matrix_RotYXZ(g_Lara.torso_y_rot, g_Lara.torso_x_rot, g_Lara.torso_z_rot);
 
-    enum LARA_GUN_TYPE gun_type = LGT_UNARMED;
+    LARA_GUN_TYPE gun_type = LGT_UNARMED;
     if (g_Lara.gun_status == LGS_READY || g_Lara.gun_status == LGS_SPECIAL
         || g_Lara.gun_status == LGS_DRAW || g_Lara.gun_status == LGS_UNDRAW) {
         gun_type = g_Lara.gun_type;
@@ -883,8 +875,8 @@ void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
     if (g_Lara.gun_type == LGT_FLARE) {
         Matrix_TranslateRel(bone[41], bone[42], bone[43]);
         if (g_Lara.flare_control_left) {
-            const struct LARA_ARM *arm = &g_Lara.left_arm;
-            const struct ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+            const LARA_ARM *arm = &g_Lara.left_arm;
+            const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
             rot = &arm->frame_base
                        [(anim->interpolation >> 8)
                             * (arm->frame_num - anim->frame_base)
@@ -902,8 +894,8 @@ void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
     } else if (gun_type != LGT_UNARMED) {
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
 
-        const struct LARA_ARM *arm = &g_Lara.right_arm;
-        const struct ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+        const LARA_ARM *arm = &g_Lara.right_arm;
+        const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
         rot = &arm->frame_base[arm->frame_num * (anim->interpolation >> 8) + 9];
         Matrix_RotYXZsuperpack(&rot, 8);
 
@@ -922,10 +914,10 @@ void __cdecl Lara_GetJointAbsPosition(struct XYZ_32 *vec, int32_t joint)
 }
 
 void __cdecl Lara_GetJointAbsPosition_I(
-    struct ITEM_INFO *item, struct XYZ_32 *vec, int16_t *frame1,
-    int16_t *frame2, int32_t frac, int32_t rate)
+    ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2,
+    int32_t frac, int32_t rate)
 {
-    const struct OBJECT_INFO *obj = &g_Objects[item->object_num];
+    const OBJECT_INFO *obj = &g_Objects[item->object_num];
 
     Matrix_PushUnit();
     g_MatrixPtr->_03 = 0;
@@ -946,7 +938,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
     Matrix_RotYXZsuperpack_I(&rot1, &rot2, 6);
     Matrix_RotYXZ_I(g_Lara.torso_y_rot, g_Lara.torso_x_rot, g_Lara.torso_z_rot);
 
-    enum LARA_GUN_TYPE gun_type = LGT_UNARMED;
+    LARA_GUN_TYPE gun_type = LGT_UNARMED;
     if (g_Lara.gun_status == LGS_READY || g_Lara.gun_status == LGS_SPECIAL
         || g_Lara.gun_status == LGS_DRAW || g_Lara.gun_status == LGS_UNDRAW) {
         gun_type = g_Lara.gun_type;
@@ -956,8 +948,8 @@ void __cdecl Lara_GetJointAbsPosition_I(
         Matrix_Interpolate();
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
         if (g_Lara.flare_control_left) {
-            const struct LARA_ARM *arm = &g_Lara.left_arm;
-            const struct ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+            const LARA_ARM *arm = &g_Lara.left_arm;
+            const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
             rot1 = &arm->frame_base
                         [(anim->interpolation >> 8)
                              * (arm->frame_num - anim->frame_base)
@@ -976,8 +968,8 @@ void __cdecl Lara_GetJointAbsPosition_I(
         Matrix_Interpolate();
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
 
-        const struct LARA_ARM *arm = &g_Lara.right_arm;
-        const struct ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+        const LARA_ARM *arm = &g_Lara.right_arm;
+        const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
         rot1 =
             &arm->frame_base[arm->frame_num * (anim->interpolation >> 8) + 9];
         Matrix_RotYXZsuperpack(&rot1, 8);

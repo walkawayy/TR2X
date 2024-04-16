@@ -20,7 +20,7 @@
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
-    struct ITEM_INFO *const item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     item->rot.y += (Random_GetControl() - PHD_90) >> 1;
     item->collidable = 1;
     item->data = 0;
@@ -28,7 +28,7 @@ void __cdecl Creature_Initialise(const int16_t item_num)
 
 int32_t __cdecl Creature_Activate(const int16_t item_num)
 {
-    struct ITEM_INFO *const item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     if (item->status != IS_INVISIBLE) {
         return true;
     }
@@ -41,10 +41,9 @@ int32_t __cdecl Creature_Activate(const int16_t item_num)
     return true;
 }
 
-void __cdecl Creature_AIInfo(
-    struct ITEM_INFO *const item, struct AI_INFO *const info)
+void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
 {
-    struct CREATURE_INFO *const creature = (struct CREATURE_INFO *)item->data;
+    CREATURE_INFO *const creature = (CREATURE_INFO *)item->data;
     if (creature == NULL) {
         return;
     }
@@ -65,7 +64,7 @@ void __cdecl Creature_AIInfo(
         break;
     }
 
-    struct ITEM_INFO *enemy = creature->enemy;
+    ITEM_INFO *enemy = creature->enemy;
     if (enemy == NULL) {
         enemy = g_LaraItem;
     }
@@ -78,7 +77,7 @@ void __cdecl Creature_AIInfo(
     }
 
     {
-        const struct ROOM_INFO *const r = &g_Rooms[item->room_num];
+        const ROOM_INFO *const r = &g_Rooms[item->room_num];
         const int32_t z_floor = (item->pos.z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_floor = (item->pos.x - r->pos.x) >> WALL_SHIFT;
         item->box_num = r->floor[z_floor + r->x_size * x_floor].box;
@@ -86,7 +85,7 @@ void __cdecl Creature_AIInfo(
     }
 
     {
-        const struct ROOM_INFO *const r = &g_Rooms[enemy->room_num];
+        const ROOM_INFO *const r = &g_Rooms[enemy->room_num];
         const int32_t z_floor = (enemy->pos.z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_floor = (enemy->pos.x - r->pos.x) >> WALL_SHIFT;
         enemy->box_num = r->floor[z_floor + r->x_size * x_floor].box;
@@ -100,7 +99,7 @@ void __cdecl Creature_AIInfo(
         info->enemy_zone_num |= BOX_BLOCKED;
     }
 
-    const struct OBJECT_INFO *const object = &g_Objects[item->object_num];
+    const OBJECT_INFO *const object = &g_Objects[item->object_num];
     const int32_t z = enemy->pos.z
         - ((object->pivot_length * Math_Cos(item->rot.y)) >> W2V_SHIFT)
         - item->pos.z;
@@ -122,15 +121,15 @@ void __cdecl Creature_AIInfo(
 }
 
 void __cdecl Creature_Mood(
-    const struct ITEM_INFO *item, const struct AI_INFO *info, int32_t violent)
+    const ITEM_INFO *item, const AI_INFO *info, int32_t violent)
 {
-    struct CREATURE_INFO *const creature = item->data;
+    CREATURE_INFO *const creature = item->data;
     if (creature == NULL) {
         return;
     }
 
-    const struct LOT_INFO *const lot = &creature->lot;
-    const struct ITEM_INFO *enemy = creature->enemy;
+    const LOT_INFO *const lot = &creature->lot;
+    const ITEM_INFO *enemy = creature->enemy;
     if (creature->lot.node[item->box_num].search_num
         == (creature->lot.search_num | 0x8000)) {
         creature->lot.required_box = NO_BOX;
@@ -143,7 +142,7 @@ void __cdecl Creature_Mood(
         creature->lot.required_box = NO_BOX;
     }
 
-    const enum MOOD_TYPE mood = creature->mood;
+    const MOOD_TYPE mood = creature->mood;
     if (enemy == NULL) {
         creature->mood = MOOD_BORED;
         enemy = g_LaraItem;
@@ -290,7 +289,7 @@ void __cdecl Creature_Mood(
 
 int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
 {
-    struct ITEM_INFO *item = &g_Items[item_num];
+    ITEM_INFO *item = &g_Items[item_num];
 
     const int32_t x = item->pos.x;
     const int32_t y = item->pos.y;
@@ -318,7 +317,7 @@ int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
 
 void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 {
-    struct ITEM_INFO *item = &g_Items[item_num];
+    ITEM_INFO *item = &g_Items[item_num];
     item->collidable = 0;
     item->hit_points = DONT_TARGET;
     if (explode) {
@@ -337,7 +336,7 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 
     int16_t pickup_num = item->carried_item;
     while (pickup_num != NO_ITEM) {
-        struct ITEM_INFO *const pickup = &g_Items[pickup_num];
+        ITEM_INFO *const pickup = &g_Items[pickup_num];
         pickup->pos = item->pos;
         Item_NewRoom(pickup_num, item->room_num);
         pickup_num = pickup->carried_item;
@@ -347,14 +346,14 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 int32_t __cdecl Creature_Animate(
     const int16_t item_num, const int16_t angle, const int16_t tilt)
 {
-    struct ITEM_INFO *item = &g_Items[item_num];
-    struct CREATURE_INFO *const creature = item->data;
+    ITEM_INFO *item = &g_Items[item_num];
+    CREATURE_INFO *const creature = item->data;
     if (creature == NULL) {
         return false;
     }
 
-    const struct LOT_INFO *const lot = &creature->lot;
-    const struct XYZ_32 old = item->pos;
+    const LOT_INFO *const lot = &creature->lot;
+    const XYZ_32 old = item->pos;
 
     int16_t *zone;
     if (creature->lot.fly != 0) {
@@ -381,7 +380,7 @@ int32_t __cdecl Creature_Animate(
     int32_t y = item->pos.y + bounds[2];
 
     int16_t room_num = item->room_num;
-    const struct FLOOR_INFO *floor =
+    const FLOOR_INFO *floor =
         Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
     int32_t height = g_Boxes[floor->box].height;
     int16_t next_box = lot->node[floor->box].exit_box;
@@ -565,7 +564,7 @@ int32_t __cdecl Creature_Animate(
             item->rot.x = angle;
         }
     } else {
-        const struct FLOOR_INFO *const floor =
+        const FLOOR_INFO *const floor =
             Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
         item->floor =
             Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
@@ -594,9 +593,9 @@ int32_t __cdecl Creature_Animate(
     return true;
 }
 
-int16_t __cdecl Creature_Turn(struct ITEM_INFO *const item, int16_t max_turn)
+int16_t __cdecl Creature_Turn(ITEM_INFO *const item, int16_t max_turn)
 {
-    const struct CREATURE_INFO *const creature = item->data;
+    const CREATURE_INFO *const creature = item->data;
     if (creature == NULL || item->speed == 0 || max_turn == 0) {
         return 0;
     }
@@ -617,16 +616,16 @@ int16_t __cdecl Creature_Turn(struct ITEM_INFO *const item, int16_t max_turn)
     return angle;
 }
 
-void __cdecl Creature_Tilt(struct ITEM_INFO *const item, int16_t angle)
+void __cdecl Creature_Tilt(ITEM_INFO *const item, int16_t angle)
 {
     angle = 4 * angle - item->rot.z;
     CLAMP(angle, -MAX_TILT, MAX_TILT);
     item->rot.z += angle;
 }
 
-void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required)
+void __cdecl Creature_Head(ITEM_INFO *item, int16_t required)
 {
-    struct CREATURE_INFO *const creature = item->data;
+    CREATURE_INFO *const creature = item->data;
     if (creature == NULL) {
         return;
     }

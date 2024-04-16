@@ -10,7 +10,7 @@
 #include <assert.h>
 
 int32_t __cdecl LOS_CheckX(
-    const struct GAME_VECTOR *const start, struct GAME_VECTOR *const target)
+    const GAME_VECTOR *const start, GAME_VECTOR *const target)
 {
     const int32_t dx = target->x - start->x;
     if (dx == 0) {
@@ -33,7 +33,7 @@ int32_t __cdecl LOS_CheckX(
 
         while (x > target->x) {
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(floor, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(floor, x, y, z);
@@ -52,7 +52,7 @@ int32_t __cdecl LOS_CheckX(
             }
 
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x - 1, y, z, &room_num);
                 const int32_t height = Room_GetHeight(floor, x - 1, y, z);
                 const int32_t ceiling = Room_GetCeiling(floor, x - 1, y, z);
@@ -76,7 +76,7 @@ int32_t __cdecl LOS_CheckX(
 
         while (x < target->x) {
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(floor, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(floor, x, y, z);
@@ -95,7 +95,7 @@ int32_t __cdecl LOS_CheckX(
             }
 
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x + 1, y, z, &room_num);
                 const int32_t height = Room_GetHeight(floor, x + 1, y, z);
                 const int32_t ceiling = Room_GetCeiling(floor, x + 1, y, z);
@@ -119,7 +119,7 @@ int32_t __cdecl LOS_CheckX(
 }
 
 int32_t __cdecl LOS_CheckZ(
-    const struct GAME_VECTOR *const start, struct GAME_VECTOR *const target)
+    const GAME_VECTOR *const start, GAME_VECTOR *const target)
 {
     const int32_t dz = target->z - start->z;
     if (dz == 0) {
@@ -142,7 +142,7 @@ int32_t __cdecl LOS_CheckZ(
 
         while (z > target->z) {
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(floor, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(floor, x, y, z);
@@ -161,7 +161,7 @@ int32_t __cdecl LOS_CheckZ(
             }
 
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x, y, z - 1, &room_num);
                 const int32_t height = Room_GetHeight(floor, x, y, z - 1);
                 const int32_t ceiling = Room_GetCeiling(floor, x, y, z - 1);
@@ -185,7 +185,7 @@ int32_t __cdecl LOS_CheckZ(
 
         while (z < target->z) {
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(floor, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(floor, x, y, z);
@@ -204,7 +204,7 @@ int32_t __cdecl LOS_CheckZ(
             }
 
             {
-                const struct FLOOR_INFO *const floor =
+                const FLOOR_INFO *const floor =
                     Room_GetFloor(x, y, z + 1, &room_num);
                 const int32_t height = Room_GetHeight(floor, x, y, z + 1);
                 const int32_t ceiling = Room_GetCeiling(floor, x, y, z + 1);
@@ -228,7 +228,7 @@ int32_t __cdecl LOS_CheckZ(
 }
 
 int32_t __cdecl LOS_ClipTarget(
-    const struct GAME_VECTOR *const start, struct GAME_VECTOR *const target,
+    const GAME_VECTOR *const start, GAME_VECTOR *const target,
     const FLOOR_INFO *const floor)
 {
     const int32_t dx = target->x - start->x;
@@ -257,7 +257,7 @@ int32_t __cdecl LOS_ClipTarget(
 }
 
 int32_t __cdecl LOS_Check(
-    const struct GAME_VECTOR *const start, struct GAME_VECTOR *const target)
+    const GAME_VECTOR *const start, GAME_VECTOR *const target)
 {
     int32_t los1;
     int32_t los2;
@@ -287,7 +287,7 @@ int32_t __cdecl LOS_Check(
 }
 
 int32_t __cdecl LOS_CheckSmashable(
-    const struct GAME_VECTOR *const start, struct GAME_VECTOR *const target)
+    const GAME_VECTOR *const start, GAME_VECTOR *const target)
 {
     const int32_t dx = target->x - start->x;
     const int32_t dy = target->y - start->y;
@@ -296,7 +296,7 @@ int32_t __cdecl LOS_CheckSmashable(
     for (int i = 0; i < g_LOSNumRooms; i++) {
         for (int16_t item_num = g_Rooms[g_LOSRooms[i]].item_num;
              item_num != NO_ITEM; item_num = g_Items[item_num].next_item) {
-            const struct ITEM_INFO *const item = &g_Items[item_num];
+            const ITEM_INFO *const item = &g_Items[item_num];
             if (item->status == IS_DEACTIVATED) {
                 continue;
             }
@@ -305,7 +305,7 @@ int32_t __cdecl LOS_CheckSmashable(
                 continue;
             }
 
-            const enum DIRECTION direction = Math_GetDirection(item->rot.y);
+            const DIRECTION direction = Math_GetDirection(item->rot.y);
             const int16_t *const bounds = Item_GetBoundsAccurate(item);
             const int16_t *x_extent;
             const int16_t *z_extent = NULL;

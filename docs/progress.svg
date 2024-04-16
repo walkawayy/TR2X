@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.98% (426)</tspan> · <tspan class="known">62.56% (762)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.06% (427)</tspan> · <tspan class="known">62.48% (761)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="261.27" height="6" x="0" y="0" class="decompiled"/>
-<rect width="467.33" height="6" x="261.27" y="0" class="known"/>
+<rect width="261.88" height="6" x="0" y="0" class="decompiled"/>
+<rect width="466.72" height="6" x="261.88" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -189,7 +189,7 @@
 <rect width="12" height="12" x="135" y="30" class="decompiled"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="150" y="30" class="decompiled"><title>int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);</title></rect>
 <rect width="12" height="12" x="165" y="30" class="decompiled"><title>void __cdecl Creature_Die(int16_t item_num, int32_t explode);</title></rect>
-<rect width="12" height="12" x="180" y="30" class="known"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
+<rect width="12" height="12" x="180" y="30" class="decompiled"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
 <rect width="12" height="12" x="195" y="30" class="known"><title>int16_t __cdecl Creature_Turn(struct ITEM_INFO *item, int16_t maximum_turn);</title></rect>
 <rect width="12" height="12" x="210" y="30" class="known"><title>void __cdecl Creature_Tilt(struct ITEM_INFO *item, int16_t angle);</title></rect>
 <rect width="12" height="12" x="225" y="30" class="known"><title>void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">31.42%</tspan> · <tspan class="known">68.26%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.08%</tspan> · <tspan class="known">67.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="234.69" height="6" x="0" y="0" class="decompiled"/>
-<rect width="509.87" height="6" x="234.69" y="0" class="known"/>
+<rect width="239.62" height="6" x="0" y="0" class="decompiled"/>
+<rect width="504.94" height="6" x="239.62" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1318,7 +1318,7 @@
 <rect width="40.17" height="49.99" x="61" y="57.95" class="decompiled"><title>bool __cdecl Input_Update(void);</title></rect>
 <rect width="40.17" height="47.99" x="61" y="110.94" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT4(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);</title></rect>
 <rect width="40.17" height="45.70" x="61" y="161.94" class="known"><title>void __cdecl HairControl(int32_t in_cutscene);</title></rect>
-<rect width="40.17" height="40.30" x="61" y="210.64" class="known"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
+<rect width="40.17" height="40.30" x="61" y="210.64" class="decompiled"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
 <rect width="40.17" height="38.57" x="61" y="253.94" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT3(const int16_t *obj_ptr, int32_t num, enum SORT_TYPE sort_type);</title></rect>
 <rect width="40.17" height="38.34" x="61" y="295.51" class="known"><title>int32_t __cdecl Display_Requester(struct REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
 <rect width="40.17" height="38.15" x="61" y="336.85" class="known"><title>void __cdecl ExtractSaveGameInfo(void);</title></rect>

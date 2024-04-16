@@ -11,3 +11,4 @@ void __cdecl Creature_Mood(
     const struct ITEM_INFO *item, const struct AI_INFO *info, int32_t violent);
 int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);
 void __cdecl Creature_Die(int16_t item_num, bool explode);
+int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);

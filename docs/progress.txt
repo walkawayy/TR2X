@@ -1800,7 +1800,7 @@ typedef struct {
 0040FDF0    000000D5    +       int16_t __cdecl Creature_Turn(ITEM_INFO *item, int16_t maximum_turn);
 0040FED0    00000035    +       void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);
 0040FF10    00000049    +       void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);
-0040FF60    0000004E    -       void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
+0040FF60    0000004E    +       void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
 0040FFB0    000000A8    -       void __cdecl Creature_Float(int16_t item_num);
 00410060    00000050    -       void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);
 004100B0    0000005C    -       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));

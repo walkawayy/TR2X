@@ -525,6 +525,7 @@ static void Inject_Creature(void)
     INJECT(1, 0x0040FDF0, Creature_Turn);
     INJECT(1, 0x0040FED0, Creature_Tilt);
     INJECT(1, 0x0040FF10, Creature_Head);
+    INJECT(1, 0x0040FF60, Creature_Neck);
 }
 
 static void Inject_Box(void)

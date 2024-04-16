@@ -636,3 +636,17 @@ void __cdecl Creature_Head(ITEM_INFO *item, int16_t required)
     creature->head_rotation += change;
     CLAMP(creature->head_rotation, -HEAD_ARC, HEAD_ARC);
 }
+
+void __cdecl Creature_Neck(ITEM_INFO *const item, const int16_t required)
+{
+    CREATURE_INFO *const creature = item->data;
+    if (creature == NULL) {
+        return;
+    }
+
+    int16_t change = required - creature->neck_rotation;
+    CLAMP(change, -MAX_HEAD_CHANGE, MAX_HEAD_CHANGE);
+
+    creature->neck_rotation += change;
+    CLAMP(creature->neck_rotation, -HEAD_ARC, HEAD_ARC);
+}

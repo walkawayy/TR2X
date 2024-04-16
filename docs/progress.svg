@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.30% (430)</tspan> · <tspan class="known">62.23% (758)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.39% (431)</tspan> · <tspan class="known">62.15% (757)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.72" height="6" x="0" y="0" class="decompiled"/>
-<rect width="464.88" height="6" x="263.72" y="0" class="known"/>
+<rect width="264.33" height="6" x="0" y="0" class="decompiled"/>
+<rect width="464.27" height="6" x="264.33" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -193,7 +193,7 @@
 <rect width="12" height="12" x="195" y="30" class="decompiled"><title>int16_t __cdecl Creature_Turn(ITEM_INFO *item, int16_t maximum_turn);</title></rect>
 <rect width="12" height="12" x="210" y="30" class="decompiled"><title>void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);</title></rect>
 <rect width="12" height="12" x="225" y="30" class="decompiled"><title>void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);</title></rect>
-<rect width="12" height="12" x="240" y="30" class="known"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
+<rect width="12" height="12" x="240" y="30" class="decompiled"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="12" height="12" x="255" y="30" class="known"><title>void __cdecl Creature_Float(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="270" y="30" class="known"><title>void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);</title></rect>
 <rect width="12" height="12" x="285" y="30" class="known"><title>int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.18%</tspan> · <tspan class="known">67.50%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.20%</tspan> · <tspan class="known">67.47%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="240.36" height="6" x="0" y="0" class="decompiled"/>
-<rect width="504.20" height="6" x="240.36" y="0" class="known"/>
+<rect width="240.53" height="6" x="0" y="0" class="decompiled"/>
+<rect width="504.03" height="6" x="240.53" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2101,7 +2101,7 @@
 <rect width="4.97" height="5.22" x="625.01" y="328.96" class="known"><title>void __cdecl set_arm_info(LARA_ARM *arm, int32_t frame);</title></rect>
 <rect width="4.97" height="5.22" x="625.01" y="337.19" class="known"><title>void __cdecl DisableBaddieAI(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.22" x="625.01" y="345.41" class="known"><title>void __cdecl TrapDoorControl(int16_t item_num);</title></rect>
-<rect width="4.97" height="5.12" x="625.01" y="353.64" class="known"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
+<rect width="4.97" height="5.12" x="625.01" y="353.64" class="decompiled"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="361.76" class="known"><title>int16_t __cdecl Room_GetDoor(FLOOR_INFO *floor);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="369.88" class="known"><title>void __cdecl draw_pistol_meshes(int32_t weapon_type);</title></rect>
 <rect width="4.93" height="5.16" x="632.98" y="253.38" class="known"><title>int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);</title></rect>

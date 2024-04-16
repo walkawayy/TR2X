@@ -705,3 +705,60 @@ int16_t __cdecl Creature_Effect(
     return (*spawn)(
         pos.x, pos.y, pos.z, item->speed, item->rot.y, item->room_num);
 }
+
+int32_t __cdecl Creature_Vault(
+    const int16_t item_num, const int16_t angle, int32_t vault,
+    const int32_t shift)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+    const int16_t room_num = item->room_num;
+    const XYZ_32 old = item->pos;
+
+    Creature_Animate(item_num, angle, 0);
+
+    if (item->floor > old.y + STEP_L * 7 / 2) {
+        vault = -4;
+    } else if (item->pos.y > old.y - STEP_L * 3 / 2) {
+        return 0;
+    } else if (item->pos.y > old.y - STEP_L * 5 / 2) {
+        vault = 2;
+    } else if (item->pos.y > old.y - STEP_L * 7 / 2) {
+        vault = 3;
+    } else {
+        vault = 4;
+    }
+
+    const int32_t old_x_floor = old.x >> WALL_SHIFT;
+    const int32_t old_z_floor = old.z >> WALL_SHIFT;
+    const int32_t x_floor = item->pos.x >> WALL_SHIFT;
+    const int32_t z_floor = item->pos.z >> WALL_SHIFT;
+    if (old_z_floor == z_floor) {
+        if (old_x_floor == x_floor) {
+            return 0;
+        }
+
+        if (old_x_floor >= x_floor) {
+            item->rot.y = -PHD_90;
+            item->pos.x = (old_x_floor << WALL_SHIFT) + shift;
+        } else {
+            item->rot.y = PHD_90;
+            item->pos.x = (x_floor << WALL_SHIFT) - shift;
+        }
+    } else if (old_x_floor == x_floor) {
+        if (old_z_floor >= z_floor) {
+            item->rot.y = PHD_180;
+            item->pos.z = (old_z_floor << WALL_SHIFT) + shift;
+        } else {
+            item->rot.y = 0;
+            item->pos.z = (z_floor << WALL_SHIFT) - shift;
+        }
+    }
+
+    item->floor = old.y;
+    item->pos.y = old.y;
+
+    if (room_num != item->room_num) {
+        Item_NewRoom(item_num, room_num);
+    }
+    return vault;
+}

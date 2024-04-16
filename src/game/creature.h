@@ -23,3 +23,5 @@ int16_t __cdecl Creature_Effect(
     int16_t(__cdecl *spawn)(
         int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot,
         int16_t room_num));
+int32_t __cdecl Creature_Vault(
+    int16_t item_num, int16_t angle, int32_t vault, int32_t shift);

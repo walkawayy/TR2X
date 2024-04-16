@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.63% (434)</tspan> · <tspan class="known">61.90% (754)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.71% (435)</tspan> · <tspan class="known">61.82% (753)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="266.17" height="6" x="0" y="0" class="decompiled"/>
-<rect width="462.43" height="6" x="266.17" y="0" class="known"/>
+<rect width="266.79" height="6" x="0" y="0" class="decompiled"/>
+<rect width="461.82" height="6" x="266.79" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -197,7 +197,7 @@
 <rect width="12" height="12" x="255" y="30" class="decompiled"><title>void __cdecl Creature_Float(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="270" y="30" class="decompiled"><title>void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);</title></rect>
 <rect width="12" height="12" x="285" y="30" class="decompiled"><title>int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*__cdecl spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));</title></rect>
-<rect width="12" height="12" x="300" y="30" class="known"><title>int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);</title></rect>
+<rect width="12" height="12" x="300" y="30" class="decompiled"><title>int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);</title></rect>
 <rect width="12" height="12" x="315" y="30" class="known"><title>void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);</title></rect>
 <rect width="12" height="12" x="330" y="30" class="known"><title>void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);</title></rect>
 <rect width="12" height="12" x="345" y="30" class="decompiled"><title>void __cdecl Camera_Initialise(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.30%</tspan> · <tspan class="known">67.37%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.39%</tspan> · <tspan class="known">67.29%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="241.27" height="6" x="0" y="0" class="decompiled"/>
-<rect width="503.29" height="6" x="241.27" y="0" class="known"/>
+<rect width="241.94" height="6" x="0" y="0" class="decompiled"/>
+<rect width="502.62" height="6" x="241.94" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1618,7 +1618,7 @@
 <rect width="13.35" height="12.58" x="481.50" y="92.72" class="decompiled"><title>void __cdecl Output_InsertLine_ZBuffered(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>
 <rect width="13.30" height="12.58" x="497.85" y="92.72" class="decompiled"><title>void __cdecl Overlay_DrawAmmoInfo(void);</title></rect>
 <rect width="13.30" height="12.58" x="514.15" y="92.72" class="known"><title>void __cdecl DoInventoryBackground(void);</title></rect>
-<rect width="13.25" height="12.58" x="530.45" y="92.72" class="known"><title>int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);</title></rect>
+<rect width="13.25" height="12.58" x="530.45" y="92.72" class="decompiled"><title>int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);</title></rect>
 <rect width="13.19" height="12.58" x="546.69" y="92.72" class="decompiled"><title>int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="13.03" height="12.58" x="562.89" y="92.72" class="known"><title>void __cdecl DrawSphereOfDoom(ITEM_INFO *item);</title></rect>
 <rect width="12.93" height="12.58" x="578.92" y="92.72" class="decompiled"><title>void __cdecl Output_InsertLine_Sorted(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>

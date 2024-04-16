@@ -1755,7 +1755,7 @@ typedef enum GAME_OBJECT_ID {
 0040F520    000008CC    +       int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);
 0040FDF0    000000D5    +       int16_t __cdecl Creature_Turn(struct ITEM_INFO *item, int16_t maximum_turn);
 0040FED0    00000035    +       void __cdecl Creature_Tilt(struct ITEM_INFO *item, int16_t angle);
-0040FF10    00000049    -       void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);
+0040FF10    00000049    +       void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);
 0040FF60    0000004E    -       void __cdecl Creature_Neck(struct ITEM_INFO *item, int16_t required);
 0040FFB0    000000A8    -       void __cdecl Creature_Float(int16_t item_num);
 00410060    00000050    -       void __cdecl Creature_Underwater(struct ITEM_INFO *item, int32_t depth);

@@ -14,3 +14,4 @@ void __cdecl Creature_Die(int16_t item_num, bool explode);
 int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);
 int16_t __cdecl Creature_Turn(struct ITEM_INFO *item, int16_t max_turn);
 void __cdecl Creature_Tilt(struct ITEM_INFO *const item, int16_t angle);
+void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);

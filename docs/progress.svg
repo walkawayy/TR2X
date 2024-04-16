@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.22% (429)</tspan> · <tspan class="known">62.32% (759)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.30% (430)</tspan> · <tspan class="known">62.23% (758)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.11" height="6" x="0" y="0" class="decompiled"/>
-<rect width="465.50" height="6" x="263.11" y="0" class="known"/>
+<rect width="263.72" height="6" x="0" y="0" class="decompiled"/>
+<rect width="464.88" height="6" x="263.72" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -192,7 +192,7 @@
 <rect width="12" height="12" x="180" y="30" class="decompiled"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
 <rect width="12" height="12" x="195" y="30" class="decompiled"><title>int16_t __cdecl Creature_Turn(struct ITEM_INFO *item, int16_t maximum_turn);</title></rect>
 <rect width="12" height="12" x="210" y="30" class="decompiled"><title>void __cdecl Creature_Tilt(struct ITEM_INFO *item, int16_t angle);</title></rect>
-<rect width="12" height="12" x="225" y="30" class="known"><title>void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);</title></rect>
+<rect width="12" height="12" x="225" y="30" class="decompiled"><title>void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="12" height="12" x="240" y="30" class="known"><title>void __cdecl Creature_Neck(struct ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="12" height="12" x="255" y="30" class="known"><title>void __cdecl Creature_Float(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="270" y="30" class="known"><title>void __cdecl Creature_Underwater(struct ITEM_INFO *item, int32_t depth);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.16%</tspan> · <tspan class="known">67.52%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.18%</tspan> · <tspan class="known">67.50%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="240.20" height="6" x="0" y="0" class="decompiled"/>
-<rect width="504.36" height="6" x="240.20" y="0" class="known"/>
+<rect width="240.36" height="6" x="0" y="0" class="decompiled"/>
+<rect width="504.20" height="6" x="240.36" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2126,7 +2126,7 @@
 <rect width="4.84" height="4.83" x="632.98" y="293.09" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="300.92" class="known"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="308.76" class="known"><title>LONG __cdecl SetRegistryStringValue(LPCTSTR lpValueName, LPCTSTR value, int32_t length);</title></rect>
-<rect width="4.84" height="4.73" x="632.98" y="316.59" class="known"><title>void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);</title></rect>
+<rect width="4.84" height="4.73" x="632.98" y="316.59" class="decompiled"><title>void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="324.32" class="known"><title>void __cdecl ClearLOT(struct LOT_INFO *LOT);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="332.05" class="known"><title>void __cdecl LaraBurn(void);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="339.78" class="known"><title>BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);</title></rect>

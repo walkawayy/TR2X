@@ -15,6 +15,8 @@
 #define ATTACK_RANGE SQUARE(WALL_L * 3) // = 9437184
 #define MAX_X_ROT (20 * PHD_DEGREE) // = 3640
 #define MAX_TILT (3 * PHD_DEGREE) // = 546
+#define MAX_HEAD_CHANGE (5 * PHD_DEGREE) // = 910
+#define HEAD_ARC 0x3000 // = 12288
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
@@ -620,4 +622,18 @@ void __cdecl Creature_Tilt(struct ITEM_INFO *const item, int16_t angle)
     angle = 4 * angle - item->rot.z;
     CLAMP(angle, -MAX_TILT, MAX_TILT);
     item->rot.z += angle;
+}
+
+void __cdecl Creature_Head(struct ITEM_INFO *item, int16_t required)
+{
+    struct CREATURE_INFO *const creature = item->data;
+    if (creature == NULL) {
+        return;
+    }
+
+    int16_t change = required - creature->head_rotation;
+    CLAMP(change, -MAX_HEAD_CHANGE, MAX_HEAD_CHANGE);
+
+    creature->head_rotation += change;
+    CLAMP(creature->head_rotation, -HEAD_ARC, HEAD_ARC);
 }

@@ -17,3 +17,4 @@ void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);
 void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);
 void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
 void __cdecl Creature_Float(int16_t item_num);
+void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);

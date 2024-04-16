@@ -677,3 +677,19 @@ void __cdecl Creature_Float(const int16_t item_num)
         Item_NewRoom(item_num, room_num);
     }
 }
+
+void __cdecl Creature_Underwater(ITEM_INFO *const item, const int32_t depth)
+{
+    const int32_t wh = Room_GetWaterHeight(
+        item->pos.x, item->pos.y, item->pos.z, item->room_num);
+    if (item->pos.y >= wh + depth) {
+        return;
+    }
+
+    item->pos.y = wh + depth;
+    if (item->rot.x > 2 * PHD_DEGREE) {
+        item->rot.x -= 2 * PHD_DEGREE;
+    } else {
+        CLAMPG(item->rot.x, 0);
+    }
+}

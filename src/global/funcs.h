@@ -18,7 +18,6 @@
 #define Boat_Animation ((void __cdecl (*)(ITEM_INFO *boat, int32_t collide))0x0040D950)
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
-#define Creature_Float ((void __cdecl (*)(int16_t item_num))0x0040FFB0)
 #define Creature_Underwater ((void __cdecl (*)(ITEM_INFO *item, int32_t depth))0x00410060)
 #define Creature_Effect ((int16_t __cdecl (*)(ITEM_INFO *item, BITE_INFO *bite, int16_t (*spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num)))0x004100B0)
 #define Creature_Vault ((int32_t __cdecl (*)(int16_t item_num, int16_t angle, int32_t vault, int32_t shift))0x00410110)

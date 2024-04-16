@@ -17,6 +17,7 @@
 #define MAX_TILT (3 * PHD_DEGREE) // = 546
 #define MAX_HEAD_CHANGE (5 * PHD_DEGREE) // = 910
 #define HEAD_ARC 0x3000 // = 12288
+#define FLOAT_SPEED 32
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
@@ -649,4 +650,30 @@ void __cdecl Creature_Neck(ITEM_INFO *const item, const int16_t required)
 
     creature->neck_rotation += change;
     CLAMP(creature->neck_rotation, -HEAD_ARC, HEAD_ARC);
+}
+
+void __cdecl Creature_Float(const int16_t item_num)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+
+    item->hit_points = DONT_TARGET;
+    item->rot.x = 0;
+
+    const int32_t wh = Room_GetWaterHeight(
+        item->pos.x, item->pos.y, item->pos.z, item->room_num);
+    if (item->pos.y > wh) {
+        item->pos.y -= FLOAT_SPEED;
+    } else if (item->pos.y < wh) {
+        item->pos.y = wh;
+    }
+
+    Item_Animate(item);
+
+    int16_t room_num = item->room_num;
+    const FLOOR_INFO *const floor =
+        Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
+    item->floor = Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
+    if (room_num != item->room_num) {
+        Item_NewRoom(item_num, room_num);
+    }
 }

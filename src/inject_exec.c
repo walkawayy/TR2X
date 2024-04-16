@@ -520,6 +520,7 @@ static void Inject_Creature(void)
     INJECT(1, 0x0040E230, Creature_AIInfo);
     INJECT(1, 0x0040EA00, Creature_Mood);
     INJECT(1, 0x0040F2D0, Creature_CheckBaddieOverlap);
+    INJECT(1, 0x0040F460, Creature_Die);
 }
 
 static void Inject_Box(void)

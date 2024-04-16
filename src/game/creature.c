@@ -1,6 +1,7 @@
 #include "game/creature.h"
 
 #include "game/box.h"
+#include "game/items.h"
 #include "game/math.h"
 #include "game/random.h"
 #include "global/const.h"
@@ -309,4 +310,32 @@ int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
     }
 
     return false;
+}
+
+void __cdecl Creature_Die(const int16_t item_num, const bool explode)
+{
+    struct ITEM_INFO *item = &g_Items[item_num];
+    item->collidable = 0;
+    item->hit_points = DONT_TARGET;
+    if (explode) {
+        Effect_ExplodingDeath(item_num, -1, 0);
+        Item_Kill(item_num);
+    } else {
+        Item_RemoveActive(item_num);
+    }
+    DisableBaddieAI(item_num);
+    item->flags |= IF_ONE_SHOT;
+
+    if (item->killed) {
+        item->next_active = g_PrevItemActive;
+        g_PrevItemActive = item_num;
+    }
+
+    int16_t pickup_num = item->carried_item;
+    while (pickup_num != NO_ITEM) {
+        struct ITEM_INFO *const pickup = &g_Items[pickup_num];
+        pickup->pos = item->pos;
+        Item_NewRoom(pickup_num, item->room_num);
+        pickup_num = pickup->carried_item;
+    }
 }

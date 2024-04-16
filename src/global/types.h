@@ -1158,7 +1158,7 @@ typedef struct CINE_FRAME {
 
 // clang-format off
 typedef enum ITEM_FLAG {
-    IF_ONESHOT   = 0x0100,
+    IF_ONE_SHOT  = 0x0100,
     IF_CODE_BITS = 0x3E00,
     IF_REVERSE   = 0x4000,
     IF_INVISIBLE = 0x0100,

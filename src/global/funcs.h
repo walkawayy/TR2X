@@ -18,7 +18,6 @@
 #define Boat_Animation ((void __cdecl (*)(struct ITEM_INFO *boat, int32_t collide))0x0040D950)
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
-#define Creature_Die ((void __cdecl (*)(int16_t item_num, int32_t explode))0x0040F460)
 #define Creature_Animate ((int32_t __cdecl (*)(int16_t item_num, int16_t angle, int16_t tilt))0x0040F520)
 #define Creature_Turn ((int16_t __cdecl (*)(struct ITEM_INFO *item, int16_t maximum_turn))0x0040FDF0)
 #define Creature_Tilt ((void __cdecl (*)(struct ITEM_INFO *item, int16_t angle))0x0040FED0)

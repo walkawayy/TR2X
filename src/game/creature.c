@@ -282,3 +282,31 @@ void __cdecl Creature_Mood(
     }
     Box_CalculateTarget(&creature->target, item, &creature->lot);
 }
+
+int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
+{
+    struct ITEM_INFO *item = &g_Items[item_num];
+
+    const int32_t x = item->pos.x;
+    const int32_t y = item->pos.y;
+    const int32_t z = item->pos.z;
+    const int32_t radius = SQUARE(g_Objects[item->object_num].radius);
+
+    int16_t link = g_Rooms[item->room_num].item_num;
+    while (link != NO_ITEM && link != item_num) {
+        item = &g_Items[link];
+        if (item != g_LaraItem && item->status == IS_ACTIVE
+            && item->speed != 0) {
+            const int32_t distance =
+                (SQUARE(item->pos.z - z) + SQUARE(item->pos.y - y)
+                 + SQUARE(item->pos.x - x));
+            if (distance < radius) {
+                return true;
+            }
+        }
+
+        link = item->next_item;
+    }
+
+    return false;
+}

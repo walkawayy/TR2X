@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.81% (424)</tspan> · <tspan class="known">62.73% (764)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.89% (425)</tspan> · <tspan class="known">62.64% (763)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="260.04" height="6" x="0" y="0" class="decompiled"/>
-<rect width="468.56" height="6" x="260.04" y="0" class="known"/>
+<rect width="260.65" height="6" x="0" y="0" class="decompiled"/>
+<rect width="467.95" height="6" x="260.65" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -186,7 +186,7 @@
 <rect width="12" height="12" x="90" y="30" class="decompiled"><title>int32_t __cdecl Box_ValidBox(const struct ITEM_INFO *item, int16_t zone_num, int16_t box_num);</title></rect>
 <rect width="12" height="12" x="105" y="30" class="decompiled"><title>void __cdecl Creature_Mood(struct ITEM_INFO *item, struct AI_INFO *info, int32_t violent);</title></rect>
 <rect width="12" height="12" x="120" y="30" class="decompiled"><title>enum TARGET_TYPE __cdecl Box_CalculateTarget(struct XYZ_32 *target, struct ITEM_INFO *item, struct LOT_INFO *lot);</title></rect>
-<rect width="12" height="12" x="135" y="30" class="known"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="135" y="30" class="decompiled"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="150" y="30" class="decompiled"><title>int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, struct LOT_INFO *lot);</title></rect>
 <rect width="12" height="12" x="165" y="30" class="known"><title>void __cdecl Creature_Die(int16_t item_num, int32_t explode);</title></rect>
 <rect width="12" height="12" x="180" y="30" class="known"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">31.29%</tspan> · <tspan class="known">68.38%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">31.36%</tspan> · <tspan class="known">68.31%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="233.75" height="6" x="0" y="0" class="decompiled"/>
-<rect width="510.81" height="6" x="233.75" y="0" class="known"/>
+<rect width="234.29" height="6" x="0" y="0" class="decompiled"/>
+<rect width="510.27" height="6" x="234.29" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1674,7 +1674,7 @@
 <rect width="11.45" height="11.36" x="480.35" y="166.18" class="known"><title>void __cdecl Lara_InitialiseMeshes(int32_t level_num);</title></rect>
 <rect width="11.45" height="11.36" x="480.35" y="180.54" class="known"><title>BOOL __cdecl DecompPCX(const uint8_t *pcx, size_t pcx_size, LPBYTE pic, RGB888 *pal);</title></rect>
 <rect width="11.45" height="11.24" x="480.35" y="194.89" class="known"><title>int32_t __cdecl Boat_TestWaterHeight(struct ITEM_INFO *item, int32_t z_off, int32_t x_off, struct XYZ_32 *pos);</title></rect>
-<rect width="11.45" height="11.24" x="480.35" y="209.14" class="known"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>
+<rect width="11.45" height="11.24" x="480.35" y="209.14" class="decompiled"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>
 <rect width="11.45" height="11.24" x="480.35" y="223.38" class="known"><title>void __cdecl DrawFlareInAir(struct ITEM_INFO *item);</title></rect>
 <rect width="11.45" height="11.24" x="480.35" y="237.63" class="known"><title>void __cdecl SkidooCollision(int16_t item_num, struct ITEM_INFO *litem, struct COLL_INFO *coll);</title></rect>
 <rect width="11.45" height="11.19" x="480.35" y="251.87" class="decompiled"><title>void __cdecl Output_DrawPoly_Gouraud(int32_t vtx_count, int32_t red, int32_t green, int32_t blue);</title></rect>

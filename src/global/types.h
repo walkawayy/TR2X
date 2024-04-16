@@ -1293,6 +1293,22 @@ typedef enum {
 
 // clang-format off
 typedef enum {
+    LA_EXTRA_BREATH      = 0,
+    LA_EXTRA_PLUNGER     = 1,
+    LA_EXTRA_YETI_KILL   = 2,
+    LA_EXTRA_SHARK_KILL  = 3,
+    LA_EXTRA_AIRLOCK     = 4,
+    LA_EXTRA_GONG_BONG   = 5,
+    LA_EXTRA_DINO_KILL   = 6,
+    LA_EXTRA_PULL_DAGGER = 7,
+    LA_EXTRA_START_ANIM  = 8,
+    LA_EXTRA_START_HOUSE = 9,
+    LA_EXTRA_FINAL_ANIM  = 10,
+} LARA_EXTRA_ANIMATION;
+// clang-format on
+
+// clang-format off
+typedef enum {
     LS_WALK         = 0,
     LS_RUN          = 1,
     LS_STOP         = 2,

@@ -18,7 +18,6 @@
 #define Boat_Animation ((void __cdecl (*)(ITEM_INFO *boat, int32_t collide))0x0040D950)
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
-#define Creature_Kill ((void __cdecl (*)(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state))0x00410250)
 #define Creature_GetBaddieTarget ((void __cdecl (*)(int16_t item_num, int32_t goody))0x004103C0)
 #define Game_SetCutsceneTrack ((void __cdecl (*)(int32_t track))0x00411F50)
 #define Game_Cutscene_Start ((int32_t __cdecl (*)(int32_t level_num))0x00411F60)

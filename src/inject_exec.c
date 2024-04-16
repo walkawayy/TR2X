@@ -530,6 +530,7 @@ static void Inject_Creature(void)
     INJECT(1, 0x00410060, Creature_Underwater);
     INJECT(1, 0x004100B0, Creature_Effect);
     INJECT(1, 0x00410110, Creature_Vault);
+    INJECT(1, 0x00410250, Creature_Kill);
 }
 
 static void Inject_Box(void)

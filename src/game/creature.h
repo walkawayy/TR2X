@@ -25,3 +25,6 @@ int16_t __cdecl Creature_Effect(
         int16_t room_num));
 int32_t __cdecl Creature_Vault(
     int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
+void __cdecl Creature_Kill(
+    ITEM_INFO *const item, int32_t kill_anim, int32_t kill_state,
+    int32_t lara_kill_state);

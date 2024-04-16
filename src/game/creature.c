@@ -762,3 +762,39 @@ int32_t __cdecl Creature_Vault(
     }
     return vault;
 }
+
+void __cdecl Creature_Kill(
+    ITEM_INFO *const item, const int32_t kill_anim, const int32_t kill_state,
+    const int32_t lara_kill_state)
+{
+    item->anim_num = g_Objects[item->object_num].anim_idx + kill_anim;
+    item->frame_num = g_Anims[item->anim_num].frame_base;
+    item->current_anim_state = kill_state;
+
+    g_LaraItem->anim_num = g_Objects[O_LARA_EXTRA].anim_idx;
+    g_LaraItem->frame_num = g_Anims[g_LaraItem->anim_num].frame_base;
+    g_LaraItem->current_anim_state = LA_EXTRA_BREATH;
+    g_LaraItem->goal_anim_state = lara_kill_state;
+    g_LaraItem->pos = item->pos;
+    g_LaraItem->rot = item->rot;
+    g_LaraItem->fall_speed = 0;
+    g_LaraItem->gravity = 0;
+    g_LaraItem->speed = 0;
+
+    int16_t room_num = item->room_num;
+    if (room_num != g_LaraItem->room_num) {
+        Item_NewRoom(g_Lara.item_num, room_num);
+    }
+
+    Item_Animate(g_LaraItem);
+
+    g_LaraItem->goal_anim_state = lara_kill_state;
+    g_LaraItem->current_anim_state = lara_kill_state;
+    g_Lara.extra_anim = 1;
+    g_Lara.gun_status = LGS_HANDS_BUSY;
+    g_Lara.gun_type = LGT_UNARMED;
+    g_Lara.hit_direction = -1;
+    g_Lara.air = -1;
+
+    g_Camera.pos.room_num = g_LaraItem->room_num;
+}

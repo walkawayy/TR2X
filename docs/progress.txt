@@ -1196,6 +1196,20 @@ typedef enum LARA_ANIMATION {
     LA_PICKUP_FLARE_UW      = 206,
 } LARA_ANIMATION;
 
+typedef enum {
+    LA_EXTRA_BREATH      = 0,
+    LA_EXTRA_PLUNGER     = 1,
+    LA_EXTRA_YETI_KILL   = 2,
+    LA_EXTRA_SHARK_KILL  = 3,
+    LA_EXTRA_AIRLOCK     = 4,
+    LA_EXTRA_GONG_BONG   = 5,
+    LA_EXTRA_DINO_KILL   = 6,
+    LA_EXTRA_PULL_DAGGER = 7,
+    LA_EXTRA_START_ANIM  = 8,
+    LA_EXTRA_START_HOUSE = 9,
+    LA_EXTRA_FINAL_ANIM  = 10,
+} LARA_EXTRA_ANIMATION;
+
 typedef enum LARA_STATE {
     LS_WALK         = 0,
     LS_RUN          = 1,
@@ -1809,7 +1823,7 @@ typedef struct {
 00410060    00000050    +       void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);
 004100B0    0000005C    +       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*__cdecl spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
 00410110    00000131    +       int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
-00410250    0000016F    -       void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
+00410250    0000016F    +       void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
 004103C0    000001DB    -       void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
 
 # game/camera.c

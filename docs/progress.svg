@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.88% (437)</tspan> · <tspan class="known">61.66% (751)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.96% (438)</tspan> · <tspan class="known">61.58% (750)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="268.01" height="6" x="0" y="0" class="decompiled"/>
-<rect width="460.59" height="6" x="268.01" y="0" class="known"/>
+<rect width="268.63" height="6" x="0" y="0" class="decompiled"/>
+<rect width="459.98" height="6" x="268.63" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -212,7 +212,7 @@
 <rect width="12" height="12" x="480" y="30" class="decompiled"><title>void __cdecl Camera_Look(const ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="495" y="30" class="decompiled"><title>void __cdecl Camera_Fixed(void);</title></rect>
 <rect width="12" height="12" x="510" y="30" class="decompiled"><title>void __cdecl Camera_Update(void);</title></rect>
-<rect width="12" height="12" x="525" y="30" class="known"><title>void __cdecl Game_SetCutsceneTrack(int32_t track);</title></rect>
+<rect width="12" height="12" x="525" y="30" class="decompiled"><title>void __cdecl Game_SetCutsceneTrack(int32_t track);</title></rect>
 <rect width="12" height="12" x="540" y="30" class="known"><title>int32_t __cdecl Game_Cutscene_Start(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="555" y="30" class="known"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
 <rect width="12" height="12" x="570" y="30" class="known"><title>int32_t __cdecl Game_Cutscene_Control(int32_t nframes);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.63%</tspan> · <tspan class="known">67.04%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.64%</tspan> · <tspan class="known">67.04%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="243.78" height="6" x="0" y="0" class="decompiled"/>
-<rect width="500.78" height="6" x="243.78" y="0" class="known"/>
+<rect width="243.80" height="6" x="0" y="0" class="decompiled"/>
+<rect width="500.76" height="6" x="243.80" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2490,7 +2490,7 @@
 <rect width="0.10" height="0.30" x="734.29" y="365.10" class="decompiled"><title>void __cdecl Lara_State_Null(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="0.10" height="0.30" x="734.29" y="368.40" class="decompiled"><title>void __cdecl Lara_State_UWTwist(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="0.10" height="0.30" x="734.29" y="371.70" class="known"><title>void __cdecl S_ClearScreen(void);</title></rect>
-<rect width="0.10" height="0.10" x="734.29" y="375" class="known"><title>void __cdecl Game_SetCutsceneTrack(int32_t track);</title></rect>
+<rect width="0.10" height="0.10" x="734.29" y="375" class="decompiled"><title>void __cdecl Game_SetCutsceneTrack(int32_t track);</title></rect>
 <rect width="0.22" height="0.10" x="737.06" y="365.10" class="known"><title>void __cdecl lara_hands_free(ITEM_INFO *item);</title></rect>
 <rect width="0.22" height="0.10" x="737.06" y="367.68" class="decompiled"><title>void __cdecl Lara_State_Splat(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="0.22" height="0.10" x="737.06" y="370.26" class="decompiled"><title>void __cdecl Random_SeedControl(int32_t seed);</title></rect>

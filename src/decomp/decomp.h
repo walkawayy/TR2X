@@ -58,3 +58,4 @@ bool __cdecl WinVidGoFullScreen(DISPLAY_MODE *disp_mode);
 bool __cdecl WinVidGoWindowed(
     int32_t width, int32_t height, DISPLAY_MODE *disp_mode);
 void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter);
+void __cdecl Game_SetCutsceneTrack(int32_t track);

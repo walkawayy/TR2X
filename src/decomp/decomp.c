@@ -941,3 +941,8 @@ void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter)
             & disp_adapter->hw_device_desc.dwDeviceRenderBitDepth)
             != 0;
 }
+
+void __cdecl Game_SetCutsceneTrack(const int32_t track)
+{
+    g_CineTrackID = track;
+}

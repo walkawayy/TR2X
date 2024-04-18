@@ -104,6 +104,7 @@ static void Inject_Decomp(void)
     INJECT(1, 0x0044EB80, EncodePutPCX);
     INJECT(1, 0x0044EBC0, Screenshot);
     INJECT(1, 0x00454C50, TitleSequence);
+    INJECT(1, 0x00411F50, Game_SetCutsceneTrack);
 }
 
 static void Inject_Camera(void)

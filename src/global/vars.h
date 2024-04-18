@@ -279,6 +279,7 @@
 #define g_NumCineFrames (*(int16_t*)0x005262F6)
 #define g_CineData (*(CINE_FRAME **)0x005262F8) // = NULL
 #define g_CinePos (*(PHD_3DPOS*)0x00526300)
+#define g_CineLevelID (*(int16_t*)0x00526312)
 #define g_CineFrameIdx (*(int16_t*)0x00526314)
 #define g_Camera (*(CAMERA_INFO*)0x00526320)
 #define g_GroundZone (*(int16_t *(*)[][2])0x00526398)

@@ -8,6 +8,7 @@
 #include "global/vars.h"
 #include "lib/dinput.h"
 #include "specific/s_audio_sample.h"
+#include "util.h"
 
 #include <dinput.h>
 #include <stdio.h>
@@ -945,4 +946,52 @@ void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter)
 void __cdecl Game_SetCutsceneTrack(const int32_t track)
 {
     g_CineTrackID = track;
+}
+
+int32_t __cdecl Game_Cutscene_Start(const int32_t level_num)
+{
+    g_CineLevelID = level_num;
+    g_IsTitleLoaded = 0;
+    S_FadeToBlack();
+    if (!Level_Initialise(level_num, GFL_CUTSCENE)) {
+        return 2;
+    }
+
+    Misc_InitCinematicRooms();
+    CutscenePlayer1_Initialise(g_Lara.item_num);
+    g_Camera.target_angle = g_CineTargetAngle;
+
+    const int old_sound_active = g_SoundIsActive;
+    g_SoundIsActive = false;
+
+    g_CineFrameIdx = 0;
+    S_ClearScreen();
+
+    if (!Music_PlaySynced(g_CineTrackID)) {
+        return 1;
+    }
+
+    Music_SetVolume(255);
+    g_CineFrameCurrent = 0;
+
+    int32_t result;
+    do {
+        Game_DrawCinematic();
+        int32_t nticks =
+            g_CineFrameCurrent - TICKS_PER_FRAME * (g_CineFrameIdx - 4);
+        CLAMPL(nticks, TICKS_PER_FRAME);
+        result = Game_Cutscene_Control(nticks);
+    } while (!result);
+
+    if (g_OptionMusicVolume) {
+        Music_SetVolume(25 * g_OptionMusicVolume + 5);
+    } else {
+        Music_SetVolume(0);
+    }
+    Music_Stop();
+    g_SoundIsActive = old_sound_active;
+    S_Audio_Sample_OutCloseAllTracks();
+
+    g_LevelComplete = 1;
+    return result;
 }

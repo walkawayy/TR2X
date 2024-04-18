@@ -1,4 +1,5 @@
 #define FRAMES_PER_SECOND 30
+#define TICKS_PER_FRAME 2
 
 #define PHD_ONE 0x10000
 #define PHD_HALF 0x100

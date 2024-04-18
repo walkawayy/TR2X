@@ -18,7 +18,6 @@
 #define Boat_Animation ((void __cdecl (*)(ITEM_INFO *boat, int32_t collide))0x0040D950)
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
-#define Game_Cutscene_Start ((int32_t __cdecl (*)(int32_t level_num))0x00411F60)
 #define Misc_InitCinematicRooms ((void __cdecl (*)(void))0x00412080)
 #define Game_Cutscene_Control ((int32_t __cdecl (*)(int32_t nframes))0x00412120)
 #define Room_FindByPos ((int32_t __cdecl (*)(int32_t x, int32_t y, int32_t z))0x004123D0)

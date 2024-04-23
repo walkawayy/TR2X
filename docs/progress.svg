@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.04% (439)</tspan> · <tspan class="known">61.49% (749)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.12% (440)</tspan> · <tspan class="known">61.41% (748)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="269.24" height="6" x="0" y="0" class="decompiled"/>
-<rect width="459.36" height="6" x="269.24" y="0" class="known"/>
+<rect width="269.85" height="6" x="0" y="0" class="decompiled"/>
+<rect width="458.75" height="6" x="269.85" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -214,7 +214,7 @@
 <rect width="12" height="12" x="510" y="30" class="decompiled"><title>void __cdecl Camera_Update(void);</title></rect>
 <rect width="12" height="12" x="525" y="30" class="decompiled"><title>void __cdecl Game_SetCutsceneTrack(int32_t track);</title></rect>
 <rect width="12" height="12" x="540" y="30" class="decompiled"><title>int32_t __cdecl Game_Cutscene_Start(int32_t level_num);</title></rect>
-<rect width="12" height="12" x="555" y="30" class="known"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
+<rect width="12" height="12" x="555" y="30" class="decompiled"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
 <rect width="12" height="12" x="570" y="30" class="known"><title>int32_t __cdecl Game_Cutscene_Control(int32_t nframes);</title></rect>
 <rect width="12" height="12" x="585" y="30" class="decompiled"><title>void __cdecl Camera_UpdateCutscene(void);</title></rect>
 <rect width="12" height="12" x="600" y="30" class="known"><title>int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.72%</tspan> · <tspan class="known">66.96%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.76%</tspan> · <tspan class="known">66.91%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="244.40" height="6" x="0" y="0" class="decompiled"/>
-<rect width="500.16" height="6" x="244.40" y="0" class="known"/>
+<rect width="244.72" height="6" x="0" y="0" class="decompiled"/>
+<rect width="499.84" height="6" x="244.72" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1874,7 +1874,7 @@
 <rect width="7.88" height="8.37" x="557.01" y="276.96" class="decompiled"><title>void __cdecl Lara_Col_TurnRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.88" height="8.37" x="557.01" y="288.33" class="known"><title>bool __cdecl GetRegistryStringValue(LPCTSTR lpValueName, LPTSTR value, DWORD maxSize, LPCTSTR defaultValue);</title></rect>
 <rect width="7.88" height="8.29" x="557.01" y="299.70" class="known"><title>void __cdecl CreatePrimarySurface(void);</title></rect>
-<rect width="7.88" height="8.22" x="557.01" y="311" class="known"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
+<rect width="7.88" height="8.22" x="557.01" y="311" class="decompiled"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
 <rect width="7.88" height="8.22" x="557.01" y="322.22" class="decompiled"><title>void __cdecl Effect_NewRoom(int16_t fx_num, int16_t room_num);</title></rect>
 <rect width="7.88" height="8.22" x="557.01" y="333.43" class="known"><title>void __cdecl SE_AdvancedDlgUpdate(HWND hwndDlg);</title></rect>
 <rect width="7.88" height="8.14" x="557.01" y="344.65" class="known"><title>int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>

@@ -995,3 +995,21 @@ int32_t __cdecl Game_Cutscene_Start(const int32_t level_num)
     g_LevelComplete = 1;
     return result;
 }
+
+void __cdecl Misc_InitCinematicRooms(void)
+{
+    for (int32_t i = 0; i < g_RoomCount; i++) {
+        const int16_t flipped_room = g_Rooms[i].flipped_room;
+        if (flipped_room >= 0) {
+            g_Rooms[flipped_room].bound_active = 1;
+        }
+        g_Rooms[i].flags |= 8u;
+    }
+
+    g_DrawRoomsCount = 0;
+    for (int32_t i = 0; i < g_RoomCount; i++) {
+        if (!g_Rooms[i].bound_active) {
+            g_DrawRoomsArray[g_DrawRoomsCount++] = i;
+        }
+    }
+}

@@ -106,6 +106,7 @@ static void Inject_Decomp(void)
     INJECT(1, 0x00454C50, TitleSequence);
     INJECT(1, 0x00411F50, Game_SetCutsceneTrack);
     INJECT(1, 0x00411F60, Game_Cutscene_Start);
+    INJECT(1, 0x00412080, Misc_InitCinematicRooms);
 }
 
 static void Inject_Camera(void)

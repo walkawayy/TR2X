@@ -1843,7 +1843,7 @@ typedef struct {
 # game/cinema.c
 00411F50    0000000A    +       void __cdecl Game_SetCutsceneTrack(int32_t track);
 00411F60    00000112    +       int32_t __cdecl Game_Cutscene_Start(int32_t level_num);
-00412080    00000093    -R      void __cdecl Misc_InitCinematicRooms(void);
+00412080    00000093    +R      void __cdecl Misc_InitCinematicRooms(void);
 00412120    0000016F    -       int32_t __cdecl Game_Cutscene_Control(int32_t nframes);
 00412290    00000138    +       void __cdecl Camera_UpdateCutscene(void);
 004123D0    0000007F    -R      int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);
@@ -3317,3 +3317,5 @@ typedef struct {
 005263C8    -       uint16_t *g_Overlap;
 005206C0    -       CREATURE_INFO *g_BaddieSlots;
 00526312    -       int16_t g_CineLevelID;
+005252B8    -       int32_t g_DrawRoomsCount;
+00525B20    -       int16_t g_DrawRoomsArray[100];

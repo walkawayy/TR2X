@@ -1849,7 +1849,7 @@ typedef struct {
 004123D0    0000007F    +R      int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);
 00412450    000000DC    +       void __cdecl CutscenePlayer_Control(int16_t item_num);
 00412530    00000096    +       void __cdecl Lara_Control_Cutscene(int16_t item_num);
-004125D0    0000008F    -R      void __cdecl CutscenePlayer1_Initialise(int16_t item_num);
+004125D0    0000008F    +R      void __cdecl CutscenePlayer1_Initialise(int16_t item_num);
 00412660    00000033    -R      void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);
 004126A0    00000245    +       void __cdecl Camera_LoadCutsceneFrame(void);
 
@@ -3321,3 +3321,4 @@ typedef struct {
 00525B20    -       int16_t g_DrawRoomsArray[100];
 00525BEC    -       int32_t g_DynamicLightCount;
 004D7784    -       int32_t g_CineTickCount;
+004D7788    -       int32_t g_OriginalRoom;

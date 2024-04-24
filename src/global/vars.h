@@ -120,6 +120,7 @@
 #define g_GamePalette16 (*(PALETTEENTRY(*)[256])0x004D7380)
 #define g_CineFrameCurrent (*(int32_t*)0x004D7780)
 #define g_CineTickCount (*(int32_t*)0x004D7784)
+#define g_OriginalRoom (*(int32_t*)0x004D7788)
 #define g_IsChunkyCamera (*(int32_t*)0x004D778C)
 #define g_NoInputCounter (*(int32_t*)0x004D7794)
 #define g_IsResetFlag (*(BOOL*)0x004D7798)

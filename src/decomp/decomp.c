@@ -1132,3 +1132,28 @@ void __cdecl Lara_Control_Cutscene(const int16_t item_num)
 
     Lara_Animate(item);
 }
+
+void __cdecl CutscenePlayer1_Initialise(const int16_t item_num)
+{
+    OBJECT_INFO *const obj = &g_Objects[O_LARA];
+    obj->draw_routine = Lara_Draw;
+    obj->control = Lara_Control_Cutscene;
+
+    Item_AddActive(item_num);
+    ITEM_INFO *const item = &g_Items[item_num];
+    g_Camera.pos.pos.x = item->pos.x;
+    g_Camera.pos.pos.y = item->pos.y;
+    g_Camera.pos.pos.z = item->pos.z;
+    g_Camera.target_angle = 0;
+    g_Camera.pos.room_num = item->room_num;
+    g_OriginalRoom = g_Camera.pos.room_num;
+
+    item->rot.y = 0;
+    item->dynamic_light = 0;
+    item->goal_anim_state = 0;
+    item->current_anim_state = 0;
+    item->frame_num = 0;
+    item->anim_num = 0;
+
+    g_Lara.hit_direction = -1;
+}

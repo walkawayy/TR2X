@@ -111,6 +111,7 @@ static void Inject_Decomp(void)
     INJECT(1, 0x004123D0, Room_FindByPos);
     INJECT(1, 0x00412450, CutscenePlayer_Control);
     INJECT(1, 0x00412530, Lara_Control_Cutscene);
+    INJECT(1, 0x004125D0, CutscenePlayer1_Initialise);
 }
 
 static void Inject_Camera(void)

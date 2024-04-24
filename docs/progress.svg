@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.45% (444)</tspan> · <tspan class="known">61.08% (744)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.54% (445)</tspan> · <tspan class="known">61% (743)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="272.31" height="6" x="0" y="0" class="decompiled"/>
-<rect width="456.30" height="6" x="272.31" y="0" class="known"/>
+<rect width="272.92" height="6" x="0" y="0" class="decompiled"/>
+<rect width="455.68" height="6" x="272.92" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -220,7 +220,7 @@
 <rect width="12" height="12" x="600" y="30" class="decompiled"><title>int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="615" y="30" class="decompiled"><title>void __cdecl CutscenePlayer_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="630" y="30" class="decompiled"><title>void __cdecl Lara_Control_Cutscene(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="645" y="30" class="known"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="645" y="30" class="decompiled"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="660" y="30" class="known"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="675" y="30" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
 <rect width="12" height="12" x="690" y="30" class="known"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">33.01%</tspan> · <tspan class="known">66.66%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">33.06%</tspan> · <tspan class="known">66.62%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="246.61" height="6" x="0" y="0" class="decompiled"/>
-<rect width="497.95" height="6" x="246.61" y="0" class="known"/>
+<rect width="246.93" height="6" x="0" y="0" class="decompiled"/>
+<rect width="497.63" height="6" x="246.93" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1887,7 +1887,7 @@
 <rect width="7.84" height="8.03" x="611.46" y="185.54" class="known"><title>int32_t __cdecl GetCollisionAnim(ITEM_INFO *skidoo, XYZ_32 *moved);</title></rect>
 <rect width="7.84" height="8.03" x="622.29" y="185.54" class="known"><title>void __cdecl FlameEmitterControl(int16_t item_num);</title></rect>
 <rect width="7.84" height="8.03" x="633.13" y="185.54" class="decompiled"><title>bool __cdecl WinVidCopyBitmapToBuffer(LPDDS surface, const BYTE *bitmap);</title></rect>
-<rect width="7.76" height="8.03" x="643.97" y="185.54" class="known"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
+<rect width="7.76" height="8.03" x="643.97" y="185.54" class="decompiled"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
 <rect width="7.76" height="8.03" x="654.73" y="185.54" class="known"><title>void __cdecl FloodFX(ITEM_INFO *item);</title></rect>
 <rect width="7.69" height="8.03" x="665.49" y="185.54" class="known"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB888 *palette);</title></rect>
 <rect width="7.61" height="8.03" x="676.18" y="185.54" class="known"><title>void __cdecl DetonatorControl(int16_t item_num);</title></rect>

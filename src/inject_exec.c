@@ -109,6 +109,7 @@ static void Inject_Decomp(void)
     INJECT(1, 0x00412080, Misc_InitCinematicRooms);
     INJECT(1, 0x00412120, Game_Cutscene_Control);
     INJECT(1, 0x004123D0, Room_FindByPos);
+    INJECT(1, 0x00412450, CutscenePlayer_Control);
 }
 
 static void Inject_Camera(void)

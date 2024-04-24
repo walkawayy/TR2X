@@ -63,3 +63,4 @@ int32_t __cdecl Game_Cutscene_Start(int32_t level_num);
 void __cdecl Misc_InitCinematicRooms(void);
 int32_t __cdecl Game_Cutscene_Control(const int32_t nframes);
 int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);
+void __cdecl CutscenePlayer_Control(int16_t item_num);

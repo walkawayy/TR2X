@@ -1,5 +1,7 @@
 #include "decomp/decomp.h"
 
+#include "game/camera.h"
+#include "game/input.h"
 #include "game/music.h"
 #include "game/shell.h"
 #include "game/text.h"
@@ -1012,4 +1014,57 @@ void __cdecl Misc_InitCinematicRooms(void)
             g_DrawRoomsArray[g_DrawRoomsCount++] = i;
         }
     }
+}
+
+int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
+{
+    g_CineTickCount += g_CineTickRate * nframes;
+
+    if (g_CineTickCount >= 0) {
+        while (1) {
+            if (Input_Update()) {
+                return 3;
+            }
+            if ((g_Input & IN_ACTION) != 0) {
+                return 1;
+            }
+            if ((g_Input & IN_OPTION) != 0) {
+                return 2;
+            }
+
+            g_DynamicLightCount = 0;
+
+            for (int32_t id = g_NextItemActive; id != NO_ITEM;) {
+                const ITEM_INFO *const item = &g_Items[id];
+                const OBJECT_INFO *obj = &g_Objects[item->object_num];
+                if (obj->control != NULL) {
+                    obj->control(id);
+                }
+                id = item->next_active;
+            }
+
+            for (int32_t id = g_NextEffectActive; id != NO_ITEM;) {
+                const FX_INFO *const fx = &g_Effects[id];
+                const OBJECT_INFO *const obj = &g_Objects[fx->object_num];
+                if (obj->control != NULL) {
+                    obj->control(id);
+                }
+            }
+
+            HairControl(1);
+            Camera_UpdateCutscene();
+
+            if (++g_CineFrameIdx >= g_NumCineFrames) {
+                return 1;
+            }
+
+            g_CineTickCount -= 0x10000;
+            if (g_CineTickCount < 0) {
+                break;
+            }
+        }
+    }
+
+    g_CineFrameCurrent = Music_GetFrames() * 4 / 5;
+    return 0;
 }

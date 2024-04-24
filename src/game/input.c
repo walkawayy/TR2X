@@ -2,7 +2,7 @@
 
 #include "specific/s_input.h"
 
-void Input_Update(void)
+bool Input_Update(void)
 {
-    S_Input_Update();
+    return S_Input_Update();
 }

@@ -1,3 +1,5 @@
 #pragma once
 
-void Input_Update(void);
+#include <stdbool.h>
+
+bool Input_Update(void);

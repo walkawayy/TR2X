@@ -1850,7 +1850,7 @@ typedef struct {
 00412450    000000DC    +       void __cdecl CutscenePlayer_Control(int16_t item_num);
 00412530    00000096    +       void __cdecl Lara_Control_Cutscene(int16_t item_num);
 004125D0    0000008F    +R      void __cdecl CutscenePlayer1_Initialise(int16_t item_num);
-00412660    00000033    -R      void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);
+00412660    00000033    +R      void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);
 004126A0    00000245    +       void __cdecl Camera_LoadCutsceneFrame(void);
 
 # game/collide.c

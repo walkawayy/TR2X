@@ -1157,3 +1157,11 @@ void __cdecl CutscenePlayer1_Initialise(const int16_t item_num)
 
     g_Lara.hit_direction = -1;
 }
+
+void __cdecl CutscenePlayerGen_Initialise(const int16_t item_num)
+{
+    Item_AddActive(item_num);
+    ITEM_INFO *const item = &g_Items[item_num];
+    item->rot.y = 0;
+    item->dynamic_light = 0;
+}

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.54% (445)</tspan> · <tspan class="known">61% (743)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.62% (446)</tspan> · <tspan class="known">60.92% (742)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="272.92" height="6" x="0" y="0" class="decompiled"/>
-<rect width="455.68" height="6" x="272.92" y="0" class="known"/>
+<rect width="273.53" height="6" x="0" y="0" class="decompiled"/>
+<rect width="455.07" height="6" x="273.53" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -221,7 +221,7 @@
 <rect width="12" height="12" x="615" y="30" class="decompiled"><title>void __cdecl CutscenePlayer_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="630" y="30" class="decompiled"><title>void __cdecl Lara_Control_Cutscene(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="645" y="30" class="decompiled"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="660" y="30" class="known"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="660" y="30" class="decompiled"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="675" y="30" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
 <rect width="12" height="12" x="690" y="30" class="known"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
 <rect width="12" height="12" x="705" y="30" class="known"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">33.06%</tspan> · <tspan class="known">66.62%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">33.07%</tspan> · <tspan class="known">66.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="246.93" height="6" x="0" y="0" class="decompiled"/>
-<rect width="497.63" height="6" x="246.93" y="0" class="known"/>
+<rect width="247.04" height="6" x="0" y="0" class="decompiled"/>
+<rect width="497.52" height="6" x="247.04" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2261,7 +2261,7 @@
 <rect width="3.86" height="3.29" x="675.73" y="296.78" class="known"><title>void __cdecl TempVideoAdjust(int32_t hires, double sizer);</title></rect>
 <rect width="3.86" height="3.29" x="682.59" y="296.78" class="known"><title>void __cdecl game_free(uint32_t free_size);</title></rect>
 <rect width="3.73" height="3.29" x="689.45" y="296.78" class="decompiled"><title>void __cdecl Output_SortPolyList(void);</title></rect>
-<rect width="3.73" height="3.29" x="696.18" y="296.78" class="known"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
+<rect width="3.73" height="3.29" x="696.18" y="296.78" class="decompiled"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
 <rect width="3.73" height="3.29" x="702.91" y="296.78" class="decompiled"><title>void __cdecl Lara_State_RightJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.73" height="3.29" x="709.64" y="296.78" class="decompiled"><title>void __cdecl Lara_State_LeftJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.73" height="3.29" x="716.36" y="296.78" class="decompiled"><title>void __cdecl Lara_Col_HangLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

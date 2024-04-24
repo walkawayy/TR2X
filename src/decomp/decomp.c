@@ -1113,3 +1113,22 @@ void __cdecl CutscenePlayer_Control(const int16_t item_num)
 
     Item_Animate(item);
 }
+
+void __cdecl Lara_Control_Cutscene(const int16_t item_num)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+    item->rot.y = g_Camera.target_angle;
+    item->pos.x = g_Camera.pos.pos.x;
+    item->pos.y = g_Camera.pos.pos.y;
+    item->pos.z = g_Camera.pos.pos.z;
+
+    XYZ_32 pos = { 0 };
+    Collide_GetJointAbsPosition(item, &pos, 0);
+
+    const int16_t room_num = Room_FindByPos(pos.x, pos.y, pos.z);
+    if (room_num != NO_ROOM && item->room_num != room_num) {
+        Item_NewRoom(item_num, room_num);
+    }
+
+    Lara_Animate(item);
+}

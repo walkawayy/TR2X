@@ -18,7 +18,6 @@
 #define Boat_Animation ((void __cdecl (*)(ITEM_INFO *boat, int32_t collide))0x0040D950)
 #define Boat_Control ((void __cdecl (*)(int16_t item_num))0x0040DAC0)
 #define Gondola_Control ((void __cdecl (*)(int16_t item_num))0x0040E0F0)
-#define Room_FindByPos ((int32_t __cdecl (*)(int32_t x, int32_t y, int32_t z))0x004123D0)
 #define CutscenePlayer_Control ((void __cdecl (*)(int16_t item_num))0x00412450)
 #define Lara_Control_Cutscene ((void __cdecl (*)(int16_t item_num))0x00412530)
 #define CutscenePlayer1_Initialise ((void __cdecl (*)(int16_t item_num))0x004125D0)

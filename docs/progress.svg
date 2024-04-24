@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.21% (441)</tspan> · <tspan class="known">61.33% (747)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.29% (442)</tspan> · <tspan class="known">61.25% (746)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="270.47" height="6" x="0" y="0" class="decompiled"/>
-<rect width="458.14" height="6" x="270.47" y="0" class="known"/>
+<rect width="271.08" height="6" x="0" y="0" class="decompiled"/>
+<rect width="457.52" height="6" x="271.08" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -217,7 +217,7 @@
 <rect width="12" height="12" x="555" y="30" class="decompiled"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
 <rect width="12" height="12" x="570" y="30" class="decompiled"><title>int32_t __cdecl Game_Cutscene_Control(int32_t nframes);</title></rect>
 <rect width="12" height="12" x="585" y="30" class="decompiled"><title>void __cdecl Camera_UpdateCutscene(void);</title></rect>
-<rect width="12" height="12" x="600" y="30" class="known"><title>int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);</title></rect>
+<rect width="12" height="12" x="600" y="30" class="decompiled"><title>int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="615" y="30" class="known"><title>void __cdecl CutscenePlayer_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="630" y="30" class="known"><title>void __cdecl Lara_Control_Cutscene(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="645" y="30" class="known"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.87%</tspan> · <tspan class="known">66.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">32.91%</tspan> · <tspan class="known">66.77%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="245.53" height="6" x="0" y="0" class="decompiled"/>
-<rect width="499.03" height="6" x="245.53" y="0" class="known"/>
+<rect width="245.80" height="6" x="0" y="0" class="decompiled"/>
+<rect width="498.75" height="6" x="245.80" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1933,7 +1933,7 @@
 <rect width="7.43" height="7.27" x="578.55" y="206.76" class="decompiled"><title>void __cdecl Lara_Col_Stop(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.43" height="7.27" x="578.55" y="217.03" class="decompiled"><title>void __cdecl Lara_Col_Roll(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.43" height="7.27" x="578.55" y="227.30" class="known"><title>void __cdecl SkidmanCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
-<rect width="7.43" height="7.11" x="578.55" y="237.57" class="known"><title>int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);</title></rect>
+<rect width="7.43" height="7.11" x="578.55" y="237.57" class="decompiled"><title>int32_t __cdecl Room_FindByPos(int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="7.43" height="7.11" x="578.55" y="247.68" class="known"><title>void __cdecl ControlExplosion1(int16_t fx_num);</title></rect>
 <rect width="7.43" height="7.11" x="578.55" y="257.79" class="decompiled"><title>int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.43" height="7.11" x="578.55" y="267.90" class="known"><title>void __cdecl InitialiseSkidman(int16_t item_num);</title></rect>

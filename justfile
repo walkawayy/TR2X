@@ -49,6 +49,9 @@ build-win target='debug':      (image-win "0") (_docker_run "-e" "TARGET="+targe
 
 package-win:                   (build-win "release") (_docker_run "rrdash/tr2x" "package")
 
+output-current-version:
+    tools/get_version
+
 output-current-changelog:
     tools/output_current_changelog
 

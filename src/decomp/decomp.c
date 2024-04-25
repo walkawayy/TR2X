@@ -918,10 +918,15 @@ void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter)
 {
     DISPLAY_MODE disp_mode;
 
-    disp_adapter->sw_windowed_supported = 0;
-    disp_adapter->hw_windowed_supported = 0;
+    disp_adapter->sw_windowed_supported = false;
+    disp_adapter->hw_windowed_supported = false;
     disp_adapter->screen_width = 0;
-    if (disp_adapter->adapter_guid_ptr != NULL && !DDrawCreate(NULL)) {
+
+    if (disp_adapter->adapter_guid_ptr != NULL) {
+        return;
+    }
+
+    if (!DDrawCreate(NULL)) {
         return;
     }
 
@@ -934,7 +939,7 @@ void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter)
 
     disp_mode.width &= ~0x1F;
     if (disp_mode.width * 3 / 4 > disp_mode.height) {
-        disp_mode.width = (disp_mode.height * 4 / 3) & 0x1F;
+        disp_mode.width = (disp_mode.height * 4 / 3) & ~0x1F;
     }
 
     disp_adapter->sw_windowed_supported = disp_mode.vga == VGA_256_COLOR;

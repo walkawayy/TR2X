@@ -73,6 +73,7 @@ dll_sources = [
   'src/game/creature.c',
   'src/game/effects.c',
   'src/game/input.c',
+  'src/game/inventory.c',
   'src/game/items.c',
   'src/game/lara/lara_col.c',
   'src/game/lara/lara_control.c',

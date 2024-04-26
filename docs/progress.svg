@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.62% (446)</tspan> · <tspan class="known">60.92% (742)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.70% (447)</tspan> · <tspan class="known">60.84% (741)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="273.53" height="6" x="0" y="0" class="decompiled"/>
-<rect width="455.07" height="6" x="273.53" y="0" class="known"/>
+<rect width="274.15" height="6" x="0" y="0" class="decompiled"/>
+<rect width="454.46" height="6" x="274.15" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -403,14 +403,14 @@
 <rect width="12" height="12" x="345" y="90" class="decompiled"><title>void __cdecl Overlay_AddDisplayPickup(int16_t obj_num);</title></rect>
 <rect width="12" height="12" x="360" y="90" class="decompiled"><title>void __cdecl Overlay_DisplayModeInfo(char* string);</title></rect>
 <rect width="12" height="12" x="375" y="90" class="decompiled"><title>void __cdecl Overlay_DrawModeInfo(void);</title></rect>
-<rect width="12" height="12" x="390" y="90" class="known"><title>int32_t __cdecl Display_Inventory(int32_t inventory_mode);</title></rect>
-<rect width="12" height="12" x="405" y="90" class="known"><title>void __cdecl Construct_Inventory(void);</title></rect>
-<rect width="12" height="12" x="420" y="90" class="known"><title>void __cdecl SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
-<rect width="12" height="12" x="435" y="90" class="known"><title>int32_t __cdecl AnimateInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
-<rect width="12" height="12" x="450" y="90" class="known"><title>void __cdecl DrawInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="12" height="12" x="390" y="90" class="known"><title>int32_t __cdecl Inv_Display(int32_t inventory_mode);</title></rect>
+<rect width="12" height="12" x="405" y="90" class="decompiled"><title>void __cdecl Inv_Construct(void);</title></rect>
+<rect width="12" height="12" x="420" y="90" class="known"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="12" height="12" x="435" y="90" class="known"><title>int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="12" height="12" x="450" y="90" class="known"><title>void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="12" height="12" x="465" y="90" class="known"><title>int32_t __cdecl GetDebouncedInput(int32_t input);</title></rect>
-<rect width="12" height="12" x="480" y="90" class="known"><title>void __cdecl DoInventoryPicture(void);</title></rect>
-<rect width="12" height="12" x="495" y="90" class="known"><title>void __cdecl DoInventoryBackground(void);</title></rect>
+<rect width="12" height="12" x="480" y="90" class="known"><title>void __cdecl Inv_DoInventoryPicture(void);</title></rect>
+<rect width="12" height="12" x="495" y="90" class="known"><title>void __cdecl Inv_DoInventoryBackground(void);</title></rect>
 <rect width="12" height="12" x="510" y="90" class="known"><title>void __cdecl InitColours(void);</title></rect>
 <rect width="12" height="12" x="525" y="90" class="known"><title>void __cdecl RingIsOpen(RING_INFO *ring);</title></rect>
 <rect width="12" height="12" x="540" y="90" class="known"><title>void __cdecl RingIsNotOpen(RING_INFO *ring);</title></rect>
@@ -1299,16 +1299,16 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">33.07%</tspan> · <tspan class="known">66.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">33.17%</tspan> · <tspan class="known">66.50%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="247.04" height="6" x="0" y="0" class="decompiled"/>
-<rect width="497.52" height="6" x="247.04" y="0" class="known"/>
+<rect width="247.79" height="6" x="0" y="0" class="decompiled"/>
+<rect width="496.77" height="6" x="247.79" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
 <rect width="58" height="69.33" x="0" y="0" class="decompiled"><title>void __cdecl Output_WGTMapPersp32FP(int32_t y1, int32_t y2, uint8_t *tex_page);</title></rect>
-<rect width="58" height="58.37" x="0" y="72.33" class="known"><title>int32_t __cdecl Display_Inventory(int32_t inventory_mode);</title></rect>
+<rect width="58" height="58.37" x="0" y="72.33" class="known"><title>int32_t __cdecl Inv_Display(int32_t inventory_mode);</title></rect>
 <rect width="58" height="53.54" x="0" y="133.70" class="known"><title>void __cdecl BaddyObjects(void);</title></rect>
 <rect width="58" height="51.94" x="0" y="190.24" class="decompiled"><title>void __cdecl Output_GTMapPersp32FP(int32_t y1, int32_t y2, uint8_t *tex_page);</title></rect>
 <rect width="58" height="42.31" x="0" y="245.18" class="known"><title>void __cdecl Lara_Draw(ITEM_INFO *item);</title></rect>
@@ -1364,7 +1364,7 @@
 <rect width="27.61" height="25.90" x="208.67" y="179.25" class="known"><title>void __cdecl Worker2Control(int16_t item_num);</title></rect>
 <rect width="27.61" height="25.77" x="208.67" y="208.16" class="known"><title>void __cdecl ShowEndStatsText(void);</title></rect>
 <rect width="27.61" height="25.69" x="208.67" y="236.92" class="decompiled"><title>int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx);</title></rect>
-<rect width="27.61" height="25.55" x="208.67" y="265.61" class="known"><title>void __cdecl DrawInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="27.61" height="25.55" x="208.67" y="265.61" class="known"><title>void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="27.61" height="25.06" x="208.67" y="294.16" class="known"><title>void __cdecl Cult2Control(int16_t item_num);</title></rect>
 <rect width="27.61" height="24.98" x="208.67" y="322.23" class="known"><title>void __cdecl Bandit2Control(int16_t item_num);</title></rect>
 <rect width="27.61" height="24.79" x="208.67" y="350.21" class="known"><title>void __cdecl Cult1Control(int16_t item_num);</title></rect>
@@ -1580,7 +1580,7 @@
 <rect width="14.26" height="13.84" x="732.74" y="59.39" class="known"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="14.52" height="13.49" x="448.61" y="76.23" class="known"><title>void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.31" height="13.49" x="466.13" y="76.23" class="decompiled"><title>void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="14.21" height="13.49" x="483.44" y="76.23" class="known"><title>void __cdecl Construct_Inventory(void);</title></rect>
+<rect width="14.21" height="13.49" x="483.44" y="76.23" class="decompiled"><title>void __cdecl Inv_Construct(void);</title></rect>
 <rect width="14.16" height="13.49" x="500.66" y="76.23" class="known"><title>void __cdecl SpikeCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);</title></rect>
 <rect width="14.16" height="13.49" x="517.82" y="76.23" class="known"><title>void __cdecl DartsControl(int16_t item_num);</title></rect>
 <rect width="14.11" height="13.49" x="534.98" y="76.23" class="decompiled"><title>void __cdecl Camera_Shift(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom);</title></rect>
@@ -1617,7 +1617,7 @@
 <rect width="13.41" height="12.58" x="465.10" y="92.72" class="decompiled"><title>void __cdecl Output_InsertSkybox(const int16_t *obj_ptr);</title></rect>
 <rect width="13.35" height="12.58" x="481.50" y="92.72" class="decompiled"><title>void __cdecl Output_InsertLine_ZBuffered(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>
 <rect width="13.30" height="12.58" x="497.85" y="92.72" class="decompiled"><title>void __cdecl Overlay_DrawAmmoInfo(void);</title></rect>
-<rect width="13.30" height="12.58" x="514.15" y="92.72" class="known"><title>void __cdecl DoInventoryBackground(void);</title></rect>
+<rect width="13.30" height="12.58" x="514.15" y="92.72" class="known"><title>void __cdecl Inv_DoInventoryBackground(void);</title></rect>
 <rect width="13.25" height="12.58" x="530.45" y="92.72" class="decompiled"><title>int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);</title></rect>
 <rect width="13.19" height="12.58" x="546.69" y="92.72" class="decompiled"><title>int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="13.03" height="12.58" x="562.89" y="92.72" class="known"><title>void __cdecl DrawSphereOfDoom(ITEM_INFO *item);</title></rect>
@@ -1905,7 +1905,7 @@
 <rect width="7.66" height="7.74" x="567.89" y="250.51" class="known"><title>BOOL __cdecl LoadDemo(HANDLE handle);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="261.25" class="known"><title>INT_PTR __stdcall SE_OptionsDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="271.99" class="decompiled"><title>void __cdecl Bird_Initialise(int16_t item_num);</title></rect>
-<rect width="7.66" height="7.66" x="567.89" y="282.65" class="known"><title>void __cdecl SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="7.66" height="7.66" x="567.89" y="282.65" class="known"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="293.32" class="decompiled"><title>void __cdecl Lara_ResetLook(void);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="303.98" class="decompiled"><title>void __cdecl Lara_State_TurnLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="314.64" class="known"><title>void __cdecl S_OutputPolyList(void);</title></rect>
@@ -1927,7 +1927,7 @@
 <rect width="7.59" height="7.19" x="686.68" y="196.57" class="known"><title>void __cdecl ControlBlood1(int16_t fx_num);</title></rect>
 <rect width="7.59" height="7.19" x="697.28" y="196.57" class="known"><title>void __cdecl Init_Requester(REQUEST_INFO *req);</title></rect>
 <rect width="7.59" height="7.19" x="707.87" y="196.57" class="known"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
-<rect width="7.51" height="7.19" x="718.46" y="196.57" class="known"><title>int32_t __cdecl AnimateInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="7.51" height="7.19" x="718.46" y="196.57" class="known"><title>int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="7.51" height="7.19" x="728.98" y="196.57" class="known"><title>void __cdecl RingIsNotOpen(RING_INFO *ring);</title></rect>
 <rect width="7.51" height="7.19" x="739.49" y="196.57" class="known"><title>int32_t __cdecl AddAssaultTime(uint32_t time);</title></rect>
 <rect width="7.43" height="7.27" x="578.55" y="206.76" class="decompiled"><title>void __cdecl Lara_Col_Stop(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -2510,7 +2510,7 @@
 <rect width="0.10" height="0.10" x="742.84" y="370.23" class="decompiled"><title>int32_t __fastcall Math_Cos(int16_t angle);</title></rect>
 <rect width="0.10" height="0.10" x="744.89" y="370.23" class="known"><title>void __cdecl flip_map_effect(ITEM_INFO *item);</title></rect>
 <rect width="0.10" height="0.10" x="746.59" y="370.23" class="known"><title>void __cdecl reset_hair(ITEM_INFO *item);</title></rect>
-<rect width="0.10" height="0.10" x="748.30" y="370.23" class="known"><title>void __cdecl DoInventoryPicture(void);</title></rect>
+<rect width="0.10" height="0.10" x="748.30" y="370.23" class="known"><title>void __cdecl Inv_DoInventoryPicture(void);</title></rect>
 <rect width="0.10" height="0.10" x="742.84" y="372.66" class="unused"><title>sub_444BB0</title></rect>
 <rect width="0.10" height="0.10" x="742.84" y="374.44" class="todo"><title>sub_4473A0</title></rect>
 <rect width="0.10" height="0.10" x="742.84" y="376.22" class="unused"><title>sub_447FA0</title></rect>

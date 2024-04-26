@@ -20,10 +20,12 @@
 #define g_CineTargetAngle (*(int16_t*)0x00464310) // = 0x4000
 #define g_OverlayStatus (*(int32_t*)0x004644E0) // = 1
 #define g_InvMainObjectsCount (*(int16_t*)0x004654E0) // = 8
+#define g_Inv_MainList (*(INVENTORY_ITEM **)0x00465518)
 #define g_InvOptionObjectsCount (*(int16_t*)0x00465604) // = 4
+#define g_Inv_OptionList (*(INVENTORY_ITEM **)0x00465608)
 #define g_GymInvOpenEnabled (*(BOOL*)0x00465618) // = TRUE
 #define g_InventoryChosen (*(int16_t*)0x00465A50) // = -1
-#define g_InventoryMode (*(enum INVENTORY_MODE*)0x00465A54) // = INV_TITLE_MODE
+#define g_InventoryMode (*(INVENTORY_MODE*)0x00465A54) // = INV_TITLE_MODE
 #define g_OptionSoundVolume (*(int16_t*)0x00465A5C) // = 165
 #define g_OptionMusicVolume (*(int16_t*)0x00465A60) // = 255
 #define g_JumpPermitted (*(int32_t*)0x00465AD4) // = 1

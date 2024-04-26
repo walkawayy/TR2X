@@ -351,7 +351,7 @@ bool __cdecl S_Input_Update(void)
     }
 
     if (!g_IsVidSizeLock && g_Camera.type != CAM_CINEMATIC
-        && !(g_GameFlow.flags & GFF_SCREEN_SIZING_DISABLED)) {
+        && !(g_GameFlow.screen_sizing_disabled)) {
         APP_SETTINGS new_settings = g_SavedAppSettings;
 
         // decrease resolution or BPP (F1)
@@ -442,7 +442,7 @@ bool __cdecl S_Input_Update(void)
         }
     }
 
-    if (!(g_GameFlow.flags & GFF_LOAD_SAVE_DISABLED)) {
+    if (!g_GameFlow.load_save_disabled) {
         if (KEY_DOWN(DIK_F5)) {
             input |= IN_SAVE;
         } else if (KEY_DOWN(DIK_F6)) {

@@ -116,7 +116,7 @@ BOOL __cdecl Shell_Main(void)
 
         case GFD_EXIT_TO_TITLE:
         case GFD_EXIT_TO_OPTION:
-            if (g_GameFlow.flags & GFF_TITLE_DISABLED) {
+            if (g_GameFlow.title_disabled) {
                 if (g_GameFlow.title_replace < 0
                     || g_GameFlow.title_replace == GFD_EXIT_TO_TITLE) {
                     strcpy(

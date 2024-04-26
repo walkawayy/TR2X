@@ -687,6 +687,15 @@ typedef struct {
 } PICKUP_INFO;
 
 typedef struct {
+    int16_t shape;
+    XYZ_16 pos;
+    int32_t param1;
+    int32_t param2;
+    void *grdptr;
+    int16_t sprite_num;
+} INVENTORY_SPRITE;
+
+typedef struct {
     char *string;
     int16_t obj_num;
     int16_t frames_total;
@@ -699,22 +708,19 @@ typedef struct {
     int16_t x_rot_pt_sel;
     int16_t x_rot_pt;
     int16_t x_rot_sel;
+    int16_t x_rot_nosel;
     int16_t x_rot;
     int16_t y_rot_sel;
     int16_t y_rot;
-    int16_t z_rot;
     int32_t y_trans_sel;
     int32_t y_trans;
     int32_t z_trans_sel;
     int32_t z_trans;
-    int32_t meshes_sel;
-    int32_t meshes_drawn;
+    uint32_t meshes_sel;
+    uint32_t meshes_drawn;
     int16_t inv_pos;
-    void *sprites;
-    uint32_t reserved1;
-    uint32_t reserved2;
-    uint32_t reserved3;
-    uint32_t reserved4;
+    INVENTORY_SPRITE **sprites;
+    int32_t reserved[4];
 } INVENTORY_ITEM;
 
 typedef enum {
@@ -930,23 +936,6 @@ typedef enum {
 } GAME_FLOW_DIR;
 // clang-format on
 
-// clang-format off
-typedef enum {
-    GFF_DEMO_VERSION              = 0x0001,
-    GFF_TITLE_DISABLED            = 0x0002,
-    GFF_CHEAT_MODE_CHECK_DISABLED = 0x0004,
-    GFF_NO_INPUT_TIMEOUT          = 0x0008,
-    GFF_LOAD_SAVE_DISABLED        = 0x0010,
-    GFF_SCREEN_SIZING_DISABLED    = 0x0020,
-    GFF_LOCKOUT_OPTION_RING       = 0x0040,
-    GFF_DOZY_CHEAT_ENABLED        = 0x0080,
-    GFF_USE_SECURITY_TAG          = 0x0100,
-    GFF_GYM_ENABLED               = 0x0200,
-    GFF_SELECT_ANY_LEVEL          = 0x0400,
-    GFF_ENABLE_CHEAT_CODE         = 0x0800,
-} GAME_FLOW_FLAG;
-// clang-format on
-
 typedef struct {
     int32_t first_option;
     int32_t title_replace;
@@ -965,7 +954,22 @@ typedef struct {
     uint16_t title_track;
     int16_t single_level;
     uint16_t reserved2[16];
-    uint16_t flags;
+
+    // clang-format off
+    uint16_t demo_version : 1;              // 0x0001
+    uint16_t title_disabled : 1;            // 0x0002
+    uint16_t cheat_mode_check_disabled : 1; // 0x0004
+    uint16_t no_input_timeout : 1;          // 0x0008
+    uint16_t load_save_disabled : 1;        // 0x0010
+    uint16_t screen_sizing_disabled : 1;    // 0x0020
+    uint16_t lockout_option_ring : 1;       // 0x0040
+    uint16_t dozy_cheat_enabled : 1;        // 0x0080
+    uint16_t cyphered_strings : 1;          // 0x0100
+    uint16_t gym_enabled : 1;               // 0x0200
+    uint16_t play_any_level : 1;            // 0x0400
+    uint16_t cheat_enable : 1;              // 0x0800
+    // clang-format on
+
     uint16_t reserved3[3];
     uint8_t cypher_code;
     uint8_t language;

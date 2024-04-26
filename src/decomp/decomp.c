@@ -419,7 +419,7 @@ int16_t __cdecl TitleSequence(void)
         Music_Play(g_GameFlow.title_track, 1);
     }
 
-    Display_Inventory(INV_TITLE_MODE);
+    Inv_Display(INV_TITLE_MODE);
 
     S_FadeToBlack();
     S_DontDisplayPicture();
@@ -446,7 +446,7 @@ int16_t __cdecl TitleSequence(void)
         if (g_InventoryExtraData[0] == 1) {
             InitialiseStartInfo();
             int32_t level_id = LV_FIRST;
-            if ((g_GameFlow.flags & GFF_SELECT_ANY_LEVEL) != 0) {
+            if (g_GameFlow.play_any_level) {
                 level_id = LV_FIRST + slot_num;
             }
             return GFD_START_GAME | level_id;

@@ -6,6 +6,7 @@
 #include "game/creature.h"
 #include "game/effects.h"
 #include "game/input.h"
+#include "game/inventory.h"
 #include "game/items.h"
 #include "game/lara/lara_col.h"
 #include "game/lara/lara_control.h"
@@ -46,6 +47,7 @@ static void Inject_Random(void);
 static void Inject_Items(void);
 static void Inject_Effects(void);
 static void Inject_LOS(void);
+static void Inject_Inventory(void);
 static void Inject_Lara_Look(void);
 static void Inject_Lara_Misc(void);
 static void Inject_Lara_State(void);
@@ -356,6 +358,11 @@ static void Inject_LOS(void)
     INJECT(1, 0x00416340, LOS_CheckSmashable);
 }
 
+static void Inject_Inventory(void)
+{
+    INJECT(1, 0x00423310, Inv_Construct);
+}
+
 static void Inject_Lara_Control(void)
 {
     INJECT(1, 0x00427580, Lara_HandleAboveWater);
@@ -622,6 +629,7 @@ void Inject_Exec(void)
     Inject_Items();
     Inject_Effects();
     Inject_LOS();
+    Inject_Inventory();
     Inject_Lara_Control();
     Inject_Lara_Look();
     Inject_Lara_Misc();

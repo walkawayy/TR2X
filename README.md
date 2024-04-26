@@ -1,6 +1,6 @@
 <p align="center">
-<img alt="TR2X logo" src="tools/resources/logo-light-theme.png#gh-light-mode-only" width="400"/>
-<img alt="TR2X logo" src="tools/resources/logo-dark-theme.png#gh-dark-mode-only" width="400"/>
+<img alt="TR2X logo" src="data/logo-light-theme.png#gh-light-mode-only" width="400"/>
+<img alt="TR2X logo" src="data/logo-dark-theme.png#gh-dark-mode-only" width="400"/>
 </p>
 
 TR2X is an open-source decompilation project for Tomb Raider 2, created as a

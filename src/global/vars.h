@@ -6,6 +6,8 @@
 #include "inject_util.h"
 
 // clang-format off
+
+extern const char *g_TR2XVersion;
 #define g_IID_IDirectDrawSurface3 (*(GUID*)0x00463150)
 #define g_PerspectiveDistance (*(uint32_t*)0x00464060) // = 0x3000000
 #define g_PolyDrawRoutines (*((void(__cdecl  *(*)[9])(const int16_t *))0x00464068))

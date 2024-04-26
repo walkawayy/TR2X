@@ -34,7 +34,7 @@ class Symbol:
 
     @property
     def offset_str(self) -> str:
-        return f'0x{self.offset:08X}'
+        return f"0x{self.offset:08X}"
 
 
 @dataclass
@@ -128,7 +128,7 @@ def make_var_pointer_define(variable: Symbol) -> str:
         func_name = match.group("func_name")
         args = match.group("args")
         if array_def:
-            return f'#define {func_name} (*(({ret_type}({call_type} *(*){array_def})({args})){variable.offset_str}))'
+            return f"#define {func_name} (*(({ret_type}({call_type} *(*){array_def})({args})){variable.offset_str}))"
         else:
             return f"#define {func_name} (*({ret_type}({call_type}**)({args})){variable.offset_str})"
 
@@ -148,7 +148,7 @@ def make_var_pointer_define(variable: Symbol) -> str:
         array_def = match.group("array_def")
         value_def = match.group("value_def")
         comment = match.group("comment")
-        if not array_def and not value_def and comment == 'no-dereferencing':
+        if not array_def and not value_def and comment == "no-dereferencing":
             return f"#define {var_name} (({ret_type}){variable.offset_str})"
         if array_def:
             return f"#define {var_name} (*({ret_type}(*){array_def}){variable.offset_str})"
@@ -157,7 +157,7 @@ def make_var_pointer_define(variable: Symbol) -> str:
         else:
             return f"#define {var_name} (*({ret_type}*){variable.offset_str})"
 
-    print('warn: unrecognized signature', variable.signature)
+    print("warn: unrecognized signature", variable.signature)
     return ""
 
 
@@ -187,6 +187,7 @@ def make_vars_h(variables: list[Symbol]) -> None:
         '#include "inject_util.h"',
         "",
         "// clang-format off",
+        "extern const char *g_TR2XVersion;",
     ]
     footer = ["// clang-format on"]
 

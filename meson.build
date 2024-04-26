@@ -60,12 +60,12 @@ if host_machine.system() == 'windows'
 endif
 
 exe_sources = [
-  init,
   'src/main_exe.c',
   exe_resources,
 ]
 
 dll_sources = [
+  init,
   'src/decomp/decomp.c',
   'src/filesystem.c',
   'src/game/box.c',
@@ -92,6 +92,7 @@ dll_sources = [
   'src/game/shell.c',
   'src/game/sound.c',
   'src/game/text.c',
+  'src/global/vars.c',
   'src/inject_exec.c',
   'src/inject_util.c',
   'src/lib/winmm.c',

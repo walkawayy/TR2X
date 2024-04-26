@@ -1,8 +1,15 @@
 #include "game/inventory.h"
 
+#include "game/text.h"
+#include "global/const.h"
 #include "global/funcs.h"
 #include "global/types.h"
 #include "global/vars.h"
+
+#define TITLE_RING_OBJECTS 3
+#define OPTION_RING_OBJECTS 3
+
+static TEXTSTRING *m_VersionText = NULL;
 
 void __cdecl Inv_Construct(void)
 {
@@ -20,13 +27,23 @@ void __cdecl Inv_Construct(void)
     g_IsInventoryActive = 1;
     g_InventoryChosen = 0;
 
-    for (int i = 0; i < 8; i++) {
-        g_InventoryExtraData[i] = 0;
+    if (g_InventoryMode == INV_TITLE_MODE) {
+        g_InvOptionObjectsCount = TITLE_RING_OBJECTS;
+        if (g_GameFlow.gym_enabled) {
+            g_InvOptionObjectsCount++;
+        }
+        m_VersionText = Text_Create(-20, -18, 0, g_TR2XVersion);
+        Text_AlignRight(m_VersionText, 1);
+        Text_AlignBottom(m_VersionText, 1);
+        Text_SetScale(m_VersionText, PHD_ONE * 0.5, PHD_ONE * 0.5);
+    } else {
+        g_InvOptionObjectsCount = OPTION_RING_OBJECTS;
+        Text_Remove(m_VersionText);
+        m_VersionText = NULL;
     }
 
-    g_InvOptionObjectsCount = 3; // TODO: don't hardcode me
-    if (g_InventoryMode == INV_TITLE_MODE && g_GameFlow.gym_enabled) {
-        g_InvOptionObjectsCount++;
+    for (int i = 0; i < 8; i++) {
+        g_InventoryExtraData[i] = 0;
     }
 
     for (int32_t i = 0; i < g_InvMainObjectsCount; i++) {

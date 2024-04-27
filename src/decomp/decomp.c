@@ -159,12 +159,12 @@ void __cdecl ScreenshotPCX(void)
 }
 
 size_t __cdecl CompPCX(
-    uint8_t *bitmap, int32_t width, int32_t height, RGB888 *palette,
+    uint8_t *bitmap, int32_t width, int32_t height, RGB_888 *palette,
     uint8_t **pcx_data)
 {
     *pcx_data = (uint8_t *)GlobalAlloc(
         GMEM_FIXED,
-        sizeof(PCX_HEADER) + sizeof(RGB888) * 256 + width * height * 2);
+        sizeof(PCX_HEADER) + sizeof(RGB_888) * 256 + width * height * 2);
     if (*pcx_data == NULL) {
         return 0;
     }
@@ -196,7 +196,7 @@ size_t __cdecl CompPCX(
         *pic_data++ = palette[i].blue;
     }
 
-    return pic_data - *pcx_data + sizeof(RGB888) * 256;
+    return pic_data - *pcx_data + sizeof(RGB_888) * 256;
 }
 
 size_t __cdecl EncodeLinePCX(

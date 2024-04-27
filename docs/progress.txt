@@ -209,7 +209,7 @@ typedef struct __unaligned {
     uint8_t red;
     uint8_t green;
     uint8_t blue;
-} RGB888;
+} RGB_888;
 
 typedef struct __unaligned {
     DWORD dwRBitMask;
@@ -1957,7 +1957,7 @@ typedef struct __unaligned {
     uint16_t y_max;
     uint16_t h_dpi;
     uint16_t v_dpi;
-    RGB888 palette[16];
+    RGB_888 palette[16];
     uint8_t reserved;
     uint8_t planes;
     uint16_t bytes_per_line;
@@ -2888,8 +2888,8 @@ typedef struct __unaligned {
 00443050    000002CA    -R      void __cdecl GiantYetiControl(int16_t item_num);
 00443350    000005ED    -R      void __cdecl YetiControl(int16_t item_num);
 
-00443990    000001B8    -R      void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB888 *palette);
-00443B50    000000B9    -R      int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB888 *bmp_pal);
+00443990    000001B8    -R      void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);
+00443B50    000000B9    -R      int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);
 00443C10    00000032    -R      void __cdecl BGND_GetPageHandles(void);
 00443C50    0000005F    -R      void __cdecl BGND_DrawInGameBlack(void);
 00443CB0    000000DC    -R      void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);
@@ -3110,7 +3110,7 @@ typedef struct __unaligned {
 0044D250    00000082    *R      void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);
 0044D2E0    00000016    -R      void __cdecl HWR_BeginScene(void);
 0044D310    0000016C    -R      void __cdecl HWR_DrawPolyList(void);
-0044D490    0000008E    -R      void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB888 *palette);
+0044D490    0000008E    -R      void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);
 0044D520    0000004A    -R      void __cdecl HWR_FreeTexturePages(void);
 0044D570    00000035    -R      void __cdecl HWR_GetPageHandles(void);
 0044D5B0    00000019    -R      bool __cdecl HWR_VertexBufferFull(void);
@@ -3135,7 +3135,7 @@ typedef struct __unaligned {
 0044E880    00000010    xR      sub_44E880
 0044E890    0000003C    +       void __cdecl Shell_ExitSystem(const char *message);
 0044E8E0    0000010F    +R      void __cdecl ScreenshotPCX(void);
-0044E9F0    000000AE    +R      DWORD __cdecl CompPCX(BYTE *bitmap, DWORD width, DWORD height, RGB888 *palette, BYTE **pcx_data);
+0044E9F0    000000AE    +R      DWORD __cdecl CompPCX(BYTE *bitmap, DWORD width, DWORD height, RGB_888 *palette, BYTE **pcx_data);
 0044EAA0    000000D2    +R      DWORD __cdecl EncodeLinePCX(BYTE *src, DWORD width, BYTE *dst);
 0044EB80    0000003E    +R      DWORD __cdecl EncodePutPCX(BYTE value, BYTE num, BYTE *buffer);
 0044EBC0    000001F5    +R      void __cdecl Screenshot(LPDDS screen);
@@ -3175,11 +3175,11 @@ typedef struct __unaligned {
 00451F70    0000001C    *R      void __cdecl S_DontDisplayPicture(void);
 00451F80    0000000D    -R      void __cdecl ScreenDump(void);
 00451F90    00000010    -R      void __cdecl ScreenPartialDump(void);
-00451FA0    000001C9    *R      void __cdecl FadeToPal(int32_t fade_value, RGB888 *palette);
+00451FA0    000001C9    *R      void __cdecl FadeToPal(int32_t fade_value, RGB_888 *palette);
 00452170    00000026    -R      void __cdecl ScreenClear(bool is_phd_win_size);
 004521A0    000000AB    -R      void __cdecl S_CopyScreenToBuffer(void);
 00452250    00000254    *R      void __cdecl S_CopyBufferToScreen(void);
-004522A0    000000FA    -R      BOOL __cdecl DecompPCX(const uint8_t *pcx, size_t pcx_size, LPBYTE pic, RGB888 *pal);
+004522A0    000000FA    -R      BOOL __cdecl DecompPCX(const uint8_t *pcx, size_t pcx_size, LPBYTE pic, RGB_888 *pal);
 004523A0    00000005    -R      sub_4523A0
 004523B0    00000001    -R      sub_4523B0
 004523C0    0000004E    -R      bool __cdecl OpenGameRegistryKey(LPCTSTR key);
@@ -3239,10 +3239,10 @@ typedef struct __unaligned {
 004555B0    00000084    +       bool __cdecl Music_PlaySynced(int32_t track_id);
 00455640    00000061    +       int32_t __cdecl Music_GetFrames(void);
 004556B0    00000092    +       void __cdecl Music_SetVolume(int32_t volume);
-004557A0    00000137    -R      void __cdecl CopyBitmapPalette(RGB888 *src_pal, BYTE *src_bitmap, int32_t bitmap_size, RGB888 *dest_pal);
-004558E0    000000C8    -R      BYTE __cdecl FindNearestPaletteEntry(RGB888 *palette, int32_t red, int32_t green, int32_t blue, bool ignore_sys_palette);
-004559B0    000000AE    -R      void __cdecl SyncSurfacePalettes(void *src_data, int32_t width, int32_t height, int32_t src_pitch, RGB888 *src_palette, void *dst_data, int32_t dst_pitch, RGB888 *dst_palette, bool preserve_sys_palette);
-00455A60    00000087    -R      int32_t __cdecl CreateTexturePalette(RGB888 *pal);
+004557A0    00000137    -R      void __cdecl CopyBitmapPalette(RGB_888 *src_pal, BYTE *src_bitmap, int32_t bitmap_size, RGB_888 *dest_pal);
+004558E0    000000C8    -R      BYTE __cdecl FindNearestPaletteEntry(RGB_888 *palette, int32_t red, int32_t green, int32_t blue, bool ignore_sys_palette);
+004559B0    000000AE    -R      void __cdecl SyncSurfacePalettes(void *src_data, int32_t width, int32_t height, int32_t src_pitch, RGB_888 *src_palette, void *dst_data, int32_t dst_pitch, RGB_888 *dst_palette, bool preserve_sys_palette);
+00455A60    00000087    -R      int32_t __cdecl CreateTexturePalette(RGB_888 *pal);
 00455AF0    0000001C    -R      int32_t __cdecl GetFreePaletteIndex(void);
 00455B10    00000023    -R      void __cdecl FreePalette(int32_t palette_idx);
 00455B40    00000012    -R      void __cdecl SafeFreePalette(int32_t palette_idx);
@@ -3557,7 +3557,7 @@ typedef struct __unaligned {
 0051A240    -       int32_t g_ScreenshotCounter;
 0051B918    -       RECT g_PhdWinRect;
 0051B928    -       int32_t g_HiRes;
-0051B930    -       RGB888 g_GamePalette8[256];
+0051B930    -       RGB_888 g_GamePalette8[256];
 0051BCC0    -       APP_SETTINGS g_SavedAppSettings;
 0051BD20    -       char g_ErrorMessage[128];
 0051BDA8    -       int32_t g_MasterVolume;

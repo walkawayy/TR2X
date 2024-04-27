@@ -223,7 +223,7 @@ typedef struct __unaligned {
     uint8_t red;
     uint8_t green;
     uint8_t blue;
-} RGB888;
+} RGB_888;
 
 typedef struct __unaligned {
     DWORD dwRBitMask;
@@ -1971,7 +1971,7 @@ typedef struct __unaligned {
     uint16_t y_max;
     uint16_t h_dpi;
     uint16_t v_dpi;
-    RGB888 palette[16];
+    RGB_888 palette[16];
     uint8_t reserved;
     uint8_t planes;
     uint16_t bytes_per_line;

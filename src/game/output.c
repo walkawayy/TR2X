@@ -3229,7 +3229,7 @@ void __cdecl Output_InsertFlatRect_ZBuffered(
     const double rhw = g_RhwFactor / (double)z;
     const double sz = g_FltResZBuf - rhw * g_FltResZORhw;
 
-    const RGB888 *const color = &g_GamePalette8[color_idx];
+    const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
         Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
@@ -3266,7 +3266,7 @@ void __cdecl Output_InsertLine_ZBuffered(
     const double rhw = g_RhwFactor / (double)z;
     const double sz = g_FltResZBuf - rhw * g_FltResZORhw;
 
-    const RGB888 *const color = &g_GamePalette8[color_idx];
+    const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
         Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
@@ -3834,7 +3834,7 @@ void __cdecl Output_InsertFlatRect_Sorted(
     *(D3DTLVERTEX **)g_Info3DPtr = g_HWR_VertexPtr;
     g_Info3DPtr += sizeof(D3DTLVERTEX *) / sizeof(int16_t);
 
-    const RGB888 *const color = &g_GamePalette8[color_idx];
+    const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
         Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
@@ -3860,7 +3860,7 @@ void __cdecl Output_InsertLine_Sorted(
     const int32_t x1, const int32_t y1, const int32_t x2, const int32_t y2,
     int32_t z, const uint8_t color_idx)
 {
-    const RGB888 *const color = &g_GamePalette8[color_idx];
+    const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
         Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
 

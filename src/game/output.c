@@ -47,6 +47,7 @@ static D3DCOLOR Output_ShadeColor(
 
 static D3DCOLOR Output_ShadeLight(uint32_t shade)
 {
+    CLAMPG(shade, 0x1FFF);
     uint32_t value = (0x1FFF - shade) >> 4;
     CLAMPG(value, 0xFF);
     return Output_ShadeColor(value, value, value, 0xFF);
@@ -55,10 +56,14 @@ static D3DCOLOR Output_ShadeLight(uint32_t shade)
 static D3DCOLOR Output_ShadeLightColor(
     uint32_t shade, uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha)
 {
+    CLAMPG(shade, 0x1FFF);
     shade = 0x1FFF - shade;
     red = (red * shade) >> 12;
     green = (green * shade) >> 12;
     blue = (blue * shade) >> 12;
+    CLAMPG(red, 0xFF);
+    CLAMPG(green, 0xFF);
+    CLAMPG(blue, 0xFF);
     return Output_ShadeColor(red, green, blue, alpha);
 }
 

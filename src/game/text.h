@@ -6,6 +6,7 @@ void __cdecl Text_Init(void);
 TEXTSTRING *__cdecl Text_Create(
     int32_t x, int32_t y, int32_t z, const char *string);
 void __cdecl Text_ChangeText(TEXTSTRING *string, const char *text);
+void __cdecl Text_SetPos(TEXTSTRING *string, int16_t x, int16_t y);
 void __cdecl Text_SetScale(
     TEXTSTRING *string, int32_t scale_h, int32_t scale_v);
 void __cdecl Text_Flash(TEXTSTRING *string, int16_t enable, int16_t rate);
@@ -22,8 +23,10 @@ void __cdecl Text_CentreH(TEXTSTRING *string, int16_t enable);
 void __cdecl Text_CentreV(TEXTSTRING *string, int16_t enable);
 void __cdecl Text_AlignRight(TEXTSTRING *string, int16_t enable);
 void __cdecl Text_AlignBottom(TEXTSTRING *string, int16_t enable);
+void __cdecl Text_SetMultiline(TEXTSTRING *textstring, bool enable);
 int32_t __cdecl Text_Remove(TEXTSTRING *string);
 int32_t __cdecl Text_GetWidth(TEXTSTRING *string);
+int32_t __cdecl Text_GetHeight(const TEXTSTRING *string);
 
 void __cdecl Text_Draw(void);
 void __cdecl Text_DrawBorder(

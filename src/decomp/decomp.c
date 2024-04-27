@@ -1,6 +1,7 @@
 #include "decomp/decomp.h"
 
 #include "game/camera.h"
+#include "game/console.h"
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/items.h"
@@ -391,6 +392,7 @@ int32_t __cdecl WinGameStart(void)
 
 void __cdecl Shell_Shutdown(void)
 {
+    Console_Shutdown();
     WinInFinish();
     S_Audio_Sample_Shutdown();
     RenderFinish(1);
@@ -579,6 +581,12 @@ bool __cdecl WinVidSpinMessageLoop(bool need_wait)
                 g_IsGameToExit = true;
                 g_StopInventory = true;
                 g_MessageLoopCounter--;
+                return 0;
+            } else if (msg.message == WM_KEYDOWN) {
+                Console_HandleKeyDown(msg.wParam);
+                return 0;
+            } else if (msg.message == WM_CHAR) {
+                Console_HandleChar(msg.wParam);
                 return 0;
             }
         }

@@ -3,6 +3,7 @@
 #include "global/types.h"
 
 void __cdecl Camera_Initialise(void);
+void __cdecl Camera_ResetPosition(void);
 void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed);
 void __cdecl Camera_Clip(
     int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y,

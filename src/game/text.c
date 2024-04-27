@@ -1,5 +1,6 @@
 #include "game/text.h"
 
+#include "game/console.h"
 #include "game/output.h"
 #include "game/overlay.h"
 #include "global/const.h"
@@ -10,6 +11,8 @@
 #include <assert.h>
 #include <string.h>
 
+#define TEXT_HEIGHT 24
+#define TEXT_Y_SPACING 3
 #define TEXT_MAX_STRINGS 64
 #define TEXT_MAX_STRING_SIZE 64
 #define CHAR_SECRET_1 0x7Fu
@@ -31,6 +34,12 @@ void __cdecl Text_Init(void)
         g_TextstringTable[i].flags.all = 0;
     }
     g_TextstringCount = 0;
+
+    // TODO: move me outta here!
+    // instead Text_Init should be only called once per game launch, and
+    // everyone should clean up after themselves rather than creating dangling
+    // pointers.
+    Console_Init();
 }
 
 TEXTSTRING *__cdecl Text_Create(
@@ -92,6 +101,15 @@ void __cdecl Text_ChangeText(TEXTSTRING *const string, const char *const text)
         strncpy(string->text, text, TEXT_MAX_STRING_SIZE);
         string->text[TEXT_MAX_STRING_SIZE - 1] = '\0';
     }
+}
+
+void __cdecl Text_SetPos(TEXTSTRING *const string, int16_t x, int16_t y)
+{
+    if (string == NULL) {
+        return;
+    }
+    string->pos.x = (x * Text_GetScaleH(PHD_ONE)) / PHD_ONE;
+    string->pos.y = (y * Text_GetScaleV(PHD_ONE)) / PHD_ONE;
 }
 
 void __cdecl Text_SetScale(
@@ -201,6 +219,14 @@ void __cdecl Text_AlignBottom(TEXTSTRING *const string, const int16_t enable)
     string->flags.bottom = enable;
 }
 
+void __cdecl Text_SetMultiline(TEXTSTRING *string, bool enable)
+{
+    if (string == NULL) {
+        return;
+    }
+    string->flags.multiline = enable;
+}
+
 int32_t __cdecl Text_Remove(TEXTSTRING *const string)
 {
     if (string == NULL) {
@@ -263,12 +289,29 @@ int32_t __cdecl Text_GetWidth(TEXTSTRING *const string)
     return ((int16_t)width - string->letter_spacing) & ~1;
 }
 
+int32_t Text_GetHeight(const TEXTSTRING *const string)
+{
+    int32_t height = TEXT_HEIGHT;
+    char *ptr = string->text;
+    if (!*ptr) {
+        return 0;
+    }
+    for (char letter = *ptr; *ptr; letter = *ptr++) {
+        if (string->flags.multiline && *ptr == '\n') {
+            height += TEXT_HEIGHT + TEXT_Y_SPACING;
+        }
+    }
+    return height * string->scale.v / PHD_ONE;
+}
+
 void __cdecl Text_Draw(void)
 {
+    // TODO: move me outta here!
+    Console_Draw();
     for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
-        TEXTSTRING *const textstring = &g_TextstringTable[i];
-        if (textstring->flags.active) {
-            Text_DrawText(textstring);
+        TEXTSTRING *const string = &g_TextstringTable[i];
+        if (string->flags.active) {
+            Text_DrawText(string);
         }
     }
 }
@@ -307,9 +350,6 @@ void __cdecl Text_DrawBorder(
 
 void __cdecl Text_DrawText(TEXTSTRING *const string)
 {
-    int16_t v14; // cx
-    int v15; // ebp
-
     int32_t box_w = 0;
     int32_t box_h = 0;
     const int32_t scale_h = Text_GetScaleH(string->scale.h);
@@ -344,12 +384,19 @@ void __cdecl Text_DrawText(TEXTSTRING *const string)
     int32_t box_x = x + string->bgnd_off.x - ((2 * scale_h) / PHD_ONE);
     int32_t box_y = y + string->bgnd_off.y - ((4 * scale_v) / PHD_ONE)
         - ((11 * scale_v) / PHD_ONE);
+    const int32_t start_x = x;
 
     const char *str = string->text;
     while (1) {
         const uint8_t c = *str++;
         if (!c) {
             break;
+        }
+
+        if (string->flags.multiline && c == '\n') {
+            y += (TEXT_HEIGHT + TEXT_Y_SPACING) * string->scale.v / PHD_ONE;
+            x = start_x;
+            continue;
         }
 
         if (!IS_CHAR_LEGAL(c)) {

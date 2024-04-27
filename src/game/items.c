@@ -1,5 +1,7 @@
 #include "game/items.h"
 
+#include "game/camera.h"
+#include "game/room.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -234,6 +236,32 @@ void __cdecl Item_ClearKilled(void)
         item->next_active = NO_ITEM;
     }
     g_PrevItemActive = NO_ITEM;
+}
+
+bool __cdecl Item_Teleport(ITEM_INFO *item, int32_t x, int32_t y, int32_t z)
+{
+    int16_t room_num = Room_GetIndexFromPos(x, y, z);
+    if (room_num == NO_ROOM) {
+        return false;
+    }
+    FLOOR_INFO *const floor = Room_GetFloor(x, y, z, &room_num);
+    const int16_t height = Room_GetHeight(floor, x, y, z);
+    if (height != NO_HEIGHT) {
+        item->pos.x = x;
+        item->pos.y = y;
+        item->pos.z = z;
+        item->floor = height;
+        if (item->room_num != room_num) {
+            const int16_t item_num = item - g_Items;
+            Item_NewRoom(item_num, room_num);
+        }
+
+        if (item->object_num == O_LARA) {
+            Camera_ResetPosition();
+        }
+        return true;
+    }
+    return false;
 }
 
 bool Item_IsSmashable(const ITEM_INFO *item)

@@ -12,6 +12,8 @@
 #include "global/vars.h"
 #include "util.h"
 
+#include <assert.h>
+
 #define CHASE_SPEED 10
 #define CHASE_ELEVATION (WALL_L * 3 / 2) // = 1536
 
@@ -26,6 +28,14 @@
 
 void __cdecl Camera_Initialise(void)
 {
+    Camera_ResetPosition();
+    Output_AlterFOV(GAME_FOV * PHD_DEGREE);
+    Camera_Update();
+}
+
+void __cdecl Camera_ResetPosition(void)
+{
+    assert(g_LaraItem);
     g_Camera.shift = g_LaraItem->pos.y - WALL_L;
 
     g_Camera.target.x = g_LaraItem->pos.x;
@@ -34,9 +44,9 @@ void __cdecl Camera_Initialise(void)
     g_Camera.target.room_num = g_LaraItem->room_num;
 
     g_Camera.pos.x = g_Camera.target.x;
-    g_Camera.pos.y = g_Camera.shift;
+    g_Camera.pos.y = g_Camera.target.y;
     g_Camera.pos.z = g_Camera.target.z - 100;
-    g_Camera.pos.room_num = g_LaraItem->room_num;
+    g_Camera.pos.room_num = g_Camera.target.room_num;
 
     g_Camera.target_distance = WALL_L * 3 / 2;
     g_Camera.item = NULL;
@@ -51,9 +61,6 @@ void __cdecl Camera_Initialise(void)
     g_Camera.bounce = 0;
     g_Camera.num = NO_CAMERA;
     g_Camera.fixed_camera = 0;
-
-    Output_AlterFOV(GAME_FOV * PHD_DEGREE);
-    Camera_Update();
 }
 
 void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed)

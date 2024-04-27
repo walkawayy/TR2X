@@ -362,6 +362,7 @@ static void Inject_Inventory(void)
 {
     INJECT(1, 0x00422080, Inv_Display);
     INJECT(1, 0x00423310, Inv_Construct);
+    INJECT(1, 0x00423470, Inv_SelectMeshes);
 }
 
 static void Inject_Lara_Control(void)

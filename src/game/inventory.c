@@ -713,3 +713,40 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
     }
     return 0;
 }
+
+void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *const inv_item)
+{
+    switch (inv_item->obj_num) {
+    case O_PASSPORT_OPTION:
+        if (inv_item->current_frame < 4) {
+            inv_item->meshes_drawn = PM_COMMON | PM_IN_FRONT;
+        } else if (inv_item->current_frame <= 16) {
+            inv_item->meshes_drawn = PM_COMMON | PM_IN_FRONT | PM_PAGE_1;
+        } else if (inv_item->current_frame < 19) {
+            inv_item->meshes_drawn =
+                PM_COMMON | PM_IN_FRONT | PM_PAGE_1 | PM_PAGE_2;
+        } else if (inv_item->current_frame == 19) {
+            inv_item->meshes_drawn = PM_COMMON | PM_PAGE_1 | PM_PAGE_2;
+        } else if (inv_item->current_frame < 24) {
+            inv_item->meshes_drawn =
+                PM_COMMON | PM_IN_BACK | PM_PAGE_1 | PM_PAGE_2;
+        } else if (inv_item->current_frame < 29) {
+            inv_item->meshes_drawn = PM_COMMON | PM_IN_BACK | PM_PAGE_2;
+        } else if (inv_item->current_frame == 29) {
+            inv_item->meshes_drawn = PM_COMMON;
+        }
+        break;
+
+    case O_COMPASS_OPTION:
+        if (inv_item->current_frame == 0 || inv_item->current_frame >= 18) {
+            inv_item->meshes_drawn = inv_item->meshes_sel;
+        } else {
+            inv_item->meshes_drawn = -1;
+        }
+        break;
+
+    default:
+        inv_item->meshes_drawn = -1;
+        break;
+    }
+}

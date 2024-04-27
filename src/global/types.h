@@ -765,6 +765,19 @@ typedef struct {
     int32_t misc;
 } IMOTION_INFO;
 
+// clang-format off
+typedef enum {
+    PM_SPINE    = 1,
+    PM_FRONT    = 2,
+    PM_IN_FRONT = 4,
+    PM_PAGE_2   = 8,
+    PM_BACK     = 16,
+    PM_IN_BACK  = 32,
+    PM_PAGE_1   = 64,
+    PM_COMMON   = PM_SPINE | PM_BACK | PM_FRONT,
+} PASS_MESH;
+// clang-format on
+
 typedef struct {
     INVENTORY_ITEM **list;
     int16_t type;

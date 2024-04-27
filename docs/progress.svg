@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.78% (448)</tspan> · <tspan class="known">60.76% (740)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.86% (449)</tspan> · <tspan class="known">60.67% (739)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="274.76" height="6" x="0" y="0" class="decompiled"/>
-<rect width="453.84" height="6" x="274.76" y="0" class="known"/>
+<rect width="275.37" height="6" x="0" y="0" class="decompiled"/>
+<rect width="453.23" height="6" x="275.37" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -405,7 +405,7 @@
 <rect width="12" height="12" x="375" y="90" class="decompiled"><title>void __cdecl Overlay_DrawModeInfo(void);</title></rect>
 <rect width="12" height="12" x="390" y="90" class="decompiled"><title>int32_t __cdecl Inv_Display(int32_t inventory_mode);</title></rect>
 <rect width="12" height="12" x="405" y="90" class="decompiled"><title>void __cdecl Inv_Construct(void);</title></rect>
-<rect width="12" height="12" x="420" y="90" class="known"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="12" height="12" x="420" y="90" class="decompiled"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="12" height="12" x="435" y="90" class="known"><title>int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="12" height="12" x="450" y="90" class="known"><title>void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="12" height="12" x="465" y="90" class="known"><title>int32_t __cdecl GetDebouncedInput(int32_t input);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.49%</tspan> · <tspan class="known">65.18%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.53%</tspan> · <tspan class="known">65.14%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="257.65" height="6" x="0" y="0" class="decompiled"/>
-<rect width="486.91" height="6" x="257.65" y="0" class="known"/>
+<rect width="257.95" height="6" x="0" y="0" class="decompiled"/>
+<rect width="486.61" height="6" x="257.95" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1905,7 +1905,7 @@
 <rect width="7.66" height="7.74" x="567.89" y="250.51" class="known"><title>BOOL __cdecl LoadDemo(HANDLE handle);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="261.25" class="known"><title>INT_PTR __stdcall SE_OptionsDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="271.99" class="decompiled"><title>void __cdecl Bird_Initialise(int16_t item_num);</title></rect>
-<rect width="7.66" height="7.66" x="567.89" y="282.65" class="known"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
+<rect width="7.66" height="7.66" x="567.89" y="282.65" class="decompiled"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="293.32" class="decompiled"><title>void __cdecl Lara_ResetLook(void);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="303.98" class="decompiled"><title>void __cdecl Lara_State_TurnLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="314.64" class="known"><title>void __cdecl S_OutputPolyList(void);</title></rect>

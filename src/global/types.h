@@ -723,6 +723,68 @@ typedef struct {
     int32_t reserved[4];
 } INVENTORY_ITEM;
 
+// clang-format off
+typedef enum {
+    RNG_OPENING           = 0,
+    RNG_OPEN              = 1,
+    RNG_CLOSING           = 2,
+    RNG_MAIN2OPTION       = 3,
+    RNG_MAIN2KEYS         = 4,
+    RNG_KEYS2MAIN         = 5,
+    RNG_OPTION2MAIN       = 6,
+    RNG_SELECTING         = 7,
+    RNG_SELECTED          = 8,
+    RNG_DESELECTING       = 9,
+    RNG_DESELECT          = 10,
+    RNG_CLOSING_ITEM      = 11,
+    RNG_EXITING_INVENTORY = 12,
+    RNG_DONE              = 13,
+} RING_STATUS;
+// clang-format on
+
+typedef struct {
+    int16_t count;
+    int16_t status;
+    int16_t status_target;
+    int16_t radius_target;
+    int16_t radius_rate;
+    int16_t camera_ytarget;
+    int16_t camera_yrate;
+    int16_t camera_pitch_target;
+    int16_t camera_pitch_rate;
+    int16_t rotate_target;
+    int16_t rotate_rate;
+    int16_t item_ptxrot_target;
+    int16_t item_ptxrot_rate;
+    int16_t item_xrot_target;
+    int16_t item_xrot_rate;
+    int32_t item_ytrans_target;
+    int32_t item_ytrans_rate;
+    int32_t item_ztrans_target;
+    int32_t item_ztrans_rate;
+    int32_t misc;
+} IMOTION_INFO;
+
+typedef struct {
+    INVENTORY_ITEM **list;
+    int16_t type;
+    int16_t radius;
+    int16_t camera_pitch;
+    int16_t rotating;
+    int16_t rot_count;
+    int16_t current_object;
+    int16_t target_object;
+    int16_t number_of_objects;
+    int16_t angle_adder;
+    int16_t rot_adder;
+    int16_t rot_adder_l;
+    int16_t rot_adder_r;
+    PHD_3DPOS ringpos;
+    PHD_3DPOS camera;
+    XYZ_32 light;
+    IMOTION_INFO *imo;
+} RING_INFO;
+
 typedef enum {
     GFE_PICTURE,
     GFE_LIST_START,
@@ -912,14 +974,24 @@ typedef enum {
     LV_FIRST = 1,
 } LEVEL_TYPE;
 
+// clang-format off
 typedef enum {
-    INV_GAME_MODE,
-    INV_TITLE_MODE,
-    INV_KEYS_MODE,
-    INV_SAVE_MODE,
-    INV_LOAD_MODE,
-    INV_DEATH_MODE,
+    RT_MAIN   = 0,
+    RT_OPTION = 1,
+    RT_KEYS   = 2,
+} RING_TYPE;
+// clang-format on
+
+// clang-format off
+typedef enum {
+    INV_GAME_MODE  = 0,
+    INV_TITLE_MODE = 1,
+    INV_KEYS_MODE  = 2,
+    INV_SAVE_MODE  = 3,
+    INV_LOAD_MODE  = 4,
+    INV_DEATH_MODE = 5,
 } INVENTORY_MODE;
+// clang-format on
 
 // clang-format off
 typedef enum {

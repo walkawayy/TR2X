@@ -6,7 +6,6 @@
 #include "inject_util.h"
 
 // clang-format off
-
 extern const char *g_TR2XVersion;
 #define g_IID_IDirectDrawSurface3 (*(GUID*)0x00463150)
 #define g_PerspectiveDistance (*(uint32_t*)0x00464060) // = 0x3000000
@@ -21,13 +20,15 @@ extern const char *g_TR2XVersion;
 #define g_GF_NumSecrets (*(int16_t*)0x004642E8) // = 3
 #define g_CineTargetAngle (*(int16_t*)0x00464310) // = 0x4000
 #define g_OverlayStatus (*(int32_t*)0x004644E0) // = 1
-#define g_InvMainObjectsCount (*(int16_t*)0x004654E0) // = 8
+#define g_Inv_NFrames (*(int32_t*)0x004644F8)
+#define g_Inv_MainObjectsCount (*(int16_t*)0x004654E0) // = 8
 #define g_Inv_MainList (*(INVENTORY_ITEM **)0x00465518)
-#define g_InvOptionObjectsCount (*(int16_t*)0x00465604) // = 4
+#define g_Inv_KeysList (*(INVENTORY_ITEM **)0x004655A8)
+#define g_Inv_OptionObjectsCount (*(int16_t*)0x00465604) // = 4
 #define g_Inv_OptionList (*(INVENTORY_ITEM **)0x00465608)
 #define g_GymInvOpenEnabled (*(BOOL*)0x00465618) // = TRUE
-#define g_InventoryChosen (*(int16_t*)0x00465A50) // = -1
-#define g_InventoryMode (*(INVENTORY_MODE*)0x00465A54) // = INV_TITLE_MODE
+#define g_Inv_Chosen (*(int16_t*)0x00465A50) // = -1
+#define g_Inv_Mode (*(INVENTORY_MODE*)0x00465A54) // = INV_TITLE_MODE
 #define g_OptionSoundVolume (*(int16_t*)0x00465A5C) // = 165
 #define g_OptionMusicVolume (*(int16_t*)0x00465A60) // = 255
 #define g_JumpPermitted (*(int32_t*)0x00465AD4) // = 1
@@ -133,8 +134,8 @@ extern const char *g_TR2XVersion;
 #define g_StopInventory (*(BOOL*)0x004D77A4)
 #define g_IsDemoLevelType (*(BOOL*)0x004D77AC)
 #define g_IsDemoLoaded (*(BOOL*)0x004D77B0)
-#define g_BoundStart (*(int*)0x004D77C0)
-#define g_BoundEnd (*(int*)0x004D77C4)
+#define g_BoundStart (*(int32_t*)0x004D77C0)
+#define g_BoundEnd (*(int32_t*)0x004D77C4)
 #define g_IsAssaultTimerDisplay (*(int32_t*)0x004D77E0)
 #define g_IsAssaultTimerActive (*(BOOL*)0x004D77E4)
 #define g_IsMonkAngry (*(BOOL*)0x004D77E8)
@@ -142,22 +143,21 @@ extern const char *g_TR2XVersion;
 #define g_AmmoTextInfo (*(TEXTSTRING **)0x004D792C)
 #define g_DisplayModeTextInfo (*(TEXTSTRING **)0x004D7930)
 #define g_DisplayModeInfoTimer (*(DWORD*)0x004D7934)
-#define g_InvMainCurrent (*(UINT16*)0x004D7938)
-#define g_InvKeyObjectsCount (*(UINT16*)0x004D793C)
-#define g_InvKeysCurrent (*(UINT16*)0x004D7940)
-#define g_InvOptionCurrent (*(UINT16*)0x004D7944)
-#define g_InvRingText (*(TEXTSTRING**)0x004D7954)
-#define g_InvUpArrow1 (*(TEXTSTRING**)0x004D795C)
-#define g_InvUpArrow2 (*(TEXTSTRING**)0x004D7960)
-#define g_InvDownArrow1 (*(TEXTSTRING**)0x004D7964)
-#define g_InvDownArrow2 (*(TEXTSTRING**)0x004D7968)
+#define g_Inv_MainCurrent (*(UINT16*)0x004D7938)
+#define g_Inv_KeyObjectsCount (*(UINT16*)0x004D793C)
+#define g_Inv_KeysCurrent (*(UINT16*)0x004D7940)
+#define g_Inv_OptionCurrent (*(UINT16*)0x004D7944)
+#define g_Inv_RingText (*(TEXTSTRING**)0x004D7954)
+#define g_Inv_UpArrow1 (*(TEXTSTRING**)0x004D795C)
+#define g_Inv_UpArrow2 (*(TEXTSTRING**)0x004D7960)
+#define g_Inv_DownArrow1 (*(TEXTSTRING**)0x004D7964)
+#define g_Inv_DownArrow2 (*(TEXTSTRING**)0x004D7968)
 #define g_InputDB (*(uint32_t*)0x004D796C)
-#define g_IsInventoryActive (*(uint16_t*)0x004D7978)
-#define g_IsInventoryActive (*(uint16_t*)0x004D7978)
-#define g_InventoryExtraData (*(int32_t(*)[8])0x004D7980)
-#define g_InvDemoMode (*(BOOL*)0x004D79A0)
-#define g_IsInvOptionsDelay (*(BOOL*)0x004D79B4)
-#define g_InvOptionsDelayCounter (*(int32_t*)0x004D79B8)
+#define g_Inv_IsActive (*(uint16_t*)0x004D7978)
+#define g_Inv_ExtraData (*(int32_t(*)[8])0x004D7980)
+#define g_Inv_DemoMode (*(BOOL*)0x004D79A0)
+#define g_Inv_IsOptionsDelay (*(BOOL*)0x004D79B4)
+#define g_Inv_OptionsDelayCounter (*(int32_t*)0x004D79B8)
 #define g_SoundOptionLine (*(uint16_t*)0x004D79BC)
 #define g_StatsRequester (*(REQUEST_INFO*)0x004D79C0)
 #define g_Assault (*(ASSAULT_STATS*)0x004D7BD8)

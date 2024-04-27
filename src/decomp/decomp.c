@@ -2,6 +2,7 @@
 
 #include "game/camera.h"
 #include "game/input.h"
+#include "game/inventory.h"
 #include "game/items.h"
 #include "game/music.h"
 #include "game/shell.h"
@@ -430,20 +431,20 @@ int16_t __cdecl TitleSequence(void)
         return GFD_START_DEMO;
     }
 
-    if (g_InventoryChosen == O_PHOTO_OPTION) {
+    if (g_Inv_Chosen == O_PHOTO_OPTION) {
         return GFD_START_GAME | LV_GYM;
     }
 
-    if (g_InventoryChosen == O_PASSPORT_OPTION) {
-        const int32_t slot_num = g_InventoryExtraData[1];
+    if (g_Inv_Chosen == O_PASSPORT_OPTION) {
+        const int32_t slot_num = g_Inv_ExtraData[1];
 
-        if (g_InventoryExtraData[0] == 0) {
+        if (g_Inv_ExtraData[0] == 0) {
             Inv_RemoveAllItems();
             S_LoadGame(&g_SaveGame, sizeof(SAVEGAME_INFO), slot_num);
             return GFD_START_SAVED_GAME | slot_num;
         }
 
-        if (g_InventoryExtraData[0] == 1) {
+        if (g_Inv_ExtraData[0] == 1) {
             InitialiseStartInfo();
             int32_t level_id = LV_FIRST;
             if (g_GameFlow.play_any_level) {

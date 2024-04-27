@@ -653,6 +653,12 @@ typedef PICKUP_INFO {
     int16_t sprite;
 } PICKUP_INFO;
 
+typedef enum {
+    RT_MAIN,
+    RT_OPTION,
+    RT_KEYS,
+} RING_TYPE;
+
 typedef enum INVENTORY_MODE {
     INV_GAME_MODE,
     INV_TITLE_MODE,
@@ -1642,7 +1648,24 @@ typedef enum GAME_OBJECT_ID {
     O_NUMBER_OF             = 265,
 } GAME_OBJECT_ID;
 
-typedef struct imotion_info {
+typedef enum {
+    RNG_OPENING = 0,
+    RNG_OPEN = 1,
+    RNG_CLOSING = 2,
+    RNG_MAIN2OPTION = 3,
+    RNG_MAIN2KEYS = 4,
+    RNG_KEYS2MAIN = 5,
+    RNG_OPTION2MAIN = 6,
+    RNG_SELECTING = 7,
+    RNG_SELECTED = 8,
+    RNG_DESELECTING = 9,
+    RNG_DESELECT = 10,
+    RNG_CLOSING_ITEM = 11,
+    RNG_EXITING_INVENTORY = 12,
+    RNG_DONE = 13,
+} RING_STATUS;
+
+typedef struct {
     int16_t count;
     int16_t status;
     int16_t status_target;
@@ -2064,7 +2087,7 @@ typedef struct {
 00422050    0000002C    +       void __cdecl Overlay_DrawModeInfo(void);
 
 # game/inventory.c
-00422080    0000119E    -       int32_t __cdecl Inv_Display(int32_t inventory_mode);
+00422080    0000119E    +       int32_t __cdecl Inv_Display(int32_t inventory_mode);
 00423310    00000156    +       void __cdecl Inv_Construct(void);
 00423470    00000089    -       void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);
 00423500    00000081    -       int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *inv_item);
@@ -2086,21 +2109,21 @@ typedef struct {
 00424CD0    00000110    -R      int32_t __cdecl Inv_RemoveItem(int32_t item_num);
 00424DE0    000000C1    -R      int32_t __cdecl Inv_GetItemOption(int32_t item_num);
 00424FD0    00000024    -R      void __cdecl RemoveInventoryText(void);
-00425000    0000010F    -R      void __cdecl Inv_RingInit(RING_INFO *ring, int16_t type, INVENTORY_ITEM **list, int16_t qty, int16_t current, IMOTION_INFO *imo);
-00425110    00000060    -R      void __cdecl Inv_RingGetView(RING_INFO *ring, PHD_3DPOS *viewer);
-00425170    00000040    -R      void __cdecl Inv_RingLight(RING_INFO *ring);
-004251B0    0000002C    -R      void __cdecl Inv_RingCalcAdders(RING_INFO *ring, int16_t rotation_duration);
-004251E0    0000013E    -R      void __cdecl Inv_RingDoMotions(RING_INFO *ring);
-00425320    0000002F    -R      void __cdecl Inv_RingRotateLeft(RING_INFO *ring);
-00425350    0000002F    -R      void __cdecl Inv_RingRotateRight(RING_INFO *ring);
-00425380    00000063    -R      void __cdecl Inv_RingMotionInit(RING_INFO *ring, int16_t frames, int16_t status, int16_t status_target);
-004253F0    0000002C    -R      void __cdecl Inv_RingMotionSetup(RING_INFO *ring, int16_t status, int16_t status_target, int16_t frames);
-00425420    00000026    -R      void __cdecl Inv_RingMotionRadius(RING_INFO *ring, int16_t target);
-00425450    00000022    -R      void __cdecl Inv_RingMotionRotation(RING_INFO *ring, int16_t rotation, int16_t target);
-00425480    00000025    -R      void __cdecl Inv_RingMotionCameraPos(RING_INFO *ring, int16_t target);
-004254B0    00000020    -R      void __cdecl Inv_RingMotionCameraPitch(RING_INFO *ring, int16_t target);
-004254D0    0000005D    -R      void __cdecl Inv_RingMotionItemSelect(RING_INFO *ring, INVENTORY_ITEM *inv_item);
-00425530    00000063    -R      void __cdecl Inv_RingMotionItemDeselect(RING_INFO *ring, INVENTORY_ITEM *inv_item);
+00425000    0000010F    -R      void __cdecl Inv_Ring_Init(RING_INFO *ring, int16_t type, INVENTORY_ITEM **list, int16_t qty, int16_t current, IMOTION_INFO *imo);
+00425110    00000060    -R      void __cdecl Inv_Ring_GetView(RING_INFO *ring, PHD_3DPOS *viewer);
+00425170    00000040    -R      void __cdecl Inv_Ring_Light(RING_INFO *ring);
+004251B0    0000002C    -R      void __cdecl Inv_Ring_CalcAdders(RING_INFO *ring, int16_t rotation_duration);
+004251E0    0000013E    -R      void __cdecl Inv_Ring_DoMotions(RING_INFO *ring);
+00425320    0000002F    -R      void __cdecl Inv_Ring_RotateLeft(RING_INFO *ring);
+00425350    0000002F    -R      void __cdecl Inv_Ring_RotateRight(RING_INFO *ring);
+00425380    00000063    -R      void __cdecl Inv_Ring_MotionInit(RING_INFO *ring, int16_t frames, int16_t status, int16_t status_target);
+004253F0    0000002C    -R      void __cdecl Inv_Ring_MotionSetup(RING_INFO *ring, int16_t status, int16_t status_target, int16_t frames);
+00425420    00000026    -R      void __cdecl Inv_Ring_MotionRadius(RING_INFO *ring, int16_t target);
+00425450    00000022    -R      void __cdecl Inv_Ring_MotionRotation(RING_INFO *ring, int16_t rotation, int16_t target);
+00425480    00000025    -R      void __cdecl Inv_Ring_MotionCameraPos(RING_INFO *ring, int16_t target);
+004254B0    00000020    -R      void __cdecl Inv_Ring_MotionCameraPitch(RING_INFO *ring, int16_t target);
+004254D0    0000005D    -R      void __cdecl Inv_Ring_MotionItemSelect(RING_INFO *ring, INVENTORY_ITEM *inv_item);
+00425530    00000063    -R      void __cdecl Inv_Ring_MotionItemDeselect(RING_INFO *ring, INVENTORY_ITEM *inv_item);
 
 # game/invtext.c
 004255A0    00000082    -R      void __cdecl Init_Requester(REQUEST_INFO *req);
@@ -3034,11 +3057,11 @@ typedef struct {
 004642E8    -       int16_t g_GF_NumSecrets = 3;
 00464310    -       int16_t g_CineTargetAngle = 0x4000; // PHD_90
 004644E0    -       int32_t g_OverlayStatus = 1;
-004654E0    -       int16_t g_InvMainObjectsCount = 8;
-00465604    -       int16_t g_InvOptionObjectsCount = 4;
+004654E0    -       int16_t g_Inv_MainObjectsCount = 8;
+00465604    -       int16_t g_Inv_OptionObjectsCount = 4;
 00465618    -       BOOL g_GymInvOpenEnabled = TRUE;
-00465A50    -       int16_t g_InventoryChosen = -1;
-00465A54    -       INVENTORY_MODE g_InventoryMode = INV_TITLE_MODE;
+00465A50    -       int16_t g_Inv_Chosen = -1;
+00465A54    -       INVENTORY_MODE g_Inv_Mode = INV_TITLE_MODE;
 00465A5C    -       int16_t g_OptionSoundVolume = 165; // NOTE: value should be 10
 00465A60    -       int16_t g_OptionMusicVolume = 255; // NOTE: should be 10
 00465AD4    -       int32_t g_JumpPermitted = 1;
@@ -3147,8 +3170,8 @@ typedef struct {
 004D77A4    -       BOOL g_StopInventory;
 004D77AC    -       BOOL g_IsDemoLevelType;
 004D77B0    -       BOOL g_IsDemoLoaded;
-004D77C0    -       int g_BoundStart;
-004D77C4    -       int g_BoundEnd;
+004D77C0    -       int32_t g_BoundStart;
+004D77C4    -       int32_t g_BoundEnd;
 004D77E0    -       int32_t g_IsAssaultTimerDisplay;
 004D77E4    -       BOOL g_IsAssaultTimerActive;
 004D77E8    -       BOOL g_IsMonkAngry;
@@ -3160,21 +3183,20 @@ typedef struct {
 004D792C    -       TEXTSTRING *g_AmmoTextInfo;
 004D7930    -       TEXTSTRING *g_DisplayModeTextInfo;
 004D7934    -       DWORD g_DisplayModeInfoTimer;
-004D7938    -       UINT16 g_InvMainCurrent;
-004D793C    -       UINT16 g_InvKeyObjectsCount;
-004D7940    -       UINT16 g_InvKeysCurrent;
-004D7944    -       UINT16 g_InvOptionCurrent;
-004D7954    -       TEXTSTRING* g_InvRingText;
-004D795C    -       TEXTSTRING* g_InvUpArrow1;
-004D7960    -       TEXTSTRING* g_InvUpArrow2;
-004D7964    -       TEXTSTRING* g_InvDownArrow1;
-004D7968    -       TEXTSTRING* g_InvDownArrow2;
+004D7938    -       UINT16 g_Inv_MainCurrent;
+004D793C    -       UINT16 g_Inv_KeyObjectsCount;
+004D7940    -       UINT16 g_Inv_KeysCurrent;
+004D7944    -       UINT16 g_Inv_OptionCurrent;
+004D7954    -       TEXTSTRING* g_Inv_RingText;
+004D795C    -       TEXTSTRING* g_Inv_UpArrow1;
+004D7960    -       TEXTSTRING* g_Inv_UpArrow2;
+004D7964    -       TEXTSTRING* g_Inv_DownArrow1;
+004D7968    -       TEXTSTRING* g_Inv_DownArrow2;
 004D796C    -       uint32_t g_InputDB;
-004D7978    -       uint16_t g_IsInventoryActive;
-004D7978    -       uint16_t g_IsInventoryActive;
-004D79A0    -       BOOL g_InvDemoMode;
-004D79B4    -       BOOL g_IsInvOptionsDelay;
-004D79B8    -       int32_t g_InvOptionsDelayCounter;
+004D7978    -       uint16_t g_Inv_IsActive;
+004D79A0    -       BOOL g_Inv_DemoMode;
+004D79B4    -       BOOL g_Inv_IsOptionsDelay;
+004D79B8    -       int32_t g_Inv_OptionsDelayCounter;
 004D79BC    -       uint16_t g_SoundOptionLine;
 004D79C0    -       REQUEST_INFO g_StatsRequester;
 004D7BD8    -       ASSAULT_STATS g_Assault;
@@ -3306,7 +3328,7 @@ typedef struct {
 004D855C    -       LPDIRECTINPUT g_DInput;
 004D8560    -       LPDIRECTINPUTDEVICE IDID_SysKeyboard;
 0051BDA0    -       BOOL g_IsTitleLoaded;
-004D7980    -       int32_t g_InventoryExtraData[8];
+004D7980    -       int32_t g_Inv_ExtraData[8];
 004D8394    -       int32_t g_MessageLoopCounter;
 004D8384    -       bool g_IsGameWindowMinimized;
 004D8390    -       bool g_IsGameWindowActive;
@@ -3328,3 +3350,5 @@ typedef struct {
 004D7788    -       int32_t g_OriginalRoom;
 00465518    -       INVENTORY_ITEM *g_Inv_MainList;
 00465608    -       INVENTORY_ITEM *g_Inv_OptionList;
+004655A8    -       INVENTORY_ITEM *g_Inv_KeysList;
+004644F8    -       int32_t g_Inv_NFrames;

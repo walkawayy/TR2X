@@ -360,6 +360,7 @@ static void Inject_LOS(void)
 
 static void Inject_Inventory(void)
 {
+    INJECT(1, 0x00422080, Inv_Display);
     INJECT(1, 0x00423310, Inv_Construct);
 }
 

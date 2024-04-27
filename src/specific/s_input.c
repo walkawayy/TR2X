@@ -314,7 +314,7 @@ bool __cdecl S_Input_Update(void)
                 }
             }
             // toggle renderer mode (Shift+F12)
-        } else if (!g_IsInventoryActive) {
+        } else if (!g_Inv_IsActive) {
             new_settings.render_mode = new_settings.render_mode == RM_HARDWARE
                 ? RM_SOFTWARE
                 : RM_HARDWARE;

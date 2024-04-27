@@ -3399,7 +3399,7 @@ const int16_t *__cdecl Output_InsertObjectG4_Sorted(
         }
 
         int32_t num_points = 4;
-        PHD_VBUF *const vtx[4] = {
+        const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -4147,9 +4147,9 @@ void __cdecl Output_InsertPoly_Gouraud(
         g_HWR_VertexPtr[i].sy = g_VBuffer[i].y;
         if (g_SavedAppSettings.zbuffer) {
             g_HWR_VertexPtr[i].sz =
-                g_FltResZBuf - g_FltResZORhw * g_VBuffer[0].rhw;
+                g_FltResZBuf - g_FltResZORhw * g_VBuffer[i].rhw;
         }
-        g_HWR_VertexPtr[i].rhw = g_VBuffer[0].rhw;
+        g_HWR_VertexPtr[i].rhw = g_VBuffer[i].rhw;
         g_HWR_VertexPtr[i].color = Output_ShadeLightColor(
             g_VBuffer[i].g, red, green, blue,
             poly_type == POLY_HWR_TRANS ? 0x80 : 0xFF);

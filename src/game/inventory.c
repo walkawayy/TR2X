@@ -614,24 +614,19 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 break;
 
             case RNG_CLOSING_ITEM: {
-                int32_t frame = 0;
                 INVENTORY_ITEM *inv_item = ring.list[ring.current_object];
-                if (g_Inv_NFrames > 0) {
-                    while (Inv_AnimateInventoryItem(inv_item)) {
-                        frame++;
-                        if (frame >= g_Inv_NFrames) {
-                            break;
+                for (int32_t frame = 0; frame < g_Inv_NFrames; frame++) {
+                    if (!Inv_AnimateInventoryItem(inv_item)) {
+                        if (inv_item->obj_num == O_PASSPORT_OPTION) {
+                            inv_item->obj_num = O_PASSPORT_CLOSED;
+                            inv_item->current_frame = 0;
                         }
-                    }
 
-                    if (inv_item->obj_num == O_PASSPORT_OPTION) {
-                        inv_item->obj_num = O_PASSPORT_CLOSED;
-                        inv_item->current_frame = 0;
+                        imo.count = 16;
+                        imo.status = imo.status_target;
+                        Inv_Ring_MotionItemDeselect(&ring, inv_item);
+                        break;
                     }
-
-                    imo.count = 16;
-                    imo.status = imo.status_target;
-                    Inv_Ring_MotionItemDeselect(&ring, inv_item);
                 }
                 break;
             }

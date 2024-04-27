@@ -333,6 +333,13 @@ typedef struct __unaligned {
 } PHD_SPRITE;
 
 typedef enum {
+    SHAPE_SPRITE = 1,
+    SHAPE_LINE   = 2,
+    SHAPE_BOX    = 3,
+    SHAPE_FBOX   = 4,
+} SHAPE;
+
+typedef enum {
     SPRF_RGB       = 0x00FFFFFF,
     SPRF_ABS       = 0x01000000,
     SPRF_SEMITRANS = 0x02000000,
@@ -716,7 +723,7 @@ typedef struct __unaligned {
     uint32_t meshes_sel;
     uint32_t meshes_drawn;
     int16_t inv_pos;
-    INVENTORY_SPRITE **sprites;
+    INVENTORY_SPRITE **sprite_list;
     int32_t reserved[4];
 } INVENTORY_ITEM;
 
@@ -1226,7 +1233,13 @@ typedef enum {
     FBBOX_X     = 6,
     FBBOX_Y     = 7,
     FBBOX_Z     = 8,
+    FBBOX_ROT   = 9,
 } FRAME_BBOX_INFO;
+
+typedef enum {
+    BF_MATRIX_POP  = 1,
+    BF_MATRIX_PUSH = 2,
+} BONE_FLAGS;
 
 typedef struct __unaligned {
     int16_t tx;
@@ -2352,7 +2365,7 @@ typedef struct __unaligned {
 00423310    00000156    +       void __cdecl Inv_Construct(void);
 00423470    00000089    +       void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);
 00423500    00000081    +       int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *inv_item);
-00423590    0000041D    -       void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *inv_item);
+00423590    0000041D    +       void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *inv_item);
 004239C0    00000019    -R      int32_t __cdecl GetDebouncedInput(int32_t input);
 004239E0    00000005    -       void __cdecl Inv_DoInventoryPicture(void);
 004239F0    00000132    -       void __cdecl Inv_DoInventoryBackground(void);

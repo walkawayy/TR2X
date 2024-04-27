@@ -89,7 +89,6 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
     IMOTION_INFO imo = { 0 };
 
     bool demo_needed = false;
-    int32_t v35 = 0;
     bool pass_open = false;
     if (inventory_mode == INV_KEYS_MODE && !g_Inv_KeyObjectsCount) {
         g_Inv_Chosen = NO_OBJECT;
@@ -563,7 +562,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 if (!busy && !g_Inv_IsOptionsDelay) {
                     do_inventory_options(inv_item);
                     if (g_InputDB & IN_DESELECT) {
-                        inv_item->sprites = 0;
+                        inv_item->sprite_list = NULL;
                         Inv_Ring_MotionSetup(
                             &ring, RNG_CLOSING_ITEM, RNG_DESELECT, 0);
                         g_Input = 0;
@@ -579,7 +578,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     }
 
                     if ((g_InputDB & IN_SELECT) != 0) {
-                        inv_item->sprites = 0;
+                        inv_item->sprite_list = NULL;
                         g_Inv_Chosen = inv_item->obj_num;
                         if (ring.type != RT_MAIN) {
                             g_Inv_OptionCurrent = ring.current_object;
@@ -772,4 +771,141 @@ int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *const inv_item)
 
     Inv_SelectMeshes(inv_item);
     return true;
+}
+
+void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
+{
+    int32_t minutes;
+    int32_t hours;
+    int32_t seconds;
+    if (inv_item->obj_num == O_COMPASS_OPTION) {
+        const int32_t total_seconds =
+            g_SaveGame.statistics.timer / FRAMES_PER_SECOND;
+        hours = (total_seconds % 43200) * PHD_DEGREE * -360 / 43200;
+        minutes = (total_seconds % 3600) * PHD_DEGREE * -360 / 3600;
+        seconds = (total_seconds % 60) * PHD_DEGREE * -360 / 60;
+    } else {
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+    }
+
+    Matrix_TranslateRel(0, inv_item->y_trans, inv_item->z_trans);
+    Matrix_RotYXZ(inv_item->y_rot, inv_item->x_rot, 0);
+    const OBJECT_INFO *const obj = &g_Objects[inv_item->obj_num];
+    if ((obj->flags & 1) == 0) {
+        return;
+    }
+
+    if (obj->mesh_count < 0) {
+        Output_DrawSprite(0, 0, 0, 0, obj->mesh_idx, 0, 0);
+        return;
+    }
+
+    if (inv_item->sprite_list != NULL) {
+        const int32_t zv = g_MatrixPtr->_23;
+        const int32_t zp = zv / g_PhdPersp;
+        const int32_t sx = g_PhdWinCenterX + g_MatrixPtr->_03 / zp;
+        const int32_t sy = g_PhdWinCenterY + g_MatrixPtr->_13 / zp;
+
+        INVENTORY_SPRITE **sprite_list = inv_item->sprite_list;
+        INVENTORY_SPRITE *sprite;
+        while ((sprite = *sprite_list++)) {
+            if (zv < g_PhdNearZ || zv > g_PhdFarZ) {
+                break;
+            }
+
+            while (sprite->shape) {
+                switch (sprite->shape) {
+                case SHAPE_SPRITE:
+                    Output_DrawScreenSprite(
+                        sx + sprite->pos.x, sy + sprite->pos.y, sprite->pos.z,
+                        sprite->param1, sprite->param2,
+                        g_StaticObjects[O_ALPHABET].mesh_index
+                            + sprite->sprite_num,
+                        4096, 0);
+                    break;
+
+                case SHAPE_LINE:
+                    S_DrawScreenLine(
+                        sx + sprite->pos.x, sy + sprite->pos.y, sprite->pos.z,
+                        sprite->param1, sprite->param2, sprite->sprite_num,
+                        sprite->grdptr, 0);
+                    break;
+
+                case SHAPE_BOX:
+                    S_DrawScreenBox(
+                        sx + sprite->pos.x, sy + sprite->pos.y, sprite->pos.z,
+                        sprite->param1, sprite->param2, sprite->sprite_num,
+                        sprite->grdptr, 0);
+                    break;
+
+                case SHAPE_FBOX:
+                    S_DrawScreenFBox(
+                        sx + sprite->pos.x, sy + sprite->pos.y, sprite->pos.z,
+                        sprite->param1, sprite->param2, sprite->sprite_num,
+                        sprite->grdptr, 0);
+                    break;
+
+                default:
+                    break;
+                }
+                sprite++;
+            }
+        }
+    }
+
+    int16_t *frame_ptr = &obj->frame_base
+                              [inv_item->current_frame
+                               * (g_Anims[obj->anim_idx].interpolation >> 8)];
+
+    Matrix_Push();
+    int32_t clip = S_GetObjectBounds(frame_ptr);
+    if (!clip) {
+        Matrix_Pop();
+        return;
+    }
+
+    const int32_t *bone = &g_Bones[obj->bone_idx];
+    Matrix_TranslateRel(
+        frame_ptr[FBBOX_X], frame_ptr[FBBOX_Y], frame_ptr[FBBOX_Z]);
+    int16_t *rot = frame_ptr + FBBOX_ROT;
+    Matrix_RotYXZsuperpack(&rot, 0);
+
+    for (int32_t mesh_idx = 0; mesh_idx < obj->mesh_count; mesh_idx++) {
+        if (mesh_idx > 0) {
+            const int32_t bone_flags = bone[0];
+            if (bone_flags & BF_MATRIX_POP) {
+                Matrix_Pop();
+            }
+            if (bone_flags & BF_MATRIX_PUSH) {
+                Matrix_Push();
+            }
+
+            Matrix_TranslateRel(bone[1], bone[2], bone[3]);
+            Matrix_RotYXZsuperpack(&rot, 0);
+            bone += 4;
+
+            if (inv_item->obj_num == O_COMPASS_OPTION) {
+                if (mesh_idx == 6) {
+                    Matrix_RotZ(seconds);
+                    const int32_t tmp = inv_item->reserved[0];
+                    inv_item->reserved[0] = seconds;
+                    inv_item->reserved[1] = tmp;
+                }
+                if (mesh_idx == 5) {
+                    Matrix_RotZ(minutes);
+                }
+                if (mesh_idx == 4) {
+                    Matrix_RotZ(hours);
+                }
+            }
+        }
+
+        if (inv_item->meshes_drawn & (1 << mesh_idx)) {
+            Output_InsertPolygons(g_Meshes[obj->mesh_idx + mesh_idx], clip);
+        }
+    }
+
+    Matrix_Pop();
 }

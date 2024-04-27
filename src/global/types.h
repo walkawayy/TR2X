@@ -347,6 +347,13 @@ typedef struct __unaligned {
 } PHD_SPRITE;
 
 typedef enum {
+    SHAPE_SPRITE = 1,
+    SHAPE_LINE   = 2,
+    SHAPE_BOX    = 3,
+    SHAPE_FBOX   = 4,
+} SHAPE;
+
+typedef enum {
     SPRF_RGB       = 0x00FFFFFF,
     SPRF_ABS       = 0x01000000,
     SPRF_SEMITRANS = 0x02000000,
@@ -730,7 +737,7 @@ typedef struct __unaligned {
     uint32_t meshes_sel;
     uint32_t meshes_drawn;
     int16_t inv_pos;
-    INVENTORY_SPRITE **sprites;
+    INVENTORY_SPRITE **sprite_list;
     int32_t reserved[4];
 } INVENTORY_ITEM;
 
@@ -1240,7 +1247,13 @@ typedef enum {
     FBBOX_X     = 6,
     FBBOX_Y     = 7,
     FBBOX_Z     = 8,
+    FBBOX_ROT   = 9,
 } FRAME_BBOX_INFO;
+
+typedef enum {
+    BF_MATRIX_POP  = 1,
+    BF_MATRIX_PUSH = 2,
+} BONE_FLAGS;
 
 typedef struct __unaligned {
     int16_t tx;

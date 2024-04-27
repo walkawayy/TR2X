@@ -856,10 +856,11 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
     g_MatrixPtr->_23 = 0;
     Matrix_RotYXZ(g_LaraItem->rot.y, g_LaraItem->rot.x, g_LaraItem->rot.z);
 
-    int16_t *rot = frame_ptr + 9;
+    int16_t *rot = frame_ptr + FBBOX_ROT;
     const int32_t *bone = &g_Bones[obj->bone_idx];
 
-    Matrix_TranslateRel(frame_ptr[6], frame_ptr[7], frame_ptr[8]);
+    Matrix_TranslateRel(
+        frame_ptr[FBBOX_X], frame_ptr[FBBOX_Y], frame_ptr[FBBOX_Z]);
     Matrix_RotYXZsuperpack(&rot, 0);
 
     Matrix_TranslateRel(bone[25], bone[26], bone[27]);
@@ -880,9 +881,9 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
             rot = &arm->frame_base
                        [(anim->interpolation >> 8)
                             * (arm->frame_num - anim->frame_base)
-                        + 9];
+                        + FBBOX_ROT];
         } else {
-            rot = frame_ptr + 9;
+            rot = frame_ptr + FBBOX_ROT;
         }
         Matrix_RotYXZsuperpack(&rot, 11);
 

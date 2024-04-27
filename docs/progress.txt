@@ -3622,8 +3622,8 @@ typedef struct __unaligned {
 00525BEC    -       int32_t g_DynamicLightCount;
 004D7784    -       int32_t g_CineTickCount;
 004D7788    -       int32_t g_OriginalRoom;
-00465518    -       INVENTORY_ITEM *g_Inv_MainList;
-00465608    -       INVENTORY_ITEM *g_Inv_OptionList;
-004655A8    -       INVENTORY_ITEM *g_Inv_KeysList;
+00465518    -       INVENTORY_ITEM *g_Inv_MainList[];
+00465608    -       INVENTORY_ITEM *g_Inv_OptionList[];
+004655A8    -       INVENTORY_ITEM *g_Inv_KeysList[];
 004644F8    -       int32_t g_Inv_NFrames;
 00525C00    -       STATIC_INFO g_StaticObjects[256];

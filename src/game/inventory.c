@@ -54,7 +54,7 @@ void __cdecl Inv_Construct(void)
     }
 
     for (int32_t i = 0; i < g_Inv_MainObjectsCount; i++) {
-        INVENTORY_ITEM *const inv_item = &g_Inv_MainList[i];
+        INVENTORY_ITEM *const inv_item = g_Inv_MainList[i];
         inv_item->meshes_drawn = inv_item->meshes_sel;
         inv_item->current_frame = 0;
         inv_item->goal_frame = 0;
@@ -63,7 +63,7 @@ void __cdecl Inv_Construct(void)
     }
 
     for (int32_t i = 0; i < g_Inv_OptionObjectsCount; i++) {
-        INVENTORY_ITEM *const inv_item = &g_Inv_OptionList[i];
+        INVENTORY_ITEM *const inv_item = g_Inv_OptionList[i];
         inv_item->current_frame = 0;
         inv_item->goal_frame = 0;
         inv_item->anim_count = 0;
@@ -120,24 +120,24 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
     case INV_LOAD_MODE:
     case INV_DEATH_MODE:
         Inv_Ring_Init(
-            &ring, 1, &g_Inv_OptionList, g_Inv_OptionObjectsCount,
+            &ring, 1, g_Inv_OptionList, g_Inv_OptionObjectsCount,
             g_Inv_OptionCurrent, &imo);
         break;
 
     case INV_KEYS_MODE:
         Inv_Ring_Init(
-            &ring, 2, &g_Inv_KeysList, g_Inv_KeyObjectsCount, g_Inv_MainCurrent,
+            &ring, 2, g_Inv_KeysList, g_Inv_KeyObjectsCount, g_Inv_MainCurrent,
             &imo);
         break;
 
     default:
         if (g_Inv_MainObjectsCount) {
             Inv_Ring_Init(
-                &ring, 0, &g_Inv_MainList, g_Inv_MainObjectsCount,
+                &ring, 0, g_Inv_MainList, g_Inv_MainObjectsCount,
                 g_Inv_MainCurrent, &imo);
         } else {
             Inv_Ring_Init(
-                &ring, 1, &g_Inv_OptionList, g_Inv_OptionObjectsCount,
+                &ring, 1, g_Inv_OptionList, g_Inv_OptionObjectsCount,
                 g_Inv_OptionCurrent, &imo);
         }
         break;
@@ -366,13 +366,13 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     INVENTORY_ITEM *inv_item;
                     if (ring.type == RT_MAIN) {
                         g_Inv_MainCurrent = ring.current_object;
-                        inv_item = *(&g_Inv_MainList + ring.current_object);
+                        inv_item = g_Inv_MainList[ring.current_object];
                     } else if (ring.type == RT_OPTION) {
                         g_Inv_OptionCurrent = ring.current_object;
-                        inv_item = *(&g_Inv_OptionList + ring.current_object);
+                        inv_item = g_Inv_OptionList[ring.current_object];
                     } else {
                         g_Inv_KeysCurrent = ring.current_object;
-                        inv_item = *(&g_Inv_KeysList + ring.current_object);
+                        inv_item = g_Inv_KeysList[ring.current_object];
                     }
 
                     inv_item->goal_frame = inv_item->open_frame;
@@ -476,7 +476,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 ring.camera_pitch = -(int16_t)(imo.misc);
                 imo.camera_pitch_rate = imo.misc / 24;
                 imo.camera_pitch_target = 0;
-                ring.list = &g_Inv_OptionList;
+                ring.list = g_Inv_OptionList;
                 ring.type = RT_OPTION;
                 g_Inv_MainCurrent = ring.current_object;
                 g_Inv_MainObjectsCount = ring.number_of_objects;
@@ -497,7 +497,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 imo.camera_pitch_rate = imo.misc / 24;
                 g_Inv_MainCurrent = ring.current_object;
                 g_Inv_MainObjectsCount = ring.number_of_objects;
-                ring.list = &g_Inv_KeysList;
+                ring.list = g_Inv_KeysList;
                 ring.type = RT_KEYS;
                 ring.number_of_objects = g_Inv_KeyObjectsCount;
                 ring.current_object = g_Inv_KeysCurrent;
@@ -514,7 +514,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 ring.camera_pitch = -(int16_t)(imo.misc);
                 imo.camera_pitch_rate = imo.misc / 24;
                 imo.camera_pitch_target = 0;
-                ring.list = &g_Inv_MainList;
+                ring.list = g_Inv_MainList;
                 ring.type = RT_MAIN;
                 g_Inv_KeysCurrent = ring.current_object;
                 ring.number_of_objects = g_Inv_MainObjectsCount;
@@ -534,7 +534,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 g_Inv_OptionCurrent = ring.current_object;
                 g_Inv_OptionObjectsCount = ring.number_of_objects;
                 imo.camera_pitch_target = 0;
-                ring.list = &g_Inv_MainList;
+                ring.list = g_Inv_MainList;
                 ring.type = RT_MAIN;
                 ring.number_of_objects = g_Inv_MainObjectsCount;
                 ring.current_object = g_Inv_MainCurrent;

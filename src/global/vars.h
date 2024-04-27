@@ -22,10 +22,10 @@ extern const char *g_TR2XVersion;
 #define g_OverlayStatus (*(int32_t*)0x004644E0) // = 1
 #define g_Inv_NFrames (*(int32_t*)0x004644F8)
 #define g_Inv_MainObjectsCount (*(int16_t*)0x004654E0) // = 8
-#define g_Inv_MainList (*(INVENTORY_ITEM **)0x00465518)
-#define g_Inv_KeysList (*(INVENTORY_ITEM **)0x004655A8)
+#define g_Inv_MainList (*(INVENTORY_ITEM *(*)[])0x00465518)
+#define g_Inv_KeysList (*(INVENTORY_ITEM *(*)[])0x004655A8)
 #define g_Inv_OptionObjectsCount (*(int16_t*)0x00465604) // = 4
-#define g_Inv_OptionList (*(INVENTORY_ITEM **)0x00465608)
+#define g_Inv_OptionList (*(INVENTORY_ITEM *(*)[])0x00465608)
 #define g_GymInvOpenEnabled (*(BOOL*)0x00465618) // = TRUE
 #define g_Inv_Chosen (*(int16_t*)0x00465A50) // = -1
 #define g_Inv_Mode (*(INVENTORY_MODE*)0x00465A54) // = INV_TITLE_MODE

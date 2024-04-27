@@ -277,6 +277,7 @@ extern const char *g_TR2XVersion;
 #define g_DrawRoomsArray (*(int16_t(*)[100])0x00525B20)
 #define g_Bones (*(int32_t **)0x00525BE8)
 #define g_DynamicLightCount (*(int32_t*)0x00525BEC)
+#define g_StaticObjects (*(STATIC_INFO(*)[256])0x00525C00)
 #define g_RoomCount (*(int32_t*)0x00526180)
 #define g_IMRate (*(int32_t*)0x00526184)
 #define g_IMMatrixPtr (*(MATRIX **)0x00526188)
@@ -295,4 +296,5 @@ extern const char *g_TR2XVersion;
 #define g_FlyZone (*(int16_t *(*)[2])0x005263C0)
 #define g_Overlap (*(uint16_t **)0x005263C8)
 #define g_Boxes (*(BOX_INFO **)0x005263CC)
+
 // clang-format on

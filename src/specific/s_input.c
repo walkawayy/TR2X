@@ -85,48 +85,48 @@ bool __cdecl S_Input_Update(void)
         input |= IN_FORWARD;
     }
 
-    if (S_Input_Key(KM_Forward)) {
+    if (S_Input_Key(KM_FORWARD)) {
         input |= IN_FORWARD;
     }
-    if (S_Input_Key(KM_Back)) {
+    if (S_Input_Key(KM_BACK)) {
         input |= IN_BACK;
     }
-    if (S_Input_Key(KM_Left)) {
+    if (S_Input_Key(KM_LEFT)) {
         input |= IN_LEFT;
     }
-    if (S_Input_Key(KM_Right)) {
+    if (S_Input_Key(KM_RIGHT)) {
         input |= IN_RIGHT;
     }
-    if (S_Input_Key(KM_StepLeft)) {
+    if (S_Input_Key(KM_STEP_LEFT)) {
         input |= IN_STEP_LEFT;
     }
-    if (S_Input_Key(KM_StepRight)) {
+    if (S_Input_Key(KM_STEP_RIGHT)) {
         input |= IN_STEP_RIGHT;
     }
-    if (S_Input_Key(KM_Slow)) {
+    if (S_Input_Key(KM_SLOW)) {
         input |= IN_SLOW;
     }
-    if (S_Input_Key(KM_Jump)) {
+    if (S_Input_Key(KM_JUMP)) {
         input |= IN_JUMP;
     }
 
-    if (S_Input_Key(KM_Action)) {
+    if (S_Input_Key(KM_ACTION)) {
         input |= IN_ACTION;
     }
-    if (S_Input_Key(KM_WeaponDraw)) {
+    if (S_Input_Key(KM_WEAPON_DRAW)) {
         input |= IN_DRAW;
     }
-    if (S_Input_Key(KM_Flare)) {
+    if (S_Input_Key(KM_FLARE)) {
         input |= IN_FLARE;
     }
-    if (S_Input_Key(KM_Look)) {
+    if (S_Input_Key(KM_LOOK)) {
         input |= IN_LOOK;
     }
-    if (S_Input_Key(KM_Roll)) {
+    if (S_Input_Key(KM_ROLL)) {
         input |= IN_ROLL;
     }
 
-    if (S_Input_Key(KM_Option) && g_Camera.type != CAM_CINEMATIC) {
+    if (S_Input_Key(KM_OPTION) && g_Camera.type != CAM_CINEMATIC) {
         input |= IN_OPTION;
     }
     if ((input & IN_FORWARD) && (input & IN_BACK)) {

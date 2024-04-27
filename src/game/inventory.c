@@ -216,9 +216,9 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
         Matrix_Push();
         Matrix_TranslateAbs(
-            ring.ringpos.pos.x, ring.ringpos.pos.y, ring.ringpos.pos.z);
+            ring.ring_pos.pos.x, ring.ring_pos.pos.y, ring.ring_pos.pos.z);
         Matrix_RotYXZ(
-            ring.ringpos.rot.y, ring.ringpos.rot.x, ring.ringpos.rot.z);
+            ring.ring_pos.rot.y, ring.ring_pos.rot.x, ring.ring_pos.rot.z);
 
         int32_t angle = 0;
         for (int32_t j = 0; j < ring.number_of_objects; j++) {
@@ -350,7 +350,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     Inv_Ring_MotionRadius(&ring, 0);
                     Inv_Ring_MotionCameraPos(&ring, -1536);
                     Inv_Ring_MotionRotation(
-                        &ring, 0x8000, ring.ringpos.rot.y + 0x8000);
+                        &ring, 0x8000, ring.ring_pos.rot.y + 0x8000);
                     g_Input = 0;
                     g_InputDB = 0;
                 }
@@ -421,7 +421,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                                 &ring, RNG_CLOSING, RNG_OPTION2MAIN, 24);
                             Inv_Ring_MotionRadius(&ring, 0);
                             Inv_Ring_MotionRotation(
-                                &ring, 0x8000, ring.ringpos.rot.y + 0x8000);
+                                &ring, 0x8000, ring.ring_pos.rot.y + 0x8000);
                             Inv_Ring_MotionCameraPitch(&ring, 0x2000);
                             imo.misc = 0x2000;
                         }
@@ -432,7 +432,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                                 &ring, RNG_CLOSING, RNG_MAIN2KEYS, 24);
                             Inv_Ring_MotionRadius(&ring, 0);
                             Inv_Ring_MotionRotation(
-                                &ring, 0x8000, ring.ringpos.rot.y + 0x8000);
+                                &ring, 0x8000, ring.ring_pos.rot.y + 0x8000);
                             Inv_Ring_MotionCameraPitch(&ring, 0x2000);
                             imo.misc = 0x2000;
                         }
@@ -449,7 +449,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                                 &ring, RNG_CLOSING, RNG_KEYS2MAIN, 24);
                             Inv_Ring_MotionRadius(&ring, 0);
                             Inv_Ring_MotionRotation(
-                                &ring, 0x8000, ring.ringpos.rot.y + 0x8000);
+                                &ring, 0x8000, ring.ring_pos.rot.y + 0x8000);
                             Inv_Ring_MotionCameraPitch(&ring, -0x2000);
                             imo.misc = -0x2000;
                         }
@@ -462,7 +462,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                                 &ring, RNG_CLOSING, RNG_MAIN2OPTION, 24);
                             Inv_Ring_MotionRadius(&ring, 0);
                             Inv_Ring_MotionRotation(
-                                &ring, 0x8000, ring.ringpos.rot.y + 0x8000);
+                                &ring, 0x8000, ring.ring_pos.rot.y + 0x8000);
                             Inv_Ring_MotionCameraPitch(&ring, -0x2000);
                             imo.misc = -0x2000;
                         }
@@ -487,7 +487,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 Inv_Ring_MotionRotation(
                     &ring, 0x8000,
                     -16384 - ring.angle_adder * ring.current_object);
-                ring.ringpos.rot.y = imo.rotate_target + 0x8000;
+                ring.ring_pos.rot.y = imo.rotate_target + 0x8000;
                 break;
 
             case RNG_MAIN2KEYS:
@@ -506,7 +506,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 Inv_Ring_MotionRotation(
                     &ring, 0x8000,
                     -16384 - ring.angle_adder * ring.current_object);
-                ring.ringpos.rot.y = imo.rotate_target + 0x8000;
+                ring.ring_pos.rot.y = imo.rotate_target + 0x8000;
                 break;
 
             case RNG_KEYS2MAIN:
@@ -524,7 +524,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 Inv_Ring_MotionRotation(
                     &ring, 0x8000,
                     -16384 - ring.angle_adder * ring.current_object);
-                ring.ringpos.rot.y = imo.rotate_target + 0x8000;
+                ring.ring_pos.rot.y = imo.rotate_target + 0x8000;
                 break;
 
             case RNG_OPTION2MAIN:
@@ -543,7 +543,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 Inv_Ring_MotionRotation(
                     &ring, 0x8000,
                     -16384 - ring.angle_adder * ring.current_object);
-                ring.ringpos.rot.y = imo.rotate_target + 0x8000;
+                ring.ring_pos.rot.y = imo.rotate_target + 0x8000;
                 break;
 
             case RNG_SELECTED: {
@@ -648,7 +648,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     Inv_Ring_MotionRadius(&ring, 0);
                     Inv_Ring_MotionCameraPos(&ring, -1536);
                     Inv_Ring_MotionRotation(
-                        &ring, 0x8000, ring.ringpos.rot.y + 0x8000);
+                        &ring, 0x8000, ring.ring_pos.rot.y + 0x8000);
                 }
                 break;
 

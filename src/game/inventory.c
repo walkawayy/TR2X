@@ -750,3 +750,26 @@ void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *const inv_item)
         break;
     }
 }
+
+int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *const inv_item)
+{
+    if (inv_item->current_frame == inv_item->goal_frame) {
+        Inv_SelectMeshes(inv_item);
+        return false;
+    }
+
+    if (inv_item->anim_count > 0) {
+        inv_item->anim_count--;
+    } else {
+        inv_item->anim_count = inv_item->anim_speed;
+        inv_item->current_frame += inv_item->anim_direction;
+        if (inv_item->current_frame >= inv_item->frames_total) {
+            inv_item->current_frame = 0;
+        } else if (inv_item->current_frame < 0) {
+            inv_item->current_frame = inv_item->frames_total - 1;
+        }
+    }
+
+    Inv_SelectMeshes(inv_item);
+    return true;
+}

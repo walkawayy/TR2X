@@ -167,7 +167,6 @@
 #define InitialiseHair ((void __cdecl (*)(void))0x00420EA0)
 #define HairControl ((void __cdecl (*)(int32_t in_cutscene))0x00420F20)
 #define DrawHair ((void __cdecl (*)(void))0x00421920)
-#define Inv_AnimateInventoryItem ((int32_t __cdecl (*)(INVENTORY_ITEM *inv_item))0x00423500)
 #define Inv_DrawInventoryItem ((void __cdecl (*)(INVENTORY_ITEM *inv_item))0x00423590)
 #define GetDebouncedInput ((int32_t __cdecl (*)(int32_t input))0x004239C0)
 #define Inv_DoInventoryPicture ((void __cdecl (*)(void))0x004239E0)

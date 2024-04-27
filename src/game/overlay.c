@@ -213,12 +213,12 @@ void __cdecl Overlay_InitialisePickUpDisplay(void)
     }
 }
 
-void __cdecl Overlay_DrawPickups(const bool pickup_state)
+void __cdecl Overlay_DrawPickups(const bool timed)
 {
     const int32_t time = g_SaveGame.statistics.timer - m_OldGameTimer;
     m_OldGameTimer = g_SaveGame.statistics.timer;
 
-    if (time < +0 || time >= 60) {
+    if (time <= 0 || time >= 60) {
         return;
     }
 
@@ -231,7 +231,7 @@ void __cdecl Overlay_DrawPickups(const bool pickup_state)
     int32_t column = 0;
     for (int i = 0; i < 12; i++) {
         PICKUP_INFO *const pickup = &g_Pickups[i];
-        if (pickup_state) {
+        if (timed) {
             pickup->timer -= time;
         }
 

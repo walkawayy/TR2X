@@ -4,7 +4,7 @@
 
 - Compile the project (described in the next section)
 - Copy all .dll and .exe files from `build/` to your game directory
-- Copy the contents of `bin/` to your game directory
+- Copy the contents of `data/ship/` to your game directory
 
 
 

@@ -10,6 +10,7 @@
 #include "util.h"
 
 #include <libtrx/log.h>
+#include <libtrx/memory.h>
 
 #include <stdarg.h>
 #include <stdint.h>
@@ -43,9 +44,31 @@ static const double m_LogScale = 0.8;
 static const char m_ValidPromptChars[] =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.- ";
 
+static void Console_ShutdownPrompt(void);
+static void Console_ShutdownLogs(void);
 static void Console_UpdatePromptTextstring(void);
 static void Console_UpdateCaretTextstring(void);
 static COMMAND_RESULT Console_Eval(const char *cmdline);
+
+static void Console_ShutdownPrompt(void)
+{
+    if (m_Prompt.prompt_ts != NULL) {
+        Text_Remove(m_Prompt.prompt_ts);
+        m_Prompt.prompt_ts = NULL;
+    }
+    if (m_Prompt.caret_ts != NULL) {
+        Text_Remove(m_Prompt.caret_ts);
+        m_Prompt.caret_ts = NULL;
+    }
+}
+
+static void Console_ShutdownLogs(void)
+{
+    for (int i = 0; i < MAX_LOG_LINES; i++) {
+        Text_Remove(m_Logs[i].ts);
+        m_Logs[i].ts = NULL;
+    }
+}
 
 static void Console_UpdatePromptTextstring(void)
 {
@@ -119,18 +142,15 @@ void Console_Init(void)
 
     // in case this is called after text reinitializes its textstrings,
     // fix the broken pointers
-    if (m_Prompt.prompt_ts != NULL) {
-        m_Prompt.prompt_ts = NULL;
+    if (strcmp(m_Prompt.text, "") != 0) {
         Console_Open();
     }
 }
 
 void Console_Shutdown(void)
 {
-    for (int i = 0; i < MAX_LOG_LINES; i++) {
-        Text_Remove(m_Logs[i].ts);
-        m_Logs[i].ts = NULL;
-    }
+    Console_ShutdownPrompt();
+    Console_ShutdownLogs();
 }
 
 void Console_Open(void)
@@ -139,15 +159,6 @@ void Console_Open(void)
         LOG_DEBUG("opening console!");
     }
     m_IsOpened = true;
-
-    if (m_Prompt.prompt_ts != NULL) {
-        Text_Remove(m_Prompt.prompt_ts);
-        m_Prompt.prompt_ts = NULL;
-    }
-    if (m_Prompt.caret_ts != NULL) {
-        Text_Remove(m_Prompt.caret_ts);
-        m_Prompt.caret_ts = NULL;
-    }
 
     m_Prompt.caret = strlen(m_Prompt.text);
 
@@ -170,10 +181,7 @@ void Console_Close(void)
     LOG_DEBUG("closing console!");
     m_IsOpened = false;
     strcpy(m_Prompt.text, "");
-    Text_Remove(m_Prompt.prompt_ts);
-    Text_Remove(m_Prompt.caret_ts);
-    m_Prompt.prompt_ts = NULL;
-    m_Prompt.caret_ts = NULL;
+    Console_ShutdownPrompt();
 }
 
 bool Console_IsOpened(void)
@@ -315,8 +323,8 @@ void Console_Log(const char *fmt, ...)
     va_list va;
 
     va_start(va, fmt);
-    size_t text_length = vsnprintf(NULL, 0, fmt, va);
-    char *text = malloc(text_length + 1);
+    const size_t text_length = vsnprintf(NULL, 0, fmt, va);
+    char *text = Memory_Alloc(text_length + 1);
     va_end(va);
 
     va_start(va, fmt);
@@ -352,7 +360,7 @@ void Console_Log(const char *fmt, ...)
     }
 
     m_AreAnyLogsOnScreen = true;
-    free(text);
+    Memory_FreePointer(&text);
 }
 
 void Console_ScrollLogs(void)

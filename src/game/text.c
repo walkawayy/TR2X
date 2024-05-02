@@ -33,12 +33,12 @@ void __cdecl Text_Init(void)
     for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
         g_TextstringTable[i].flags.all = 0;
     }
-    g_TextstringCount = 0;
 
     // TODO: move me outta here!
     // instead Text_Init should be only called once per game launch, and
     // everyone should clean up after themselves rather than creating dangling
     // pointers.
+    Console_Shutdown();
     Console_Init();
 }
 
@@ -83,7 +83,6 @@ TEXTSTRING *__cdecl Text_Create(
     result->bgnd_off.z = 0;
     result->flags.all = 0;
     result->flags.active = 1;
-    g_TextstringCount++;
 
     strncpy(result->text, text, TEXT_MAX_STRING_SIZE);
     result->text[TEXT_MAX_STRING_SIZE - 1] = '\0';
@@ -230,14 +229,13 @@ void __cdecl Text_SetMultiline(TEXTSTRING *string, bool enable)
 int32_t __cdecl Text_Remove(TEXTSTRING *const string)
 {
     if (string == NULL) {
-        return 0;
+        return false;
     }
     if (!string->flags.active) {
-        return 0;
+        return false;
     }
-    string->flags.active = 0;
-    g_TextstringCount--;
-    return 1;
+    string->flags.active = false;
+    return true;
 }
 
 int32_t __cdecl Text_GetWidth(TEXTSTRING *const string)

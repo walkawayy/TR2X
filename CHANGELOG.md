@@ -10,6 +10,7 @@
 - fixed seams around underwater portals (#76)
 - fixed Lara's climb down camera angle (#78)
 - fixed healthbar and airbar flashing the wrong way when at low values (#82)
+- fixed console text passing some keys to the game engine (#75)
 - fixed console text glitches when starting or ending game
 
 ## [0.1.1](https://github.com/LostArtefacts/TR2X/compare/0.1...0.1.1) - 2024-04-27

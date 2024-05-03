@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.03% (451)</tspan> · <tspan class="known">60.51% (737)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.11% (452)</tspan> · <tspan class="known">60.43% (736)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="276.60" height="6" x="0" y="0" class="decompiled"/>
-<rect width="452" height="6" x="276.60" y="0" class="known"/>
+<rect width="277.21" height="6" x="0" y="0" class="decompiled"/>
+<rect width="451.39" height="6" x="277.21" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -319,7 +319,7 @@
 <rect width="12" height="12" x="585" y="60" class="known"><title>void __cdecl BigEelControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="600" y="60" class="known"><title>void __cdecl EelControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="615" y="60" class="known"><title>int32_t __cdecl ItemNearLara(PHD_3DPOS *pos, int32_t distance);</title></rect>
-<rect width="12" height="12" x="630" y="60" class="known"><title>void __cdecl Sound_Update(void);</title></rect>
+<rect width="12" height="12" x="630" y="60" class="decompiled"><title>void __cdecl Sound_UpdateEffects(void);</title></rect>
 <rect width="12" height="12" x="645" y="60" class="known"><title>int16_t __cdecl DoBloodSplat(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="660" y="60" class="known"><title>void __cdecl DoLotsOfBlood(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num, int32_t num);</title></rect>
 <rect width="12" height="12" x="675" y="60" class="known"><title>void __cdecl ControlBlood1(int16_t fx_num);</title></rect>
@@ -803,7 +803,7 @@
 <rect width="12" height="12" x="345" y="210" class="known"><title>int32_t __cdecl Music_GetRealTrack(int32_t track);</title></rect>
 <rect width="12" height="12" x="360" y="210" class="known"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="12" height="12" x="375" y="210" class="known"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
-<rect width="12" height="12" x="390" y="210" class="known"><title>void __cdecl Sound_UpdateContinued(void);</title></rect>
+<rect width="12" height="12" x="390" y="210" class="known"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="12" height="12" x="405" y="210" class="known"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="420" y="210" class="known"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="12" height="12" x="435" y="210" class="known"><title>int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.88%</tspan> · <tspan class="known">64.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.91%</tspan> · <tspan class="known">64.77%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="260.54" height="6" x="0" y="0" class="decompiled"/>
-<rect width="484.02" height="6" x="260.54" y="0" class="known"/>
+<rect width="260.76" height="6" x="0" y="0" class="decompiled"/>
+<rect width="483.80" height="6" x="260.76" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1915,7 +1915,7 @@
 <rect width="7.66" height="7.51" x="567.89" y="356.99" class="decompiled"><title>bool __cdecl HideDDrawGameWindow(void);</title></rect>
 <rect width="7.66" height="7.51" x="567.89" y="367.49" class="known"><title>int32_t __cdecl CreateTexturePalette(RGB_888 *pal);</title></rect>
 <rect width="7.92" height="7.19" x="578.55" y="196.57" class="decompiled"><title>void __cdecl Lara_SwimTurn(ITEM_INFO *item);</title></rect>
-<rect width="7.92" height="7.19" x="589.47" y="196.57" class="known"><title>void __cdecl Sound_UpdateContinued(void);</title></rect>
+<rect width="7.92" height="7.19" x="589.47" y="196.57" class="known"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="7.92" height="7.19" x="600.39" y="196.57" class="known"><title>void __cdecl HookControl(int16_t item_num);</title></rect>
 <rect width="7.84" height="7.19" x="611.31" y="196.57" class="decompiled"><title>void __cdecl Output_DrawPickup(int32_t sx, int32_t sy, int32_t scale, int16_t sprite_idx, int16_t shade);</title></rect>
 <rect width="7.84" height="7.19" x="622.15" y="196.57" class="decompiled"><title>void __cdecl Lara_State_Tread(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -2003,7 +2003,7 @@
 <rect width="6.54" height="6.22" x="646.65" y="226.42" class="known"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
 <rect width="6.54" height="6.22" x="656.19" y="226.42" class="known"><title>int32_t __cdecl CreateTexturePage(int32_t width, int32_t height, bool alpha);</title></rect>
 <rect width="6.45" height="6.22" x="665.73" y="226.42" class="decompiled"><title>void __cdecl Lara_Col_SwanDive(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="6.36" height="6.22" x="675.18" y="226.42" class="known"><title>void __cdecl Sound_Update(void);</title></rect>
+<rect width="6.36" height="6.22" x="675.18" y="226.42" class="decompiled"><title>void __cdecl Sound_UpdateEffects(void);</title></rect>
 <rect width="6.36" height="6.22" x="684.55" y="226.42" class="known"><title>void __cdecl ControlClockChimes(int16_t item_num);</title></rect>
 <rect width="6.36" height="6.22" x="693.91" y="226.42" class="decompiled"><title>void __cdecl Lara_Col_Death(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="6.36" height="6.22" x="703.27" y="226.42" class="known"><title>void __cdecl InitialiseObjects(void);</title></rect>

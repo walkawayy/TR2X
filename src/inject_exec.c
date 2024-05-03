@@ -300,6 +300,7 @@ static void Inject_Music(const bool enable)
 static void Inject_Sound(const bool enable)
 {
     INJECT(enable, 0x00455380, Sound_SetMasterVolume);
+    INJECT(enable, 0x0041C560, Sound_UpdateEffects);
 }
 
 static void Inject_Overlay(const bool enable)

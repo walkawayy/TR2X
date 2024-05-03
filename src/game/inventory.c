@@ -306,7 +306,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
         Overlay_DrawModeInfo();
         Text_Draw();
         S_OutputPolyList();
-        Sound_UpdateContinued();
+        Sound_EndScene();
 
         const int32_t frames = S_DumpScreen();
         g_Inv_NFrames = frames;

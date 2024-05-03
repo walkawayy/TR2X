@@ -2275,7 +2275,7 @@ typedef struct __unaligned {
 
 # game/effects.c
 0x0041C4D0  0x008C  -R      int32_t __cdecl ItemNearLara(PHD_3DPOS *pos, int32_t distance);
-0x0041C560  0x0068  -       void __cdecl Sound_Update(void);
+0x0041C560  0x0068  +       void __cdecl Sound_UpdateEffects(void);
 0x0041C5D0  0x0059  -R      int16_t __cdecl DoBloodSplat(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num);
 0x0041C630  0x00A4  -R      void __cdecl DoLotsOfBlood(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num, int32_t num);
 0x0041C6E0  0x0082  -R      void __cdecl ControlBlood1(int16_t fx_num);
@@ -2817,7 +2817,7 @@ typedef struct __unaligned {
 0x0043F380  0x0031  *       int32_t __cdecl Music_GetRealTrack(int32_t track);
 0x0043F3C0  0x0484  -       void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);
 0x0043F860  0x005E  -       void __cdecl Sound_StopEffect(int32_t sample_id);
-0x0043F8C0  0x0086  -       void __cdecl Sound_UpdateContinued(void);
+0x0043F8C0  0x0086  -       void __cdecl Sound_EndScene(void);
 0x0043F950  0x0024  -       void __cdecl Sound_Shutdown(void);
 0x0043F980  0x002A  *       void __cdecl Sound_Init(void);
 
@@ -3586,7 +3586,7 @@ typedef struct __unaligned {
 0x005207CC  -       int16_t g_PrevItemActive;
 0x00521CA0  -       PICKUP_INFO g_Pickups[12];
 0x00521DE0  -       GAME_FLOW g_GameFlow;
-0x00521FDC  -       int32_t g_SoundFxCount;
+0x00521FDC  -       int32_t g_SoundEffectCount;
 0x00522000  -       OBJECT_INFO g_Objects[265];
 0x005252B0  -       int16_t **g_Meshes;
 0x005252C0  -       MATRIX g_IMMatrixStack[256];
@@ -3635,3 +3635,4 @@ typedef struct __unaligned {
 0x004655A8  -       INVENTORY_ITEM *g_Inv_KeysList[];
 0x004644F8  -       int32_t g_Inv_NFrames;
 0x00525C00  -       STATIC_INFO g_StaticObjects[256];
+0x00521FE0  -       OBJECT_VECTOR *g_SoundEffects;

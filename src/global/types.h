@@ -1236,6 +1236,7 @@ typedef enum {
     SPM_NORMAL     = 0,
     SPM_UNDERWATER = 1,
     SPM_ALWAYS     = 2,
+    SPM_PITCH      = 4,
 } SOUND_PLAY_MODE;
 
 typedef enum {
@@ -2003,5 +2004,24 @@ typedef struct __unaligned {
     uint8_t bpp;
     uint8_t image_descriptor;
 } TGA_HEADER;
+
+typedef struct __unaligned {
+    int16_t number;
+    int16_t volume;
+    int16_t randomness;
+    int16_t flags;
+} SAMPLE_INFO;
+
+typedef struct __unaligned {
+    int32_t volume;
+    int32_t pan;
+    int32_t sample_num;
+    int32_t pitch;
+} SOUND_SLOT;
+
+typedef enum {
+    SF_FLIP = 0x40,
+    SF_UNFLIP = 0x80,
+} SOUND_FLAG;
 
 // clang-format on

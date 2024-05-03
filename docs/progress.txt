@@ -1222,6 +1222,7 @@ typedef enum {
     SPM_NORMAL     = 0,
     SPM_UNDERWATER = 1,
     SPM_ALWAYS     = 2,
+    SPM_PITCH      = 4,
 } SOUND_PLAY_MODE;
 
 typedef enum {
@@ -1989,6 +1990,25 @@ typedef struct __unaligned {
     uint8_t bpp;
     uint8_t image_descriptor;
 } TGA_HEADER;
+
+typedef struct __unaligned {
+    int16_t number;
+    int16_t volume;
+    int16_t randomness;
+    int16_t flags;
+} SAMPLE_INFO;
+
+typedef struct __unaligned {
+    int32_t volume;
+    int32_t pan;
+    int32_t sample_num;
+    int32_t pitch;
+} SOUND_SLOT;
+
+typedef enum {
+    SF_FLIP = 0x40,
+    SF_UNFLIP = 0x80,
+} SOUND_FLAG;
 
 # FUNCTIONS
 #   Flags:
@@ -2815,7 +2835,7 @@ typedef struct __unaligned {
 
 # game/sound.c
 0x0043F380  0x0031  *       int32_t __cdecl Music_GetRealTrack(int32_t track);
-0x0043F3C0  0x0484  -       void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);
+0x0043F3C0  0x0484  +       void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);
 0x0043F860  0x005E  -       void __cdecl Sound_StopEffect(int32_t sample_id);
 0x0043F8C0  0x0086  -       void __cdecl Sound_EndScene(void);
 0x0043F950  0x0024  -       void __cdecl Sound_Shutdown(void);
@@ -3636,3 +3656,6 @@ typedef struct __unaligned {
 0x004644F8  -       int32_t g_Inv_NFrames;
 0x00525C00  -       STATIC_INFO g_StaticObjects[256];
 0x00521FE0  -       OBJECT_VECTOR *g_SoundEffects;
+0x0051E6E0  -       int16_t g_SampleLUT[];
+0x0051E9C4  -       SAMPLE_INFO *g_SampleInfos;
+0x004D7C78  -       SOUND_SLOT g_SoundSlots[32];

@@ -4,6 +4,7 @@
 #include "game/lara/lara_misc.h"
 #include "game/music.h"
 #include "game/output.h"
+#include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"

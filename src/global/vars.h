@@ -163,6 +163,7 @@ extern const char *g_TR2XVersion;
 #define g_Assault (*(ASSAULT_STATS*)0x004D7BD8)
 #define g_LevelItemCount (*(int32_t*)0x004D7C38)
 #define g_HealthBarTimer (*(int32_t*)0x004D7C3C)
+#define g_SoundSlots (*(SOUND_SLOT(*)[32])0x004D7C78)
 #define g_SoundTrackIds (*(int32_t(*)[128])0x004D7C80)
 #define g_D3DDev (*(LPDIRECT3DDEVICE2*)0x004D7EBC)
 #define g_MinWindowClientHeight (*(int32_t*)0x004D7ED0)
@@ -255,6 +256,8 @@ extern const char *g_TR2XVersion;
 #define g_TextstringCount (*(int16_t*)0x0051D6A0) // = 0
 #define g_TextstringBuffers (*(char(*)[64][64])0x0051D6C0)
 #define g_SoundIsActive (*(int32_t*)0x0051E6C4)
+#define g_SampleLUT (*(int16_t(*)[])0x0051E6E0)
+#define g_SampleInfos (*(SAMPLE_INFO **)0x0051E9C4)
 #define g_SaveGame (*(SAVEGAME_INFO*)0x0051E9E0)
 #define g_BaddieSlots (*(CREATURE_INFO **)0x005206C0)
 #define g_Lara (*(LARA_INFO*)0x005206E0)

@@ -5,6 +5,7 @@
 #include "game/music.h"
 #include "game/output.h"
 #include "game/overlay.h"
+#include "game/sound.h"
 #include "game/text.h"
 #include "global/const.h"
 #include "global/funcs.h"

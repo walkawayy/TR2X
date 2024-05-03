@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.11% (452)</tspan> · <tspan class="known">60.43% (736)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.19% (453)</tspan> · <tspan class="known">60.34% (735)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="277.21" height="6" x="0" y="0" class="decompiled"/>
-<rect width="451.39" height="6" x="277.21" y="0" class="known"/>
+<rect width="277.83" height="6" x="0" y="0" class="decompiled"/>
+<rect width="450.78" height="6" x="277.83" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -801,7 +801,7 @@
 <rect width="12" height="12" x="315" y="210" class="known"><title>void __cdecl SkidmanPush(ITEM_INFO *item, ITEM_INFO *lara_item, int32_t radius);</title></rect>
 <rect width="12" height="12" x="330" y="210" class="known"><title>void __cdecl SkidmanCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="345" y="210" class="known"><title>int32_t __cdecl Music_GetRealTrack(int32_t track);</title></rect>
-<rect width="12" height="12" x="360" y="210" class="known"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
+<rect width="12" height="12" x="360" y="210" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="12" height="12" x="375" y="210" class="known"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
 <rect width="12" height="12" x="390" y="210" class="known"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="12" height="12" x="405" y="210" class="known"><title>void __cdecl Sound_Shutdown(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">34.91%</tspan> · <tspan class="known">64.77%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.25%</tspan> · <tspan class="known">64.43%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="260.76" height="6" x="0" y="0" class="decompiled"/>
-<rect width="483.80" height="6" x="260.76" y="0" class="known"/>
+<rect width="263.29" height="6" x="0" y="0" class="decompiled"/>
+<rect width="481.27" height="6" x="263.29" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1353,7 +1353,7 @@
 <rect width="28.60" height="28.07" x="177.07" y="224.25" class="known"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="28.60" height="28.04" x="177.07" y="255.32" class="known"><title>int32_t __cdecl SkidooDynamics(ITEM_INFO *skidoo);</title></rect>
 <rect width="28.60" height="28.02" x="177.07" y="286.36" class="known"><title>void __cdecl do_sound_option(INVENTORY_ITEM *item);</title></rect>
-<rect width="28.60" height="27.36" x="177.07" y="317.38" class="known"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
+<rect width="28.60" height="27.36" x="177.07" y="317.38" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="28.60" height="27.26" x="177.07" y="347.74" class="known"><title>void __cdecl PickUpCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="27.61" height="28.13" x="208.67" y="0" class="known"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);</title></rect>
 <rect width="27.61" height="27.18" x="208.67" y="31.13" class="decompiled"><title>TARGET_TYPE __cdecl Box_CalculateTarget(XYZ_32 *target, ITEM_INFO *item, LOT_INFO *lot);</title></rect>

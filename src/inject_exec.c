@@ -293,7 +293,6 @@ static void Inject_Music(const bool enable)
     INJECT(enable, 0x00455500, Music_Play);
     INJECT(enable, 0x00455570, Music_Stop);
     INJECT(enable, 0x004555B0, Music_PlaySynced);
-    INJECT(enable, 0x00455640, Music_GetFrames);
     INJECT(enable, 0x004556B0, Music_SetVolume);
 }
 

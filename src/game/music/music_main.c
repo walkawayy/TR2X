@@ -164,13 +164,12 @@ bool __cdecl Music_PlaySynced(int16_t track_id)
     return true;
 }
 
-uint32_t __cdecl Music_GetFrames(void)
+double __cdecl Music_GetTimestamp(void)
 {
     if (m_AudioStreamID < 0) {
-        return 0;
+        return -1.0;
     }
-    return Audio_Stream_GetTimestamp(m_AudioStreamID) * FRAMES_PER_SECOND
-        * TICKS_PER_FRAME / 1000.0;
+    return Audio_Stream_GetTimestamp(m_AudioStreamID);
 }
 
 void __cdecl Music_SetVolume(int32_t volume)

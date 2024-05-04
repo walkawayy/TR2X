@@ -1070,7 +1070,8 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
             HairControl(1);
             Camera_UpdateCutscene();
 
-            if (++g_CineFrameIdx >= g_NumCineFrames) {
+            g_CineFrameIdx++;
+            if (g_CineFrameIdx >= g_NumCineFrames) {
                 return 1;
             }
 
@@ -1081,7 +1082,14 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
         }
     }
 
-    g_CineFrameCurrent = Music_GetFrames() * 4 / 5;
+    if (Music_GetTimestamp() < 0.0) {
+        g_CineFrameCurrent++;
+    } else {
+        // sync with music
+        g_CineFrameCurrent =
+            Music_GetTimestamp() * FRAMES_PER_SECOND * TICKS_PER_FRAME / 1000.0;
+    }
+
     return 0;
 }
 

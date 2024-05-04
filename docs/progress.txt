@@ -2839,7 +2839,7 @@ typedef enum {
 0x0043F860  0x005E  +       void __cdecl Sound_StopEffect(int32_t sample_id);
 0x0043F8C0  0x0086  +       void __cdecl Sound_EndScene(void);
 0x0043F950  0x0024  +       void __cdecl Sound_Shutdown(void);
-0x0043F980  0x002A  *       void __cdecl Sound_Init(void);
+0x0043F980  0x002A  +       void __cdecl Sound_Init(void);
 
 # game/sphere.c
 0x0043F9B0  0x0128  -R      int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);

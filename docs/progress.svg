@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.44% (456)</tspan> · <tspan class="known">60.10% (732)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.52% (457)</tspan> · <tspan class="known">60.02% (731)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="279.67" height="6" x="0" y="0" class="decompiled"/>
-<rect width="448.94" height="6" x="279.67" y="0" class="known"/>
+<rect width="280.28" height="6" x="0" y="0" class="decompiled"/>
+<rect width="448.32" height="6" x="280.28" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -805,7 +805,7 @@
 <rect width="12" height="12" x="375" y="210" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
 <rect width="12" height="12" x="390" y="210" class="decompiled"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="12" height="12" x="405" y="210" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>
-<rect width="12" height="12" x="420" y="210" class="known"><title>void __cdecl Sound_Init(void);</title></rect>
+<rect width="12" height="12" x="420" y="210" class="decompiled"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="12" height="12" x="435" y="210" class="known"><title>int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
 <rect width="12" height="12" x="450" y="210" class="known"><title>int32_t __cdecl GetSpheres(ITEM_INFO *item, SPHERE *ptr, int32_t world_space);</title></rect>
 <rect width="12" height="12" x="465" y="210" class="known"><title>void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.32%</tspan> · <tspan class="known">64.35%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.34%</tspan> · <tspan class="known">64.34%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.87" height="6" x="0" y="0" class="decompiled"/>
-<rect width="480.69" height="6" x="263.87" y="0" class="known"/>
+<rect width="263.96" height="6" x="0" y="0" class="decompiled"/>
+<rect width="480.60" height="6" x="263.96" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2324,7 +2324,7 @@
 <rect width="2.72" height="3.24" x="681.74" y="353.33" class="known"><title>DWORD __cdecl GetZBufferDepth(void);</title></rect>
 <rect width="2.72" height="3.24" x="681.74" y="359.57" class="known"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="2.72" height="3.10" x="681.74" y="365.81" class="decompiled"><title>void __cdecl Output_InsertPolygons_I(int16_t *ptr, int32_t clip);</title></rect>
-<rect width="2.72" height="3.10" x="681.74" y="371.90" class="known"><title>void __cdecl Sound_Init(void);</title></rect>
+<rect width="2.72" height="3.10" x="681.74" y="371.90" class="decompiled"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="2.85" height="2.96" x="687.46" y="315.45" class="decompiled"><title>void __cdecl S_Audio_Sample_Shutdown(void);</title></rect>
 <rect width="2.85" height="2.96" x="693.31" y="315.45" class="known"><title>void __cdecl S_UnloadLevelFile(void);</title></rect>
 <rect width="2.85" height="2.96" x="699.16" y="315.45" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_CalculateSampleVolume(int32_t volume);</title></rect>

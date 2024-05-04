@@ -305,6 +305,7 @@ static void Inject_Sound(const bool enable)
     INJECT(enable, 0x0043F860, Sound_StopEffect);
     INJECT(enable, 0x0043F8C0, Sound_EndScene);
     INJECT(enable, 0x0043F950, Sound_Shutdown);
+    INJECT(enable, 0x0043F980, Sound_Init);
 }
 
 static void Inject_Overlay(const bool enable)

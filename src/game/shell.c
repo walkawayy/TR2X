@@ -4,6 +4,7 @@
 #include "game/console.h"
 #include "game/input.h"
 #include "game/music.h"
+#include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 

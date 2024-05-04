@@ -400,7 +400,6 @@
 #define SkidmanPush ((void __cdecl (*)(ITEM_INFO *item, ITEM_INFO *lara_item, int32_t radius))0x0043F1D0)
 #define SkidmanCollision ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x0043F2F0)
 #define Music_GetRealTrack ((int32_t __cdecl (*)(int32_t track))0x0043F380)
-#define Sound_Init ((void __cdecl (*)(void))0x0043F980)
 #define TestCollision ((int32_t __cdecl (*)(ITEM_INFO *item, ITEM_INFO *lara_item))0x0043F9B0)
 #define GetSpheres ((int32_t __cdecl (*)(ITEM_INFO *item, SPHERE *ptr, int32_t world_space))0x0043FAE0)
 #define Collide_GetJointAbsPosition ((void __cdecl (*)(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint))0x0043FDC0)

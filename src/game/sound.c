@@ -39,6 +39,31 @@ typedef enum {
 #define SOUND_MAXVOL_RADIUS (SOUND_MAXVOL_RANGE * WALL_L) // = 0x400 = 1024
 #define SOUND_MAXVOL_RADIUS_SQRD SQUARE(SOUND_MAXVOL_RADIUS) // = 0x100000
 
+void __cdecl Sound_Init(void)
+{
+    Sound_SetMasterVolume(32);
+
+    for (int32_t i = 0; i < SOUND_MAX_SLOTS; i++) {
+        SOUND_SLOT *const slot = &g_SoundSlots[i];
+        slot->sample_num = -1;
+    }
+
+    g_SoundIsActive = true;
+}
+
+void __cdecl Sound_Shutdown(void)
+{
+    if (!g_SoundIsActive) {
+        return;
+    }
+
+    S_Audio_Sample_OutCloseAllTracks();
+    for (int32_t i = 0; i < SOUND_MAX_SLOTS; i++) {
+        SOUND_SLOT *const slot = &g_SoundSlots[i];
+        slot->sample_num = -1;
+    }
+}
+
 void __cdecl Sound_SetMasterVolume(int32_t volume)
 {
     g_MasterVolume = volume;
@@ -261,18 +286,5 @@ void __cdecl Sound_EndScene(void)
         } else if (!S_Audio_Sample_OutIsTrackPlaying(i)) {
             slot->sample_num = -1;
         }
-    }
-}
-
-void __cdecl Sound_Shutdown(void)
-{
-    if (!g_SoundIsActive) {
-        return;
-    }
-
-    S_Audio_Sample_OutCloseAllTracks();
-    for (int32_t i = 0; i < SOUND_MAX_SLOTS; i++) {
-        SOUND_SLOT *const slot = &g_SoundSlots[i];
-        slot->sample_num = -1;
     }
 }

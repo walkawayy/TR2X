@@ -1064,6 +1064,7 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
                 if (obj->control != NULL) {
                     obj->control(id);
                 }
+                id = fx->next_active;
             }
 
             HairControl(1);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.27% (454)</tspan> · <tspan class="known">60.26% (734)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.36% (455)</tspan> · <tspan class="known">60.18% (733)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="278.44" height="6" x="0" y="0" class="decompiled"/>
-<rect width="450.16" height="6" x="278.44" y="0" class="known"/>
+<rect width="279.05" height="6" x="0" y="0" class="decompiled"/>
+<rect width="449.55" height="6" x="279.05" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -803,7 +803,7 @@
 <rect width="12" height="12" x="345" y="210" class="known"><title>int32_t __cdecl Music_GetRealTrack(int32_t track);</title></rect>
 <rect width="12" height="12" x="360" y="210" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="12" height="12" x="375" y="210" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
-<rect width="12" height="12" x="390" y="210" class="known"><title>void __cdecl Sound_EndScene(void);</title></rect>
+<rect width="12" height="12" x="390" y="210" class="decompiled"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="12" height="12" x="405" y="210" class="known"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="420" y="210" class="known"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="12" height="12" x="435" y="210" class="known"><title>int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.27%</tspan> · <tspan class="known">64.40%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.31%</tspan> · <tspan class="known">64.36%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.50" height="6" x="0" y="0" class="decompiled"/>
-<rect width="481.06" height="6" x="263.50" y="0" class="known"/>
+<rect width="263.79" height="6" x="0" y="0" class="decompiled"/>
+<rect width="480.77" height="6" x="263.79" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1915,7 +1915,7 @@
 <rect width="7.66" height="7.51" x="567.89" y="356.99" class="decompiled"><title>bool __cdecl HideDDrawGameWindow(void);</title></rect>
 <rect width="7.66" height="7.51" x="567.89" y="367.49" class="known"><title>int32_t __cdecl CreateTexturePalette(RGB_888 *pal);</title></rect>
 <rect width="7.92" height="7.19" x="578.55" y="196.57" class="decompiled"><title>void __cdecl Lara_SwimTurn(ITEM_INFO *item);</title></rect>
-<rect width="7.92" height="7.19" x="589.47" y="196.57" class="known"><title>void __cdecl Sound_EndScene(void);</title></rect>
+<rect width="7.92" height="7.19" x="589.47" y="196.57" class="decompiled"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="7.92" height="7.19" x="600.39" y="196.57" class="known"><title>void __cdecl HookControl(int16_t item_num);</title></rect>
 <rect width="7.84" height="7.19" x="611.31" y="196.57" class="decompiled"><title>void __cdecl Output_DrawPickup(int32_t sx, int32_t sy, int32_t scale, int16_t sprite_idx, int16_t shade);</title></rect>
 <rect width="7.84" height="7.19" x="622.15" y="196.57" class="decompiled"><title>void __cdecl Lara_State_Tread(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

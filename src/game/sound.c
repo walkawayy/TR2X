@@ -235,3 +235,31 @@ void __cdecl Sound_StopEffect(const int32_t sample_id)
         }
     }
 }
+
+void __cdecl Sound_EndScene(void)
+{
+    if (!g_SoundIsActive) {
+        return;
+    }
+
+    for (int32_t i = 0; i < SOUND_MAX_SLOTS; i++) {
+        SOUND_SLOT *const slot = &g_SoundSlots[i];
+        SAMPLE_INFO *const s = &g_SampleInfos[slot->sample_num];
+        if (slot->sample_num < 0) {
+            continue;
+        }
+
+        if ((s->flags & SOUND_MODE_MASK) == SOUND_MODE_LOOPED) {
+            if (slot->volume == 0) {
+                S_Audio_Sample_OutCloseTrack(i);
+                slot->sample_num = -1;
+            } else {
+                S_Audio_Sample_OutSetPanAndVolume(i, slot->pan, slot->volume);
+                S_Audio_Sample_OutSetPitch(i, slot->pitch);
+                slot->volume = 0;
+            }
+        } else if (!S_Audio_Sample_OutIsTrackPlaying(i)) {
+            slot->sample_num = -1;
+        }
+    }
+}

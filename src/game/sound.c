@@ -216,3 +216,22 @@ void __cdecl Sound_Effect(
         g_SoundSlots[handle].sample_num = sample_num;
     }
 }
+
+void __cdecl Sound_StopEffect(const int32_t sample_id)
+{
+    if (!g_SoundIsActive) {
+        return;
+    }
+
+    const int32_t sample_num = g_SampleLUT[sample_id];
+    const int32_t num_samples = (g_SampleInfos[sample_num].flags >> 2) & 0xF;
+
+    for (int32_t i = 0; i < SOUND_MAX_SLOTS; i++) {
+        SOUND_SLOT *slot = &g_SoundSlots[i];
+        if (slot->sample_num >= sample_num
+            && slot->sample_num < sample_num + num_samples) {
+            S_Audio_Sample_OutCloseTrack(i);
+            slot->sample_num = -1;
+        }
+    }
+}

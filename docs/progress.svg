@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.19% (453)</tspan> · <tspan class="known">60.34% (735)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.27% (454)</tspan> · <tspan class="known">60.26% (734)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="277.83" height="6" x="0" y="0" class="decompiled"/>
-<rect width="450.78" height="6" x="277.83" y="0" class="known"/>
+<rect width="278.44" height="6" x="0" y="0" class="decompiled"/>
+<rect width="450.16" height="6" x="278.44" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -802,7 +802,7 @@
 <rect width="12" height="12" x="330" y="210" class="known"><title>void __cdecl SkidmanCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="345" y="210" class="known"><title>int32_t __cdecl Music_GetRealTrack(int32_t track);</title></rect>
 <rect width="12" height="12" x="360" y="210" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
-<rect width="12" height="12" x="375" y="210" class="known"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
+<rect width="12" height="12" x="375" y="210" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
 <rect width="12" height="12" x="390" y="210" class="known"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="12" height="12" x="405" y="210" class="known"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="420" y="210" class="known"><title>void __cdecl Sound_Init(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.25%</tspan> · <tspan class="known">64.43%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.27%</tspan> · <tspan class="known">64.40%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.29" height="6" x="0" y="0" class="decompiled"/>
-<rect width="481.27" height="6" x="263.29" y="0" class="known"/>
+<rect width="263.50" height="6" x="0" y="0" class="decompiled"/>
+<rect width="481.06" height="6" x="263.50" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2042,7 +2042,7 @@
 <rect width="5.79" height="5.97" x="715.01" y="235.64" class="known"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
 <rect width="5.79" height="5.97" x="723.81" y="235.64" class="unused"><title>sub_444AB0</title></rect>
 <rect width="5.70" height="5.97" x="732.60" y="235.64" class="decompiled"><title>void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="5.70" height="5.97" x="741.30" y="235.64" class="known"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
+<rect width="5.70" height="5.97" x="741.30" y="235.64" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
 <rect width="5.61" height="6.07" x="608.02" y="244.61" class="known"><title>bool __cdecl GetRegistryDwordValue(LPCTSTR lpValueName, DWORD *pValue, DWORD defaultValue);</title></rect>
 <rect width="5.61" height="5.97" x="608.02" y="253.67" class="known"><title>void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="5.61" height="5.97" x="608.02" y="262.64" class="known"><title>void __cdecl ControlBirdTweeter(int16_t item_num);</title></rect>

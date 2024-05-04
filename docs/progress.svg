@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.36% (455)</tspan> · <tspan class="known">60.18% (733)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.44% (456)</tspan> · <tspan class="known">60.10% (732)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="279.05" height="6" x="0" y="0" class="decompiled"/>
-<rect width="449.55" height="6" x="279.05" y="0" class="known"/>
+<rect width="279.67" height="6" x="0" y="0" class="decompiled"/>
+<rect width="448.94" height="6" x="279.67" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -804,7 +804,7 @@
 <rect width="12" height="12" x="360" y="210" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="12" height="12" x="375" y="210" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
 <rect width="12" height="12" x="390" y="210" class="decompiled"><title>void __cdecl Sound_EndScene(void);</title></rect>
-<rect width="12" height="12" x="405" y="210" class="known"><title>void __cdecl Sound_Shutdown(void);</title></rect>
+<rect width="12" height="12" x="405" y="210" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="420" y="210" class="known"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="12" height="12" x="435" y="210" class="known"><title>int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
 <rect width="12" height="12" x="450" y="210" class="known"><title>int32_t __cdecl GetSpheres(ITEM_INFO *item, SPHERE *ptr, int32_t world_space);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.31%</tspan> · <tspan class="known">64.36%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.32%</tspan> · <tspan class="known">64.35%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.79" height="6" x="0" y="0" class="decompiled"/>
-<rect width="480.77" height="6" x="263.79" y="0" class="known"/>
+<rect width="263.87" height="6" x="0" y="0" class="decompiled"/>
+<rect width="480.69" height="6" x="263.87" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2353,7 +2353,7 @@
 <rect width="2.34" height="2.60" x="693.06" y="344.42" class="known"><title>void __cdecl Control_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="350.01" class="known"><title>void __cdecl AssaultStart(ITEM_INFO *item);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="355.61" class="known"><title>void __cdecl RemoveInventoryText(void);</title></rect>
-<rect width="2.34" height="2.60" x="693.06" y="361.21" class="known"><title>void __cdecl Sound_Shutdown(void);</title></rect>
+<rect width="2.34" height="2.60" x="693.06" y="361.21" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="366.81" class="decompiled"><title>int16_t __cdecl Text_GetTextLength(const char *text);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="372.40" class="known"><title>bool __cdecl DInputEnumDevices(JOYSTICK_LIST *joystickList);</title></rect>
 <rect width="2.29" height="2.65" x="698.40" y="321.40" class="known"><title>void __cdecl HWR_TexSource(HWR_TEX_HANDLE tex_source);</title></rect>

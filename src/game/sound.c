@@ -263,3 +263,16 @@ void __cdecl Sound_EndScene(void)
         }
     }
 }
+
+void __cdecl Sound_Shutdown(void)
+{
+    if (!g_SoundIsActive) {
+        return;
+    }
+
+    S_Audio_Sample_OutCloseAllTracks();
+    for (int32_t i = 0; i < SOUND_MAX_SLOTS; i++) {
+        SOUND_SLOT *const slot = &g_SoundSlots[i];
+        slot->sample_num = -1;
+    }
+}

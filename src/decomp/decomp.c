@@ -15,7 +15,6 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 #include "lib/dinput.h"
-#include "specific/s_audio_sample.h"
 #include "util.h"
 
 #include <dinput.h>
@@ -26,11 +25,11 @@ int32_t __cdecl GameInit(void)
     Music_Shutdown();
     UT_InitAccurateTimer();
     // clang-format off
+    Sound_Init();
     return WinVidInit()
         && Direct3DInit()
         && RenderInit()
         && InitTextures()
-        && S_Audio_Sample_Init()
         && WinInputInit()
         && TIME_Init()
         && HWR_Init()
@@ -385,7 +384,6 @@ int32_t __cdecl WinGameStart(void)
     // try {
     WinVidStart();
     RenderStart(1);
-    S_Audio_Sample_Init2(0);
     WinInStart();
     // } catch (int error) {
     //     return error;
@@ -397,7 +395,6 @@ void __cdecl Shell_Shutdown(void)
 {
     Console_Shutdown();
     WinInFinish();
-    S_Audio_Sample_Shutdown();
     RenderFinish(1);
     WinVidFinish();
     WinVidHideGameWindow();
@@ -1010,7 +1007,7 @@ int32_t __cdecl Game_Cutscene_Start(const int32_t level_num)
     }
     Music_Stop();
     g_SoundIsActive = old_sound_active;
-    S_Audio_Sample_OutCloseAllTracks();
+    Sound_StopAllSamples();
 
     g_LevelComplete = 1;
     return result;
@@ -1231,7 +1228,7 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
     Overlay_InitialisePickUpDisplay();
     S_InitialiseScreen(level_type);
     g_HealthBarTimer = 100;
-    Sound_Shutdown();
+    Sound_StopAllSamples();
     if (level_type == GFL_SAVED) {
         ExtractSaveGameInfo();
     } else if (level_type == GFL_NORMAL) {

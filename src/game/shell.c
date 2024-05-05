@@ -27,7 +27,6 @@ BOOL __cdecl Shell_Main(void)
         return false;
     }
 
-    Sound_Init();
     InitialiseStartInfo();
     S_FrontEndCheck();
     S_LoadSettings();

@@ -9,7 +9,6 @@
 #include "global/vars.h"
 
 #include <libtrx/engine/audio.h>
-#include <libtrx/filesystem.h>
 #include <libtrx/log.h>
 
 #include <assert.h>
@@ -66,11 +65,6 @@ bool __cdecl Music_Init(void)
     // TODO: remove this guard once Music_Init can be called in a proper place
     if (m_Initialized) {
         return true;
-    }
-
-    if (!Audio_Init()) {
-        LOG_ERROR("Failed to initialize libtrx sound system");
-        goto finish;
     }
 
     m_Backend = Music_FindBackend();

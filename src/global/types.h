@@ -2012,12 +2012,14 @@ typedef struct __unaligned {
     int16_t flags;
 } SAMPLE_INFO;
 
+/*
 typedef struct __unaligned {
     int32_t volume;
     int32_t pan;
     int32_t sample_num;
     int32_t pitch;
 } SOUND_SLOT;
+*/
 
 typedef enum {
     SF_FLIP = 0x40,

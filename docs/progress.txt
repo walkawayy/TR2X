@@ -1998,12 +1998,14 @@ typedef struct __unaligned {
     int16_t flags;
 } SAMPLE_INFO;
 
+/*
 typedef struct __unaligned {
     int32_t volume;
     int32_t pan;
     int32_t sample_num;
     int32_t pitch;
 } SOUND_SLOT;
+*/
 
 typedef enum {
     SF_FLIP = 0x40,
@@ -3709,7 +3711,7 @@ typedef enum {
 0x00521FE0  -       OBJECT_VECTOR *g_SoundEffects;
 0x0051E6E0  -       int16_t g_SampleLUT[];
 0x0051E9C4  -       SAMPLE_INFO *g_SampleInfos;
-0x004D7C78  -       SOUND_SLOT g_SoundSlots[32];
+0x004D7C78  +       SOUND_SLOT g_SoundSlots[32];
 0x004642F0  -       int16_t g_GF_MusicTracks[16];
 0x00521F48  -       char **g_GF_TitleFileNames;
 0x00521DC4  -       char **g_GF_CutsceneFileNames;

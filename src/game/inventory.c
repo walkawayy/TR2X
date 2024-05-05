@@ -110,7 +110,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
         S_FadeInInventory(1);
     }
 
-    Sound_Shutdown();
+    Sound_StopAllSamples();
     if (inventory_mode != INV_TITLE_MODE) {
         Music_SetVolume(0);
     }

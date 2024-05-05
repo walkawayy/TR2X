@@ -18,6 +18,7 @@ extern const char *g_TR2XVersion;
 #define g_AssaultBestTime (*(int32_t*)0x004641F0) // = -1
 #define g_EffectRoutines (*((void(__cdecl  *(*)[32])(ITEM_INFO *item))0x004641F8))
 #define g_GF_NumSecrets (*(int16_t*)0x004642E8) // = 3
+#define g_GF_MusicTracks (*(int16_t(*)[16])0x004642F0)
 #define g_CineTargetAngle (*(int16_t*)0x00464310) // = 0x4000
 #define g_OverlayStatus (*(int32_t*)0x004644E0) // = 1
 #define g_Inv_NFrames (*(int32_t*)0x004644F8)
@@ -269,7 +270,10 @@ extern const char *g_TR2XVersion;
 #define g_NextEffectActive (*(int16_t*)0x005207CA)
 #define g_PrevItemActive (*(int16_t*)0x005207CC)
 #define g_Pickups (*(PICKUP_INFO(*)[12])0x00521CA0)
+#define g_GF_CutsceneFileNames (*(char ***)0x00521DC4)
 #define g_GameFlow (*(GAME_FLOW*)0x00521DE0)
+#define g_GF_TitleFileNames (*(char ***)0x00521F48)
+#define g_GF_LevelFileNames (*(char ***)0x00521F54)
 #define g_SoundEffectCount (*(int32_t*)0x00521FDC)
 #define g_SoundEffects (*(OBJECT_VECTOR **)0x00521FE0)
 #define g_Objects (*(OBJECT_INFO(*)[265])0x00522000)

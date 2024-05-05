@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.52% (457)</tspan> · <tspan class="known">60.02% (731)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.60% (458)</tspan> · <tspan class="known">59.93% (730)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="280.28" height="6" x="0" y="0" class="decompiled"/>
-<rect width="448.32" height="6" x="280.28" y="0" class="known"/>
+<rect width="280.89" height="6" x="0" y="0" class="decompiled"/>
+<rect width="447.71" height="6" x="280.89" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -767,7 +767,7 @@
 <rect width="12" height="12" x="555" y="195" class="known"><title>void __cdecl ResetSG(void);</title></rect>
 <rect width="12" height="12" x="570" y="195" class="known"><title>void __cdecl WriteSG(void *pointer, int32_t size);</title></rect>
 <rect width="12" height="12" x="585" y="195" class="known"><title>void __cdecl ReadSG(void *pointer, int32_t size);</title></rect>
-<rect width="12" height="12" x="600" y="195" class="known"><title>int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);</title></rect>
+<rect width="12" height="12" x="600" y="195" class="decompiled"><title>int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);</title></rect>
 <rect width="12" height="12" x="615" y="195" class="known"><title>void __cdecl InitialiseGameFlags(void);</title></rect>
 <rect width="12" height="12" x="630" y="195" class="known"><title>void __cdecl InitialiseLevelFlags(void);</title></rect>
 <rect width="12" height="12" x="645" y="195" class="known"><title>void __cdecl BaddyObjects(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.34%</tspan> · <tspan class="known">64.34%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.44%</tspan> · <tspan class="known">64.23%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="263.96" height="6" x="0" y="0" class="decompiled"/>
-<rect width="480.60" height="6" x="263.96" y="0" class="known"/>
+<rect width="264.73" height="6" x="0" y="0" class="decompiled"/>
+<rect width="479.83" height="6" x="264.73" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1576,7 +1576,7 @@
 <rect width="14.55" height="13.84" x="663.08" y="59.39" class="known"><title>void __cdecl FlameControl(int16_t fx_num);</title></rect>
 <rect width="14.45" height="13.84" x="680.63" y="59.39" class="decompiled"><title>void __cdecl Lara_Col_Wade(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.35" height="13.84" x="698.08" y="59.39" class="decompiled"><title>void __fastcall Output_GourA(int32_t y0, int32_t y1, uint8_t color_idx); // actually, __watcall, which is esoteric and rarely supported</title></rect>
-<rect width="14.31" height="13.84" x="715.44" y="59.39" class="known"><title>int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);</title></rect>
+<rect width="14.31" height="13.84" x="715.44" y="59.39" class="decompiled"><title>int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);</title></rect>
 <rect width="14.26" height="13.84" x="732.74" y="59.39" class="known"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="14.52" height="13.49" x="448.61" y="76.23" class="known"><title>void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.31" height="13.49" x="466.13" y="76.23" class="decompiled"><title>void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

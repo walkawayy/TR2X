@@ -2,11 +2,14 @@
 
 #include "game/camera.h"
 #include "game/console.h"
+#include "game/effects.h"
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/items.h"
 #include "game/music.h"
+#include "game/overlay.h"
 #include "game/shell.h"
+#include "game/sound.h"
 #include "game/text.h"
 #include "global/const.h"
 #include "global/funcs.h"
@@ -1187,4 +1190,66 @@ void __cdecl CutscenePlayerGen_Initialise(const int16_t item_num)
     ITEM_INFO *const item = &g_Items[item_num];
     item->rot.y = 0;
     item->dynamic_light = 0;
+}
+
+int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
+{
+    if (level_type != GFL_TITLE && level_type != GFL_CUTSCENE) {
+        g_CurrentLevel = level_num;
+    }
+    g_IsDemoLevelType = level_type == GFL_DEMO;
+    InitialiseGameFlags();
+    g_Lara.item_num = NO_ITEM;
+    g_IsTitleLoaded = false;
+
+    bool result;
+    if (level_type == GFL_TITLE) {
+        result = S_LoadLevelFile(g_GF_TitleFileNames[0], level_num, level_type);
+    } else if (level_type == GFL_CUTSCENE) {
+        result = S_LoadLevelFile(
+            g_GF_CutsceneFileNames[level_num], level_num, level_type);
+    } else {
+        result = S_LoadLevelFile(
+            g_GF_LevelFileNames[level_num], level_num, level_type);
+    }
+    if (!result) {
+        return result;
+    }
+
+    if (g_Lara.item_num != NO_ITEM) {
+        Lara_Initialise(level_type);
+    }
+    if (level_type == GFL_NORMAL || level_type == GFL_SAVED
+        || level_type == GFL_DEMO) {
+        GetCarriedItems();
+    }
+    g_Effects = game_malloc(MAX_EFFECTS * sizeof(FX_INFO), GBUF_EFFECTS_ARRAY);
+    Effect_InitialiseArray();
+    InitialiseLOTarray();
+    InitColours();
+    Text_Init();
+    Overlay_InitialisePickUpDisplay();
+    S_InitialiseScreen(level_type);
+    g_HealthBarTimer = 100;
+    Sound_Shutdown();
+    if (level_type == GFL_SAVED) {
+        ExtractSaveGameInfo();
+    } else if (level_type == GFL_NORMAL) {
+        GF_ModifyInventory(g_CurrentLevel, 0);
+    }
+
+    if (g_Objects[O_FINAL_LEVEL_COUNTER].loaded) {
+        InitialiseFinalLevel();
+    }
+
+    if (level_type == GFL_NORMAL || level_type == GFL_SAVED
+        || level_type == GFL_DEMO) {
+        if (g_GF_MusicTracks[0]) {
+            Music_Play(g_GF_MusicTracks[0], 1);
+        }
+    }
+    g_IsAssaultTimerActive = 0;
+    g_IsAssaultTimerDisplay = 0;
+    g_Camera.underwater = 0;
+    return true;
 }

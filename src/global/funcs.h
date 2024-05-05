@@ -366,7 +366,6 @@
 #define ResetSG ((void __cdecl (*)(void))0x0043A1D0)
 #define WriteSG ((void __cdecl (*)(void *pointer, int32_t size))0x0043A1F0)
 #define ReadSG ((void __cdecl (*)(void *pointer, int32_t size))0x0043A240)
-#define Level_Initialise ((int32_t __cdecl (*)(int32_t level_num, int32_t level_type))0x0043A280)
 #define InitialiseGameFlags ((void __cdecl (*)(void))0x0043A3E0)
 #define InitialiseLevelFlags ((void __cdecl (*)(void))0x0043A450)
 #define BaddyObjects ((void __cdecl (*)(void))0x0043A480)

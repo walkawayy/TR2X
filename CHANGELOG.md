@@ -6,7 +6,8 @@
     - `/hp`
     - `/hp [num]`
     - `/heal`
-- changed the music backend to SDL + libav
+- changed the music backend from WinMM to libtrx (SDL + libav)
+- changed the sound backend from DirectX to libtrx (SDL + libav)
 - fixed seams around underwater portals (#76)
 - fixed Lara's climb down camera angle (#78)
 - fixed healthbar and airbar flashing the wrong way when at low values (#82)

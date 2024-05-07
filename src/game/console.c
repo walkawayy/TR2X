@@ -113,7 +113,7 @@ static COMMAND_RESULT Console_Eval(const char *const cmdline)
         return CR_BAD_INVOCATION;
     }
 
-    COMMAND_RESULT result = matching_cmd->proc(args);
+    const COMMAND_RESULT result = matching_cmd->proc(args);
     switch (result) {
     case CR_BAD_INVOCATION:
         Console_Log("Invalid invocation: %s", cmdline);

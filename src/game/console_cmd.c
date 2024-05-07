@@ -10,13 +10,13 @@
 #include <math.h>
 #include <stdio.h>
 
-static COMMAND_RESULT Console_Cmd_IsFloatRound(const float num);
+static bool Console_Cmd_IsFloatRound(const float num);
 static COMMAND_RESULT Console_Cmd_Pos(const char *const args);
 static COMMAND_RESULT Console_Cmd_Teleport(const char *const args);
 static COMMAND_RESULT Console_Cmd_SetHealth(const char *const args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *const args);
 
-static inline COMMAND_RESULT Console_Cmd_IsFloatRound(const float num)
+static inline bool Console_Cmd_IsFloatRound(const float num)
 {
     return (fabsf(num) - roundf(num)) < 0.0001f;
 }

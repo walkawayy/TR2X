@@ -10,9 +10,9 @@
     - `/heal`
 - changed the music backend from WinMM to libtrx (SDL + libav)
 - changed the sound backend from DirectX to libtrx (SDL + libav)
-- fixed seams around underwater portals (#76)
-- fixed Lara's climb down camera angle (#78)
-- fixed healthbar and airbar flashing the wrong way when at low values (#82)
+- fixed seams around underwater portals (#76, regression from 0.1)
+- fixed Lara's climb down camera angle (#78, regression from 0.1)
+- fixed healthbar and airbar flashing the wrong way when at low values (#82, regression from 0.1)
 
 ## [0.1.1](https://github.com/LostArtefacts/TR2X/compare/0.1...0.1.1) - 2024-04-27
 - fixed Lara's shadow with z-buffer option on (#64, regression from 0.1)

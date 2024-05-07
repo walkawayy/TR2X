@@ -1,4 +1,6 @@
 ## [Unreleased](https://github.com/LostArtefacts/TR2X/compare/stable...develop) - ××××-××-××
+
+## [0.2](https://github.com/LostArtefacts/TR2X/compare/0.1.1...0.2) - 2024-05-07
 - added dev console with the following commands:
     - `/pos`
     - `/tp [room_num]`

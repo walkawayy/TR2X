@@ -155,7 +155,9 @@ void Console_Shutdown(void)
 
 void Console_Open(void)
 {
-    if (!m_IsOpened) {
+    if (m_IsOpened) {
+        Console_ShutdownPrompt();
+    } else {
         LOG_DEBUG("opening console!");
     }
     m_IsOpened = true;

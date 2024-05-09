@@ -505,7 +505,6 @@
 #define TempVideoRemove ((void __cdecl (*)(void))0x004479D0)
 #define S_FadeInInventory ((void __cdecl (*)(BOOL isFade))0x00447A10)
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
-#define CreatePictureBuffer ((void __cdecl (*)(void))0x004489D0)
 #define ClearBuffers ((void __cdecl (*)(DWORD flags, DWORD fill_color))0x00448A40)
 #define RenderStart ((void __cdecl (*)(bool is_reset))0x00448E50)
 #define RenderFinish ((void __cdecl (*)(bool need_to_clear_textures))0x00449200)

@@ -1499,6 +1499,23 @@ void __cdecl CreateRenderBuffer(void)
     }
 }
 
+void __cdecl CreatePictureBuffer(void)
+{
+    DDSDESC dsp = {
+        .dwSize = sizeof(DDSDESC),
+        .dwFlags = DDSD_WIDTH|DDSD_HEIGHT|DDSD_CAPS,
+        .dwWidth = 640,
+        .dwHeight = 480,
+        .ddsCaps = {
+            .dwCaps = DDSCAPS_SYSTEMMEMORY|DDSCAPS_OFFSCREENPLAIN,
+        },
+    };
+
+    if (FAILED(DDrawSurfaceCreate(&dsp, &g_PictureBufferSurface))) {
+        Shell_ExitSystem("Failed to create picture buffer");
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

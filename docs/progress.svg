@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.51% (469)</tspan> · <tspan class="known">59.03% (719)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.59% (470)</tspan> · <tspan class="known">58.95% (718)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="287.64" height="6" x="0" y="0" class="decompiled"/>
-<rect width="440.96" height="6" x="287.64" y="0" class="known"/>
+<rect width="288.25" height="6" x="0" y="0" class="decompiled"/>
+<rect width="440.35" height="6" x="288.25" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1015,7 +1015,7 @@
 <rect width="12" height="12" x="525" y="270" class="decompiled"><title>void __cdecl CreateWindowPalette(void);</title></rect>
 <rect width="12" height="12" x="540" y="270" class="decompiled"><title>void __cdecl CreateZBuffer(void);</title></rect>
 <rect width="12" height="12" x="555" y="270" class="decompiled"><title>DWORD __cdecl GetZBufferDepth(void);</title></rect>
-<rect width="12" height="12" x="570" y="270" class="known"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
+<rect width="12" height="12" x="570" y="270" class="decompiled"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
 <rect width="12" height="12" x="585" y="270" class="known"><title>void __cdecl CreatePictureBuffer(void);</title></rect>
 <rect width="12" height="12" x="600" y="270" class="known"><title>void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);</title></rect>
 <rect width="12" height="12" x="615" y="270" class="decompiled"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.97%</tspan> · <tspan class="known">63.71%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.01%</tspan> · <tspan class="known">63.66%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="268.66" height="6" x="0" y="0" class="decompiled"/>
-<rect width="475.90" height="6" x="268.66" y="0" class="known"/>
+<rect width="269.01" height="6" x="0" y="0" class="decompiled"/>
+<rect width="475.54" height="6" x="269.01" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1837,7 +1837,7 @@
 <rect width="8.45" height="8.75" x="615.23" y="173.80" class="known"><title>bool __cdecl LoadTexturePage(int32_t page_idx, bool reset);</title></rect>
 <rect width="8.38" height="8.75" x="626.68" y="173.80" class="decompiled"><title>void __cdecl Output_AlterFOV(int16_t fov);</title></rect>
 <rect width="8.38" height="8.75" x="638.06" y="173.80" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack(int16_t **pprot, int32_t skip);</title></rect>
-<rect width="8.38" height="8.75" x="649.44" y="173.80" class="known"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
+<rect width="8.38" height="8.75" x="649.44" y="173.80" class="decompiled"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
 <rect width="8.31" height="8.75" x="660.82" y="173.80" class="decompiled"><title>int32_t __cdecl LOS_Check(const GAME_VECTOR *start, GAME_VECTOR *target);</title></rect>
 <rect width="8.24" height="8.75" x="672.12" y="173.80" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT3_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="8.24" height="8.75" x="683.36" y="173.80" class="known"><title>void __cdecl setup_screen_size(void);</title></rect>

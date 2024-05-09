@@ -1478,6 +1478,27 @@ int32_t __cdecl GetZBufferDepth(void)
     return 8;
 }
 
+void __cdecl CreateRenderBuffer(void)
+{
+    DDSDESC dsp = {
+        .dwSize = sizeof(DDSDESC),
+        .dwFlags = DDSD_WIDTH|DDSD_HEIGHT|DDSD_CAPS,
+        .dwWidth = g_GameVid_BufWidth,
+        .dwHeight = g_GameVid_BufHeight,
+        .ddsCaps = {
+            .dwCaps = DDSCAPS_SYSTEMMEMORY|DDSCAPS_OFFSCREENPLAIN,
+        },
+    };
+
+    if (FAILED(DDrawSurfaceCreate(&dsp, &g_RenderBufferSurface))) {
+        Shell_ExitSystem("Failed to create render buffer");
+    }
+
+    if (!WinVidClearBuffer(g_RenderBufferSurface, NULL, 0)) {
+        Shell_ExitSystem("Failed to clear render buffer");
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

@@ -123,6 +123,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00448750, CreateWindowPalette);
     INJECT(enable, 0x00448830, CreateZBuffer);
     INJECT(enable, 0x004488F0, GetZBufferDepth);
+    INJECT(enable, 0x00448920, CreateRenderBuffer);
     INJECT(enable, 0x00448D30, UpdateFrame);
     INJECT(enable, 0x00448BF0, RestoreLostBuffers);
     INJECT(enable, 0x00448E00, WaitPrimaryBufferFlip);

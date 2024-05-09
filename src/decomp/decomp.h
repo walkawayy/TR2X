@@ -75,6 +75,7 @@ void __cdecl CreateClipper(void);
 void __cdecl CreateWindowPalette(void);
 void __cdecl CreateZBuffer(void);
 int32_t __cdecl GetZBufferDepth(void);
+void __cdecl CreateRenderBuffer(void);
 void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 void __cdecl RestoreLostBuffers(void);
 void __cdecl WaitPrimaryBufferFlip(void);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.34% (467)</tspan> · <tspan class="known">59.20% (721)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.42% (468)</tspan> · <tspan class="known">59.11% (720)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="286.41" height="6" x="0" y="0" class="decompiled"/>
-<rect width="442.19" height="6" x="286.41" y="0" class="known"/>
+<rect width="287.02" height="6" x="0" y="0" class="decompiled"/>
+<rect width="441.58" height="6" x="287.02" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1013,7 +1013,7 @@
 <rect width="12" height="12" x="495" y="270" class="decompiled"><title>void __cdecl CreateBackBuffer(void);</title></rect>
 <rect width="12" height="12" x="510" y="270" class="decompiled"><title>void __cdecl CreateClipper(void);</title></rect>
 <rect width="12" height="12" x="525" y="270" class="decompiled"><title>void __cdecl CreateWindowPalette(void);</title></rect>
-<rect width="12" height="12" x="540" y="270" class="known"><title>void __cdecl CreateZBuffer(void);</title></rect>
+<rect width="12" height="12" x="540" y="270" class="decompiled"><title>void __cdecl CreateZBuffer(void);</title></rect>
 <rect width="12" height="12" x="555" y="270" class="known"><title>DWORD __cdecl GetZBufferDepth(void);</title></rect>
 <rect width="12" height="12" x="570" y="270" class="known"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
 <rect width="12" height="12" x="585" y="270" class="known"><title>void __cdecl CreatePictureBuffer(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.90%</tspan> · <tspan class="known">63.78%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.95%</tspan> · <tspan class="known">63.72%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="268.16" height="6" x="0" y="0" class="decompiled"/>
-<rect width="476.40" height="6" x="268.16" y="0" class="known"/>
+<rect width="268.57" height="6" x="0" y="0" class="decompiled"/>
+<rect width="475.99" height="6" x="268.57" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1779,7 +1779,7 @@
 <rect width="9.95" height="9.05" x="534.18" y="149.67" class="decompiled"><title>void __cdecl Lara_State_Extra_PullDagger(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="9.95" height="9.05" x="547.13" y="149.67" class="known"><title>int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);</title></rect>
 <rect width="9.95" height="9.05" x="560.08" y="149.67" class="known"><title>bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);</title></rect>
-<rect width="9.95" height="9.05" x="573.03" y="149.67" class="known"><title>void __cdecl CreateZBuffer(void);</title></rect>
+<rect width="9.95" height="9.05" x="573.03" y="149.67" class="decompiled"><title>void __cdecl CreateZBuffer(void);</title></rect>
 <rect width="9.88" height="9.05" x="585.98" y="149.67" class="decompiled"><title>int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="9.88" height="9.05" x="598.86" y="149.67" class="known"><title>void __cdecl AlterFloorHeight(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="9.81" height="9.05" x="611.74" y="149.67" class="known"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>

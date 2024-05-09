@@ -1435,6 +1435,33 @@ void __cdecl CreateWindowPalette(void)
     }
 }
 
+void __cdecl CreateZBuffer(void)
+{
+    if ((g_CurrentDisplayAdapter.hw_device_desc.dpcTriCaps.dwRasterCaps
+         & D3DPRASTERCAPS_ZBUFFERLESSHSR)
+        != 0) {
+        return;
+    }
+
+    DDSDESC dsp = {
+        .dwSize = sizeof(DDSDESC),
+        .dwWidth = g_GameVid_BufWidth,
+        .dwHeight = g_GameVid_BufHeight,
+        .dwFlags = DDSD_ZBUFFERBITDEPTH | DDSD_WIDTH | DDSD_HEIGHT | DDSD_CAPS,
+        .dwZBufferBitDepth = GetZBufferDepth(),
+        .ddsCaps.dwCaps = DDSCAPS_ZBUFFER | DDSCAPS_VIDEOMEMORY,
+    };
+
+    if (FAILED(DDrawSurfaceCreate(&dsp, &g_ZBufferSurface))) {
+        Shell_ExitSystem("Failed to create z-buffer");
+    }
+
+    if (FAILED(IDirectDrawSurface_AddAttachedSurface(
+            g_BackBufferSurface, g_ZBufferSurface))) {
+        Shell_ExitSystem("Failed to attach z-buffer to the back buffer");
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

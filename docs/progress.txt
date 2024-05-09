@@ -3106,7 +3106,7 @@ typedef enum {
 0x00448400  0x0006  +       bool __cdecl S_Audio_Sample_IsEnabled(void);
 0x00448410  0x0005  -R      sub_448410
 0x00448420  0x0001  -R      sub_448420
-0x00448430  0x013B  -R      void __cdecl CreateScreenBuffers(void);
+0x00448430  0x013B  +R      void __cdecl CreateScreenBuffers(void);
 0x00448570  0x0094  -R      void __cdecl CreatePrimarySurface(void);
 0x00448610  0x0098  -R      void __cdecl CreateBackBuffer(void);
 0x004486B0  0x009D  -R      void __cdecl CreateClipper(void);

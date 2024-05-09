@@ -1302,6 +1302,48 @@ void __cdecl RestoreLostBuffers(void)
     }
 }
 
+void __cdecl CreateScreenBuffers(void)
+{
+    {
+        DDSDESC dsp = {
+            .dwSize = sizeof(DDSDESC),
+            .dwFlags = DDSD_BACKBUFFERCOUNT | DDSD_CAPS,
+            .dwBackBufferCount = (g_SavedAppSettings.triple_buffering) ? 2 : 1,
+            .ddsCaps.dwCaps =
+                DDSCAPS_PRIMARYSURFACE | DDSCAPS_FLIP | DDSCAPS_COMPLEX,
+        };
+        if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+            dsp.ddsCaps.dwCaps |= DDSCAPS_3DDEVICE;
+        }
+        if (FAILED(DDrawSurfaceCreate(&dsp, &g_PrimaryBufferSurface))) {
+            Shell_ExitSystem("Failed to create primary screen buffer");
+        }
+        WinVidClearBuffer(g_PrimaryBufferSurface, NULL, 0);
+    }
+
+    {
+        DDSCAPS caps = {
+            .dwCaps = DDSCAPS_BACKBUFFER,
+        };
+        if (FAILED(IDirectDrawSurface_GetAttachedSurface(
+                g_PrimaryBufferSurface, &caps, &g_BackBufferSurface))) {
+            Shell_ExitSystem("Failed to create back screen buffer");
+        }
+        WinVidClearBuffer(g_BackBufferSurface, NULL, 0);
+    }
+
+    if (g_SavedAppSettings.triple_buffering) {
+        DDSCAPS caps = {
+            .dwCaps = DDSCAPS_FLIP,
+        };
+        if (FAILED(IDirectDrawSurface_GetAttachedSurface(
+                g_BackBufferSurface, &caps, &g_ThirdBufferSurface))) {
+            Shell_ExitSystem("Failed to create third screen buffer");
+        }
+        WinVidClearBuffer(g_ThirdBufferSurface, NULL, 0);
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

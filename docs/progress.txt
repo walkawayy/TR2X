@@ -3110,7 +3110,7 @@ typedef enum {
 0x00448570  0x0094  +R      void __cdecl CreatePrimarySurface(void);
 0x00448610  0x0098  +R      void __cdecl CreateBackBuffer(void);
 0x004486B0  0x009D  +R      void __cdecl CreateClipper(void);
-0x00448750  0x00D3  -R      void __cdecl CreateWindowPalette(void);
+0x00448750  0x00D3  +R      void __cdecl CreateWindowPalette(void);
 0x00448830  0x00BC  -R      void __cdecl CreateZBuffer(void);
 0x004488F0  0x002B  -R      DWORD __cdecl GetZBufferDepth(void);
 0x00448920  0x00A1  -R      void __cdecl CreateRenderBuffer(void);
@@ -3722,3 +3722,5 @@ typedef enum {
 0x004D9344  -       int32_t g_GameVid_BufWidth;
 0x004D9348  -       int32_t g_GameVid_BufHeight;
 0x004D8EB4  -       LPDIRECTDRAWCLIPPER g_DDrawClipper;
+0x004D8EB8  -       PALETTEENTRY g_WinVid_Palette[256];
+0x004D92C4  -       LPDIRECTDRAWPALETTE g_DDrawPalette;

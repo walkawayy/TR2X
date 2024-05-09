@@ -1400,6 +1400,41 @@ void __cdecl CreateClipper(void)
     }
 }
 
+void __cdecl CreateWindowPalette(void)
+{
+    memset(g_WinVid_Palette, 0, sizeof(g_WinVid_Palette));
+
+    DWORD flags = DDPCAPS_8BIT;
+    if (g_GameVid_IsWindowedVGA) {
+        for (int32_t i = 0; i < 10; i++) {
+            g_WinVid_Palette[i].peFlags = PC_EXPLICIT;
+            g_WinVid_Palette[i].peRed = i;
+        }
+        for (int32_t i = 10; i < 246; i++) {
+            g_WinVid_Palette[i].peFlags = PC_NOCOLLAPSE | PC_RESERVED;
+        }
+        for (int32_t i = 246; i < 256; i++) {
+            g_WinVid_Palette[i].peFlags = PC_EXPLICIT;
+            g_WinVid_Palette[i].peRed = i; // TODO: i - 246?
+        }
+    } else {
+        for (int32_t i = 0; i < 256; i++) {
+            g_WinVid_Palette[i].peFlags = PC_RESERVED;
+        }
+        flags |= DDPCAPS_ALLOW256;
+    }
+
+    if (FAILED(IDirectDraw_CreatePalette(
+            g_DDraw, flags, g_WinVid_Palette, &g_DDrawPalette, 0))) {
+        Shell_ExitSystem("Failed to create palette");
+    }
+
+    if (FAILED(IDirectDrawSurface_SetPalette(
+            g_PrimaryBufferSurface, g_DDrawPalette))) {
+        Shell_ExitSystem("Failed to attach palette to the primary buffer");
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

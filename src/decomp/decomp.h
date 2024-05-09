@@ -68,5 +68,6 @@ void __cdecl Lara_Control_Cutscene(int16_t item_num);
 void __cdecl CutscenePlayer1_Initialise(int16_t item_num);
 void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);
 int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);
+void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect);
 void __cdecl WaitPrimaryBufferFlip(void);
 bool __cdecl RenderInit(void);

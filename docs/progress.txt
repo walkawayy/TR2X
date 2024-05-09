@@ -3117,7 +3117,7 @@ typedef enum {
 0x004489D0  0x0070  -R      void __cdecl CreatePictureBuffer(void);
 0x00448A40  0x01A4  -R      void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);
 0x00448BF0  0x013C  -R      void __cdecl RestoreLostBuffers(void);
-0x00448D30  0x00CF  -R      void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
+0x00448D30  0x00CF  +R      void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 0x00448E00  0x003B  +R      void __cdecl WaitPrimaryBufferFlip(void);
 0x00448E40  0x0003  +R      bool __cdecl RenderInit(void);
 0x00448E50  0x03A5  -R      void __cdecl RenderStart(bool is_reset);
@@ -3716,3 +3716,5 @@ typedef enum {
 0x00521F48  -       char **g_GF_TitleFileNames;
 0x00521DC4  -       char **g_GF_CutsceneFileNames;
 0x00521F54  -       char **g_GF_LevelFileNames;
+0x004D9328  -       RECT g_GameVidRect;
+0x004D9358  -       LPDDS g_BackBufferSurface;

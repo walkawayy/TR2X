@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.77% (460)</tspan> · <tspan class="known">59.77% (728)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.85% (461)</tspan> · <tspan class="known">59.69% (727)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="282.12" height="6" x="0" y="0" class="decompiled"/>
-<rect width="446.48" height="6" x="282.12" y="0" class="known"/>
+<rect width="282.73" height="6" x="0" y="0" class="decompiled"/>
+<rect width="445.87" height="6" x="282.73" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1019,7 +1019,7 @@
 <rect width="12" height="12" x="585" y="270" class="known"><title>void __cdecl CreatePictureBuffer(void);</title></rect>
 <rect width="12" height="12" x="600" y="270" class="known"><title>void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);</title></rect>
 <rect width="12" height="12" x="615" y="270" class="known"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
-<rect width="12" height="12" x="630" y="270" class="known"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
+<rect width="12" height="12" x="630" y="270" class="decompiled"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
 <rect width="12" height="12" x="645" y="270" class="decompiled"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
 <rect width="12" height="12" x="660" y="270" class="decompiled"><title>bool __cdecl RenderInit(void);</title></rect>
 <rect width="12" height="12" x="675" y="270" class="known"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.46%</tspan> · <tspan class="known">64.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.52%</tspan> · <tspan class="known">64.16%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="264.86" height="6" x="0" y="0" class="decompiled"/>
-<rect width="479.70" height="6" x="264.86" y="0" class="known"/>
+<rect width="265.32" height="6" x="0" y="0" class="decompiled"/>
+<rect width="479.24" height="6" x="265.32" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1739,7 +1739,7 @@
 <rect width="10.18" height="10.23" x="508.46" y="325.28" class="decompiled"><title>int32_t __cdecl Output_XGenX(const int16_t *obj_ptr);</title></rect>
 <rect width="10.18" height="10.23" x="508.46" y="338.50" class="known"><title>void __cdecl GeneralControl(int16_t item_num);</title></rect>
 <rect width="10.18" height="10.23" x="508.46" y="351.73" class="decompiled"><title>DWORD __cdecl EncodeLinePCX(BYTE *src, DWORD width, BYTE *dst);</title></rect>
-<rect width="10.18" height="10.04" x="508.46" y="364.96" class="known"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
+<rect width="10.18" height="10.04" x="508.46" y="364.96" class="decompiled"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
 <rect width="10.04" height="10.11" x="521.63" y="136.56" class="known"><title>void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="10.04" height="10.11" x="534.67" y="136.56" class="known"><title>void __cdecl GetCarriedItems(void);</title></rect>
 <rect width="9.98" height="10.11" x="547.71" y="136.56" class="known"><title>void __cdecl Demo_LoadLaraPos(void);</title></rect>

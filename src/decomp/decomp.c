@@ -1251,6 +1251,39 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
     return true;
 }
 
+void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
+{
+    if (rect == NULL) {
+        rect = &g_GameVidRect;
+    }
+
+    RestoreLostBuffers();
+    if (g_SavedAppSettings.fullscreen) {
+        if (g_SavedAppSettings.render_mode == RM_SOFTWARE) {
+            IDirectDrawSurface_Blt(
+                g_BackBufferSurface, rect, g_RenderBufferSurface, rect,
+                DDBLT_WAIT, NULL);
+        }
+        IDirectDrawSurface_Flip(g_PrimaryBufferSurface, NULL, DDFLIP_WAIT);
+    } else {
+        RECT dst_rect;
+        dst_rect.left = g_GameWindowPositionX + rect->left;
+        dst_rect.top = g_GameWindowPositionY + rect->top;
+        dst_rect.bottom = g_GameWindowPositionY + rect->bottom;
+        dst_rect.right = g_GameWindowPositionX + rect->right;
+        LPDDS dst_surface = g_SavedAppSettings.render_mode == RM_SOFTWARE
+            ? g_RenderBufferSurface
+            : g_BackBufferSurface;
+        IDirectDrawSurface_Blt(
+            g_PrimaryBufferSurface, &dst_rect, dst_surface, rect, DDBLT_WAIT,
+            NULL);
+    }
+
+    if (need_run_message_loop) {
+        WinVidSpinMessageLoop(false);
+    }
+}
+
 void __cdecl WaitPrimaryBufferFlip(void)
 {
     if (g_SavedAppSettings.flip_broken && g_SavedAppSettings.fullscreen) {

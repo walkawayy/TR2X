@@ -1344,6 +1344,25 @@ void __cdecl CreateScreenBuffers(void)
     }
 }
 
+void __cdecl CreatePrimarySurface(void)
+{
+    if ((g_GameVid_IsVga && g_SavedAppSettings.render_mode == RM_HARDWARE)
+        || (!g_GameVid_IsVga
+            && g_SavedAppSettings.render_mode == RM_SOFTWARE)) {
+        Shell_ExitSystem("Wrong bit depth");
+    }
+
+    DDSDESC dsp = {
+        .dwSize = sizeof(DDSDESC),
+        .dwFlags = DDSD_CAPS,
+        .ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE,
+    };
+
+    if (FAILED(DDrawSurfaceCreate(&dsp, &g_PrimaryBufferSurface))) {
+        Shell_ExitSystem("Failed to create primary screen buffer");
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

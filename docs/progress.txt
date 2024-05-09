@@ -3112,7 +3112,7 @@ typedef enum {
 0x004486B0  0x009D  +R      void __cdecl CreateClipper(void);
 0x00448750  0x00D3  +R      void __cdecl CreateWindowPalette(void);
 0x00448830  0x00BC  +R      void __cdecl CreateZBuffer(void);
-0x004488F0  0x002B  -R      DWORD __cdecl GetZBufferDepth(void);
+0x004488F0  0x002B  +R      DWORD __cdecl GetZBufferDepth(void);
 0x00448920  0x00A1  -R      void __cdecl CreateRenderBuffer(void);
 0x004489D0  0x0070  -R      void __cdecl CreatePictureBuffer(void);
 0x00448A40  0x01A4  -R      void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);

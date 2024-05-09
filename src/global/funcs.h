@@ -505,7 +505,6 @@
 #define TempVideoRemove ((void __cdecl (*)(void))0x004479D0)
 #define S_FadeInInventory ((void __cdecl (*)(BOOL isFade))0x00447A10)
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
-#define GetZBufferDepth ((DWORD __cdecl (*)(void))0x004488F0)
 #define CreateRenderBuffer ((void __cdecl (*)(void))0x00448920)
 #define CreatePictureBuffer ((void __cdecl (*)(void))0x004489D0)
 #define ClearBuffers ((void __cdecl (*)(DWORD flags, DWORD fill_color))0x00448A40)

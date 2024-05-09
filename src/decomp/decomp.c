@@ -1462,6 +1462,22 @@ void __cdecl CreateZBuffer(void)
     }
 }
 
+int32_t __cdecl GetZBufferDepth(void)
+{
+    const int32_t bit_depth_mask =
+        g_CurrentDisplayAdapter.hw_device_desc.dwDeviceZBufferBitDepth;
+    if (bit_depth_mask & DDBD_16) {
+        return 16;
+    }
+    if (bit_depth_mask & DDBD_24) {
+        return 24;
+    }
+    if (bit_depth_mask & DDBD_32) {
+        return 32;
+    }
+    return 8;
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

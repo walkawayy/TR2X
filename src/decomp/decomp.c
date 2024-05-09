@@ -1251,6 +1251,15 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
     return true;
 }
 
+void __cdecl WaitPrimaryBufferFlip(void)
+{
+    if (g_SavedAppSettings.flip_broken && g_SavedAppSettings.fullscreen) {
+        while (IDirectDrawSurface_GetFlipStatus(
+                   g_PrimaryBufferSurface, DDGFS_ISFLIPDONE)
+               == DDERR_WASSTILLDRAWING) { }
+    }
+}
+
 bool __cdecl RenderInit(void)
 {
     return true;

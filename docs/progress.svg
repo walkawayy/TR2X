@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.68% (459)</tspan> · <tspan class="known">59.85% (729)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.77% (460)</tspan> · <tspan class="known">59.77% (728)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="281.50" height="6" x="0" y="0" class="decompiled"/>
-<rect width="447.10" height="6" x="281.50" y="0" class="known"/>
+<rect width="282.12" height="6" x="0" y="0" class="decompiled"/>
+<rect width="446.48" height="6" x="282.12" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1020,7 +1020,7 @@
 <rect width="12" height="12" x="600" y="270" class="known"><title>void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);</title></rect>
 <rect width="12" height="12" x="615" y="270" class="known"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
 <rect width="12" height="12" x="630" y="270" class="known"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
-<rect width="12" height="12" x="645" y="270" class="known"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
+<rect width="12" height="12" x="645" y="270" class="decompiled"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
 <rect width="12" height="12" x="660" y="270" class="decompiled"><title>bool __cdecl RenderInit(void);</title></rect>
 <rect width="12" height="12" x="675" y="270" class="known"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
 <rect width="12" height="12" x="690" y="270" class="known"><title>void __cdecl RenderFinish(bool need_to_clear_textures);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.44%</tspan> · <tspan class="known">64.23%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.46%</tspan> · <tspan class="known">64.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="264.73" height="6" x="0" y="0" class="decompiled"/>
-<rect width="479.82" height="6" x="264.73" y="0" class="known"/>
+<rect width="264.86" height="6" x="0" y="0" class="decompiled"/>
+<rect width="479.70" height="6" x="264.86" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2197,7 +2197,7 @@
 <rect width="4.19" height="3.81" x="648.46" y="303.78" class="known"><title>void __cdecl DrawBridgeCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="310.59" class="known"><title>int32_t __cdecl GetOffset(ITEM_INFO *item, int32_t x, int32_t z);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="317.40" class="known"><title>void __cdecl ControlGlow(int16_t fx_num);</title></rect>
-<rect width="4.19" height="3.81" x="648.46" y="324.21" class="known"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
+<rect width="4.19" height="3.81" x="648.46" y="324.21" class="decompiled"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="331.02" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="337.83" class="known"><title>void __cdecl TexturePageReleaseVidMemSurface(TEXPAGE_DESC *page);</title></rect>
 <rect width="4.19" height="3.70" x="648.46" y="344.64" class="known"><title>void __cdecl undraw_pistol_mesh_left(int32_t weapon_type);</title></rect>

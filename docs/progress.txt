@@ -1,6 +1,7 @@
 # TYPES
 typedef IDirect3DDevice2 *LPDIRECT3DDEVICE2;
 typedef IDirect3DTexture2 *LPDIRECT3DTEXTURE2;
+typedef IDirect3DViewport2 *LPDIRECT3DVIEWPORT2;
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
 typedef LPDIRECTDRAWSURFACE3 LPDDS;
 typedef LPDIRECTDRAW3 LPDD;
@@ -2063,6 +2064,18 @@ typedef enum {
     GBUF_NUM_MALLOC_TYPES         = 47,
 } GAME_BUFFER;
 
+typedef enum {
+    CLRB_PRIMARY_BUFFER          = 0x0001,
+    CLRB_BACK_BUFFER             = 0x0002,
+    CLRB_THIRD_BUFFER            = 0x0004,
+    CLRB_Z_BUFFER                = 0x0008,
+    CLRB_RENDER_BUFFER           = 0x0010,
+    CLRB_PICTURE_BUFFER          = 0x0020,
+    CLRB_WINDOWED_PRIMARY_BUFFER = 0x0040,
+    CLRB_RESERVED                = 0x0080,
+    CLRB_PHDWINSIZE              = 0x0100,
+} CLEAR_BUFFER_FLAGS;
+
 # FUNCTIONS
 #   Flags:
 #   - to do
@@ -3115,7 +3128,7 @@ typedef enum {
 0x004488F0  0x002B  +R      DWORD __cdecl GetZBufferDepth(void);
 0x00448920  0x00A1  +R      void __cdecl CreateRenderBuffer(void);
 0x004489D0  0x0070  +R      void __cdecl CreatePictureBuffer(void);
-0x00448A40  0x01A4  -R      void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);
+0x00448A40  0x01A4  +R      void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);
 0x00448BF0  0x013C  +R      void __cdecl RestoreLostBuffers(void);
 0x00448D30  0x00CF  +R      void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 0x00448E00  0x003B  +R      void __cdecl WaitPrimaryBufferFlip(void);
@@ -3608,9 +3621,9 @@ typedef enum {
 0x004D92BC  -       LPDDS g_PictureBufferSurface;
 0x004D92C0  -       LPDDS g_ZBufferSurface;
 0x004D92C8  -       LPDDS g_PrimaryBufferSurface;
-0x004D9338  -       int32_t g_GameVidWidth;
-0x004D933C  -       int32_t g_GameVidHeight;
-0x004D9340  -       int32_t g_GameVidBPP;
+0x004D9338  -       int32_t g_GameVid_Width;
+0x004D933C  -       int32_t g_GameVid_Height;
+0x004D9340  -       int32_t g_GameVid_BPP;
 0x004D934C  -       int32_t g_UVAdd;
 0x004D9351  -       int8_t g_GameVid_IsWindowedVGA;
 0x004D9EAC  -       int32_t g_IsFMVPlaying;
@@ -3716,7 +3729,7 @@ typedef enum {
 0x00521F48  -       char **g_GF_TitleFileNames;
 0x00521DC4  -       char **g_GF_CutsceneFileNames;
 0x00521F54  -       char **g_GF_LevelFileNames;
-0x004D9328  -       RECT g_GameVidRect;
+0x004D9328  -       RECT g_GameVid_Rect;
 0x004D9358  -       LPDDS g_BackBufferSurface;
 0x004D9350  -       bool g_GameVid_IsVga;
 0x004D9344  -       int32_t g_GameVid_BufWidth;
@@ -3724,3 +3737,4 @@ typedef enum {
 0x004D8EB4  -       LPDIRECTDRAWCLIPPER g_DDrawClipper;
 0x004D8EB8  -       PALETTEENTRY g_WinVid_Palette[256];
 0x004D92C4  -       LPDIRECTDRAWPALETTE g_DDrawPalette;
+0x004D7EC4  -       LPDIRECT3DVIEWPORT2 g_D3DView;

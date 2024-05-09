@@ -15,6 +15,7 @@
 // clang-format off
 typedef IDirect3DDevice2 *LPDIRECT3DDEVICE2;
 typedef IDirect3DTexture2 *LPDIRECT3DTEXTURE2;
+typedef IDirect3DViewport2 *LPDIRECT3DVIEWPORT2;
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
 typedef LPDIRECTDRAWSURFACE3 LPDDS;
 typedef LPDIRECTDRAW3 LPDD;
@@ -2076,5 +2077,17 @@ typedef enum {
     GBUF_SPRITE_INFOS             = 46,
     GBUF_NUM_MALLOC_TYPES         = 47,
 } GAME_BUFFER;
+
+typedef enum {
+    CLRB_PRIMARY_BUFFER          = 0x0001,
+    CLRB_BACK_BUFFER             = 0x0002,
+    CLRB_THIRD_BUFFER            = 0x0004,
+    CLRB_Z_BUFFER                = 0x0008,
+    CLRB_RENDER_BUFFER           = 0x0010,
+    CLRB_PICTURE_BUFFER          = 0x0020,
+    CLRB_WINDOWED_PRIMARY_BUFFER = 0x0040,
+    CLRB_RESERVED                = 0x0080,
+    CLRB_PHDWINSIZE              = 0x0100,
+} CLEAR_BUFFER_FLAGS;
 
 // clang-format on

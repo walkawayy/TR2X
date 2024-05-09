@@ -1516,10 +1516,79 @@ void __cdecl CreatePictureBuffer(void)
     }
 }
 
+void __cdecl ClearBuffers(DWORD flags, DWORD fill_color)
+{
+    RECT win_rect;
+    if (flags & CLRB_PHDWINSIZE) {
+        win_rect.left = g_PhdWinMinX;
+        win_rect.top = g_PhdWinMinY;
+        win_rect.right = g_PhdWinMinX + g_PhdWinWidth;
+        win_rect.bottom = g_PhdWinMinY + g_PhdWinHeight;
+    } else {
+        win_rect.left = 0;
+        win_rect.top = 0;
+        win_rect.right = g_GameVid_Width;
+        win_rect.bottom = g_GameVid_Height;
+    }
+
+    if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+        DWORD d3d_clear_flags = 0;
+        if (flags & CLRB_BACK_BUFFER) {
+            d3d_clear_flags |= D3DCLEAR_TARGET;
+        }
+
+        if (flags & CLRB_Z_BUFFER) {
+            d3d_clear_flags |= D3DCLEAR_ZBUFFER;
+        }
+
+        if (d3d_clear_flags != 0) {
+            D3DRECT d3d_rect = {
+                .x1 = win_rect.left,
+                .y1 = win_rect.top,
+                .x2 = win_rect.right,
+                .y2 = win_rect.bottom,
+            };
+            IDirect3DViewport_Clear(g_D3DView, 1, &d3d_rect, d3d_clear_flags);
+        }
+    } else {
+        if (flags & CLRB_BACK_BUFFER) {
+            WinVidClearBuffer(g_BackBufferSurface, &win_rect, fill_color);
+        }
+    }
+
+    if (flags & CLRB_PRIMARY_BUFFER) {
+        WinVidClearBuffer(g_PrimaryBufferSurface, &win_rect, fill_color);
+    }
+
+    if (flags & CLRB_THIRD_BUFFER) {
+        WinVidClearBuffer(g_ThirdBufferSurface, &win_rect, fill_color);
+    }
+
+    if (flags & CLRB_RENDER_BUFFER) {
+        WinVidClearBuffer(g_RenderBufferSurface, &win_rect, fill_color);
+    }
+
+    if (flags & CLRB_PICTURE_BUFFER) {
+        win_rect.left = 0;
+        win_rect.top = 0;
+        win_rect.right = 640;
+        win_rect.bottom = 480;
+        WinVidClearBuffer(g_PictureBufferSurface, &win_rect, fill_color);
+    }
+
+    if (flags & CLRB_WINDOWED_PRIMARY_BUFFER) {
+        win_rect.left = g_GameWindowPositionX;
+        win_rect.top = g_GameWindowPositionY;
+        win_rect.right = g_GameWindowPositionX + g_GameWindowWidth;
+        win_rect.bottom = g_GameWindowPositionY + g_GameWindowHeight;
+        WinVidClearBuffer(g_PrimaryBufferSurface, &win_rect, fill_color);
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {
-        rect = &g_GameVidRect;
+        rect = &g_GameVid_Rect;
     }
 
     RestoreLostBuffers();

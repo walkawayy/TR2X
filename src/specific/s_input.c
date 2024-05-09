@@ -296,9 +296,9 @@ bool __cdecl S_Input_Update(void)
 
                 if (mode_list->count > 0) {
                     const DISPLAY_MODE target_mode = {
-                        .width = g_GameVidWidth,
-                        .height = g_GameVidHeight,
-                        .bpp = g_GameVidBPP,
+                        .width = g_GameVid_Width,
+                        .height = g_GameVid_Height,
+                        .bpp = g_GameVid_BPP,
                         .vga = VGA_NO_VGA,
                     };
 
@@ -331,8 +331,8 @@ bool __cdecl S_Input_Update(void)
 
             if (mode_list->count > 0) {
                 const DISPLAY_MODE target_mode = {
-                    .width = g_GameVidWidth,
-                    .height = g_GameVidHeight,
+                    .width = g_GameVid_Width,
+                    .height = g_GameVid_Height,
                     .bpp = new_settings.render_mode == RM_HARDWARE ? 16 : 8,
                     .vga = VGA_NO_VGA,
                 };

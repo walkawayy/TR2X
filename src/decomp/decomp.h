@@ -77,6 +77,7 @@ void __cdecl CreateZBuffer(void);
 int32_t __cdecl GetZBufferDepth(void);
 void __cdecl CreateRenderBuffer(void);
 void __cdecl CreatePictureBuffer(void);
+void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);
 void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 void __cdecl RestoreLostBuffers(void);
 void __cdecl WaitPrimaryBufferFlip(void);

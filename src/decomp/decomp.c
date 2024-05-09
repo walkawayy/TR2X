@@ -1251,6 +1251,57 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
     return true;
 }
 
+void __cdecl RestoreLostBuffers(void)
+{
+    if (g_PrimaryBufferSurface == NULL) {
+        Shell_ExitSystem("Oops... no front buffer");
+        return;
+    }
+
+    bool rebuild = false;
+
+    if (FAILED(DDrawSurfaceRestoreLost(
+            g_PrimaryBufferSurface, NULL, g_SavedAppSettings.fullscreen))) {
+        rebuild = true;
+    }
+
+    if ((g_SavedAppSettings.fullscreen
+         || g_SavedAppSettings.render_mode == RM_HARDWARE)
+        && FAILED(DDrawSurfaceRestoreLost(
+            g_BackBufferSurface, g_PrimaryBufferSurface, true))) {
+        rebuild = true;
+    }
+
+    if (g_SavedAppSettings.triple_buffering
+        && FAILED(DDrawSurfaceRestoreLost(
+            g_ThirdBufferSurface, g_PrimaryBufferSurface, true))) {
+        rebuild = true;
+    }
+
+    if (g_SavedAppSettings.render_mode == RM_SOFTWARE
+        && FAILED(
+            DDrawSurfaceRestoreLost(g_RenderBufferSurface, NULL, false))) {
+        rebuild = true;
+    }
+
+    if (g_ZBufferSurface != NULL
+        && FAILED(DDrawSurfaceRestoreLost(g_ZBufferSurface, NULL, false))) {
+        rebuild = true;
+    }
+
+    if (g_PictureBufferSurface != NULL
+        && FAILED(
+            DDrawSurfaceRestoreLost(g_PictureBufferSurface, NULL, false))) {
+        rebuild = true;
+    }
+
+    if (rebuild && !g_IsGameToExit) {
+        ApplySettings(&g_SavedAppSettings);
+        if (g_SavedAppSettings.render_mode == RM_HARDWARE)
+            HWR_GetPageHandles();
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

@@ -515,7 +515,6 @@
 #define CreateRenderBuffer ((void __cdecl (*)(void))0x00448920)
 #define CreatePictureBuffer ((void __cdecl (*)(void))0x004489D0)
 #define ClearBuffers ((void __cdecl (*)(DWORD flags, DWORD fill_color))0x00448A40)
-#define RestoreLostBuffers ((void __cdecl (*)(void))0x00448BF0)
 #define RenderStart ((void __cdecl (*)(bool is_reset))0x00448E50)
 #define RenderFinish ((void __cdecl (*)(bool need_to_clear_textures))0x00449200)
 #define ApplySettings ((bool __cdecl (*)(APP_SETTINGS *new_settings))0x004492F0)

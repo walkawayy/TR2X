@@ -3116,7 +3116,7 @@ typedef enum {
 0x00448920  0x00A1  -R      void __cdecl CreateRenderBuffer(void);
 0x004489D0  0x0070  -R      void __cdecl CreatePictureBuffer(void);
 0x00448A40  0x01A4  -R      void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);
-0x00448BF0  0x013C  -R      void __cdecl RestoreLostBuffers(void);
+0x00448BF0  0x013C  +R      void __cdecl RestoreLostBuffers(void);
 0x00448D30  0x00CF  +R      void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 0x00448E00  0x003B  +R      void __cdecl WaitPrimaryBufferFlip(void);
 0x00448E40  0x0003  +R      bool __cdecl RenderInit(void);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.85% (461)</tspan> · <tspan class="known">59.69% (727)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.93% (462)</tspan> · <tspan class="known">59.61% (726)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="282.73" height="6" x="0" y="0" class="decompiled"/>
-<rect width="445.87" height="6" x="282.73" y="0" class="known"/>
+<rect width="283.34" height="6" x="0" y="0" class="decompiled"/>
+<rect width="445.26" height="6" x="283.34" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1018,7 +1018,7 @@
 <rect width="12" height="12" x="570" y="270" class="known"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
 <rect width="12" height="12" x="585" y="270" class="known"><title>void __cdecl CreatePictureBuffer(void);</title></rect>
 <rect width="12" height="12" x="600" y="270" class="known"><title>void __cdecl ClearBuffers(DWORD flags, DWORD fill_color);</title></rect>
-<rect width="12" height="12" x="615" y="270" class="known"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
+<rect width="12" height="12" x="615" y="270" class="decompiled"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
 <rect width="12" height="12" x="630" y="270" class="decompiled"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
 <rect width="12" height="12" x="645" y="270" class="decompiled"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
 <rect width="12" height="12" x="660" y="270" class="decompiled"><title>bool __cdecl RenderInit(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.52%</tspan> · <tspan class="known">64.16%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.61%</tspan> · <tspan class="known">64.06%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="265.32" height="6" x="0" y="0" class="decompiled"/>
-<rect width="479.24" height="6" x="265.32" y="0" class="known"/>
+<rect width="266.01" height="6" x="0" y="0" class="decompiled"/>
+<rect width="478.55" height="6" x="266.01" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1603,7 +1603,7 @@
 <rect width="13.48" height="13.01" x="448.61" y="157.03" class="known"><title>void __cdecl DartEmitterControl(int16_t item_num);</title></rect>
 <rect width="13.48" height="12.96" x="448.61" y="173.04" class="decompiled"><title>void __cdecl Output_InsertTransQuad_Sorted(int32_t x, int32_t y, int32_t width, int32_t height, int32_t z);</title></rect>
 <rect width="13.48" height="12.96" x="448.61" y="189.01" class="known"><title>void __cdecl WaterFall(int16_t fx_num);</title></rect>
-<rect width="13.48" height="12.91" x="448.61" y="204.97" class="known"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
+<rect width="13.48" height="12.91" x="448.61" y="204.97" class="decompiled"><title>void __cdecl RestoreLostBuffers(void);</title></rect>
 <rect width="13.48" height="12.86" x="448.61" y="220.88" class="known"><title>void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="13.48" height="12.86" x="448.61" y="236.75" class="known"><title>void __cdecl CreateScreenBuffers(void);</title></rect>
 <rect width="13.48" height="12.81" x="448.61" y="252.61" class="decompiled"><title>void __fastcall Output_TransA(int32_t y0, int32_t y1, uint8_t depth_q); // actually, __watcall, which is esoteric and rarely supported</title></rect>

@@ -518,7 +518,6 @@
 #define RestoreLostBuffers ((void __cdecl (*)(void))0x00448BF0)
 #define UpdateFrame ((void __cdecl (*)(bool need_run_message_loop, LPRECT rect))0x00448D30)
 #define WaitPrimaryBufferFlip ((void __cdecl (*)(void))0x00448E00)
-#define RenderInit ((bool __cdecl (*)(void))0x00448E40)
 #define RenderStart ((void __cdecl (*)(bool is_reset))0x00448E50)
 #define RenderFinish ((void __cdecl (*)(bool need_to_clear_textures))0x00449200)
 #define ApplySettings ((bool __cdecl (*)(APP_SETTINGS *new_settings))0x004492F0)

@@ -116,6 +116,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x004125D0, CutscenePlayer1_Initialise);
     INJECT(enable, 0x00412660, CutscenePlayerGen_Initialise);
     INJECT(enable, 0x0043A280, Level_Initialise);
+    INJECT(enable, 0x00448E40, RenderInit);
 }
 
 static void Inject_Camera(const bool enable)

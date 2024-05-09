@@ -1250,3 +1250,8 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
     g_Camera.underwater = 0;
     return true;
 }
+
+bool __cdecl RenderInit(void)
+{
+    return true;
+}

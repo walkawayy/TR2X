@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.18% (465)</tspan> · <tspan class="known">59.36% (723)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.26% (466)</tspan> · <tspan class="known">59.28% (722)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="285.18" height="6" x="0" y="0" class="decompiled"/>
-<rect width="443.42" height="6" x="285.18" y="0" class="known"/>
+<rect width="285.80" height="6" x="0" y="0" class="decompiled"/>
+<rect width="442.80" height="6" x="285.80" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1011,7 +1011,7 @@
 <rect width="12" height="12" x="465" y="270" class="decompiled"><title>void __cdecl CreateScreenBuffers(void);</title></rect>
 <rect width="12" height="12" x="480" y="270" class="decompiled"><title>void __cdecl CreatePrimarySurface(void);</title></rect>
 <rect width="12" height="12" x="495" y="270" class="decompiled"><title>void __cdecl CreateBackBuffer(void);</title></rect>
-<rect width="12" height="12" x="510" y="270" class="known"><title>void __cdecl CreateClipper(void);</title></rect>
+<rect width="12" height="12" x="510" y="270" class="decompiled"><title>void __cdecl CreateClipper(void);</title></rect>
 <rect width="12" height="12" x="525" y="270" class="known"><title>void __cdecl CreateWindowPalette(void);</title></rect>
 <rect width="12" height="12" x="540" y="270" class="known"><title>void __cdecl CreateZBuffer(void);</title></rect>
 <rect width="12" height="12" x="555" y="270" class="known"><title>DWORD __cdecl GetZBufferDepth(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.79%</tspan> · <tspan class="known">63.88%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.84%</tspan> · <tspan class="known">63.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="267.35" height="6" x="0" y="0" class="decompiled"/>
-<rect width="477.21" height="6" x="267.35" y="0" class="known"/>
+<rect width="267.70" height="6" x="0" y="0" class="decompiled"/>
+<rect width="476.86" height="6" x="267.70" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1844,7 +1844,7 @@
 <rect width="8.09" height="8.75" x="694.60" y="173.80" class="decompiled"><title>void __cdecl Output_DrawScreenSprite(int32_t sx, int32_t sy, int32_t sz, int32_t scale_h, int32_t scale_v, int16_t sprite_idx, int16_t shade, uint16_t flags);</title></rect>
 <rect width="8.09" height="8.75" x="705.69" y="173.80" class="known"><title>int32_t __cdecl DoFlareLight(XYZ_32 *pos, int32_t flare_age);</title></rect>
 <rect width="8.09" height="8.75" x="716.79" y="173.80" class="known"><title>void __cdecl InitialiseFinalLevel(void);</title></rect>
-<rect width="8.09" height="8.75" x="727.88" y="173.80" class="known"><title>void __cdecl CreateClipper(void);</title></rect>
+<rect width="8.09" height="8.75" x="727.88" y="173.80" class="decompiled"><title>void __cdecl CreateClipper(void);</title></rect>
 <rect width="8.02" height="8.75" x="738.98" y="173.80" class="decompiled"><title>void __cdecl Item_NewRoom(int16_t item_num, int16_t room_num);</title></rect>
 <rect width="8.17" height="8.59" x="545.84" y="185.54" class="decompiled"><title>bool __cdecl S_Audio_Sample_Init(void);</title></rect>
 <rect width="8.17" height="8.52" x="545.84" y="197.13" class="decompiled"><title>void __cdecl Lara_CollideStop(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

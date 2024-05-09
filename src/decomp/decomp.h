@@ -71,6 +71,7 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);
 void __cdecl CreateScreenBuffers(void);
 void __cdecl CreatePrimarySurface(void);
 void __cdecl CreateBackBuffer(void);
+void __cdecl CreateClipper(void);
 void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 void __cdecl RestoreLostBuffers(void);
 void __cdecl WaitPrimaryBufferFlip(void);

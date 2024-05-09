@@ -219,6 +219,7 @@ extern const char *g_TR2XVersion;
 #define g_CurrentSoundAdapter (*(SOUND_ADAPTER*)0x004D8E8C)
 #define g_PrimarySoundAdapter (*(SOUND_ADAPTER_NODE **)0x004D8EAC)
 #define g_RenderBufferSurface (*(LPDDS*)0x004D8EB0)
+#define g_DDrawClipper (*(LPDIRECTDRAWCLIPPER*)0x004D8EB4)
 #define g_ThirdBufferSurface (*(LPDDS*)0x004D92B8)
 #define g_PictureBufferSurface (*(LPDDS*)0x004D92BC)
 #define g_ZBufferSurface (*(LPDDS*)0x004D92C0)

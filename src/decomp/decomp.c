@@ -1383,6 +1383,23 @@ void __cdecl CreateBackBuffer(void)
     WinVidClearBuffer(g_BackBufferSurface, 0, 0);
 }
 
+void __cdecl CreateClipper(void)
+{
+    if (FAILED(IDirectDraw_CreateClipper(g_DDraw, 0, &g_DDrawClipper, NULL))) {
+        Shell_ExitSystem("Failed to create clipper");
+    }
+
+    if (FAILED(IDirectDrawClipper_SetHWnd(
+            g_DDrawClipper, 0, g_GameWindowHandle))) {
+        Shell_ExitSystem("Failed to attach clipper to the game window");
+    }
+
+    if (FAILED(IDirectDrawSurface_SetClipper(
+            g_PrimaryBufferSurface, g_DDrawClipper))) {
+        Shell_ExitSystem("Failed to attach clipper to the primary surface");
+    }
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

@@ -1363,6 +1363,26 @@ void __cdecl CreatePrimarySurface(void)
     }
 }
 
+void __cdecl CreateBackBuffer(void)
+{
+    DDSDESC dsp = {
+        .dwSize = sizeof(DDSDESC),
+        .dwFlags = DDSD_WIDTH|DDSD_HEIGHT|DDSD_CAPS,
+        .dwWidth = g_GameVid_BufWidth,
+        .dwHeight = g_GameVid_BufHeight,
+        .ddsCaps = {
+            .dwCaps = DDSCAPS_3DDEVICE|DDSCAPS_OFFSCREENPLAIN,
+        },
+    };
+    if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+        dsp.ddsCaps.dwCaps |= DDSCAPS_VIDEOMEMORY;
+    }
+    if (FAILED(DDrawSurfaceCreate(&dsp, &g_BackBufferSurface))) {
+        Shell_ExitSystem("Failed to create back screen buffer");
+    }
+    WinVidClearBuffer(g_BackBufferSurface, 0, 0);
+}
+
 void __cdecl UpdateFrame(const bool need_run_message_loop, LPRECT rect)
 {
     if (rect == NULL) {

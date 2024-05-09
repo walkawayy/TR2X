@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.10% (464)</tspan> · <tspan class="known">59.44% (724)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.18% (465)</tspan> · <tspan class="known">59.36% (723)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="284.57" height="6" x="0" y="0" class="decompiled"/>
-<rect width="444.03" height="6" x="284.57" y="0" class="known"/>
+<rect width="285.18" height="6" x="0" y="0" class="decompiled"/>
+<rect width="443.42" height="6" x="285.18" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1010,7 +1010,7 @@
 <rect width="12" height="12" x="450" y="270" class="todo"><title>sub_448420</title></rect>
 <rect width="12" height="12" x="465" y="270" class="decompiled"><title>void __cdecl CreateScreenBuffers(void);</title></rect>
 <rect width="12" height="12" x="480" y="270" class="decompiled"><title>void __cdecl CreatePrimarySurface(void);</title></rect>
-<rect width="12" height="12" x="495" y="270" class="known"><title>void __cdecl CreateBackBuffer(void);</title></rect>
+<rect width="12" height="12" x="495" y="270" class="decompiled"><title>void __cdecl CreateBackBuffer(void);</title></rect>
 <rect width="12" height="12" x="510" y="270" class="known"><title>void __cdecl CreateClipper(void);</title></rect>
 <rect width="12" height="12" x="525" y="270" class="known"><title>void __cdecl CreateWindowPalette(void);</title></rect>
 <rect width="12" height="12" x="540" y="270" class="known"><title>void __cdecl CreateZBuffer(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.75%</tspan> · <tspan class="known">63.93%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">35.79%</tspan> · <tspan class="known">63.88%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="267.02" height="6" x="0" y="0" class="decompiled"/>
-<rect width="477.54" height="6" x="267.02" y="0" class="known"/>
+<rect width="267.35" height="6" x="0" y="0" class="decompiled"/>
+<rect width="477.21" height="6" x="267.35" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1855,7 +1855,7 @@
 <rect width="8.17" height="8.37" x="545.84" y="254.35" class="known"><title>int16_t __cdecl Room_GetTiltType(FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="8.17" height="8.37" x="545.84" y="265.72" class="decompiled"><title>void __cdecl Lara_Col_FastFall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="8.17" height="8.29" x="545.84" y="277.09" class="known"><title>void __cdecl WarriorSparkleTrail(ITEM_INFO *item);</title></rect>
-<rect width="8.17" height="8.29" x="545.84" y="288.38" class="known"><title>void __cdecl CreateBackBuffer(void);</title></rect>
+<rect width="8.17" height="8.29" x="545.84" y="288.38" class="decompiled"><title>void __cdecl CreateBackBuffer(void);</title></rect>
 <rect width="8.17" height="8.29" x="545.84" y="299.68" class="known"><title>bool __cdecl CreateTexturePageSurface(TEXPAGE_DESC *desc);</title></rect>
 <rect width="8.17" height="8.22" x="545.84" y="310.97" class="decompiled"><title>void __cdecl Overlay_DrawAirBar(bool flash_state);</title></rect>
 <rect width="8.17" height="8.22" x="545.84" y="322.19" class="known"><title>void __cdecl AdjustTextureUVs(bool reset_uv_add);</title></rect>

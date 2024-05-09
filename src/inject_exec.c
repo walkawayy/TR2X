@@ -118,6 +118,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x0043A280, Level_Initialise);
     INJECT(enable, 0x00448430, CreateScreenBuffers);
     INJECT(enable, 0x00448570, CreatePrimarySurface);
+    INJECT(enable, 0x00448610, CreateBackBuffer);
     INJECT(enable, 0x00448D30, UpdateFrame);
     INJECT(enable, 0x00448BF0, RestoreLostBuffers);
     INJECT(enable, 0x00448E00, WaitPrimaryBufferFlip);

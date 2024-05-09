@@ -3108,7 +3108,7 @@ typedef enum {
 0x00448420  0x0001  -R      sub_448420
 0x00448430  0x013B  +R      void __cdecl CreateScreenBuffers(void);
 0x00448570  0x0094  +R      void __cdecl CreatePrimarySurface(void);
-0x00448610  0x0098  -R      void __cdecl CreateBackBuffer(void);
+0x00448610  0x0098  +R      void __cdecl CreateBackBuffer(void);
 0x004486B0  0x009D  -R      void __cdecl CreateClipper(void);
 0x00448750  0x00D3  -R      void __cdecl CreateWindowPalette(void);
 0x00448830  0x00BC  -R      void __cdecl CreateZBuffer(void);
@@ -3719,3 +3719,5 @@ typedef enum {
 0x004D9328  -       RECT g_GameVidRect;
 0x004D9358  -       LPDDS g_BackBufferSurface;
 0x004D9350  -       bool g_GameVid_IsVga;
+0x004D9344  -       int32_t g_GameVid_BufWidth;
+0x004D9348  -       int32_t g_GameVid_BufHeight;

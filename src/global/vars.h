@@ -227,6 +227,8 @@ extern const char *g_TR2XVersion;
 #define g_GameVidWidth (*(int32_t*)0x004D9338)
 #define g_GameVidHeight (*(int32_t*)0x004D933C)
 #define g_GameVidBPP (*(int32_t*)0x004D9340)
+#define g_GameVid_BufWidth (*(int32_t*)0x004D9344)
+#define g_GameVid_BufHeight (*(int32_t*)0x004D9348)
 #define g_UVAdd (*(int32_t*)0x004D934C)
 #define g_GameVid_IsVga (*(bool*)0x004D9350)
 #define g_GameVid_IsWindowedVGA (*(int8_t*)0x004D9351)

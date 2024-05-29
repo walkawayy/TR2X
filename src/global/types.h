@@ -233,19 +233,13 @@ typedef struct __unaligned {
     uint8_t alpha;
 } RGBA_8888;
 
-typedef struct __unaligned {
-    DWORD dwRBitMask;
-    DWORD dwGBitMask;
-    DWORD dwBBitMask;
-    DWORD dwRGBAlphaBitMask;
-    DWORD dwRBitDepth;
-    DWORD dwGBitDepth;
-    DWORD dwBBitDepth;
-    DWORD dwRGBAlphaBitDepth;
-    DWORD dwRBitOffset;
-    DWORD dwGBitOffset;
-    DWORD dwBBitOffset;
-    DWORD dwRGBAlphaBitOffset;
+typedef struct {
+    struct {
+        uint32_t r;
+        uint32_t g;
+        uint32_t b;
+        uint32_t a;
+    } mask, depth, offset;
 } COLOR_BIT_MASKS;
 
 typedef struct __unaligned {
@@ -2089,5 +2083,11 @@ typedef enum {
     CLRB_RESERVED                = 0x0080,
     CLRB_PHDWINSIZE              = 0x0100,
 } CLEAR_BUFFER_FLAGS;
+
+typedef struct {
+    DDPIXELFORMAT pixel_fmt;
+    COLOR_BIT_MASKS color_bit_masks;
+    DWORD bpp;
+} TEXTURE_FORMAT;
 
 // clang-format on

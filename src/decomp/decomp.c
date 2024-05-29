@@ -17,6 +17,7 @@
 #include "lib/dinput.h"
 #include "util.h"
 
+#include <assert.h>
 #include <dinput.h>
 #include <stdio.h>
 
@@ -778,20 +779,18 @@ DWORD __cdecl GetRenderBitDepth(const uint32_t rgb_bit_count)
 void __thiscall WinVidGetColorBitMasks(
     COLOR_BIT_MASKS *bm, LPDDPIXELFORMAT pixel_format)
 {
-    bm->dwRBitMask = pixel_format->dwRBitMask;
-    bm->dwGBitMask = pixel_format->dwGBitMask;
-    bm->dwBBitMask = pixel_format->dwBBitMask;
-    bm->dwRGBAlphaBitMask = pixel_format->dwRGBAlphaBitMask;
-    BitMaskGetNumberOfBits(bm->dwRBitMask, &bm->dwRBitDepth, &bm->dwRBitOffset);
-    BitMaskGetNumberOfBits(bm->dwGBitMask, &bm->dwGBitDepth, &bm->dwGBitOffset);
-    BitMaskGetNumberOfBits(bm->dwBBitMask, &bm->dwBBitDepth, &bm->dwBBitOffset);
-    BitMaskGetNumberOfBits(
-        bm->dwRGBAlphaBitMask, &bm->dwRGBAlphaBitDepth,
-        &bm->dwRGBAlphaBitOffset);
+    bm->mask.r = pixel_format->dwRBitMask;
+    bm->mask.g = pixel_format->dwGBitMask;
+    bm->mask.b = pixel_format->dwBBitMask;
+    bm->mask.a = pixel_format->dwRGBAlphaBitMask;
+    BitMaskGetNumberOfBits(bm->mask.r, &bm->depth.r, &bm->offset.r);
+    BitMaskGetNumberOfBits(bm->mask.g, &bm->depth.g, &bm->offset.g);
+    BitMaskGetNumberOfBits(bm->mask.b, &bm->depth.b, &bm->offset.b);
+    BitMaskGetNumberOfBits(bm->mask.a, &bm->depth.a, &bm->offset.a);
 }
 
 void __cdecl BitMaskGetNumberOfBits(
-    DWORD bit_mask, DWORD *bit_depth, DWORD *bit_offset)
+    uint32_t bit_mask, uint32_t *bit_depth, uint32_t *bit_offset)
 {
     if (!bit_mask) {
         *bit_offset = 0;
@@ -818,10 +817,10 @@ DWORD __cdecl CalculateCompatibleColor(
 {
     // clang-format off
     return (
-        (red   >> (8 - mask->dwRBitDepth) << mask->dwRBitOffset) |
-        (green >> (8 - mask->dwGBitDepth) << mask->dwGBitOffset) |
-        (blue  >> (8 - mask->dwBBitDepth) << mask->dwBBitOffset) |
-        (alpha >> (8 - mask->dwRGBAlphaBitDepth) << mask->dwRGBAlphaBitOffset)
+        (red   >> (8 - mask->depth.r) << mask->offset.r) |
+        (green >> (8 - mask->depth.g) << mask->offset.g) |
+        (blue  >> (8 - mask->depth.b) << mask->offset.b) |
+        (alpha >> (8 - mask->depth.a) << mask->offset.a)
     );
     // clang-format on
 }
@@ -1630,4 +1629,121 @@ void __cdecl WaitPrimaryBufferFlip(void)
 bool __cdecl RenderInit(void)
 {
     return true;
+}
+
+void __cdecl RenderStart(const bool is_reset)
+{
+    if (is_reset) {
+        g_NeedToReloadTextures = false;
+    }
+
+    if (g_SavedAppSettings.fullscreen) {
+        assert(g_SavedAppSettings.video_mode != NULL);
+
+        DISPLAY_MODE disp_mode = g_SavedAppSettings.video_mode->body;
+
+        const bool result = WinVidGoFullScreen(&disp_mode);
+        assert(result);
+
+        CreateScreenBuffers();
+        g_GameVid_Width = disp_mode.width;
+        g_GameVid_Height = disp_mode.height;
+        g_GameVid_BPP = disp_mode.bpp;
+        g_GameVid_BufWidth = disp_mode.width;
+        g_GameVid_BufHeight = disp_mode.height;
+        g_GameVid_IsVga = disp_mode.vga != VGA_NO_VGA;
+        g_GameVid_IsWindowedVGA = false;
+        g_GameVid_IsFullscreenVGA = disp_mode.vga == VGA_STANDARD;
+    } else {
+        int32_t min_width = 320;
+        int32_t min_height = CalculateWindowHeight(320, 200);
+        if (min_height < 200) {
+            min_width = CalculateWindowWidth(320, 200);
+            min_height = 200;
+        }
+
+        WinVidSetMinWindowSize(min_width, min_height);
+
+        DISPLAY_MODE disp_mode;
+        const bool result = WinVidGoWindowed(
+            g_SavedAppSettings.window_width, g_SavedAppSettings.window_height,
+            &disp_mode);
+        assert(result);
+
+        g_GameVid_Width = disp_mode.width;
+        g_GameVid_Height = disp_mode.height;
+        g_GameVid_BPP = disp_mode.bpp;
+
+        g_GameVid_BufWidth = (disp_mode.width + 0x1F) & ~0x1F;
+        g_GameVid_BufHeight = (disp_mode.height + 0x1F) & ~0x1F;
+        g_GameVid_IsVga = disp_mode.vga != 0;
+        g_GameVid_IsWindowedVGA = disp_mode.vga != VGA_NO_VGA;
+        g_GameVid_IsFullscreenVGA = false;
+
+        CreatePrimarySurface();
+        if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+            CreateBackBuffer();
+        }
+        CreateClipper();
+    }
+
+    DDPIXELFORMAT pixel_format = { 0 };
+    pixel_format.dwSize = sizeof(DDPIXELFORMAT);
+    const HRESULT result = IDirectDrawSurface_GetPixelFormat(
+        g_PrimaryBufferSurface, &pixel_format);
+    if (FAILED(result)) {
+        Shell_ExitSystem("GetPixelFormat() failed");
+    }
+
+    WinVidGetColorBitMasks(&g_ColorBitMasks, &pixel_format);
+    if (g_GameVid_IsVga) {
+        CreateWindowPalette();
+    }
+
+    if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+        if (g_SavedAppSettings.zbuffer) {
+            CreateZBuffer();
+        }
+        D3DDeviceCreate(g_BackBufferSurface);
+        EnumerateTextureFormats();
+    } else {
+        CreateRenderBuffer();
+        if (g_PictureBufferSurface == NULL) {
+            CreatePictureBuffer();
+        }
+    }
+
+    if (g_NeedToReloadTextures) {
+        bool is_16bit_textures = g_TextureFormat.bpp >= 16;
+        if (g_IsWindowedVGA != g_GameVid_IsWindowedVGA
+            || g_Is16bitTextures != is_16bit_textures) {
+            S_ReloadLevelGraphics(
+                g_IsWindowedVGA != g_GameVid_IsWindowedVGA,
+                g_Is16bitTextures != is_16bit_textures);
+            g_IsWindowedVGA = g_GameVid_IsWindowedVGA;
+            g_Is16bitTextures = is_16bit_textures;
+        } else if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+            ReloadTextures(true);
+            HWR_GetPageHandles();
+        }
+    } else {
+        g_IsWindowedVGA = g_GameVid_IsWindowedVGA;
+        g_Is16bitTextures = g_TextureFormat.bpp >= 16;
+    }
+
+    g_GameVid_BufRect.left = 0;
+    g_GameVid_BufRect.top = 0;
+    g_GameVid_BufRect.right = g_GameVid_BufWidth;
+    g_GameVid_BufRect.bottom = g_GameVid_BufHeight;
+
+    g_GameVid_Rect.left = 0;
+    g_GameVid_Rect.top = 0;
+    g_GameVid_Rect.right = g_GameVid_Width;
+    g_GameVid_Rect.bottom = g_GameVid_Height;
+
+    g_DumpWidth = g_GameVid_Width;
+    g_DumpHeight = g_GameVid_Height;
+
+    setup_screen_size();
+    g_NeedToReloadTextures = true;
 }

@@ -130,6 +130,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00448D30, UpdateFrame);
     INJECT(enable, 0x00448E00, WaitPrimaryBufferFlip);
     INJECT(enable, 0x00448E40, RenderInit);
+    INJECT(enable, 0x00448E50, RenderStart);
 }
 
 static void Inject_Camera(const bool enable)

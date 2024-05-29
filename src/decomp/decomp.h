@@ -49,7 +49,7 @@ DWORD __cdecl GetRenderBitDepth(uint32_t rgb_bit_count);
 void __thiscall WinVidGetColorBitMasks(
     COLOR_BIT_MASKS *bm, LPDDPIXELFORMAT pixel_format);
 void __cdecl BitMaskGetNumberOfBits(
-    DWORD bit_mask, DWORD *bit_depth, DWORD *bit_offset);
+    uint32_t bit_mask, uint32_t *bit_depth, uint32_t *bit_offset);
 DWORD __cdecl CalculateCompatibleColor(
     const COLOR_BIT_MASKS *mask, int32_t red, int32_t green, int32_t blue,
     int32_t alpha);
@@ -82,3 +82,4 @@ void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 void __cdecl RestoreLostBuffers(void);
 void __cdecl WaitPrimaryBufferFlip(void);
 bool __cdecl RenderInit(void);
+void __cdecl RenderStart(bool is_reset);

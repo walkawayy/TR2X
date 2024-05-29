@@ -46,6 +46,10 @@ extern const char *g_TR2XVersion;
 #define g_FadeLimit (*(int32_t*)0x00466494) // = 0x100000
 #define g_FadeAdder (*(int32_t*)0x00466498) // = 0x8000
 #define g_ErrorMessages (*(const char *(*)[43])0x004664E8)
+#define g_DumpX (*(int16_t*)0x00466BE4)
+#define g_DumpY (*(int16_t*)0x00466BE6)
+#define g_DumpWidth (*(int16_t*)0x00466BE8)
+#define g_DumpHeight (*(int16_t*)0x00466BEA)
 #define g_Layout (*(CONTROL_LAYOUT(*)[2])0x00466F70)
 #define g_MidSort (*(int32_t*)0x0046C300) // = 0
 #define g_ViewportAspectRatio (*(float*)0x0046C304) // = 0.0f
@@ -227,6 +231,8 @@ extern const char *g_TR2XVersion;
 #define g_ZBufferSurface (*(LPDDS*)0x004D92C0)
 #define g_DDrawPalette (*(LPDIRECTDRAWPALETTE*)0x004D92C4)
 #define g_PrimaryBufferSurface (*(LPDDS*)0x004D92C8)
+#define g_ColorBitMasks (*(COLOR_BIT_MASKS*)0x004D92E8)
+#define g_GameVid_BufRect (*(RECT*)0x004D9318)
 #define g_GameVid_Rect (*(RECT*)0x004D9328)
 #define g_GameVid_Width (*(int32_t*)0x004D9338)
 #define g_GameVid_Height (*(int32_t*)0x004D933C)
@@ -236,6 +242,10 @@ extern const char *g_TR2XVersion;
 #define g_UVAdd (*(int32_t*)0x004D934C)
 #define g_GameVid_IsVga (*(bool*)0x004D9350)
 #define g_GameVid_IsWindowedVGA (*(int8_t*)0x004D9351)
+#define g_GameVid_IsFullscreenVGA (*(bool*)0x004D9352)
+#define g_IsWindowedVGA (*(bool*)0x004D9353)
+#define g_Is16bitTextures (*(bool*)0x004D9354)
+#define g_NeedToReloadTextures (*(bool*)0x004D9355)
 #define g_BackBufferSurface (*(LPDDS*)0x004D9358)
 #define g_IsFMVPlaying (*(int32_t*)0x004D9EAC)
 #define g_CurrentLevel (*(int32_t*)0x004D9EC0)
@@ -261,6 +271,7 @@ extern const char *g_TR2XVersion;
 #define g_MasterVolume (*(int32_t*)0x0051BDA8)
 #define g_MciDeviceID (*(MCIDEVICEID*)0x0051BDAC)
 #define g_CD_LoopTrack (*(int32_t*)0x0051BDB0)
+#define g_TextureFormat (*(TEXTURE_FORMAT*)0x0051C1B8)
 #define g_TextstringTable (*(TEXTSTRING(*)[64])0x0051C820)
 #define g_TextstringCount (*(int16_t*)0x0051D6A0) // = 0
 #define g_TextstringBuffers (*(char(*)[64][64])0x0051D6C0)

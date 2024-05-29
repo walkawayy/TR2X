@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.75% (472)</tspan> · <tspan class="known">58.78% (716)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.83% (473)</tspan> · <tspan class="known">58.70% (715)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="289.48" height="6" x="0" y="0" class="decompiled"/>
-<rect width="439.12" height="6" x="289.48" y="0" class="known"/>
+<rect width="290.09" height="6" x="0" y="0" class="decompiled"/>
+<rect width="438.51" height="6" x="290.09" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -923,7 +923,7 @@
 <rect width="12" height="12" x="645" y="240" class="decompiled"><title>bool __cdecl WinVidCopyBitmapToBuffer(LPDDS surface, const BYTE *bitmap);</title></rect>
 <rect width="12" height="12" x="660" y="240" class="decompiled"><title>DWORD __cdecl GetRenderBitDepth(DWORD dwRGBBitCount);</title></rect>
 <rect width="12" height="12" x="675" y="240" class="decompiled"><title>void __thiscall WinVidGetColorBitMasks(COLOR_BIT_MASKS *bm, LPDDPIXELFORMAT pixel_format);</title></rect>
-<rect width="12" height="12" x="690" y="240" class="decompiled"><title>void __cdecl BitMaskGetNumberOfBits(DWORD bit_mask, DWORD *bit_depth, DWORD *bit_offset);</title></rect>
+<rect width="12" height="12" x="690" y="240" class="decompiled"><title>void __cdecl BitMaskGetNumberOfBits(uint32_t bit_mask, uint32_t *bit_depth, uint32_t *bit_offset);</title></rect>
 <rect width="12" height="12" x="705" y="240" class="decompiled"><title>DWORD __cdecl CalculateCompatibleColor(COLOR_BIT_MASKS *mask, int32_t red, int32_t green, int32_t blue, int32_t alpha);</title></rect>
 <rect width="12" height="12" x="720" y="240" class="decompiled"><title>bool __cdecl WinVidGetDisplayMode(DISPLAY_MODE *disp_mode);</title></rect>
 <rect width="12" height="12" x="735" y="240" class="decompiled"><title>bool __cdecl WinVidGoFullScreen(DISPLAY_MODE *disp_mode);</title></rect>
@@ -1022,7 +1022,7 @@
 <rect width="12" height="12" x="630" y="270" class="decompiled"><title>void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);</title></rect>
 <rect width="12" height="12" x="645" y="270" class="decompiled"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
 <rect width="12" height="12" x="660" y="270" class="decompiled"><title>bool __cdecl RenderInit(void);</title></rect>
-<rect width="12" height="12" x="675" y="270" class="known"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
+<rect width="12" height="12" x="675" y="270" class="decompiled"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
 <rect width="12" height="12" x="690" y="270" class="known"><title>void __cdecl RenderFinish(bool need_to_clear_textures);</title></rect>
 <rect width="12" height="12" x="705" y="270" class="known"><title>bool __cdecl ApplySettings(APP_SETTINGS *new_settings);</title></rect>
 <rect width="12" height="12" x="720" y="270" class="known"><title>void __cdecl FmvBackToGame(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.17%</tspan> · <tspan class="known">63.50%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.44%</tspan> · <tspan class="known">63.23%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="270.18" height="6" x="0" y="0" class="decompiled"/>
-<rect width="474.38" height="6" x="270.18" y="0" class="known"/>
+<rect width="272.22" height="6" x="0" y="0" class="decompiled"/>
+<rect width="472.34" height="6" x="272.22" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1379,7 +1379,7 @@
 <rect width="24.80" height="25.96" x="239.29" y="236.76" class="known"><title>void __cdecl Worker1Control(int16_t item_num);</title></rect>
 <rect width="24.80" height="25.49" x="239.29" y="265.73" class="known"><title>void __cdecl WarriorControl(int16_t item_num);</title></rect>
 <rect width="24.80" height="25.22" x="239.29" y="294.21" class="known"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
-<rect width="24.80" height="24.86" x="239.29" y="322.43" class="known"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
+<rect width="24.80" height="24.86" x="239.29" y="322.43" class="decompiled"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
 <rect width="24.80" height="24.71" x="239.29" y="350.29" class="known"><title>BOOL __cdecl LoadRooms(HANDLE handle);</title></rect>
 <rect width="24.49" height="24.90" x="267.09" y="0" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="24.49" height="24.75" x="267.09" y="27.90" class="known"><title>void __cdecl ShowStatsText(char *time_str, int32_t type);</title></rect>
@@ -2151,7 +2151,7 @@
 <rect width="4.64" height="4.50" x="640.82" y="269.04" class="decompiled"><title>bool __cdecl S_Audio_Sample_IsTrackPlaying(int32_t track_id);</title></rect>
 <rect width="4.64" height="4.39" x="640.82" y="276.54" class="known"><title>void __cdecl FallingBlockCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="4.64" height="4.39" x="640.82" y="283.93" class="decompiled"><title>HRESULT __cdecl DDrawSurfaceCreate(LPDDSDESC dsp, LPDDS *surface);</title></rect>
-<rect width="4.64" height="4.39" x="640.82" y="291.31" class="decompiled"><title>void __cdecl BitMaskGetNumberOfBits(DWORD bit_mask, DWORD *bit_depth, DWORD *bit_offset);</title></rect>
+<rect width="4.64" height="4.39" x="640.82" y="291.31" class="decompiled"><title>void __cdecl BitMaskGetNumberOfBits(uint32_t bit_mask, uint32_t *bit_depth, uint32_t *bit_offset);</title></rect>
 <rect width="4.64" height="4.39" x="640.82" y="298.70" class="known"><title>void __cdecl GetValidLevelsList(REQUEST_INFO *req);</title></rect>
 <rect width="4.64" height="4.28" x="640.82" y="306.09" class="known"><title>void __cdecl draw_right_gun(ITEM_INFO *item);</title></rect>
 <rect width="4.64" height="4.28" x="640.82" y="313.37" class="known"><title>void __cdecl draw_left_gun(ITEM_INFO *item);</title></rect>

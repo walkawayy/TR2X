@@ -219,19 +219,13 @@ typedef struct __unaligned {
     uint8_t alpha;
 } RGBA_8888;
 
-typedef struct __unaligned {
-    DWORD dwRBitMask;
-    DWORD dwGBitMask;
-    DWORD dwBBitMask;
-    DWORD dwRGBAlphaBitMask;
-    DWORD dwRBitDepth;
-    DWORD dwGBitDepth;
-    DWORD dwBBitDepth;
-    DWORD dwRGBAlphaBitDepth;
-    DWORD dwRBitOffset;
-    DWORD dwGBitOffset;
-    DWORD dwBBitOffset;
-    DWORD dwRGBAlphaBitOffset;
+typedef struct {
+    struct {
+        uint32_t r;
+        uint32_t g;
+        uint32_t b;
+        uint32_t a;
+    } mask, depth, offset;
 } COLOR_BIT_MASKS;
 
 typedef struct __unaligned {
@@ -2076,6 +2070,12 @@ typedef enum {
     CLRB_PHDWINSIZE              = 0x0100,
 } CLEAR_BUFFER_FLAGS;
 
+typedef struct {
+    DDPIXELFORMAT pixel_fmt;
+    COLOR_BIT_MASKS color_bit_masks;
+    DWORD bpp;
+} TEXTURE_FORMAT;
+
 # FUNCTIONS
 #   Flags:
 #   - to do
@@ -3034,7 +3034,7 @@ typedef enum {
 0x00445430  0x0090  +R      bool __cdecl WinVidCopyBitmapToBuffer(LPDDS surface, const BYTE *bitmap);
 0x004454C0  0x0046  +R      DWORD __cdecl GetRenderBitDepth(DWORD dwRGBBitCount);
 0x00445550  0x0071  +R      void __thiscall WinVidGetColorBitMasks(COLOR_BIT_MASKS *bm, LPDDPIXELFORMAT pixel_format);
-0x004455D0  0x0044  +R      void __cdecl BitMaskGetNumberOfBits(DWORD bit_mask, DWORD *bit_depth, DWORD *bit_offset);
+0x004455D0  0x0044  +R      void __cdecl BitMaskGetNumberOfBits(uint32_t bit_mask, uint32_t *bit_depth, uint32_t *bit_offset);
 0x00445620  0x0061  +R      DWORD __cdecl CalculateCompatibleColor(COLOR_BIT_MASKS *mask, int32_t red, int32_t green, int32_t blue, int32_t alpha);
 0x00445690  0x008C  +R      bool __cdecl WinVidGetDisplayMode(DISPLAY_MODE *disp_mode);
 0x00445720  0x0088  +R      bool __cdecl WinVidGoFullScreen(DISPLAY_MODE *disp_mode);
@@ -3133,7 +3133,7 @@ typedef enum {
 0x00448D30  0x00CF  +R      void __cdecl UpdateFrame(bool need_run_message_loop, LPRECT rect);
 0x00448E00  0x003B  +R      void __cdecl WaitPrimaryBufferFlip(void);
 0x00448E40  0x0003  +R      bool __cdecl RenderInit(void);
-0x00448E50  0x03A5  -R      void __cdecl RenderStart(bool is_reset);
+0x00448E50  0x03A5  +R      void __cdecl RenderStart(bool is_reset);
 0x00449200  0x00E6  -R      void __cdecl RenderFinish(bool need_to_clear_textures);
 0x004492F0  0x0204  -R      bool __cdecl ApplySettings(APP_SETTINGS *new_settings);
 0x00449500  0x0105  -R      void __cdecl FmvBackToGame(void);
@@ -3738,3 +3738,14 @@ typedef enum {
 0x004D8EB8  -       PALETTEENTRY g_WinVid_Palette[256];
 0x004D92C4  -       LPDIRECTDRAWPALETTE g_DDrawPalette;
 0x004D7EC4  -       LPDIRECT3DVIEWPORT2 g_D3DView;
+0x004D9355  -       bool g_NeedToReloadTextures;
+0x004D9352  -       bool g_GameVid_IsFullscreenVGA;
+0x004D9353  -       bool g_IsWindowedVGA;
+0x004D9354  -       bool g_Is16bitTextures;
+0x004D9318  -       RECT g_GameVid_BufRect;
+0x00466BE4  -       int16_t g_DumpX;
+0x00466BE6  -       int16_t g_DumpY;
+0x00466BE8  -       int16_t g_DumpWidth;
+0x00466BEA  -       int16_t g_DumpHeight;
+0x0051C1B8  -       TEXTURE_FORMAT g_TextureFormat;
+0x004D92E8  -       COLOR_BIT_MASKS g_ColorBitMasks;

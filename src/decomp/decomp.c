@@ -1802,3 +1802,36 @@ void __cdecl RenderFinish(bool need_to_clear_textures)
         g_NeedToReloadTextures = false;
     }
 }
+
+bool __cdecl ApplySettings(APP_SETTINGS *const new_settings)
+{
+    char mode_string[64] = { 0 };
+    APP_SETTINGS old_settings = g_SavedAppSettings;
+
+    RenderFinish(false);
+
+    if (new_settings != &g_SavedAppSettings)
+        g_SavedAppSettings = *new_settings;
+
+    RenderStart(false);
+    S_InitialiseScreen(GFL_NOLEVEL);
+
+    if (g_SavedAppSettings.render_mode != old_settings.render_mode) {
+        S_ReloadLevelGraphics(1, 1);
+    } else if (
+        g_SavedAppSettings.render_mode == RM_SOFTWARE
+        && g_SavedAppSettings.fullscreen != old_settings.fullscreen) {
+        S_ReloadLevelGraphics(1, 0);
+    }
+
+    if (g_SavedAppSettings.fullscreen) {
+        sprintf(
+            mode_string, "%dx%dx%d", g_GameVid_Width, g_GameVid_Height,
+            g_GameVid_BPP);
+    } else {
+        sprintf(mode_string, "%dx%d", g_GameVid_Width, g_GameVid_Height);
+    }
+
+    Overlay_DisplayModeInfo(mode_string);
+    return true;
+}

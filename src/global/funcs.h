@@ -505,7 +505,6 @@
 #define TempVideoRemove ((void __cdecl (*)(void))0x004479D0)
 #define S_FadeInInventory ((void __cdecl (*)(BOOL isFade))0x00447A10)
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
-#define RenderFinish ((void __cdecl (*)(bool need_to_clear_textures))0x00449200)
 #define ApplySettings ((bool __cdecl (*)(APP_SETTINGS *new_settings))0x004492F0)
 #define FmvBackToGame ((void __cdecl (*)(void))0x00449500)
 #define GameApplySettings ((void __cdecl (*)(APP_SETTINGS *new_settings))0x00449610)

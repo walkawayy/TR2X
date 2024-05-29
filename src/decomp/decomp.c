@@ -1747,3 +1747,58 @@ void __cdecl RenderStart(const bool is_reset)
     setup_screen_size();
     g_NeedToReloadTextures = true;
 }
+
+void __cdecl RenderFinish(bool need_to_clear_textures)
+{
+    if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+        if (need_to_clear_textures) {
+            HWR_FreeTexturePages();
+            CleanupTextures();
+        }
+
+        Direct3DRelease();
+        if (g_ZBufferSurface != NULL) {
+            IDirectDrawSurface_Release(g_ZBufferSurface);
+            g_ZBufferSurface = NULL;
+        }
+    } else {
+        if (need_to_clear_textures && g_PictureBufferSurface != NULL) {
+            IDirectDrawSurface_Release(g_PictureBufferSurface);
+            g_PictureBufferSurface = NULL;
+        }
+
+        if (g_RenderBufferSurface != NULL) {
+            IDirectDrawSurface_Release(g_RenderBufferSurface);
+            g_RenderBufferSurface = NULL;
+        }
+    }
+
+    if (g_DDrawPalette != NULL) {
+        IDirectDrawPalette_Release(g_DDrawPalette);
+        g_DDrawPalette = NULL;
+    }
+
+    if (g_DDrawClipper != NULL) {
+        IDirectDrawClipper_Release(g_DDrawClipper);
+        g_DDrawClipper = NULL;
+    }
+
+    if (g_ThirdBufferSurface != NULL) {
+        IDirectDrawSurface_Release(g_ThirdBufferSurface);
+        g_ThirdBufferSurface = NULL;
+    }
+
+    if (g_BackBufferSurface != NULL) {
+        IDirectDrawSurface_Release(g_BackBufferSurface);
+        g_BackBufferSurface = NULL;
+    }
+
+    if (g_PrimaryBufferSurface != NULL) {
+        IDirectDrawSurface_Release(g_PrimaryBufferSurface);
+        g_PrimaryBufferSurface = NULL;
+    }
+
+    if (need_to_clear_textures) {
+        g_NeedToReloadTextures = false;
+    }
+}

@@ -83,3 +83,4 @@ void __cdecl RestoreLostBuffers(void);
 void __cdecl WaitPrimaryBufferFlip(void);
 bool __cdecl RenderInit(void);
 void __cdecl RenderStart(bool is_reset);
+void __cdecl RenderFinish(bool need_to_clear_textures);

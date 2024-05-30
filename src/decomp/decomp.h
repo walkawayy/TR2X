@@ -84,5 +84,6 @@ void __cdecl WaitPrimaryBufferFlip(void);
 bool __cdecl RenderInit(void);
 void __cdecl RenderStart(bool is_reset);
 void __cdecl RenderFinish(bool need_to_clear_textures);
-bool __cdecl ApplySettings(APP_SETTINGS *new_settings);
+bool __cdecl ApplySettings(const APP_SETTINGS *new_settings);
 void __cdecl FmvBackToGame(void);
+void __cdecl GameApplySettings(APP_SETTINGS *new_settings);

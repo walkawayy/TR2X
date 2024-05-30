@@ -3137,7 +3137,7 @@ typedef struct {
 0x00449200  0x00E6  +R      void __cdecl RenderFinish(bool need_to_clear_textures);
 0x004492F0  0x0204  +R      bool __cdecl ApplySettings(APP_SETTINGS *new_settings);
 0x00449500  0x0105  +R      void __cdecl FmvBackToGame(void);
-0x00449610  0x023A  *R      void __cdecl GameApplySettings(APP_SETTINGS *new_settings);
+0x00449610  0x023A  +R      void __cdecl GameApplySettings(APP_SETTINGS *new_settings);
 0x00449850  0x0067  -R      void __cdecl UpdateGameResolution(void);
 0x004498C0  0x000C  +R      LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);
 0x004498D0  0x0049  -R      BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);
@@ -3749,3 +3749,4 @@ typedef struct {
 0x00466BEA  -       int16_t g_DumpHeight;
 0x0051C1B8  -       TEXTURE_FORMAT g_TextureFormat;
 0x004D92E8  -       COLOR_BIT_MASKS g_ColorBitMasks;
+0x0051BC30  -       bool g_WinVidNeedToResetBuffers;

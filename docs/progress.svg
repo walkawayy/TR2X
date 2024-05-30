@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.08% (476)</tspan> · <tspan class="known">58.46% (712)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.16% (477)</tspan> · <tspan class="known">58.37% (711)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="291.93" height="6" x="0" y="0" class="decompiled"/>
-<rect width="436.67" height="6" x="291.93" y="0" class="known"/>
+<rect width="292.54" height="6" x="0" y="0" class="decompiled"/>
+<rect width="436.06" height="6" x="292.54" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -1026,7 +1026,7 @@
 <rect width="12" height="12" x="690" y="270" class="decompiled"><title>void __cdecl RenderFinish(bool need_to_clear_textures);</title></rect>
 <rect width="12" height="12" x="705" y="270" class="decompiled"><title>bool __cdecl ApplySettings(APP_SETTINGS *new_settings);</title></rect>
 <rect width="12" height="12" x="720" y="270" class="decompiled"><title>void __cdecl FmvBackToGame(void);</title></rect>
-<rect width="12" height="12" x="735" y="270" class="known"><title>void __cdecl GameApplySettings(APP_SETTINGS *new_settings);</title></rect>
+<rect width="12" height="12" x="735" y="270" class="decompiled"><title>void __cdecl GameApplySettings(APP_SETTINGS *new_settings);</title></rect>
 <rect width="12" height="12" x="0" y="285" class="known"><title>void __cdecl UpdateGameResolution(void);</title></rect>
 <rect width="12" height="12" x="15" y="285" class="decompiled"><title>LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);</title></rect>
 <rect width="12" height="12" x="30" y="285" class="known"><title>BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.74%</tspan> · <tspan class="known">62.94%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.90%</tspan> · <tspan class="known">62.77%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="274.42" height="6" x="0" y="0" class="decompiled"/>
-<rect width="470.14" height="6" x="274.42" y="0" class="known"/>
+<rect width="275.67" height="6" x="0" y="0" class="decompiled"/>
+<rect width="468.89" height="6" x="275.67" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1456,7 +1456,7 @@
 <rect width="19.35" height="18.47" x="368.60" y="292.87" class="decompiled"><title>void __cdecl Creature_AIInfo(ITEM_INFO *item, AI_INFO *info);</title></rect>
 <rect width="19.35" height="18.28" x="368.60" y="314.34" class="known"><title>int32_t __cdecl Room_GetCeiling(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="19.35" height="18.21" x="368.60" y="335.62" class="known"><title>void __cdecl DetonatorCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
-<rect width="19.35" height="18.17" x="368.60" y="356.83" class="known"><title>void __cdecl GameApplySettings(APP_SETTINGS *new_settings);</title></rect>
+<rect width="19.35" height="18.17" x="368.60" y="356.83" class="decompiled"><title>void __cdecl GameApplySettings(APP_SETTINGS *new_settings);</title></rect>
 <rect width="18.80" height="18.70" x="390.95" y="0" class="known"><title>LRESULT __stdcall SE_SetupWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="18.77" height="18.70" x="412.75" y="0" class="known"><title>void __cdecl MovableBlockCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="18.61" height="18.70" x="434.52" y="0" class="known"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>

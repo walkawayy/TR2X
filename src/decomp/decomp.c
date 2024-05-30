@@ -1803,7 +1803,7 @@ void __cdecl RenderFinish(bool need_to_clear_textures)
     }
 }
 
-bool __cdecl ApplySettings(APP_SETTINGS *const new_settings)
+bool __cdecl ApplySettings(const APP_SETTINGS *const new_settings)
 {
     char mode_string[64] = { 0 };
     APP_SETTINGS old_settings = g_SavedAppSettings;
@@ -1839,4 +1839,104 @@ bool __cdecl ApplySettings(APP_SETTINGS *const new_settings)
 void __cdecl FmvBackToGame(void)
 {
     RenderStart(true);
+}
+
+void __cdecl GameApplySettings(APP_SETTINGS *const new_settings)
+{
+    bool need_init_render_state = false;
+    bool need_adjust_texel = false;
+    bool need_rebuild_buffers = false;
+
+    if (new_settings->preferred_display_adapter
+            != g_SavedAppSettings.preferred_display_adapter
+        || new_settings->preferred_sound_adapter
+            != g_SavedAppSettings.preferred_sound_adapter
+        || new_settings->preferred_joystick
+            != g_SavedAppSettings.preferred_joystick) {
+        return;
+    }
+
+    if (new_settings->render_mode != g_SavedAppSettings.render_mode
+        || new_settings->video_mode != g_SavedAppSettings.video_mode
+        || new_settings->fullscreen != g_SavedAppSettings.fullscreen
+        || new_settings->zbuffer != g_SavedAppSettings.zbuffer
+        || new_settings->triple_buffering
+            != g_SavedAppSettings.triple_buffering) {
+        ApplySettings(new_settings);
+        S_AdjustTexelCoordinates();
+        return;
+    }
+
+    if (new_settings->perspective_correct
+            != g_SavedAppSettings.perspective_correct
+        || new_settings->dither != g_SavedAppSettings.dither
+        || new_settings->bilinear_filtering
+            != g_SavedAppSettings.bilinear_filtering) {
+        need_init_render_state = true;
+    }
+
+    if (new_settings->bilinear_filtering
+            != g_SavedAppSettings.bilinear_filtering
+        || new_settings->render_mode != g_SavedAppSettings.render_mode) {
+        need_adjust_texel = true;
+    }
+
+    if (!new_settings->fullscreen) {
+        if (new_settings->window_width != g_SavedAppSettings.window_width
+            || new_settings->window_height
+                != g_SavedAppSettings.window_height) {
+            DISPLAY_MODE disp_mode;
+            if (!WinVidGoWindowed(
+                    new_settings->window_width, new_settings->window_height,
+                    &disp_mode)) {
+                return;
+            }
+            new_settings->window_width = disp_mode.width;
+            new_settings->window_height = disp_mode.height;
+            if (new_settings->window_width != g_SavedAppSettings.window_width
+                || new_settings->window_height
+                    != g_SavedAppSettings.window_height) {
+                if (g_GameVid_BufWidth - new_settings->window_width < 0
+                    || g_GameVid_BufWidth - new_settings->window_width > 64
+                    || g_GameVid_BufHeight - new_settings->window_height < 0
+                    || g_GameVid_BufHeight - new_settings->window_height > 64) {
+                    need_rebuild_buffers = true;
+                } else {
+                    g_SavedAppSettings.window_width =
+                        new_settings->window_width;
+                    g_SavedAppSettings.window_height =
+                        new_settings->window_height;
+                    g_GameVid_Width = new_settings->window_width;
+                    g_GameVid_Height = new_settings->window_height;
+                    g_GameVid_Rect.right = new_settings->window_width;
+                    g_GameVid_Rect.bottom = new_settings->window_height;
+                    if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+                        D3DSetViewport();
+                    }
+                    setup_screen_size();
+                    g_WinVidNeedToResetBuffers = false;
+                }
+            }
+        }
+    }
+
+    if (need_init_render_state) {
+        g_SavedAppSettings.perspective_correct =
+            new_settings->perspective_correct;
+        g_SavedAppSettings.dither = new_settings->dither;
+        g_SavedAppSettings.bilinear_filtering =
+            new_settings->bilinear_filtering;
+        if (g_SavedAppSettings.render_mode == RM_HARDWARE) {
+            HWR_InitState();
+        }
+    }
+
+    if (need_rebuild_buffers) {
+        ClearBuffers(CLRB_WINDOWED_PRIMARY_BUFFER, 0);
+        ApplySettings(new_settings);
+    }
+
+    if (need_adjust_texel) {
+        S_AdjustTexelCoordinates();
+    }
 }

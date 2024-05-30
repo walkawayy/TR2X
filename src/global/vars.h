@@ -265,6 +265,7 @@ extern const char *g_TR2XVersion;
 #define g_PhdWinRect (*(RECT*)0x0051B918)
 #define g_HiRes (*(int32_t*)0x0051B928)
 #define g_GamePalette8 (*(RGB_888(*)[256])0x0051B930)
+#define g_WinVidNeedToResetBuffers (*(bool*)0x0051BC30)
 #define g_SavedAppSettings (*(APP_SETTINGS*)0x0051BCC0)
 #define g_ErrorMessage (*(char(*)[128])0x0051BD20)
 #define g_IsTitleLoaded (*(BOOL*)0x0051BDA0)

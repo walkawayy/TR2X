@@ -12,3 +12,4 @@ void __cdecl BGND_GetPageHandles(void);
 void __cdecl BGND_DrawInGameBlack(void);
 void __cdecl DrawQuad(
     float sx, float sy, float width, float height, D3DCOLOR color);
+void __cdecl BGND_DrawInGameBackground(void);

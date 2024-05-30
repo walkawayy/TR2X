@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.66% (483)</tspan> · <tspan class="known">57.88% (705)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.74% (484)</tspan> · <tspan class="known">57.80% (704)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="296.22" height="6" x="0" y="0" class="decompiled"/>
-<rect width="432.38" height="6" x="296.22" y="0" class="known"/>
+<rect width="296.84" height="6" x="0" y="0" class="decompiled"/>
+<rect width="431.76" height="6" x="296.84" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -876,8 +876,8 @@
 <rect width="12" height="12" x="690" y="225" class="decompiled"><title>void __cdecl BGND_GetPageHandles(void);</title></rect>
 <rect width="12" height="12" x="705" y="225" class="decompiled"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
 <rect width="12" height="12" x="720" y="225" class="decompiled"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
-<rect width="12" height="12" x="735" y="225" class="known"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
-<rect width="12" height="12" x="0" y="240" class="known"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEX_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
+<rect width="12" height="12" x="735" y="225" class="decompiled"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
+<rect width="12" height="12" x="0" y="240" class="known"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEXTURE_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
 <rect width="12" height="12" x="15" y="240" class="known"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
 <rect width="12" height="12" x="30" y="240" class="known"><title>void __cdecl BGND_Free(void);</title></rect>
 <rect width="12" height="12" x="45" y="240" class="known"><title>bool __cdecl BGND_Init(void);</title></rect>
@@ -1088,7 +1088,7 @@
 <rect width="12" height="12" x="120" y="300" class="known"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
 <rect width="12" height="12" x="135" y="300" class="known"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="12" height="12" x="150" y="300" class="known"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
-<rect width="12" height="12" x="165" y="300" class="known"><title>void __cdecl HWR_TexSource(HWR_TEX_HANDLE tex_source);</title></rect>
+<rect width="12" height="12" x="165" y="300" class="known"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
 <rect width="12" height="12" x="180" y="300" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
 <rect width="12" height="12" x="195" y="300" class="known"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
 <rect width="12" height="12" x="210" y="300" class="known"><title>void __cdecl HWR_BeginScene(void);</title></rect>
@@ -1240,7 +1240,7 @@
 <rect width="12" height="12" x="150" y="345" class="known"><title>void __cdecl FreeTexturePages(void);</title></rect>
 <rect width="12" height="12" x="165" y="345" class="known"><title>bool __cdecl LoadTexturePage(int32_t page_idx, bool reset);</title></rect>
 <rect width="12" height="12" x="180" y="345" class="known"><title>bool __cdecl ReloadTextures(bool reset);</title></rect>
-<rect width="12" height="12" x="195" y="345" class="known"><title>HWR_TEX_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>
+<rect width="12" height="12" x="195" y="345" class="known"><title>HWR_TEXTURE_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>
 <rect width="12" height="12" x="210" y="345" class="known"><title>int32_t __cdecl AddTexturePage8(int32_t width, int32_t height, BYTE *page_buf, int32_t pal_idx);</title></rect>
 <rect width="12" height="12" x="225" y="345" class="known"><title>int32_t __cdecl AddTexturePage16(int32_t width, int32_t height, BYTE *page_buf);</title></rect>
 <rect width="12" height="12" x="240" y="345" class="known"><title>HRESULT __stdcall EnumTextureFormatsCallback(LPDDSDESC lpDdsd, LPVOID lpContext);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.22%</tspan> · <tspan class="known">62.45%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.38%</tspan> · <tspan class="known">62.29%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="278.06" height="6" x="0" y="0" class="decompiled"/>
-<rect width="466.50" height="6" x="278.06" y="0" class="known"/>
+<rect width="279.25" height="6" x="0" y="0" class="decompiled"/>
+<rect width="465.31" height="6" x="279.25" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1449,7 +1449,7 @@
 <rect width="19.35" height="19.69" x="368.60" y="138.24" class="known"><title>int32_t __cdecl Lara_TestClimb(int32_t x, int32_t y, int32_t z, int32_t xfront, int32_t zfront, int32_t item_height, int16_t item_room, int32_t *shift);</title></rect>
 <rect width="19.35" height="19.66" x="368.60" y="160.94" class="known"><title>bool __cdecl SE_WriteAppSettings(APP_SETTINGS *settings);</title></rect>
 <rect width="19.35" height="19.14" x="368.60" y="183.60" class="known"><title>void __cdecl S_CopyBufferToScreen(void);</title></rect>
-<rect width="19.35" height="19.03" x="368.60" y="205.73" class="known"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEX_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
+<rect width="19.35" height="19.03" x="368.60" y="205.73" class="known"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEXTURE_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
 <rect width="19.35" height="18.77" x="368.60" y="227.76" class="known"><title>void __cdecl RollingBallCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);</title></rect>
 <rect width="19.35" height="18.77" x="368.60" y="249.52" class="known"><title>BOOL __cdecl LoadLevel(LPCTSTR file_name, int32_t level_num);</title></rect>
 <rect width="19.35" height="18.58" x="368.60" y="271.29" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
@@ -1470,7 +1470,7 @@
 <rect width="17.93" height="18.70" x="604.63" y="0" class="known"><title>void __cdecl KeyHoleCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="17.85" height="18.70" x="625.56" y="0" class="known"><title>void __cdecl undraw_flare(void);</title></rect>
 <rect width="17.85" height="18.70" x="646.41" y="0" class="known"><title>BOOL __cdecl LoadBoxes(HANDLE handle);</title></rect>
-<rect width="17.81" height="18.70" x="667.26" y="0" class="known"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
+<rect width="17.81" height="18.70" x="667.26" y="0" class="decompiled"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
 <rect width="17.66" height="18.70" x="688.07" y="0" class="known"><title>void __cdecl LaraGetNewTarget(WEAPON_INFO *winfo);</title></rect>
 <rect width="17.66" height="18.70" x="708.72" y="0" class="decompiled"><title>int32_t __cdecl Lara_TestWaterClimbOut(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="17.62" height="18.70" x="729.38" y="0" class="known"><title>void __cdecl BaracuddaControl(int16_t item_num);</title></rect>
@@ -2178,7 +2178,7 @@
 <rect width="4.10" height="4.25" x="735.81" y="269.04" class="known"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="4.10" height="4.25" x="742.90" y="269.04" class="decompiled"><title>DWORD __cdecl EncodePutPCX(BYTE value, BYTE num, BYTE *buffer);</title></rect>
 <rect width="4.42" height="3.93" x="648.46" y="276.30" class="known"><title>int32_t __stdcall SE_PropSheetCallback(HWND hwndDlg, UINT uMsg, LPARAM lParam);</title></rect>
-<rect width="4.42" height="3.93" x="655.89" y="276.30" class="known"><title>HWR_TEX_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>
+<rect width="4.42" height="3.93" x="655.89" y="276.30" class="known"><title>HWR_TEXTURE_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>
 <rect width="4.30" height="3.93" x="663.31" y="276.30" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack_I(int16_t **pprot1, int16_t **pprot2, int32_t skip);</title></rect>
 <rect width="4.30" height="3.93" x="670.61" y="276.30" class="known"><title>int32_t __cdecl KeyTrigger(int16_t item_num);</title></rect>
 <rect width="4.30" height="3.93" x="677.92" y="276.30" class="decompiled"><title>HRESULT __cdecl WinVidBufferLock(LPDDS surface, LPDDSDESC desc, DWORD flags);</title></rect>
@@ -2356,7 +2356,7 @@
 <rect width="2.34" height="2.60" x="693.06" y="361.21" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="366.81" class="decompiled"><title>int16_t __cdecl Text_GetTextLength(const char *text);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="372.40" class="known"><title>bool __cdecl DInputEnumDevices(JOYSTICK_LIST *joystickList);</title></rect>
-<rect width="2.29" height="2.65" x="698.40" y="321.40" class="known"><title>void __cdecl HWR_TexSource(HWR_TEX_HANDLE tex_source);</title></rect>
+<rect width="2.29" height="2.65" x="698.40" y="321.40" class="known"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
 <rect width="2.14" height="2.65" x="703.70" y="321.40" class="known"><title>void __cdecl RubbleFX(ITEM_INFO *item);</title></rect>
 <rect width="2.14" height="2.65" x="708.84" y="321.40" class="known"><title>void __cdecl ExplosionFX(ITEM_INFO *item);</title></rect>
 <rect width="2.14" height="2.65" x="713.99" y="321.40" class="decompiled"><title>void __cdecl Lara_Col_BackJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

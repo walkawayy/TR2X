@@ -146,6 +146,7 @@ static void Inject_Background(const bool enable)
     INJECT(enable, 0x00443C10, BGND_GetPageHandles);
     INJECT(enable, 0x00443C50, BGND_DrawInGameBlack);
     INJECT(enable, 0x00443CB0, DrawQuad);
+    INJECT(enable, 0x00443D90, BGND_DrawInGameBackground);
 }
 
 static void Inject_Camera(const bool enable)

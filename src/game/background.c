@@ -1,6 +1,7 @@
 #include "game/background.h"
 
 #include "game/hwr.h"
+#include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -115,4 +116,76 @@ void __cdecl DrawQuad(
     HWR_TexSource(0);
     HWR_EnableColorKey(false);
     HWR_DrawPrimitive(D3DPT_TRIANGLESTRIP, &vertex, 4, true);
+}
+
+void __cdecl BGND_DrawInGameBackground(void)
+{
+    const OBJECT_INFO *const obj = &g_Objects[O_INV_BACKGROUND];
+    if (!obj->loaded) {
+        BGND_DrawInGameBlack();
+        return;
+    }
+
+    const int16_t *mesh_ptr = g_Meshes[obj->mesh_idx];
+    mesh_ptr += 5;
+    const int32_t num_vertices = *mesh_ptr++;
+    mesh_ptr += num_vertices * 3;
+
+    const int32_t num_normals = *mesh_ptr++;
+    if (num_normals >= 0) {
+        mesh_ptr += num_normals * 3;
+    } else {
+        mesh_ptr -= num_normals;
+    }
+    const int32_t num_quads = *mesh_ptr++;
+    if (num_quads < 1) {
+        BGND_DrawInGameBlack();
+        return;
+    }
+
+    mesh_ptr += 4;
+    const int32_t texture_idx = *mesh_ptr++;
+
+    const PHD_TEXTURE *texture = &g_PhdTextureInfo[texture_idx];
+    const HWR_TEXTURE_HANDLE tex_source = g_HWR_PageHandles[texture->tex_page];
+    const int32_t tu = texture->uv[0].u / PHD_HALF;
+    const int32_t tv = texture->uv[0].v / PHD_HALF;
+    const int32_t t_width = texture->uv[2].u / PHD_HALF - tu + 1;
+    const int32_t t_height = texture->uv[2].v / PHD_HALF - tv + 1;
+
+    HWR_EnableZBuffer(false, false);
+
+    const int32_t y_count = 6;
+    const int32_t x_count = 8;
+
+    int32_t y_current = 0;
+    for (int32_t y = 0; y < y_count; y++) {
+        const int32_t y_next = g_PhdWinHeight + y_current;
+
+        int32_t x_current = 0;
+        for (int32_t x = 0; x < x_count; x++) {
+            const int32_t x_next = x_current + g_PhdWinWidth;
+
+            const int32_t y0 = g_PhdWinMinY + y_current / y_count;
+            const int32_t x0 = g_PhdWinMinX + x_current / x_count;
+            const int32_t x1 = g_PhdWinMinX + x_next / x_count;
+            const int32_t y1 = g_PhdWinMinY + y_next / y_count;
+
+            const D3DCOLOR color[4] = {
+                BGND_CenterLighting(x0, y0, g_PhdWinWidth, g_PhdWinHeight),
+                BGND_CenterLighting(x1, y0, g_PhdWinWidth, g_PhdWinHeight),
+                BGND_CenterLighting(x0, y1, g_PhdWinWidth, g_PhdWinHeight),
+                BGND_CenterLighting(x1, y1, g_PhdWinWidth, g_PhdWinHeight),
+            };
+
+            DrawTextureTile(
+                x0, y0, x1 - x0, y1 - y0, tex_source, tu, tv, t_width, t_height,
+                color[0], color[1], color[2], color[3]);
+
+            x_current = x_next;
+        }
+        y_current = y_next;
+    }
+
+    HWR_EnableZBuffer(true, true);
 }

@@ -19,7 +19,7 @@ typedef IDirect3DViewport2 *LPDIRECT3DVIEWPORT2;
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
 typedef LPDIRECTDRAWSURFACE3 LPDDS;
 typedef LPDIRECTDRAW3 LPDD;
-typedef D3DTEXTUREHANDLE HWR_TEX_HANDLE;
+typedef D3DTEXTUREHANDLE HWR_TEXTURE_HANDLE;
 
 typedef int16_t PHD_ANGLE;
 
@@ -214,7 +214,7 @@ typedef struct __unaligned {
     LPDDS vidMemSurface;
     LPDIRECTDRAWPALETTE palette;
     LPDIRECT3DTEXTURE2 texture3d;
-    HWR_TEX_HANDLE texHandle;
+    HWR_TEXTURE_HANDLE texHandle;
     int32_t width;
     int32_t height;
     int32_t status;

@@ -505,7 +505,6 @@
 #define TempVideoRemove ((void __cdecl (*)(void))0x004479D0)
 #define S_FadeInInventory ((void __cdecl (*)(BOOL isFade))0x00447A10)
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
-#define UpdateGameResolution ((void __cdecl (*)(void))0x00449850)
 #define ReadFileSync ((BOOL __cdecl (*)(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped))0x004498D0)
 #define LoadTexturePages ((BOOL __cdecl (*)(HANDLE handle))0x00449920)
 #define LoadRooms ((BOOL __cdecl (*)(HANDLE handle))0x00449AB0)

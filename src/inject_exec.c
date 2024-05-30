@@ -63,6 +63,16 @@ static void Inject_S_FlaggedString(bool enable);
 
 static void Inject_Decomp(const bool enable)
 {
+    INJECT(enable, 0x00411F50, Game_SetCutsceneTrack);
+    INJECT(enable, 0x00411F60, Game_Cutscene_Start);
+    INJECT(enable, 0x00412080, Misc_InitCinematicRooms);
+    INJECT(enable, 0x00412120, Game_Cutscene_Control);
+    INJECT(enable, 0x004123D0, Room_FindByPos);
+    INJECT(enable, 0x00412450, CutscenePlayer_Control);
+    INJECT(enable, 0x00412530, Lara_Control_Cutscene);
+    INJECT(enable, 0x004125D0, CutscenePlayer1_Initialise);
+    INJECT(enable, 0x00412660, CutscenePlayerGen_Initialise);
+    INJECT(enable, 0x0043A280, Level_Initialise);
     INJECT(enable, 0x00444D60, WinVidSetMinWindowSize);
     INJECT(enable, 0x00444DB0, WinVidClearMinWindowSize);
     INJECT(enable, 0x00444DC0, WinVidSetMaxWindowSize);
@@ -94,28 +104,6 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x004471F0, DInputCreate);
     INJECT(enable, 0x00447220, DInputRelease);
     INJECT(enable, 0x00447240, WinInReadKeyboard);
-    INJECT(enable, 0x004498C0, DecodeErrorMessage);
-    INJECT(enable, 0x0044E4E0, RenderErrorBox);
-    INJECT(enable, 0x0044E520, WinMain);
-    INJECT(enable, 0x0044E700, GameInit);
-    INJECT(enable, 0x0044E7A0, WinGameStart);
-    INJECT(enable, 0x0044E820, Shell_Shutdown);
-    INJECT(enable, 0x0044E8E0, ScreenshotPCX);
-    INJECT(enable, 0x0044E9F0, CompPCX);
-    INJECT(enable, 0x0044EAA0, EncodeLinePCX);
-    INJECT(enable, 0x0044EB80, EncodePutPCX);
-    INJECT(enable, 0x0044EBC0, Screenshot);
-    INJECT(enable, 0x00454C50, TitleSequence);
-    INJECT(enable, 0x00411F50, Game_SetCutsceneTrack);
-    INJECT(enable, 0x00411F60, Game_Cutscene_Start);
-    INJECT(enable, 0x00412080, Misc_InitCinematicRooms);
-    INJECT(enable, 0x00412120, Game_Cutscene_Control);
-    INJECT(enable, 0x004123D0, Room_FindByPos);
-    INJECT(enable, 0x00412450, CutscenePlayer_Control);
-    INJECT(enable, 0x00412530, Lara_Control_Cutscene);
-    INJECT(enable, 0x004125D0, CutscenePlayer1_Initialise);
-    INJECT(enable, 0x00412660, CutscenePlayerGen_Initialise);
-    INJECT(enable, 0x0043A280, Level_Initialise);
     INJECT(enable, 0x00448430, CreateScreenBuffers);
     INJECT(enable, 0x00448570, CreatePrimarySurface);
     INJECT(enable, 0x00448610, CreateBackBuffer);
@@ -135,6 +123,19 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x004492F0, ApplySettings);
     INJECT(enable, 0x00449500, FmvBackToGame);
     INJECT(enable, 0x00449610, GameApplySettings);
+    INJECT(enable, 0x00449850, UpdateGameResolution);
+    INJECT(enable, 0x004498C0, DecodeErrorMessage);
+    INJECT(enable, 0x0044E4E0, RenderErrorBox);
+    INJECT(enable, 0x0044E520, WinMain);
+    INJECT(enable, 0x0044E700, GameInit);
+    INJECT(enable, 0x0044E7A0, WinGameStart);
+    INJECT(enable, 0x0044E820, Shell_Shutdown);
+    INJECT(enable, 0x0044E8E0, ScreenshotPCX);
+    INJECT(enable, 0x0044E9F0, CompPCX);
+    INJECT(enable, 0x0044EAA0, EncodeLinePCX);
+    INJECT(enable, 0x0044EB80, EncodePutPCX);
+    INJECT(enable, 0x0044EBC0, Screenshot);
+    INJECT(enable, 0x00454C50, TitleSequence);
 }
 
 static void Inject_Camera(const bool enable)

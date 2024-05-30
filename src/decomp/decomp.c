@@ -1940,3 +1940,14 @@ void __cdecl GameApplySettings(APP_SETTINGS *const new_settings)
         S_AdjustTexelCoordinates();
     }
 }
+
+void __cdecl UpdateGameResolution(void)
+{
+    APP_SETTINGS new_settings = g_SavedAppSettings;
+    new_settings.window_width = g_GameWindowWidth;
+    new_settings.window_height = g_GameWindowHeight;
+    GameApplySettings(&new_settings);
+    char mode_string[64] = { 0 };
+    sprintf(mode_string, "%dx%d", g_GameVid_Width, g_GameVid_Height);
+    Overlay_DisplayModeInfo(mode_string);
+}

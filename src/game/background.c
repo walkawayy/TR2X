@@ -67,3 +67,12 @@ int32_t __cdecl BGND_AddTexture(
     g_BGND_TexturePageIndexes[tile_idx] = page_index >= 0 ? page_index : -1;
     return page_index;
 }
+
+void __cdecl BGND_GetPageHandles(void)
+{
+    for (int32_t i = 0; i < BGND_MAX_TEXTURE_PAGES; i++) {
+        g_BGND_PageHandles[i] = g_BGND_TexturePageIndexes[i] >= 0
+            ? GetTexturePageHandle(g_BGND_TexturePageIndexes[i])
+            : 0;
+    }
+}

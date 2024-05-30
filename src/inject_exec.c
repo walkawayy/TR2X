@@ -143,6 +143,7 @@ static void Inject_Background(const bool enable)
 {
     INJECT(enable, 0x00443990, BGND_Make640x480);
     INJECT(enable, 0x00443B50, BGND_AddTexture);
+    INJECT(enable, 0x00443C10, BGND_GetPageHandles);
 }
 
 static void Inject_Camera(const bool enable)

@@ -2984,7 +2984,7 @@ typedef struct {
 
 0x00443990  0x01B8  +R      void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);
 0x00443B50  0x00B9  +R      int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);
-0x00443C10  0x0032  -R      void __cdecl BGND_GetPageHandles(void);
+0x00443C10  0x0032  +R      void __cdecl BGND_GetPageHandles(void);
 0x00443C50  0x005F  -R      void __cdecl BGND_DrawInGameBlack(void);
 0x00443CB0  0x00DC  -R      void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);
 0x00443D90  0x0220  -R      void __cdecl BGND_DrawInGameBackground(void);
@@ -3752,3 +3752,4 @@ typedef struct {
 0x0051BC30  -       bool g_WinVidNeedToResetBuffers;
 0x004D7E88  -       bool g_BGND_PictureIsReady;
 0x004D7E90  -       int32_t g_BGND_TexturePageIndexes[5];
+0x004D7EA8  -       HWR_TEX_HANDLE g_BGND_PageHandles[5];

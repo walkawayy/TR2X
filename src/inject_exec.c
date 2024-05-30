@@ -142,6 +142,7 @@ static void Inject_Decomp(const bool enable)
 static void Inject_Background(const bool enable)
 {
     INJECT(enable, 0x00443990, BGND_Make640x480);
+    INJECT(enable, 0x00443B50, BGND_AddTexture);
 }
 
 static void Inject_Camera(const bool enable)

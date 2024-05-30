@@ -443,7 +443,6 @@
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
-#define BGND_AddTexture ((int32_t __cdecl (*)(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal))0x00443B50)
 #define BGND_GetPageHandles ((void __cdecl (*)(void))0x00443C10)
 #define BGND_DrawInGameBlack ((void __cdecl (*)(void))0x00443C50)
 #define DrawQuad ((void __cdecl (*)(float sx, float sy, float width, float height, D3DCOLOR color))0x00443CB0)

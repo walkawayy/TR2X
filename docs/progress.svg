@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.33% (479)</tspan> · <tspan class="known">58.21% (709)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.41% (480)</tspan> · <tspan class="known">58.13% (708)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="293.77" height="6" x="0" y="0" class="decompiled"/>
-<rect width="434.83" height="6" x="293.77" y="0" class="known"/>
+<rect width="294.38" height="6" x="0" y="0" class="decompiled"/>
+<rect width="434.22" height="6" x="294.38" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -872,7 +872,7 @@
 <rect width="12" height="12" x="630" y="225" class="known"><title>void __cdecl GiantYetiControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="645" y="225" class="known"><title>void __cdecl YetiControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="660" y="225" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
-<rect width="12" height="12" x="675" y="225" class="known"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
+<rect width="12" height="12" x="675" y="225" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
 <rect width="12" height="12" x="690" y="225" class="known"><title>void __cdecl BGND_GetPageHandles(void);</title></rect>
 <rect width="12" height="12" x="705" y="225" class="known"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
 <rect width="12" height="12" x="720" y="225" class="known"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.06%</tspan> · <tspan class="known">62.61%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.12%</tspan> · <tspan class="known">62.56%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="276.86" height="6" x="0" y="0" class="decompiled"/>
-<rect width="467.70" height="6" x="276.86" y="0" class="known"/>
+<rect width="277.26" height="6" x="0" y="0" class="decompiled"/>
+<rect width="467.30" height="6" x="277.26" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1784,7 +1784,7 @@
 <rect width="9.88" height="9.05" x="598.86" y="149.67" class="known"><title>void __cdecl AlterFloorHeight(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="9.81" height="9.05" x="611.74" y="149.67" class="known"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>
 <rect width="9.74" height="9.05" x="624.56" y="149.67" class="known"><title>int16_t __cdecl GunHit(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
-<rect width="9.74" height="9.05" x="637.30" y="149.67" class="known"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
+<rect width="9.74" height="9.05" x="637.30" y="149.67" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
 <rect width="9.74" height="9.05" x="650.04" y="149.67" class="known"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="9.68" height="9.05" x="662.79" y="149.67" class="decompiled"><title>void __cdecl Creature_Die(int16_t item_num, int32_t explode);</title></rect>
 <rect width="9.68" height="9.05" x="675.46" y="149.67" class="known"><title>void __cdecl CreateZone(ITEM_INFO *item);</title></rect>

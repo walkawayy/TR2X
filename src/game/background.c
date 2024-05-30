@@ -3,6 +3,9 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#define TEXTURE_WIDTH 256
+#define TEXTURE_HEIGHT 256
+
 void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette)
 {
     if (g_TextureFormat.bpp >= 16) {
@@ -34,4 +37,33 @@ void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette)
     BGND_GetPageHandles();
 
     g_BGND_PictureIsReady = true;
+}
+
+int32_t __cdecl BGND_AddTexture(
+    const int32_t tile_idx, uint8_t *const bitmap, const int32_t pal_index,
+    const RGB_888 *const bmp_pal)
+{
+    int32_t page_index;
+    if (pal_index < 0) {
+        uint8_t *bmp_src = &bitmap[TEXTURE_WIDTH * TEXTURE_HEIGHT];
+        uint16_t *bmp_dst =
+            &((uint16_t *)bitmap)[TEXTURE_WIDTH * TEXTURE_HEIGHT];
+        for (int i = 0; i < TEXTURE_WIDTH * TEXTURE_HEIGHT; i++) {
+            bmp_src--;
+            bmp_dst--;
+
+            const RGB_888 *const color = &bmp_pal[*bmp_src];
+
+            *bmp_dst = (1 << 15) | (((uint16_t)color->red >> 3) << 10)
+                | (((uint16_t)color->green >> 3) << 5)
+                | (((uint16_t)color->blue >> 3));
+        }
+
+        page_index = AddTexturePage16(256, 256, bmp_src);
+    } else {
+        page_index = AddTexturePage8(256, 256, bitmap, pal_index);
+    }
+
+    g_BGND_TexturePageIndexes[tile_idx] = page_index >= 0 ? page_index : -1;
+    return page_index;
 }

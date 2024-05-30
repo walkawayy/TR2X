@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.49% (481)</tspan> · <tspan class="known">58.05% (707)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.57% (482)</tspan> · <tspan class="known">57.96% (706)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="295" height="6" x="0" y="0" class="decompiled"/>
-<rect width="433.60" height="6" x="295" y="0" class="known"/>
+<rect width="295.61" height="6" x="0" y="0" class="decompiled"/>
+<rect width="432.99" height="6" x="295.61" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -874,7 +874,7 @@
 <rect width="12" height="12" x="660" y="225" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
 <rect width="12" height="12" x="675" y="225" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
 <rect width="12" height="12" x="690" y="225" class="decompiled"><title>void __cdecl BGND_GetPageHandles(void);</title></rect>
-<rect width="12" height="12" x="705" y="225" class="known"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
+<rect width="12" height="12" x="705" y="225" class="decompiled"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
 <rect width="12" height="12" x="720" y="225" class="known"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
 <rect width="12" height="12" x="735" y="225" class="known"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
 <rect width="12" height="12" x="0" y="240" class="known"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEX_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.13%</tspan> · <tspan class="known">62.54%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.16%</tspan> · <tspan class="known">62.51%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="277.37" height="6" x="0" y="0" class="decompiled"/>
-<rect width="467.19" height="6" x="277.37" y="0" class="known"/>
+<rect width="277.58" height="6" x="0" y="0" class="decompiled"/>
+<rect width="466.98" height="6" x="277.58" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -2039,7 +2039,7 @@
 <rect width="5.89" height="5.97" x="688.45" y="235.64" class="known"><title>BOOL __cdecl LoadSoundEffects(HANDLE handle);</title></rect>
 <rect width="5.89" height="5.97" x="697.33" y="235.64" class="known"><title>void __cdecl UT_InitAccurateTimer(void);</title></rect>
 <rect width="5.79" height="5.97" x="706.22" y="235.64" class="known"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
-<rect width="5.79" height="5.97" x="715.01" y="235.64" class="known"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
+<rect width="5.79" height="5.97" x="715.01" y="235.64" class="decompiled"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
 <rect width="5.79" height="5.97" x="723.81" y="235.64" class="unused"><title>sub_444AB0</title></rect>
 <rect width="5.70" height="5.97" x="732.60" y="235.64" class="decompiled"><title>void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="5.70" height="5.97" x="741.30" y="235.64" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>

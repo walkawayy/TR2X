@@ -9,3 +9,4 @@ int32_t __cdecl BGND_AddTexture(
     int32_t tile_idx, uint8_t *bitmap, int32_t pal_index,
     const RGB_888 *bmp_pal);
 void __cdecl BGND_GetPageHandles(void);
+void __cdecl BGND_DrawInGameBlack(void);

@@ -76,3 +76,12 @@ void __cdecl BGND_GetPageHandles(void)
             : 0;
     }
 }
+
+void __cdecl BGND_DrawInGameBlack(void)
+{
+    HWR_EnableZBuffer(false, false);
+    DrawQuad(
+        (float)g_PhdWinMinX, (float)g_PhdWinMinY, (float)g_PhdWinWidth,
+        (float)g_PhdWinHeight, 0);
+    HWR_EnableZBuffer(true, true);
+}

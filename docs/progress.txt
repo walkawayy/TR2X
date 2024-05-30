@@ -2985,7 +2985,7 @@ typedef struct {
 0x00443990  0x01B8  +R      void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);
 0x00443B50  0x00B9  +R      int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);
 0x00443C10  0x0032  +R      void __cdecl BGND_GetPageHandles(void);
-0x00443C50  0x005F  -R      void __cdecl BGND_DrawInGameBlack(void);
+0x00443C50  0x005F  +R      void __cdecl BGND_DrawInGameBlack(void);
 0x00443CB0  0x00DC  -R      void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);
 0x00443D90  0x0220  -R      void __cdecl BGND_DrawInGameBackground(void);
 0x00443FB0  0x0251  -R      void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEX_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);

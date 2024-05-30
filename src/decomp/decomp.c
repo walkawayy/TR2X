@@ -1835,3 +1835,8 @@ bool __cdecl ApplySettings(APP_SETTINGS *const new_settings)
     Overlay_DisplayModeInfo(mode_string);
     return true;
 }
+
+void __cdecl FmvBackToGame(void)
+{
+    RenderStart(true);
+}

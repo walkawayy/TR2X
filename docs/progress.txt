@@ -3136,7 +3136,7 @@ typedef struct {
 0x00448E50  0x03A5  +R      void __cdecl RenderStart(bool is_reset);
 0x00449200  0x00E6  +R      void __cdecl RenderFinish(bool need_to_clear_textures);
 0x004492F0  0x0204  +R      bool __cdecl ApplySettings(APP_SETTINGS *new_settings);
-0x00449500  0x0105  -R      void __cdecl FmvBackToGame(void);
+0x00449500  0x0105  +R      void __cdecl FmvBackToGame(void);
 0x00449610  0x023A  *R      void __cdecl GameApplySettings(APP_SETTINGS *new_settings);
 0x00449850  0x0067  -R      void __cdecl UpdateGameResolution(void);
 0x004498C0  0x000C  +R      LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);

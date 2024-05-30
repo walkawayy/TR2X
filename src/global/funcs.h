@@ -505,7 +505,6 @@
 #define TempVideoRemove ((void __cdecl (*)(void))0x004479D0)
 #define S_FadeInInventory ((void __cdecl (*)(BOOL isFade))0x00447A10)
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
-#define FmvBackToGame ((void __cdecl (*)(void))0x00449500)
 #define GameApplySettings ((void __cdecl (*)(APP_SETTINGS *new_settings))0x00449610)
 #define UpdateGameResolution ((void __cdecl (*)(void))0x00449850)
 #define ReadFileSync ((BOOL __cdecl (*)(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped))0x004498D0)

@@ -133,6 +133,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00448E50, RenderStart);
     INJECT(enable, 0x00449200, RenderFinish);
     INJECT(enable, 0x004492F0, ApplySettings);
+    INJECT(enable, 0x00449500, FmvBackToGame);
 }
 
 static void Inject_Camera(const bool enable)

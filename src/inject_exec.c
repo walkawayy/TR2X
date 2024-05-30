@@ -1,6 +1,7 @@
 #include "inject_exec.h"
 
 #include "decomp/decomp.h"
+#include "game/background.h"
 #include "game/box.h"
 #include "game/camera.h"
 #include "game/creature.h"
@@ -136,6 +137,11 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x0044EB80, EncodePutPCX);
     INJECT(enable, 0x0044EBC0, Screenshot);
     INJECT(enable, 0x00454C50, TitleSequence);
+}
+
+static void Inject_Background(const bool enable)
+{
+    INJECT(enable, 0x00443990, BGND_Make640x480);
 }
 
 static void Inject_Camera(const bool enable)
@@ -643,6 +649,7 @@ static void Inject_S_FlaggedString(const bool enable)
 void Inject_Exec(void)
 {
     Inject_Decomp(true);
+    Inject_Background(true);
 
     Inject_Camera(true);
     Inject_Math(true);

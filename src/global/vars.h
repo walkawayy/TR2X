@@ -169,6 +169,7 @@ extern const char *g_TR2XVersion;
 #define g_LevelItemCount (*(int32_t*)0x004D7C38)
 #define g_HealthBarTimer (*(int32_t*)0x004D7C3C)
 #define g_SoundTrackIds (*(int32_t(*)[128])0x004D7C80)
+#define g_BGND_PictureIsReady (*(bool*)0x004D7E88)
 #define g_D3DDev (*(LPDIRECT3DDEVICE2*)0x004D7EBC)
 #define g_D3DView (*(LPDIRECT3DVIEWPORT2*)0x004D7EC4)
 #define g_MinWindowClientHeight (*(int32_t*)0x004D7ED0)

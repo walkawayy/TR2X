@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.24% (478)</tspan> · <tspan class="known">58.29% (710)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.33% (479)</tspan> · <tspan class="known">58.21% (709)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="293.16" height="6" x="0" y="0" class="decompiled"/>
-<rect width="435.44" height="6" x="293.16" y="0" class="known"/>
+<rect width="293.77" height="6" x="0" y="0" class="decompiled"/>
+<rect width="434.83" height="6" x="293.77" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -871,7 +871,7 @@
 <rect width="12" height="12" x="615" y="225" class="known"><title>void __cdecl ControlLavaBlob(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="630" y="225" class="known"><title>void __cdecl GiantYetiControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="645" y="225" class="known"><title>void __cdecl YetiControl(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="660" y="225" class="known"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
+<rect width="12" height="12" x="660" y="225" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
 <rect width="12" height="12" x="675" y="225" class="known"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
 <rect width="12" height="12" x="690" y="225" class="known"><title>void __cdecl BGND_GetPageHandles(void);</title></rect>
 <rect width="12" height="12" x="705" y="225" class="known"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">36.93%</tspan> · <tspan class="known">62.74%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.06%</tspan> · <tspan class="known">62.61%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="275.89" height="6" x="0" y="0" class="decompiled"/>
-<rect width="468.67" height="6" x="275.89" y="0" class="known"/>
+<rect width="276.86" height="6" x="0" y="0" class="decompiled"/>
+<rect width="467.70" height="6" x="276.86" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1515,7 +1515,7 @@
 <rect width="16.43" height="16.18" x="411.31" y="118.91" class="known"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
 <rect width="16.43" height="16.14" x="411.31" y="138.09" class="known"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
 <rect width="16.43" height="16.05" x="411.31" y="157.23" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
-<rect width="16.43" height="15.80" x="411.31" y="176.28" class="known"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
+<rect width="16.43" height="15.80" x="411.31" y="176.28" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
 <rect width="16.43" height="15.80" x="411.31" y="195.08" class="known"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="16.43" height="15.71" x="411.31" y="213.88" class="known"><title>int32_t __cdecl SkidooUserControl(ITEM_INFO *skidoo, int32_t height, int32_t *pitch);</title></rect>
 <rect width="16.43" height="15.58" x="411.31" y="232.59" class="decompiled"><title>void __cdecl Item_Initialise(int16_t item_num);</title></rect>

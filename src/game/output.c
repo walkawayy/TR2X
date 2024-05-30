@@ -1,5 +1,6 @@
 #include "game/output.h"
 
+#include "game/hwr.h"
 #include "game/math.h"
 #include "game/matrix.h"
 #include "game/shell.h"
@@ -3054,9 +3055,7 @@ void __cdecl Output_InsertGT3_ZBuffered(
             HWR_TexSource(g_HWR_PageHandles[texture->tex_page]);
             HWR_EnableColorKey(texture->draw_type != DRAW_OPAQUE);
 
-            g_D3DDev->lpVtbl->DrawPrimitive(
-                g_D3DDev, D3DPT_TRIANGLELIST, D3DVT_TLVERTEX, g_VBufferD3D, 3,
-                D3DDP_DONOTCLIP | D3DDP_DONOTUPDATEEXTENTS);
+            HWR_DrawPrimitive(D3DPT_TRIANGLELIST, g_VBufferD3D, 3, true);
             return;
         }
 
@@ -3205,9 +3204,7 @@ void __cdecl Output_InsertGT4_ZBuffered(
 
     HWR_TexSource(g_HWR_PageHandles[texture->tex_page]);
     HWR_EnableColorKey(texture->draw_type != DRAW_OPAQUE);
-    g_D3DDev->lpVtbl->DrawPrimitive(
-        g_D3DDev, D3DPT_TRIANGLEFAN, D3DVT_TLVERTEX, g_VBufferD3D, 4,
-        D3DDP_DONOTCLIP | D3DDP_DONOTUPDATEEXTENTS);
+    HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, g_VBufferD3D, 4, true);
 }
 
 void __cdecl Output_InsertFlatRect_ZBuffered(
@@ -3247,9 +3244,7 @@ void __cdecl Output_InsertFlatRect_ZBuffered(
 
     HWR_TexSource(0);
     HWR_EnableColorKey(0);
-    g_D3DDev->lpVtbl->DrawPrimitive(
-        g_D3DDev, D3DPT_TRIANGLESTRIP, D3DVT_TLVERTEX, g_VBufferD3D, 4,
-        D3DDP_DONOTCLIP | D3DDP_DONOTUPDATEEXTENTS);
+    HWR_DrawPrimitive(D3DPT_TRIANGLESTRIP, g_VBufferD3D, 4, true);
 }
 
 void __cdecl Output_InsertLine_ZBuffered(
@@ -3281,9 +3276,7 @@ void __cdecl Output_InsertLine_ZBuffered(
 
     HWR_TexSource(0);
     HWR_EnableColorKey(0);
-    g_D3DDev->lpVtbl->DrawPrimitive(
-        g_D3DDev, D3DPT_LINESTRIP, D3DVT_TLVERTEX, g_VBufferD3D, 2,
-        D3DDP_DONOTCLIP | D3DDP_DONOTUPDATEEXTENTS);
+    HWR_DrawPrimitive(D3DPT_LINESTRIP, g_VBufferD3D, 2, true);
 }
 
 const int16_t *__cdecl Output_InsertObjectG3_Sorted(
@@ -4182,9 +4175,7 @@ void __cdecl Output_DrawClippedPoly_Textured(const int32_t vtx_count)
         vbuf_d3d->tu = tu;
     }
 
-    g_D3DDev->lpVtbl->DrawPrimitive(
-        g_D3DDev, D3DPT_TRIANGLEFAN, D3DVT_TLVERTEX, g_VBufferD3D, vtx_count,
-        D3DDP_DONOTCLIP | D3DDP_DONOTUPDATEEXTENTS);
+    HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, g_VBufferD3D, vtx_count, true);
 }
 
 void __cdecl Output_DrawPoly_Gouraud(
@@ -4202,9 +4193,7 @@ void __cdecl Output_DrawPoly_Gouraud(
             Output_ShadeLightColor(vbuf->g, red, green, blue, 0xFF);
     }
 
-    g_D3DDev->lpVtbl->DrawPrimitive(
-        g_D3DDev, D3DPT_TRIANGLEFAN, D3DVT_TLVERTEX, g_VBufferD3D, vtx_count,
-        D3DDP_DONOTCLIP | D3DDP_DONOTUPDATEEXTENTS);
+    HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, g_VBufferD3D, vtx_count, true);
 }
 
 void __cdecl Output_DrawSprite(

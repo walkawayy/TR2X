@@ -10,3 +10,5 @@ int32_t __cdecl BGND_AddTexture(
     const RGB_888 *bmp_pal);
 void __cdecl BGND_GetPageHandles(void);
 void __cdecl BGND_DrawInGameBlack(void);
+void __cdecl DrawQuad(
+    float sx, float sy, float width, float height, D3DCOLOR color);

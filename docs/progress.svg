@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.57% (482)</tspan> · <tspan class="known">57.96% (706)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.66% (483)</tspan> · <tspan class="known">57.88% (705)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="295.61" height="6" x="0" y="0" class="decompiled"/>
-<rect width="432.99" height="6" x="295.61" y="0" class="known"/>
+<rect width="296.22" height="6" x="0" y="0" class="decompiled"/>
+<rect width="432.38" height="6" x="296.22" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -875,7 +875,7 @@
 <rect width="12" height="12" x="675" y="225" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
 <rect width="12" height="12" x="690" y="225" class="decompiled"><title>void __cdecl BGND_GetPageHandles(void);</title></rect>
 <rect width="12" height="12" x="705" y="225" class="decompiled"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
-<rect width="12" height="12" x="720" y="225" class="known"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
+<rect width="12" height="12" x="720" y="225" class="decompiled"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
 <rect width="12" height="12" x="735" y="225" class="known"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
 <rect width="12" height="12" x="0" y="240" class="known"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEX_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
 <rect width="12" height="12" x="15" y="240" class="known"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.16%</tspan> · <tspan class="known">62.51%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.22%</tspan> · <tspan class="known">62.45%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="277.58" height="6" x="0" y="0" class="decompiled"/>
-<rect width="466.98" height="6" x="277.58" y="0" class="known"/>
+<rect width="278.06" height="6" x="0" y="0" class="decompiled"/>
+<rect width="466.50" height="6" x="278.06" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1715,7 +1715,7 @@
 <rect width="10.41" height="10.74" x="617.36" y="122.81" class="known"><title>void __cdecl ControlHotLiquid(int16_t fx_num);</title></rect>
 <rect width="10.29" height="10.74" x="630.77" y="122.81" class="decompiled"><title>void __cdecl CutscenePlayer_Control(int16_t item_num);</title></rect>
 <rect width="10.29" height="10.74" x="644.06" y="122.81" class="known"><title>void __cdecl SmashIceControl(int16_t item_num);</title></rect>
-<rect width="10.29" height="10.74" x="657.34" y="122.81" class="known"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
+<rect width="10.29" height="10.74" x="657.34" y="122.81" class="decompiled"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
 <rect width="10.29" height="10.74" x="670.63" y="122.81" class="known"><title>INT_PTR __stdcall SE_AdvancedDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="10.23" height="10.74" x="683.92" y="122.81" class="known"><title>void __cdecl EarthQuake(int16_t item_num);</title></rect>
 <rect width="10.23" height="10.74" x="697.15" y="122.81" class="known"><title>void __cdecl ModifyStartInfo(int32_t level_num);</title></rect>

@@ -1,5 +1,6 @@
 #include "game/background.h"
 
+#include "game/hwr.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -84,4 +85,34 @@ void __cdecl BGND_DrawInGameBlack(void)
         (float)g_PhdWinMinX, (float)g_PhdWinMinY, (float)g_PhdWinWidth,
         (float)g_PhdWinHeight, 0);
     HWR_EnableZBuffer(true, true);
+}
+
+void __cdecl DrawQuad(
+    const float sx, const float sy, const float width, const float height,
+    const D3DCOLOR color)
+{
+    D3DTLVERTEX vertex[4];
+
+    vertex[0].sx = sx;
+    vertex[0].sy = sy;
+
+    vertex[1].sx = sx + width;
+    vertex[1].sy = sy;
+
+    vertex[2].sx = sx;
+    vertex[2].sy = sy + height;
+
+    vertex[3].sx = sx + width;
+    vertex[3].sy = sy + height;
+
+    for (int32_t i = 0; i < 4; i++) {
+        vertex[i].sz = 0;
+        vertex[i].rhw = g_FltRhwONearZ;
+        vertex[i].color = RGBA_SETALPHA(color, 0xFF);
+        vertex[i].specular = 0;
+    }
+
+    HWR_TexSource(0);
+    HWR_EnableColorKey(false);
+    HWR_DrawPrimitive(D3DPT_TRIANGLESTRIP, &vertex, 4, true);
 }

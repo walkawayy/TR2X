@@ -2997,7 +2997,7 @@ typedef struct {
 0x004445B0  0x00BD  +R      HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);
 0x00444670  0x0037  +R      bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);
 0x004446B0  0x00B9  +R      bool __cdecl D3DSetViewport(void);
-0x00444770  0x01B8  -R      void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);
+0x00444770  0x01B8  +R      void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);
 0x00444930  0x006A  -R      void __cdecl Direct3DRelease(void);
 0x00444980  0x0006  -R      bool __cdecl Direct3DInit(void);
 0x00444990  0x0018  x       sub_444990
@@ -3754,3 +3754,4 @@ typedef struct {
 0x004D7E90  -       int32_t g_BGND_TexturePageIndexes[5];
 0x004D7EA8  -       HWR_TEXTURE_HANDLE g_BGND_PageHandles[5];
 0x004D7EC0  -       LPDIRECT3D2 g_D3D;
+0x004D7EC8  -       LPDIRECT3DMATERIAL2 g_D3DMaterial;

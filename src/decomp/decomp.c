@@ -2051,3 +2051,49 @@ bool __cdecl D3DSetViewport(void)
     rc = IDirect3DDevice2_SetCurrentViewport(g_D3DDev, g_D3DView);
     return SUCCEEDED(rc);
 }
+
+void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer)
+{
+    if (g_D3D == NULL && !D3DCreate()) {
+        Shell_ExitSystem("Failed to create D3D");
+    }
+
+    if (FAILED(g_D3D->lpVtbl->CreateDevice(
+            g_D3D, &IID_IDirect3DHALDevice, (LPDIRECTDRAWSURFACE)lpBackBuffer,
+            &g_D3DDev))) {
+        Shell_ExitSystem("Failed to create device");
+    }
+
+    if (FAILED(g_D3D->lpVtbl->CreateViewport(g_D3D, &g_D3DView, NULL))) {
+        Shell_ExitSystem("Failed to create viewport");
+    }
+
+    if (FAILED(g_D3DDev->lpVtbl->AddViewport(g_D3DDev, g_D3DView))) {
+        Shell_ExitSystem("Failed to add viewport");
+    }
+
+    if (FAILED(!D3DSetViewport())) {
+        Shell_ExitSystem("Failed to set viewport");
+    }
+
+    if (FAILED(g_D3D->lpVtbl->CreateMaterial(g_D3D, &g_D3DMaterial, NULL))) {
+        Shell_ExitSystem("Failed to create material");
+    }
+
+    D3DMATERIALHANDLE mat_handle;
+    D3DMATERIAL mat_data = { 0 };
+    mat_data.dwSize = sizeof(mat_data);
+
+    if (FAILED(g_D3DMaterial->lpVtbl->SetMaterial(g_D3DMaterial, &mat_data))) {
+        Shell_ExitSystem("Failed to set material");
+    }
+
+    if (FAILED(g_D3DMaterial->lpVtbl->GetHandle(
+            g_D3DMaterial, g_D3DDev, &mat_handle))) {
+        Shell_ExitSystem("Failed to get material handle");
+    }
+
+    if (FAILED(g_D3DView->lpVtbl->SetBackground(g_D3DView, mat_handle))) {
+        Shell_ExitSystem("Failed to set material background");
+    }
+}

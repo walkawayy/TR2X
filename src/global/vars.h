@@ -175,6 +175,7 @@ extern const char *g_TR2XVersion;
 #define g_D3DDev (*(LPDIRECT3DDEVICE2*)0x004D7EBC)
 #define g_D3D (*(LPDIRECT3D2*)0x004D7EC0)
 #define g_D3DView (*(LPDIRECT3DVIEWPORT2*)0x004D7EC4)
+#define g_D3DMaterial (*(LPDIRECT3DMATERIAL2*)0x004D7EC8)
 #define g_MinWindowClientHeight (*(int32_t*)0x004D7ED0)
 #define g_MaxWindowHeight (*(int32_t*)0x004D7EDC)
 #define g_DDraw (*(LPDIRECTDRAW3*)0x004D7EE0)

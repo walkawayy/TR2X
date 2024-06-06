@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.48% (493)</tspan> · <tspan class="known">57.06% (695)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.56% (494)</tspan> · <tspan class="known">56.98% (694)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="302.36" height="6" x="0" y="0" class="decompiled"/>
-<rect width="426.24" height="6" x="302.36" y="0" class="known"/>
+<rect width="302.97" height="6" x="0" y="0" class="decompiled"/>
+<rect width="425.63" height="6" x="302.97" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -885,7 +885,7 @@
 <rect width="12" height="12" x="90" y="240" class="decompiled"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="105" y="240" class="decompiled"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
 <rect width="12" height="12" x="120" y="240" class="decompiled"><title>bool __cdecl D3DSetViewport(void);</title></rect>
-<rect width="12" height="12" x="135" y="240" class="known"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
+<rect width="12" height="12" x="135" y="240" class="decompiled"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="12" height="12" x="150" y="240" class="known"><title>void __cdecl Direct3DRelease(void);</title></rect>
 <rect width="12" height="12" x="165" y="240" class="known"><title>bool __cdecl Direct3DInit(void);</title></rect>
 <rect width="12" height="12" x="180" y="240" class="unused"><title>sub_444990</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.79%</tspan> · <tspan class="known">61.89%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.92%</tspan> · <tspan class="known">61.76%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="282.26" height="6" x="0" y="0" class="decompiled"/>
-<rect width="462.29" height="6" x="282.26" y="0" class="known"/>
+<rect width="283.23" height="6" x="0" y="0" class="decompiled"/>
+<rect width="461.33" height="6" x="283.23" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1514,7 +1514,7 @@
 <rect width="16.43" height="16.14" x="411.31" y="138.09" class="known"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
 <rect width="16.43" height="16.05" x="411.31" y="157.23" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
 <rect width="16.43" height="15.80" x="411.31" y="176.28" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
-<rect width="16.43" height="15.80" x="411.31" y="195.08" class="known"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
+<rect width="16.43" height="15.80" x="411.31" y="195.08" class="decompiled"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="16.43" height="15.71" x="411.31" y="213.88" class="known"><title>int32_t __cdecl SkidooUserControl(ITEM_INFO *skidoo, int32_t height, int32_t *pitch);</title></rect>
 <rect width="16.43" height="15.58" x="411.31" y="232.59" class="decompiled"><title>void __cdecl Item_Initialise(int16_t item_num);</title></rect>
 <rect width="16.43" height="15.45" x="411.31" y="251.17" class="known"><title>int32_t __cdecl Demo_Start(int32_t level_num);</title></rect>

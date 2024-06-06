@@ -280,3 +280,13 @@ void __cdecl BGND_Free(void)
         g_BGND_PaletteIndex = -1;
     }
 }
+
+bool __cdecl BGND_Init(void)
+{
+    g_BGND_PictureIsReady = false;
+    g_BGND_PaletteIndex = -1;
+    for (int32_t i = 0; i < BGND_MAX_TEXTURE_PAGES; i++) {
+        g_BGND_TexturePageIndexes[i] = -1;
+    }
+    return true;
+}

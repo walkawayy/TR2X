@@ -1,5 +1,6 @@
 #include "decomp/decomp.h"
 
+#include "game/background.h"
 #include "game/camera.h"
 #include "game/console.h"
 #include "game/effects.h"

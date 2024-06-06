@@ -4,6 +4,9 @@
 
 #define BGND_MAX_TEXTURE_PAGES 5
 
+bool __cdecl BGND_Init(void);
+void __cdecl BGND_Free(void);
+
 void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);
 int32_t __cdecl BGND_AddTexture(
     int32_t tile_idx, uint8_t *bitmap, int32_t pal_index,
@@ -20,4 +23,3 @@ void __cdecl DrawTextureTile(
     D3DCOLOR color3);
 D3DCOLOR __cdecl BGND_CenterLighting(
     int32_t x, int32_t y, int32_t width, int32_t height);
-void __cdecl BGND_Free(void);

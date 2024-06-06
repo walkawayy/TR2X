@@ -443,7 +443,6 @@
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
-#define BGND_Init ((bool __cdecl (*)(void))0x00444510)
 #define Enumerate3DDevices ((void __cdecl (*)(DISPLAY_ADAPTER *adapter))0x00444540)
 #define D3DCreate ((bool __cdecl (*)(void))0x00444570)
 #define Enum3DDevicesCallback ((HRESULT __stdcall (*)(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext))0x004445B0)

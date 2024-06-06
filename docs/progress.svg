@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.15% (489)</tspan> · <tspan class="known">57.39% (699)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.23% (490)</tspan> · <tspan class="known">57.31% (698)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="299.90" height="6" x="0" y="0" class="decompiled"/>
-<rect width="428.70" height="6" x="299.90" y="0" class="known"/>
+<rect width="300.52" height="6" x="0" y="0" class="decompiled"/>
+<rect width="428.08" height="6" x="300.52" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -881,7 +881,7 @@
 <rect width="12" height="12" x="30" y="240" class="decompiled"><title>void __cdecl BGND_Free(void);</title></rect>
 <rect width="12" height="12" x="45" y="240" class="decompiled"><title>bool __cdecl BGND_Init(void);</title></rect>
 <rect width="12" height="12" x="60" y="240" class="decompiled"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
-<rect width="12" height="12" x="75" y="240" class="known"><title>bool __cdecl D3DCreate(void);</title></rect>
+<rect width="12" height="12" x="75" y="240" class="decompiled"><title>bool __cdecl D3DCreate(void);</title></rect>
 <rect width="12" height="12" x="90" y="240" class="known"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="105" y="240" class="known"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
 <rect width="12" height="12" x="120" y="240" class="known"><title>bool __cdecl D3DSetViewport(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.65%</tspan> · <tspan class="known">62.02%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.66%</tspan> · <tspan class="known">62.01%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="281.26" height="6" x="0" y="0" class="decompiled"/>
-<rect width="463.30" height="6" x="281.26" y="0" class="known"/>
+<rect width="281.33" height="6" x="0" y="0" class="decompiled"/>
+<rect width="463.23" height="6" x="281.33" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2380,7 +2380,7 @@
 <rect width="2.17" height="2.14" x="719.80" y="327.05" class="known"><title>void __cdecl SafeFreeTexturePage(int32_t page_idx);</title></rect>
 <rect width="2.01" height="2.14" x="724.97" y="327.05" class="known"><title>void __cdecl AssaultStop(ITEM_INFO *item);</title></rect>
 <rect width="2.01" height="2.14" x="729.98" y="327.05" class="known"><title>int32_t __cdecl GF_DoFrontEndSequence(void);</title></rect>
-<rect width="2.01" height="2.14" x="734.98" y="327.05" class="known"><title>bool __cdecl D3DCreate(void);</title></rect>
+<rect width="2.01" height="2.14" x="734.98" y="327.05" class="decompiled"><title>bool __cdecl D3DCreate(void);</title></rect>
 <rect width="2.01" height="2.14" x="739.99" y="327.05" class="decompiled"><title>void __thiscall S_FlaggedString_Create(STRING_FLAGGED *string, int32_t size);</title></rect>
 <rect width="2.01" height="2.14" x="744.99" y="327.05" class="decompiled"><title>BOOL __cdecl S_Audio_Sample_OutIsTrackPlaying(int32_t track_id);</title></rect>
 <rect width="1.91" height="2.24" x="703.97" y="332.19" class="known"><title>bool __cdecl InitTextures(void);</title></rect>

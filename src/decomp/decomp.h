@@ -88,5 +88,6 @@ bool __cdecl ApplySettings(const APP_SETTINGS *new_settings);
 void __cdecl FmvBackToGame(void);
 void __cdecl GameApplySettings(APP_SETTINGS *new_settings);
 void __cdecl UpdateGameResolution(void);
+bool __cdecl D3DCreate(void);
 void __cdecl D3DRelease(void);
 void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);

@@ -1953,6 +1953,13 @@ void __cdecl UpdateGameResolution(void)
     Overlay_DisplayModeInfo(mode_string);
 }
 
+bool __cdecl D3DCreate(void)
+{
+    const HRESULT rc =
+        IDirectDraw_QueryInterface(g_DDraw, &IID_IDirect3D2, (LPVOID *)&g_D3D);
+    return SUCCEEDED(rc);
+}
+
 void __cdecl D3DRelease(void)
 {
     if (g_D3D != NULL) {

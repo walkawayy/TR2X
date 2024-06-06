@@ -18,3 +18,5 @@ void __cdecl DrawTextureTile(
     HWR_TEXTURE_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width,
     int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2,
     D3DCOLOR color3);
+D3DCOLOR __cdecl BGND_CenterLighting(
+    int32_t x, int32_t y, int32_t width, int32_t height);

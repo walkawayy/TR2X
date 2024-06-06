@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.82% (485)</tspan> · <tspan class="known">57.72% (703)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.90% (486)</tspan> · <tspan class="known">57.64% (702)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="297.45" height="6" x="0" y="0" class="decompiled"/>
-<rect width="431.15" height="6" x="297.45" y="0" class="known"/>
+<rect width="298.06" height="6" x="0" y="0" class="decompiled"/>
+<rect width="430.54" height="6" x="298.06" y="0" class="known"/>
 <rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
 <rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
 </g>
@@ -878,7 +878,7 @@
 <rect width="12" height="12" x="720" y="225" class="decompiled"><title>void __cdecl DrawQuad(float sx, float sy, float width, float height, D3DCOLOR color);</title></rect>
 <rect width="12" height="12" x="735" y="225" class="decompiled"><title>void __cdecl BGND_DrawInGameBackground(void);</title></rect>
 <rect width="12" height="12" x="0" y="240" class="decompiled"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEXTURE_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
-<rect width="12" height="12" x="15" y="240" class="known"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
+<rect width="12" height="12" x="15" y="240" class="decompiled"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
 <rect width="12" height="12" x="30" y="240" class="known"><title>void __cdecl BGND_Free(void);</title></rect>
 <rect width="12" height="12" x="45" y="240" class="known"><title>bool __cdecl BGND_Init(void);</title></rect>
 <rect width="12" height="12" x="60" y="240" class="known"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
@@ -1299,10 +1299,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.56%</tspan> · <tspan class="known">62.12%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.60%</tspan> · <tspan class="known">62.08%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="280.55" height="6" x="0" y="0" class="decompiled"/>
-<rect width="464.01" height="6" x="280.55" y="0" class="known"/>
+<rect width="280.85" height="6" x="0" y="0" class="decompiled"/>
+<rect width="463.71" height="6" x="280.85" y="0" class="known"/>
 <rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
 <rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
 </g>
@@ -1899,7 +1899,7 @@
 <rect width="7.54" height="8.03" x="739.46" y="185.54" class="decompiled"><title>bool __cdecl WinVidGetDisplayMode(DISPLAY_MODE *disp_mode);</title></rect>
 <rect width="7.66" height="7.82" x="567.89" y="196.57" class="decompiled"><title>int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, LOT_INFO *lot);</title></rect>
 <rect width="7.66" height="7.82" x="567.89" y="207.39" class="decompiled"><title>void __cdecl Lara_State_Walk(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="7.66" height="7.82" x="567.89" y="218.21" class="known"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
+<rect width="7.66" height="7.82" x="567.89" y="218.21" class="decompiled"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="229.03" class="decompiled"><title>void __cdecl Item_RemoveActive(int16_t item_num);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="239.77" class="decompiled"><title>void __cdecl Lara_State_TurnRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="250.51" class="known"><title>BOOL __cdecl LoadDemo(HANDLE handle);</title></rect>

@@ -4,6 +4,9 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "util.h"
+
+#include <math.h>
 
 #define TEXTURE_WIDTH 256
 #define TEXTURE_HEIGHT 256
@@ -248,4 +251,16 @@ void __cdecl DrawTextureTile(
     HWR_TexSource(tex_source);
     HWR_EnableColorKey(0);
     HWR_DrawPrimitive(D3DPT_TRIANGLESTRIP, &vertex, 4, true);
+}
+
+D3DCOLOR __cdecl BGND_CenterLighting(
+    const int32_t x, const int32_t y, const int32_t width, const int32_t height)
+{
+    const double x_dist = (double)(x - (width / 2)) / (double)width;
+    const double y_dist = (double)(y - (height / 2)) / (double)height;
+
+    int32_t light = 256 - (sqrt(x_dist * x_dist + y_dist * y_dist) * 300.0);
+    CLAMP(light, 0, 255);
+
+    return RGBA_MAKE(light, light, light, 0xFF);
 }

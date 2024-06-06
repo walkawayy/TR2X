@@ -15,6 +15,7 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "lib/ddraw.h"
 #include "lib/dinput.h"
 #include "util.h"
 
@@ -2120,5 +2121,21 @@ void __cdecl Direct3DRelease(void)
 
 bool __cdecl Direct3DInit(void)
 {
+    return true;
+}
+
+bool __cdecl DDrawCreate(LPGUID lpGUID)
+{
+    if (FAILED(DirectDrawCreate(lpGUID, &g_DDrawInterface, 0))) {
+        return false;
+    }
+
+    if (FAILED(g_DDrawInterface->lpVtbl->QueryInterface(
+            g_DDrawInterface, &IID_IDirectDraw2, (LPVOID *)&g_DDraw))) {
+        return false;
+    }
+
+    g_DDraw->lpVtbl->SetCooperativeLevel(
+        g_DDraw, g_GameWindowHandle, DDSCL_NORMAL);
     return true;
 }

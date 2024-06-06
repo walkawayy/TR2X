@@ -3008,7 +3008,7 @@ typedef struct {
 0x00444B20  0x008C  x       sub_444B20
 0x00444BB0  0x0005  x       sub_444BB0
 0x00444BC0  0x0001  x       sub_444BC0
-0x00444BD0  0x0054  -R      bool __cdecl DDrawCreate(LPGUID lpGUID);
+0x00444BD0  0x0054  +R      bool __cdecl DDrawCreate(LPGUID lpGUID);
 0x00444C30  0x0033  -R      void __cdecl DDrawRelease(void);
 0x00444C70  0x0073  -R      void __cdecl GameWindowCalculateSizeFromClient(int32_t *width, int32_t *height);
 0x00444CF0  0x006A  -R      void __cdecl GameWindowCalculateSizeFromClientByZero(int32_t *width, int32_t *height);
@@ -3755,3 +3755,4 @@ typedef struct {
 0x004D7EA8  -       HWR_TEXTURE_HANDLE g_BGND_PageHandles[5];
 0x004D7EC0  -       LPDIRECT3D2 g_D3D;
 0x004D7EC8  -       LPDIRECT3DMATERIAL2 g_D3DMaterial;
+0x004D7ED4  -       LPDIRECTDRAW g_DDrawInterface;

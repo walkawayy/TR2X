@@ -100,3 +100,4 @@ bool __cdecl D3DSetViewport(void);
 void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);
 void __cdecl Direct3DRelease(void);
 bool __cdecl Direct3DInit(void);
+bool __cdecl DDrawCreate(LPGUID lpGUID);

@@ -145,6 +145,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00444770, D3DDeviceCreate);
     INJECT(enable, 0x00444930, Direct3DRelease);
     INJECT(enable, 0x00444980, Direct3DInit);
+    INJECT(enable, 0x00444BD0, DDrawCreate);
 }
 
 static void Inject_Background(const bool enable)

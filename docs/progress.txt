@@ -3009,7 +3009,7 @@ typedef struct {
 0x00444BB0  0x0005  x       sub_444BB0
 0x00444BC0  0x0001  x       sub_444BC0
 0x00444BD0  0x0054  +R      bool __cdecl DDrawCreate(LPGUID lpGUID);
-0x00444C30  0x0033  -R      void __cdecl DDrawRelease(void);
+0x00444C30  0x0033  +R      void __cdecl DDrawRelease(void);
 0x00444C70  0x0073  -R      void __cdecl GameWindowCalculateSizeFromClient(int32_t *width, int32_t *height);
 0x00444CF0  0x006A  -R      void __cdecl GameWindowCalculateSizeFromClientByZero(int32_t *width, int32_t *height);
 0x00444D60  0x0041  +R      void __cdecl WinVidSetMinWindowSize(int32_t width, int32_t height);

@@ -2139,3 +2139,15 @@ bool __cdecl DDrawCreate(LPGUID lpGUID)
         g_DDraw, g_GameWindowHandle, DDSCL_NORMAL);
     return true;
 }
+
+void __cdecl DDrawRelease(void)
+{
+    if (g_DDraw != NULL) {
+        g_DDraw->lpVtbl->Release(g_DDraw);
+        g_DDraw = NULL;
+    }
+    if (g_DDrawInterface != NULL) {
+        g_DDrawInterface->lpVtbl->Release(g_DDrawInterface);
+        g_DDrawInterface = NULL;
+    }
+}

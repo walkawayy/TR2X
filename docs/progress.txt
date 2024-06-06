@@ -3074,7 +3074,7 @@ typedef struct {
 0x00447220  0x001A  +R      void __cdecl DInputRelease(void);
 0x00447240  0x005A  +R      void __cdecl WinInReadKeyboard(LPVOID lpInputData);
 0x004472A0  0x00F3  -R      DWORD __cdecl WinInReadJoystick(int32_t *x, int32_t *y);
-0x004473A0  0x0005  -R      sub_4473A0
+0x004473A0  0x0005  x       sub_4473A0
 0x004473B0  0x007F  -R      bool __cdecl WinInputInit(void);
 0x00447430  0x0024  -R      bool __cdecl DInputEnumDevices(JOYSTICK_LIST *joystickList);
 0x00447460  0x00E8  -R      BOOL __stdcall DInputEnumDevicesCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef);
@@ -3117,8 +3117,8 @@ typedef struct {
 0x00448300  0x00C4  +       bool __cdecl S_Audio_Sample_DSoundBufferTest(void);
 0x004483D0  0x002A  +       void __cdecl S_Audio_Sample_Shutdown(void);
 0x00448400  0x0006  +       bool __cdecl S_Audio_Sample_IsEnabled(void);
-0x00448410  0x0005  -R      sub_448410
-0x00448420  0x0001  -R      sub_448420
+0x00448410  0x0005  x       sub_448410
+0x00448420  0x0001  x       sub_448420
 0x00448430  0x013B  +R      void __cdecl CreateScreenBuffers(void);
 0x00448570  0x0094  +R      void __cdecl CreatePrimarySurface(void);
 0x00448610  0x0098  +R      void __cdecl CreateBackBuffer(void);
@@ -3274,8 +3274,8 @@ typedef struct {
 0x004521A0  0x00AB  -R      void __cdecl S_CopyScreenToBuffer(void);
 0x00452250  0x0254  *R      void __cdecl S_CopyBufferToScreen(void);
 0x004522A0  0x00FA  -R      BOOL __cdecl DecompPCX(const uint8_t *pcx, size_t pcx_size, LPBYTE pic, RGB_888 *pal);
-0x004523A0  0x0005  -R      sub_4523A0
-0x004523B0  0x0001  -R      sub_4523B0
+0x004523A0  0x0005  x       sub_4523A0
+0x004523B0  0x0001  x       sub_4523B0
 0x004523C0  0x004E  -R      bool __cdecl OpenGameRegistryKey(LPCTSTR key);
 0x00452410  0x0005  -R      LONG __cdecl CloseGameRegistryKey(void);
 0x00452420  0x0262  -R      bool __cdecl SE_WriteAppSettings(APP_SETTINGS *settings);

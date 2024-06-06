@@ -69,12 +69,11 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.07% (488)</tspan> · <tspan class="known">57.47% (700)</tspan> · <tspan class="todo">0.41% (5)</tspan> · <tspan class="unused">2.05% (25)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.07% (488)</tspan> · <tspan class="known">57.47% (700)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
 <rect width="299.29" height="6" x="0" y="0" class="decompiled"/>
 <rect width="429.31" height="6" x="299.29" y="0" class="known"/>
-<rect width="3.07" height="6" x="728.60" y="0" class="todo"/>
-<rect width="15.33" height="6" x="731.67" y="0" class="unused"/>
+<rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
 <rect width="12" height="12" x="0" y="0" class="decompiled"><title>void __cdecl Matrix_GenerateW2V(PHD_3DPOS *viewpos);</title></rect>
@@ -963,7 +962,7 @@
 <rect width="12" height="12" x="495" y="255" class="decompiled"><title>void __cdecl DInputRelease(void);</title></rect>
 <rect width="12" height="12" x="510" y="255" class="decompiled"><title>void __cdecl WinInReadKeyboard(LPVOID lpInputData);</title></rect>
 <rect width="12" height="12" x="525" y="255" class="known"><title>DWORD __cdecl WinInReadJoystick(int32_t *x, int32_t *y);</title></rect>
-<rect width="12" height="12" x="540" y="255" class="todo"><title>sub_4473A0</title></rect>
+<rect width="12" height="12" x="540" y="255" class="unused"><title>sub_4473A0</title></rect>
 <rect width="12" height="12" x="555" y="255" class="known"><title>bool __cdecl WinInputInit(void);</title></rect>
 <rect width="12" height="12" x="570" y="255" class="known"><title>bool __cdecl DInputEnumDevices(JOYSTICK_LIST *joystickList);</title></rect>
 <rect width="12" height="12" x="585" y="255" class="known"><title>BOOL __stdcall DInputEnumDevicesCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef);</title></rect>
@@ -1006,8 +1005,8 @@
 <rect width="12" height="12" x="390" y="270" class="decompiled"><title>bool __cdecl S_Audio_Sample_DSoundBufferTest(void);</title></rect>
 <rect width="12" height="12" x="405" y="270" class="decompiled"><title>void __cdecl S_Audio_Sample_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="420" y="270" class="decompiled"><title>bool __cdecl S_Audio_Sample_IsEnabled(void);</title></rect>
-<rect width="12" height="12" x="435" y="270" class="todo"><title>sub_448410</title></rect>
-<rect width="12" height="12" x="450" y="270" class="todo"><title>sub_448420</title></rect>
+<rect width="12" height="12" x="435" y="270" class="unused"><title>sub_448410</title></rect>
+<rect width="12" height="12" x="450" y="270" class="unused"><title>sub_448420</title></rect>
 <rect width="12" height="12" x="465" y="270" class="decompiled"><title>void __cdecl CreateScreenBuffers(void);</title></rect>
 <rect width="12" height="12" x="480" y="270" class="decompiled"><title>void __cdecl CreatePrimarySurface(void);</title></rect>
 <rect width="12" height="12" x="495" y="270" class="decompiled"><title>void __cdecl CreateBackBuffer(void);</title></rect>
@@ -1163,8 +1162,8 @@
 <rect width="12" height="12" x="495" y="315" class="known"><title>void __cdecl S_CopyScreenToBuffer(void);</title></rect>
 <rect width="12" height="12" x="510" y="315" class="known"><title>void __cdecl S_CopyBufferToScreen(void);</title></rect>
 <rect width="12" height="12" x="525" y="315" class="known"><title>BOOL __cdecl DecompPCX(const uint8_t *pcx, size_t pcx_size, LPBYTE pic, RGB_888 *pal);</title></rect>
-<rect width="12" height="12" x="540" y="315" class="todo"><title>sub_4523A0</title></rect>
-<rect width="12" height="12" x="555" y="315" class="todo"><title>sub_4523B0</title></rect>
+<rect width="12" height="12" x="540" y="315" class="unused"><title>sub_4523A0</title></rect>
+<rect width="12" height="12" x="555" y="315" class="unused"><title>sub_4523B0</title></rect>
 <rect width="12" height="12" x="570" y="315" class="known"><title>bool __cdecl OpenGameRegistryKey(LPCTSTR key);</title></rect>
 <rect width="12" height="12" x="585" y="315" class="known"><title>LONG __cdecl CloseGameRegistryKey(void);</title></rect>
 <rect width="12" height="12" x="600" y="315" class="known"><title>bool __cdecl SE_WriteAppSettings(APP_SETTINGS *settings);</title></rect>
@@ -1299,12 +1298,11 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.63%</tspan> · <tspan class="known">62.04%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.32%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.63%</tspan> · <tspan class="known">62.04%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
 <rect width="281.12" height="6" x="0" y="0" class="decompiled"/>
 <rect width="463.44" height="6" x="281.12" y="0" class="known"/>
-<rect width="0.10" height="6" x="744.56" y="0" class="todo"/>
-<rect width="2.40" height="6" x="744.60" y="0" class="unused"/>
+<rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
 <rect width="58" height="69.33" x="0" y="0" class="decompiled"><title>void __cdecl Output_WGTMapPersp32FP(int32_t y1, int32_t y2, uint8_t *tex_page);</title></rect>
@@ -2512,19 +2510,19 @@
 <rect width="0.10" height="0.10" x="746.59" y="370.23" class="known"><title>void __cdecl reset_hair(ITEM_INFO *item);</title></rect>
 <rect width="0.10" height="0.10" x="748.30" y="370.23" class="known"><title>void __cdecl Inv_DoInventoryPicture(void);</title></rect>
 <rect width="0.10" height="0.10" x="742.84" y="372.66" class="unused"><title>sub_444BB0</title></rect>
-<rect width="0.10" height="0.10" x="742.84" y="374.44" class="todo"><title>sub_4473A0</title></rect>
+<rect width="0.10" height="0.10" x="742.84" y="374.44" class="unused"><title>sub_4473A0</title></rect>
 <rect width="0.10" height="0.10" x="742.84" y="376.22" class="unused"><title>sub_447FA0</title></rect>
-<rect width="0.10" height="0.10" x="745.18" y="372.66" class="todo"><title>sub_448410</title></rect>
-<rect width="0.10" height="0.10" x="747.59" y="372.66" class="todo"><title>sub_4523A0</title></rect>
+<rect width="0.10" height="0.10" x="745.18" y="372.66" class="unused"><title>sub_448410</title></rect>
+<rect width="0.10" height="0.10" x="747.59" y="372.66" class="unused"><title>sub_4523A0</title></rect>
 <rect width="0.10" height="0.10" x="745.18" y="374.39" class="known"><title>LONG __cdecl CloseGameRegistryKey(void);</title></rect>
 <rect width="0.10" height="0.10" x="745.18" y="376.19" class="known"><title>void __cdecl SE_SoundTestFinish(void);</title></rect>
 <rect width="0.10" height="0.10" x="747.47" y="374.39" class="decompiled"><title>bool __cdecl RenderInit(void);</title></rect>
 <rect width="0.10" height="0.10" x="748.74" y="374.39" class="known"><title>int32_t __cdecl SE_GraphicsTestExecute(void);</title></rect>
 <rect width="0.10" height="0.10" x="747.47" y="376.36" class="unused"><title>void __cdecl Output_InsertInventoryBackground(const int16_t *obj_ptr);</title></rect>
 <rect width="0.10" height="0.10" x="747.47" y="377.18" class="unused"><title>sub_444BC0</title></rect>
-<rect width="0.10" height="0.10" x="748.48" y="376.36" class="todo"><title>sub_448420</title></rect>
+<rect width="0.10" height="0.10" x="748.48" y="376.36" class="unused"><title>sub_448420</title></rect>
 <rect width="0.10" height="0.10" x="749.24" y="376.36" class="unused"><title>sub_44E6F0</title></rect>
-<rect width="0.10" height="0.10" x="748.48" y="377.45" class="todo"><title>sub_4523B0</title></rect>
+<rect width="0.10" height="0.10" x="748.48" y="377.45" class="unused"><title>sub_4523B0</title></rect>
 </g>
 </g>
 </svg>

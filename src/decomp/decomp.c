@@ -1971,7 +1971,45 @@ void __cdecl D3DRelease(void)
 void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *const adapter)
 {
     if (D3DCreate()) {
-        IDirect3D_EnumDevices(g_D3D, Enum3DDevicesCallback, (LPVOID)adapter);
+        IDirect3D3_EnumDevices(g_D3D, Enum3DDevicesCallback, (LPVOID)adapter);
         D3DRelease();
     }
+}
+
+HRESULT __stdcall Enum3DDevicesCallback(
+    GUID FAR *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName,
+    LPD3DDEVICEDESC_V2 lpD3DHWDeviceDesc, LPD3DDEVICEDESC_V2 lpD3DHELDeviceDesc,
+    LPVOID lpContext)
+{
+    DISPLAY_ADAPTER *adapter = (DISPLAY_ADAPTER *)lpContext;
+
+    if (lpD3DHWDeviceDesc != NULL && D3DIsSupported(lpD3DHWDeviceDesc)) {
+        adapter->hw_render_supported = true;
+        adapter->device_guid = *lpGuid;
+        adapter->hw_device_desc = *lpD3DHWDeviceDesc;
+
+        adapter->perspective_correct_supported =
+            (lpD3DHWDeviceDesc->dpcTriCaps.dwTextureCaps
+             & D3DPTEXTURECAPS_PERSPECTIVE)
+            ? true
+            : false;
+        adapter->dither_supported =
+            (lpD3DHWDeviceDesc->dpcTriCaps.dwRasterCaps & D3DPRASTERCAPS_DITHER)
+            ? true
+            : false;
+        adapter->zbuffer_supported =
+            (lpD3DHWDeviceDesc->dwDeviceZBufferBitDepth) ? true : false;
+        adapter->linear_filter_supported =
+            (lpD3DHWDeviceDesc->dpcTriCaps.dwTextureFilterCaps
+             & D3DPTFILTERCAPS_LINEAR)
+            ? true
+            : false;
+        adapter->shade_restricted =
+            (lpD3DHWDeviceDesc->dpcTriCaps.dwShadeCaps
+             & (D3DPSHADECAPS_ALPHAGOURAUDBLEND | D3DPSHADECAPS_ALPHAFLATBLEND))
+            ? false
+            : true;
+    }
+
+    return D3DENUMRET_OK;
 }

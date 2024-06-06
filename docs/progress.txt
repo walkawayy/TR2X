@@ -2994,7 +2994,7 @@ typedef struct {
 0x00444510  0x0030  +R      bool __cdecl BGND_Init(void);
 0x00444540  0x003E  +R      void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);
 0x00444570  0x001F  +R      bool __cdecl D3DCreate(void);
-0x004445B0  0x00BD  -R      HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);
+0x004445B0  0x00BD  +R      HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);
 0x00444670  0x0037  -R      bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);
 0x004446B0  0x00B9  -R      bool __cdecl D3DSetViewport(void);
 0x00444770  0x01B8  -R      void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);

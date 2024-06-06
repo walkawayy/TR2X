@@ -91,3 +91,7 @@ void __cdecl UpdateGameResolution(void);
 bool __cdecl D3DCreate(void);
 void __cdecl D3DRelease(void);
 void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);
+HRESULT __stdcall Enum3DDevicesCallback(
+    GUID FAR *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName,
+    LPD3DDEVICEDESC_V2 lpD3DHWDeviceDesc, LPD3DDEVICEDESC_V2 lpD3DHELDeviceDesc,
+    LPVOID lpContext);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.23% (490)</tspan> · <tspan class="known">57.31% (698)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.31% (491)</tspan> · <tspan class="known">57.22% (697)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="300.52" height="6" x="0" y="0" class="decompiled"/>
-<rect width="428.08" height="6" x="300.52" y="0" class="known"/>
+<rect width="301.13" height="6" x="0" y="0" class="decompiled"/>
+<rect width="427.47" height="6" x="301.13" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -882,7 +882,7 @@
 <rect width="12" height="12" x="45" y="240" class="decompiled"><title>bool __cdecl BGND_Init(void);</title></rect>
 <rect width="12" height="12" x="60" y="240" class="decompiled"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="12" height="12" x="75" y="240" class="decompiled"><title>bool __cdecl D3DCreate(void);</title></rect>
-<rect width="12" height="12" x="90" y="240" class="known"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
+<rect width="12" height="12" x="90" y="240" class="decompiled"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="105" y="240" class="known"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
 <rect width="12" height="12" x="120" y="240" class="known"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="12" height="12" x="135" y="240" class="known"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.66%</tspan> · <tspan class="known">62.01%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.72%</tspan> · <tspan class="known">61.96%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="281.33" height="6" x="0" y="0" class="decompiled"/>
-<rect width="463.23" height="6" x="281.33" y="0" class="known"/>
+<rect width="281.74" height="6" x="0" y="0" class="decompiled"/>
+<rect width="462.82" height="6" x="281.74" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1772,7 +1772,7 @@
 <rect width="9.54" height="9.51" x="521.63" y="315.46" class="known"><title>void __cdecl ControlGongBonger(int16_t item_num);</title></rect>
 <rect width="9.54" height="9.51" x="521.63" y="327.97" class="known"><title>int32_t __cdecl SwitchTrigger(int16_t item_num, int16_t timer);</title></rect>
 <rect width="9.54" height="9.51" x="521.63" y="340.47" class="known"><title>void __cdecl TeethTrap(int16_t item_num);</title></rect>
-<rect width="9.54" height="9.51" x="521.63" y="352.98" class="known"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
+<rect width="9.54" height="9.51" x="521.63" y="352.98" class="decompiled"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
 <rect width="9.54" height="9.51" x="521.63" y="365.49" class="known"><title>void __cdecl SE_ControlsDlgInit(HWND hwndDlg);</title></rect>
 <rect width="9.95" height="9.05" x="534.18" y="149.67" class="decompiled"><title>void __cdecl Lara_State_Extra_PullDagger(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="9.95" height="9.05" x="547.13" y="149.67" class="known"><title>int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);</title></rect>

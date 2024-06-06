@@ -13,3 +13,8 @@ void __cdecl BGND_DrawInGameBlack(void);
 void __cdecl DrawQuad(
     float sx, float sy, float width, float height, D3DCOLOR color);
 void __cdecl BGND_DrawInGameBackground(void);
+void __cdecl DrawTextureTile(
+    int32_t sx, int32_t sy, int32_t width, int32_t height,
+    HWR_TEXTURE_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width,
+    int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2,
+    D3DCOLOR color3);

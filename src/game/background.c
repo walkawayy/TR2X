@@ -189,3 +189,63 @@ void __cdecl BGND_DrawInGameBackground(void)
 
     HWR_EnableZBuffer(true, true);
 }
+
+void __cdecl DrawTextureTile(
+    const int32_t sx, const int32_t sy, const int32_t width,
+    const int32_t height, const HWR_TEXTURE_HANDLE tex_source, const int32_t tu,
+    const int32_t tv, const int32_t t_width, const int32_t t_height,
+    const D3DCOLOR color0, const D3DCOLOR color1, const D3DCOLOR color2,
+    const D3DCOLOR color3)
+{
+    const D3DVALUE sx0 = sx;
+    const D3DVALUE sy0 = sy;
+    const D3DVALUE sx1 = sx + width;
+    const D3DVALUE sy1 = sy + height;
+
+    const double uv_adjust = g_UVAdd / (double)PHD_ONE;
+    const D3DVALUE tu0 = tu / 256.0 + uv_adjust;
+    const D3DVALUE tv0 = tv / 256.0 + uv_adjust;
+    const D3DVALUE tu1 = (tu + t_width) / 256.0 - uv_adjust;
+    const D3DVALUE tv1 = (tv + t_height) / 256.0 - uv_adjust;
+
+    D3DTLVERTEX vertex[4] = {
+        {
+            .sx = sx0,
+            .sy = sy0,
+            .tu = tu0,
+            .tv = tv0,
+            .color = color0,
+        },
+        {
+            .sx = sx1,
+            .sy = sy0,
+            .tu = tu1,
+            .tv = tv0,
+            .color = color1,
+        },
+        {
+            .sx = sx0,
+            .sy = sy1,
+            .tu = tu0,
+            .tv = tv1,
+            .color = color2,
+        },
+        {
+            .sx = sx1,
+            .sy = sy1,
+            .tu = tu1,
+            .tv = tv1,
+            .color = color3,
+        },
+    };
+
+    for (int32_t i = 0; i < 4; i++) {
+        vertex[i].sz = 0.995;
+        vertex[i].rhw = g_RhwFactor / g_FltFarZ;
+        vertex[i].specular = 0;
+    }
+
+    HWR_TexSource(tex_source);
+    HWR_EnableColorKey(0);
+    HWR_DrawPrimitive(D3DPT_TRIANGLESTRIP, &vertex, 4, true);
+}

@@ -2117,3 +2117,8 @@ void __cdecl Direct3DRelease(void)
 
     D3DRelease();
 }
+
+bool __cdecl Direct3DInit(void)
+{
+    return true;
+}

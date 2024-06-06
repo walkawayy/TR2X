@@ -173,6 +173,7 @@ extern const char *g_TR2XVersion;
 #define g_BGND_TexturePageIndexes (*(int32_t(*)[5])0x004D7E90)
 #define g_BGND_PageHandles (*(HWR_TEXTURE_HANDLE(*)[5])0x004D7EA8)
 #define g_D3DDev (*(LPDIRECT3DDEVICE2*)0x004D7EBC)
+#define g_D3D (*(LPDIRECT3D2*)0x004D7EC0)
 #define g_D3DView (*(LPDIRECT3DVIEWPORT2*)0x004D7EC4)
 #define g_MinWindowClientHeight (*(int32_t*)0x004D7ED0)
 #define g_MaxWindowHeight (*(int32_t*)0x004D7EDC)

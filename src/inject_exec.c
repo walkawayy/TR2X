@@ -137,6 +137,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x0044EB80, EncodePutPCX);
     INJECT(enable, 0x0044EBC0, Screenshot);
     INJECT(enable, 0x00454C50, TitleSequence);
+    INJECT(enable, 0x00444540, Enumerate3DDevices);
 }
 
 static void Inject_Background(const bool enable)

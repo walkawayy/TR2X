@@ -1952,3 +1952,19 @@ void __cdecl UpdateGameResolution(void)
     sprintf(mode_string, "%dx%d", g_GameVid_Width, g_GameVid_Height);
     Overlay_DisplayModeInfo(mode_string);
 }
+
+void __cdecl D3DRelease(void)
+{
+    if (g_D3D != NULL) {
+        IDirect3D_Release(g_D3D);
+        g_D3D = NULL;
+    }
+}
+
+void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *const adapter)
+{
+    if (D3DCreate()) {
+        IDirect3D_EnumDevices(g_D3D, Enum3DDevicesCallback, (LPVOID)adapter);
+        D3DRelease();
+    }
+}

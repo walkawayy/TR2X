@@ -2992,7 +2992,7 @@ typedef struct {
 0x00444210  0x008B  +R      D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);
 0x004444C0  0x004D  +R      void __cdecl BGND_Free(void);
 0x00444510  0x0030  +R      bool __cdecl BGND_Init(void);
-0x00444540  0x003E  -R      void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);
+0x00444540  0x003E  +R      void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);
 0x00444570  0x001F  -R      bool __cdecl D3DCreate(void);
 0x004445B0  0x00BD  -R      HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);
 0x00444670  0x0037  -R      bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);
@@ -3753,3 +3753,4 @@ typedef struct {
 0x004D7E88  -       bool g_BGND_PictureIsReady;
 0x004D7E90  -       int32_t g_BGND_TexturePageIndexes[5];
 0x004D7EA8  -       HWR_TEXTURE_HANDLE g_BGND_PageHandles[5];
+0x004D7EC0  -       LPDIRECT3D2 g_D3D;

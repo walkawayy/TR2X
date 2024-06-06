@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.07% (488)</tspan> · <tspan class="known">57.47% (700)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.15% (489)</tspan> · <tspan class="known">57.39% (699)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="299.29" height="6" x="0" y="0" class="decompiled"/>
-<rect width="429.31" height="6" x="299.29" y="0" class="known"/>
+<rect width="299.90" height="6" x="0" y="0" class="decompiled"/>
+<rect width="428.70" height="6" x="299.90" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -880,7 +880,7 @@
 <rect width="12" height="12" x="15" y="240" class="decompiled"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
 <rect width="12" height="12" x="30" y="240" class="decompiled"><title>void __cdecl BGND_Free(void);</title></rect>
 <rect width="12" height="12" x="45" y="240" class="decompiled"><title>bool __cdecl BGND_Init(void);</title></rect>
-<rect width="12" height="12" x="60" y="240" class="known"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
+<rect width="12" height="12" x="60" y="240" class="decompiled"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="12" height="12" x="75" y="240" class="known"><title>bool __cdecl D3DCreate(void);</title></rect>
 <rect width="12" height="12" x="90" y="240" class="known"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="105" y="240" class="known"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.63%</tspan> · <tspan class="known">62.04%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.65%</tspan> · <tspan class="known">62.02%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="281.12" height="6" x="0" y="0" class="decompiled"/>
-<rect width="463.44" height="6" x="281.12" y="0" class="known"/>
+<rect width="281.26" height="6" x="0" y="0" class="decompiled"/>
+<rect width="463.30" height="6" x="281.26" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2173,7 +2173,7 @@
 <rect width="4.21" height="4.25" x="714.40" y="269.04" class="known"><title>void __cdecl TrapDoorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="4.10" height="4.25" x="721.61" y="269.04" class="known"><title>void __cdecl ready_flare(void);</title></rect>
 <rect width="4.10" height="4.25" x="728.71" y="269.04" class="known"><title>void __cdecl FallingBlockFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
-<rect width="4.10" height="4.25" x="735.81" y="269.04" class="known"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
+<rect width="4.10" height="4.25" x="735.81" y="269.04" class="decompiled"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="4.10" height="4.25" x="742.90" y="269.04" class="decompiled"><title>DWORD __cdecl EncodePutPCX(BYTE value, BYTE num, BYTE *buffer);</title></rect>
 <rect width="4.42" height="3.93" x="648.46" y="276.30" class="known"><title>int32_t __stdcall SE_PropSheetCallback(HWND hwndDlg, UINT uMsg, LPARAM lParam);</title></rect>
 <rect width="4.42" height="3.93" x="655.89" y="276.30" class="known"><title>HWR_TEXTURE_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>

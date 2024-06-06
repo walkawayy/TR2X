@@ -2013,3 +2013,12 @@ HRESULT __stdcall Enum3DDevicesCallback(
 
     return D3DENUMRET_OK;
 }
+
+bool __cdecl D3DIsSupported(LPD3DDEVICEDESC_V2 desc)
+{
+    return (desc->dwFlags & D3DDD_COLORMODEL)
+        && (desc->dcmColorModel & D3DCOLOR_RGB)
+        && (desc->dwFlags & D3DDD_TRICAPS)
+        && (desc->dpcTriCaps.dwShadeCaps & D3DPSHADECAPS_COLORGOURAUDRGB)
+        && (desc->dpcTriCaps.dwTextureBlendCaps & D3DPTBLENDCAPS_MODULATE);
+}

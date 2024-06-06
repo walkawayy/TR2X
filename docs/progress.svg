@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.31% (491)</tspan> · <tspan class="known">57.22% (697)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.39% (492)</tspan> · <tspan class="known">57.14% (696)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="301.13" height="6" x="0" y="0" class="decompiled"/>
-<rect width="427.47" height="6" x="301.13" y="0" class="known"/>
+<rect width="301.74" height="6" x="0" y="0" class="decompiled"/>
+<rect width="426.86" height="6" x="301.74" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -883,7 +883,7 @@
 <rect width="12" height="12" x="60" y="240" class="decompiled"><title>void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="12" height="12" x="75" y="240" class="decompiled"><title>bool __cdecl D3DCreate(void);</title></rect>
 <rect width="12" height="12" x="90" y="240" class="decompiled"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
-<rect width="12" height="12" x="105" y="240" class="known"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
+<rect width="12" height="12" x="105" y="240" class="decompiled"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
 <rect width="12" height="12" x="120" y="240" class="known"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="12" height="12" x="135" y="240" class="known"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="12" height="12" x="150" y="240" class="known"><title>void __cdecl Direct3DRelease(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.72%</tspan> · <tspan class="known">61.96%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.73%</tspan> · <tspan class="known">61.94%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="281.74" height="6" x="0" y="0" class="decompiled"/>
-<rect width="462.82" height="6" x="281.74" y="0" class="known"/>
+<rect width="281.86" height="6" x="0" y="0" class="decompiled"/>
+<rect width="462.70" height="6" x="281.86" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2223,7 +2223,7 @@
 <rect width="3.73" height="3.78" x="655.65" y="310.56" class="known"><title>void __cdecl ControlLaraAlarm(int16_t item_num);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="317.34" class="decompiled"><title>void __cdecl Text_ChangeText(TEXTSTRING *string, const char *text);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="324.12" class="decompiled"><title>uint32_t __cdecl Text_GetScaleH(uint32_t value);</title></rect>
-<rect width="3.73" height="3.78" x="655.65" y="330.90" class="known"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
+<rect width="3.73" height="3.78" x="655.65" y="330.90" class="decompiled"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="337.68" class="known"><title>void __cdecl S_InitialiseScreen(GF_LEVEL_TYPE level_type);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="344.46" class="known"><title>LONG __cdecl SetRegistryBinaryValue(LPCTSTR lpValueName, LPBYTE value, DWORD valueSize);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="351.24" class="known"><title>void __thiscall SE_ReleaseBitmapResource(BITMAP_RESOURCE *bmpRsrc);</title></rect>

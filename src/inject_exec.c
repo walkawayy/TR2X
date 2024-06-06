@@ -140,6 +140,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00444540, Enumerate3DDevices);
     INJECT(enable, 0x00444570, D3DCreate);
     INJECT(enable, 0x004445B0, Enum3DDevicesCallback);
+    INJECT(enable, 0x00444670, D3DIsSupported);
 }
 
 static void Inject_Background(const bool enable)

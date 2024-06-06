@@ -95,3 +95,4 @@ HRESULT __stdcall Enum3DDevicesCallback(
     GUID FAR *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName,
     LPD3DDEVICEDESC_V2 lpD3DHWDeviceDesc, LPD3DDEVICEDESC_V2 lpD3DHELDeviceDesc,
     LPVOID lpContext);
+bool __cdecl D3DIsSupported(LPD3DDEVICEDESC_V2 desc);

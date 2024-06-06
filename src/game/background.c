@@ -264,3 +264,19 @@ D3DCOLOR __cdecl BGND_CenterLighting(
 
     return RGBA_MAKE(light, light, light, 0xFF);
 }
+
+void __cdecl BGND_Free(void)
+{
+    for (int32_t i = 0; i < BGND_MAX_TEXTURE_PAGES; i++) {
+        if (g_BGND_TexturePageIndexes[i] >= 0) {
+            SafeFreeTexturePage(g_BGND_TexturePageIndexes[i]);
+            g_BGND_TexturePageIndexes[i] = -1;
+        }
+        g_BGND_PageHandles[i] = 0;
+    }
+
+    if (g_BGND_PaletteIndex >= 0) {
+        SafeFreePalette(g_BGND_PaletteIndex);
+        g_BGND_PaletteIndex = -1;
+    }
+}

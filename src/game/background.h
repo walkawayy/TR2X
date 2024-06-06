@@ -20,3 +20,4 @@ void __cdecl DrawTextureTile(
     D3DCOLOR color3);
 D3DCOLOR __cdecl BGND_CenterLighting(
     int32_t x, int32_t y, int32_t width, int32_t height);
+void __cdecl BGND_Free(void);

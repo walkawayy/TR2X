@@ -98,3 +98,4 @@ HRESULT __stdcall Enum3DDevicesCallback(
 bool __cdecl D3DIsSupported(LPD3DDEVICEDESC_V2 desc);
 bool __cdecl D3DSetViewport(void);
 void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);
+void __cdecl Direct3DRelease(void);

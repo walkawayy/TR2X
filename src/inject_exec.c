@@ -143,6 +143,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00444670, D3DIsSupported);
     INJECT(enable, 0x004446B0, D3DSetViewport);
     INJECT(enable, 0x00444770, D3DDeviceCreate);
+    INJECT(enable, 0x00444930, Direct3DRelease);
 }
 
 static void Inject_Background(const bool enable)

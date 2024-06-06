@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.56% (494)</tspan> · <tspan class="known">56.98% (694)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.64% (495)</tspan> · <tspan class="known">56.90% (693)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="302.97" height="6" x="0" y="0" class="decompiled"/>
-<rect width="425.63" height="6" x="302.97" y="0" class="known"/>
+<rect width="303.58" height="6" x="0" y="0" class="decompiled"/>
+<rect width="425.02" height="6" x="303.58" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -886,7 +886,7 @@
 <rect width="12" height="12" x="105" y="240" class="decompiled"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
 <rect width="12" height="12" x="120" y="240" class="decompiled"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="12" height="12" x="135" y="240" class="decompiled"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
-<rect width="12" height="12" x="150" y="240" class="known"><title>void __cdecl Direct3DRelease(void);</title></rect>
+<rect width="12" height="12" x="150" y="240" class="decompiled"><title>void __cdecl Direct3DRelease(void);</title></rect>
 <rect width="12" height="12" x="165" y="240" class="known"><title>bool __cdecl Direct3DInit(void);</title></rect>
 <rect width="12" height="12" x="180" y="240" class="unused"><title>sub_444990</title></rect>
 <rect width="12" height="12" x="195" y="240" class="unused"><title>sub_4449A0</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.92%</tspan> · <tspan class="known">61.76%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.95%</tspan> · <tspan class="known">61.73%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="283.23" height="6" x="0" y="0" class="decompiled"/>
-<rect width="461.33" height="6" x="283.23" y="0" class="known"/>
+<rect width="283.46" height="6" x="0" y="0" class="decompiled"/>
+<rect width="461.10" height="6" x="283.46" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1996,7 +1996,7 @@
 <rect width="6.63" height="6.22" x="598.66" y="226.42" class="decompiled"><title>void __cdecl Lara_State_Swim(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="6.63" height="6.22" x="608.29" y="226.42" class="known"><title>void __cdecl DrawUnclippedItem(ITEM_INFO *item);</title></rect>
 <rect width="6.63" height="6.22" x="617.93" y="226.42" class="known"><title>bool __cdecl PlayFMV(const char *file_name);</title></rect>
-<rect width="6.54" height="6.22" x="627.56" y="226.42" class="known"><title>void __cdecl Direct3DRelease(void);</title></rect>
+<rect width="6.54" height="6.22" x="627.56" y="226.42" class="decompiled"><title>void __cdecl Direct3DRelease(void);</title></rect>
 <rect width="6.54" height="6.22" x="637.10" y="226.42" class="known"><title>void __cdecl GameWindowCalculateSizeFromClientByZero(int32_t *width, int32_t *height);</title></rect>
 <rect width="6.54" height="6.22" x="646.65" y="226.42" class="known"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
 <rect width="6.54" height="6.22" x="656.19" y="226.42" class="known"><title>int32_t __cdecl CreateTexturePage(int32_t width, int32_t height, bool alpha);</title></rect>

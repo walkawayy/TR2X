@@ -2097,3 +2097,23 @@ void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer)
         Shell_ExitSystem("Failed to set material background");
     }
 }
+
+void __cdecl Direct3DRelease(void)
+{
+    if (g_D3DMaterial != NULL) {
+        g_D3DMaterial->lpVtbl->Release(g_D3DMaterial);
+        g_D3DMaterial = NULL;
+    }
+
+    if (g_D3DView != NULL) {
+        g_D3DView->lpVtbl->Release(g_D3DView);
+        g_D3DView = NULL;
+    }
+
+    if (g_D3DDev != NULL) {
+        g_D3DDev->lpVtbl->Release(g_D3DDev);
+        g_D3DDev = NULL;
+    }
+
+    D3DRelease();
+}

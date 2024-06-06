@@ -2998,7 +2998,7 @@ typedef struct {
 0x00444670  0x0037  +R      bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);
 0x004446B0  0x00B9  +R      bool __cdecl D3DSetViewport(void);
 0x00444770  0x01B8  +R      void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);
-0x00444930  0x006A  -R      void __cdecl Direct3DRelease(void);
+0x00444930  0x006A  +R      void __cdecl Direct3DRelease(void);
 0x00444980  0x0006  -R      bool __cdecl Direct3DInit(void);
 0x00444990  0x0018  x       sub_444990
 0x004449A0  0x0012  x       sub_4449A0

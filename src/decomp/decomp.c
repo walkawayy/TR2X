@@ -2022,3 +2022,32 @@ bool __cdecl D3DIsSupported(LPD3DDEVICEDESC_V2 desc)
         && (desc->dpcTriCaps.dwShadeCaps & D3DPSHADECAPS_COLORGOURAUDRGB)
         && (desc->dpcTriCaps.dwTextureBlendCaps & D3DPTBLENDCAPS_MODULATE);
 }
+
+bool __cdecl D3DSetViewport(void)
+{
+    D3DVIEWPORT2 viewPort = {
+
+        .dwSize = sizeof(D3DVIEWPORT2),
+        .dvClipX = 0.0,
+        .dvClipY = 0.0,
+        .dvClipWidth = (float)g_GameVid_Width,
+        .dvClipHeight = (float)g_GameVid_Height,
+
+        .dwX = 0,
+        .dwY = 0,
+        .dwWidth = g_GameVid_Width,
+        .dwHeight = g_GameVid_Height,
+
+        .dvMinZ = 0.0,
+        .dvMaxZ = 1.0,
+    };
+
+    HRESULT rc = IDirect3DViewport2_SetViewport2(g_D3DView, &viewPort);
+    if (FAILED(rc)) {
+        IDirect3DViewport2_GetViewport2(g_D3DView, &viewPort);
+        return false;
+    }
+
+    rc = IDirect3DDevice2_SetCurrentViewport(g_D3DDev, g_D3DView);
+    return SUCCEEDED(rc);
+}

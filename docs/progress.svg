@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.39% (492)</tspan> · <tspan class="known">57.14% (696)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.48% (493)</tspan> · <tspan class="known">57.06% (695)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="301.74" height="6" x="0" y="0" class="decompiled"/>
-<rect width="426.86" height="6" x="301.74" y="0" class="known"/>
+<rect width="302.36" height="6" x="0" y="0" class="decompiled"/>
+<rect width="426.24" height="6" x="302.36" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -884,7 +884,7 @@
 <rect width="12" height="12" x="75" y="240" class="decompiled"><title>bool __cdecl D3DCreate(void);</title></rect>
 <rect width="12" height="12" x="90" y="240" class="decompiled"><title>HRESULT __stdcall Enum3DDevicesCallback(GUID *lpGuid, LPTSTR lpDeviceDescription, LPTSTR lpDeviceName, LPD3DDEVICEDESC lpD3DHWDeviceDesc, LPD3DDEVICEDESC lpD3DHELDeviceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="105" y="240" class="decompiled"><title>bool __cdecl D3DIsSupported(LPD3DDEVICEDESC desc);</title></rect>
-<rect width="12" height="12" x="120" y="240" class="known"><title>bool __cdecl D3DSetViewport(void);</title></rect>
+<rect width="12" height="12" x="120" y="240" class="decompiled"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="12" height="12" x="135" y="240" class="known"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="12" height="12" x="150" y="240" class="known"><title>void __cdecl Direct3DRelease(void);</title></rect>
 <rect width="12" height="12" x="165" y="240" class="known"><title>bool __cdecl Direct3DInit(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.73%</tspan> · <tspan class="known">61.94%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">37.79%</tspan> · <tspan class="known">61.89%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="281.86" height="6" x="0" y="0" class="decompiled"/>
-<rect width="462.70" height="6" x="281.86" y="0" class="known"/>
+<rect width="282.26" height="6" x="0" y="0" class="decompiled"/>
+<rect width="462.29" height="6" x="282.26" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1783,7 +1783,7 @@
 <rect width="9.81" height="9.05" x="611.74" y="149.67" class="known"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>
 <rect width="9.74" height="9.05" x="624.56" y="149.67" class="known"><title>int16_t __cdecl GunHit(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
 <rect width="9.74" height="9.05" x="637.30" y="149.67" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
-<rect width="9.74" height="9.05" x="650.04" y="149.67" class="known"><title>bool __cdecl D3DSetViewport(void);</title></rect>
+<rect width="9.74" height="9.05" x="650.04" y="149.67" class="decompiled"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="9.68" height="9.05" x="662.79" y="149.67" class="decompiled"><title>void __cdecl Creature_Die(int16_t item_num, int32_t explode);</title></rect>
 <rect width="9.68" height="9.05" x="675.46" y="149.67" class="known"><title>void __cdecl CreateZone(ITEM_INFO *item);</title></rect>
 <rect width="9.47" height="9.05" x="688.14" y="149.67" class="decompiled"><title>void __cdecl Output_InsertLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>

@@ -2449,3 +2449,10 @@ bool __cdecl WinVidGetDisplayAdapters(void)
     }
     return false;
 }
+
+bool __cdecl EnumerateDisplayAdapters(
+    DISPLAY_ADAPTER_LIST *display_adapter_list)
+{
+    return SUCCEEDED(DirectDrawEnumerate(
+        EnumDisplayAdaptersCallback, (LPVOID)display_adapter_list));
+}

@@ -111,3 +111,5 @@ HRESULT __stdcall
 EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
 bool __cdecl WinVidInit(void);
 bool __cdecl WinVidGetDisplayAdapters(void);
+bool __cdecl EnumerateDisplayAdapters(
+    DISPLAY_ADAPTER_LIST *display_adapter_list);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.46% (505)</tspan> · <tspan class="known">56.08% (683)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.54% (506)</tspan> · <tspan class="known">55.99% (682)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="309.72" height="6" x="0" y="0" class="decompiled"/>
-<rect width="418.88" height="6" x="309.72" y="0" class="known"/>
+<rect width="310.33" height="6" x="0" y="0" class="decompiled"/>
+<rect width="418.27" height="6" x="310.33" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -934,7 +934,7 @@
 <rect width="12" height="12" x="75" y="255" class="decompiled"><title>bool __cdecl WinVidInit(void);</title></rect>
 <rect width="12" height="12" x="90" y="255" class="decompiled"><title>bool __cdecl WinVidGetDisplayAdapters(void);</title></rect>
 <rect width="12" height="12" x="105" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);</title></rect>
-<rect width="12" height="12" x="120" y="255" class="known"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
+<rect width="12" height="12" x="120" y="255" class="decompiled"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
 <rect width="12" height="12" x="135" y="255" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="150" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="12" height="12" x="165" y="255" class="known"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.44%</tspan> · <tspan class="known">61.23%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.45%</tspan> · <tspan class="known">61.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="287.17" height="6" x="0" y="0" class="decompiled"/>
-<rect width="457.39" height="6" x="287.17" y="0" class="known"/>
+<rect width="287.23" height="6" x="0" y="0" class="decompiled"/>
+<rect width="457.33" height="6" x="287.23" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2414,7 +2414,7 @@
 <rect width="1.91" height="1.57" x="708.89" y="351.10" class="known"><title>void __cdecl Lara_ControlExtra(int16_t item_num);</title></rect>
 <rect width="1.91" height="1.57" x="708.89" y="355.67" class="known"><title>void __cdecl BridgeFlatCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="1.91" height="1.57" x="708.89" y="360.24" class="decompiled"><title>int32_t __fastcall Math_Sin(int16_t angle);</title></rect>
-<rect width="1.91" height="1.40" x="708.89" y="364.80" class="known"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
+<rect width="1.91" height="1.40" x="708.89" y="364.80" class="decompiled"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
 <rect width="1.91" height="1.40" x="708.89" y="369.20" class="decompiled"><title>void __cdecl DInputRelease(void);</title></rect>
 <rect width="1.91" height="1.40" x="708.89" y="373.60" class="decompiled"><title>bool __cdecl S_Audio_Sample_DSoundEnumerate(SOUND_ADAPTER_LIST *adapter_list);</title></rect>
 <rect width="1.51" height="1.78" x="713.79" y="341.96" class="decompiled"><title>int32_t __fastcall Math_SinImpl(int16_t angle);</title></rect>

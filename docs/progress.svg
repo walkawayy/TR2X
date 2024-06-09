@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.05% (500)</tspan> · <tspan class="known">56.49% (688)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.13% (501)</tspan> · <tspan class="known">56.40% (687)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="306.65" height="6" x="0" y="0" class="decompiled"/>
-<rect width="421.95" height="6" x="306.65" y="0" class="known"/>
+<rect width="307.26" height="6" x="0" y="0" class="decompiled"/>
+<rect width="421.34" height="6" x="307.26" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -928,7 +928,7 @@
 <rect width="12" height="12" x="735" y="240" class="decompiled"><title>bool __cdecl WinVidGoFullScreen(DISPLAY_MODE *disp_mode);</title></rect>
 <rect width="12" height="12" x="0" y="255" class="decompiled"><title>bool __cdecl WinVidGoWindowed(int32_t width, int32_t height, DISPLAY_MODE *dispMode);</title></rect>
 <rect width="12" height="12" x="15" y="255" class="decompiled"><title>void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter);</title></rect>
-<rect width="12" height="12" x="30" y="255" class="known"><title>bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);</title></rect>
+<rect width="12" height="12" x="30" y="255" class="decompiled"><title>bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);</title></rect>
 <rect width="12" height="12" x="45" y="255" class="known"><title>bool __cdecl WinVidGetDisplayModes(void);</title></rect>
 <rect width="12" height="12" x="60" y="255" class="known"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="75" y="255" class="known"><title>bool __cdecl WinVidInit(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.05%</tspan> · <tspan class="known">61.62%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.07%</tspan> · <tspan class="known">61.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="284.25" height="6" x="0" y="0" class="decompiled"/>
-<rect width="460.31" height="6" x="284.25" y="0" class="known"/>
+<rect width="284.40" height="6" x="0" y="0" class="decompiled"/>
+<rect width="460.16" height="6" x="284.40" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2145,7 +2145,7 @@
 <rect width="4.74" height="4.50" x="719.25" y="261.54" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_OutPlay(int32_t sample_id, uint16_t volume, int32_t pitch, int32_t pan);</title></rect>
 <rect width="4.74" height="4.50" x="726.99" y="261.54" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_OutPlayLooped(int32_t track_id, uint16_t volume, int32_t pitch, int32_t pan);</title></rect>
 <rect width="4.63" height="4.50" x="734.73" y="261.54" class="decompiled"><title>void __cdecl Overlay_DrawGameInfo(bool pickup_state);</title></rect>
-<rect width="4.63" height="4.50" x="742.37" y="261.54" class="known"><title>bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);</title></rect>
+<rect width="4.63" height="4.50" x="742.37" y="261.54" class="decompiled"><title>bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);</title></rect>
 <rect width="4.64" height="4.50" x="640.82" y="269.04" class="decompiled"><title>bool __cdecl S_Audio_Sample_IsTrackPlaying(int32_t track_id);</title></rect>
 <rect width="4.64" height="4.39" x="640.82" y="276.54" class="known"><title>void __cdecl FallingBlockCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="4.64" height="4.39" x="640.82" y="283.93" class="decompiled"><title>HRESULT __cdecl DDrawSurfaceCreate(LPDDSDESC dsp, LPDDS *surface);</title></rect>

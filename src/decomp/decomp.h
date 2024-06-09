@@ -104,3 +104,5 @@ bool __cdecl DDrawCreate(LPGUID lpGUID);
 void __cdecl DDrawRelease(void);
 void __cdecl GameWindowCalculateSizeFromClient(int *width, int *height);
 void __cdecl GameWindowCalculateSizeFromClientByZero(int *width, int *height);
+bool __thiscall CompareVideoModes(
+    const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);

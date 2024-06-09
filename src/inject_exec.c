@@ -149,6 +149,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00444C30, DDrawRelease);
     INJECT(enable, 0x00444C70, GameWindowCalculateSizeFromClient);
     INJECT(enable, 0x00444CF0, GameWindowCalculateSizeFromClientByZero);
+    INJECT(enable, 0x004459A0, CompareVideoModes);
 }
 
 static void Inject_Background(const bool enable)

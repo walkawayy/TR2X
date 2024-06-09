@@ -2173,3 +2173,29 @@ void __cdecl GameWindowCalculateSizeFromClientByZero(
     *width += rect.left - rect.right;
     *height += rect.top - rect.bottom;
 }
+
+bool __thiscall CompareVideoModes(
+    const DISPLAY_MODE *const mode1, const DISPLAY_MODE *const mode2)
+{
+    const int32_t square1 = mode1->width * mode1->height;
+    const int32_t square2 = mode2->width * mode2->height;
+    if (square1 < square2) {
+        return true;
+    }
+    if (square1 > square2) {
+        return false;
+    }
+    if (mode1->bpp < mode2->bpp) {
+        return true;
+    }
+    if (mode1->bpp > mode2->bpp) {
+        return false;
+    }
+    if (mode1->vga < mode2->vga) {
+        return true;
+    }
+    if (mode1->vga > mode2->vga) {
+        return false;
+    }
+    return false;
+}

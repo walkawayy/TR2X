@@ -3044,7 +3044,7 @@ typedef struct {
 0x004459F0  0x0053  +R      bool __cdecl WinVidGetDisplayModes(void);
 0x00445A50  0x03B1  +R      HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
 0x00445E10  0x0040  +R      bool __cdecl WinVidInit(void);
-0x00445E50  0x00AF  -R      bool __cdecl WinVidGetDisplayAdapters(void);
+0x00445E50  0x00AF  +R      bool __cdecl WinVidGetDisplayAdapters(void);
 0x00445F00  0x0013  +       void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);
 0x00445F20  0x001A  -R      bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);
 0x00445F40  0x01BE  -R      BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);

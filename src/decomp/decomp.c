@@ -18,6 +18,7 @@
 #include "lib/cpp.h"
 #include "lib/ddraw.h"
 #include "lib/dinput.h"
+#include "specific/s_flagged_string.h"
 #include "util.h"
 
 #include <assert.h>
@@ -2407,7 +2408,44 @@ HRESULT __stdcall EnumDisplayModesCallback(
 bool __cdecl WinVidInit(void)
 {
     g_AppResultCode = 0;
-    return WinVidRegisterGameWindowClass() && WinVidCreateGameWindow()
-        && WinVidGetDisplayAdapters() && g_DisplayAdapterList.count
+    // clang-format off
+    return WinVidRegisterGameWindowClass()
+        && WinVidCreateGameWindow()
+        && WinVidGetDisplayAdapters()
+        && g_DisplayAdapterList.count
         && WinVidGetDisplayModes();
+    // clang-format on
+}
+
+bool __cdecl WinVidGetDisplayAdapters(void)
+{
+    for (DISPLAY_ADAPTER_NODE *node = g_DisplayAdapterList.head,
+                              *next_node = NULL;
+         node != NULL; node = next_node) {
+        next_node = node->next;
+        DisplayModeListDelete(&node->body.sw_disp_mode_list);
+        DisplayModeListDelete(&node->body.hw_disp_mode_list);
+        S_FlaggedString_Delete(&node->body.driver_name);
+        S_FlaggedString_Delete(&node->body.driver_desc);
+        // TODO: delete(node);
+    }
+
+    g_DisplayAdapterList.head = NULL;
+    g_DisplayAdapterList.tail = NULL;
+    g_DisplayAdapterList.count = 0;
+
+    g_PrimaryDisplayAdapter = NULL;
+
+    if (!EnumerateDisplayAdapters(&g_DisplayAdapterList)) {
+        return false;
+    }
+
+    for (DISPLAY_ADAPTER_NODE *node = g_DisplayAdapterList.head; node != NULL;
+         node = node->next) {
+        if (node->body.adapter_guid_ptr == NULL) {
+            g_PrimaryDisplayAdapter = node;
+            return true;
+        }
+    }
+    return false;
 }

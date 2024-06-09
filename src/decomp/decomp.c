@@ -2162,3 +2162,14 @@ void __cdecl GameWindowCalculateSizeFromClient(
     *width = rect.right - rect.left;
     *height = rect.bottom - rect.top;
 }
+
+void __cdecl GameWindowCalculateSizeFromClientByZero(
+    int *const width, int *const height)
+{
+    RECT rect = { 0, 0, 0, 0 };
+    const DWORD style = GetWindowLong(g_GameWindowHandle, GWL_STYLE);
+    const DWORD styleEx = GetWindowLong(g_GameWindowHandle, GWL_EXSTYLE);
+    AdjustWindowRectEx(&rect, style, FALSE, styleEx);
+    *width += rect.left - rect.right;
+    *height += rect.top - rect.bottom;
+}

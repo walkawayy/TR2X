@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.30% (503)</tspan> · <tspan class="known">56.24% (685)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.38% (504)</tspan> · <tspan class="known">56.16% (684)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="308.49" height="6" x="0" y="0" class="decompiled"/>
-<rect width="420.11" height="6" x="308.49" y="0" class="known"/>
+<rect width="309.10" height="6" x="0" y="0" class="decompiled"/>
+<rect width="419.50" height="6" x="309.10" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -931,7 +931,7 @@
 <rect width="12" height="12" x="30" y="255" class="decompiled"><title>bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);</title></rect>
 <rect width="12" height="12" x="45" y="255" class="decompiled"><title>bool __cdecl WinVidGetDisplayModes(void);</title></rect>
 <rect width="12" height="12" x="60" y="255" class="decompiled"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
-<rect width="12" height="12" x="75" y="255" class="known"><title>bool __cdecl WinVidInit(void);</title></rect>
+<rect width="12" height="12" x="75" y="255" class="decompiled"><title>bool __cdecl WinVidInit(void);</title></rect>
 <rect width="12" height="12" x="90" y="255" class="known"><title>bool __cdecl WinVidGetDisplayAdapters(void);</title></rect>
 <rect width="12" height="12" x="105" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);</title></rect>
 <rect width="12" height="12" x="120" y="255" class="known"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.37%</tspan> · <tspan class="known">61.30%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.39%</tspan> · <tspan class="known">61.28%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="286.65" height="6" x="0" y="0" class="decompiled"/>
-<rect width="457.91" height="6" x="286.65" y="0" class="known"/>
+<rect width="286.79" height="6" x="0" y="0" class="decompiled"/>
+<rect width="457.77" height="6" x="286.79" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2166,7 +2166,7 @@
 <rect width="4.33" height="4.25" x="663.23" y="269.04" class="known"><title>void __cdecl Inv_Ring_Light(RING_INFO *ring);</title></rect>
 <rect width="4.33" height="4.25" x="670.56" y="269.04" class="decompiled"><title>void __cdecl Lara_State_FastFall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.33" height="4.25" x="677.88" y="269.04" class="known"><title>void __cdecl InitialiseSkidoo(int16_t item_num);</title></rect>
-<rect width="4.33" height="4.25" x="685.21" y="269.04" class="known"><title>bool __cdecl WinVidInit(void);</title></rect>
+<rect width="4.33" height="4.25" x="685.21" y="269.04" class="decompiled"><title>bool __cdecl WinVidInit(void);</title></rect>
 <rect width="4.33" height="4.25" x="692.53" y="269.04" class="known"><title>void __cdecl DefaultConflict(void);</title></rect>
 <rect width="4.33" height="4.25" x="699.86" y="269.04" class="known"><title>void __cdecl UpdateTicks(void);</title></rect>
 <rect width="4.21" height="4.25" x="707.19" y="269.04" class="known"><title>void __cdecl ControlDingDong(int16_t item_num);</title></rect>

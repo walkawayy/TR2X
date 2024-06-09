@@ -443,7 +443,6 @@
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
-#define WinVidInit ((bool __cdecl (*)(void))0x00445E10)
 #define WinVidGetDisplayAdapters ((bool __cdecl (*)(void))0x00445E50)
 #define EnumerateDisplayAdapters ((bool __cdecl (*)(DISPLAY_ADAPTER_LIST *displayAdapterList))0x00445F20)
 #define EnumDisplayAdaptersCallback ((BOOL __stdcall (*)(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext))0x00445F40)

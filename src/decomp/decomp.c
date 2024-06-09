@@ -2403,3 +2403,11 @@ HRESULT __stdcall EnumDisplayModesCallback(
 
     return DDENUMRET_OK;
 }
+
+bool __cdecl WinVidInit(void)
+{
+    g_AppResultCode = 0;
+    return WinVidRegisterGameWindowClass() && WinVidCreateGameWindow()
+        && WinVidGetDisplayAdapters() && g_DisplayAdapterList.count
+        && WinVidGetDisplayModes();
+}

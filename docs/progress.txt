@@ -3042,7 +3042,7 @@ typedef struct {
 0x004458C0  0x00D5  +R      void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter);
 0x004459A0  0x0045  +R      bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);
 0x004459F0  0x0053  +R      bool __cdecl WinVidGetDisplayModes(void);
-0x00445A50  0x03B1  -R      HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
+0x00445A50  0x03B1  +R      HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
 0x00445E10  0x0040  -R      bool __cdecl WinVidInit(void);
 0x00445E50  0x00AF  -R      bool __cdecl WinVidGetDisplayAdapters(void);
 0x00445F00  0x0013  +       void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);

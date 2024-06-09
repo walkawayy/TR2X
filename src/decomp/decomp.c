@@ -15,6 +15,7 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "lib/cpp.h"
 #include "lib/ddraw.h"
 #include "lib/dinput.h"
 #include "util.h"
@@ -22,6 +23,125 @@
 #include <assert.h>
 #include <dinput.h>
 #include <stdio.h>
+
+static bool InsertDisplayModeInListSorted(
+    DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE *src_mode);
+
+static void __thiscall TmpDisplayModeListInit(DISPLAY_MODE_LIST *mode_list)
+{
+    mode_list->head = NULL;
+    mode_list->tail = NULL;
+    mode_list->count = 0;
+}
+
+static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list)
+{
+    DISPLAY_MODE_NODE *node;
+    DISPLAY_MODE_NODE *nextNode;
+
+    for (node = mode_list->head; node; node = nextNode) {
+        nextNode = node->next;
+        operator_delete(node);
+    }
+    DisplayModeListInit(mode_list);
+}
+
+static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
+    DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE_NODE *before)
+{
+    if (!before || !before->previous) {
+        return InsertDisplayModeInListHead(mode_list);
+    }
+
+    DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
+    if (!node) {
+        return NULL;
+    }
+
+    before->previous->next = node;
+    node->previous = before->previous;
+
+    before->previous = node;
+    node->next = before;
+
+    mode_list->count++;
+    return &node->body;
+}
+
+static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListHead(
+    DISPLAY_MODE_LIST *mode_list)
+{
+    DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
+    if (!node) {
+        return NULL;
+    }
+
+    node->next = mode_list->head;
+    node->previous = NULL;
+
+    if (mode_list->head) {
+        mode_list->head->previous = node;
+    }
+
+    if (!mode_list->tail) {
+        mode_list->tail = node;
+    }
+
+    mode_list->head = node;
+    mode_list->count++;
+    return &node->body;
+}
+
+static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListTail(
+    DISPLAY_MODE_LIST *mode_list)
+{
+    DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
+    if (!node) {
+        return NULL;
+    }
+
+    node->next = NULL;
+    node->previous = mode_list->tail;
+
+    if (mode_list->tail) {
+        mode_list->tail->next = node;
+    }
+
+    if (!mode_list->head) {
+        mode_list->head = node;
+    }
+
+    mode_list->tail = node;
+    mode_list->count++;
+    return &node->body;
+}
+
+static bool InsertDisplayModeInListSorted(
+    DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE *src_mode)
+{
+    DISPLAY_MODE *dst_mode = NULL;
+
+    if (mode_list->head == NULL
+        || CompareVideoModes(src_mode, &mode_list->head->body)) {
+        dst_mode = TmpInsertDisplayModeInListHead(mode_list);
+        goto finish;
+    }
+    for (DISPLAY_MODE_NODE *node = mode_list->head; node != NULL;
+         node = node->next) {
+        if (CompareVideoModes(src_mode, &node->body)) {
+            dst_mode = TmpInsertDisplayMode(mode_list, node);
+            goto finish;
+        }
+    }
+    dst_mode = TmpInsertDisplayModeInListTail(mode_list);
+
+finish:
+    if (dst_mode == NULL) {
+        return false;
+    }
+    *dst_mode = *src_mode;
+    return true;
+}
 
 int32_t __cdecl GameInit(void)
 {
@@ -2213,4 +2333,73 @@ bool __cdecl WinVidGetDisplayModes(void)
         DDrawRelease();
     }
     return true;
+}
+
+HRESULT __stdcall EnumDisplayModesCallback(
+    LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext)
+{
+    DISPLAY_ADAPTER *adapter = (DISPLAY_ADAPTER *)lpContext;
+    VGA_MODE vga_mode = VGA_NO_VGA;
+    bool sw_renderer_supported = false;
+
+    if (!(lpDDSurfaceDesc->dwFlags & DDSD_HEIGHT)
+        || !(lpDDSurfaceDesc->dwFlags & DDSD_WIDTH)
+        || !(lpDDSurfaceDesc->dwFlags & DDSD_PIXELFORMAT)
+        || !(lpDDSurfaceDesc->ddpfPixelFormat.dwFlags & DDPF_RGB)) {
+        return DDENUMRET_OK;
+    }
+
+    if ((lpDDSurfaceDesc->ddpfPixelFormat.dwFlags & DDPF_PALETTEINDEXED8) != 0
+        && lpDDSurfaceDesc->ddpfPixelFormat.dwRGBBitCount == 8) {
+        if (lpDDSurfaceDesc->ddsCaps.dwCaps & DDSCAPS_MODEX) {
+            vga_mode = VGA_MODEX;
+        } else if (lpDDSurfaceDesc->ddsCaps.dwCaps & DDSCAPS_STANDARDVGAMODE) {
+            vga_mode = VGA_STANDARD;
+        } else {
+            vga_mode = VGA_256_COLOR;
+        }
+
+        if (lpDDSurfaceDesc->dwWidth == 320 && lpDDSurfaceDesc->dwHeight == 200
+            && (!adapter->is_vga_mode1_presented
+                || vga_mode < adapter->vga_mode1.vga)) {
+            adapter->vga_mode1.width = 320;
+            adapter->vga_mode1.height = 200;
+            adapter->vga_mode1.bpp = 8;
+            adapter->vga_mode1.vga = vga_mode;
+            adapter->is_vga_mode1_presented = true;
+        }
+
+        if (lpDDSurfaceDesc->dwWidth == 640 && lpDDSurfaceDesc->dwHeight == 480
+            && (!adapter->is_vga_mode2_presented
+                || vga_mode < adapter->vga_mode2.vga)) {
+            adapter->vga_mode2.width = 640;
+            adapter->vga_mode2.height = 480;
+            adapter->vga_mode2.bpp = 8;
+            adapter->vga_mode2.vga = vga_mode;
+            adapter->is_vga_mode2_presented = true;
+        }
+        sw_renderer_supported = true;
+    }
+
+    DISPLAY_MODE video_mode = {
+        .width = lpDDSurfaceDesc->dwWidth,
+        .height = lpDDSurfaceDesc->dwHeight,
+        .bpp = lpDDSurfaceDesc->ddpfPixelFormat.dwRGBBitCount,
+        .vga = vga_mode,
+    };
+
+    int32_t render_bit_depth =
+        GetRenderBitDepth(lpDDSurfaceDesc->ddpfPixelFormat.dwRGBBitCount);
+
+    if (adapter->hw_render_supported
+        && (render_bit_depth & adapter->hw_device_desc.dwDeviceRenderBitDepth)
+            != 0) {
+        InsertDisplayModeInListSorted(&adapter->hw_disp_mode_list, &video_mode);
+    }
+
+    if (sw_renderer_supported) {
+        InsertDisplayModeInListSorted(&adapter->sw_disp_mode_list, &video_mode);
+    }
+
+    return DDENUMRET_OK;
 }

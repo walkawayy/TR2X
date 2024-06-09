@@ -151,6 +151,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00444CF0, GameWindowCalculateSizeFromClientByZero);
     INJECT(enable, 0x004459A0, CompareVideoModes);
     INJECT(enable, 0x004459F0, WinVidGetDisplayModes);
+    INJECT(enable, 0x00445A50, EnumDisplayModesCallback);
 }
 
 static void Inject_Background(const bool enable)

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.22% (502)</tspan> · <tspan class="known">56.32% (686)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.30% (503)</tspan> · <tspan class="known">56.24% (685)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="307.88" height="6" x="0" y="0" class="decompiled"/>
-<rect width="420.72" height="6" x="307.88" y="0" class="known"/>
+<rect width="308.49" height="6" x="0" y="0" class="decompiled"/>
+<rect width="420.11" height="6" x="308.49" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -930,7 +930,7 @@
 <rect width="12" height="12" x="15" y="255" class="decompiled"><title>void __cdecl WinVidSetDisplayAdapter(DISPLAY_ADAPTER *disp_adapter);</title></rect>
 <rect width="12" height="12" x="30" y="255" class="decompiled"><title>bool __thiscall CompareVideoModes(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);</title></rect>
 <rect width="12" height="12" x="45" y="255" class="decompiled"><title>bool __cdecl WinVidGetDisplayModes(void);</title></rect>
-<rect width="12" height="12" x="60" y="255" class="known"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
+<rect width="12" height="12" x="60" y="255" class="decompiled"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="75" y="255" class="known"><title>bool __cdecl WinVidInit(void);</title></rect>
 <rect width="12" height="12" x="90" y="255" class="known"><title>bool __cdecl WinVidGetDisplayAdapters(void);</title></rect>
 <rect width="12" height="12" x="105" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.10%</tspan> · <tspan class="known">61.58%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.37%</tspan> · <tspan class="known">61.30%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="284.58" height="6" x="0" y="0" class="decompiled"/>
-<rect width="459.98" height="6" x="284.58" y="0" class="known"/>
+<rect width="286.65" height="6" x="0" y="0" class="decompiled"/>
+<rect width="457.91" height="6" x="286.65" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1376,7 +1376,7 @@
 <rect width="24.80" height="26.17" x="239.29" y="207.59" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="24.80" height="25.96" x="239.29" y="236.76" class="known"><title>void __cdecl Worker1Control(int16_t item_num);</title></rect>
 <rect width="24.80" height="25.49" x="239.29" y="265.73" class="known"><title>void __cdecl WarriorControl(int16_t item_num);</title></rect>
-<rect width="24.80" height="25.22" x="239.29" y="294.21" class="known"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
+<rect width="24.80" height="25.22" x="239.29" y="294.21" class="decompiled"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
 <rect width="24.80" height="24.86" x="239.29" y="322.43" class="decompiled"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
 <rect width="24.80" height="24.71" x="239.29" y="350.29" class="known"><title>BOOL __cdecl LoadRooms(HANDLE handle);</title></rect>
 <rect width="24.49" height="24.90" x="267.09" y="0" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>

@@ -2199,3 +2199,18 @@ bool __thiscall CompareVideoModes(
     }
     return false;
 }
+
+bool __cdecl WinVidGetDisplayModes(void)
+{
+    for (DISPLAY_ADAPTER_NODE *adapter = g_DisplayAdapterList.head; adapter;
+         adapter = adapter->next) {
+        DDrawCreate(adapter->body.adapter_guid_ptr);
+        ShowDDrawGameWindow(false);
+        g_DDraw->lpVtbl->EnumDisplayModes(
+            g_DDraw, DDEDM_STANDARDVGAMODES, NULL, (LPVOID)&adapter->body,
+            EnumDisplayModesCallback);
+        HideDDrawGameWindow();
+        DDrawRelease();
+    }
+    return true;
+}

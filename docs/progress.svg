@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.54% (506)</tspan> · <tspan class="known">55.99% (682)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.63% (507)</tspan> · <tspan class="known">55.91% (681)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="310.33" height="6" x="0" y="0" class="decompiled"/>
-<rect width="418.27" height="6" x="310.33" y="0" class="known"/>
+<rect width="310.94" height="6" x="0" y="0" class="decompiled"/>
+<rect width="417.66" height="6" x="310.94" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -937,7 +937,7 @@
 <rect width="12" height="12" x="120" y="255" class="decompiled"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
 <rect width="12" height="12" x="135" y="255" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="150" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);</title></rect>
-<rect width="12" height="12" x="165" y="255" class="known"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
+<rect width="12" height="12" x="165" y="255" class="decompiled"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
 <rect width="12" height="12" x="180" y="255" class="known"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="12" height="12" x="195" y="255" class="known"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
 <rect width="12" height="12" x="210" y="255" class="known"><title>bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.45%</tspan> · <tspan class="known">61.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.48%</tspan> · <tspan class="known">61.19%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="287.23" height="6" x="0" y="0" class="decompiled"/>
-<rect width="457.33" height="6" x="287.23" y="0" class="known"/>
+<rect width="287.46" height="6" x="0" y="0" class="decompiled"/>
+<rect width="457.10" height="6" x="287.46" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1998,7 +1998,7 @@
 <rect width="6.63" height="6.22" x="617.93" y="226.42" class="known"><title>bool __cdecl PlayFMV(const char *file_name);</title></rect>
 <rect width="6.54" height="6.22" x="627.56" y="226.42" class="decompiled"><title>void __cdecl Direct3DRelease(void);</title></rect>
 <rect width="6.54" height="6.22" x="637.10" y="226.42" class="decompiled"><title>void __cdecl GameWindowCalculateSizeFromClientByZero(int32_t *width, int32_t *height);</title></rect>
-<rect width="6.54" height="6.22" x="646.65" y="226.42" class="known"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
+<rect width="6.54" height="6.22" x="646.65" y="226.42" class="decompiled"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
 <rect width="6.54" height="6.22" x="656.19" y="226.42" class="known"><title>int32_t __cdecl CreateTexturePage(int32_t width, int32_t height, bool alpha);</title></rect>
 <rect width="6.45" height="6.22" x="665.73" y="226.42" class="decompiled"><title>void __cdecl Lara_Col_SwanDive(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="6.36" height="6.22" x="675.18" y="226.42" class="decompiled"><title>void __cdecl Sound_UpdateEffects(void);</title></rect>

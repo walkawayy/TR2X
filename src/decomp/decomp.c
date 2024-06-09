@@ -25,6 +25,8 @@
 #include <dinput.h>
 #include <stdio.h>
 
+#define IDI_MAINICON 100
+
 static bool InsertDisplayModeInListSorted(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE *src_mode);
 
@@ -2455,4 +2457,19 @@ bool __cdecl EnumerateDisplayAdapters(
 {
     return SUCCEEDED(DirectDrawEnumerate(
         EnumDisplayAdaptersCallback, (LPVOID)display_adapter_list));
+}
+
+bool __cdecl WinVidRegisterGameWindowClass(void)
+{
+    WNDCLASSEXA wnd_class = {
+        .cbSize = sizeof(WNDCLASSEXA),
+        .style = 0,
+        .lpfnWndProc = WinVidGameWindowProc,
+        .hInstance = g_GameModule,
+        .hIcon = LoadIcon(g_GameModule, MAKEINTRESOURCE(IDI_MAINICON)),
+        .hCursor = LoadCursor(NULL, IDC_ARROW),
+        .lpszClassName = g_GameClassName,
+        0,
+    };
+    return RegisterClassExA(&wnd_class) != 0;
 }

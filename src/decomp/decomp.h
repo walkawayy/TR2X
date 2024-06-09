@@ -102,3 +102,4 @@ void __cdecl Direct3DRelease(void);
 bool __cdecl Direct3DInit(void);
 bool __cdecl DDrawCreate(LPGUID lpGUID);
 void __cdecl DDrawRelease(void);
+void __cdecl GameWindowCalculateSizeFromClient(int *width, int *height);

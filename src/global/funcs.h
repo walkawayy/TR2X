@@ -443,7 +443,6 @@
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
-#define GameWindowCalculateSizeFromClient ((void __cdecl (*)(int32_t *width, int32_t *height))0x00444C70)
 #define GameWindowCalculateSizeFromClientByZero ((void __cdecl (*)(int32_t *width, int32_t *height))0x00444CF0)
 #define CompareVideoModes ((bool __thiscall (*)(const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2))0x004459A0)
 #define WinVidGetDisplayModes ((bool __cdecl (*)(void))0x004459F0)

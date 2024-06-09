@@ -2151,3 +2151,14 @@ void __cdecl DDrawRelease(void)
         g_DDrawInterface = NULL;
     }
 }
+
+void __cdecl GameWindowCalculateSizeFromClient(
+    int *const width, int *const height)
+{
+    RECT rect = { 0, 0, *width, *height };
+    const DWORD style = GetWindowLong(g_GameWindowHandle, GWL_STYLE);
+    const DWORD style_ex = GetWindowLong(g_GameWindowHandle, GWL_EXSTYLE);
+    AdjustWindowRectEx(&rect, style, FALSE, style_ex);
+    *width = rect.right - rect.left;
+    *height = rect.bottom - rect.top;
+}

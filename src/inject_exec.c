@@ -147,6 +147,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00444980, Direct3DInit);
     INJECT(enable, 0x00444BD0, DDrawCreate);
     INJECT(enable, 0x00444C30, DDrawRelease);
+    INJECT(enable, 0x00444C70, GameWindowCalculateSizeFromClient);
 }
 
 static void Inject_Background(const bool enable)

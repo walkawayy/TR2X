@@ -179,6 +179,7 @@ extern const char *g_TR2XVersion;
 #define g_D3DMaterial (*(LPDIRECT3DMATERIAL2*)0x004D7EC8)
 #define g_MinWindowClientHeight (*(int32_t*)0x004D7ED0)
 #define g_DDrawInterface (*(LPDIRECTDRAW*)0x004D7ED4)
+#define g_IsGameWindowChanging (*(bool*)0x004D7ED8)
 #define g_MaxWindowHeight (*(int32_t*)0x004D7EDC)
 #define g_DDraw (*(LPDIRECTDRAW3*)0x004D7EE0)
 #define g_IsGameWindowCreated (*(bool*)0x004D7EE4)

@@ -156,6 +156,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00445E50, WinVidGetDisplayAdapters);
     INJECT(enable, 0x00445F20, EnumerateDisplayAdapters);
     INJECT(enable, 0x00446140, WinVidRegisterGameWindowClass);
+    INJECT(enable, 0x004461B0, WinVidGameWindowProc);
 }
 
 static void Inject_Background(const bool enable)

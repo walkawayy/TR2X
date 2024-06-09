@@ -2473,3 +2473,184 @@ bool __cdecl WinVidRegisterGameWindowClass(void)
     };
     return RegisterClassExA(&wnd_class) != 0;
 }
+
+LRESULT CALLBACK
+WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+    if (g_IsFMVPlaying) {
+        switch (Msg) {
+        case WM_DESTROY:
+            g_IsGameWindowCreated = false;
+            g_GameWindowHandle = NULL;
+            PostQuitMessage(0);
+            break;
+
+        case WM_MOVE:
+            g_GameWindowPositionX = (int)(short)LOWORD(lParam);
+            g_GameWindowPositionY = (int)(short)HIWORD(lParam);
+            break;
+
+        case WM_ACTIVATEAPP:
+            g_IsGameWindowActive = (wParam != 0);
+            break;
+
+        case WM_SYSCOMMAND:
+            if (wParam == SC_KEYMENU) {
+                return 0;
+            }
+            break;
+        }
+        return DefWindowProc(hWnd, Msg, wParam, lParam);
+    }
+
+    switch (Msg) {
+    case WM_CREATE:
+        g_IsGameWindowCreated = true;
+        break;
+
+    case WM_DESTROY:
+        g_IsGameWindowCreated = false;
+        g_GameWindowHandle = NULL;
+        PostQuitMessage(0);
+        break;
+
+    case WM_MOVE:
+        g_GameWindowPositionX = (int)(short)LOWORD(lParam);
+        g_GameWindowPositionY = (int)(short)HIWORD(lParam);
+        break;
+
+    case WM_SIZE:
+        switch (wParam) {
+        case SIZE_RESTORED:
+            g_IsGameWindowMinimized = false;
+            g_IsGameWindowMaximized = false;
+            break;
+
+        case SIZE_MAXIMIZED:
+            g_IsGameWindowMinimized = false;
+            g_IsGameWindowMaximized = true;
+            break;
+
+        case SIZE_MINIMIZED:
+            g_IsGameWindowMinimized = true;
+            g_IsGameWindowMaximized = false;
+            return DefWindowProc(hWnd, Msg, wParam, lParam);
+
+        default:
+            return DefWindowProc(hWnd, Msg, wParam, lParam);
+        }
+
+        if (g_IsGameFullScreen
+            || ((int)(short)LOWORD(lParam) == g_GameWindowWidth
+                && (int)(short)HIWORD(lParam) == g_GameWindowHeight)) {
+            break;
+        }
+
+        g_GameWindowWidth = (int)(short)LOWORD(lParam);
+        g_GameWindowHeight = (int)(short)HIWORD(lParam);
+        if (g_IsGameWindowUpdating) {
+            break;
+        }
+
+        UpdateGameResolution();
+        break;
+
+    case WM_PAINT: {
+        PAINTSTRUCT paint;
+        HDC hdc = BeginPaint(hWnd, &paint);
+        LPDDS surface = (g_SavedAppSettings.render_mode == RM_SOFTWARE)
+            ? g_RenderBufferSurface
+            : g_BackBufferSurface;
+        if (g_IsGameFullScreen || !g_PrimaryBufferSurface || !surface) {
+            HBRUSH brush = (HBRUSH)GetStockObject(BLACK_BRUSH);
+            FillRect(hdc, &paint.rcPaint, brush);
+        } else {
+            if (g_SavedAppSettings.render_mode == RM_SOFTWARE
+                && !WinVidCheckGameWindowPalette(hWnd)
+                && g_RenderBufferSurface) {
+                WinVidClearBuffer(g_RenderBufferSurface, NULL, 0);
+            }
+            UpdateFrame(false, NULL);
+        }
+        EndPaint(hWnd, &paint);
+        return 0;
+    }
+
+    case WM_ACTIVATE:
+        if (LOWORD(wParam) && g_DDrawPalette != NULL
+            && g_PrimaryBufferSurface != NULL) {
+            g_PrimaryBufferSurface->lpVtbl->SetPalette(
+                g_PrimaryBufferSurface, g_DDrawPalette);
+        }
+        break;
+
+    case WM_ERASEBKGND:
+        return 1;
+
+    case WM_ACTIVATEAPP:
+        if (wParam && !g_IsGameWindowActive && g_IsGameFullScreen
+            && g_SavedAppSettings.render_mode == RM_HARDWARE) {
+            g_WinVidNeedToResetBuffers = true;
+        }
+        g_IsGameWindowActive = (wParam != 0);
+        break;
+
+    case WM_SETCURSOR:
+        if (g_IsGameFullScreen) {
+            SetCursor(NULL);
+            return 1;
+        }
+        break;
+
+    case WM_GETMINMAXINFO:
+        if (WinVidGetMinMaxInfo((LPMINMAXINFO)lParam)) {
+            return 0;
+        }
+        break;
+
+    case WM_NCPAINT:
+    case WM_NCLBUTTONDOWN:
+    case WM_NCLBUTTONDBLCLK:
+    case WM_NCRBUTTONDOWN:
+    case WM_NCRBUTTONDBLCLK:
+    case WM_NCMBUTTONDOWN:
+    case WM_NCMBUTTONDBLCLK:
+        if (g_IsGameFullScreen) {
+            return 0;
+        }
+        break;
+
+    case WM_SYSCOMMAND:
+        if (wParam == SC_KEYMENU) {
+            return 0;
+        }
+        break;
+
+    case WM_SIZING:
+        WinVidResizeGameWindow(hWnd, wParam, (LPRECT)lParam);
+        break;
+
+    case WM_MOVING:
+        if (g_IsGameFullScreen || g_IsGameWindowMaximized) {
+            GetWindowRect(hWnd, (LPRECT)lParam);
+            return 1;
+        }
+        break;
+
+    case WM_ENTERSIZEMOVE:
+        g_IsGameWindowChanging = true;
+        break;
+
+    case WM_EXITSIZEMOVE:
+        g_IsGameWindowChanging = false;
+        break;
+
+    case WM_PALETTECHANGED:
+        if (hWnd != (HWND)wParam && !g_IsGameFullScreen && g_DDrawPalette) {
+            InvalidateRect(hWnd, NULL, FALSE);
+        }
+        break;
+    }
+
+    return DefWindowProc(hWnd, Msg, wParam, lParam);
+}

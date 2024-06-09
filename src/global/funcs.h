@@ -444,7 +444,6 @@
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
 #define EnumDisplayAdaptersCallback ((BOOL __stdcall (*)(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext))0x00445F40)
-#define WinVidGameWindowProc ((LRESULT __stdcall (*)(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam))0x004461B0)
 #define WinVidResizeGameWindow ((void __cdecl (*)(HWND hWnd, int32_t edge, LPRECT rect))0x004467C0)
 #define WinVidCheckGameWindowPalette ((bool __cdecl (*)(HWND hWnd))0x004469A0)
 #define WinVidCreateGameWindow ((bool __cdecl (*)(void))0x00446A60)

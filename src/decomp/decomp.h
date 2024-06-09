@@ -114,3 +114,5 @@ bool __cdecl WinVidGetDisplayAdapters(void);
 bool __cdecl EnumerateDisplayAdapters(
     DISPLAY_ADAPTER_LIST *display_adapter_list);
 bool __cdecl WinVidRegisterGameWindowClass(void);
+LRESULT CALLBACK
+WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);

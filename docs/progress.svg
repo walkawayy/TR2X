@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.63% (507)</tspan> · <tspan class="known">55.91% (681)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.71% (508)</tspan> · <tspan class="known">55.83% (680)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="310.94" height="6" x="0" y="0" class="decompiled"/>
-<rect width="417.66" height="6" x="310.94" y="0" class="known"/>
+<rect width="311.56" height="6" x="0" y="0" class="decompiled"/>
+<rect width="417.04" height="6" x="311.56" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -938,7 +938,7 @@
 <rect width="12" height="12" x="135" y="255" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="150" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="12" height="12" x="165" y="255" class="decompiled"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
-<rect width="12" height="12" x="180" y="255" class="known"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
+<rect width="12" height="12" x="180" y="255" class="decompiled"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="12" height="12" x="195" y="255" class="known"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
 <rect width="12" height="12" x="210" y="255" class="known"><title>bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);</title></rect>
 <rect width="12" height="12" x="225" y="255" class="known"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.48%</tspan> · <tspan class="known">61.19%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.83%</tspan> · <tspan class="known">60.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="287.46" height="6" x="0" y="0" class="decompiled"/>
-<rect width="457.10" height="6" x="287.46" y="0" class="known"/>
+<rect width="290.05" height="6" x="0" y="0" class="decompiled"/>
+<rect width="454.51" height="6" x="290.05" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1348,7 +1348,7 @@
 <rect width="28.60" height="28.33" x="177.07" y="130.59" class="decompiled"><title>void __cdecl Camera_Update(void);</title></rect>
 <rect width="28.60" height="28.20" x="177.07" y="161.92" class="decompiled"><title>void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade);</title></rect>
 <rect width="28.60" height="28.12" x="177.07" y="193.12" class="known"><title>void __cdecl MonkControl(int16_t item_num);</title></rect>
-<rect width="28.60" height="28.07" x="177.07" y="224.25" class="known"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
+<rect width="28.60" height="28.07" x="177.07" y="224.25" class="decompiled"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="28.60" height="28.04" x="177.07" y="255.32" class="known"><title>int32_t __cdecl SkidooDynamics(ITEM_INFO *skidoo);</title></rect>
 <rect width="28.60" height="28.02" x="177.07" y="286.36" class="known"><title>void __cdecl do_sound_option(INVENTORY_ITEM *item);</title></rect>
 <rect width="28.60" height="27.36" x="177.07" y="317.38" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>

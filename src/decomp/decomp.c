@@ -2865,3 +2865,17 @@ void __cdecl WinVidExitMessage(void)
     while (WinVidSpinMessageLoop(false)) { }
     g_GameWindowHandle = NULL;
 }
+
+DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(const GUID *guid_ptr)
+{
+    if (guid_ptr != NULL) {
+        for (DISPLAY_ADAPTER_NODE *adapter = g_DisplayAdapterList.head;
+             adapter != NULL; adapter = adapter->next) {
+            if (memcmp(&adapter->body.adapter_guid, guid_ptr, sizeof(GUID))
+                == 0) {
+                return adapter;
+            }
+        }
+    }
+    return g_PrimaryDisplayAdapter;
+}

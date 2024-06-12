@@ -3054,7 +3054,7 @@ typedef struct {
 0x004467C0  0x01C0  +R      void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);
 0x004469A0  0x00BC  +R      bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);
 0x00446A60  0x00C6  +R      bool __cdecl WinVidCreateGameWindow(void);
-0x00446B30  0x0022  -R      void __cdecl WinVidFreeWindow(void);
+0x00446B30  0x0022  +R      void __cdecl WinVidFreeWindow(void);
 0x00446B60  0x004D  -R      void __cdecl WinVidExitMessage(void);
 0x00446BB0  0x0048  -R      DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);
 0x00446C00  0x0374  -R      void __cdecl WinVidStart(void);

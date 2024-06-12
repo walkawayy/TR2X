@@ -2848,3 +2848,9 @@ bool __cdecl WinVidCreateGameWindow(void)
 
     return true;
 }
+
+void __cdecl WinVidFreeWindow(void)
+{
+    WinVidExitMessage();
+    UnregisterClassA(g_GameClassName, g_GameModule);
+}

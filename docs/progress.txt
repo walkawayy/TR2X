@@ -3053,7 +3053,7 @@ typedef struct {
 0x004461B0  0x049F  +R      LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 0x004467C0  0x01C0  +R      void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);
 0x004469A0  0x00BC  +R      bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);
-0x00446A60  0x00C6  -R      bool __cdecl WinVidCreateGameWindow(void);
+0x00446A60  0x00C6  +R      bool __cdecl WinVidCreateGameWindow(void);
 0x00446B30  0x0022  -R      void __cdecl WinVidFreeWindow(void);
 0x00446B60  0x004D  -R      void __cdecl WinVidExitMessage(void);
 0x00446BB0  0x0048  -R      DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);
@@ -3757,4 +3757,5 @@ typedef struct {
 0x004D7EC8  -       LPDIRECT3DMATERIAL2 g_D3DMaterial;
 0x004D7ED4  -       LPDIRECTDRAW g_DDrawInterface;
 0x00466448  -       const char g_GameClassName[];
+0x00466468  -       const char g_GameWindowName[];
 0x004D7ED8  -       bool g_IsGameWindowChanging;

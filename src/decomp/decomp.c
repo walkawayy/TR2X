@@ -2813,3 +2813,38 @@ bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd)
 
     return memcmp(buf_palette, g_GamePalette8, sizeof(buf_palette)) == 0;
 }
+
+bool __cdecl WinVidCreateGameWindow(void)
+{
+    g_IsGameWindowActive = true;
+    g_IsGameWindowShow = true;
+    g_IsDDrawGameWindowShow = false;
+    g_IsMessageLoopClosed = false;
+    g_IsGameWindowUpdating = false;
+    g_IsGameWindowMinimized = false;
+    g_IsGameWindowMaximized = false;
+    g_IsGameWindowCreated = false;
+    g_IsGameFullScreen = false;
+    g_IsMinMaxInfoSpecial = false;
+    g_IsGameWindowChanging = false;
+
+    WinVidClearMinWindowSize();
+    WinVidClearMaxWindowSize();
+
+    g_GameWindowHandle = CreateWindowEx(
+        WS_EX_APPWINDOW, g_GameClassName, g_GameWindowName, WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL,
+        g_GameModule, NULL);
+    if (g_GameWindowHandle == NULL) {
+        return false;
+    }
+
+    RECT rect;
+    GetWindowRect(g_GameWindowHandle, &rect);
+    g_GameWindowX = rect.left;
+    g_GameWindowY = rect.top;
+
+    WinVidHideGameWindow();
+
+    return true;
+}

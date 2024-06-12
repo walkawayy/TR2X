@@ -121,3 +121,4 @@ BOOL WINAPI EnumDisplayAdaptersCallback(
     LPVOID lpContext);
 void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect);
 bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);
+bool __cdecl WinVidCreateGameWindow(void);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.95% (511)</tspan> · <tspan class="known">55.58% (677)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.04% (512)</tspan> · <tspan class="known">55.50% (676)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="313.40" height="6" x="0" y="0" class="decompiled"/>
-<rect width="415.20" height="6" x="313.40" y="0" class="known"/>
+<rect width="314.01" height="6" x="0" y="0" class="decompiled"/>
+<rect width="414.59" height="6" x="314.01" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -941,7 +941,7 @@
 <rect width="12" height="12" x="180" y="255" class="decompiled"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="12" height="12" x="195" y="255" class="decompiled"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
 <rect width="12" height="12" x="210" y="255" class="decompiled"><title>bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);</title></rect>
-<rect width="12" height="12" x="225" y="255" class="known"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
+<rect width="12" height="12" x="225" y="255" class="decompiled"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
 <rect width="12" height="12" x="240" y="255" class="known"><title>void __cdecl WinVidFreeWindow(void);</title></rect>
 <rect width="12" height="12" x="255" y="255" class="known"><title>void __cdecl WinVidExitMessage(void);</title></rect>
 <rect width="12" height="12" x="270" y="255" class="known"><title>DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.15%</tspan> · <tspan class="known">60.53%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.20%</tspan> · <tspan class="known">60.47%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="292.41" height="6" x="0" y="0" class="decompiled"/>
-<rect width="452.14" height="6" x="292.41" y="0" class="known"/>
+<rect width="292.85" height="6" x="0" y="0" class="decompiled"/>
+<rect width="451.71" height="6" x="292.85" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1751,7 +1751,7 @@
 <rect width="9.60" height="10.11" x="649.87" y="136.56" class="decompiled"><title>void __cdecl Output_RotateLight(int16_t pitch, int16_t yaw);</title></rect>
 <rect width="9.60" height="10.11" x="662.46" y="136.56" class="known"><title>bool __cdecl SE_SoundTestStart(void);</title></rect>
 <rect width="9.53" height="10.11" x="675.06" y="136.56" class="unused"><title>sub_4449D0</title></rect>
-<rect width="9.53" height="10.11" x="687.59" y="136.56" class="known"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
+<rect width="9.53" height="10.11" x="687.59" y="136.56" class="decompiled"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
 <rect width="9.53" height="10.11" x="700.12" y="136.56" class="known"><title>BOOL __cdecl Read_Strings(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);</title></rect>
 <rect width="9.47" height="10.11" x="712.66" y="136.56" class="decompiled"><title>void __cdecl Output_QuickSort(int32_t left, int32_t right);</title></rect>
 <rect width="9.47" height="10.11" x="725.13" y="136.56" class="known"><title>void __cdecl LavaSpray(int16_t item_num);</title></rect>

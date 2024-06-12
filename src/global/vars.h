@@ -41,6 +41,7 @@ extern const char *g_TR2XVersion;
 #define g_TextASCIIMap (*(int8_t(*)[])0x004662E0)
 #define g_BGND_PaletteIndex (*(int32_t*)0x00466400) // = -1
 #define g_GameClassName (*(const char(*)[])0x00466448)
+#define g_GameWindowName (*(const char(*)[])0x00466468)
 #define g_GameSizer (*(double*)0x00466480) // = 1.0
 #define g_GameSizerCopy (*(double*)0x00466488) // = 1.0
 #define g_FadeValue (*(int32_t*)0x00466490) // = 0x100000

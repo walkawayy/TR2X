@@ -126,3 +126,4 @@ void __cdecl WinVidFreeWindow(void);
 void __cdecl WinVidExitMessage(void);
 DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(const GUID *guid_ptr);
 void __cdecl WinVidStart(void);
+void __cdecl WinVidFinish(void);

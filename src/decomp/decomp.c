@@ -2926,3 +2926,11 @@ void __cdecl WinVidStart(void)
         Shell_ExitSystem("Can't create DirectDraw");
     }
 }
+
+void __cdecl WinVidFinish(void)
+{
+    if (g_IsDDrawGameWindowShow) {
+        HideDDrawGameWindow();
+    }
+    DDrawRelease();
+}

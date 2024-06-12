@@ -3058,7 +3058,7 @@ typedef struct {
 0x00446B60  0x004D  +R      void __cdecl WinVidExitMessage(void);
 0x00446BB0  0x0048  +R      DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);
 0x00446C00  0x0374  +R      void __cdecl WinVidStart(void);
-0x00446F80  0x0013  -R      void __cdecl WinVidFinish(void);
+0x00446F80  0x0013  +R      void __cdecl WinVidFinish(void);
 0x00446FA0  0x000D  -R      void __thiscall DisplayModeListInit(DISPLAY_MODE_LIST *pList);
 0x00446FB0  0x0032  -R      void __thiscall DisplayModeListDelete(DISPLAY_MODE_LIST *pList);
 0x00446FF0  0x0012  -R      DISPLAY_MODE *__thiscall InsertDisplayMode(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before);

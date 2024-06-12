@@ -443,7 +443,6 @@
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
-#define WinVidFinish ((void __cdecl (*)(void))0x00446F80)
 #define DisplayModeListInit ((void __thiscall (*)(DISPLAY_MODE_LIST *pList))0x00446FA0)
 #define DisplayModeListDelete ((void __thiscall (*)(DISPLAY_MODE_LIST *pList))0x00446FB0)
 #define InsertDisplayMode ((DISPLAY_MODE *__thiscall (*)(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before))0x00446FF0)

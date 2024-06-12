@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.36% (516)</tspan> · <tspan class="known">55.17% (672)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.45% (517)</tspan> · <tspan class="known">55.09% (671)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="316.46" height="6" x="0" y="0" class="decompiled"/>
-<rect width="412.14" height="6" x="316.46" y="0" class="known"/>
+<rect width="317.08" height="6" x="0" y="0" class="decompiled"/>
+<rect width="411.52" height="6" x="317.08" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -946,7 +946,7 @@
 <rect width="12" height="12" x="255" y="255" class="decompiled"><title>void __cdecl WinVidExitMessage(void);</title></rect>
 <rect width="12" height="12" x="270" y="255" class="decompiled"><title>DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);</title></rect>
 <rect width="12" height="12" x="285" y="255" class="decompiled"><title>void __cdecl WinVidStart(void);</title></rect>
-<rect width="12" height="12" x="300" y="255" class="known"><title>void __cdecl WinVidFinish(void);</title></rect>
+<rect width="12" height="12" x="300" y="255" class="decompiled"><title>void __cdecl WinVidFinish(void);</title></rect>
 <rect width="12" height="12" x="315" y="255" class="known"><title>void __thiscall DisplayModeListInit(DISPLAY_MODE_LIST *pList);</title></rect>
 <rect width="12" height="12" x="330" y="255" class="known"><title>void __thiscall DisplayModeListDelete(DISPLAY_MODE_LIST *pList);</title></rect>
 <rect width="12" height="12" x="345" y="255" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayMode(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.52%</tspan> · <tspan class="known">60.16%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.52%</tspan> · <tspan class="known">60.15%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="295.18" height="6" x="0" y="0" class="decompiled"/>
-<rect width="449.38" height="6" x="295.18" y="0" class="known"/>
+<rect width="295.22" height="6" x="0" y="0" class="decompiled"/>
+<rect width="449.34" height="6" x="295.22" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2459,7 +2459,7 @@
 <rect width="0.89" height="1.05" x="738.33" y="350.77" class="decompiled"><title>void __cdecl Lara_Col_Null(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="0.89" height="1.05" x="742.22" y="350.77" class="decompiled"><title>void __cdecl Lara_Col_Swim(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="0.89" height="1.05" x="746.11" y="350.77" class="decompiled"><title>void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);</title></rect>
-<rect width="0.98" height="0.97" x="726.65" y="354.82" class="known"><title>void __cdecl WinVidFinish(void);</title></rect>
+<rect width="0.98" height="0.97" x="726.65" y="354.82" class="decompiled"><title>void __cdecl WinVidFinish(void);</title></rect>
 <rect width="0.98" height="0.97" x="726.65" y="358.79" class="known"><title>bool __cdecl S_IntroFMV(const char *file_name1, const char *file_name2);</title></rect>
 <rect width="0.98" height="0.97" x="726.65" y="362.76" class="known"><title>LONG __cdecl DeleteRegistryValue(LPCTSTR lpValueName);</title></rect>
 <rect width="0.98" height="0.76" x="726.65" y="366.72" class="unused"><title>sub_4449A0</title></rect>

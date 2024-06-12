@@ -15,7 +15,6 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "lib/cpp.h"
 #include "lib/ddraw.h"
 #include "lib/dinput.h"
 #include "specific/s_flagged_string.h"
@@ -52,7 +51,7 @@ static void DisplayModeListDelete(DISPLAY_MODE_LIST *mode_list)
 
     for (node = mode_list->head; node; node = nextNode) {
         nextNode = node->next;
-        operator_delete(node);
+        free(node);
     }
     DisplayModeListInit(mode_list);
 }
@@ -78,7 +77,7 @@ static DISPLAY_MODE *InsertDisplayMode(
         return InsertDisplayModeInListHead(mode_list);
     }
 
-    DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
+    DISPLAY_MODE_NODE *node = malloc(sizeof(DISPLAY_MODE_NODE));
     if (!node) {
         return NULL;
     }
@@ -95,7 +94,7 @@ static DISPLAY_MODE *InsertDisplayMode(
 
 static DISPLAY_MODE *InsertDisplayModeInListHead(DISPLAY_MODE_LIST *mode_list)
 {
-    DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
+    DISPLAY_MODE_NODE *node = malloc(sizeof(DISPLAY_MODE_NODE));
     if (!node) {
         return NULL;
     }
@@ -118,7 +117,7 @@ static DISPLAY_MODE *InsertDisplayModeInListHead(DISPLAY_MODE_LIST *mode_list)
 
 static DISPLAY_MODE *InsertDisplayModeInListTail(DISPLAY_MODE_LIST *mode_list)
 {
-    DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
+    DISPLAY_MODE_NODE *node = malloc(sizeof(DISPLAY_MODE_NODE));
     if (!node) {
         return NULL;
     }
@@ -2450,7 +2449,7 @@ bool __cdecl WinVidGetDisplayAdapters(void)
         DisplayModeListDelete(&node->body.hw_disp_mode_list);
         S_FlaggedString_Delete(&node->body.driver_name);
         S_FlaggedString_Delete(&node->body.driver_desc);
-        operator_delete(node);
+        free(node);
     }
 
     g_DisplayAdapterList.head = NULL;

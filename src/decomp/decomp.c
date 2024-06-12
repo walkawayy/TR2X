@@ -2115,7 +2115,7 @@ void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *const adapter)
 {
     if (D3DCreate()) {
         g_D3D->lpVtbl->EnumDevices(
-            g_D3D, Enum3DDevicesCallback, (LPVOID)adapter);
+            g_D3D, (void *)Enum3DDevicesCallback, (LPVOID)adapter);
         D3DRelease();
     }
 }
@@ -2492,7 +2492,8 @@ BOOL WINAPI EnumDisplayAdaptersCallback(
 
     DDCAPS_DX5 driver_caps = { .dwSize = sizeof(DDCAPS_DX5), 0 };
     DDCAPS_DX5 hel_caps = { .dwSize = sizeof(DDCAPS_DX5), 0 };
-    if (FAILED(g_DDraw->lpVtbl->GetCaps(g_DDraw, &driver_caps, &hel_caps))) {
+    if (FAILED(g_DDraw->lpVtbl->GetCaps(
+            g_DDraw, (void *)&driver_caps, (void *)&hel_caps))) {
         goto cleanup;
     }
 

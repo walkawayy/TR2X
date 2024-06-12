@@ -107,8 +107,8 @@ void __cdecl GameWindowCalculateSizeFromClientByZero(int *width, int *height);
 bool __thiscall CompareVideoModes(
     const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);
 bool __cdecl WinVidGetDisplayModes(void);
-HRESULT __stdcall
-EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
+HRESULT __stdcall EnumDisplayModesCallback(
+    LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);
 bool __cdecl WinVidInit(void);
 bool __cdecl WinVidGetDisplayAdapters(void);
 bool __cdecl EnumerateDisplayAdapters(
@@ -116,3 +116,6 @@ bool __cdecl EnumerateDisplayAdapters(
 bool __cdecl WinVidRegisterGameWindowClass(void);
 LRESULT CALLBACK
 WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
+BOOL WINAPI EnumDisplayAdaptersCallback(
+    GUID FAR *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName,
+    LPVOID lpContext);

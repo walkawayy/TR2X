@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.71% (508)</tspan> · <tspan class="known">55.83% (680)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.79% (509)</tspan> · <tspan class="known">55.75% (679)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="311.56" height="6" x="0" y="0" class="decompiled"/>
-<rect width="417.04" height="6" x="311.56" y="0" class="known"/>
+<rect width="312.17" height="6" x="0" y="0" class="decompiled"/>
+<rect width="416.43" height="6" x="312.17" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -935,7 +935,7 @@
 <rect width="12" height="12" x="90" y="255" class="decompiled"><title>bool __cdecl WinVidGetDisplayAdapters(void);</title></rect>
 <rect width="12" height="12" x="105" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);</title></rect>
 <rect width="12" height="12" x="120" y="255" class="decompiled"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>
-<rect width="12" height="12" x="135" y="255" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
+<rect width="12" height="12" x="135" y="255" class="decompiled"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="150" y="255" class="decompiled"><title>void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="12" height="12" x="165" y="255" class="decompiled"><title>bool __cdecl WinVidRegisterGameWindowClass(void);</title></rect>
 <rect width="12" height="12" x="180" y="255" class="decompiled"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.83%</tspan> · <tspan class="known">60.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">38.96%</tspan> · <tspan class="known">60.71%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="290.05" height="6" x="0" y="0" class="decompiled"/>
-<rect width="454.51" height="6" x="290.05" y="0" class="known"/>
+<rect width="291.02" height="6" x="0" y="0" class="decompiled"/>
+<rect width="453.54" height="6" x="291.02" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1512,7 +1512,7 @@
 <rect width="16.43" height="16.22" x="411.31" y="99.69" class="known"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
 <rect width="16.43" height="16.18" x="411.31" y="118.91" class="known"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
 <rect width="16.43" height="16.14" x="411.31" y="138.09" class="known"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
-<rect width="16.43" height="16.05" x="411.31" y="157.23" class="known"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
+<rect width="16.43" height="16.05" x="411.31" y="157.23" class="decompiled"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>
 <rect width="16.43" height="15.80" x="411.31" y="176.28" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
 <rect width="16.43" height="15.80" x="411.31" y="195.08" class="decompiled"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="16.43" height="15.71" x="411.31" y="213.88" class="known"><title>int32_t __cdecl SkidooUserControl(ITEM_INFO *skidoo, int32_t height, int32_t *pitch);</title></rect>

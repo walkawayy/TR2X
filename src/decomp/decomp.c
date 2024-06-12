@@ -30,6 +30,15 @@
 static bool InsertDisplayModeInListSorted(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE *src_mode);
 
+static void __thiscall TmpDisplayModeListInit(DISPLAY_MODE_LIST *mode_list);
+static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list);
+static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
+    DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE_NODE *before);
+static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListHead(
+    DISPLAY_MODE_LIST *mode_list);
+static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListTail(
+    DISPLAY_MODE_LIST *mode_list);
+
 static void __thiscall TmpDisplayModeListInit(DISPLAY_MODE_LIST *mode_list)
 {
     mode_list->head = NULL;
@@ -53,7 +62,7 @@ static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE_NODE *before)
 {
     if (!before || !before->previous) {
-        return InsertDisplayModeInListHead(mode_list);
+        return TmpInsertDisplayModeInListHead(mode_list);
     }
 
     DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
@@ -2095,7 +2104,8 @@ void __cdecl D3DRelease(void)
 void __cdecl Enumerate3DDevices(DISPLAY_ADAPTER *const adapter)
 {
     if (D3DCreate()) {
-        IDirect3D3_EnumDevices(g_D3D, Enum3DDevicesCallback, (LPVOID)adapter);
+        g_D3D->lpVtbl->EnumDevices(
+            g_D3D, Enum3DDevicesCallback, (LPVOID)adapter);
         D3DRelease();
     }
 }
@@ -2425,11 +2435,11 @@ bool __cdecl WinVidGetDisplayAdapters(void)
                               *next_node = NULL;
          node != NULL; node = next_node) {
         next_node = node->next;
-        DisplayModeListDelete(&node->body.sw_disp_mode_list);
-        DisplayModeListDelete(&node->body.hw_disp_mode_list);
+        TmpDisplayModeListDelete(&node->body.sw_disp_mode_list);
+        TmpDisplayModeListDelete(&node->body.hw_disp_mode_list);
         S_FlaggedString_Delete(&node->body.driver_name);
         S_FlaggedString_Delete(&node->body.driver_desc);
-        // TODO: delete(node);
+        operator_delete(node);
     }
 
     g_DisplayAdapterList.head = NULL;
@@ -2457,6 +2467,69 @@ bool __cdecl EnumerateDisplayAdapters(
 {
     return SUCCEEDED(DirectDrawEnumerate(
         EnumDisplayAdaptersCallback, (LPVOID)display_adapter_list));
+}
+
+BOOL WINAPI EnumDisplayAdaptersCallback(
+    GUID FAR *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName,
+    LPVOID lpContext)
+{
+    DISPLAY_ADAPTER_NODE *list_node = malloc(sizeof(DISPLAY_ADAPTER_NODE));
+    DISPLAY_ADAPTER_LIST *adapter_list = (DISPLAY_ADAPTER_LIST *)lpContext;
+
+    if (list_node == NULL || !DDrawCreate(lpGUID)) {
+        return TRUE;
+    }
+
+    DDCAPS_DX5 driver_caps = { .dwSize = sizeof(DDCAPS_DX5), 0 };
+    DDCAPS_DX5 hel_caps = { .dwSize = sizeof(DDCAPS_DX5), 0 };
+    if (FAILED(g_DDraw->lpVtbl->GetCaps(g_DDraw, &driver_caps, &hel_caps))) {
+        goto cleanup;
+    }
+
+    list_node->next = NULL;
+    list_node->previous = adapter_list->tail;
+
+    S_FlaggedString_InitAdapter(&list_node->body);
+    DisplayModeListInit(&list_node->body.hw_disp_mode_list);
+    DisplayModeListInit(&list_node->body.sw_disp_mode_list);
+
+    if (!adapter_list->head) {
+        adapter_list->head = list_node;
+    }
+
+    if (adapter_list->tail) {
+        adapter_list->tail->next = list_node;
+    }
+
+    adapter_list->tail = list_node;
+    adapter_list->count++;
+
+    if (lpGUID != NULL) {
+        list_node->body.adapter_guid = *lpGUID;
+        list_node->body.adapter_guid_ptr = &list_node->body.adapter_guid;
+    } else {
+        memset(&list_node->body.adapter_guid, 0, sizeof(GUID));
+        list_node->body.adapter_guid_ptr = NULL;
+    }
+
+    lstrcpy(list_node->body.driver_desc.content, lpDriverDescription);
+    lstrcpy(list_node->body.driver_name.content, lpDriverName);
+
+    list_node->body.driver_caps = driver_caps;
+    list_node->body.hel_caps = hel_caps;
+
+    list_node->body.screen_width = 0;
+    list_node->body.hw_render_supported = false;
+    list_node->body.sw_windowed_supported = false;
+    list_node->body.hw_windowed_supported = false;
+    list_node->body.is_vga_mode1_presented = false;
+    list_node->body.is_vga_mode2_presented = false;
+
+    Enumerate3DDevices(&list_node->body);
+
+cleanup:
+    DDrawRelease();
+    return TRUE;
 }
 
 bool __cdecl WinVidRegisterGameWindowClass(void)

@@ -3047,7 +3047,7 @@ typedef struct {
 0x00445E50  0x00AF  +R      bool __cdecl WinVidGetDisplayAdapters(void);
 0x00445F00  0x0013  +       void __thiscall S_FlaggedString_Delete(STRING_FLAGGED *string);
 0x00445F20  0x001A  +R      bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);
-0x00445F40  0x01BE  -R      BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);
+0x00445F40  0x01BE  +R      BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);
 0x00446100  0x0035  +       void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);
 0x00446140  0x006A  +R      bool __cdecl WinVidRegisterGameWindowClass(void);
 0x004461B0  0x049F  +R      LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);

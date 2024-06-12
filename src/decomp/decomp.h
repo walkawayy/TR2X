@@ -119,3 +119,4 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 BOOL WINAPI EnumDisplayAdaptersCallback(
     GUID FAR *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName,
     LPVOID lpContext);
+void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect);

@@ -2727,3 +2727,68 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 
     return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
+
+void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect)
+{
+    if (g_IsGameFullScreen) {
+        rect->left = 0;
+        rect->top = 0;
+        rect->right = g_FullScreenWidth;
+        rect->bottom = g_FullScreenHeight;
+    }
+
+    const bool is_shift_pressed = GetAsyncKeyState(VK_SHIFT) < 0;
+    int32_t width = rect->right - rect->left;
+    int32_t height = rect->bottom - rect->top;
+    GameWindowCalculateSizeFromClientByZero(&width, &height);
+
+    if (edge == WMSZ_TOP || edge == WMSZ_BOTTOM) {
+        if (is_shift_pressed) {
+            height &= ~0x1F;
+        }
+        width = CalculateWindowWidth(width, height);
+    } else {
+        if (is_shift_pressed) {
+            width &= ~0x1F;
+        }
+        height = CalculateWindowHeight(width, height);
+    }
+
+    if (g_IsMinWindowSizeSet) {
+        CLAMPL(width, g_MinWindowClientWidth);
+        CLAMPL(height, g_MinWindowClientHeight);
+    }
+
+    if (g_IsMaxWindowSizeSet) {
+        CLAMPG(width, g_MaxWindowClientWidth);
+        CLAMPG(height, g_MaxWindowClientHeight);
+    }
+
+    GameWindowCalculateSizeFromClient(&width, &height);
+
+    switch (edge) {
+    case WMSZ_TOPLEFT:
+        rect->left = rect->right - width;
+        rect->top = rect->bottom - height;
+        break;
+
+    case WMSZ_RIGHT:
+    case WMSZ_BOTTOM:
+    case WMSZ_BOTTOMRIGHT:
+        rect->right = rect->left + width;
+        rect->bottom = rect->top + height;
+        break;
+
+    case WMSZ_LEFT:
+    case WMSZ_BOTTOMLEFT:
+        rect->left = rect->right - width;
+        rect->bottom = rect->top + height;
+        break;
+
+    case WMSZ_TOP:
+    case WMSZ_TOPRIGHT:
+        rect->right = rect->left + width;
+        rect->top = rect->bottom - height;
+        break;
+    }
+}

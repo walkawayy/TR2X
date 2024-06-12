@@ -120,3 +120,4 @@ BOOL WINAPI EnumDisplayAdaptersCallback(
     GUID FAR *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName,
     LPVOID lpContext);
 void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect);
+bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);

@@ -2792,3 +2792,24 @@ void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect)
         break;
     }
 }
+
+bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd)
+{
+    const HDC hdc = GetDC(hWnd);
+    if (hdc == NULL) {
+        return false;
+    }
+
+    PALETTEENTRY sys_palette[256];
+    GetSystemPaletteEntries(hdc, 0, 256, sys_palette);
+    ReleaseDC(hWnd, hdc);
+
+    RGB_888 buf_palette[256];
+    for (int32_t i = 0; i < 256; i++) {
+        buf_palette[i].red = sys_palette[i].peRed;
+        buf_palette[i].green = sys_palette[i].peGreen;
+        buf_palette[i].blue = sys_palette[i].peBlue;
+    }
+
+    return memcmp(buf_palette, g_GamePalette8, sizeof(buf_palette)) == 0;
+}

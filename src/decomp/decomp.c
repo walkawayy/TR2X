@@ -32,6 +32,8 @@ static bool InsertDisplayModeInListSorted(
 
 static void __thiscall TmpDisplayModeListInit(DISPLAY_MODE_LIST *mode_list);
 static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list);
+static bool TmpDisplayModeListCopy(
+    DISPLAY_MODE_LIST *dst, DISPLAY_MODE_LIST *src);
 static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE_NODE *before);
 static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListHead(
@@ -55,7 +57,22 @@ static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list)
         nextNode = node->next;
         operator_delete(node);
     }
-    DisplayModeListInit(mode_list);
+    TmpDisplayModeListInit(mode_list);
+}
+
+static bool TmpDisplayModeListCopy(
+    DISPLAY_MODE_LIST *dst, DISPLAY_MODE_LIST *src)
+{
+    if (dst == NULL || src == NULL || dst == src) {
+        return false;
+    }
+
+    TmpDisplayModeListDelete(dst);
+    for (DISPLAY_MODE_NODE *node = src->head; node != NULL; node = node->next) {
+        DISPLAY_MODE *dst_mode = TmpInsertDisplayModeInListTail(dst);
+        *dst_mode = node->body;
+    }
+    return true;
 }
 
 static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
@@ -2490,8 +2507,8 @@ BOOL WINAPI EnumDisplayAdaptersCallback(
     list_node->previous = adapter_list->tail;
 
     S_FlaggedString_InitAdapter(&list_node->body);
-    DisplayModeListInit(&list_node->body.hw_disp_mode_list);
-    DisplayModeListInit(&list_node->body.sw_disp_mode_list);
+    TmpDisplayModeListInit(&list_node->body.hw_disp_mode_list);
+    TmpDisplayModeListInit(&list_node->body.sw_disp_mode_list);
 
     if (!adapter_list->head) {
         adapter_list->head = list_node;
@@ -2878,4 +2895,34 @@ DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(const GUID *guid_ptr)
         }
     }
     return g_PrimaryDisplayAdapter;
+}
+
+void __cdecl WinVidStart(void)
+{
+    if (g_SavedAppSettings.preferred_display_adapter == NULL) {
+        Shell_ExitSystem("Can't create DirectDraw");
+    }
+
+    DISPLAY_ADAPTER *preferred =
+        &g_SavedAppSettings.preferred_display_adapter->body;
+    g_CurrentDisplayAdapter = *preferred;
+
+    S_FlaggedString_Copy(
+        &g_CurrentDisplayAdapter.driver_desc, &preferred->driver_desc);
+    S_FlaggedString_Copy(
+        &g_CurrentDisplayAdapter.driver_name, &preferred->driver_name);
+
+    TmpDisplayModeListInit(&g_CurrentDisplayAdapter.hw_disp_mode_list);
+    TmpDisplayModeListCopy(
+        &g_CurrentDisplayAdapter.hw_disp_mode_list,
+        &preferred->hw_disp_mode_list);
+
+    TmpDisplayModeListInit(&g_CurrentDisplayAdapter.sw_disp_mode_list);
+    TmpDisplayModeListCopy(
+        &g_CurrentDisplayAdapter.sw_disp_mode_list,
+        &preferred->sw_disp_mode_list);
+
+    if (!DDrawCreate(g_CurrentDisplayAdapter.adapter_guid_ptr)) {
+        Shell_ExitSystem("Can't create DirectDraw");
+    }
 }

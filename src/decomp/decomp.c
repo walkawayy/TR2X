@@ -30,25 +30,22 @@
 static bool InsertDisplayModeInListSorted(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE *src_mode);
 
-static void __thiscall TmpDisplayModeListInit(DISPLAY_MODE_LIST *mode_list);
-static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list);
-static bool TmpDisplayModeListCopy(
-    DISPLAY_MODE_LIST *dst, DISPLAY_MODE_LIST *src);
-static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
+static void DisplayModeListInit(DISPLAY_MODE_LIST *mode_list);
+static void DisplayModeListDelete(DISPLAY_MODE_LIST *mode_list);
+static bool DisplayModeListCopy(DISPLAY_MODE_LIST *dst, DISPLAY_MODE_LIST *src);
+static DISPLAY_MODE *InsertDisplayMode(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE_NODE *before);
-static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListHead(
-    DISPLAY_MODE_LIST *mode_list);
-static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListTail(
-    DISPLAY_MODE_LIST *mode_list);
+static DISPLAY_MODE *InsertDisplayModeInListHead(DISPLAY_MODE_LIST *mode_list);
+static DISPLAY_MODE *InsertDisplayModeInListTail(DISPLAY_MODE_LIST *mode_list);
 
-static void __thiscall TmpDisplayModeListInit(DISPLAY_MODE_LIST *mode_list)
+static void DisplayModeListInit(DISPLAY_MODE_LIST *mode_list)
 {
     mode_list->head = NULL;
     mode_list->tail = NULL;
     mode_list->count = 0;
 }
 
-static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list)
+static void DisplayModeListDelete(DISPLAY_MODE_LIST *mode_list)
 {
     DISPLAY_MODE_NODE *node;
     DISPLAY_MODE_NODE *nextNode;
@@ -57,29 +54,28 @@ static void __thiscall TmpDisplayModeListDelete(DISPLAY_MODE_LIST *mode_list)
         nextNode = node->next;
         operator_delete(node);
     }
-    TmpDisplayModeListInit(mode_list);
+    DisplayModeListInit(mode_list);
 }
 
-static bool TmpDisplayModeListCopy(
-    DISPLAY_MODE_LIST *dst, DISPLAY_MODE_LIST *src)
+static bool DisplayModeListCopy(DISPLAY_MODE_LIST *dst, DISPLAY_MODE_LIST *src)
 {
     if (dst == NULL || src == NULL || dst == src) {
         return false;
     }
 
-    TmpDisplayModeListDelete(dst);
+    DisplayModeListDelete(dst);
     for (DISPLAY_MODE_NODE *node = src->head; node != NULL; node = node->next) {
-        DISPLAY_MODE *dst_mode = TmpInsertDisplayModeInListTail(dst);
+        DISPLAY_MODE *dst_mode = InsertDisplayModeInListTail(dst);
         *dst_mode = node->body;
     }
     return true;
 }
 
-static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
+static DISPLAY_MODE *InsertDisplayMode(
     DISPLAY_MODE_LIST *mode_list, DISPLAY_MODE_NODE *before)
 {
     if (!before || !before->previous) {
-        return TmpInsertDisplayModeInListHead(mode_list);
+        return InsertDisplayModeInListHead(mode_list);
     }
 
     DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
@@ -97,8 +93,7 @@ static DISPLAY_MODE *__thiscall TmpInsertDisplayMode(
     return &node->body;
 }
 
-static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListHead(
-    DISPLAY_MODE_LIST *mode_list)
+static DISPLAY_MODE *InsertDisplayModeInListHead(DISPLAY_MODE_LIST *mode_list)
 {
     DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
     if (!node) {
@@ -121,8 +116,7 @@ static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListHead(
     return &node->body;
 }
 
-static DISPLAY_MODE *__thiscall TmpInsertDisplayModeInListTail(
-    DISPLAY_MODE_LIST *mode_list)
+static DISPLAY_MODE *InsertDisplayModeInListTail(DISPLAY_MODE_LIST *mode_list)
 {
     DISPLAY_MODE_NODE *node = operator_new(sizeof(DISPLAY_MODE_NODE));
     if (!node) {
@@ -152,17 +146,17 @@ static bool InsertDisplayModeInListSorted(
 
     if (mode_list->head == NULL
         || CompareVideoModes(src_mode, &mode_list->head->body)) {
-        dst_mode = TmpInsertDisplayModeInListHead(mode_list);
+        dst_mode = InsertDisplayModeInListHead(mode_list);
         goto finish;
     }
     for (DISPLAY_MODE_NODE *node = mode_list->head; node != NULL;
          node = node->next) {
         if (CompareVideoModes(src_mode, &node->body)) {
-            dst_mode = TmpInsertDisplayMode(mode_list, node);
+            dst_mode = InsertDisplayMode(mode_list, node);
             goto finish;
         }
     }
-    dst_mode = TmpInsertDisplayModeInListTail(mode_list);
+    dst_mode = InsertDisplayModeInListTail(mode_list);
 
 finish:
     if (dst_mode == NULL) {
@@ -2452,8 +2446,8 @@ bool __cdecl WinVidGetDisplayAdapters(void)
                               *next_node = NULL;
          node != NULL; node = next_node) {
         next_node = node->next;
-        TmpDisplayModeListDelete(&node->body.sw_disp_mode_list);
-        TmpDisplayModeListDelete(&node->body.hw_disp_mode_list);
+        DisplayModeListDelete(&node->body.sw_disp_mode_list);
+        DisplayModeListDelete(&node->body.hw_disp_mode_list);
         S_FlaggedString_Delete(&node->body.driver_name);
         S_FlaggedString_Delete(&node->body.driver_desc);
         operator_delete(node);
@@ -2507,8 +2501,8 @@ BOOL WINAPI EnumDisplayAdaptersCallback(
     list_node->previous = adapter_list->tail;
 
     S_FlaggedString_InitAdapter(&list_node->body);
-    TmpDisplayModeListInit(&list_node->body.hw_disp_mode_list);
-    TmpDisplayModeListInit(&list_node->body.sw_disp_mode_list);
+    DisplayModeListInit(&list_node->body.hw_disp_mode_list);
+    DisplayModeListInit(&list_node->body.sw_disp_mode_list);
 
     if (!adapter_list->head) {
         adapter_list->head = list_node;
@@ -2912,13 +2906,13 @@ void __cdecl WinVidStart(void)
     S_FlaggedString_Copy(
         &g_CurrentDisplayAdapter.driver_name, &preferred->driver_name);
 
-    TmpDisplayModeListInit(&g_CurrentDisplayAdapter.hw_disp_mode_list);
-    TmpDisplayModeListCopy(
+    DisplayModeListInit(&g_CurrentDisplayAdapter.hw_disp_mode_list);
+    DisplayModeListCopy(
         &g_CurrentDisplayAdapter.hw_disp_mode_list,
         &preferred->hw_disp_mode_list);
 
-    TmpDisplayModeListInit(&g_CurrentDisplayAdapter.sw_disp_mode_list);
-    TmpDisplayModeListCopy(
+    DisplayModeListInit(&g_CurrentDisplayAdapter.sw_disp_mode_list);
+    DisplayModeListCopy(
         &g_CurrentDisplayAdapter.sw_disp_mode_list,
         &preferred->sw_disp_mode_list);
 

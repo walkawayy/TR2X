@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.45% (517)</tspan> · <tspan class="known">55.09% (671)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.86% (522)</tspan> · <tspan class="known">54.68% (666)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="317.08" height="6" x="0" y="0" class="decompiled"/>
-<rect width="411.52" height="6" x="317.08" y="0" class="known"/>
+<rect width="320.14" height="6" x="0" y="0" class="decompiled"/>
+<rect width="408.46" height="6" x="320.14" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -947,11 +947,11 @@
 <rect width="12" height="12" x="270" y="255" class="decompiled"><title>DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);</title></rect>
 <rect width="12" height="12" x="285" y="255" class="decompiled"><title>void __cdecl WinVidStart(void);</title></rect>
 <rect width="12" height="12" x="300" y="255" class="decompiled"><title>void __cdecl WinVidFinish(void);</title></rect>
-<rect width="12" height="12" x="315" y="255" class="known"><title>void __thiscall DisplayModeListInit(DISPLAY_MODE_LIST *pList);</title></rect>
-<rect width="12" height="12" x="330" y="255" class="known"><title>void __thiscall DisplayModeListDelete(DISPLAY_MODE_LIST *pList);</title></rect>
-<rect width="12" height="12" x="345" y="255" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayMode(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before);</title></rect>
-<rect width="12" height="12" x="360" y="255" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListHead(DISPLAY_MODE_LIST *modeList);</title></rect>
-<rect width="12" height="12" x="375" y="255" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListTail(DISPLAY_MODE_LIST *modeList);</title></rect>
+<rect width="12" height="12" x="315" y="255" class="decompiled"><title>void __thiscall DisplayModeListInit(DISPLAY_MODE_LIST *pList);</title></rect>
+<rect width="12" height="12" x="330" y="255" class="decompiled"><title>void __thiscall DisplayModeListDelete(DISPLAY_MODE_LIST *pList);</title></rect>
+<rect width="12" height="12" x="345" y="255" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayMode(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before);</title></rect>
+<rect width="12" height="12" x="360" y="255" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListHead(DISPLAY_MODE_LIST *modeList);</title></rect>
+<rect width="12" height="12" x="375" y="255" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListTail(DISPLAY_MODE_LIST *modeList);</title></rect>
 <rect width="12" height="12" x="390" y="255" class="unused"><title>sub_4470B0</title></rect>
 <rect width="12" height="12" x="405" y="255" class="unused"><title>sub_4470C0</title></rect>
 <rect width="12" height="12" x="420" y="255" class="unused"><title>sub_4470F0</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.52%</tspan> · <tspan class="known">60.15%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.59%</tspan> · <tspan class="known">60.09%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="295.22" height="6" x="0" y="0" class="decompiled"/>
-<rect width="449.34" height="6" x="295.22" y="0" class="known"/>
+<rect width="295.72" height="6" x="0" y="0" class="decompiled"/>
+<rect width="448.84" height="6" x="295.72" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2120,7 +2120,7 @@
 <rect width="4.84" height="4.94" x="632.98" y="261.54" class="known"><title>void __cdecl DartEffectControl(int16_t fx_num);</title></rect>
 <rect width="4.84" height="4.94" x="632.98" y="269.48" class="known"><title>void __cdecl SE_OptionsStrCat(LPTSTR *dstString, bool isEnabled, bool *isNext, LPCTSTR srcString);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="277.42" class="decompiled"><title>void __cdecl Lara_State_BackJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="4.84" height="4.83" x="632.98" y="285.26" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListTail(DISPLAY_MODE_LIST *modeList);</title></rect>
+<rect width="4.84" height="4.83" x="632.98" y="285.26" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListTail(DISPLAY_MODE_LIST *modeList);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="293.09" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="300.92" class="known"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="308.76" class="known"><title>LONG __cdecl SetRegistryStringValue(LPCTSTR lpValueName, LPCTSTR value, int32_t length);</title></rect>
@@ -2131,7 +2131,7 @@
 <rect width="4.84" height="4.62" x="632.98" y="347.51" class="known"><title>void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);</title></rect>
 <rect width="4.84" height="4.62" x="632.98" y="355.13" class="decompiled"><title>int32_t __cdecl CalculateWindowWidth(int32_t width, int32_t height);</title></rect>
 <rect width="4.84" height="4.62" x="632.98" y="362.75" class="decompiled"><title>DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);</title></rect>
-<rect width="4.84" height="4.62" x="632.98" y="370.38" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListHead(DISPLAY_MODE_LIST *modeList);</title></rect>
+<rect width="4.84" height="4.62" x="632.98" y="370.38" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListHead(DISPLAY_MODE_LIST *modeList);</title></rect>
 <rect width="4.96" height="4.50" x="640.82" y="261.54" class="decompiled"><title>const SOUND_ADAPTER_NODE *__cdecl S_Audio_Sample_GetAdapter(GUID *guid);</title></rect>
 <rect width="4.96" height="4.50" x="648.79" y="261.54" class="known"><title>void __cdecl WinStopFMV(bool is_playback);</title></rect>
 <rect width="4.96" height="4.50" x="656.75" y="261.54" class="decompiled"><title>int32_t __fastcall Math_Atan(int32_t x, int32_t y);</title></rect>
@@ -2274,7 +2274,7 @@
 <rect width="3.62" height="3.26" x="668.88" y="328.26" class="decompiled"><title>void __cdecl Lara_Col_SurfSwim(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.62" height="3.26" x="668.88" y="334.52" class="known"><title>void __cdecl OpenThatDoor(DOORPOS_DATA *d);</title></rect>
 <rect width="3.62" height="3.26" x="668.88" y="340.79" class="decompiled"><title>void __cdecl BGND_GetPageHandles(void);</title></rect>
-<rect width="3.62" height="3.26" x="668.88" y="347.05" class="known"><title>void __thiscall DisplayModeListDelete(DISPLAY_MODE_LIST *pList);</title></rect>
+<rect width="3.62" height="3.26" x="668.88" y="347.05" class="decompiled"><title>void __thiscall DisplayModeListDelete(DISPLAY_MODE_LIST *pList);</title></rect>
 <rect width="3.62" height="3.26" x="668.88" y="353.32" class="known"><title>void __cdecl FreeTexturePage(int32_t page_idx);</title></rect>
 <rect width="3.62" height="3.14" x="668.88" y="359.58" class="decompiled"><title>void __cdecl Matrix_RotY_I(int16_t ang);</title></rect>
 <rect width="3.62" height="3.14" x="668.88" y="365.72" class="decompiled"><title>void __cdecl Matrix_RotX_I(int16_t ang);</title></rect>
@@ -2463,7 +2463,7 @@
 <rect width="0.98" height="0.97" x="726.65" y="358.79" class="known"><title>bool __cdecl S_IntroFMV(const char *file_name1, const char *file_name2);</title></rect>
 <rect width="0.98" height="0.97" x="726.65" y="362.76" class="known"><title>LONG __cdecl DeleteRegistryValue(LPCTSTR lpValueName);</title></rect>
 <rect width="0.98" height="0.76" x="726.65" y="366.72" class="unused"><title>sub_4449A0</title></rect>
-<rect width="0.98" height="0.76" x="726.65" y="370.48" class="known"><title>DISPLAY_MODE *__thiscall InsertDisplayMode(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before);</title></rect>
+<rect width="0.98" height="0.76" x="726.65" y="370.48" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayMode(DISPLAY_MODE_LIST *modeList, DISPLAY_MODE_NODE *before);</title></rect>
 <rect width="0.98" height="0.76" x="726.65" y="374.24" class="unused"><title>sub_4470C0</title></rect>
 <rect width="1.01" height="0.73" x="730.63" y="354.82" class="unused"><title>sub_447A90</title></rect>
 <rect width="1.01" height="0.73" x="734.63" y="354.82" class="known"><title>void __cdecl SafeFreePalette(int32_t palette_idx);</title></rect>
@@ -2479,7 +2479,7 @@
 <rect width="0.67" height="0.39" x="730.63" y="365.33" class="known"><title>bool __cdecl IsNewRegistryKeyCreated(void);</title></rect>
 <rect width="0.67" height="0.17" x="730.63" y="368.72" class="known"><title>bool __cdecl S_PlayFMV(const char *file_name);</title></rect>
 <rect width="0.67" height="0.17" x="730.63" y="371.89" class="known"><title>void __cdecl SE_AdvancedDlgInit(HWND hwndDlg);</title></rect>
-<rect width="0.67" height="0.10" x="730.63" y="375.06" class="known"><title>void __thiscall DisplayModeListInit(DISPLAY_MODE_LIST *pList);</title></rect>
+<rect width="0.67" height="0.10" x="730.63" y="375.06" class="decompiled"><title>void __thiscall DisplayModeListInit(DISPLAY_MODE_LIST *pList);</title></rect>
 <rect width="0.40" height="0.17" x="734.29" y="361.93" class="known"><title>void __cdecl ScreenDump(void);</title></rect>
 <rect width="0.40" height="0.17" x="737.70" y="361.93" class="known"><title>LONG __cdecl CloseRegistryKey(void);</title></rect>
 <rect width="0.14" height="0.17" x="741.10" y="361.93" class="decompiled"><title>LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);</title></rect>

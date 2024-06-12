@@ -162,6 +162,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x004469A0, WinVidCheckGameWindowPalette);
     INJECT(enable, 0x00446A60, WinVidCreateGameWindow);
     INJECT(enable, 0x00446B30, WinVidFreeWindow);
+    INJECT(enable, 0x00446B60, WinVidExitMessage);
 }
 
 static void Inject_Background(const bool enable)

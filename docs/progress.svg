@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.12% (513)</tspan> · <tspan class="known">55.42% (675)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.20% (514)</tspan> · <tspan class="known">55.34% (674)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="314.62" height="6" x="0" y="0" class="decompiled"/>
-<rect width="413.98" height="6" x="314.62" y="0" class="known"/>
+<rect width="315.24" height="6" x="0" y="0" class="decompiled"/>
+<rect width="413.36" height="6" x="315.24" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -943,7 +943,7 @@
 <rect width="12" height="12" x="210" y="255" class="decompiled"><title>bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);</title></rect>
 <rect width="12" height="12" x="225" y="255" class="decompiled"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
 <rect width="12" height="12" x="240" y="255" class="decompiled"><title>void __cdecl WinVidFreeWindow(void);</title></rect>
-<rect width="12" height="12" x="255" y="255" class="known"><title>void __cdecl WinVidExitMessage(void);</title></rect>
+<rect width="12" height="12" x="255" y="255" class="decompiled"><title>void __cdecl WinVidExitMessage(void);</title></rect>
 <rect width="12" height="12" x="270" y="255" class="known"><title>DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(GUID *lpGuid);</title></rect>
 <rect width="12" height="12" x="285" y="255" class="known"><title>void __cdecl WinVidStart(void);</title></rect>
 <rect width="12" height="12" x="300" y="255" class="known"><title>void __cdecl WinVidFinish(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.21%</tspan> · <tspan class="known">60.46%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.24%</tspan> · <tspan class="known">60.44%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="292.92" height="6" x="0" y="0" class="decompiled"/>
-<rect width="451.64" height="6" x="292.92" y="0" class="known"/>
+<rect width="293.09" height="6" x="0" y="0" class="decompiled"/>
+<rect width="451.47" height="6" x="293.09" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2110,7 +2110,7 @@
 <rect width="4.83" height="5.16" x="672.63" y="253.38" class="decompiled"><title>void __cdecl Lara_State_Extra_StartAnim(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.83" height="5.16" x="680.46" y="253.38" class="decompiled"><title>void __cdecl BGND_Free(void);</title></rect>
 <rect width="4.83" height="5.16" x="688.29" y="253.38" class="decompiled"><title>bool __cdecl WinVidClearBuffer(LPDDS surface, LPRECT rect, DWORD fill_color);</title></rect>
-<rect width="4.83" height="5.16" x="696.12" y="253.38" class="known"><title>void __cdecl WinVidExitMessage(void);</title></rect>
+<rect width="4.83" height="5.16" x="696.12" y="253.38" class="decompiled"><title>void __cdecl WinVidExitMessage(void);</title></rect>
 <rect width="4.73" height="5.16" x="703.94" y="253.38" class="decompiled"><title>void __cdecl Lara_State_Extra_Breath(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.73" height="5.16" x="711.67" y="253.38" class="known"><title>void __cdecl WriteSG(void *pointer, int32_t size);</title></rect>
 <rect width="4.73" height="5.16" x="719.40" y="253.38" class="known"><title>void __cdecl GetSavedGamesList(REQUEST_INFO *req);</title></rect>

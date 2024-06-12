@@ -443,7 +443,6 @@
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)
-#define WinVidExitMessage ((void __cdecl (*)(void))0x00446B60)
 #define WinVidGetDisplayAdapter ((DISPLAY_ADAPTER_NODE *__cdecl (*)(GUID *lpGuid))0x00446BB0)
 #define WinVidStart ((void __cdecl (*)(void))0x00446C00)
 #define WinVidFinish ((void __cdecl (*)(void))0x00446F80)

@@ -123,3 +123,4 @@ void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect);
 bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);
 bool __cdecl WinVidCreateGameWindow(void);
 void __cdecl WinVidFreeWindow(void);
+void __cdecl WinVidExitMessage(void);

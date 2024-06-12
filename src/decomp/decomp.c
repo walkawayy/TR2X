@@ -2854,3 +2854,14 @@ void __cdecl WinVidFreeWindow(void)
     WinVidExitMessage();
     UnregisterClassA(g_GameClassName, g_GameModule);
 }
+
+void __cdecl WinVidExitMessage(void)
+{
+    if (g_GameWindowHandle == NULL || !IsWindow(g_GameWindowHandle)) {
+        return;
+    }
+
+    PostMessage(g_GameWindowHandle, WM_CLOSE, 0, 0);
+    while (WinVidSpinMessageLoop(false)) { }
+    g_GameWindowHandle = NULL;
+}

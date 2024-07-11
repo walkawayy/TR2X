@@ -1,4 +1,5 @@
 ## [Unreleased](https://github.com/LostArtefacts/TR2X/compare/stable...develop) - ××××-××-××
+- fixed a crash potential with certain music files
 
 ## [0.2](https://github.com/LostArtefacts/TR2X/compare/0.1.1...0.2) - 2024-05-07
 - added dev console with the following commands:

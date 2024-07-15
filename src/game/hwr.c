@@ -104,7 +104,7 @@ void __cdecl HWR_ResetZBuffer(void)
         g_D3DDev, D3DRENDERSTATE_ZWRITEENABLE, FALSE);
 }
 
-void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source)
+void __cdecl HWR_TexSource(const HWR_TEXTURE_HANDLE tex_source)
 {
     if (g_CurrentTexSource != tex_source) {
         g_D3DDev->lpVtbl->SetRenderState(
@@ -113,7 +113,7 @@ void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source)
     }
 }
 
-void __cdecl HWR_EnableColorKey(bool state)
+void __cdecl HWR_EnableColorKey(const bool state)
 {
     if (g_ColorKeyState != state) {
         g_D3DDev->lpVtbl->SetRenderState(
@@ -122,5 +122,31 @@ void __cdecl HWR_EnableColorKey(bool state)
                                    : D3DRENDERSTATE_COLORKEYENABLE,
             state ? TRUE : FALSE);
         g_ColorKeyState = state;
+    }
+}
+
+void __cdecl HWR_EnableZBuffer(const bool z_write_enable, const bool z_enable)
+{
+    if (!g_SavedAppSettings.zbuffer) {
+        return;
+    }
+
+    if (g_ZWriteEnableState != z_write_enable) {
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev, D3DRENDERSTATE_ZWRITEENABLE,
+            z_write_enable ? TRUE : FALSE);
+        g_ZWriteEnableState = z_write_enable;
+    }
+
+    if (g_ZEnableState != z_enable) {
+        if (g_ZBufferSurface != NULL) {
+            g_D3DDev->lpVtbl->SetRenderState(
+                g_D3DDev, D3DRENDERSTATE_ZFUNC,
+                z_enable ? D3DCMP_LESSEQUAL : D3DCMP_ALWAYS);
+        } else {
+            g_D3DDev->lpVtbl->SetRenderState(
+                g_D3DDev, D3DRENDERSTATE_ZENABLE, z_enable ? TRUE : FALSE);
+        }
+        g_ZEnableState = z_enable;
     }
 }

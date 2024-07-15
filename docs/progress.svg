@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.35% (528)</tspan> · <tspan class="known">54.19% (660)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.43% (529)</tspan> · <tspan class="known">54.11% (659)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="323.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="404.78" height="6" x="323.82" y="0" class="known"/>
+<rect width="324.44" height="6" x="0" y="0" class="decompiled"/>
+<rect width="404.17" height="6" x="324.44" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1089,7 +1089,7 @@
 <rect width="12" height="12" x="150" y="300" class="decompiled"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
 <rect width="12" height="12" x="165" y="300" class="decompiled"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
 <rect width="12" height="12" x="180" y="300" class="decompiled"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
-<rect width="12" height="12" x="195" y="300" class="known"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
+<rect width="12" height="12" x="195" y="300" class="decompiled"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
 <rect width="12" height="12" x="210" y="300" class="known"><title>void __cdecl HWR_BeginScene(void);</title></rect>
 <rect width="12" height="12" x="225" y="300" class="known"><title>void __cdecl HWR_DrawPolyList(void);</title></rect>
 <rect width="12" height="12" x="240" y="300" class="known"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.76%</tspan> · <tspan class="known">59.92%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.80%</tspan> · <tspan class="known">59.88%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="296.99" height="6" x="0" y="0" class="decompiled"/>
-<rect width="447.57" height="6" x="296.99" y="0" class="known"/>
+<rect width="297.27" height="6" x="0" y="0" class="decompiled"/>
+<rect width="447.29" height="6" x="297.27" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1924,7 +1924,7 @@
 <rect width="7.67" height="7.19" x="676.01" y="196.57" class="decompiled"><title>void __cdecl Lara_Col_Fallback(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.59" height="7.19" x="686.68" y="196.57" class="known"><title>void __cdecl ControlBlood1(int16_t fx_num);</title></rect>
 <rect width="7.59" height="7.19" x="697.28" y="196.57" class="known"><title>void __cdecl Init_Requester(REQUEST_INFO *req);</title></rect>
-<rect width="7.59" height="7.19" x="707.87" y="196.57" class="known"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
+<rect width="7.59" height="7.19" x="707.87" y="196.57" class="decompiled"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
 <rect width="7.51" height="7.19" x="718.46" y="196.57" class="decompiled"><title>int32_t __cdecl Inv_AnimateInventoryItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="7.51" height="7.19" x="728.98" y="196.57" class="known"><title>void __cdecl RingIsNotOpen(RING_INFO *ring);</title></rect>
 <rect width="7.51" height="7.19" x="739.49" y="196.57" class="known"><title>int32_t __cdecl AddAssaultTime(uint32_t time);</title></rect>

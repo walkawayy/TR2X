@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.76% (533)</tspan> · <tspan class="known">53.78% (655)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.84% (534)</tspan> · <tspan class="known">53.69% (654)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="326.89" height="6" x="0" y="0" class="decompiled"/>
-<rect width="401.71" height="6" x="326.89" y="0" class="known"/>
+<rect width="327.50" height="6" x="0" y="0" class="decompiled"/>
+<rect width="401.10" height="6" x="327.50" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1094,7 +1094,7 @@
 <rect width="12" height="12" x="225" y="300" class="decompiled"><title>void __cdecl HWR_DrawPolyList(void);</title></rect>
 <rect width="12" height="12" x="240" y="300" class="decompiled"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
 <rect width="12" height="12" x="255" y="300" class="decompiled"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
-<rect width="12" height="12" x="270" y="300" class="known"><title>void __cdecl HWR_GetPageHandles(void);</title></rect>
+<rect width="12" height="12" x="270" y="300" class="decompiled"><title>void __cdecl HWR_GetPageHandles(void);</title></rect>
 <rect width="12" height="12" x="285" y="300" class="known"><title>bool __cdecl HWR_VertexBufferFull(void);</title></rect>
 <rect width="12" height="12" x="300" y="300" class="known"><title>bool __cdecl HWR_Init(void);</title></rect>
 <rect width="12" height="12" x="315" y="300" class="known"><title>BOOL __cdecl S_InitialiseSystem(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.97%</tspan> · <tspan class="known">59.70%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.99%</tspan> · <tspan class="known">59.69%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="298.59" height="6" x="0" y="0" class="decompiled"/>
-<rect width="445.97" height="6" x="298.59" y="0" class="known"/>
+<rect width="298.70" height="6" x="0" y="0" class="decompiled"/>
+<rect width="445.86" height="6" x="298.70" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2252,7 +2252,7 @@
 <rect width="3.49" height="3.78" x="662.39" y="337.45" class="decompiled"><title>void __thiscall S_FlaggedString_InitAdapter(DISPLAY_ADAPTER *adapter);</title></rect>
 <rect width="3.49" height="3.78" x="662.39" y="344.23" class="known"><title>void __cdecl S_FadeInInventory(BOOL isFade);</title></rect>
 <rect width="3.49" height="3.78" x="662.39" y="351.01" class="known"><title>void __cdecl S_DrawScreenLine(int32_t x, int32_t y, int32_t z, int32_t x_len, int32_t y_len, BYTE color_idx, D3DCOLOR *gour, uint16_t flags);</title></rect>
-<rect width="3.49" height="3.78" x="662.39" y="357.79" class="known"><title>void __cdecl HWR_GetPageHandles(void);</title></rect>
+<rect width="3.49" height="3.78" x="662.39" y="357.79" class="decompiled"><title>void __cdecl HWR_GetPageHandles(void);</title></rect>
 <rect width="3.49" height="3.78" x="662.39" y="364.57" class="known"><title>bool __cdecl ReloadTextures(bool reset);</title></rect>
 <rect width="3.49" height="3.65" x="662.39" y="371.35" class="decompiled"><title>void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);</title></rect>
 <rect width="3.86" height="3.29" x="668.88" y="296.78" class="known"><title>void __cdecl BridgeTilt2Ceiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>

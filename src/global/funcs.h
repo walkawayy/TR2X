@@ -512,7 +512,6 @@
 #define S_FrontEndCheck ((BOOL __cdecl (*)(void))0x0044CCB0)
 #define S_SaveGame ((int32_t __cdecl (*)(const void *save_data, uint32_t save_size, int32_t slot_num))0x0044CE20)
 #define S_LoadGame ((int32_t __cdecl (*)(void *save_data, uint32_t save_size, int32_t slot_num))0x0044CF40)
-#define HWR_GetPageHandles ((void __cdecl (*)(void))0x0044D570)
 #define HWR_VertexBufferFull ((bool __cdecl (*)(void))0x0044D5B0)
 #define HWR_Init ((bool __cdecl (*)(void))0x0044D5E0)
 #define S_InitialiseSystem ((BOOL __cdecl (*)(void))0x0044D610)

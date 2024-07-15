@@ -183,6 +183,7 @@ static void Inject_HWR(bool enable)
     INJECT(enable, 0x0044D310, HWR_DrawPolyList);
     INJECT(enable, 0x0044D490, HWR_LoadTexturePages);
     INJECT(enable, 0x0044D520, HWR_FreeTexturePages);
+    INJECT(enable, 0x0044D570, HWR_GetPageHandles);
 }
 
 static void Inject_Background(const bool enable)

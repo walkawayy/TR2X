@@ -22,3 +22,4 @@ void __cdecl HWR_DrawPolyList(void);
 void __cdecl HWR_LoadTexturePages(
     int pages_count, const void *pages_buffer, const RGB_888 *palette);
 void __cdecl HWR_FreeTexturePages(void);
+void __cdecl HWR_GetPageHandles(void);

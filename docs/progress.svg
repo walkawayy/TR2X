@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.19% (526)</tspan> · <tspan class="known">54.35% (662)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.27% (527)</tspan> · <tspan class="known">54.27% (661)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="322.60" height="6" x="0" y="0" class="decompiled"/>
-<rect width="406" height="6" x="322.60" y="0" class="known"/>
+<rect width="323.21" height="6" x="0" y="0" class="decompiled"/>
+<rect width="405.39" height="6" x="323.21" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1087,7 +1087,7 @@
 <rect width="12" height="12" x="120" y="300" class="decompiled"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
 <rect width="12" height="12" x="135" y="300" class="decompiled"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="12" height="12" x="150" y="300" class="decompiled"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
-<rect width="12" height="12" x="165" y="300" class="known"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
+<rect width="12" height="12" x="165" y="300" class="decompiled"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
 <rect width="12" height="12" x="180" y="300" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
 <rect width="12" height="12" x="195" y="300" class="known"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
 <rect width="12" height="12" x="210" y="300" class="known"><title>void __cdecl HWR_BeginScene(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.72%</tspan> · <tspan class="known">59.95%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.74%</tspan> · <tspan class="known">59.94%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="296.75" height="6" x="0" y="0" class="decompiled"/>
-<rect width="447.81" height="6" x="296.75" y="0" class="known"/>
+<rect width="296.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="447.74" height="6" x="296.82" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2354,7 +2354,7 @@
 <rect width="2.34" height="2.60" x="693.06" y="361.21" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="366.81" class="decompiled"><title>int16_t __cdecl Text_GetTextLength(const char *text);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="372.40" class="known"><title>bool __cdecl DInputEnumDevices(JOYSTICK_LIST *joystickList);</title></rect>
-<rect width="2.29" height="2.65" x="698.40" y="321.40" class="known"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
+<rect width="2.29" height="2.65" x="698.40" y="321.40" class="decompiled"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
 <rect width="2.14" height="2.65" x="703.70" y="321.40" class="known"><title>void __cdecl RubbleFX(ITEM_INFO *item);</title></rect>
 <rect width="2.14" height="2.65" x="708.84" y="321.40" class="known"><title>void __cdecl ExplosionFX(ITEM_INFO *item);</title></rect>
 <rect width="2.14" height="2.65" x="713.99" y="321.40" class="decompiled"><title>void __cdecl Lara_Col_BackJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

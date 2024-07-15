@@ -1,5 +1,7 @@
 #pragma once
 
+#include "global/types.h"
+
 #include <d3dtypes.h>
 #include <stdbool.h>
 #include <windows.h>
@@ -12,3 +14,4 @@ void __cdecl HWR_InitState(void);
 void __cdecl HWR_ResetTexSource(void);
 void __cdecl HWR_ResetColorKey(void);
 void __cdecl HWR_ResetZBuffer(void);
+void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);

@@ -103,3 +103,12 @@ void __cdecl HWR_ResetZBuffer(void)
     g_D3DDev->lpVtbl->SetRenderState(
         g_D3DDev, D3DRENDERSTATE_ZWRITEENABLE, FALSE);
 }
+
+void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source)
+{
+    if (g_CurrentTexSource != tex_source) {
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev, D3DRENDERSTATE_TEXTUREHANDLE, tex_source);
+        g_CurrentTexSource = tex_source;
+    }
+}

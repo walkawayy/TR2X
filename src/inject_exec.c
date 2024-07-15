@@ -181,6 +181,7 @@ static void Inject_HWR(bool enable)
     INJECT(enable, 0x0044D250, HWR_EnableZBuffer);
     INJECT(enable, 0x0044D2E0, HWR_BeginScene);
     INJECT(enable, 0x0044D310, HWR_DrawPolyList);
+    INJECT(enable, 0x0044D490, HWR_LoadTexturePages);
 }
 
 static void Inject_Background(const bool enable)

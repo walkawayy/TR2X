@@ -48,6 +48,7 @@ extern const char *g_TR2XVersion;
 #define g_FadeLimit (*(int32_t*)0x00466494) // = 0x100000
 #define g_FadeAdder (*(int32_t*)0x00466498) // = 0x8000
 #define g_ErrorMessages (*(const char *(*)[43])0x004664E8)
+#define g_PaletteIndex (*(int32_t*)0x00466BDC)
 #define g_DumpX (*(int16_t*)0x00466BE4)
 #define g_DumpY (*(int16_t*)0x00466BE6)
 #define g_DumpWidth (*(int16_t*)0x00466BE8)
@@ -267,6 +268,7 @@ extern const char *g_TR2XVersion;
 #define g_AlphaBlendEnabler (*(D3DRENDERSTATETYPE*)0x00519F68)
 #define g_ColorKeyState (*(bool*)0x00519F6C)
 #define g_ZWriteEnableState (*(bool*)0x00519F70)
+#define g_HWR_TexturePageIndexes (*(int32_t(*)[32])0x00519F78)
 #define g_GameMemoryPtr (*(void **)0x0051A0CC)
 #define g_ConflictLayout (*(BOOL(*)[14])0x0051A0D0)
 #define g_DIKeys (*(uint8_t(*)[256])0x0051A108)

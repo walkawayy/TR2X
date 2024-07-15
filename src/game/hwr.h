@@ -19,3 +19,5 @@ void __cdecl HWR_EnableColorKey(bool state);
 void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);
 void __cdecl HWR_BeginScene(void);
 void __cdecl HWR_DrawPolyList(void);
+void __cdecl HWR_LoadTexturePages(
+    int pages_count, const void *pages_buffer, const RGB_888 *palette);

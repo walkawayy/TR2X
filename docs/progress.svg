@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.60% (531)</tspan> · <tspan class="known">53.94% (657)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.68% (532)</tspan> · <tspan class="known">53.86% (656)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="325.66" height="6" x="0" y="0" class="decompiled"/>
-<rect width="402.94" height="6" x="325.66" y="0" class="known"/>
+<rect width="326.28" height="6" x="0" y="0" class="decompiled"/>
+<rect width="402.33" height="6" x="326.28" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1092,7 +1092,7 @@
 <rect width="12" height="12" x="195" y="300" class="decompiled"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
 <rect width="12" height="12" x="210" y="300" class="decompiled"><title>void __cdecl HWR_BeginScene(void);</title></rect>
 <rect width="12" height="12" x="225" y="300" class="decompiled"><title>void __cdecl HWR_DrawPolyList(void);</title></rect>
-<rect width="12" height="12" x="240" y="300" class="known"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
+<rect width="12" height="12" x="240" y="300" class="decompiled"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
 <rect width="12" height="12" x="255" y="300" class="known"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="12" height="12" x="270" y="300" class="known"><title>void __cdecl HWR_GetPageHandles(void);</title></rect>
 <rect width="12" height="12" x="285" y="300" class="known"><title>bool __cdecl HWR_VertexBufferFull(void);</title></rect>
@@ -1224,7 +1224,7 @@
 <rect width="12" height="12" x="675" y="330" class="known"><title>void __cdecl CopyBitmapPalette(RGB_888 *src_pal, BYTE *src_bitmap, int32_t bitmap_size, RGB_888 *dest_pal);</title></rect>
 <rect width="12" height="12" x="690" y="330" class="known"><title>BYTE __cdecl FindNearestPaletteEntry(RGB_888 *palette, int32_t red, int32_t green, int32_t blue, bool ignore_sys_palette);</title></rect>
 <rect width="12" height="12" x="705" y="330" class="known"><title>void __cdecl SyncSurfacePalettes(void *src_data, int32_t width, int32_t height, int32_t src_pitch, RGB_888 *src_palette, void *dst_data, int32_t dst_pitch, RGB_888 *dst_palette, bool preserve_sys_palette);</title></rect>
-<rect width="12" height="12" x="720" y="330" class="known"><title>int32_t __cdecl CreateTexturePalette(RGB_888 *pal);</title></rect>
+<rect width="12" height="12" x="720" y="330" class="known"><title>int32_t __cdecl CreateTexturePalette(const RGB_888 *pal);</title></rect>
 <rect width="12" height="12" x="735" y="330" class="known"><title>int32_t __cdecl GetFreePaletteIndex(void);</title></rect>
 <rect width="12" height="12" x="0" y="345" class="known"><title>void __cdecl FreePalette(int32_t palette_idx);</title></rect>
 <rect width="12" height="12" x="15" y="345" class="known"><title>void __cdecl SafeFreePalette(int32_t palette_idx);</title></rect>
@@ -1240,8 +1240,8 @@
 <rect width="12" height="12" x="165" y="345" class="known"><title>bool __cdecl LoadTexturePage(int32_t page_idx, bool reset);</title></rect>
 <rect width="12" height="12" x="180" y="345" class="known"><title>bool __cdecl ReloadTextures(bool reset);</title></rect>
 <rect width="12" height="12" x="195" y="345" class="known"><title>HWR_TEXTURE_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>
-<rect width="12" height="12" x="210" y="345" class="known"><title>int32_t __cdecl AddTexturePage8(int32_t width, int32_t height, BYTE *page_buf, int32_t pal_idx);</title></rect>
-<rect width="12" height="12" x="225" y="345" class="known"><title>int32_t __cdecl AddTexturePage16(int32_t width, int32_t height, BYTE *page_buf);</title></rect>
+<rect width="12" height="12" x="210" y="345" class="known"><title>int32_t __cdecl AddTexturePage8(int32_t width, int32_t height, const uint8_t *page_buf, int32_t pal_idx);</title></rect>
+<rect width="12" height="12" x="225" y="345" class="known"><title>int32_t __cdecl AddTexturePage16(int32_t width, int32_t height, const uint8_t *page_buf);</title></rect>
 <rect width="12" height="12" x="240" y="345" class="known"><title>HRESULT __stdcall EnumTextureFormatsCallback(LPDDSDESC lpDdsd, LPVOID lpContext);</title></rect>
 <rect width="12" height="12" x="255" y="345" class="known"><title>HRESULT __cdecl EnumerateTextureFormats(void);</title></rect>
 <rect width="12" height="12" x="270" y="345" class="known"><title>void __cdecl CleanupTextures(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.91%</tspan> · <tspan class="known">59.77%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.95%</tspan> · <tspan class="known">59.72%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="298.11" height="6" x="0" y="0" class="decompiled"/>
-<rect width="446.44" height="6" x="298.11" y="0" class="known"/>
+<rect width="298.43" height="6" x="0" y="0" class="decompiled"/>
+<rect width="446.13" height="6" x="298.43" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1530,7 +1530,7 @@
 <rect width="16.07" height="14.93" x="488.19" y="41.46" class="decompiled"><title>void __cdecl Lara_Col_ClimbDown(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="15.98" height="14.93" x="507.27" y="41.46" class="known"><title>void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);</title></rect>
 <rect width="15.89" height="14.93" x="526.25" y="41.46" class="known"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
-<rect width="15.80" height="14.93" x="545.14" y="41.46" class="known"><title>int32_t __cdecl AddTexturePage16(int32_t width, int32_t height, BYTE *page_buf);</title></rect>
+<rect width="15.80" height="14.93" x="545.14" y="41.46" class="known"><title>int32_t __cdecl AddTexturePage16(int32_t width, int32_t height, const uint8_t *page_buf);</title></rect>
 <rect width="15.75" height="14.93" x="563.93" y="41.46" class="decompiled"><title>void __cdecl Output_InsertTrans8_Sorted(const PHD_VBUF *vbuf, int16_t shade);</title></rect>
 <rect width="15.75" height="14.93" x="582.68" y="41.46" class="known"><title>void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="15.75" height="14.93" x="601.43" y="41.46" class="decompiled"><title>void __cdecl Lara_HandleAboveWater(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1678,7 +1678,7 @@
 <rect width="11.45" height="11.19" x="480.35" y="251.87" class="decompiled"><title>void __cdecl Output_DrawPoly_Gouraud(int32_t vtx_count, int32_t red, int32_t green, int32_t blue);</title></rect>
 <rect width="11.45" height="11.07" x="480.35" y="266.06" class="decompiled"><title>int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="11.45" height="11.07" x="480.35" y="280.13" class="known"><title>void __cdecl RifleHandler(int32_t weapon_type);</title></rect>
-<rect width="11.45" height="11.07" x="480.35" y="294.20" class="known"><title>int32_t __cdecl AddTexturePage8(int32_t width, int32_t height, BYTE *page_buf, int32_t pal_idx);</title></rect>
+<rect width="11.45" height="11.07" x="480.35" y="294.20" class="known"><title>int32_t __cdecl AddTexturePage8(int32_t width, int32_t height, const uint8_t *page_buf, int32_t pal_idx);</title></rect>
 <rect width="11.45" height="10.96" x="480.35" y="308.27" class="decompiled"><title>void __cdecl Output_InsertPolygons(const int16_t *obj_ptr, int32_t clip);</title></rect>
 <rect width="11.45" height="10.96" x="480.35" y="322.23" class="known"><title>void __cdecl ControlBubble1(int16_t fx_num);</title></rect>
 <rect width="11.45" height="10.96" x="480.35" y="336.19" class="decompiled"><title>void __cdecl Lara_SurfaceCollision(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1887,7 +1887,7 @@
 <rect width="7.84" height="8.03" x="633.13" y="185.54" class="decompiled"><title>bool __cdecl WinVidCopyBitmapToBuffer(LPDDS surface, const BYTE *bitmap);</title></rect>
 <rect width="7.76" height="8.03" x="643.97" y="185.54" class="decompiled"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
 <rect width="7.76" height="8.03" x="654.73" y="185.54" class="known"><title>void __cdecl FloodFX(ITEM_INFO *item);</title></rect>
-<rect width="7.69" height="8.03" x="665.49" y="185.54" class="known"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
+<rect width="7.69" height="8.03" x="665.49" y="185.54" class="decompiled"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
 <rect width="7.61" height="8.03" x="676.18" y="185.54" class="known"><title>void __cdecl DetonatorControl(int16_t item_num);</title></rect>
 <rect width="7.54" height="8.03" x="686.79" y="185.54" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT4_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="7.54" height="8.03" x="697.32" y="185.54" class="known"><title>int32_t __cdecl ItemNearLara(PHD_3DPOS *pos, int32_t distance);</title></rect>
@@ -1911,7 +1911,7 @@
 <rect width="7.66" height="7.59" x="567.89" y="335.89" class="known"><title>bool __cdecl IntroFMV(const char *file_name1, const char *file_name2);</title></rect>
 <rect width="7.66" height="7.51" x="567.89" y="346.48" class="known"><title>void __cdecl DyingMonk(int16_t item_num);</title></rect>
 <rect width="7.66" height="7.51" x="567.89" y="356.99" class="decompiled"><title>bool __cdecl HideDDrawGameWindow(void);</title></rect>
-<rect width="7.66" height="7.51" x="567.89" y="367.49" class="known"><title>int32_t __cdecl CreateTexturePalette(RGB_888 *pal);</title></rect>
+<rect width="7.66" height="7.51" x="567.89" y="367.49" class="known"><title>int32_t __cdecl CreateTexturePalette(const RGB_888 *pal);</title></rect>
 <rect width="7.92" height="7.19" x="578.55" y="196.57" class="decompiled"><title>void __cdecl Lara_SwimTurn(ITEM_INFO *item);</title></rect>
 <rect width="7.92" height="7.19" x="589.47" y="196.57" class="decompiled"><title>void __cdecl Sound_EndScene(void);</title></rect>
 <rect width="7.92" height="7.19" x="600.39" y="196.57" class="known"><title>void __cdecl HookControl(int16_t item_num);</title></rect>

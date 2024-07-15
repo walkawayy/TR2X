@@ -214,3 +214,30 @@ void __cdecl HWR_DrawPolyList(void)
         }
     }
 }
+
+void __cdecl HWR_LoadTexturePages(
+    const int pages_count, const void *const pages_buffer,
+    const RGB_888 *const palette)
+{
+    int page_idx = -1;
+    const BYTE *buffer_ptr = (const BYTE *)pages_buffer;
+
+    HWR_FreeTexturePages();
+
+    if (palette != NULL) {
+        g_PaletteIndex = CreateTexturePalette(palette);
+    }
+
+    for (int i = 0; i < pages_count; i++) {
+        if (palette != NULL) {
+            page_idx = AddTexturePage8(256, 256, buffer_ptr, g_PaletteIndex);
+            buffer_ptr += 256 * 256 * 1;
+        } else {
+            page_idx = AddTexturePage16(256, 256, buffer_ptr);
+            buffer_ptr += 256 * 256 * 2;
+        }
+        g_HWR_TexturePageIndexes[i] = page_idx < 0 ? -1 : page_idx;
+    }
+
+    HWR_GetPageHandles();
+}

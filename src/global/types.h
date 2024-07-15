@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "const.h"
+
 #include <ddraw.h>
 #include <ddrawi.h>
 #include <d3dhal.h>

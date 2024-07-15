@@ -268,7 +268,7 @@ extern const char *g_TR2XVersion;
 #define g_AlphaBlendEnabler (*(D3DRENDERSTATETYPE*)0x00519F68)
 #define g_ColorKeyState (*(bool*)0x00519F6C)
 #define g_ZWriteEnableState (*(bool*)0x00519F70)
-#define g_HWR_TexturePageIndexes (*(int32_t(*)[32])0x00519F78)
+#define g_HWR_TexturePageIndexes (*(int32_t(*)[MAX_TEXTURE_PAGES])0x00519F78)
 #define g_GameMemoryPtr (*(void **)0x0051A0CC)
 #define g_ConflictLayout (*(BOOL(*)[14])0x0051A0D0)
 #define g_DIKeys (*(uint8_t(*)[256])0x0051A108)

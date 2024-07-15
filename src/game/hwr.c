@@ -241,3 +241,17 @@ void __cdecl HWR_LoadTexturePages(
 
     HWR_GetPageHandles();
 }
+
+void __cdecl HWR_FreeTexturePages(void)
+{
+    for (int32_t i = 0; i < MAX_TEXTURE_PAGES; i++) {
+        if (g_HWR_TexturePageIndexes[i] >= 0) {
+            SafeFreeTexturePage(g_HWR_TexturePageIndexes[i]);
+            g_HWR_TexturePageIndexes[i] = -1;
+        }
+        g_HWR_PageHandles[i] = 0;
+    }
+    if (g_PaletteIndex >= 0) {
+        SafeFreePalette(g_PaletteIndex);
+    }
+}

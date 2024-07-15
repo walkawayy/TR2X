@@ -11,3 +11,4 @@ HRESULT HWR_DrawPrimitive(
 void __cdecl HWR_InitState(void);
 void __cdecl HWR_ResetTexSource(void);
 void __cdecl HWR_ResetColorKey(void);
+void __cdecl HWR_ResetZBuffer(void);

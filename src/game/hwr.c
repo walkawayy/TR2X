@@ -83,3 +83,23 @@ void __cdecl HWR_ResetColorKey(void)
                                : D3DRENDERSTATE_COLORKEYENABLE,
         FALSE);
 }
+
+void __cdecl HWR_ResetZBuffer(void)
+{
+    g_ZEnableState = FALSE;
+    g_ZWriteEnableState = FALSE;
+    if (g_ZBufferSurface != NULL) {
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev, D3DRENDERSTATE_ZFUNC, D3DCMP_ALWAYS);
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev, D3DRENDERSTATE_ZENABLE,
+            g_SavedAppSettings.zbuffer ? TRUE : FALSE);
+    } else {
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev, D3DRENDERSTATE_ZFUNC, D3DCMP_LESSEQUAL);
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev, D3DRENDERSTATE_ZENABLE, FALSE);
+    }
+    g_D3DDev->lpVtbl->SetRenderState(
+        g_D3DDev, D3DRENDERSTATE_ZWRITEENABLE, FALSE);
+}

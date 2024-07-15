@@ -1,5 +1,6 @@
 #include "game/hwr.h"
 
+#include "decomp/decomp.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -149,4 +150,11 @@ void __cdecl HWR_EnableZBuffer(const bool z_write_enable, const bool z_enable)
         }
         g_ZEnableState = z_enable;
     }
+}
+
+void __cdecl HWR_BeginScene(void)
+{
+    HWR_GetPageHandles();
+    WaitPrimaryBufferFlip();
+    g_D3DDev->lpVtbl->BeginScene(g_D3DDev);
 }

@@ -512,7 +512,6 @@
 #define S_FrontEndCheck ((BOOL __cdecl (*)(void))0x0044CCB0)
 #define S_SaveGame ((int32_t __cdecl (*)(const void *save_data, uint32_t save_size, int32_t slot_num))0x0044CE20)
 #define S_LoadGame ((int32_t __cdecl (*)(void *save_data, uint32_t save_size, int32_t slot_num))0x0044CF40)
-#define HWR_BeginScene ((void __cdecl (*)(void))0x0044D2E0)
 #define HWR_DrawPolyList ((void __cdecl (*)(void))0x0044D310)
 #define HWR_LoadTexturePages ((void __cdecl (*)(int32_t pages_count, void *pages_buf, RGB_888 *palette))0x0044D490)
 #define HWR_FreeTexturePages ((void __cdecl (*)(void))0x0044D520)

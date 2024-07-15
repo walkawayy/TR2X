@@ -112,3 +112,15 @@ void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source)
         g_CurrentTexSource = tex_source;
     }
 }
+
+void __cdecl HWR_EnableColorKey(bool state)
+{
+    if (g_ColorKeyState != state) {
+        g_D3DDev->lpVtbl->SetRenderState(
+            g_D3DDev,
+            g_TexturesAlphaChannel ? D3DRENDERSTATE_ALPHABLENDENABLE
+                                   : D3DRENDERSTATE_COLORKEYENABLE,
+            state ? TRUE : FALSE);
+        g_ColorKeyState = state;
+    }
+}

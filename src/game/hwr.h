@@ -15,3 +15,4 @@ void __cdecl HWR_ResetTexSource(void);
 void __cdecl HWR_ResetColorKey(void);
 void __cdecl HWR_ResetZBuffer(void);
 void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);
+void __cdecl HWR_EnableColorKey(bool state);

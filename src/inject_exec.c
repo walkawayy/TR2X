@@ -177,6 +177,7 @@ static void Inject_HWR(bool enable)
     INJECT(enable, 0x0044D140, HWR_ResetColorKey);
     INJECT(enable, 0x0044D170, HWR_ResetZBuffer);
     INJECT(enable, 0x0044D1D0, HWR_TexSource);
+    INJECT(enable, 0x0044D200, HWR_EnableColorKey);
 }
 
 static void Inject_Background(const bool enable)

@@ -3200,7 +3200,7 @@ typedef struct {
 0x0044D140  0x002B  +R      void __cdecl HWR_ResetColorKey(void);
 0x0044D170  0x0059  +R      void __cdecl HWR_ResetZBuffer(void);
 0x0044D1D0  0x0024  +R      void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);
-0x0044D200  0x004A  -R      void __cdecl HWR_EnableColorKey(bool state);
+0x0044D200  0x004A  +R      void __cdecl HWR_EnableColorKey(bool state);
 0x0044D250  0x0082  *R      void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);
 0x0044D2E0  0x0016  -R      void __cdecl HWR_BeginScene(void);
 0x0044D310  0x016C  -R      void __cdecl HWR_DrawPolyList(void);

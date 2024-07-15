@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.27% (527)</tspan> · <tspan class="known">54.27% (661)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.35% (528)</tspan> · <tspan class="known">54.19% (660)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="323.21" height="6" x="0" y="0" class="decompiled"/>
-<rect width="405.39" height="6" x="323.21" y="0" class="known"/>
+<rect width="323.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="404.78" height="6" x="323.82" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1088,7 +1088,7 @@
 <rect width="12" height="12" x="135" y="300" class="decompiled"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="12" height="12" x="150" y="300" class="decompiled"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
 <rect width="12" height="12" x="165" y="300" class="decompiled"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
-<rect width="12" height="12" x="180" y="300" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
+<rect width="12" height="12" x="180" y="300" class="decompiled"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
 <rect width="12" height="12" x="195" y="300" class="known"><title>void __cdecl HWR_EnableZBuffer(bool z_write_enable, bool z_enable);</title></rect>
 <rect width="12" height="12" x="210" y="300" class="known"><title>void __cdecl HWR_BeginScene(void);</title></rect>
 <rect width="12" height="12" x="225" y="300" class="known"><title>void __cdecl HWR_DrawPolyList(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.74%</tspan> · <tspan class="known">59.94%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.76%</tspan> · <tspan class="known">59.92%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="296.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="447.74" height="6" x="296.82" y="0" class="known"/>
+<rect width="296.99" height="6" x="0" y="0" class="decompiled"/>
+<rect width="447.57" height="6" x="296.99" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2121,7 +2121,7 @@
 <rect width="4.84" height="4.94" x="632.98" y="269.48" class="known"><title>void __cdecl SE_OptionsStrCat(LPTSTR *dstString, bool isEnabled, bool *isNext, LPCTSTR srcString);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="277.42" class="decompiled"><title>void __cdecl Lara_State_BackJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="285.26" class="decompiled"><title>DISPLAY_MODE *__thiscall InsertDisplayModeInListTail(DISPLAY_MODE_LIST *modeList);</title></rect>
-<rect width="4.84" height="4.83" x="632.98" y="293.09" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
+<rect width="4.84" height="4.83" x="632.98" y="293.09" class="decompiled"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="300.92" class="known"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="308.76" class="known"><title>LONG __cdecl SetRegistryStringValue(LPCTSTR lpValueName, LPCTSTR value, int32_t length);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="316.59" class="decompiled"><title>void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);</title></rect>

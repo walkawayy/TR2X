@@ -6,6 +6,7 @@
 #include "game/camera.h"
 #include "game/creature.h"
 #include "game/effects.h"
+#include "game/hwr.h"
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/items.h"
@@ -32,6 +33,7 @@
 #include "specific/s_input.h"
 
 static void Inject_Decomp(const bool enable);
+static void Inject_HWR(bool enable);
 
 static void Inject_Camera(bool enable);
 static void Inject_Math(bool enable);
@@ -166,6 +168,11 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00446BB0, WinVidGetDisplayAdapter);
     INJECT(enable, 0x00446C00, WinVidStart);
     INJECT(enable, 0x00446F80, WinVidFinish);
+}
+
+static void Inject_HWR(bool enable)
+{
+    INJECT(enable, 0x0044CFE0, HWR_InitState);
 }
 
 static void Inject_Background(const bool enable)
@@ -687,6 +694,7 @@ static void Inject_S_FlaggedString(const bool enable)
 void Inject_Exec(void)
 {
     Inject_Decomp(true);
+    Inject_HWR(true);
     Inject_Background(true);
 
     Inject_Camera(true);

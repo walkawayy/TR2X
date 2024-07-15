@@ -262,6 +262,7 @@ extern const char *g_TR2XVersion;
 #define g_HWR_VertexBuffer (*(D3DTLVERTEX(*)[0x2000])0x004D9ED8)
 #define g_HWR_PageHandles (*(HWR_TEXTURE_HANDLE(*)[32])0x00519EE0)
 #define g_HWR_VertexPtr (*(D3DTLVERTEX **)0x00519F60)
+#define g_AlphaBlendEnabler (*(D3DRENDERSTATETYPE*)0x00519F68)
 #define g_GameMemoryPtr (*(void **)0x0051A0CC)
 #define g_ConflictLayout (*(BOOL(*)[14])0x0051A0D0)
 #define g_DIKeys (*(uint8_t(*)[256])0x0051A108)

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.86% (522)</tspan> · <tspan class="known">54.68% (666)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.94% (523)</tspan> · <tspan class="known">54.60% (665)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="320.14" height="6" x="0" y="0" class="decompiled"/>
-<rect width="408.46" height="6" x="320.14" y="0" class="known"/>
+<rect width="320.76" height="6" x="0" y="0" class="decompiled"/>
+<rect width="407.84" height="6" x="320.76" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1083,7 +1083,7 @@
 <rect width="12" height="12" x="60" y="300" class="known"><title>BOOL __cdecl S_FrontEndCheck(void);</title></rect>
 <rect width="12" height="12" x="75" y="300" class="known"><title>int32_t __cdecl S_SaveGame(const void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
 <rect width="12" height="12" x="90" y="300" class="known"><title>int32_t __cdecl S_LoadGame(void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
-<rect width="12" height="12" x="105" y="300" class="known"><title>void __cdecl HWR_InitState(void);</title></rect>
+<rect width="12" height="12" x="105" y="300" class="decompiled"><title>void __cdecl HWR_InitState(void);</title></rect>
 <rect width="12" height="12" x="120" y="300" class="known"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
 <rect width="12" height="12" x="135" y="300" class="known"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="12" height="12" x="150" y="300" class="known"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.59%</tspan> · <tspan class="known">60.09%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.67%</tspan> · <tspan class="known">60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="295.72" height="6" x="0" y="0" class="decompiled"/>
-<rect width="448.84" height="6" x="295.72" y="0" class="known"/>
+<rect width="296.37" height="6" x="0" y="0" class="decompiled"/>
+<rect width="448.19" height="6" x="296.37" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1623,7 +1623,7 @@
 <rect width="12.82" height="12.58" x="594.84" y="92.72" class="known"><title>void __cdecl Inv_InsertItem(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="12.77" height="12.58" x="610.66" y="92.72" class="known"><title>void __cdecl SphereOfDoomCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12.77" height="12.58" x="626.43" y="92.72" class="known"><title>int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
-<rect width="12.77" height="12.58" x="642.20" y="92.72" class="known"><title>void __cdecl HWR_InitState(void);</title></rect>
+<rect width="12.77" height="12.58" x="642.20" y="92.72" class="decompiled"><title>void __cdecl HWR_InitState(void);</title></rect>
 <rect width="12.71" height="12.58" x="657.96" y="92.72" class="decompiled"><title>void __cdecl Lara_Col_Hang(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12.55" height="12.58" x="673.67" y="92.72" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM_INFO *room);</title></rect>
 <rect width="12.34" height="12.58" x="689.23" y="92.72" class="decompiled"><title>BOOL __cdecl S_Input_Key(KEYMAP keymap);</title></rect>

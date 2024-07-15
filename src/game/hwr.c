@@ -66,3 +66,10 @@ void __cdecl HWR_InitState(void)
     HWR_ResetColorKey();
     HWR_ResetZBuffer();
 }
+
+void __cdecl HWR_ResetTexSource(void)
+{
+    g_CurrentTexSource = 0;
+    g_D3DDev->lpVtbl->SetRenderState(g_D3DDev, D3DRENDERSTATE_TEXTUREHANDLE, 0);
+    g_D3DDev->lpVtbl->SetRenderState(g_D3DDev, D3DRENDERSTATE_FLUSHBATCH, 0);
+}

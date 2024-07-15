@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.94% (523)</tspan> · <tspan class="known">54.60% (665)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.02% (524)</tspan> · <tspan class="known">54.52% (664)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="320.76" height="6" x="0" y="0" class="decompiled"/>
-<rect width="407.84" height="6" x="320.76" y="0" class="known"/>
+<rect width="321.37" height="6" x="0" y="0" class="decompiled"/>
+<rect width="407.23" height="6" x="321.37" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1084,7 +1084,7 @@
 <rect width="12" height="12" x="75" y="300" class="known"><title>int32_t __cdecl S_SaveGame(const void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
 <rect width="12" height="12" x="90" y="300" class="known"><title>int32_t __cdecl S_LoadGame(void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
 <rect width="12" height="12" x="105" y="300" class="decompiled"><title>void __cdecl HWR_InitState(void);</title></rect>
-<rect width="12" height="12" x="120" y="300" class="known"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
+<rect width="12" height="12" x="120" y="300" class="decompiled"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
 <rect width="12" height="12" x="135" y="300" class="known"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="12" height="12" x="150" y="300" class="known"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
 <rect width="12" height="12" x="165" y="300" class="known"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.67%</tspan> · <tspan class="known">60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.69%</tspan> · <tspan class="known">59.99%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="296.37" height="6" x="0" y="0" class="decompiled"/>
-<rect width="448.19" height="6" x="296.37" y="0" class="known"/>
+<rect width="296.46" height="6" x="0" y="0" class="decompiled"/>
+<rect width="448.10" height="6" x="296.46" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2329,7 +2329,7 @@
 <rect width="2.85" height="2.96" x="705.01" y="315.45" class="known"><title>LONG __cdecl SetRegistryBoolValue(LPCTSTR lpValueName, bool value);</title></rect>
 <rect width="2.71" height="2.96" x="710.86" y="315.45" class="decompiled"><title>void __cdecl Text_AddOutline(TEXTSTRING *string, int16_t enable, int16_t colour, uint16_t *gour_ptr, uint16_t flags);</title></rect>
 <rect width="2.71" height="2.96" x="716.57" y="315.45" class="known"><title>void __cdecl DInputKeyboardRelease(void);</title></rect>
-<rect width="2.71" height="2.96" x="722.28" y="315.45" class="known"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
+<rect width="2.71" height="2.96" x="722.28" y="315.45" class="decompiled"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
 <rect width="2.57" height="2.96" x="727.99" y="315.45" class="decompiled"><title>void __cdecl Overlay_MakeAmmoString(char *string);</title></rect>
 <rect width="2.57" height="2.96" x="733.56" y="315.45" class="decompiled"><title>int32_t __cdecl CalculateWindowHeight(int32_t width, int32_t height);</title></rect>
 <rect width="2.43" height="2.96" x="739.14" y="315.45" class="decompiled"><title>void __cdecl Matrix_Push_I(void);</title></rect>

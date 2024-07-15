@@ -3196,7 +3196,7 @@ typedef struct {
 0x0044CE20  0x0114  -R      int32_t __cdecl S_SaveGame(const void *save_data, uint32_t save_size, int32_t slot_num);
 0x0044CF40  0x0096  -R      int32_t __cdecl S_LoadGame(void *save_data, uint32_t save_size, int32_t slot_num);
 0x0044CFE0  0x0128  +R      void __cdecl HWR_InitState(void);
-0x0044D110  0x0029  -R      void __cdecl HWR_ResetTexSource(void);
+0x0044D110  0x0029  +R      void __cdecl HWR_ResetTexSource(void);
 0x0044D140  0x002B  -R      void __cdecl HWR_ResetColorKey(void);
 0x0044D170  0x0059  -R      void __cdecl HWR_ResetZBuffer(void);
 0x0044D1D0  0x0024  -R      void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);
@@ -3760,3 +3760,4 @@ typedef struct {
 0x00466468  -       const char g_GameWindowName[];
 0x004D7ED8  -       bool g_IsGameWindowChanging;
 0x00519F68  -       D3DRENDERSTATETYPE g_AlphaBlendEnabler;
+0x00519ED8  -       D3DTEXTUREHANDLE g_CurrentTexSource;

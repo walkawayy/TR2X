@@ -173,6 +173,7 @@ static void Inject_Decomp(const bool enable)
 static void Inject_HWR(bool enable)
 {
     INJECT(enable, 0x0044CFE0, HWR_InitState);
+    INJECT(enable, 0x0044D110, HWR_ResetTexSource);
 }
 
 static void Inject_Background(const bool enable)

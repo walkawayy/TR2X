@@ -9,3 +9,4 @@ HRESULT HWR_DrawPrimitive(
     bool is_no_clip);
 
 void __cdecl HWR_InitState(void);
+void __cdecl HWR_ResetTexSource(void);

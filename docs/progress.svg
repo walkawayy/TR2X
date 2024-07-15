@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.84% (534)</tspan> · <tspan class="known">53.69% (654)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.92% (535)</tspan> · <tspan class="known">53.61% (653)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="327.50" height="6" x="0" y="0" class="decompiled"/>
-<rect width="401.10" height="6" x="327.50" y="0" class="known"/>
+<rect width="328.12" height="6" x="0" y="0" class="decompiled"/>
+<rect width="400.49" height="6" x="328.12" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1095,7 +1095,7 @@
 <rect width="12" height="12" x="240" y="300" class="decompiled"><title>void __cdecl HWR_LoadTexturePages(int32_t pages_count, void *pages_buf, RGB_888 *palette);</title></rect>
 <rect width="12" height="12" x="255" y="300" class="decompiled"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="12" height="12" x="270" y="300" class="decompiled"><title>void __cdecl HWR_GetPageHandles(void);</title></rect>
-<rect width="12" height="12" x="285" y="300" class="known"><title>bool __cdecl HWR_VertexBufferFull(void);</title></rect>
+<rect width="12" height="12" x="285" y="300" class="decompiled"><title>bool __cdecl HWR_VertexBufferFull(void);</title></rect>
 <rect width="12" height="12" x="300" y="300" class="known"><title>bool __cdecl HWR_Init(void);</title></rect>
 <rect width="12" height="12" x="315" y="300" class="known"><title>BOOL __cdecl S_InitialiseSystem(void);</title></rect>
 <rect width="12" height="12" x="330" y="300" class="known"><title>void __cdecl GameBuf_Shutdown(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.99%</tspan> · <tspan class="known">59.69%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.99%</tspan> · <tspan class="known">59.68%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="298.70" height="6" x="0" y="0" class="decompiled"/>
-<rect width="445.86" height="6" x="298.70" y="0" class="known"/>
+<rect width="298.76" height="6" x="0" y="0" class="decompiled"/>
+<rect width="445.80" height="6" x="298.76" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2419,7 +2419,7 @@
 <rect width="1.91" height="1.40" x="708.89" y="373.60" class="decompiled"><title>bool __cdecl S_Audio_Sample_DSoundEnumerate(SOUND_ADAPTER_LIST *adapter_list);</title></rect>
 <rect width="1.51" height="1.78" x="713.79" y="341.96" class="decompiled"><title>int32_t __fastcall Math_SinImpl(int16_t angle);</title></rect>
 <rect width="1.51" height="1.60" x="713.79" y="346.74" class="known"><title>int32_t __cdecl GetDebouncedInput(int32_t input);</title></rect>
-<rect width="1.51" height="1.60" x="713.79" y="351.34" class="known"><title>bool __cdecl HWR_VertexBufferFull(void);</title></rect>
+<rect width="1.51" height="1.60" x="713.79" y="351.34" class="decompiled"><title>bool __cdecl HWR_VertexBufferFull(void);</title></rect>
 <rect width="1.51" height="1.41" x="713.79" y="355.94" class="decompiled"><title>void __cdecl Lara_State_SlideBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="1.51" height="1.41" x="713.79" y="360.35" class="known"><title>void __cdecl draw_flare_meshes(void);</title></rect>
 <rect width="1.51" height="1.41" x="713.79" y="364.76" class="known"><title>void __cdecl undraw_flare_meshes(void);</title></rect>

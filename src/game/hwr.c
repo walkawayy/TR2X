@@ -266,3 +266,10 @@ void __cdecl HWR_GetPageHandles(void)
                 GetTexturePageHandle(g_HWR_TexturePageIndexes[i]);
     }
 }
+
+bool __cdecl HWR_VertexBufferFull(void)
+{
+    const int32_t index =
+        (g_HWR_VertexPtr - g_HWR_VertexBuffer) / sizeof(D3DTLVERTEX);
+    return index >= MAX_VERTICES;
+}

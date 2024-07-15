@@ -180,6 +180,7 @@ static void Inject_HWR(bool enable)
     INJECT(enable, 0x0044D200, HWR_EnableColorKey);
     INJECT(enable, 0x0044D250, HWR_EnableZBuffer);
     INJECT(enable, 0x0044D2E0, HWR_BeginScene);
+    INJECT(enable, 0x0044D310, HWR_DrawPolyList);
 }
 
 static void Inject_Background(const bool enable)

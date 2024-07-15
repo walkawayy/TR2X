@@ -158,3 +158,59 @@ void __cdecl HWR_BeginScene(void)
     WaitPrimaryBufferFlip();
     g_D3DDev->lpVtbl->BeginScene(g_D3DDev);
 }
+
+void __cdecl HWR_DrawPolyList(void)
+{
+    HWR_EnableZBuffer(false, true);
+
+    for (int32_t i = 0; i < g_SurfaceCount; i++) {
+        uint16_t *buf_ptr = (uint16_t *)g_SortBuffer[i]._0;
+
+        uint16_t poly_type = *buf_ptr++;
+        uint16_t tex_page =
+            (poly_type == POLY_HWR_GTMAP || poly_type == POLY_HWR_WGTMAP)
+            ? *buf_ptr++
+            : 0;
+        uint16_t vtx_count = *buf_ptr++;
+        D3DTLVERTEX *vtx_ptr = *(D3DTLVERTEX **)buf_ptr;
+
+        switch (poly_type) {
+        // triangle fan (texture)
+        case POLY_HWR_GTMAP:
+        // triangle fan (texture + colorkey)
+        case POLY_HWR_WGTMAP:
+            HWR_TexSource(g_HWR_PageHandles[tex_page]);
+            HWR_EnableColorKey(poly_type == POLY_HWR_WGTMAP);
+            HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, vtx_ptr, vtx_count, true);
+            break;
+
+        // triangle fan (color)
+        case POLY_HWR_GOURAUD:
+            HWR_TexSource(0);
+            HWR_EnableColorKey(false);
+            HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, vtx_ptr, vtx_count, true);
+            break;
+
+        // line strip (color)
+        case POLY_HWR_LINE:
+            HWR_TexSource(0);
+            HWR_EnableColorKey(false);
+            HWR_DrawPrimitive(D3DPT_LINESTRIP, vtx_ptr, vtx_count, true);
+            break;
+
+        // triangle fan (color + semitransparent)
+        case POLY_HWR_TRANS: {
+            DWORD alpha_state;
+            HWR_TexSource(0);
+            g_D3DDev->lpVtbl->GetRenderState(
+                g_D3DDev, g_AlphaBlendEnabler, &alpha_state);
+            g_D3DDev->lpVtbl->SetRenderState(
+                g_D3DDev, g_AlphaBlendEnabler, TRUE);
+            HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, vtx_ptr, vtx_count, true);
+            g_D3DDev->lpVtbl->SetRenderState(
+                g_D3DDev, g_AlphaBlendEnabler, alpha_state);
+            break;
+        }
+        }
+    }
+}

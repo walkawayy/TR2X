@@ -273,3 +273,12 @@ bool __cdecl HWR_VertexBufferFull(void)
         (g_HWR_VertexPtr - g_HWR_VertexBuffer) / sizeof(D3DTLVERTEX);
     return index >= MAX_VERTICES;
 }
+
+bool __cdecl HWR_Init(void)
+{
+    memset(g_HWR_VertexBuffer, 0, sizeof(g_HWR_VertexBuffer));
+    memset(
+        g_HWR_TexturePageIndexes, (uint8_t)-1,
+        sizeof(g_HWR_TexturePageIndexes));
+    return true;
+}

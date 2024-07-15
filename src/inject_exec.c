@@ -185,6 +185,7 @@ static void Inject_HWR(bool enable)
     INJECT(enable, 0x0044D520, HWR_FreeTexturePages);
     INJECT(enable, 0x0044D570, HWR_GetPageHandles);
     INJECT(enable, 0x0044D5B0, HWR_VertexBufferFull);
+    INJECT(enable, 0x0044D5E0, HWR_Init);
 }
 
 static void Inject_Background(const bool enable)

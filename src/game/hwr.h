@@ -24,3 +24,4 @@ void __cdecl HWR_LoadTexturePages(
 void __cdecl HWR_FreeTexturePages(void);
 void __cdecl HWR_GetPageHandles(void);
 bool __cdecl HWR_VertexBufferFull(void);
+bool __cdecl HWR_Init(void);

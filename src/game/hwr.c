@@ -73,3 +73,13 @@ void __cdecl HWR_ResetTexSource(void)
     g_D3DDev->lpVtbl->SetRenderState(g_D3DDev, D3DRENDERSTATE_TEXTUREHANDLE, 0);
     g_D3DDev->lpVtbl->SetRenderState(g_D3DDev, D3DRENDERSTATE_FLUSHBATCH, 0);
 }
+
+void __cdecl HWR_ResetColorKey(void)
+{
+    g_ColorKeyState = FALSE;
+    g_D3DDev->lpVtbl->SetRenderState(
+        g_D3DDev,
+        g_TexturesAlphaChannel ? D3DRENDERSTATE_ALPHABLENDENABLE
+                               : D3DRENDERSTATE_COLORKEYENABLE,
+        FALSE);
+}

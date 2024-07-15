@@ -264,6 +264,7 @@ extern const char *g_TR2XVersion;
 #define g_HWR_PageHandles (*(HWR_TEXTURE_HANDLE(*)[32])0x00519EE0)
 #define g_HWR_VertexPtr (*(D3DTLVERTEX **)0x00519F60)
 #define g_AlphaBlendEnabler (*(D3DRENDERSTATETYPE*)0x00519F68)
+#define g_ColorKeyState (*(bool*)0x00519F6C)
 #define g_GameMemoryPtr (*(void **)0x0051A0CC)
 #define g_ConflictLayout (*(BOOL(*)[14])0x0051A0D0)
 #define g_DIKeys (*(uint8_t(*)[256])0x0051A108)
@@ -284,6 +285,7 @@ extern const char *g_TR2XVersion;
 #define g_MciDeviceID (*(MCIDEVICEID*)0x0051BDAC)
 #define g_CD_LoopTrack (*(int32_t*)0x0051BDB0)
 #define g_TextureFormat (*(TEXTURE_FORMAT*)0x0051C1B8)
+#define g_TexturesAlphaChannel (*(bool*)0x0051C20C)
 #define g_TextstringTable (*(TEXTSTRING(*)[64])0x0051C820)
 #define g_TextstringCount (*(int16_t*)0x0051D6A0) // = 0
 #define g_TextstringBuffers (*(char(*)[64][64])0x0051D6C0)

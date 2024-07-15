@@ -512,7 +512,6 @@
 #define S_FrontEndCheck ((BOOL __cdecl (*)(void))0x0044CCB0)
 #define S_SaveGame ((int32_t __cdecl (*)(const void *save_data, uint32_t save_size, int32_t slot_num))0x0044CE20)
 #define S_LoadGame ((int32_t __cdecl (*)(void *save_data, uint32_t save_size, int32_t slot_num))0x0044CF40)
-#define HWR_ResetColorKey ((void __cdecl (*)(void))0x0044D140)
 #define HWR_ResetZBuffer ((void __cdecl (*)(void))0x0044D170)
 #define HWR_TexSource ((void __cdecl (*)(HWR_TEXTURE_HANDLE tex_source))0x0044D1D0)
 #define HWR_EnableColorKey ((void __cdecl (*)(bool state))0x0044D200)

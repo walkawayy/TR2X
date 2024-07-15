@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.02% (524)</tspan> · <tspan class="known">54.52% (664)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.10% (525)</tspan> · <tspan class="known">54.43% (663)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="321.37" height="6" x="0" y="0" class="decompiled"/>
-<rect width="407.23" height="6" x="321.37" y="0" class="known"/>
+<rect width="321.98" height="6" x="0" y="0" class="decompiled"/>
+<rect width="406.62" height="6" x="321.98" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1085,7 +1085,7 @@
 <rect width="12" height="12" x="90" y="300" class="known"><title>int32_t __cdecl S_LoadGame(void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
 <rect width="12" height="12" x="105" y="300" class="decompiled"><title>void __cdecl HWR_InitState(void);</title></rect>
 <rect width="12" height="12" x="120" y="300" class="decompiled"><title>void __cdecl HWR_ResetTexSource(void);</title></rect>
-<rect width="12" height="12" x="135" y="300" class="known"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
+<rect width="12" height="12" x="135" y="300" class="decompiled"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="12" height="12" x="150" y="300" class="known"><title>void __cdecl HWR_ResetZBuffer(void);</title></rect>
 <rect width="12" height="12" x="165" y="300" class="known"><title>void __cdecl HWR_TexSource(HWR_TEXTURE_HANDLE tex_source);</title></rect>
 <rect width="12" height="12" x="180" y="300" class="known"><title>void __cdecl HWR_EnableColorKey(bool state);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.69%</tspan> · <tspan class="known">59.99%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">39.70%</tspan> · <tspan class="known">59.97%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="296.46" height="6" x="0" y="0" class="decompiled"/>
-<rect width="448.10" height="6" x="296.46" y="0" class="known"/>
+<rect width="296.55" height="6" x="0" y="0" class="decompiled"/>
+<rect width="448.01" height="6" x="296.55" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2320,7 +2320,7 @@
 <rect width="2.72" height="3.24" x="681.74" y="340.84" class="known"><title>void __cdecl undraw_shotgun_meshes(int32_t weapon_type);</title></rect>
 <rect width="2.72" height="3.24" x="681.74" y="347.09" class="decompiled"><title>void __cdecl Text_Flash(TEXTSTRING *string, int16_t enable, int16_t rate);</title></rect>
 <rect width="2.72" height="3.24" x="681.74" y="353.33" class="decompiled"><title>DWORD __cdecl GetZBufferDepth(void);</title></rect>
-<rect width="2.72" height="3.24" x="681.74" y="359.57" class="known"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
+<rect width="2.72" height="3.24" x="681.74" y="359.57" class="decompiled"><title>void __cdecl HWR_ResetColorKey(void);</title></rect>
 <rect width="2.72" height="3.10" x="681.74" y="365.81" class="decompiled"><title>void __cdecl Output_InsertPolygons_I(int16_t *ptr, int32_t clip);</title></rect>
 <rect width="2.72" height="3.10" x="681.74" y="371.90" class="decompiled"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="2.85" height="2.96" x="687.46" y="315.45" class="decompiled"><title>void __cdecl S_Audio_Sample_Shutdown(void);</title></rect>

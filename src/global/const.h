@@ -145,5 +145,6 @@
 
 #define NUM_SLOTS 5
 #define DONT_TARGET (-16384)
+#define PITCH_SHIFT 4
 
 #define IDS_DX5_REQUIRED 1

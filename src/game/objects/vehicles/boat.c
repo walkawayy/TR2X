@@ -34,6 +34,7 @@
 #define BOAT_UNDO_TURN (PHD_DEGREE / 4) // = 45
 #define BOAT_TURN (PHD_DEGREE / 8) // = 22
 #define BOAT_MAX_TURN (PHD_DEGREE * 4) // = 728
+#define BOAT_SOUND_CEILING (WALL_L * 5) // = 5120
 
 typedef enum {
     BOAT_GETON = 0,
@@ -291,7 +292,7 @@ void __cdecl Boat_DoWakeEffect(const ITEM_INFO *const boat)
         fx->pos.x = boat->pos.x + ((-c * w - s * h) >> W2V_SHIFT);
         fx->pos.y = boat->pos.y;
         fx->pos.z = boat->pos.z + ((-c * h + s * w) >> W2V_SHIFT);
-        fx->rot.y = boat->rot.y + (i << W2V_SHIFT) - 0x4000;
+        fx->rot.y = boat->rot.y + (i << W2V_SHIFT) - PHD_90;
 
         fx->counter = 20;
         fx->speed = boat->speed >> 2;
@@ -607,5 +608,197 @@ void __cdecl Boat_Animation(const ITEM_INFO *const boat, const int32_t collide)
     case BOAT_FALL:
         lara->goal_anim_state = BOAT_MOVING;
         break;
+    }
+}
+
+void __cdecl Boat_Control(const int16_t item_num)
+{
+    ITEM_INFO *const lara = g_LaraItem;
+    ITEM_INFO *const boat = &g_Items[item_num];
+    BOAT_INFO *const boat_data = (BOAT_INFO *)boat->data;
+
+    bool drive = false;
+    int32_t no_turn = 1;
+    int32_t collide = Boat_Dynamics(item_num);
+
+    XYZ_32 fl;
+    XYZ_32 fr;
+    const int32_t hfl = Boat_TestWaterHeight(boat, BOAT_FRONT, -BOAT_SIDE, &fl);
+    const int32_t hfr = Boat_TestWaterHeight(boat, BOAT_FRONT, BOAT_SIDE, &fr);
+
+    int16_t room_num = boat->room_num;
+    const FLOOR_INFO *const floor =
+        Room_GetFloor(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
+    int32_t height =
+        Room_GetHeight(floor, boat->pos.x, boat->pos.y, boat->pos.z);
+    const int32_t ceiling =
+        Room_GetCeiling(floor, boat->pos.x, boat->pos.y, boat->pos.z);
+    if (g_Lara.skidoo == item_num) {
+        Room_TestTriggers(g_TriggerIndex, 0);
+        Room_TestTriggers(g_TriggerIndex, 1);
+    }
+
+    const int32_t water_height =
+        Room_GetWaterHeight(boat->pos.x, boat->pos.y, boat->pos.z, room_num);
+    boat_data->water = water_height;
+
+    if (g_Lara.skidoo == item_num && lara->hit_points > 0) {
+        switch (lara->current_anim_state) {
+        case BOAT_GETON:
+        case BOAT_JUMP_R:
+        case BOAT_JUMP_L:
+            break;
+
+        default:
+            drive = true;
+            no_turn = Boat_UserControl(boat);
+            break;
+        }
+    } else if (boat->speed > BOAT_SLOWDOWN) {
+        boat->speed -= BOAT_SLOWDOWN;
+    } else {
+        boat->speed = 0;
+    }
+
+    if (no_turn) {
+        if (boat_data->boat_turn < -BOAT_UNDO_TURN) {
+            boat_data->boat_turn += BOAT_UNDO_TURN;
+        } else if (boat_data->boat_turn > BOAT_UNDO_TURN) {
+            boat_data->boat_turn -= BOAT_UNDO_TURN;
+        } else {
+            boat_data->boat_turn = 0;
+        }
+    }
+
+    boat->floor = height - 5;
+    if (boat_data->water == NO_HEIGHT) {
+        boat_data->water = height;
+    } else {
+        boat_data->water -= 5;
+    }
+
+    boat_data->left_fallspeed =
+        Boat_DoDynamics(hfl, boat_data->left_fallspeed, &fl.y);
+    boat_data->right_fallspeed =
+        Boat_DoDynamics(hfr, boat_data->right_fallspeed, &fr.y);
+    boat->fall_speed =
+        Boat_DoDynamics(boat_data->water, boat->fall_speed, &boat->pos.y);
+
+    height = (fr.y + fl.y) / 2;
+
+    const int16_t x_rot = Math_Atan(BOAT_FRONT, boat->pos.y - height);
+    const int16_t z_rot = Math_Atan(BOAT_SIDE, height - fl.y);
+    boat->rot.x += (x_rot - boat->rot.x) / 2;
+    boat->rot.z += (z_rot - boat->rot.z) / 2;
+
+    if (x_rot == 0 && ABS(boat->rot.x) < 4) {
+        boat->rot.x = 0;
+    }
+    if (z_rot == 0 && ABS(boat->rot.z) < 4) {
+        boat->rot.z = 0;
+    }
+
+    if (g_Lara.skidoo == item_num) {
+        Boat_Animation(boat, collide);
+
+        if (room_num != boat->room_num) {
+            Item_NewRoom(item_num, room_num);
+            Item_NewRoom(g_Lara.item_num, room_num);
+        }
+
+        boat->rot.z += boat_data->tilt_angle;
+        lara->pos.x = boat->pos.x;
+        lara->pos.y = boat->pos.y;
+        lara->pos.z = boat->pos.z;
+        lara->rot.x = boat->rot.x;
+        lara->rot.y = boat->rot.y;
+        lara->rot.z = boat->rot.z;
+
+        Item_Animate(lara);
+
+        if (lara->hit_points > 0) {
+            boat->anim_num = g_Objects[O_BOAT].anim_idx
+                + (lara->anim_num - g_Objects[O_LARA_BOAT].anim_idx);
+            boat->frame_num = g_Anims[boat->anim_num].frame_base
+                + lara->frame_num - g_Anims[lara->anim_num].frame_base;
+        }
+
+        g_Camera.target_elevation = -20 * PHD_DEGREE;
+        g_Camera.target_distance = 2 * WALL_L;
+    } else {
+        if (room_num != boat->room_num) {
+            Item_NewRoom(item_num, room_num);
+        }
+        boat->rot.z += boat_data->tilt_angle;
+    }
+
+    const int32_t pitch = water_height - ceiling < BOAT_SOUND_CEILING
+        ? boat->speed * (water_height - ceiling) / BOAT_SOUND_CEILING
+        : boat->speed;
+
+    boat_data->pitch += ((pitch - boat_data->pitch) >> 2);
+    if (boat->speed != 0 && water_height - 5 != boat->pos.y) {
+        Sound_Effect(336, &boat->pos, 0);
+    } else if (boat->speed > 20) {
+        Sound_Effect(
+            197, &boat->pos,
+            PITCH_SHIFT
+                + ((0x10000 - (BOAT_MAX_SPEED - boat_data->pitch) * 100) << 8));
+
+    } else if (drive) {
+        Sound_Effect(
+            195, &boat->pos,
+            PITCH_SHIFT
+                + ((0x10000 - (BOAT_MAX_SPEED - boat_data->pitch) * 100) << 8));
+    }
+
+    if (boat->speed && water_height - 5 == boat->pos.y) {
+        Boat_DoWakeEffect(boat);
+    }
+
+    if (g_Lara.skidoo != item_num) {
+        return;
+    }
+
+    if ((lara->current_anim_state == BOAT_JUMP_R
+         || lara->current_anim_state == BOAT_JUMP_L)
+        && lara->frame_num == g_Anims[lara->anim_num].frame_end) {
+        if (lara->current_anim_state == BOAT_JUMP_L) {
+            lara->rot.y -= PHD_90;
+        } else {
+            lara->rot.y += PHD_90;
+        }
+
+        lara->anim_num = 77; // TODO: create enum
+        lara->frame_num = g_Anims[lara->anim_num].frame_base;
+        lara->goal_anim_state = LS_FORWARD_JUMP;
+        lara->current_anim_state = LS_FORWARD_JUMP;
+        lara->gravity = 1;
+        lara->rot.x = 0;
+        lara->rot.z = 0;
+        lara->speed = 20;
+        lara->fall_speed = -40;
+        g_Lara.skidoo = NO_ITEM;
+
+        const XYZ_32 pos = {
+            .x = lara->pos.x + ((360 * Math_Sin(lara->rot.y)) >> W2V_SHIFT),
+            .y = lara->pos.y - 90,
+            .z = lara->pos.z + ((360 * Math_Cos(lara->rot.y)) >> W2V_SHIFT),
+        };
+
+        int16_t room_num = lara->room_num;
+        const FLOOR_INFO *const floor =
+            Room_GetFloor(pos.x, pos.y, pos.z, &room_num);
+        if (Room_GetHeight(floor, pos.x, pos.y, pos.z) >= pos.y - STEP_L) {
+            lara->pos.x = pos.x;
+            lara->pos.z = pos.z;
+            if (room_num != lara->room_num) {
+                Item_NewRoom(g_Lara.item_num, room_num);
+            }
+        }
+
+        lara->pos.y = pos.y;
+        boat->anim_num = g_Objects[O_BOAT].anim_idx;
+        boat->frame_num = g_Anims[boat->anim_num].frame_base;
     }
 }

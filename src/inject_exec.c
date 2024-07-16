@@ -671,6 +671,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x0040D2E0, Boat_Dynamics);
     INJECT(enable, 0x0040D7C0, Boat_UserControl);
     INJECT(enable, 0x0040D950, Boat_Animation);
+    INJECT(enable, 0x0040DAC0, Boat_Control);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

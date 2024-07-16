@@ -15,3 +15,4 @@ int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
 int32_t __cdecl Boat_Dynamics(int16_t boat_num);
 int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);
 void __cdecl Boat_Animation(const ITEM_INFO *boat, int32_t collide);
+void __cdecl Boat_Control(int16_t item_num);

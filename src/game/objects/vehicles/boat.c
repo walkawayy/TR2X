@@ -16,7 +16,11 @@
 #define BOAT_SIDE 300
 #define BOAT_RADIUS 500
 #define BOAT_MAX_SPEED 90
+#define BOAT_MAX_BACK (-20)
+#define BOAT_ACCELERATION 5
 #define BOAT_WAKE 700
+#define BOAT_FRONT 750
+#define BOAT_TIP (BOAT_FRONT + 250)
 
 typedef enum {
     GONDOLA_EMPTY = 0,
@@ -296,4 +300,144 @@ int32_t __cdecl Boat_DoDynamics(
     }
 
     return fall_speed;
+}
+
+int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
+{
+    ITEM_INFO *const boat = &g_Items[boat_num];
+    BOAT_INFO *const boat_data = (BOAT_INFO *)boat->data;
+    boat->rot.z -= boat_data->tilt_angle;
+
+    XYZ_32 fl_old;
+    XYZ_32 bl_old;
+    XYZ_32 fr_old;
+    XYZ_32 br_old;
+    XYZ_32 f_old;
+    const int32_t hfl_old =
+        Boat_TestWaterHeight(boat, BOAT_FRONT, -BOAT_SIDE, &fl_old);
+    const int32_t hfr_old =
+        Boat_TestWaterHeight(boat, BOAT_FRONT, BOAT_SIDE, &fr_old);
+    const int32_t hbl_old =
+        Boat_TestWaterHeight(boat, -BOAT_FRONT, -BOAT_SIDE, &bl_old);
+    const int32_t hbr_old =
+        Boat_TestWaterHeight(boat, -BOAT_FRONT, BOAT_SIDE, &br_old);
+    const int32_t hf_old = Boat_TestWaterHeight(boat, BOAT_TIP, 0, &f_old);
+    XYZ_32 old = boat->pos;
+    CLAMPG(bl_old.y, hbl_old);
+    CLAMPG(br_old.y, hbr_old);
+    CLAMPG(fl_old.y, hfl_old);
+    CLAMPG(fr_old.y, hfr_old);
+    CLAMPG(f_old.y, hf_old);
+
+    boat->rot.y += boat_data->extra_rotation + boat_data->boat_turn;
+    boat_data->tilt_angle = boat_data->boat_turn * 6;
+
+    boat->pos.z += (boat->speed * Math_Cos(boat->rot.y)) >> W2V_SHIFT;
+    boat->pos.x += (boat->speed * Math_Sin(boat->rot.y)) >> W2V_SHIFT;
+
+    int32_t slip = (Math_Sin(boat->rot.z) * 30) >> W2V_SHIFT;
+    if (!slip && boat->rot.z) {
+        slip = boat->rot.z > 0 ? 1 : -1;
+    }
+    boat->pos.z -= (slip * Math_Sin(boat->rot.y)) >> W2V_SHIFT;
+    boat->pos.x += (slip * Math_Cos(boat->rot.y)) >> W2V_SHIFT;
+
+    slip = (Math_Sin(boat->rot.x) * 10) >> W2V_SHIFT;
+    if (!slip && boat->rot.x) {
+        slip = boat->rot.x > 0 ? 1 : -1;
+    }
+
+    boat->pos.z -= (slip * Math_Cos(boat->rot.y)) >> W2V_SHIFT;
+    boat->pos.x = boat->pos.x - ((slip * Math_Sin(boat->rot.y)) >> W2V_SHIFT);
+
+    XYZ_32 moved = {
+        .x = boat->pos.x,
+        .y = 0,
+        .z = boat->pos.z,
+    };
+    Boat_DoShift(boat_num);
+
+    int32_t rot = 0;
+
+    XYZ_32 bl;
+    const int32_t hbl =
+        Boat_TestWaterHeight(boat, -BOAT_FRONT, -BOAT_SIDE, &bl);
+    if (hbl < bl_old.y - STEP_L / 2) {
+        rot = DoShift(boat, &bl, &bl_old);
+    }
+
+    XYZ_32 br;
+    const int32_t hbr = Boat_TestWaterHeight(boat, -BOAT_FRONT, BOAT_SIDE, &br);
+    if (hbr < br_old.y - STEP_L / 2) {
+        rot += DoShift(boat, &br, &br_old);
+    }
+
+    XYZ_32 fl;
+    const int32_t hfl = Boat_TestWaterHeight(boat, BOAT_FRONT, -BOAT_SIDE, &fl);
+    if (hfl < fl_old.y - STEP_L / 2) {
+        rot += DoShift(boat, &fl, &fl_old);
+    }
+
+    XYZ_32 fr;
+    const int32_t hfr = Boat_TestWaterHeight(boat, BOAT_FRONT, BOAT_SIDE, &fr);
+    if (hfr < fr_old.y - STEP_L / 2) {
+        rot += DoShift(boat, &fr, &fr_old);
+    }
+
+    if (!slip) {
+        XYZ_32 f;
+        const int32_t hf = Boat_TestWaterHeight(boat, BOAT_TIP, 0, &f);
+        if (hf < f_old.y - STEP_L / 2) {
+            DoShift(boat, &f, &f_old);
+        }
+    }
+
+    int16_t room_num = boat->room_num;
+    const FLOOR_INFO *const floor =
+        Room_GetFloor(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
+    int32_t height =
+        Room_GetWaterHeight(boat->pos.x, boat->pos.y, boat->pos.z, room_num);
+    if (height == NO_HEIGHT) {
+        height = Room_GetHeight(floor, boat->pos.x, boat->pos.y, boat->pos.z);
+    }
+    if (height < boat->pos.y - STEP_L / 2) {
+        DoShift(boat, &boat->pos, &old);
+    }
+
+    boat_data->extra_rotation = rot;
+
+    const int32_t collide = GetCollisionAnim(boat, &moved);
+    if (slip || collide) {
+        // clang-format off
+        const int32_t new_speed = (
+            (boat->pos.z - old.z) * Math_Cos(boat->rot.y) +
+            (boat->pos.x - old.x) * Math_Sin(boat->rot.y)
+        ) >> W2V_SHIFT;
+        // clang-format on
+
+        if (g_Lara.skidoo == boat_num) {
+            if (boat->speed > BOAT_MAX_SPEED + BOAT_ACCELERATION
+                && new_speed < boat->speed - 10) {
+                g_LaraItem->hit_points -= (boat->speed - new_speed) / 2;
+                g_LaraItem->hit_status = 1;
+                Sound_Effect(31, &g_LaraItem->pos, 0);
+            }
+        }
+
+        if (slip) {
+            if (boat->speed <= BOAT_MAX_SPEED + 10) {
+                boat->speed = new_speed;
+            }
+        } else {
+            if (boat->speed > 0 && new_speed < boat->speed) {
+                boat->speed = new_speed;
+            } else if (boat->speed < 0 && new_speed > boat->speed) {
+                boat->speed = new_speed;
+            }
+        }
+
+        CLAMPL(boat->speed, BOAT_MAX_BACK);
+    }
+
+    return collide;
 }

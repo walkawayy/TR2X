@@ -2198,7 +2198,7 @@ typedef struct {
 0x0040CF40  0x01C1  +       void __cdecl Boat_DoShift(int32_t boat_num);
 0x0040D110  0x0174  +       void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);
 0x0040D290  0x004B  +       int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
-0x0040D2E0  0x04DD  -       int32_t __cdecl Boat_Dynamics(int16_t boat_num);
+0x0040D2E0  0x04DD  +       int32_t __cdecl Boat_Dynamics(int16_t boat_num);
 0x0040D7C0  0x0187  -       int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);
 0x0040D950  0x0169  -       void __cdecl Boat_Animation(ITEM_INFO *boat, int32_t collide);
 0x0040DAC0  0x062A  -       void __cdecl Boat_Control(int16_t item_num);

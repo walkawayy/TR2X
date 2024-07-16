@@ -145,3 +145,32 @@ void __cdecl Boat_Collision(
         boat->status = IS_ACTIVE;
     }
 }
+
+int32_t __cdecl Boat_TestWaterHeight(
+    const ITEM_INFO *const item, const int32_t z_off, const int32_t x_off,
+    XYZ_32 *const pos)
+{
+    // clang-format off
+    pos->y = item->pos.y
+        + ((x_off * Math_Sin(item->rot.z)) >> W2V_SHIFT)
+        - ((z_off * Math_Sin(item->rot.x)) >> W2V_SHIFT);
+    // clang-format on
+
+    const int32_t c = Math_Cos(item->rot.y);
+    const int32_t s = Math_Sin(item->rot.y);
+    pos->x = item->pos.x + ((x_off * c + z_off * s) >> W2V_SHIFT);
+    pos->z = item->pos.z + ((z_off * c - x_off * s) >> W2V_SHIFT);
+
+    int16_t room_num = item->room_num;
+    Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
+    int32_t height = Room_GetWaterHeight(pos->x, pos->y, pos->z, room_num);
+    if (height == NO_HEIGHT) {
+        FLOOR_INFO *floor = Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
+        height = Room_GetHeight(floor, pos->x, pos->y, pos->z);
+        if (height != NO_HEIGHT) {
+            return height;
+        }
+    }
+
+    return height - 5;
+}

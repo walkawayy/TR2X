@@ -2076,6 +2076,16 @@ typedef struct {
     DWORD bpp;
 } TEXTURE_FORMAT;
 
+typedef struct {
+    int32_t boat_turn;
+    int32_t left_fallspeed;
+    int32_t right_fallspeed;
+    int16_t tilt_angle;
+    int16_t extra_rotation;
+    int32_t water;
+    int32_t pitch;
+} BOAT_INFO;
+
 # FUNCTIONS
 #   Flags:
 #   - to do
@@ -2181,7 +2191,7 @@ typedef struct {
 0x0040C910  0x0200  +       void __cdecl Bird_Control(int16_t item_num);
 
 # game/boat.c
-0x0040CB30  0x003C  -       void __cdecl Boat_Initialise(int16_t item_num);
+0x0040CB30  0x003C  +       void __cdecl Boat_Initialise(int16_t item_num);
 0x0040CB70  0x0170  -       int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);
 0x0040CCE0  0x015E  -       void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x0040CE40  0x00F8  -       int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
@@ -2264,7 +2274,7 @@ typedef struct {
 0x00413940  0x0077  -       void __cdecl Door_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x004139C0  0x0067  -       void __cdecl Object_CollisionTrap(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x00413A30  0x0306  -       void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
-0x00413D40  0x00CB  -       int32_t __cdecl Item_TestBoundsCollide(ITEM_INFO *src_item, ITEM_INFO *dst_item, int32_t radius);
+0x00413D40  0x00CB  -       int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
 0x00413E10  0x0137  -       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);
 0x00413F50  0x013B  -       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
 0x00414090  0x0187  -       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
@@ -2908,8 +2918,8 @@ typedef struct {
 0x0043F980  0x002A  +       void __cdecl Sound_Init(void);
 
 # game/sphere.c
-0x0043F9B0  0x0128  -R      int32_t __cdecl TestCollision(ITEM_INFO *item, ITEM_INFO *lara_item);
-0x0043FAE0  0x02D8  -R      int32_t __cdecl GetSpheres(ITEM_INFO *item, SPHERE *ptr, int32_t world_space);
+0x0043F9B0  0x0128  -R      int32_t __cdecl TestCollision(ITEM_INFO *item, const ITEM_INFO *lara_item);
+0x0043FAE0  0x02D8  -R      int32_t __cdecl GetSpheres(const ITEM_INFO *item, SPHERE *ptr, int32_t world_space);
 0x0043FDC0  0x019A  -       void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);
 0x0043FF60  0x005D  -R      void __cdecl BaddieBiteEffect(ITEM_INFO *item, BITE_INFO *bite);
 

@@ -21,6 +21,7 @@
 #include "game/matrix.h"
 #include "game/music.h"
 #include "game/objects/creatures/bird.h"
+#include "game/objects/vehicles/boat.h"
 #include "game/output.h"
 #include "game/overlay.h"
 #include "game/random.h"
@@ -660,6 +661,7 @@ static void Inject_Objects(const bool enable)
 {
     INJECT(enable, 0x0040C880, Bird_Initialise);
     INJECT(enable, 0x0040C910, Bird_Control);
+    INJECT(enable, 0x0040CB30, Boat_Initialise);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

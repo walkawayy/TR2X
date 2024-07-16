@@ -95,6 +95,7 @@ dll_sources = [
   'src/game/music/music_backend_files.c',
   'src/game/music/music_main.c',
   'src/game/objects/creatures/bird.c',
+  'src/game/objects/vehicles/boat.c',
   'src/game/output.c',
   'src/game/overlay.c',
   'src/game/random.c',

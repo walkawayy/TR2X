@@ -2,6 +2,7 @@
 
 #include "game/effects.h"
 #include "game/items.h"
+#include "game/lara/lara_look.h"
 #include "game/math.h"
 #include "game/random.h"
 #include "game/sound.h"
@@ -13,14 +14,23 @@
 #define BOAT_GETON_RW_ANIM 8
 #define BOAT_GETON_J_ANIM 6
 #define BOAT_GETON_START 1
-#define BOAT_SIDE 300
 #define BOAT_RADIUS 500
-#define BOAT_MAX_SPEED 90
-#define BOAT_MAX_BACK (-20)
-#define BOAT_ACCELERATION 5
-#define BOAT_WAKE 700
+#define BOAT_SIDE 300
 #define BOAT_FRONT 750
 #define BOAT_TIP (BOAT_FRONT + 250)
+#define BOAT_MIN_SPEED 20
+#define BOAT_MAX_SPEED 90
+#define BOAT_SLOW_SPEED (BOAT_MAX_SPEED / 3) // = 30
+#define BOAT_FAST_SPEED (BOAT_MAX_SPEED + 50) // = 140
+#define BOAT_MAX_BACK (-20)
+#define BOAT_ACCELERATION 5
+#define BOAT_BRAKE 5
+#define BOAT_REVERSE (-5)
+#define BOAT_SLOWDOWN 1
+#define BOAT_WAKE 700
+#define BOAT_UNDO_TURN (PHD_DEGREE / 4) // = 45
+#define BOAT_TURN (PHD_DEGREE / 8) // = 22
+#define BOAT_MAX_TURN (PHD_DEGREE * 4) // = 728
 
 typedef enum {
     GONDOLA_EMPTY = 0,
@@ -67,7 +77,7 @@ int32_t __cdecl Boat_CheckGeton(
     const int16_t rot = boat->rot.y - lara->rot.y;
 
     if (g_Lara.water_status == LWS_SURFACE || g_Lara.water_status == LWS_WADE) {
-        if ((g_Input & IN_ACTION) == 0 || lara->gravity || boat->speed) {
+        if (!(g_Input & IN_ACTION) || lara->gravity || boat->speed) {
             return 0;
         }
 
@@ -440,4 +450,77 @@ int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
     }
 
     return collide;
+}
+
+int32_t __cdecl Boat_UserControl(ITEM_INFO *const boat)
+{
+    int32_t no_turn = 1;
+
+    BOAT_INFO *const boat_data = (BOAT_INFO *)boat->data;
+    if (boat->pos.y < boat_data->water - STEP_L / 2
+        || boat_data->water == NO_HEIGHT) {
+        return no_turn;
+    }
+
+    if ((g_Input & IN_LOOK) && !boat->speed) {
+        Lara_LookUpDown();
+        return no_turn;
+    }
+
+    if (g_Input & IN_JUMP) {
+        return no_turn;
+    }
+
+    if (((g_Input & IN_LEFT) && !(g_Input & IN_BACK))
+        || ((g_Input & IN_RIGHT) && (g_Input & IN_BACK))) {
+        if (boat_data->boat_turn > 0) {
+            boat_data->boat_turn -= BOAT_UNDO_TURN;
+        } else {
+            boat_data->boat_turn -= BOAT_TURN;
+            CLAMPL(boat_data->boat_turn, -BOAT_MAX_TURN);
+        }
+        no_turn = 0;
+    } else if (
+        ((g_Input & IN_RIGHT) && !(g_Input & IN_BACK))
+        || ((g_Input & IN_LEFT) && (g_Input & IN_BACK))) {
+        if (boat_data->boat_turn < 0) {
+            boat_data->boat_turn += BOAT_UNDO_TURN;
+        } else {
+            boat_data->boat_turn += BOAT_TURN;
+            CLAMPG(boat_data->boat_turn, BOAT_MAX_TURN);
+        }
+        no_turn = 0;
+    }
+
+    if (g_Input & IN_BACK) {
+        if (boat->speed > 0) {
+            boat->speed -= BOAT_BRAKE;
+        } else if (boat->speed > BOAT_MAX_BACK) {
+            boat->speed += BOAT_REVERSE;
+        }
+    } else if (g_Input & IN_FORWARD) {
+        int32_t max_speed;
+        if ((g_Input & IN_ACTION)) {
+            max_speed = BOAT_FAST_SPEED;
+        } else {
+            max_speed = (g_Input & IN_SLOW) ? BOAT_SLOW_SPEED : BOAT_MAX_SPEED;
+        }
+
+        if (boat->speed < max_speed) {
+            boat->speed += BOAT_ACCELERATION / 2
+                + BOAT_ACCELERATION * boat->speed / (2 * max_speed);
+        } else if (boat->speed > max_speed + BOAT_SLOWDOWN) {
+            boat->speed -= BOAT_SLOWDOWN;
+        }
+    } else if (
+        boat->speed >= 0 && boat->speed < BOAT_MIN_SPEED
+        && ((g_Input & IN_LEFT) || (g_Input & IN_RIGHT))) {
+        boat->speed = BOAT_MIN_SPEED;
+    } else if (boat->speed > BOAT_SLOWDOWN) {
+        boat->speed -= BOAT_SLOWDOWN;
+    } else {
+        boat->speed = 0;
+    }
+
+    return no_turn;
 }

@@ -13,3 +13,4 @@ void __cdecl Boat_DoShift(int32_t boat_num);
 void __cdecl Boat_DoWakeEffect(const ITEM_INFO *boat);
 int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
 int32_t __cdecl Boat_Dynamics(int16_t boat_num);
+int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);

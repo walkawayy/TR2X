@@ -769,7 +769,7 @@ void __cdecl Boat_Control(const int16_t item_num)
             lara->rot.y += PHD_90;
         }
 
-        lara->anim_num = 77; // TODO: create enum
+        lara->anim_num = LA_JUMP_FORWARD;
         lara->frame_num = g_Anims[lara->anim_num].frame_base;
         lara->goal_anim_state = LS_FORWARD_JUMP;
         lara->current_anim_state = LS_FORWARD_JUMP;

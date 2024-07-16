@@ -144,7 +144,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
         break;
     }
 
-    Sound_Effect(111, 0, SPM_ALWAYS);
+    Sound_Effect(SFX_MENU_SPININ, 0, SPM_ALWAYS);
     g_Inv_NFrames = 2;
 
     do {
@@ -321,20 +321,20 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
             case RNG_OPEN:
                 if ((g_Input & IN_RIGHT) != 0 && ring.number_of_objects > 1) {
                     Inv_Ring_RotateLeft(&ring);
-                    Sound_Effect(108, 0, SPM_ALWAYS);
+                    Sound_Effect(SFX_MENU_ROTATE, 0, SPM_ALWAYS);
                     break;
                 }
 
                 if ((g_Input & IN_LEFT) != 0 && ring.number_of_objects > 1) {
                     Inv_Ring_RotateRight(&ring);
-                    Sound_Effect(108, 0, SPM_ALWAYS);
+                    Sound_Effect(SFX_MENU_ROTATE, 0, SPM_ALWAYS);
                     break;
                 }
 
                 if (g_IsResetFlag
                     || (((g_InputDB & IN_OPTION) || (g_InputDB & IN_DESELECT))
                         && g_Inv_Mode != INV_TITLE_MODE)) {
-                    Sound_Effect(112, 0, SPM_ALWAYS);
+                    Sound_Effect(SFX_MENU_SPINOUT, 0, SPM_ALWAYS);
                     g_Inv_Chosen = NO_OBJECT;
                     if (ring.type != RT_MAIN) {
                         g_Inv_OptionCurrent = ring.current_object;
@@ -389,11 +389,11 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
                     switch (inv_item->obj_num) {
                     case O_COMPASS_OPTION:
-                        Sound_Effect(113, 0, SPM_ALWAYS);
+                        Sound_Effect(SFX_MENU_STOPWATCH, 0, SPM_ALWAYS);
                         break;
 
                     case O_PHOTO_OPTION:
-                        Sound_Effect(109, 0, SPM_ALWAYS);
+                        Sound_Effect(SFX_MENU_LARA_HOME, 0, SPM_ALWAYS);
                         break;
 
                     case O_PISTOL_OPTION:
@@ -403,11 +403,11 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     case O_HARPOON_OPTION:
                     case O_M16_OPTION:
                     case O_GRENADE_OPTION:
-                        Sound_Effect(114, 0, SPM_ALWAYS);
+                        Sound_Effect(SFX_MENU_GUNS, 0, SPM_ALWAYS);
                         break;
 
                     default:
-                        Sound_Effect(111, 0, SPM_ALWAYS);
+                        Sound_Effect(SFX_MENU_SPININ, 0, SPM_ALWAYS);
                         break;
                     }
                 }
@@ -606,7 +606,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
             }
 
             case RNG_DESELECT:
-                Sound_Effect(112, 0, SPM_ALWAYS);
+                Sound_Effect(SFX_MENU_SPINOUT, 0, SPM_ALWAYS);
                 Inv_Ring_MotionSetup(&ring, RNG_DESELECTING, RNG_OPEN, 16);
                 Inv_Ring_MotionRotation(
                     &ring, 0, -16384 - ring.angle_adder * ring.current_object);

@@ -256,7 +256,7 @@ void __cdecl Boat_DoShift(const int32_t boat_num)
                     boat->pos.x = ix - SQUARE(BOAT_RADIUS * 2) * dx / dist;
                     boat->pos.z = iz - SQUARE(BOAT_RADIUS * 2) * dz / dist;
                 } else if (item->pos.y - boat->pos.y < WALL_L * 2) {
-                    Sound_Effect(337, &item->pos, 0);
+                    Sound_Effect(SFX_BOAT_INTO_WATER, &item->pos, 0);
                     item->goal_anim_state = GONDOLA_CRASH;
                 }
             }
@@ -445,7 +445,7 @@ int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
                 && new_speed < boat->speed - 10) {
                 g_LaraItem->hit_points -= (boat->speed - new_speed) / 2;
                 g_LaraItem->hit_status = 1;
-                Sound_Effect(31, &g_LaraItem->pos, 0);
+                Sound_Effect(SFX_LARA_INJURY, &g_LaraItem->pos, 0);
             }
         }
 
@@ -738,16 +738,16 @@ void __cdecl Boat_Control(const int16_t item_num)
 
     boat_data->pitch += ((pitch - boat_data->pitch) >> 2);
     if (boat->speed != 0 && water_height - 5 != boat->pos.y) {
-        Sound_Effect(336, &boat->pos, 0);
+        Sound_Effect(SFX_BOAT_ENGINE, &boat->pos, SPM_NORMAL);
     } else if (boat->speed > 20) {
         Sound_Effect(
-            197, &boat->pos,
+            SFX_BOAT_MOVING, &boat->pos,
             PITCH_SHIFT
                 + ((0x10000 - (BOAT_MAX_SPEED - boat_data->pitch) * 100) << 8));
 
     } else if (drive) {
         Sound_Effect(
-            195, &boat->pos,
+            SFX_BOAT_IDLE, &boat->pos,
             PITCH_SHIFT
                 + ((0x10000 - (BOAT_MAX_SPEED - boat_data->pitch) * 100) << 8));
     }

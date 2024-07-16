@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.09% (537)</tspan> · <tspan class="known">53.45% (651)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.17% (538)</tspan> · <tspan class="known">53.37% (650)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="329.34" height="6" x="0" y="0" class="decompiled"/>
-<rect width="399.26" height="6" x="329.34" y="0" class="known"/>
+<rect width="329.96" height="6" x="0" y="0" class="decompiled"/>
+<rect width="398.65" height="6" x="329.96" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -163,7 +163,7 @@
 <rect width="12" height="12" x="510" y="15" class="decompiled"><title>void __cdecl Bird_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="525" y="15" class="decompiled"><title>void __cdecl Bird_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="540" y="15" class="decompiled"><title>void __cdecl Boat_Initialise(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="555" y="15" class="known"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>
+<rect width="12" height="12" x="555" y="15" class="decompiled"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="570" y="15" class="known"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="585" y="15" class="known"><title>int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);</title></rect>
 <rect width="12" height="12" x="600" y="15" class="known"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.02%</tspan> · <tspan class="known">59.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.13%</tspan> · <tspan class="known">59.54%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="298.96" height="6" x="0" y="0" class="decompiled"/>
-<rect width="445.60" height="6" x="298.96" y="0" class="known"/>
+<rect width="299.77" height="6" x="0" y="0" class="decompiled"/>
+<rect width="444.79" height="6" x="299.77" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1558,7 +1558,7 @@
 <rect width="14.87" height="14.27" x="430.74" y="309.18" class="known"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
 <rect width="14.87" height="14.27" x="430.74" y="326.45" class="known"><title>bool __cdecl TexturePageInit(TEXPAGE_DESC *page);</title></rect>
 <rect width="14.87" height="14.18" x="430.74" y="343.73" class="known"><title>void __cdecl WinstonControl(int16_t item_num);</title></rect>
-<rect width="14.87" height="14.09" x="430.74" y="360.91" class="known"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>
+<rect width="14.87" height="14.09" x="430.74" y="360.91" class="decompiled"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>
 <rect width="15.09" height="13.84" x="448.61" y="59.39" class="decompiled"><title>void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);</title></rect>
 <rect width="15.09" height="13.84" x="466.71" y="59.39" class="decompiled"><title>int32_t __cdecl Game_Cutscene_Control(int32_t nframes);</title></rect>
 <rect width="15.04" height="13.84" x="484.80" y="59.39" class="known"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>

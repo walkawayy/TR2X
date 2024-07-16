@@ -10,10 +10,13 @@
 #include "global/vars.h"
 #include "util.h"
 
+#define BOAT_FALL_ANIM 15
+#define BOAT_DEATH_ANIM 18
 #define BOAT_GETON_LW_ANIM 0
 #define BOAT_GETON_RW_ANIM 8
 #define BOAT_GETON_J_ANIM 6
 #define BOAT_GETON_START 1
+
 #define BOAT_RADIUS 500
 #define BOAT_SIDE 300
 #define BOAT_FRONT 750
@@ -31,6 +34,17 @@
 #define BOAT_UNDO_TURN (PHD_DEGREE / 4) // = 45
 #define BOAT_TURN (PHD_DEGREE / 8) // = 22
 #define BOAT_MAX_TURN (PHD_DEGREE * 4) // = 728
+
+typedef enum {
+    BOAT_GETON = 0,
+    BOAT_STILL = 1,
+    BOAT_MOVING = 2,
+    BOAT_JUMP_R = 3,
+    BOAT_JUMP_L = 4,
+    BOAT_HIT = 5,
+    BOAT_FALL = 6,
+    BOAT_DEATH = 8,
+} BOAT_ANIM;
 
 typedef enum {
     GONDOLA_EMPTY = 0,
@@ -523,4 +537,75 @@ int32_t __cdecl Boat_UserControl(ITEM_INFO *const boat)
     }
 
     return no_turn;
+}
+
+void __cdecl Boat_Animation(const ITEM_INFO *const boat, const int32_t collide)
+{
+    ITEM_INFO *const lara = g_LaraItem;
+    const BOAT_INFO *const boat_data = (const BOAT_INFO *)boat->data;
+
+    if (lara->hit_points <= 0) {
+        if (lara->current_anim_state == BOAT_DEATH) {
+            return;
+        }
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + BOAT_DEATH_ANIM;
+        lara->frame_num = g_Anims[lara->anim_num].frame_base;
+        lara->goal_anim_state = BOAT_DEATH;
+        lara->current_anim_state = BOAT_DEATH;
+        return;
+    }
+
+    if (boat->pos.y < boat_data->water - STEP_L / 2 && boat->fall_speed > 0) {
+        if (lara->current_anim_state == BOAT_FALL) {
+            return;
+        }
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + BOAT_FALL_ANIM;
+        lara->frame_num = g_Anims[lara->anim_num].frame_base;
+        lara->goal_anim_state = BOAT_FALL;
+        lara->current_anim_state = BOAT_FALL;
+        return;
+    }
+
+    if (collide) {
+        if (lara->current_anim_state == BOAT_HIT) {
+            return;
+        }
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + collide;
+        lara->frame_num = g_Anims[lara->anim_num].frame_base;
+        lara->goal_anim_state = BOAT_HIT;
+        lara->current_anim_state = BOAT_HIT;
+        return;
+    }
+
+    switch (lara->current_anim_state) {
+    case BOAT_STILL:
+        if (g_Input & IN_JUMP) {
+            if (g_Input & IN_RIGHT) {
+                lara->goal_anim_state = BOAT_JUMP_R;
+            } else if (g_Input & IN_LEFT) {
+                lara->goal_anim_state = BOAT_JUMP_L;
+            }
+        }
+
+        if (boat->speed > 0) {
+            lara->goal_anim_state = BOAT_MOVING;
+        }
+        break;
+
+    case BOAT_MOVING:
+        if (g_Input & IN_JUMP) {
+            if (g_Input & IN_RIGHT) {
+                lara->goal_anim_state = BOAT_JUMP_R;
+            } else if (g_Input & IN_LEFT) {
+                lara->goal_anim_state = BOAT_JUMP_L;
+            }
+        } else if (boat->speed <= 0) {
+            lara->goal_anim_state = BOAT_STILL;
+        }
+        break;
+
+    case BOAT_FALL:
+        lara->goal_anim_state = BOAT_MOVING;
+        break;
+    }
 }

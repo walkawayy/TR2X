@@ -2671,7 +2671,7 @@ typedef struct {
 0x0040D7C0  0x0187  +       int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);
 0x0040D950  0x0169  +       void __cdecl Boat_Animation(ITEM_INFO *boat, int32_t collide);
 0x0040DAC0  0x062A  +       void __cdecl Boat_Control(int16_t item_num);
-0x0040E0F0  0x00B3  -       void __cdecl Gondola_Control(int16_t item_num);
+0x0040E0F0  0x00B3  +       void __cdecl Gondola_Control(int16_t item_num);
 
 # game/box.c
 0x0040E1B0  0x002F  +       void __cdecl Creature_Initialise(int16_t item_num);

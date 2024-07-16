@@ -36,6 +36,8 @@
 #define BOAT_MAX_TURN (PHD_DEGREE * 4) // = 728
 #define BOAT_SOUND_CEILING (WALL_L * 5) // = 5120
 
+#define GONDOLA_SINK_SPEED 50
+
 typedef enum {
     BOAT_GETON = 0,
     BOAT_STILL = 1,
@@ -800,5 +802,41 @@ void __cdecl Boat_Control(const int16_t item_num)
         lara->pos.y = pos.y;
         boat->anim_num = g_Objects[O_BOAT].anim_idx;
         boat->frame_num = g_Anims[boat->anim_num].frame_base;
+    }
+}
+
+void __cdecl Gondola_Control(const int16_t item_num)
+{
+    ITEM_INFO *const gondola = &g_Items[item_num];
+
+    switch (gondola->current_anim_state) {
+    case GONDOLA_FLOATING:
+        if (gondola->goal_anim_state == GONDOLA_CRASH) {
+            gondola->mesh_bits = 0xFF;
+            Effect_ExplodingDeath(item_num, 240, 0);
+        }
+        break;
+
+    case GONDOLA_SINK: {
+        gondola->pos.y = gondola->pos.y + GONDOLA_SINK_SPEED;
+        int16_t room_num = gondola->room_num;
+        const FLOOR_INFO *const floor = Room_GetFloor(
+            gondola->pos.x, gondola->pos.y, gondola->pos.z, &room_num);
+        const int32_t height = Room_GetHeight(
+            floor, gondola->pos.x, gondola->pos.y, gondola->pos.z);
+        gondola->floor = height;
+
+        if (gondola->pos.y >= height) {
+            gondola->goal_anim_state = GONDOLA_LAND;
+            gondola->pos.y = height;
+        }
+        break;
+    }
+    }
+
+    Item_Animate(gondola);
+
+    if (gondola->status == IS_DEACTIVATED) {
+        Item_RemoveActive(item_num);
     }
 }

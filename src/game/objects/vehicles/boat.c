@@ -2,13 +2,25 @@
 
 #include "game/items.h"
 #include "game/math.h"
+#include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "util.h"
 
 #define BOAT_GETON_LW_ANIM 0
 #define BOAT_GETON_RW_ANIM 8
 #define BOAT_GETON_J_ANIM 6
 #define BOAT_GETON_START 1
+#define BOAT_RADIUS 500
+#define BOAT_MAX_SPEED 90
+
+typedef enum {
+    GONDOLA_EMPTY = 0,
+    GONDOLA_FLOATING = 1,
+    GONDOLA_CRASH = 2,
+    GONDOLA_SINK = 3,
+    GONDOLA_LAND = 4,
+} GONDOLA_ANIM;
 
 void __cdecl Boat_Initialise(const int16_t item_num)
 {
@@ -173,4 +185,50 @@ int32_t __cdecl Boat_TestWaterHeight(
     }
 
     return height - 5;
+}
+
+void __cdecl Boat_DoShift(const int32_t boat_num)
+{
+    ITEM_INFO *const boat = &g_Items[boat_num];
+    int16_t item_num = g_Rooms[boat->room_num].item_num;
+
+    while (item_num != NO_ITEM) {
+        ITEM_INFO *item = &g_Items[item_num];
+
+        if (item->object_num == O_BOAT && item_num != boat_num
+            && g_Lara.skidoo != item_num) {
+            const int32_t dx = item->pos.x - boat->pos.x;
+            const int32_t dz = item->pos.z - boat->pos.z;
+            const int32_t dist = SQUARE(dx) + SQUARE(dz);
+
+            if (dist < SQUARE(BOAT_RADIUS * 2)) {
+                boat->pos.x = item->pos.x - SQUARE(BOAT_RADIUS * 2) * dx / dist;
+                boat->pos.z = item->pos.z - SQUARE(BOAT_RADIUS * 2) * dz / dist;
+            }
+            break;
+        }
+
+        if (item->object_num == O_GONDOLA
+            && item->current_anim_state == GONDOLA_FLOATING) {
+            const int32_t c = Math_Cos(item->rot.y);
+            const int32_t s = Math_Sin(item->rot.y);
+            const int32_t ix = item->pos.x - ((s * STEP_L * 2) >> W2V_SHIFT);
+            const int32_t iz = item->pos.z - ((c * STEP_L * 2) >> W2V_SHIFT);
+            const int32_t dx = ix - boat->pos.x;
+            const int32_t dz = iz - boat->pos.z;
+            const int32_t dist = SQUARE(dx) + SQUARE(dz);
+
+            if (dist < SQUARE(BOAT_RADIUS * 2)) {
+                if (boat->speed < BOAT_MAX_SPEED - 10) {
+                    boat->pos.x = ix - SQUARE(BOAT_RADIUS * 2) * dx / dist;
+                    boat->pos.z = iz - SQUARE(BOAT_RADIUS * 2) * dz / dist;
+                } else if (item->pos.y - boat->pos.y < WALL_L * 2) {
+                    Sound_Effect(337, &item->pos, 0);
+                    item->goal_anim_state = GONDOLA_CRASH;
+                }
+            }
+        }
+
+        item_num = item->next_item;
+    }
 }

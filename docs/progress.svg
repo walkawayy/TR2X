@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.50% (542)</tspan> · <tspan class="known">53.04% (646)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.58% (543)</tspan> · <tspan class="known">52.96% (645)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="332.41" height="6" x="0" y="0" class="decompiled"/>
-<rect width="396.19" height="6" x="332.41" y="0" class="known"/>
+<rect width="333.02" height="6" x="0" y="0" class="decompiled"/>
+<rect width="395.58" height="6" x="333.02" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -168,7 +168,7 @@
 <rect width="12" height="12" x="585" y="15" class="decompiled"><title>int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);</title></rect>
 <rect width="12" height="12" x="600" y="15" class="decompiled"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
 <rect width="12" height="12" x="615" y="15" class="decompiled"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
-<rect width="12" height="12" x="630" y="15" class="known"><title>int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);</title></rect>
+<rect width="12" height="12" x="630" y="15" class="decompiled"><title>int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);</title></rect>
 <rect width="12" height="12" x="645" y="15" class="known"><title>int32_t __cdecl Boat_Dynamics(int16_t boat_num);</title></rect>
 <rect width="12" height="12" x="660" y="15" class="known"><title>int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);</title></rect>
 <rect width="12" height="12" x="675" y="15" class="known"><title>void __cdecl Boat_Animation(ITEM_INFO *boat, int32_t collide);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.55%</tspan> · <tspan class="known">59.13%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.57%</tspan> · <tspan class="known">59.11%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="302.87" height="6" x="0" y="0" class="decompiled"/>
-<rect width="441.69" height="6" x="302.87" y="0" class="known"/>
+<rect width="303.04" height="6" x="0" y="0" class="decompiled"/>
+<rect width="441.52" height="6" x="303.04" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2114,7 +2114,7 @@
 <rect width="4.73" height="5.16" x="703.94" y="253.38" class="decompiled"><title>void __cdecl Lara_State_Extra_Breath(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.73" height="5.16" x="711.67" y="253.38" class="known"><title>void __cdecl WriteSG(void *pointer, int32_t size);</title></rect>
 <rect width="4.73" height="5.16" x="719.40" y="253.38" class="known"><title>void __cdecl GetSavedGamesList(REQUEST_INFO *req);</title></rect>
-<rect width="4.63" height="5.16" x="727.12" y="253.38" class="known"><title>int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);</title></rect>
+<rect width="4.63" height="5.16" x="727.12" y="253.38" class="decompiled"><title>int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);</title></rect>
 <rect width="4.63" height="5.16" x="734.75" y="253.38" class="decompiled"><title>void __cdecl Lara_State_FastTurn(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.63" height="5.16" x="742.37" y="253.38" class="known"><title>void __cdecl set_flare_arm(int32_t frame);</title></rect>
 <rect width="4.84" height="4.94" x="632.98" y="261.54" class="known"><title>void __cdecl DartEffectControl(int16_t fx_num);</title></rect>

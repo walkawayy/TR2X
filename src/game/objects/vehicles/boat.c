@@ -277,3 +277,23 @@ void __cdecl Boat_DoWakeEffect(const ITEM_INFO *const boat)
         CLAMPL(fx->shade, 0);
     }
 }
+
+int32_t __cdecl Boat_DoDynamics(
+    const int32_t height, int32_t fall_speed, int32_t *const y)
+{
+    if (height > *y) {
+        *y = fall_speed + *y;
+        if (*y > height) {
+            *y = height;
+            fall_speed = 0;
+        } else {
+            fall_speed += GRAVITY;
+        }
+    } else {
+        fall_speed += ((height - fall_speed - *y) >> 3);
+        CLAMPL(fall_speed, -20);
+        CLAMPG(*y, height);
+    }
+
+    return fall_speed;
+}

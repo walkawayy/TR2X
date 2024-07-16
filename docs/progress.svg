@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.17% (538)</tspan> · <tspan class="known">53.37% (650)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.25% (539)</tspan> · <tspan class="known">53.28% (649)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="329.96" height="6" x="0" y="0" class="decompiled"/>
-<rect width="398.65" height="6" x="329.96" y="0" class="known"/>
+<rect width="330.57" height="6" x="0" y="0" class="decompiled"/>
+<rect width="398.03" height="6" x="330.57" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -164,7 +164,7 @@
 <rect width="12" height="12" x="525" y="15" class="decompiled"><title>void __cdecl Bird_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="540" y="15" class="decompiled"><title>void __cdecl Boat_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="555" y="15" class="decompiled"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>
-<rect width="12" height="12" x="570" y="15" class="known"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
+<rect width="12" height="12" x="570" y="15" class="decompiled"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="585" y="15" class="known"><title>int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);</title></rect>
 <rect width="12" height="12" x="600" y="15" class="known"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
 <rect width="12" height="12" x="615" y="15" class="known"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.13%</tspan> · <tspan class="known">59.54%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.23%</tspan> · <tspan class="known">59.44%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="299.77" height="6" x="0" y="0" class="decompiled"/>
-<rect width="444.79" height="6" x="299.77" y="0" class="known"/>
+<rect width="300.53" height="6" x="0" y="0" class="decompiled"/>
+<rect width="444.03" height="6" x="300.53" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1575,7 +1575,7 @@
 <rect width="14.45" height="13.84" x="680.63" y="59.39" class="decompiled"><title>void __cdecl Lara_Col_Wade(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.35" height="13.84" x="698.08" y="59.39" class="decompiled"><title>void __fastcall Output_GourA(int32_t y0, int32_t y1, uint8_t color_idx); // actually, __watcall, which is esoteric and rarely supported</title></rect>
 <rect width="14.31" height="13.84" x="715.44" y="59.39" class="decompiled"><title>int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);</title></rect>
-<rect width="14.26" height="13.84" x="732.74" y="59.39" class="known"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
+<rect width="14.26" height="13.84" x="732.74" y="59.39" class="decompiled"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="14.52" height="13.49" x="448.61" y="76.23" class="known"><title>void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.31" height="13.49" x="466.13" y="76.23" class="decompiled"><title>void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.21" height="13.49" x="483.44" y="76.23" class="decompiled"><title>void __cdecl Inv_Construct(void);</title></rect>

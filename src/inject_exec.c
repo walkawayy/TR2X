@@ -663,6 +663,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x0040C910, Bird_Control);
     INJECT(enable, 0x0040CB30, Boat_Initialise);
     INJECT(enable, 0x0040CB70, Boat_CheckGeton);
+    INJECT(enable, 0x0040CCE0, Boat_Collision);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

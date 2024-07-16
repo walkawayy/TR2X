@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Boat_Collision ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x0040CCE0)
 #define Boat_TestWaterHeight ((int32_t __cdecl (*)(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos))0x0040CE40)
 #define Boat_DoShift ((void __cdecl (*)(int32_t boat_num))0x0040CF40)
 #define Boat_DoWakeEffect ((void __cdecl (*)(ITEM_INFO *boat))0x0040D110)

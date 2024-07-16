@@ -1,8 +1,14 @@
 #include "game/objects/vehicles/boat.h"
 
+#include "game/items.h"
 #include "game/math.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+
+#define BOAT_GETON_LW_ANIM 0
+#define BOAT_GETON_RW_ANIM 8
+#define BOAT_GETON_J_ANIM 6
+#define BOAT_GETON_START 1
 
 void __cdecl Boat_Initialise(const int16_t item_num)
 {
@@ -79,4 +85,63 @@ int32_t __cdecl Boat_CheckGeton(
     }
 
     return geton;
+}
+
+void __cdecl Boat_Collision(
+    const int16_t item_num, ITEM_INFO *const lara, COLL_INFO *const coll)
+{
+    if (lara->hit_points < 0 || g_Lara.skidoo != NO_ITEM) {
+        return;
+    }
+
+    const int32_t geton = Boat_CheckGeton(item_num, coll);
+    if (!geton) {
+        coll->enable_baddie_push = 1;
+        Object_Collision(item_num, lara, coll);
+        return;
+    }
+
+    g_Lara.skidoo = item_num;
+
+    switch (geton) {
+    case 1:
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + BOAT_GETON_RW_ANIM;
+        break;
+    case 2:
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + BOAT_GETON_LW_ANIM;
+        break;
+    case 3:
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + BOAT_GETON_J_ANIM;
+        break;
+    default:
+        lara->anim_num = g_Objects[O_LARA_BOAT].anim_idx + BOAT_GETON_START;
+        break;
+    }
+
+    g_Lara.water_status = LWS_ABOVE_WATER;
+
+    ITEM_INFO *const boat = &g_Items[item_num];
+
+    lara->pos.x = boat->pos.x;
+    lara->pos.y = boat->pos.y - 5;
+    lara->pos.z = boat->pos.z;
+    lara->gravity = 0;
+    lara->rot.x = 0;
+    lara->rot.y = boat->rot.y;
+    lara->rot.z = 0;
+    lara->speed = 0;
+    lara->fall_speed = 0;
+    lara->goal_anim_state = 0;
+    lara->current_anim_state = 0;
+    lara->frame_num = g_Anims[lara->anim_num].frame_base;
+
+    if (lara->room_num != boat->room_num) {
+        Item_NewRoom(g_Lara.item_num, boat->room_num);
+    }
+
+    Item_Animate(lara);
+    if (boat->status != IS_ACTIVE) {
+        Item_AddActive(item_num);
+        boat->status = IS_ACTIVE;
+    }
 }

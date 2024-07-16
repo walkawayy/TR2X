@@ -666,6 +666,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x0040CCE0, Boat_Collision);
     INJECT(enable, 0x0040CE40, Boat_TestWaterHeight);
     INJECT(enable, 0x0040CF40, Boat_DoShift);
+    INJECT(enable, 0x0040D110, Boat_DoWakeEffect);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

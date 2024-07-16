@@ -1,7 +1,9 @@
 #include "game/objects/vehicles/boat.h"
 
+#include "game/effects.h"
 #include "game/items.h"
 #include "game/math.h"
+#include "game/random.h"
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -11,8 +13,10 @@
 #define BOAT_GETON_RW_ANIM 8
 #define BOAT_GETON_J_ANIM 6
 #define BOAT_GETON_START 1
+#define BOAT_SIDE 300
 #define BOAT_RADIUS 500
 #define BOAT_MAX_SPEED 90
+#define BOAT_WAKE 700
 
 typedef enum {
     GONDOLA_EMPTY = 0,
@@ -230,5 +234,46 @@ void __cdecl Boat_DoShift(const int32_t boat_num)
         }
 
         item_num = item->next_item;
+    }
+}
+
+void __cdecl Boat_DoWakeEffect(const ITEM_INFO *const boat)
+{
+    g_MatrixPtr->_23 = 0;
+    S_CalculateLight(boat->pos.x, boat->pos.y, boat->pos.z, boat->room_num);
+
+    const int16_t frame =
+        (Random_GetDraw() * g_Objects[O_WATER_SPRITE].mesh_count) >> 15;
+
+    for (int32_t i = 0; i < 3; i++) {
+        const int16_t fx_num = Effect_Create(boat->room_num);
+        if (fx_num == NO_ITEM) {
+            continue;
+        }
+
+        FX_INFO *const fx = &g_Effects[fx_num];
+        fx->object_num = O_WATER_SPRITE;
+        fx->room_num = boat->room_num;
+        fx->frame_num = frame;
+
+        const int32_t c = Math_Cos(boat->rot.y);
+        const int32_t s = Math_Sin(boat->rot.y);
+        const int32_t w = (1 - i) * BOAT_SIDE;
+        const int32_t h = BOAT_WAKE;
+        fx->pos.x = boat->pos.x + ((-c * w - s * h) >> W2V_SHIFT);
+        fx->pos.y = boat->pos.y;
+        fx->pos.z = boat->pos.z + ((-c * h + s * w) >> W2V_SHIFT);
+        fx->rot.y = boat->rot.y + (i << W2V_SHIFT) - 0x4000;
+
+        fx->counter = 20;
+        fx->speed = boat->speed >> 2;
+        if (boat->speed < 64) {
+            fx->fall_speed = (Random_GetDraw() * (ABS(boat->speed) - 64)) >> 15;
+        } else {
+            fx->fall_speed = 0;
+        }
+
+        fx->shade = g_LsAdder - 768;
+        CLAMPL(fx->shade, 0);
     }
 }

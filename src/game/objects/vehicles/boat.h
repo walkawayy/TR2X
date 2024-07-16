@@ -10,3 +10,4 @@ void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara, COLL_INFO *coll);
 int32_t __cdecl Boat_TestWaterHeight(
     const ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
 void __cdecl Boat_DoShift(const int32_t boat_num);
+void __cdecl Boat_DoWakeEffect(const ITEM_INFO *boat);

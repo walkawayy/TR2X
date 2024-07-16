@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.42% (541)</tspan> · <tspan class="known">53.12% (647)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.50% (542)</tspan> · <tspan class="known">53.04% (646)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="331.80" height="6" x="0" y="0" class="decompiled"/>
-<rect width="396.81" height="6" x="331.80" y="0" class="known"/>
+<rect width="332.41" height="6" x="0" y="0" class="decompiled"/>
+<rect width="396.19" height="6" x="332.41" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -167,7 +167,7 @@
 <rect width="12" height="12" x="570" y="15" class="decompiled"><title>void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="585" y="15" class="decompiled"><title>int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);</title></rect>
 <rect width="12" height="12" x="600" y="15" class="decompiled"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
-<rect width="12" height="12" x="615" y="15" class="known"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
+<rect width="12" height="12" x="615" y="15" class="decompiled"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
 <rect width="12" height="12" x="630" y="15" class="known"><title>int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);</title></rect>
 <rect width="12" height="12" x="645" y="15" class="known"><title>int32_t __cdecl Boat_Dynamics(int16_t boat_num);</title></rect>
 <rect width="12" height="12" x="660" y="15" class="known"><title>int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.44%</tspan> · <tspan class="known">59.24%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">40.55%</tspan> · <tspan class="known">59.13%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="302.06" height="6" x="0" y="0" class="decompiled"/>
-<rect width="442.50" height="6" x="302.06" y="0" class="known"/>
+<rect width="302.87" height="6" x="0" y="0" class="decompiled"/>
+<rect width="441.69" height="6" x="302.87" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1555,7 +1555,7 @@
 <rect width="14.87" height="14.51" x="430.74" y="256.98" class="known"><title>void __cdecl LiftFloorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *floor, int32_t *ceiling);</title></rect>
 <rect width="14.87" height="14.37" x="430.74" y="274.49" class="decompiled"><title>void __cdecl Lara_Col_Run(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.87" height="14.32" x="430.74" y="291.86" class="decompiled"><title>void __cdecl Output_InsertPoly_Gouraud(int32_t vtx_count, float z, int32_t red, int32_t green, int32_t blue, int16_t poly_type);</title></rect>
-<rect width="14.87" height="14.27" x="430.74" y="309.18" class="known"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
+<rect width="14.87" height="14.27" x="430.74" y="309.18" class="decompiled"><title>void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);</title></rect>
 <rect width="14.87" height="14.27" x="430.74" y="326.45" class="known"><title>bool __cdecl TexturePageInit(TEXPAGE_DESC *page);</title></rect>
 <rect width="14.87" height="14.18" x="430.74" y="343.73" class="known"><title>void __cdecl WinstonControl(int16_t item_num);</title></rect>
 <rect width="14.87" height="14.09" x="430.74" y="360.91" class="decompiled"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>

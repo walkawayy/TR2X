@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.16% (550)</tspan> · <tspan class="known">52.38% (638)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.24% (551)</tspan> · <tspan class="known">52.30% (637)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="337.32" height="6" x="0" y="0" class="decompiled"/>
-<rect width="391.29" height="6" x="337.32" y="0" class="known"/>
+<rect width="337.93" height="6" x="0" y="0" class="decompiled"/>
+<rect width="390.67" height="6" x="337.93" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -224,7 +224,7 @@
 <rect width="12" height="12" x="675" y="30" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
 <rect width="12" height="12" x="690" y="30" class="decompiled"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
 <rect width="12" height="12" x="705" y="30" class="decompiled"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
-<rect width="12" height="12" x="720" y="30" class="known"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
+<rect width="12" height="12" x="720" y="30" class="decompiled"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
 <rect width="12" height="12" x="735" y="30" class="known"><title>void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="0" y="45" class="known"><title>void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="15" y="45" class="known"><title>void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.17%</tspan> · <tspan class="known">57.51%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.45%</tspan> · <tspan class="known">57.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="314.98" height="6" x="0" y="0" class="decompiled"/>
-<rect width="429.58" height="6" x="314.98" y="0" class="known"/>
+<rect width="317.12" height="6" x="0" y="0" class="decompiled"/>
+<rect width="427.44" height="6" x="317.12" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1370,7 +1370,7 @@
 <rect width="24.80" height="27.31" x="239.29" y="30.49" class="known"><title>void __cdecl DrawXianLord(ITEM_INFO *item);</title></rect>
 <rect width="24.80" height="26.68" x="239.29" y="60.80" class="known"><title>void __cdecl SkidManControl(int16_t rider_num);</title></rect>
 <rect width="24.80" height="26.50" x="239.29" y="90.48" class="known"><title>void __cdecl InitialiseDoor(int16_t item_num);</title></rect>
-<rect width="24.80" height="26.20" x="239.29" y="119.98" class="known"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
+<rect width="24.80" height="26.20" x="239.29" y="119.98" class="decompiled"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
 <rect width="24.80" height="26.20" x="239.29" y="149.18" class="known"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
 <rect width="24.80" height="26.20" x="239.29" y="178.38" class="decompiled"><title>void __cdecl Text_DrawText(const TEXTSTRING *string);</title></rect>
 <rect width="24.80" height="26.17" x="239.29" y="207.59" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>

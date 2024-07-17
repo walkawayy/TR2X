@@ -9,7 +9,7 @@ void __cdecl Collide_GetCollisionInfo(
     COLL_INFO *const coll, const int32_t x_pos, const int32_t y_pos,
     const int32_t z_pos, int16_t room_num, const int32_t obj_height)
 {
-    coll->coll_type = 0;
+    coll->coll_type = COLL_NONE;
     coll->shift.x = 0;
     coll->shift.y = 0;
     coll->shift.z = 0;
@@ -284,4 +284,163 @@ void __cdecl Collide_GetCollisionInfo(
         coll->coll_type = COLL_RIGHT;
         return;
     }
+}
+
+int32_t __cdecl Collide_CollideStaticObjects(
+    COLL_INFO *const coll, const int32_t x, const int32_t y, const int32_t z,
+    const int16_t room_num, const int32_t height)
+{
+    coll->hit_static = 0;
+
+    const int32_t in_x_min = x - coll->radius;
+    const int32_t in_x_max = x + coll->radius;
+    const int32_t in_y_min = y - height;
+    const int32_t in_y_max = y;
+    const int32_t in_z_min = z - coll->radius;
+    const int32_t in_z_max = z + coll->radius;
+    XYZ_32 shifter = { .x = 0, .z = 0 };
+
+    Room_GetNearbyRooms(x, y, z, coll->radius + 50, height + 50, room_num);
+
+    for (int32_t i = 0; i < g_DrawRoomsCount; i++) {
+        const ROOM_INFO *const room = &g_Rooms[g_DrawRoomsArray[i]];
+
+        for (int32_t j = 0; j < room->num_meshes; j++) {
+            const MESH_INFO *const mesh = &room->mesh[j];
+            const STATIC_INFO *const sinfo = &g_StaticObjects[mesh->static_num];
+
+            if (sinfo->flags & 1) {
+                continue;
+            }
+
+            int32_t x_min;
+            int32_t x_max;
+            int32_t z_min;
+            int32_t z_max;
+            int32_t y_min = mesh->y + sinfo->collision_bounds.y_min;
+            int32_t y_max = mesh->y + sinfo->collision_bounds.y_max;
+            switch (mesh->y_rot) {
+            case PHD_90:
+                x_min = mesh->x + sinfo->collision_bounds.z_min;
+                x_max = mesh->x + sinfo->collision_bounds.z_max;
+                z_min = mesh->z - sinfo->collision_bounds.x_max;
+                z_max = mesh->z - sinfo->collision_bounds.x_min;
+                break;
+
+            case -PHD_180:
+                x_min = mesh->x - sinfo->collision_bounds.x_max;
+                x_max = mesh->x - sinfo->collision_bounds.x_min;
+                z_min = mesh->z - sinfo->collision_bounds.z_max;
+                z_max = mesh->z - sinfo->collision_bounds.z_min;
+                break;
+
+            case -PHD_90:
+                x_min = mesh->x - sinfo->collision_bounds.z_max;
+                x_max = mesh->x - sinfo->collision_bounds.z_min;
+                z_min = mesh->z + sinfo->collision_bounds.x_min;
+                z_max = mesh->z + sinfo->collision_bounds.x_max;
+                break;
+
+            default:
+                x_min = mesh->x + sinfo->collision_bounds.x_min;
+                x_max = mesh->x + sinfo->collision_bounds.x_max;
+                z_min = mesh->z + sinfo->collision_bounds.z_min;
+                z_max = mesh->z + sinfo->collision_bounds.z_max;
+                break;
+            }
+
+            if (in_x_max <= x_min || in_x_min >= x_max || in_y_max <= y_min
+                || in_y_min >= y_max || in_z_max <= z_min
+                || in_z_min >= z_max) {
+                continue;
+            }
+
+            int32_t shl = in_x_max - x_min;
+            int32_t shr = x_max - in_x_min;
+            if (shl < shr) {
+                shifter.x = -shl;
+            } else {
+                shifter.x = shr;
+            }
+
+            shl = in_z_max - z_min;
+            shr = z_max - in_z_min;
+            if (shl < shr) {
+                shifter.z = -shl;
+            } else {
+                shifter.z = shr;
+            }
+
+            switch (coll->quadrant) {
+            case DIR_NORTH:
+                if (shifter.x > coll->radius || shifter.x < -coll->radius) {
+                    coll->coll_type = COLL_FRONT;
+                    coll->shift.x = coll->old.x - x;
+                    coll->shift.z = shifter.z;
+                } else if (shifter.x > 0) {
+                    coll->coll_type = COLL_LEFT;
+                    coll->shift.x = shifter.x;
+                    coll->shift.z = 0;
+                } else if (shifter.x < 0) {
+                    coll->coll_type = COLL_RIGHT;
+                    coll->shift.x = shifter.x;
+                    coll->shift.z = 0;
+                }
+                break;
+
+            case DIR_EAST:
+                if (shifter.z > coll->radius || shifter.z < -coll->radius) {
+                    coll->coll_type = COLL_FRONT;
+                    coll->shift.x = shifter.x;
+                    coll->shift.z = coll->old.z - z;
+                } else if (shifter.z > 0) {
+                    coll->coll_type = COLL_RIGHT;
+                    coll->shift.x = 0;
+                    coll->shift.z = shifter.z;
+                } else if (shifter.z < 0) {
+                    coll->coll_type = COLL_LEFT;
+                    coll->shift.x = 0;
+                    coll->shift.z = shifter.z;
+                }
+                break;
+
+            case DIR_SOUTH:
+                if (shifter.x > coll->radius || shifter.x < -coll->radius) {
+                    coll->coll_type = COLL_FRONT;
+                    coll->shift.x = coll->old.x - x;
+                    coll->shift.z = shifter.z;
+                } else if (shifter.x > 0) {
+                    coll->coll_type = COLL_RIGHT;
+                    coll->shift.x = shifter.x;
+                    coll->shift.z = 0;
+                } else if (shifter.x < 0) {
+                    coll->coll_type = COLL_LEFT;
+                    coll->shift.x = shifter.x;
+                    coll->shift.z = 0;
+                }
+                break;
+
+            case DIR_WEST:
+                if (shifter.z > coll->radius || shifter.z < -coll->radius) {
+                    coll->coll_type = COLL_FRONT;
+                    coll->shift.x = shifter.x;
+                    coll->shift.z = coll->old.z - z;
+                } else if (shifter.z > 0) {
+                    coll->coll_type = COLL_LEFT;
+                    coll->shift.x = 0;
+                    coll->shift.z = shifter.z;
+                } else if (shifter.z < 0) {
+                    coll->coll_type = COLL_RIGHT;
+                    coll->shift.x = 0;
+                    coll->shift.z = shifter.z;
+                }
+                break;
+            }
+
+            coll->hit_static = 1;
+            return 1;
+        }
+    }
+
+    return 0;
 }

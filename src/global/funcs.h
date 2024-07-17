@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Collide_CollideStaticObjects ((int32_t __cdecl (*)(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height))0x00412FE0)
 #define Room_GetNearbyRooms ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num))0x004133D0)
 #define Room_GetNewRoom ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t room_num))0x004134A0)
 #define Item_ShiftCol ((void __cdecl (*)(ITEM_INFO *item, COLL_INFO *coll))0x00413500)

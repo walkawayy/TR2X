@@ -74,6 +74,7 @@ dll_sources = [
   'src/game/box.c',
   'src/game/camera.c',
   'src/game/clock.c',
+  'src/game/collide.c',
   'src/game/console.c',
   'src/game/console_cmd.c',
   'src/game/creature.c',

@@ -4,6 +4,7 @@
 #include "game/background.h"
 #include "game/box.h"
 #include "game/camera.h"
+#include "game/collide.h"
 #include "game/creature.h"
 #include "game/effects.h"
 #include "game/hwr.h"
@@ -37,6 +38,7 @@ static void Inject_Decomp(const bool enable);
 static void Inject_HWR(bool enable);
 
 static void Inject_Camera(bool enable);
+static void Inject_Collide(bool enable);
 static void Inject_Math(bool enable);
 static void Inject_Matrix(bool enable);
 static void Inject_Shell(bool enable);
@@ -219,6 +221,11 @@ static void Inject_Camera(const bool enable)
     INJECT(enable, 0x00411AA0, Camera_Update);
     INJECT(enable, 0x004126A0, Camera_LoadCutsceneFrame);
     INJECT(enable, 0x00412290, Camera_UpdateCutscene);
+}
+
+static void Inject_Collide(const bool enable)
+{
+    INJECT(enable, 0x004128F0, Collide_GetCollisionInfo);
 }
 
 static void Inject_Matrix(const bool enable)
@@ -724,6 +731,7 @@ void Inject_Exec(void)
     Inject_Background(true);
 
     Inject_Camera(true);
+    Inject_Collide(true);
     Inject_Math(true);
     Inject_Matrix(true);
     Inject_Shell(true);

@@ -6,14 +6,13 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Collide_GetCollisionInfo ((void __cdecl (*)(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height))0x004128F0)
 #define Room_FindGridShift ((int32_t __cdecl (*)(int32_t src, int32_t dst))0x00412FB0)
 #define Collide_CollideStaticObjects ((int32_t __cdecl (*)(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height))0x00412FE0)
 #define Room_GetNearbyRooms ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num))0x004133D0)
 #define Room_GetNewRoom ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t room_num))0x004134A0)
 #define Item_ShiftCol ((void __cdecl (*)(ITEM_INFO *item, COLL_INFO *coll))0x00413500)
 #define Item_UpdateRoom ((void __cdecl (*)(ITEM_INFO *item, int32_t height))0x00413540)
-#define Room_GetTiltType ((int16_t __cdecl (*)(FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z))0x004135A0)
+#define Room_GetTiltType ((int16_t __cdecl (*)(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z))0x004135A0)
 #define Lara_BaddieCollision ((void __cdecl (*)(ITEM_INFO *lara_item, COLL_INFO *coll))0x00413640)
 #define Misc_EffectSpaz ((void __cdecl (*)(ITEM_INFO *lara_item, COLL_INFO *coll))0x004137E0)
 #define Creature_Collision ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x00413860)

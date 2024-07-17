@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.99% (548)</tspan> · <tspan class="known">52.55% (640)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.07% (549)</tspan> · <tspan class="known">52.46% (639)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="336.09" height="6" x="0" y="0" class="decompiled"/>
-<rect width="392.51" height="6" x="336.09" y="0" class="known"/>
+<rect width="336.70" height="6" x="0" y="0" class="decompiled"/>
+<rect width="391.90" height="6" x="336.70" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -222,14 +222,14 @@
 <rect width="12" height="12" x="645" y="30" class="decompiled"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="660" y="30" class="decompiled"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="675" y="30" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
-<rect width="12" height="12" x="690" y="30" class="known"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
+<rect width="12" height="12" x="690" y="30" class="decompiled"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
 <rect width="12" height="12" x="705" y="30" class="known"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
 <rect width="12" height="12" x="720" y="30" class="known"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
 <rect width="12" height="12" x="735" y="30" class="known"><title>void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="0" y="45" class="known"><title>void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="15" y="45" class="known"><title>void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="30" y="45" class="known"><title>void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);</title></rect>
-<rect width="12" height="12" x="45" y="45" class="known"><title>int16_t __cdecl Room_GetTiltType(FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
+<rect width="12" height="12" x="45" y="45" class="known"><title>int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="60" y="45" class="known"><title>void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="75" y="45" class="known"><title>void __cdecl Misc_EffectSpaz(ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="90" y="45" class="known"><title>void __cdecl Creature_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">41.67%</tspan> · <tspan class="known">58.01%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.15%</tspan> · <tspan class="known">57.52%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="311.25" height="6" x="0" y="0" class="decompiled"/>
-<rect width="433.31" height="6" x="311.25" y="0" class="known"/>
+<rect width="314.88" height="6" x="0" y="0" class="decompiled"/>
+<rect width="429.68" height="6" x="314.88" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1327,7 +1327,7 @@
 <rect width="35.22" height="34.90" x="104.17" y="159.51" class="known"><title>BOOL __cdecl S_LoadGameFlow(const char *file_name);</title></rect>
 <rect width="35.22" height="34.49" x="104.17" y="197.42" class="known"><title>int32_t __cdecl Inv_AddItem(int32_t item_num);</title></rect>
 <rect width="35.22" height="33.49" x="104.17" y="234.91" class="known"><title>void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);</title></rect>
-<rect width="35.22" height="33.06" x="104.17" y="271.40" class="known"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
+<rect width="35.22" height="33.06" x="104.17" y="271.40" class="decompiled"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
 <rect width="35.22" height="32.62" x="104.17" y="307.45" class="known"><title>void __cdecl Lara_Control(int16_t item_num);</title></rect>
 <rect width="35.22" height="31.93" x="104.17" y="343.07" class="known"><title>void __cdecl do_passport_option(INVENTORY_ITEM *item);</title></rect>
 <rect width="31.68" height="35.34" x="142.39" y="0" class="decompiled"><title>void __cdecl Output_InsertGT3_ZBuffered(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2);</title></rect>
@@ -1850,7 +1850,7 @@
 <rect width="8.17" height="8.44" x="545.84" y="220.10" class="known"><title>void __cdecl LoadDemoExternal(LPCTSTR level_name);</title></rect>
 <rect width="8.17" height="8.44" x="545.84" y="231.54" class="known"><title>int32_t __cdecl GameLoop(BOOL demo_mode);</title></rect>
 <rect width="8.17" height="8.37" x="545.84" y="242.98" class="decompiled"><title>void __cdecl Camera_Fixed(void);</title></rect>
-<rect width="8.17" height="8.37" x="545.84" y="254.35" class="known"><title>int16_t __cdecl Room_GetTiltType(FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
+<rect width="8.17" height="8.37" x="545.84" y="254.35" class="known"><title>int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="8.17" height="8.37" x="545.84" y="265.72" class="decompiled"><title>void __cdecl Lara_Col_FastFall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="8.17" height="8.29" x="545.84" y="277.09" class="known"><title>void __cdecl WarriorSparkleTrail(ITEM_INFO *item);</title></rect>
 <rect width="8.17" height="8.29" x="545.84" y="288.38" class="decompiled"><title>void __cdecl CreateBackBuffer(void);</title></rect>

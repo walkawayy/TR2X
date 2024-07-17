@@ -135,6 +135,7 @@ extern const char *g_TR2XVersion;
 #define g_CineTickCount (*(int32_t*)0x004D7784)
 #define g_OriginalRoom (*(int32_t*)0x004D7788)
 #define g_IsChunkyCamera (*(int32_t*)0x004D778C)
+#define g_HeightType (*(int32_t*)0x004D7790)
 #define g_NoInputCounter (*(int32_t*)0x004D7794)
 #define g_IsResetFlag (*(BOOL*)0x004D7798)
 #define g_FlipTimer (*(int32_t*)0x004D779C)

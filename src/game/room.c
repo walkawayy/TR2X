@@ -19,3 +19,19 @@ int16_t Room_GetIndexFromPos(const int32_t x, const int32_t y, const int32_t z)
     }
     return NO_ROOM;
 }
+
+int32_t __cdecl Room_FindGridShift(int32_t src, const int32_t dst)
+{
+    const int32_t src_w = src >> WALL_SHIFT;
+    const int32_t dst_w = dst >> WALL_SHIFT;
+    if (src_w == dst_w) {
+        return 0;
+    }
+
+    src &= WALL_L - 1;
+    if (dst_w > src_w) {
+        return WALL_L - (src - 1);
+    } else {
+        return -(src + 1);
+    }
+}

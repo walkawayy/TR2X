@@ -26,6 +26,7 @@
 #include "game/output.h"
 #include "game/overlay.h"
 #include "game/random.h"
+#include "game/room.h"
 #include "game/shell.h"
 #include "game/sound.h"
 #include "game/text.h"
@@ -39,6 +40,7 @@ static void Inject_HWR(bool enable);
 
 static void Inject_Camera(bool enable);
 static void Inject_Collide(bool enable);
+static void Inject_Room(bool enable);
 static void Inject_Math(bool enable);
 static void Inject_Matrix(bool enable);
 static void Inject_Shell(bool enable);
@@ -226,6 +228,11 @@ static void Inject_Camera(const bool enable)
 static void Inject_Collide(const bool enable)
 {
     INJECT(enable, 0x004128F0, Collide_GetCollisionInfo);
+}
+
+static void Inject_Room(const bool enable)
+{
+    INJECT(enable, 0x00412FB0, Room_FindGridShift);
 }
 
 static void Inject_Matrix(const bool enable)
@@ -732,6 +739,7 @@ void Inject_Exec(void)
 
     Inject_Camera(true);
     Inject_Collide(true);
+    Inject_Room(true);
     Inject_Math(true);
     Inject_Matrix(true);
     Inject_Shell(true);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.07% (549)</tspan> · <tspan class="known">52.46% (639)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.16% (550)</tspan> · <tspan class="known">52.38% (638)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="336.70" height="6" x="0" y="0" class="decompiled"/>
-<rect width="391.90" height="6" x="336.70" y="0" class="known"/>
+<rect width="337.32" height="6" x="0" y="0" class="decompiled"/>
+<rect width="391.29" height="6" x="337.32" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -223,7 +223,7 @@
 <rect width="12" height="12" x="660" y="30" class="decompiled"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="675" y="30" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
 <rect width="12" height="12" x="690" y="30" class="decompiled"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
-<rect width="12" height="12" x="705" y="30" class="known"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
+<rect width="12" height="12" x="705" y="30" class="decompiled"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
 <rect width="12" height="12" x="720" y="30" class="known"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
 <rect width="12" height="12" x="735" y="30" class="known"><title>void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="0" y="45" class="known"><title>void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.15%</tspan> · <tspan class="known">57.52%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.17%</tspan> · <tspan class="known">57.51%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="314.88" height="6" x="0" y="0" class="decompiled"/>
-<rect width="429.68" height="6" x="314.88" y="0" class="known"/>
+<rect width="314.98" height="6" x="0" y="0" class="decompiled"/>
+<rect width="429.58" height="6" x="314.98" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2292,7 +2292,7 @@
 <rect width="3.18" height="3.45" x="737.65" y="303.07" class="known"><title>void __cdecl CleanupTextures(void);</title></rect>
 <rect width="3.18" height="3.45" x="743.82" y="303.07" class="known"><title>BOOL __cdecl OpenRegistryKey(LPCTSTR lpSubKey);</title></rect>
 <rect width="3.24" height="3.25" x="675.50" y="309.52" class="decompiled"><title>void __cdecl Creature_Initialise(int16_t item_num);</title></rect>
-<rect width="3.24" height="3.25" x="675.50" y="315.77" class="known"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
+<rect width="3.24" height="3.25" x="675.50" y="315.77" class="decompiled"><title>int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);</title></rect>
 <rect width="3.24" height="3.25" x="675.50" y="322.02" class="known"><title>void __cdecl Inv_Ring_RotateLeft(RING_INFO *ring);</title></rect>
 <rect width="3.24" height="3.25" x="675.50" y="328.27" class="known"><title>void __cdecl Inv_Ring_RotateRight(RING_INFO *ring);</title></rect>
 <rect width="3.24" height="3.25" x="675.50" y="334.52" class="decompiled"><title>void __cdecl Lara_State_SwanDive(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

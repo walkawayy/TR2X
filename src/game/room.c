@@ -53,3 +53,18 @@ void __cdecl Room_GetNearbyRooms(
     Room_GetNewRoom(r + x, y - h, z - r, room_num);
     Room_GetNewRoom(x - r, y - h, z - r, room_num);
 }
+
+void __cdecl Room_GetNewRoom(
+    const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
+{
+    Room_GetFloor(x, y, z, &room_num);
+
+    for (int32_t i = 0; i < g_DrawRoomsCount; i++) {
+        if (g_DrawRoomsArray[i] == room_num) {
+            return;
+        }
+    }
+
+    // TODO: fix crash when trying to draw too many rooms
+    g_DrawRoomsArray[g_DrawRoomsCount++] = room_num;
+}

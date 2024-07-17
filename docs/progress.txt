@@ -2741,7 +2741,7 @@ typedef struct {
 0x00412FB0  0x002F  +       int32_t __cdecl Room_FindGridShift(int32_t src, int32_t dst);
 0x00412FE0  0x03D2  +       int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);
 0x004133D0  0x00C8  +       void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);
-0x004134A0  0x0055  -       void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
+0x004134A0  0x0055  +       void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00413500  0x0037  -       void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
 0x00413540  0x005D  -       void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
 0x004135A0  0x0099  -       int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);

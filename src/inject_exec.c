@@ -234,6 +234,7 @@ static void Inject_Collide(const bool enable)
 static void Inject_Room(const bool enable)
 {
     INJECT(enable, 0x00412FB0, Room_FindGridShift);
+    INJECT(enable, 0x004133D0, Room_GetNearbyRooms);
 }
 
 static void Inject_Matrix(const bool enable)

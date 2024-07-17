@@ -1,6 +1,7 @@
 #include "game/room.h"
 
 #include "global/const.h"
+#include "global/funcs.h"
 #include "global/vars.h"
 
 int16_t Room_GetIndexFromPos(const int32_t x, const int32_t y, const int32_t z)
@@ -34,4 +35,21 @@ int32_t __cdecl Room_FindGridShift(int32_t src, const int32_t dst)
     } else {
         return -(src + 1);
     }
+}
+
+void __cdecl Room_GetNearbyRooms(
+    const int32_t x, const int32_t y, const int32_t z, const int32_t r,
+    const int32_t h, const int16_t room_num)
+{
+    g_DrawRoomsArray[0] = room_num;
+    g_DrawRoomsCount = 1;
+
+    Room_GetNewRoom(r + x, y, r + z, room_num);
+    Room_GetNewRoom(x - r, y, r + z, room_num);
+    Room_GetNewRoom(r + x, y, z - r, room_num);
+    Room_GetNewRoom(x - r, y, z - r, room_num);
+    Room_GetNewRoom(r + x, y - h, r + z, room_num);
+    Room_GetNewRoom(x - r, y - h, r + z, room_num);
+    Room_GetNewRoom(r + x, y - h, z - r, room_num);
+    Room_GetNewRoom(x - r, y - h, z - r, room_num);
 }

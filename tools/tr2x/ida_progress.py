@@ -1,9 +1,39 @@
 #!/usr/bin/env python3
 import re
-from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from enum import StrEnum, auto
 from pathlib import Path
+
+FUNC_RE = re.compile(
+    r"^"
+    r"(?P<ret_type>[^()]+?)\s*"
+    r"\s*(?P<call_type>.*?\s)\s*(?P<func_name>\w+)"
+    r"\s*"
+    r"\((?P<args>.+)\)"
+    r";?$"
+)
+
+FUNC_PTR_RE = re.compile(
+    r"^"
+    r"(?P<ret_type>.+?)\s*"
+    r"\("
+    r"\s*\*(?P<call_type>.*?\s)\s*(?P<func_name>\w+)"
+    r"(?P<array_def>\[[^\]]*?\]+)?"
+    r"\)\s*"
+    r"\((?P<args>.+)\)"
+    r";?$"
+)
+
+VAR_RE = re.compile(
+    r"^"
+    r"(?P<ret_type>.+?)\s*"
+    r"(?P<var_name>\b\w+)\s*"
+    r"(?P<array_def>(?:\[[^\]]*?\])*)"
+    r"(\s*=\s*(?P<value_def>.*?))?"
+    r";?"
+    r"(\s*\/\/\s*(?P<comment>.*))?"
+    r"$"
+)
 
 
 class SymbolStatus(StrEnum):

@@ -4,7 +4,6 @@ from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from decimal import Decimal
 from enum import StrEnum, auto
-from functools import cache
 from itertools import groupby
 from pathlib import Path
 from typing import Any
@@ -315,7 +314,7 @@ class Text(Shape):
 
     def render(self) -> str:
         return (
-            f"<text "
+            "<text "
             + (f'class="{self.class_name}" ' if self.class_name else "")
             + (f'style="{self.style}" ' if self.style else "")
             + f'x="{format_decimal(self.x)}" '

@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-import ctypes
+"""IDAPython script meant to be executed from IDA Home or later editions.
+Converts progress.txt to typing information, function declarations and variable
+declarations in the local database.
+"""
 import re
 import tempfile
-from collections import defaultdict
-from dataclasses import dataclass
-from enum import StrEnum
 from pathlib import Path
-from typing import Any, Dict, List, Optional
 
 from tr2x.ida_progress import parse_progress_file, Symbol
 from tr2x.paths import TR2X_PROGRESS_FILE

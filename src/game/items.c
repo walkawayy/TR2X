@@ -1,6 +1,7 @@
 #include "game/items.h"
 
 #include "game/camera.h"
+#include "game/math.h"
 #include "game/room.h"
 #include "global/const.h"
 #include "global/funcs.h"
@@ -291,4 +292,34 @@ void __cdecl Item_UpdateRoom(ITEM_INFO *const item, const int32_t height)
     if (item->room_num != room_num) {
         Item_NewRoom(g_Lara.item_num, room_num);
     }
+}
+
+int32_t __cdecl Item_TestBoundsCollide(
+    const ITEM_INFO *const src_item, const ITEM_INFO *const dst_item,
+    const int32_t radius)
+{
+    const int16_t *const src_bounds = Item_GetBestFrame(src_item);
+    const int16_t *const dst_bounds = Item_GetBestFrame(dst_item);
+
+    if (src_item->pos.y + src_bounds[FBBOX_MAX_Y]
+            <= dst_item->pos.y + dst_bounds[FBBOX_MIN_Y]
+        || src_item->pos.y + src_bounds[FBBOX_MIN_Y]
+            >= dst_item->pos.y + dst_bounds[FBBOX_MAX_Y]) {
+        return false;
+    }
+
+    const int32_t c = Math_Cos(src_item->rot.y);
+    const int32_t s = Math_Sin(src_item->rot.y);
+    const int32_t dx = dst_item->pos.x - src_item->pos.x;
+    const int32_t dz = dst_item->pos.z - src_item->pos.z;
+    const int32_t rx = (c * dx - s * dz) >> W2V_SHIFT;
+    const int32_t rz = (c * dz + s * dx) >> W2V_SHIFT;
+
+    // clang-format off
+    return (
+        rx >= src_bounds[FBBOX_MIN_X] - radius &&
+        rx <= src_bounds[FBBOX_MAX_X] + radius &&
+        rz >= src_bounds[FBBOX_MIN_Z] - radius &&
+        rz <= src_bounds[FBBOX_MAX_Z] + radius);
+    // clang-format on
 }

@@ -2752,7 +2752,7 @@ typedef struct __unaligned {
 0x00413940  0x0077  +       void __cdecl Door_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x004139C0  0x0067  +       void __cdecl Object_Collision_Trap(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x00413A30  0x0306  +       void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
-0x00413D40  0x00CB  -       int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
+0x00413D40  0x00CB  +       int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
 0x00413E10  0x0137  -       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);
 0x00413F50  0x013B  -       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
 0x00414090  0x0187  -       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);

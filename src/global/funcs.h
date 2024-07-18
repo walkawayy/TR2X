@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Item_TestBoundsCollide ((int32_t __cdecl (*)(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius))0x00413D40)
 #define Item_TestPosition ((int32_t __cdecl (*)(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item))0x00413E10)
 #define Item_AlignPosition ((void __cdecl (*)(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item))0x00413F50)
 #define Lara_MovePosition ((int32_t __cdecl (*)(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item))0x00414090)

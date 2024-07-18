@@ -1,5 +1,6 @@
 #include "game/objects/common.h"
 
+#include "game/items.h"
 #include "game/lara/lara_misc.h"
 #include "global/funcs.h"
 #include "global/vars.h"

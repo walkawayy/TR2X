@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.22% (563)</tspan> · <tspan class="known">51.31% (625)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.31% (564)</tspan> · <tspan class="known">51.23% (624)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="345.29" height="6" x="0" y="0" class="decompiled"/>
-<rect width="383.31" height="6" x="345.29" y="0" class="known"/>
+<rect width="345.90" height="6" x="0" y="0" class="decompiled"/>
+<rect width="382.70" height="6" x="345.90" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -237,7 +237,7 @@
 <rect width="12" height="12" x="120" y="45" class="decompiled"><title>void __cdecl Door_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="135" y="45" class="decompiled"><title>void __cdecl Object_Collision_Trap(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="150" y="45" class="decompiled"><title>void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);</title></rect>
-<rect width="12" height="12" x="165" y="45" class="known"><title>int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);</title></rect>
+<rect width="12" height="12" x="165" y="45" class="decompiled"><title>int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);</title></rect>
 <rect width="12" height="12" x="180" y="45" class="known"><title>int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="195" y="45" class="known"><title>void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="210" y="45" class="known"><title>int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.13%</tspan> · <tspan class="known">56.54%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.19%</tspan> · <tspan class="known">56.48%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="322.18" height="6" x="0" y="0" class="decompiled"/>
-<rect width="422.38" height="6" x="322.18" y="0" class="known"/>
+<rect width="322.62" height="6" x="0" y="0" class="decompiled"/>
+<rect width="421.94" height="6" x="322.62" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1742,7 +1742,7 @@
 <rect width="10.04" height="10.11" x="534.67" y="136.56" class="known"><title>void __cdecl GetCarriedItems(void);</title></rect>
 <rect width="9.98" height="10.11" x="547.71" y="136.56" class="known"><title>void __cdecl Demo_LoadLaraPos(void);</title></rect>
 <rect width="9.85" height="10.11" x="560.69" y="136.56" class="decompiled"><title>void __cdecl Output_InsertFlatRect(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>
-<rect width="9.85" height="10.11" x="573.54" y="136.56" class="known"><title>int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);</title></rect>
+<rect width="9.85" height="10.11" x="573.54" y="136.56" class="decompiled"><title>int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);</title></rect>
 <rect width="9.79" height="10.11" x="586.38" y="136.56" class="decompiled"><title>void __cdecl Lara_State_Wade(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="9.72" height="10.11" x="599.17" y="136.56" class="known"><title>void __cdecl DInputKeyboardCreate(void);</title></rect>
 <rect width="9.66" height="10.11" x="611.89" y="136.56" class="decompiled"><title>void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);</title></rect>

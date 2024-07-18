@@ -49,3 +49,4 @@ void __cdecl Lara_GetJointAbsPosition_I(
     int32_t frac, int32_t rate);
 
 void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);
+void __cdecl Lara_TakeHit(ITEM_INFO *lara_item, const COLL_INFO *coll);

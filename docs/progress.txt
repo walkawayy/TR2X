@@ -2746,7 +2746,7 @@ typedef struct __unaligned {
 0x00413540  0x005D  +       void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
 0x004135A0  0x0099  +       int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
 0x00413640  0x0195  +       void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);
-0x004137E0  0x0079  -R      void __cdecl Misc_EffectSpaz(ITEM_INFO *lara_item, COLL_INFO *coll);
+0x004137E0  0x0079  +       void __cdecl Lara_TakeHit(ITEM_INFO *lara_item, COLL_INFO *coll);
 0x00413860  0x0078  -       void __cdecl Creature_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x004138E0  0x0055  -       void __cdecl Object_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 0x00413940  0x0077  -       void __cdecl Door_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);

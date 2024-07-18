@@ -4,6 +4,7 @@
 #include "game/items.h"
 #include "game/math.h"
 #include "game/matrix.h"
+#include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -994,6 +995,21 @@ void __cdecl Lara_GetJointAbsPosition_I(
     Matrix_Pop();
 }
 
+void __cdecl Lara_TakeHit(
+    ITEM_INFO *const lara_item, const COLL_INFO *const coll)
+{
+    const int32_t dx = g_Lara.spaz_effect->pos.x - lara_item->pos.x;
+    const int32_t dz = g_Lara.spaz_effect->pos.z - lara_item->pos.z;
+    const PHD_ANGLE hit_angle = lara_item->rot.y + PHD_180 - Math_Atan(dz, dx);
+    g_Lara.hit_direction = Math_GetDirection(hit_angle);
+    if (g_Lara.hit_frame == 0) {
+        Sound_Effect(SFX_LARA_INJURY, &lara_item->pos, SPM_NORMAL);
+    }
+    g_Lara.hit_frame++;
+    CLAMPG(g_Lara.hit_frame, 34);
+    g_Lara.spaz_effect_count--;
+}
+
 void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
 {
     lara_item->hit_status = 0;
@@ -1043,7 +1059,7 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
     }
 
     if (g_Lara.spaz_effect_count) {
-        Misc_EffectSpaz(lara_item, coll);
+        Lara_TakeHit(lara_item, coll);
     }
 
     if (g_Lara.hit_direction == -1) {

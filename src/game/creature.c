@@ -2,6 +2,7 @@
 
 #include "game/box.h"
 #include "game/items.h"
+#include "game/lara/lara_misc.h"
 #include "game/math.h"
 #include "game/random.h"
 #include "global/const.h"

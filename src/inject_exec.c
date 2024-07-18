@@ -519,6 +519,7 @@ static void Inject_Lara_Misc(const bool enable)
     INJECT(enable, 0x0042B8E0, Lara_GetJointAbsPosition_I);
     INJECT(enable, 0x00413640, Lara_BaddieCollision);
     INJECT(enable, 0x004137E0, Lara_TakeHit);
+    INJECT(enable, 0x00413A30, Lara_Push);
 }
 
 static void Inject_Lara_State(const bool enable)

@@ -1,5 +1,6 @@
 #include "game/objects/general/door.h"
 
+#include "game/lara/lara_misc.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 

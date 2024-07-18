@@ -12,6 +12,21 @@
 
 #define MAX_BADDIE_COLLISION 20
 
+static void __cdecl Lara_TakeHit_Impl(
+    ITEM_INFO *const lara_item, const int32_t dx, const int32_t dz);
+
+static void __cdecl Lara_TakeHit_Impl(
+    ITEM_INFO *const lara_item, const int32_t dx, const int32_t dz)
+{
+    const PHD_ANGLE hit_angle = lara_item->rot.y + PHD_180 - Math_Atan(dz, dx);
+    g_Lara.hit_direction = Math_GetDirection(hit_angle);
+    if (g_Lara.hit_frame == 0) {
+        Sound_Effect(SFX_LARA_INJURY, &lara_item->pos, SPM_NORMAL);
+    }
+    g_Lara.hit_frame++;
+    CLAMPG(g_Lara.hit_frame, 34);
+}
+
 void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll)
 {
     coll->facing = g_Lara.move_angle;
@@ -1000,13 +1015,7 @@ void __cdecl Lara_TakeHit(
 {
     const int32_t dx = g_Lara.spaz_effect->pos.x - lara_item->pos.x;
     const int32_t dz = g_Lara.spaz_effect->pos.z - lara_item->pos.z;
-    const PHD_ANGLE hit_angle = lara_item->rot.y + PHD_180 - Math_Atan(dz, dx);
-    g_Lara.hit_direction = Math_GetDirection(hit_angle);
-    if (g_Lara.hit_frame == 0) {
-        Sound_Effect(SFX_LARA_INJURY, &lara_item->pos, SPM_NORMAL);
-    }
-    g_Lara.hit_frame++;
-    CLAMPG(g_Lara.hit_frame, 34);
+    Lara_TakeHit_Impl(lara_item, dx, dz);
     g_Lara.spaz_effect_count--;
 }
 
@@ -1067,4 +1076,81 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
     }
 
     g_Inv_Chosen = -1;
+}
+
+void __cdecl Lara_Push(
+    const ITEM_INFO *const item, ITEM_INFO *const lara_item,
+    COLL_INFO *const coll, const bool spaz_on, const bool big_push)
+{
+    int32_t dx = lara_item->pos.x - item->pos.x;
+    int32_t dz = lara_item->pos.z - item->pos.z;
+    const int32_t c = Math_Cos(item->rot.y);
+    const int32_t s = Math_Sin(item->rot.y);
+    int32_t rx = (c * dx - s * dz) >> W2V_SHIFT;
+    int32_t rz = (c * dz + s * dx) >> W2V_SHIFT;
+
+    const int16_t *bounds = Item_GetBestFrame(item);
+    int32_t min_x = bounds[FBBOX_MIN_X];
+    int32_t max_x = bounds[FBBOX_MAX_X];
+    int32_t min_z = bounds[FBBOX_MIN_Z];
+    int32_t max_z = bounds[FBBOX_MAX_Z];
+
+    if (big_push) {
+        max_x += coll->radius;
+        min_z -= coll->radius;
+        max_z += coll->radius;
+        min_x -= coll->radius;
+    }
+
+    if (rx < min_x || rx > max_x || rz < min_z || rz > max_z) {
+        return;
+    }
+
+    int32_t l = rx - min_x;
+    int32_t r = max_x - rx;
+    int32_t t = max_z - rz;
+    int32_t b = rz - min_z;
+
+    if (l <= r && l <= t && l <= b) {
+        rx -= l;
+    } else if (r <= l && r <= t && r <= b) {
+        rx += r;
+    } else if (t <= l && t <= r && t <= b) {
+        rz += t;
+    } else {
+        rz = min_z;
+    }
+
+    lara_item->pos.x = item->pos.x + ((rz * s + rx * c) >> W2V_SHIFT);
+    lara_item->pos.z = item->pos.z + ((rz * c - rx * s) >> W2V_SHIFT);
+
+    rz = (bounds[FBBOX_MAX_Z] + bounds[FBBOX_MIN_Z]) / 2;
+    rx = (bounds[FBBOX_MAX_X] + bounds[FBBOX_MIN_X]) / 2;
+    dx -= (c * rx + s * rz) >> W2V_SHIFT;
+    dz -= (c * rz - s * rx) >> W2V_SHIFT;
+
+    if (spaz_on && bounds[FBBOX_MAX_Y] - bounds[FBBOX_MIN_Y] > STEP_L) {
+        Lara_TakeHit_Impl(lara_item, dx, dz);
+    }
+
+    int16_t old_facing = coll->facing;
+    coll->bad_pos = NO_BAD_POS;
+    coll->bad_neg = -STEPUP_HEIGHT;
+    coll->bad_ceiling = 0;
+    coll->facing = Math_Atan(
+        lara_item->pos.z - coll->old.z, lara_item->pos.x - coll->old.x);
+    Collide_GetCollisionInfo(
+        coll, lara_item->pos.x, lara_item->pos.y, lara_item->pos.z,
+        lara_item->room_num, LARA_HEIGHT);
+    coll->facing = old_facing;
+
+    if (coll->coll_type != COLL_NONE) {
+        lara_item->pos.x = coll->old.x;
+        lara_item->pos.z = coll->old.z;
+    } else {
+        coll->old.x = lara_item->pos.x;
+        coll->old.y = lara_item->pos.y;
+        coll->old.z = lara_item->pos.z;
+        Item_UpdateRoom(lara_item, -10);
+    }
 }

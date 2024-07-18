@@ -50,3 +50,6 @@ void __cdecl Lara_GetJointAbsPosition_I(
 
 void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);
 void __cdecl Lara_TakeHit(ITEM_INFO *lara_item, const COLL_INFO *coll);
+void __cdecl Lara_Push(
+    const ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, bool spaz_on,
+    bool big_push);

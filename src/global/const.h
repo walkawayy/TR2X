@@ -16,7 +16,7 @@
 #define W2V_SHIFT 14
 #define WALL_L 1024
 #define WALL_SHIFT 10
-#define STEP_L (WALL_L / 4)
+#define STEP_L (WALL_L / 4) // = 256
 #define NO_HEIGHT (-32512)
 #define NO_BAD_POS (-NO_HEIGHT) // = 32512
 #define NO_BAD_NEG (NO_HEIGHT) // = -32512

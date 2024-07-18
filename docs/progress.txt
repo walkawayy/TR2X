@@ -2744,7 +2744,7 @@ typedef struct __unaligned {
 0x004134A0  0x0055  +       void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00413500  0x0037  +       void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
 0x00413540  0x005D  +       void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
-0x004135A0  0x0099  -       int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+0x004135A0  0x0099  +       int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
 0x00413640  0x0195  -       void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);
 0x004137E0  0x0079  -R      void __cdecl Misc_EffectSpaz(ITEM_INFO *lara_item, COLL_INFO *coll);
 0x00413860  0x0078  -       void __cdecl Creature_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
@@ -4256,3 +4256,4 @@ typedef struct __unaligned {
 0x00466BDC  -       int32_t g_PaletteIndex;
 0x00519F78  -       int32_t g_HWR_TexturePageIndexes[MAX_TEXTURE_PAGES];
 0x004D7790  -       int32_t g_HeightType;
+0x004D9D94  -       int16_t *g_FloorData;

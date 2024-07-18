@@ -258,6 +258,7 @@ extern const char *g_TR2XVersion;
 #define g_Is16bitTextures (*(bool*)0x004D9354)
 #define g_NeedToReloadTextures (*(bool*)0x004D9355)
 #define g_BackBufferSurface (*(LPDDS*)0x004D9358)
+#define g_FloorData (*(int16_t **)0x004D9D94)
 #define g_IsFMVPlaying (*(int32_t*)0x004D9EAC)
 #define g_CurrentLevel (*(int32_t*)0x004D9EC0)
 #define g_LevelComplete (*(int32_t*)0x004D9EC4)

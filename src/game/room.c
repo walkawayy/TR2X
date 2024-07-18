@@ -68,3 +68,24 @@ void __cdecl Room_GetNewRoom(
     // TODO: fix crash when trying to draw too many rooms
     g_DrawRoomsArray[g_DrawRoomsCount++] = room_num;
 }
+
+int16_t __cdecl Room_GetTiltType(
+    const FLOOR_INFO *floor, const int32_t x, const int32_t y, const int32_t z)
+{
+    while (floor->pit_room != NO_ROOM) {
+        const ROOM_INFO *const room = &g_Rooms[floor->pit_room];
+        const int32_t dz = z - room->pos.z;
+        const int32_t dx = x - room->pos.x;
+        floor = &room->floor
+                     [(dz >> WALL_SHIFT) + (dx >> WALL_SHIFT) * room->x_size];
+    }
+
+    if ((y + 512 >= (floor->floor << 8)) && floor->idx != 0) {
+        const int16_t *floor_data = &g_FloorData[floor->idx];
+        if ((floor_data[0] & DATA_TYPE) == FT_TILT) {
+            return floor_data[1];
+        }
+    }
+
+    return 0;
+}

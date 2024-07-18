@@ -268,3 +268,13 @@ bool Item_IsSmashable(const ITEM_INFO *item)
 {
     return (item->object_num == O_WINDOW_1 || item->object_num == O_BELL);
 }
+
+void __cdecl Item_ShiftCol(ITEM_INFO *const item, COLL_INFO *const coll)
+{
+    item->pos.x += coll->shift.x;
+    item->pos.y += coll->shift.y;
+    item->pos.z += coll->shift.z;
+    coll->shift.z = 0;
+    coll->shift.y = 0;
+    coll->shift.x = 0;
+}

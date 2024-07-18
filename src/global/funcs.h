@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Item_ShiftCol ((void __cdecl (*)(ITEM_INFO *item, COLL_INFO *coll))0x00413500)
 #define Item_UpdateRoom ((void __cdecl (*)(ITEM_INFO *item, int32_t height))0x00413540)
 #define Room_GetTiltType ((int16_t __cdecl (*)(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z))0x004135A0)
 #define Lara_BaddieCollision ((void __cdecl (*)(ITEM_INFO *lara_item, COLL_INFO *coll))0x00413640)

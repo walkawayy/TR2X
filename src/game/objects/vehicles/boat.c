@@ -4,6 +4,7 @@
 #include "game/items.h"
 #include "game/lara/lara_look.h"
 #include "game/math.h"
+#include "game/objects/common.h"
 #include "game/random.h"
 #include "game/sound.h"
 #include "global/funcs.h"

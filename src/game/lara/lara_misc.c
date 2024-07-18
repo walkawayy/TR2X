@@ -9,6 +9,8 @@
 #include "global/vars.h"
 #include "util.h"
 
+#define MAX_BADDIE_COLLISION 20
+
 void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll)
 {
     coll->facing = g_Lara.move_angle;
@@ -990,4 +992,63 @@ void __cdecl Lara_GetJointAbsPosition_I(
     vec->z = item->pos.z + (g_MatrixPtr->_23 >> W2V_SHIFT);
 
     Matrix_Pop();
+}
+
+void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
+{
+    lara_item->hit_status = 0;
+    g_Lara.hit_direction = -1;
+    if (lara_item->hit_points <= 0) {
+        return;
+    }
+
+    int16_t roomies[MAX_BADDIE_COLLISION] = { 0 };
+    int32_t roomies_count = 0;
+
+    roomies[roomies_count++] = lara_item->room_num;
+
+    DOOR_INFOS *doors = g_Rooms[roomies[0]].doors;
+    if (doors != NULL) {
+        for (int32_t i = 0; i < doors->count; i++) {
+            if (roomies_count >= MAX_BADDIE_COLLISION) {
+                break;
+            }
+            roomies[roomies_count++] = doors->door[i].room;
+        }
+    }
+
+    for (int32_t i = 0; i < roomies_count; i++) {
+        int16_t item_num = g_Rooms[roomies[i]].item_num;
+        while (item_num != NO_ITEM) {
+            const ITEM_INFO *const item = &g_Items[item_num];
+            if (item->collidable && item->status != IS_INVISIBLE) {
+                const OBJECT_INFO *const object = &g_Objects[item->object_num];
+                if (object->collision) {
+                    // clang-format off
+                    const XYZ_32 d = {
+                        .x = lara_item->pos.x - item->pos.x,
+                        .y = lara_item->pos.y - item->pos.y,
+                        .z = lara_item->pos.z - item->pos.z,
+                    };
+                    if (d.x > -TARGET_DIST && d.x < TARGET_DIST &&
+                        d.y > -TARGET_DIST && d.y < TARGET_DIST &&
+                        d.z > -TARGET_DIST && d.z < TARGET_DIST) {
+                        object->collision(item_num, lara_item, coll);
+                    }
+                    // clang-format on
+                }
+            }
+            item_num = item->next_item;
+        }
+    }
+
+    if (g_Lara.spaz_effect_count) {
+        Misc_EffectSpaz(lara_item, coll);
+    }
+
+    if (g_Lara.hit_direction == -1) {
+        g_Lara.hit_frame = 0;
+    }
+
+    g_Inv_Chosen = -1;
 }

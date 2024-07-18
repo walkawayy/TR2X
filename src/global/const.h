@@ -147,5 +147,6 @@
 #define DONT_TARGET (-16384)
 #define PITCH_SHIFT 4
 #define DATA_TYPE 0x00FF
+#define TARGET_DIST (WALL_L * 4) // = 4096
 
 #define IDS_DX5_REQUIRED 1

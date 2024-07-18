@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Lara_BaddieCollision ((void __cdecl (*)(ITEM_INFO *lara_item, COLL_INFO *coll))0x00413640)
 #define Misc_EffectSpaz ((void __cdecl (*)(ITEM_INFO *lara_item, COLL_INFO *coll))0x004137E0)
 #define Creature_Collision ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x00413860)
 #define Object_Collision ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x004138E0)

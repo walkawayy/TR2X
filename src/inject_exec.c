@@ -700,6 +700,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x0040E0F0, Gondola_Control);
     INJECT(enable, 0x00413940, Door_Collision);
     INJECT(enable, 0x004138E0, Object_Collision);
+    INJECT(enable, 0x004139C0, Object_Collision_Trap);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

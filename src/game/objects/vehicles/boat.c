@@ -127,7 +127,7 @@ int32_t __cdecl Boat_CheckGeton(
         return 0;
     }
 
-    if (!TestCollision(boat, lara)) {
+    if (!Collide_TestCollision(boat, lara)) {
         return 0;
     }
 

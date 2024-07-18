@@ -665,6 +665,7 @@ static void Inject_Creature(const bool enable)
     INJECT(enable, 0x00410110, Creature_Vault);
     INJECT(enable, 0x00410250, Creature_Kill);
     INJECT(enable, 0x004103C0, Creature_GetBaddieTarget);
+    INJECT(enable, 0x00413860, Creature_Collision);
 }
 
 static void Inject_Box(const bool enable)

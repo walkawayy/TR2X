@@ -865,3 +865,21 @@ void __cdecl Creature_GetBaddieTarget(
         }
     }
 }
+
+void __cdecl Creature_Collision(
+    const int16_t item_num, ITEM_INFO *const lara_item, COLL_INFO *const coll)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+    if (!Item_TestBoundsCollide(item, lara_item, coll->radius)) {
+        return;
+    }
+
+    if (!Collide_TestCollision(item, lara_item)) {
+        return;
+    }
+
+    if (coll->enable_baddie_push && g_Lara.water_status != LWS_UNDERWATER
+        && g_Lara.water_status != LWS_SURFACE) {
+        Lara_Push(item, lara_item, coll, coll->enable_spaz, 0);
+    }
+}

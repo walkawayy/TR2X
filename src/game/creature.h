@@ -30,3 +30,5 @@ void __cdecl Creature_Kill(
     int32_t lara_kill_state);
 void __cdecl Creature_GetBaddieTarget(
     const int16_t item_num, const int32_t goody);
+void __cdecl Creature_Collision(
+    int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);

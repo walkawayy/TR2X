@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Door_Collision ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x00413940)
 #define Object_CollisionTrap ((void __cdecl (*)(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll))0x004139C0)
 #define Lara_Push ((void __cdecl (*)(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push))0x00413A30)
 #define Item_TestBoundsCollide ((int32_t __cdecl (*)(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius))0x00413D40)

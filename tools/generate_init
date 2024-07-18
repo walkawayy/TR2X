@@ -30,7 +30,7 @@ def main() -> None:
     if args.output:
         update_init_c(output_path=args.output)
     else:
-        print(args.outptu)
+        print(args.output)
 
 
 if __name__ == "__main__":

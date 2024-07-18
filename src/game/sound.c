@@ -154,7 +154,7 @@ void __cdecl Sound_UpdateEffects(void)
             || (!g_FlipStatus && (sound->flags & SF_UNFLIP))) {
             Sound_Effect(
                 sound->data, (XYZ_32 *)sound,
-                0); // TODO: use proper pointer for this
+                SPM_NORMAL); // TODO: use proper pointer for this
         }
     }
 

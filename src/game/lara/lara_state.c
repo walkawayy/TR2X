@@ -284,7 +284,7 @@ void __cdecl Lara_State_FastFall(ITEM_INFO *item, COLL_INFO *coll)
 {
     item->speed = item->speed * 95 / 100;
     if (item->fall_speed == DAMAGE_START + DAMAGE_LENGTH) {
-        Sound_Effect(SFX_LARA_FALL, &item->pos, 0);
+        Sound_Effect(SFX_LARA_FALL, &item->pos, SPM_NORMAL);
     }
 }
 

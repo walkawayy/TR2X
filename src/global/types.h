@@ -2564,13 +2564,13 @@ typedef enum {
     CLRB_PHDWINSIZE              = 0x0100,
 } CLEAR_BUFFER_FLAGS;
 
-typedef struct {
+typedef struct __unaligned {
     DDPIXELFORMAT pixel_fmt;
     COLOR_BIT_MASKS color_bit_masks;
     DWORD bpp;
 } TEXTURE_FORMAT;
 
-typedef struct {
+typedef struct __unaligned {
     int32_t boat_turn;
     int32_t left_fallspeed;
     int32_t right_fallspeed;

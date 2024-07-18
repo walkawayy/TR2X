@@ -278,3 +278,17 @@ void __cdecl Item_ShiftCol(ITEM_INFO *const item, COLL_INFO *const coll)
     coll->shift.y = 0;
     coll->shift.x = 0;
 }
+
+void __cdecl Item_UpdateRoom(ITEM_INFO *const item, const int32_t height)
+{
+    int32_t x = item->pos.x;
+    int32_t y = height + item->pos.y;
+    int32_t z = item->pos.z;
+
+    int16_t room_num = item->room_num;
+    const FLOOR_INFO *const floor = Room_GetFloor(x, y, z, &room_num);
+    item->floor = Room_GetHeight(floor, x, y, z);
+    if (item->room_num != room_num) {
+        Item_NewRoom(g_Lara.item_num, room_num);
+    }
+}

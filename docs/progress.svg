@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.48% (554)</tspan> · <tspan class="known">52.05% (634)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.57% (555)</tspan> · <tspan class="known">51.97% (633)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="339.77" height="6" x="0" y="0" class="decompiled"/>
-<rect width="388.83" height="6" x="339.77" y="0" class="known"/>
+<rect width="340.38" height="6" x="0" y="0" class="decompiled"/>
+<rect width="388.22" height="6" x="340.38" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -228,7 +228,7 @@
 <rect width="12" height="12" x="735" y="30" class="decompiled"><title>void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="0" y="45" class="decompiled"><title>void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="15" y="45" class="decompiled"><title>void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="12" height="12" x="30" y="45" class="known"><title>void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);</title></rect>
+<rect width="12" height="12" x="30" y="45" class="decompiled"><title>void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="12" height="12" x="45" y="45" class="known"><title>int16_t __cdecl Room_GetTiltType(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="60" y="45" class="known"><title>void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="75" y="45" class="known"><title>void __cdecl Misc_EffectSpaz(ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.55%</tspan> · <tspan class="known">57.12%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">42.58%</tspan> · <tspan class="known">57.09%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="317.86" height="6" x="0" y="0" class="decompiled"/>
-<rect width="426.70" height="6" x="317.86" y="0" class="known"/>
+<rect width="318.07" height="6" x="0" y="0" class="decompiled"/>
+<rect width="426.49" height="6" x="318.07" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2042,7 +2042,7 @@
 <rect width="5.70" height="5.97" x="732.60" y="235.64" class="decompiled"><title>void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="5.70" height="5.97" x="741.30" y="235.64" class="decompiled"><title>void __cdecl Sound_StopEffect(int32_t sample_id);</title></rect>
 <rect width="5.61" height="6.07" x="608.02" y="244.61" class="known"><title>bool __cdecl GetRegistryDwordValue(LPCTSTR lpValueName, DWORD *pValue, DWORD defaultValue);</title></rect>
-<rect width="5.61" height="5.97" x="608.02" y="253.67" class="known"><title>void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);</title></rect>
+<rect width="5.61" height="5.97" x="608.02" y="253.67" class="decompiled"><title>void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="5.61" height="5.97" x="608.02" y="262.64" class="known"><title>void __cdecl ControlBirdTweeter(int16_t item_num);</title></rect>
 <rect width="5.61" height="5.97" x="608.02" y="271.61" class="known"><title>void __cdecl Inv_Ring_MotionItemSelect(RING_INFO *ring, INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="5.61" height="5.97" x="608.02" y="280.58" class="decompiled"><title>void __cdecl Lara_Col_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

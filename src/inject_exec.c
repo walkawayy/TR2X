@@ -448,6 +448,7 @@ static void Inject_Items(const bool enable)
     INJECT(enable, 0x00427270, Item_GlobalReplace);
     INJECT(enable, 0x00427520, Item_ClearKilled);
     INJECT(enable, 0x00413500, Item_ShiftCol);
+    INJECT(enable, 0x00413540, Item_UpdateRoom);
 }
 
 static void Inject_Effects(const bool enable)

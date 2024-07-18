@@ -15,5 +15,6 @@ int32_t __cdecl Item_GlobalReplace(
 void __cdecl Item_ClearKilled(void);
 bool Item_Teleport(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
 void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
+void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
 
 bool Item_IsSmashable(const ITEM_INFO *item);

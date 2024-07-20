@@ -12,3 +12,5 @@ uint32_t __fastcall Math_Sqrt(uint32_t n);
 DIRECTION Math_GetDirection(int16_t angle);
 DIRECTION Math_GetDirectionCone(int16_t angle, int16_t cone);
 int16_t Math_DirectionToAngle(DIRECTION dir);
+
+int32_t XYZ32_GetDistance(const XYZ_32 *pos1, const XYZ_32 *pos2);

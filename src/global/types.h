@@ -561,8 +561,13 @@ typedef struct __unaligned {
     int16_t shade2;
     int16_t carried_item;
     void *data;
-    XYZ_32 pos;
-    XYZ_16 rot;
+    union {
+        struct {
+            XYZ_32 pos;
+            XYZ_16 rot;
+        };
+        PHD_3DPOS pos_full; // TODO: stick to pos and rot
+    };
     uint16_t active:        1; // 0x0001
     uint16_t status:        2; // 0x0002…0x0004
     uint16_t gravity:       1; // 0x0008

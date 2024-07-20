@@ -53,3 +53,5 @@ void __cdecl Lara_TakeHit(ITEM_INFO *lara_item, const COLL_INFO *coll);
 void __cdecl Lara_Push(
     const ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, bool spaz_on,
     bool big_push);
+int32_t __cdecl Lara_MovePosition(
+    XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);

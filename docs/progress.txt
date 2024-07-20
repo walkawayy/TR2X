@@ -545,8 +545,13 @@ typedef struct __unaligned {
     int16_t shade2;
     int16_t carried_item;
     void *data;
-    XYZ_32 pos;
-    XYZ_16 rot;
+    union {
+        struct {
+            XYZ_32 pos;
+            XYZ_16 rot;
+        };
+        PHD_3DPOS pos_full; // TODO: stick to pos and rot
+    };
     uint16_t active:        1; // 0x0001
     uint16_t status:        2; // 0x0002…0x0004
     uint16_t gravity:       1; // 0x0008
@@ -2762,7 +2767,7 @@ typedef struct __unaligned {
 0x00413D40  0x00CB  +       int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
 0x00413E10  0x0137  +       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);
 0x00413F50  0x013B  +       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
-0x00414090  0x0187  -       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
+0x00414090  0x0187  +       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
 0x00414220  0x016E  -R      int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);
 
 # game/control.c

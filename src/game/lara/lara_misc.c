@@ -11,6 +11,8 @@
 #include "util.h"
 
 #define MAX_BADDIE_COLLISION 20
+#define MOVE_SPEED 16
+#define MOVE_ANGLE (2 * PHD_DEGREE) // = 364
 
 static void __cdecl Lara_TakeHit_Impl(
     ITEM_INFO *const lara_item, const int32_t dx, const int32_t dz);
@@ -1153,4 +1155,52 @@ void __cdecl Lara_Push(
         coll->old.z = lara_item->pos.z;
         Item_UpdateRoom(lara_item, -10);
     }
+}
+
+int32_t __cdecl Lara_MovePosition(
+    XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item)
+{
+    const XYZ_16 rot = {
+        .x = item->rot.x,
+        .y = item->rot.y,
+        .z = item->rot.z,
+    };
+
+    Matrix_PushUnit();
+    Matrix_RotYXZ(rot.y, rot.x, rot.z);
+    const MATRIX *const m = g_MatrixPtr;
+    const XYZ_32 shift = {
+        .x = (vec->y * m->_01 + vec->z * m->_02 + vec->x * m->_00) >> W2V_SHIFT,
+        .y = (vec->x * m->_10 + vec->z * m->_12 + vec->y * m->_11) >> W2V_SHIFT,
+        .z = (vec->y * m->_21 + vec->x * m->_20 + vec->z * m->_22) >> W2V_SHIFT,
+    };
+    Matrix_Pop();
+
+    const XYZ_32 new_pos = {
+        .x = item->pos.x + shift.x,
+        .y = item->pos.y + shift.y,
+        .z = item->pos.z + shift.z,
+    };
+
+    if (item->object_num == O_FLARE_ITEM) {
+        int16_t room_num = lara_item->room_num;
+        const FLOOR_INFO *const floor =
+            Room_GetFloor(new_pos.x, new_pos.y, new_pos.z, &room_num);
+        const int32_t height =
+            Room_GetHeight(floor, new_pos.x, new_pos.y, new_pos.z);
+        if (ABS(height - lara_item->pos.y) > STEP_L * 2) {
+            return false;
+        }
+        if (XYZ32_GetDistance(&new_pos, &lara_item->pos) < STEP_L) {
+            return true;
+        }
+    }
+
+    // TODO: get rid of this conversion
+    const PHD_3DPOS new_pos_full = {
+        .pos = new_pos,
+        .rot = rot,
+    };
+    return Misc_Move3DPosTo3DPos(
+        &lara_item->pos_full, &new_pos_full, MOVE_SPEED, MOVE_ANGLE);
 }

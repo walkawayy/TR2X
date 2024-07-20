@@ -146,7 +146,13 @@
 #define NUM_SLOTS 5
 #define DONT_TARGET (-16384)
 #define PITCH_SHIFT 4
-#define DATA_TYPE 0x00FF
 #define TARGET_DIST (WALL_L * 4) // = 4096
 
 #define IDS_DX5_REQUIRED 1
+
+#define TRIGGER_TYPE(t) ((t & 0x3C00) >> 10)
+#define TRIGGER_VALUE(t) (t & 0x3FF)
+#define TRIGGER_IS_END(t) ((t & 0x8000) == 0x8000)
+
+#define FLOORDATA_TYPE(t) (t & 0xFF)
+#define FLOORDATA_IS_END(t) ((t & 0x8000) == 0x8000)

@@ -84,7 +84,7 @@ int16_t __cdecl Room_GetTiltType(
 
     if ((y + 512 >= (floor->floor << 8)) && floor->idx != 0) {
         const int16_t *floor_data = &g_FloorData[floor->idx];
-        if ((floor_data[0] & DATA_TYPE) == FT_TILT) {
+        if (FLOORDATA_TYPE(floor_data[0]) == FT_TILT) {
             return floor_data[1];
         }
     }

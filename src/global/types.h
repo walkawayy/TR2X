@@ -2382,6 +2382,7 @@ typedef enum {
     FT_ROOF    = 3,
     FT_TRIGGER = 4,
     FT_LAVA    = 5,
+    FT_CLIMB   = 6,
 } FLOOR_TYPE;
 
 typedef enum {

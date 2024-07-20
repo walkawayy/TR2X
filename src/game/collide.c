@@ -120,8 +120,9 @@ void __cdecl Collide_GetCollisionInfo(
         && coll->side_front.floor > 0) {
         coll->side_front.floor = 512;
     } else if (
-        coll->lava_is_pit && coll->side_front.floor > 0 && g_TriggerIndex
-        && (g_TriggerIndex[0] & DATA_TYPE) == FT_LAVA) {
+        coll->lava_is_pit && coll->side_front.floor > 0
+        && g_TriggerIndex != NULL
+        && FLOORDATA_TYPE(g_TriggerIndex[0]) == FT_LAVA) {
         coll->side_front.floor = 512;
     }
 
@@ -148,8 +149,8 @@ void __cdecl Collide_GetCollisionInfo(
         && coll->side_left.floor > 0) {
         coll->side_left.floor = 512;
     } else if (
-        coll->lava_is_pit && coll->side_left.floor > 0 && g_TriggerIndex
-        && (g_TriggerIndex[0] & DATA_TYPE) == FT_LAVA) {
+        coll->lava_is_pit && coll->side_left.floor > 0 && g_TriggerIndex != NULL
+        && FLOORDATA_TYPE(g_TriggerIndex[0]) == FT_LAVA) {
         coll->side_left.floor = 512;
     }
 
@@ -176,8 +177,9 @@ void __cdecl Collide_GetCollisionInfo(
         && coll->side_right.floor > 0) {
         coll->side_right.floor = 512;
     } else if (
-        coll->lava_is_pit && coll->side_right.floor > 0 && g_TriggerIndex
-        && (g_TriggerIndex[0] & DATA_TYPE) == FT_LAVA) {
+        coll->lava_is_pit && coll->side_right.floor > 0
+        && g_TriggerIndex != NULL
+        && FLOORDATA_TYPE(g_TriggerIndex[0]) == FT_LAVA) {
         coll->side_right.floor = 512;
     }
 

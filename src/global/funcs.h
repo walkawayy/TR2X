@@ -7,8 +7,7 @@
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
 #define Game_Control ((int32_t __cdecl (*)(int32_t nframes, int32_t demo_mode))0x00414390)
-#define Camera_RefreshFromTrigger ((void __cdecl (*)(int16_t type, int16_t *data))0x00415100)
-#define Room_TestTriggers ((void __cdecl (*)(int16_t *data, int32_t heavy))0x004151F0)
+#define Camera_RefreshFromTrigger ((void __cdecl (*)(int16_t type, const int16_t *data))0x00415100)
 #define Item_IsTriggerActive ((int32_t __cdecl (*)(ITEM_INFO *item))0x004158D0)
 #define Room_GetCeiling ((int32_t __cdecl (*)(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z))0x00415930)
 #define Room_GetDoor ((int16_t __cdecl (*)(const FLOOR_INFO *floor))0x00415B90)

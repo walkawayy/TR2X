@@ -334,6 +334,7 @@ extern const char *g_TR2XVersion;
 #define g_IMMatrixPtr (*(MATRIX **)0x00526188)
 #define g_Rooms (*(ROOM_INFO **)0x0052618C)
 #define g_FlipStatus (*(int32_t*)0x00526240)
+#define g_FlipMaps (*(int32_t(*)[MAX_FLIPMAPS])0x00526260)
 #define g_TriggerIndex (*(int16_t **)0x00526288)
 #define g_LOSRooms (*(int32_t(*)[20])0x005262A0)
 #define g_Items (*(ITEM_INFO **)0x005262F0)

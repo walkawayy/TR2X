@@ -4,6 +4,7 @@
 #include "game/lara/lara_look.h"
 #include "game/lara/lara_misc.h"
 #include "game/math.h"
+#include "game/room.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"

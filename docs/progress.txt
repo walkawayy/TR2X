@@ -2607,18 +2607,32 @@ typedef struct __unaligned {
 } OBJECT_BOUNDS;
 
 typedef enum {
-    TO_OBJECT     = 0,
-    TO_CAMERA     = 1,
-    TO_SINK       = 2,
-    TO_FLIPMAP    = 3,
-    TO_FLIPON     = 4,
-    TO_FLIPOFF    = 5,
-    TO_TARGET     = 6,
-    TO_FINISH     = 7,
-    TO_CD         = 8,
-    TO_FLIPEFFECT = 9,
-    TO_SECRET     = 10,
+    TO_OBJECT      = 0,
+    TO_CAMERA      = 1,
+    TO_SINK        = 2,
+    TO_FLIP_MAP    = 3,
+    TO_FLIP_ON     = 4,
+    TO_FLIP_OFF    = 5,
+    TO_TARGET      = 6,
+    TO_FINISH      = 7,
+    TO_CD          = 8,
+    TO_FLIP_EFFECT = 9,
+    TO_SECRET      = 10,
+    TO_BODY_BAG    = 11,
 } TRIGGER_OBJECT;
+
+typedef enum {
+    TT_TRIGGER     = 0,
+    TT_PAD         = 1,
+    TT_SWITCH      = 2,
+    TT_KEY         = 3,
+    TT_PICKUP      = 4,
+    TT_HEAVY       = 5,
+    TT_ANTIPAD     = 6,
+    TT_COMBAT      = 7,
+    TT_DUMMY       = 8,
+    TT_ANTITRIGGER = 9,
+} TRIGGER_TYPE;
 
 # FUNCTIONS
 #   Flags:
@@ -2822,8 +2836,8 @@ typedef enum {
 0x00414B70  0x0198  +       FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);
 0x00414D10  0x0168  +       int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00414E80  0x0265  +       int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
-0x00415100  0x00E7  -       void __cdecl Camera_RefreshFromTrigger(int16_t type, int16_t *data);
-0x004151F0  0x0690  -       void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);
+0x00415100  0x00E7  -       void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);
+0x004151F0  0x0690  +       void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);
 0x004158D0  0x0055  -       int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);
 0x00415930  0x023D  *       int32_t __cdecl Room_GetCeiling(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
 0x00415B90  0x004E  -       int16_t __cdecl Room_GetDoor(const FLOOR_INFO *floor);
@@ -4317,3 +4331,4 @@ typedef enum {
 0x0052617C  -       ANIM_CHANGE *g_AnimChanges;
 0x00525B04  -       ANIM_RANGE *g_AnimRanges;
 0x004D77FC  -       int16_t g_GF_NoFloor;
+0x00526260  -       int32_t g_FlipMaps[MAX_FLIPMAPS];

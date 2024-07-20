@@ -5,6 +5,7 @@
 #include "game/items.h"
 #include "game/math.h"
 #include "game/matrix.h"
+#include "game/room.h"
 #include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"

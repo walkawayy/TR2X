@@ -631,9 +631,9 @@ typedef struct __unaligned {
 typedef struct __unaligned {
     int16_t idx;
     int16_t box;
-    int8_t pit_room;
+    uint8_t pit_room;
     int8_t floor;
-    int8_t sky_room;
+    uint8_t sky_room;
     int8_t ceiling;
 } FLOOR_INFO;
 

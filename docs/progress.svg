@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.88% (571)</tspan> · <tspan class="known">50.66% (617)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.96% (572)</tspan> · <tspan class="known">50.57% (616)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="350.19" height="6" x="0" y="0" class="decompiled"/>
-<rect width="378.41" height="6" x="350.19" y="0" class="known"/>
+<rect width="350.81" height="6" x="0" y="0" class="decompiled"/>
+<rect width="377.79" height="6" x="350.81" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -246,7 +246,7 @@
 <rect width="12" height="12" x="255" y="45" class="decompiled"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
 <rect width="12" height="12" x="285" y="45" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
-<rect width="12" height="12" x="300" y="45" class="known"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
+<rect width="12" height="12" x="300" y="45" class="decompiled"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
 <rect width="12" height="12" x="315" y="45" class="known"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="330" y="45" class="known"><title>int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="345" y="45" class="known"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, int16_t *data);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.91%</tspan> · <tspan class="known">55.76%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.03%</tspan> · <tspan class="known">55.64%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="328.03" height="6" x="0" y="0" class="decompiled"/>
-<rect width="416.53" height="6" x="328.03" y="0" class="known"/>
+<rect width="328.92" height="6" x="0" y="0" class="decompiled"/>
+<rect width="415.64" height="6" x="328.92" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1529,7 +1529,7 @@
 <rect width="16.12" height="14.93" x="469.07" y="41.46" class="known"><title>void __cdecl BigEelControl(int16_t item_num);</title></rect>
 <rect width="16.07" height="14.93" x="488.19" y="41.46" class="decompiled"><title>void __cdecl Lara_Col_ClimbDown(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="15.98" height="14.93" x="507.27" y="41.46" class="known"><title>void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);</title></rect>
-<rect width="15.89" height="14.93" x="526.25" y="41.46" class="known"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
+<rect width="15.89" height="14.93" x="526.25" y="41.46" class="decompiled"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
 <rect width="15.80" height="14.93" x="545.14" y="41.46" class="known"><title>int32_t __cdecl AddTexturePage16(int32_t width, int32_t height, const uint8_t *page_buf);</title></rect>
 <rect width="15.75" height="14.93" x="563.93" y="41.46" class="decompiled"><title>void __cdecl Output_InsertTrans8_Sorted(const PHD_VBUF *vbuf, int16_t shade);</title></rect>
 <rect width="15.75" height="14.93" x="582.68" y="41.46" class="decompiled"><title>void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>

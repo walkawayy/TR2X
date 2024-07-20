@@ -615,9 +615,9 @@ typedef struct __unaligned {
 typedef struct __unaligned {
     int16_t idx;
     int16_t box;
-    int8_t pit_room;
+    uint8_t pit_room;
     int8_t floor;
-    int8_t sky_room;
+    uint8_t sky_room;
     int8_t ceiling;
 } FLOOR_INFO;
 
@@ -2804,7 +2804,7 @@ typedef struct __unaligned {
 0x004146F0  0x0338  +       void __cdecl Item_Animate(ITEM_INFO *item);
 0x00414A60  0x00AB  +       int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);
 0x00414B10  0x005F  +       void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
-0x00414B70  0x0198  *       FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);
+0x00414B70  0x0198  +       FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);
 0x00414D10  0x0168  -       int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00414E80  0x0265  *       int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
 0x00415100  0x00E7  -       void __cdecl Camera_RefreshFromTrigger(int16_t type, int16_t *data);

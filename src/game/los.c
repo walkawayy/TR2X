@@ -2,6 +2,7 @@
 
 #include "game/items.h"
 #include "game/math.h"
+#include "game/room.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"

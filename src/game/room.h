@@ -11,3 +11,5 @@ void __cdecl Room_GetNearbyRooms(
 void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
 int16_t __cdecl Room_GetTiltType(
     const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+FLOOR_INFO *__cdecl Room_GetFloor(
+    int32_t x, int32_t y, int32_t z, int16_t *room_num);

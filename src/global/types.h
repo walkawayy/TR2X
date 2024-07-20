@@ -1104,10 +1104,10 @@ typedef struct __unaligned {
     void (*initialise)(int16_t item_number);
     void (*control)(int16_t item_number);
     void (*floor)(
-        ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
+        const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
     void (*ceiling)(
-        ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
+        const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
     void (*draw_routine)(ITEM_INFO *item);
     void (*collision)(int16_t

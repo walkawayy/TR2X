@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.80% (570)</tspan> · <tspan class="known">50.74% (618)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.88% (571)</tspan> · <tspan class="known">50.66% (617)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="349.58" height="6" x="0" y="0" class="decompiled"/>
-<rect width="379.02" height="6" x="349.58" y="0" class="known"/>
+<rect width="350.19" height="6" x="0" y="0" class="decompiled"/>
+<rect width="378.41" height="6" x="350.19" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -245,7 +245,7 @@
 <rect width="12" height="12" x="240" y="45" class="known"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="12" height="12" x="255" y="45" class="decompiled"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
-<rect width="12" height="12" x="285" y="45" class="known"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
+<rect width="12" height="12" x="285" y="45" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="300" y="45" class="known"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
 <rect width="12" height="12" x="315" y="45" class="known"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="330" y="45" class="known"><title>int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.89%</tspan> · <tspan class="known">55.79%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.91%</tspan> · <tspan class="known">55.76%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="327.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="416.74" height="6" x="327.82" y="0" class="known"/>
+<rect width="328.03" height="6" x="0" y="0" class="decompiled"/>
+<rect width="416.53" height="6" x="328.03" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2036,7 +2036,7 @@
 <rect width="5.89" height="5.97" x="679.56" y="235.64" class="known"><title>BOOL __cdecl LoadCameras(HANDLE handle);</title></rect>
 <rect width="5.89" height="5.97" x="688.45" y="235.64" class="known"><title>BOOL __cdecl LoadSoundEffects(HANDLE handle);</title></rect>
 <rect width="5.89" height="5.97" x="697.33" y="235.64" class="known"><title>void __cdecl UT_InitAccurateTimer(void);</title></rect>
-<rect width="5.79" height="5.97" x="706.22" y="235.64" class="known"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
+<rect width="5.79" height="5.97" x="706.22" y="235.64" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="5.79" height="5.97" x="715.01" y="235.64" class="decompiled"><title>void __cdecl BGND_DrawInGameBlack(void);</title></rect>
 <rect width="5.79" height="5.97" x="723.81" y="235.64" class="unused"><title>sub_444AB0</title></rect>
 <rect width="5.70" height="5.97" x="732.60" y="235.64" class="decompiled"><title>void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

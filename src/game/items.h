@@ -25,5 +25,6 @@ void __cdecl Item_AlignPosition(
     const XYZ_32 *vec, const ITEM_INFO *src_item, ITEM_INFO *dst_item);
 void __cdecl Item_Animate(ITEM_INFO *item);
 int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);
+void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
 
 bool Item_IsSmashable(const ITEM_INFO *item);

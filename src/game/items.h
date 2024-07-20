@@ -18,5 +18,8 @@ void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
 void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
 int32_t __cdecl Item_TestBoundsCollide(
     const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
+int32_t __cdecl Item_TestPosition(
+    const int16_t *bounds, const ITEM_INFO *src_item,
+    const ITEM_INFO *dst_item);
 
 bool Item_IsSmashable(const ITEM_INFO *item);

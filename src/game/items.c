@@ -2,12 +2,47 @@
 
 #include "game/camera.h"
 #include "game/math.h"
+#include "game/matrix.h"
 #include "game/room.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
 #include <assert.h>
+
+static OBJECT_BOUNDS Item_ConvertBounds(const int16_t *bounds_in);
+
+static OBJECT_BOUNDS Item_ConvertBounds(const int16_t *const bounds_in)
+{
+    // TODO: remove this conversion utility once we gain control over its
+    // incoming arguments
+    return (OBJECT_BOUNDS) {
+        .shift = {
+            .min = {
+                .x = bounds_in[0],
+                .y = bounds_in[2],
+                .z = bounds_in[4],
+            },
+            .max = {
+                .x = bounds_in[1],
+                .y = bounds_in[3],
+                .z = bounds_in[5],
+            },
+        },
+        .rot = {
+            .min = {
+                .x = bounds_in[6],
+                .y = bounds_in[8],
+                .z = bounds_in[10],
+            },
+            .max = {
+                .x = bounds_in[7],
+                .y = bounds_in[9],
+                .z = bounds_in[11],
+            },
+        },
+    };
+}
 
 void __cdecl Item_InitialiseArray(const int32_t num_items)
 {
@@ -321,5 +356,56 @@ int32_t __cdecl Item_TestBoundsCollide(
         rx <= src_bounds[FBBOX_MAX_X] + radius &&
         rz >= src_bounds[FBBOX_MIN_Z] - radius &&
         rz <= src_bounds[FBBOX_MAX_Z] + radius);
+    // clang-format on
+}
+
+int32_t __cdecl Item_TestPosition(
+    const int16_t *const bounds_in, const ITEM_INFO *const src_item,
+    const ITEM_INFO *const dst_item)
+{
+    const OBJECT_BOUNDS bounds = Item_ConvertBounds(bounds_in);
+
+    const XYZ_16 rot = {
+        .x = dst_item->rot.x - src_item->rot.x,
+        .y = dst_item->rot.y - src_item->rot.y,
+        .z = dst_item->rot.z - src_item->rot.z,
+    };
+    const XYZ_32 dist = {
+        .x = dst_item->pos.x - src_item->pos.x,
+        .y = dst_item->pos.y - src_item->pos.y,
+        .z = dst_item->pos.z - src_item->pos.z,
+    };
+
+    // clang-format off
+    if (rot.x < bounds.rot.min.x ||
+        rot.x > bounds.rot.max.x ||
+        rot.y < bounds.rot.min.y ||
+        rot.y > bounds.rot.max.y ||
+        rot.z < bounds.rot.min.z ||
+        rot.z > bounds.rot.max.z
+    ) {
+        return false;
+    }
+    // clang-format on
+
+    Matrix_PushUnit();
+    Matrix_RotYXZ(src_item->rot.y, src_item->rot.x, src_item->rot.z);
+    const MATRIX *const m = g_MatrixPtr;
+    const XYZ_32 shift = {
+        .x = (dist.x * m->_00 + dist.y * m->_10 + dist.z * m->_20) >> W2V_SHIFT,
+        .y = (dist.x * m->_01 + dist.y * m->_11 + dist.z * m->_21) >> W2V_SHIFT,
+        .z = (dist.x * m->_02 + dist.y * m->_12 + dist.z * m->_22) >> W2V_SHIFT,
+    };
+    Matrix_Pop();
+
+    // clang-format off
+    return (
+        shift.x >= bounds.shift.min.x &&
+        shift.x <= bounds.shift.max.x &&
+        shift.y >= bounds.shift.min.y &&
+        shift.y <= bounds.shift.max.y &&
+        shift.z >= bounds.shift.min.z &&
+        shift.z <= bounds.shift.max.z
+    );
     // clang-format on
 }

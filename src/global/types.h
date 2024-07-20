@@ -2580,4 +2580,11 @@ typedef struct __unaligned {
     int32_t pitch;
 } BOAT_INFO;
 
+typedef struct __unaligned {
+    struct {
+        XYZ_16 min;
+        XYZ_16 max;
+    } shift, rot;
+} OBJECT_BOUNDS;
+
 // clang-format on

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.31% (564)</tspan> · <tspan class="known">51.23% (624)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.39% (565)</tspan> · <tspan class="known">51.15% (623)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="345.90" height="6" x="0" y="0" class="decompiled"/>
-<rect width="382.70" height="6" x="345.90" y="0" class="known"/>
+<rect width="346.51" height="6" x="0" y="0" class="decompiled"/>
+<rect width="382.09" height="6" x="346.51" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -238,7 +238,7 @@
 <rect width="12" height="12" x="135" y="45" class="decompiled"><title>void __cdecl Object_Collision_Trap(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="150" y="45" class="decompiled"><title>void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);</title></rect>
 <rect width="12" height="12" x="165" y="45" class="decompiled"><title>int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);</title></rect>
-<rect width="12" height="12" x="180" y="45" class="known"><title>int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
+<rect width="12" height="12" x="180" y="45" class="decompiled"><title>int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="195" y="45" class="known"><title>void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="210" y="45" class="known"><title>int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
 <rect width="12" height="12" x="225" y="45" class="known"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.19%</tspan> · <tspan class="known">56.48%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.28%</tspan> · <tspan class="known">56.39%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="322.62" height="6" x="0" y="0" class="decompiled"/>
-<rect width="421.94" height="6" x="322.62" y="0" class="known"/>
+<rect width="323.30" height="6" x="0" y="0" class="decompiled"/>
+<rect width="421.26" height="6" x="323.30" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1607,7 +1607,7 @@
 <rect width="13.48" height="12.81" x="448.61" y="252.61" class="decompiled"><title>void __fastcall Output_TransA(int32_t y0, int32_t y1, uint8_t depth_q); // actually, __watcall, which is esoteric and rarely supported</title></rect>
 <rect width="13.48" height="12.71" x="448.61" y="268.42" class="decompiled"><title>void __cdecl Camera_UpdateCutscene(void);</title></rect>
 <rect width="13.48" height="12.71" x="448.61" y="284.13" class="known"><title>void __cdecl ControlSpikeWall(int16_t item_num);</title></rect>
-<rect width="13.48" height="12.66" x="448.61" y="299.84" class="known"><title>int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
+<rect width="13.48" height="12.66" x="448.61" y="299.84" class="decompiled"><title>int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="13.48" height="12.66" x="448.61" y="315.51" class="known"><title>int32_t __cdecl TestBlockPush(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);</title></rect>
 <rect width="13.48" height="12.66" x="448.61" y="331.17" class="known"><title>void __cdecl CopyBitmapPalette(RGB_888 *src_pal, BYTE *src_bitmap, int32_t bitmap_size, RGB_888 *dest_pal);</title></rect>
 <rect width="13.48" height="12.61" x="448.61" y="346.83" class="decompiled"><title>void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

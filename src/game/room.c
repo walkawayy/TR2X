@@ -8,7 +8,7 @@
 
 int16_t Room_GetIndexFromPos(const int32_t x, const int32_t y, const int32_t z)
 {
-    for (int i = 0; i < g_RoomCount; i++) {
+    for (int32_t i = 0; i < g_RoomCount; i++) {
         const ROOM_INFO *const room = &g_Rooms[i];
         const int32_t x1 = room->pos.x + WALL_L;
         const int32_t x2 = room->pos.x + (room->y_size << WALL_SHIFT) - WALL_L;
@@ -158,4 +158,64 @@ FLOOR_INFO *__cdecl Room_GetFloor(
     }
 
     return floor;
+}
+
+int32_t __cdecl Room_GetWaterHeight(
+    const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
+{
+    const FLOOR_INFO *floor = NULL;
+    const ROOM_INFO *r = NULL;
+
+    do {
+        r = &g_Rooms[room_num];
+        int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+        int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+
+        if (x_floor <= 0) {
+            x_floor = 0;
+            if (y_floor < 1) {
+                y_floor = 1;
+            } else if (y_floor > r->y_size - 2) {
+                y_floor = r->y_size - 2;
+            }
+        } else if (x_floor >= r->x_size - 1) {
+            x_floor = r->x_size - 1;
+            if (y_floor < 1) {
+                y_floor = 1;
+            } else if (y_floor > r->y_size - 2) {
+                y_floor = r->y_size - 2;
+            }
+        } else if (y_floor < 0) {
+            y_floor = 0;
+        } else if (y_floor >= r->y_size) {
+            y_floor = r->y_size - 1;
+        }
+
+        floor = &r->floor[x_floor + y_floor * r->x_size];
+        room_num = Room_GetDoor(floor);
+    } while (room_num != (uint8_t)NO_ROOM);
+
+    if (r->flags & RF_UNDERWATER) {
+        while (floor->sky_room != (uint8_t)NO_ROOM) {
+            r = &g_Rooms[floor->sky_room];
+            if (!(r->flags & RF_UNDERWATER)) {
+                break;
+            }
+            const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+            const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+            floor = &r->floor[x_floor + y_floor * r->x_size];
+        }
+        return floor->ceiling << 8;
+    } else {
+        while (floor->pit_room != (uint8_t)NO_ROOM) {
+            r = &g_Rooms[floor->pit_room];
+            if (r->flags & RF_UNDERWATER) {
+                return floor->floor << 8;
+            }
+            const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+            const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+            floor = &r->floor[x_floor + y_floor * r->x_size];
+        }
+        return NO_HEIGHT;
+    }
 }

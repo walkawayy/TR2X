@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.96% (572)</tspan> · <tspan class="known">50.57% (616)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.04% (573)</tspan> · <tspan class="known">50.49% (615)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="350.81" height="6" x="0" y="0" class="decompiled"/>
-<rect width="377.79" height="6" x="350.81" y="0" class="known"/>
+<rect width="351.42" height="6" x="0" y="0" class="decompiled"/>
+<rect width="377.18" height="6" x="351.42" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -247,13 +247,13 @@
 <rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
 <rect width="12" height="12" x="285" y="45" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="300" y="45" class="decompiled"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
-<rect width="12" height="12" x="315" y="45" class="known"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
+<rect width="12" height="12" x="315" y="45" class="decompiled"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="330" y="45" class="known"><title>int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="345" y="45" class="known"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, int16_t *data);</title></rect>
 <rect width="12" height="12" x="360" y="45" class="known"><title>void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);</title></rect>
 <rect width="12" height="12" x="375" y="45" class="known"><title>int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="390" y="45" class="known"><title>int32_t __cdecl Room_GetCeiling(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
-<rect width="12" height="12" x="405" y="45" class="known"><title>int16_t __cdecl Room_GetDoor(FLOOR_INFO *floor);</title></rect>
+<rect width="12" height="12" x="405" y="45" class="known"><title>int16_t __cdecl Room_GetDoor(const FLOOR_INFO *floor);</title></rect>
 <rect width="12" height="12" x="420" y="45" class="decompiled"><title>int32_t __cdecl LOS_Check(const GAME_VECTOR *start, GAME_VECTOR *target);</title></rect>
 <rect width="12" height="12" x="435" y="45" class="decompiled"><title>int32_t __cdecl LOS_CheckZ(const GAME_VECTOR *start, GAME_VECTOR *target);</title></rect>
 <rect width="12" height="12" x="450" y="45" class="decompiled"><title>int32_t __cdecl LOS_CheckX(const GAME_VECTOR *start, GAME_VECTOR *target);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.03%</tspan> · <tspan class="known">55.64%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">44.14%</tspan> · <tspan class="known">55.54%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="328.92" height="6" x="0" y="0" class="decompiled"/>
-<rect width="415.64" height="6" x="328.92" y="0" class="known"/>
+<rect width="329.71" height="6" x="0" y="0" class="decompiled"/>
+<rect width="414.85" height="6" x="329.71" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1567,7 +1567,7 @@
 <rect width="14.95" height="13.84" x="538.84" y="59.39" class="decompiled"><title>void __cdecl HWR_DrawPolyList(void);</title></rect>
 <rect width="14.80" height="13.84" x="556.78" y="59.39" class="decompiled"><title>void __cdecl Boat_Animation(ITEM_INFO *boat, int32_t collide);</title></rect>
 <rect width="14.80" height="13.84" x="574.58" y="59.39" class="known"><title>void __cdecl draw_flare(void);</title></rect>
-<rect width="14.75" height="13.84" x="592.38" y="59.39" class="known"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
+<rect width="14.75" height="13.84" x="592.38" y="59.39" class="decompiled"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="14.70" height="13.84" x="610.13" y="59.39" class="known"><title>void __cdecl RingIsOpen(RING_INFO *ring);</title></rect>
 <rect width="14.65" height="13.84" x="627.83" y="59.39" class="known"><title>void __cdecl draw_shotgun(int32_t weapon_type);</title></rect>
 <rect width="14.60" height="13.84" x="645.48" y="59.39" class="known"><title>BOOL __cdecl S_FrontEndCheck(void);</title></rect>
@@ -2100,7 +2100,7 @@
 <rect width="4.97" height="5.22" x="625.01" y="337.19" class="known"><title>void __cdecl DisableBaddieAI(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.22" x="625.01" y="345.41" class="known"><title>void __cdecl TrapDoorControl(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="353.64" class="decompiled"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
-<rect width="4.97" height="5.12" x="625.01" y="361.76" class="known"><title>int16_t __cdecl Room_GetDoor(FLOOR_INFO *floor);</title></rect>
+<rect width="4.97" height="5.12" x="625.01" y="361.76" class="known"><title>int16_t __cdecl Room_GetDoor(const FLOOR_INFO *floor);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="369.88" class="known"><title>void __cdecl draw_pistol_meshes(int32_t weapon_type);</title></rect>
 <rect width="4.93" height="5.16" x="632.98" y="253.38" class="known"><title>int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);</title></rect>
 <rect width="4.93" height="5.16" x="640.91" y="253.38" class="known"><title>void __cdecl ControlGunShot(int16_t fx_num);</title></rect>

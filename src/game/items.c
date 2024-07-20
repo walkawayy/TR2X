@@ -597,3 +597,32 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
     item->pos.x += (item->speed * Math_Sin(item->rot.y)) >> W2V_SHIFT;
     item->pos.z += (item->speed * Math_Cos(item->rot.y)) >> W2V_SHIFT;
 }
+
+int32_t __cdecl Item_GetAnimChange(
+    ITEM_INFO *const item, const ANIM_STRUCT *const anim)
+{
+    if (item->current_anim_state == item->goal_anim_state) {
+        return false;
+    }
+
+    for (int32_t i = 0; i < anim->num_changes; i++) {
+        const ANIM_CHANGE *const change = &g_AnimChanges[anim->change_idx + i];
+        if (change->goal_anim_state != item->goal_anim_state) {
+            continue;
+        }
+
+        for (int32_t j = 0; j < change->num_ranges; j++) {
+            const ANIM_RANGE *const range =
+                &g_AnimRanges[change->range_idx + j];
+
+            if (item->frame_num >= range->start_frame
+                && item->frame_num <= range->end_frame) {
+                item->anim_num = range->link_anim_num;
+                item->frame_num = range->link_frame_num;
+                return true;
+            }
+        }
+    }
+
+    return false;
+}

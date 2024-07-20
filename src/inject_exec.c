@@ -457,6 +457,7 @@ static void Inject_Items(const bool enable)
     INJECT(enable, 0x00413E10, Item_TestPosition);
     INJECT(enable, 0x00413F50, Item_AlignPosition);
     INJECT(enable, 0x004146F0, Item_Animate);
+    INJECT(enable, 0x00414A60, Item_GetAnimChange);
 }
 
 static void Inject_Effects(const bool enable)

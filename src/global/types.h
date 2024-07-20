@@ -882,6 +882,19 @@ typedef struct __unaligned {
     int16_t command_idx;
 } ANIM_STRUCT;
 
+typedef struct {
+    int16_t goal_anim_state;
+    int16_t num_ranges;
+    int16_t range_idx;
+} ANIM_CHANGE;
+
+typedef struct {
+    int16_t start_frame;
+    int16_t end_frame;
+    int16_t link_anim_num;
+    int16_t link_frame_num;
+} ANIM_RANGE;
+
 typedef struct __unaligned {
     int16_t room;
     int16_t x;

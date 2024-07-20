@@ -7,7 +7,6 @@
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
 #define Game_Control ((int32_t __cdecl (*)(int32_t nframes, int32_t demo_mode))0x00414390)
-#define Item_GetAnimChange ((int32_t __cdecl (*)(ITEM_INFO *item, const ANIM_STRUCT *anim))0x00414A60)
 #define Item_Translate ((void __cdecl (*)(ITEM_INFO *item, int32_t x, int32_t y, int32_t z))0x00414B10)
 #define Room_GetFloor ((FLOOR_INFO *__cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t *room_num))0x00414B70)
 #define Room_GetWaterHeight ((int32_t __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t room_num))0x00414D10)

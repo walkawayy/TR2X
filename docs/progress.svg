@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.72% (569)</tspan> · <tspan class="known">50.82% (619)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.80% (570)</tspan> · <tspan class="known">50.74% (618)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="348.97" height="6" x="0" y="0" class="decompiled"/>
-<rect width="379.63" height="6" x="348.97" y="0" class="known"/>
+<rect width="349.58" height="6" x="0" y="0" class="decompiled"/>
+<rect width="379.02" height="6" x="349.58" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -244,7 +244,7 @@
 <rect width="12" height="12" x="225" y="45" class="decompiled"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, const PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
 <rect width="12" height="12" x="240" y="45" class="known"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="12" height="12" x="255" y="45" class="decompiled"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="270" y="45" class="known"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
+<rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
 <rect width="12" height="12" x="285" y="45" class="known"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="300" y="45" class="known"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
 <rect width="12" height="12" x="315" y="45" class="known"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.84%</tspan> · <tspan class="known">55.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.89%</tspan> · <tspan class="known">55.79%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="327.45" height="6" x="0" y="0" class="decompiled"/>
-<rect width="417.11" height="6" x="327.45" y="0" class="known"/>
+<rect width="327.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="416.74" height="6" x="327.82" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1806,7 +1806,7 @@
 <rect width="8.82" height="9.08" x="679.34" y="161.72" class="known"><title>void __cdecl AddRequesterItem(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
 <rect width="8.82" height="9.08" x="691.16" y="161.72" class="known"><title>void __cdecl SpiderLeap(int16_t item_num, int16_t angle);</title></rect>
 <rect width="8.75" height="9.08" x="702.99" y="161.72" class="decompiled"><title>bool __cdecl Matrix_TranslateRel(int32_t x, int32_t y, int32_t z);</title></rect>
-<rect width="8.75" height="9.08" x="714.74" y="161.72" class="known"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
+<rect width="8.75" height="9.08" x="714.74" y="161.72" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
 <rect width="8.75" height="9.08" x="726.49" y="161.72" class="known"><title>int16_t __cdecl DragonFire(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
 <rect width="8.75" height="9.08" x="738.25" y="161.72" class="decompiled"><title>void __cdecl Overlay_DrawHealthBar(bool flash_state);</title></rect>
 <rect width="8.66" height="9.17" x="534.18" y="173.80" class="decompiled"><title>void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

@@ -2761,7 +2761,7 @@ typedef struct __unaligned {
 0x00413A30  0x0306  +       void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
 0x00413D40  0x00CB  +       int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
 0x00413E10  0x0137  +       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);
-0x00413F50  0x013B  -       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
+0x00413F50  0x013B  +       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
 0x00414090  0x0187  -       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
 0x00414220  0x016E  -R      int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);
 

@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Item_AlignPosition ((void __cdecl (*)(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item))0x00413F50)
 #define Lara_MovePosition ((int32_t __cdecl (*)(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item))0x00414090)
 #define Misc_Move3DPosTo3DPos ((int32_t __cdecl (*)(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add))0x00414220)
 #define Game_Control ((int32_t __cdecl (*)(int32_t nframes, int32_t demo_mode))0x00414390)

@@ -21,5 +21,7 @@ int32_t __cdecl Item_TestBoundsCollide(
 int32_t __cdecl Item_TestPosition(
     const int16_t *bounds, const ITEM_INFO *src_item,
     const ITEM_INFO *dst_item);
+void __cdecl Item_AlignPosition(
+    const XYZ_32 *vec, const ITEM_INFO *src_item, ITEM_INFO *dst_item);
 
 bool Item_IsSmashable(const ITEM_INFO *item);

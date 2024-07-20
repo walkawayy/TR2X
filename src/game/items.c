@@ -7,6 +7,7 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "util.h"
 
 #include <assert.h>
 
@@ -408,4 +409,43 @@ int32_t __cdecl Item_TestPosition(
         shift.z <= bounds.shift.max.z
     );
     // clang-format on
+}
+
+void __cdecl Item_AlignPosition(
+    const XYZ_32 *const vec, const ITEM_INFO *const src_item,
+    ITEM_INFO *const dst_item)
+{
+    dst_item->rot = src_item->rot;
+    Matrix_PushUnit();
+    Matrix_RotYXZ(src_item->rot.y, src_item->rot.x, src_item->rot.z);
+    const MATRIX *const m = g_MatrixPtr;
+    const XYZ_32 shift = {
+        .x = (vec->x * m->_00 + vec->y * m->_01 + vec->z * m->_02) >> W2V_SHIFT,
+        .y = (vec->x * m->_10 + vec->y * m->_11 + vec->z * m->_12) >> W2V_SHIFT,
+        .z = (vec->x * m->_20 + vec->y * m->_21 + vec->z * m->_22) >> W2V_SHIFT,
+    };
+    Matrix_Pop();
+
+    const XYZ_32 new_pos = {
+        .x = src_item->pos.x + shift.x,
+        .y = src_item->pos.y + shift.y,
+        .z = src_item->pos.z + shift.z,
+    };
+
+    int16_t room_num = dst_item->room_num;
+    const FLOOR_INFO *const floor =
+        Room_GetFloor(new_pos.x, new_pos.y, new_pos.z, &room_num);
+    const int32_t height =
+        Room_GetHeight(floor, new_pos.x, new_pos.y, new_pos.z);
+    const int32_t ceiling =
+        Room_GetCeiling(floor, new_pos.x, new_pos.y, new_pos.z);
+
+    if (ABS(height - dst_item->pos.y) > STEP_L
+        || ABS(ceiling - dst_item->pos.y) < LARA_HEIGHT) {
+        return;
+    }
+
+    dst_item->pos.x = new_pos.x;
+    dst_item->pos.y = new_pos.y;
+    dst_item->pos.z = new_pos.z;
 }

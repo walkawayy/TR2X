@@ -321,6 +321,7 @@ extern const char *g_TR2XVersion;
 #define g_IMMatrixStack (*(MATRIX(*)[256])0x005252C0)
 #define g_IMFrac (*(int32_t*)0x005258F0)
 #define g_Anims (*(ANIM_STRUCT **)0x005258F4)
+#define g_AnimCommands (*(int16_t **)0x00525B08)
 #define g_DrawRoomsArray (*(int16_t(*)[100])0x00525B20)
 #define g_Bones (*(int32_t **)0x00525BE8)
 #define g_DynamicLightCount (*(int32_t*)0x00525BEC)

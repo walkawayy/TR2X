@@ -4,6 +4,7 @@
 #include "game/math.h"
 #include "game/matrix.h"
 #include "game/room.h"
+#include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -448,4 +449,151 @@ void __cdecl Item_AlignPosition(
     dst_item->pos.x = new_pos.x;
     dst_item->pos.y = new_pos.y;
     dst_item->pos.z = new_pos.z;
+}
+
+void __cdecl Item_Animate(ITEM_INFO *const item)
+{
+    item->hit_status = 0;
+    item->touch_bits = 0;
+
+    const ANIM_STRUCT *anim = &g_Anims[item->anim_num];
+
+    item->frame_num++;
+
+    if (anim->num_changes > 0) {
+        if (Item_GetAnimChange(item, anim)) {
+            anim = &g_Anims[item->anim_num];
+            item->current_anim_state = anim->current_anim_state;
+
+            if (item->required_anim_state == anim->current_anim_state) {
+                item->required_anim_state = 0;
+            }
+        }
+    }
+
+    if (item->frame_num > anim->frame_end) {
+        if (anim->num_commands > 0) {
+            const int16_t *cmd_ptr = &g_AnimCommands[anim->command_idx];
+
+            for (int32_t i = 0; i < anim->num_commands; i++) {
+                const int16_t cmd = *cmd_ptr++;
+
+                switch (cmd) {
+                case AC_MOVE_ORIGIN:
+                    Item_Translate(item, cmd_ptr[0], cmd_ptr[1], cmd_ptr[2]);
+                    cmd_ptr += 3;
+                    break;
+
+                case AC_JUMP_VELOCITY:
+                    item->fall_speed = cmd_ptr[0];
+                    item->speed = cmd_ptr[1];
+                    item->gravity = 1;
+                    cmd_ptr += 2;
+                    break;
+
+                case AC_DEACTIVATE:
+                    item->status = IS_DEACTIVATED;
+                    break;
+
+                case AC_SOUND_FX:
+                case AC_EFFECT:
+                    cmd_ptr += 2;
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        }
+
+        item->anim_num = anim->jump_anim_num;
+        item->frame_num = anim->jump_frame_num;
+        anim = &g_Anims[item->anim_num];
+
+        if (item->current_anim_state != anim->current_anim_state) {
+            item->current_anim_state = anim->current_anim_state;
+            item->goal_anim_state = anim->current_anim_state;
+        }
+
+        if (item->required_anim_state == item->current_anim_state) {
+            item->required_anim_state = 0;
+        }
+    }
+
+    if (anim->num_commands > 0) {
+        const int16_t *cmd_ptr = &g_AnimCommands[anim->command_idx];
+        for (int32_t i = 0; i < anim->num_commands; i++) {
+            const int16_t cmd = *cmd_ptr++;
+            switch (cmd) {
+            case AC_MOVE_ORIGIN:
+                cmd_ptr += 3;
+                break;
+
+            case AC_JUMP_VELOCITY:
+                cmd_ptr += 2;
+                break;
+
+            case AC_SOUND_FX: {
+                const int32_t frame = cmd_ptr[0];
+                const SOUND_EFFECT_ID sound_id = cmd_ptr[1] & 0x3FFF;
+                const ANIM_SFX_TYPE type = (cmd_ptr[1] & 0xC000) >> 14;
+                cmd_ptr += 2;
+
+                if (item->frame_num != frame) {
+                    break;
+                }
+
+                if (g_Objects[item->object_num].water_creature) {
+                    Sound_Effect(sound_id, &item->pos, SPM_UNDERWATER);
+                } else if (item->room_num == NO_ROOM) {
+                    item->pos.x = g_LaraItem->pos.x;
+                    item->pos.y = g_LaraItem->pos.y - LARA_HEIGHT;
+                    item->pos.z = g_LaraItem->pos.z;
+                    Sound_Effect(
+                        sound_id, &item->pos,
+                        item->object_num == O_LARA_HARPOON ? SPM_ALWAYS
+                                                           : SPM_NORMAL);
+                } else if (g_Rooms[item->room_num].flags & RF_UNDERWATER) {
+                    if (type == ANIM_SFX_LAND_AND_WATER
+                        || type == ANIM_SFX_WATER_ONLY) {
+                        Sound_Effect(sound_id, &item->pos, SPM_NORMAL);
+                    }
+                } else if (
+                    type == ANIM_SFX_LAND_AND_WATER
+                    || type == ANIM_SFX_LAND_ONLY) {
+                    Sound_Effect(sound_id, &item->pos, SPM_NORMAL);
+                }
+                break;
+            }
+
+            case AC_EFFECT: {
+                const int32_t frame = cmd_ptr[0];
+                const int32_t fx_func_idx = cmd_ptr[1] & 0x3FFF;
+                cmd_ptr += 2;
+
+                if (item->frame_num == frame) {
+                    g_EffectRoutines[fx_func_idx](item);
+                }
+                break;
+            }
+
+            default:
+                break;
+            }
+        }
+    }
+
+    if (item->gravity) {
+        item->fall_speed += item->fall_speed < FAST_FALL_SPEED ? GRAVITY : 1;
+        item->pos.y += item->fall_speed;
+    } else {
+        int32_t speed = anim->velocity;
+        if (anim->acceleration) {
+            speed += anim->acceleration * (item->frame_num - anim->frame_base);
+        }
+        item->speed = speed >> 16;
+    }
+
+    item->pos.x += (item->speed * Math_Sin(item->rot.y)) >> W2V_SHIFT;
+    item->pos.z += (item->speed * Math_Cos(item->rot.y)) >> W2V_SHIFT;
 }

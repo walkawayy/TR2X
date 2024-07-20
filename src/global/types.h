@@ -2569,6 +2569,22 @@ typedef enum {
     CLRB_PHDWINSIZE              = 0x0100,
 } CLEAR_BUFFER_FLAGS;
 
+typedef enum {
+    AC_NULL          = 0,
+    AC_MOVE_ORIGIN   = 1,
+    AC_JUMP_VELOCITY = 2,
+    AC_ATTACK_READY  = 3,
+    AC_DEACTIVATE    = 4,
+    AC_SOUND_FX      = 5,
+    AC_EFFECT        = 6,
+} ANIM_COMMAND;
+
+typedef enum {
+    ANIM_SFX_LAND_AND_WATER = 0,
+    ANIM_SFX_LAND_ONLY      = 1,
+    ANIM_SFX_WATER_ONLY     = 2,
+} ANIM_SFX_TYPE;
+
 typedef struct __unaligned {
     DDPIXELFORMAT pixel_fmt;
     COLOR_BIT_MASKS color_bit_masks;

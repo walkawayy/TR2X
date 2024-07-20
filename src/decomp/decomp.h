@@ -127,3 +127,6 @@ void __cdecl WinVidExitMessage(void);
 DISPLAY_ADAPTER_NODE *__cdecl WinVidGetDisplayAdapter(const GUID *guid_ptr);
 void __cdecl WinVidStart(void);
 void __cdecl WinVidFinish(void);
+int32_t __cdecl Misc_Move3DPosTo3DPos(
+    PHD_3DPOS *src_pos, const PHD_3DPOS *dst_pos, int32_t velocity,
+    PHD_ANGLE ang_add);

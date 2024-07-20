@@ -1,5 +1,6 @@
 #include "game/lara/lara_misc.h"
 
+#include "decomp/decomp.h"
 #include "game/collide.h"
 #include "game/items.h"
 #include "game/math.h"
@@ -1191,7 +1192,7 @@ int32_t __cdecl Lara_MovePosition(
         if (ABS(height - lara_item->pos.y) > STEP_L * 2) {
             return false;
         }
-        if (XYZ32_GetDistance(&new_pos, &lara_item->pos) < STEP_L) {
+        if (XYZ_32_GetDistance(&new_pos, &lara_item->pos) < STEP_L) {
             return true;
         }
     }

@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Misc_Move3DPosTo3DPos ((int32_t __cdecl (*)(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add))0x00414220)
 #define Game_Control ((int32_t __cdecl (*)(int32_t nframes, int32_t demo_mode))0x00414390)
 #define Item_Animate ((void __cdecl (*)(ITEM_INFO *item))0x004146F0)
 #define Item_GetAnimChange ((int32_t __cdecl (*)(ITEM_INFO *item, ANIM_STRUCT *anim))0x00414A60)

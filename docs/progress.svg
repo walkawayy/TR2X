@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.55% (567)</tspan> · <tspan class="known">50.99% (621)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.63% (568)</tspan> · <tspan class="known">50.90% (620)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="347.74" height="6" x="0" y="0" class="decompiled"/>
-<rect width="380.86" height="6" x="347.74" y="0" class="known"/>
+<rect width="348.35" height="6" x="0" y="0" class="decompiled"/>
+<rect width="380.25" height="6" x="348.35" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -241,7 +241,7 @@
 <rect width="12" height="12" x="180" y="45" class="decompiled"><title>int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="195" y="45" class="decompiled"><title>void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="210" y="45" class="decompiled"><title>int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
-<rect width="12" height="12" x="225" y="45" class="known"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
+<rect width="12" height="12" x="225" y="45" class="decompiled"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, const PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
 <rect width="12" height="12" x="240" y="45" class="known"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="12" height="12" x="255" y="45" class="known"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="270" y="45" class="known"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, ANIM_STRUCT *anim);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.49%</tspan> · <tspan class="known">56.19%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">43.59%</tspan> · <tspan class="known">56.08%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="324.85" height="6" x="0" y="0" class="decompiled"/>
-<rect width="419.71" height="6" x="324.85" y="0" class="known"/>
+<rect width="325.65" height="6" x="0" y="0" class="decompiled"/>
+<rect width="418.91" height="6" x="325.65" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1561,7 +1561,7 @@
 <rect width="14.87" height="14.09" x="430.74" y="360.91" class="decompiled"><title>int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);</title></rect>
 <rect width="15.09" height="13.84" x="448.61" y="59.39" class="decompiled"><title>void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);</title></rect>
 <rect width="15.09" height="13.84" x="466.71" y="59.39" class="decompiled"><title>int32_t __cdecl Game_Cutscene_Control(int32_t nframes);</title></rect>
-<rect width="15.04" height="13.84" x="484.80" y="59.39" class="known"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
+<rect width="15.04" height="13.84" x="484.80" y="59.39" class="decompiled"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, const PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
 <rect width="15" height="13.84" x="502.85" y="59.39" class="decompiled"><title>const int16_t *__cdecl Output_CalcVerticeLight(const int16_t *obj_ptr);</title></rect>
 <rect width="15" height="13.84" x="520.84" y="59.39" class="decompiled"><title>int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.95" height="13.84" x="538.84" y="59.39" class="decompiled"><title>void __cdecl HWR_DrawPolyList(void);</title></rect>

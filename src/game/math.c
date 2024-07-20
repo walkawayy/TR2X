@@ -503,7 +503,7 @@ int16_t Math_DirectionToAngle(DIRECTION dir)
     }
 }
 
-int32_t XYZ32_GetDistance(const XYZ_32 *const pos1, const XYZ_32 *const pos2)
+int32_t XYZ_32_GetDistance(const XYZ_32 *const pos1, const XYZ_32 *const pos2)
 {
     // clang-format off
     return Math_Sqrt(
@@ -512,4 +512,9 @@ int32_t XYZ32_GetDistance(const XYZ_32 *const pos1, const XYZ_32 *const pos2)
         SQUARE(pos1->z - pos2->z)
     );
     // clang-format on
+}
+
+int32_t XYZ_32_GetDistance0(const XYZ_32 *const pos)
+{
+    return Math_Sqrt(SQUARE(pos->x) + SQUARE(pos->y) + SQUARE(pos->z));
 }

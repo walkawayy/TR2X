@@ -8,6 +8,7 @@
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/items.h"
+#include "game/math.h"
 #include "game/music.h"
 #include "game/overlay.h"
 #include "game/shell.h"
@@ -2928,4 +2929,52 @@ void __cdecl WinVidFinish(void)
         HideDDrawGameWindow();
     }
     DDrawRelease();
+}
+
+int32_t __cdecl Misc_Move3DPosTo3DPos(
+    PHD_3DPOS *const src_pos, const PHD_3DPOS *const dst_pos,
+    const int32_t velocity, const PHD_ANGLE ang_add)
+{
+    // TODO: this function's only usage is in Lara_MovePosition. inline it
+    const XYZ_32 dpos = {
+        .x = dst_pos->pos.x - src_pos->pos.x,
+        .y = dst_pos->pos.y - src_pos->pos.y,
+        .z = dst_pos->pos.z - src_pos->pos.z,
+    };
+    const int32_t dist = XYZ_32_GetDistance0(&dpos);
+    if (velocity >= dist) {
+        src_pos->pos.x = dst_pos->pos.x;
+        src_pos->pos.y = dst_pos->pos.y;
+        src_pos->pos.z = dst_pos->pos.z;
+    } else {
+        src_pos->pos.x += velocity * dpos.x / dist;
+        src_pos->pos.y += velocity * dpos.y / dist;
+        src_pos->pos.z += velocity * dpos.z / dist;
+    }
+
+#define ADJUST_ROT(source, target, rot)                                        \
+    do {                                                                       \
+        if ((PHD_ANGLE)(target - source) > rot) {                              \
+            source += rot;                                                     \
+        } else if ((PHD_ANGLE)(target - source) < -rot) {                      \
+            source -= rot;                                                     \
+        } else {                                                               \
+            source = target;                                                   \
+        }                                                                      \
+    } while (0)
+
+    ADJUST_ROT(src_pos->rot.x, dst_pos->rot.x, ang_add);
+    ADJUST_ROT(src_pos->rot.y, dst_pos->rot.y, ang_add);
+    ADJUST_ROT(src_pos->rot.z, dst_pos->rot.z, ang_add);
+
+    // clang-format off
+    return (
+        src_pos->pos.x == dst_pos->pos.x &&
+        src_pos->pos.y == dst_pos->pos.y &&
+        src_pos->pos.z == dst_pos->pos.z &&
+        src_pos->rot.x == dst_pos->rot.x &&
+        src_pos->rot.y == dst_pos->rot.y &&
+        src_pos->rot.z == dst_pos->rot.z
+    );
+    // clang-format on
 }

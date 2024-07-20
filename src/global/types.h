@@ -2622,4 +2622,18 @@ typedef struct __unaligned {
     } shift, rot;
 } OBJECT_BOUNDS;
 
+typedef enum {
+    TO_OBJECT     = 0,
+    TO_CAMERA     = 1,
+    TO_SINK       = 2,
+    TO_FLIPMAP    = 3,
+    TO_FLIPON     = 4,
+    TO_FLIPOFF    = 5,
+    TO_TARGET     = 6,
+    TO_FINISH     = 7,
+    TO_CD         = 8,
+    TO_FLIPEFFECT = 9,
+    TO_SECRET     = 10,
+} TRIGGER_OBJECT;
+
 // clang-format on

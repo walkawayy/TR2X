@@ -1,8 +1,10 @@
 #include "game/room.h"
 
+#include "game/shell.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "util.h"
 
 #include <assert.h>
 
@@ -218,4 +220,113 @@ int32_t __cdecl Room_GetWaterHeight(
         }
         return NO_HEIGHT;
     }
+}
+
+int32_t __cdecl Room_GetHeight(
+    const FLOOR_INFO *floor, const int32_t x, const int32_t y, const int32_t z)
+{
+    g_HeightType = 0;
+    g_TriggerIndex = NULL;
+
+    while (floor->pit_room != (uint8_t)NO_ROOM) {
+        const ROOM_INFO *const r = &g_Rooms[floor->pit_room];
+        const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+        const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+        floor = &r->floor[x_floor + y_floor * r->x_size];
+    }
+
+    int32_t height = floor->floor << 8;
+    if (g_GF_NoFloor && g_GF_NoFloor == height) {
+        height = 0x4000;
+    }
+
+    if (!floor->idx) {
+        return height;
+    }
+
+    int16_t *data = &g_FloorData[floor->idx];
+    while (true) {
+        const int16_t fd_cmd = *data++;
+
+        switch (FLOORDATA_TYPE(fd_cmd)) {
+        case FT_DOOR:
+        case FT_ROOF:
+            data++;
+            break;
+
+        case FT_TILT: {
+            const int32_t x_off = data[0] >> 8;
+            const int32_t y_off = (int8_t)data[0];
+            data++;
+
+            if (!g_IsChunkyCamera || (ABS(x_off) <= 2 && ABS(y_off) <= 2)) {
+                if (ABS(x_off) > 2 || ABS(y_off) > 2) {
+                    g_HeightType = HT_BIG_SLOPE;
+                } else {
+                    g_HeightType = HT_SMALL_SLOPE;
+                }
+
+                if (x_off < 0) {
+                    height -= (x_off * (z & (WALL_L - 1))) >> 2;
+                } else {
+                    height += (x_off * ((WALL_L - 1 - z) & (WALL_L - 1))) >> 2;
+                }
+
+                if (y_off < 0) {
+                    height -= (y_off * (x & (WALL_L - 1))) >> 2;
+                } else {
+                    height += (y_off * ((WALL_L - 1 - x) & (WALL_L - 1))) >> 2;
+                }
+            }
+            break;
+        }
+
+        case FT_TRIGGER:
+            if (g_TriggerIndex == NULL) {
+                g_TriggerIndex = data - 1;
+            }
+            data++;
+
+            int16_t trigger;
+            do {
+                trigger = *data++;
+                switch (TRIGGER_TYPE(trigger)) {
+                case TO_OBJECT:
+                    const ITEM_INFO *const item =
+                        &g_Items[TRIGGER_VALUE(trigger)];
+                    const OBJECT_INFO *object = &g_Objects[item->object_num];
+                    if (object->floor) {
+                        object->floor(item, x, y, z, &height);
+                    }
+                    break;
+
+                case TO_CAMERA:
+                    trigger = *data++;
+                    break;
+                }
+            } while (!TRIGGER_IS_END(trigger));
+
+            break;
+
+        case FT_LAVA:
+            g_TriggerIndex = data - 1;
+            break;
+
+        case FT_CLIMB:
+            if (g_TriggerIndex == NULL) {
+                g_TriggerIndex = data - 1;
+            }
+            break;
+
+        default:
+            Shell_ExitSystem("GetHeight(): Unknown floordata type");
+            break;
+        }
+
+        if (FLOORDATA_IS_END(fd_cmd)) {
+            break;
+        }
+    }
+
+    return height;
 }

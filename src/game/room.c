@@ -1,5 +1,6 @@
 #include "game/room.h"
 
+#include "game/box.h"
 #include "game/items.h"
 #include "game/math.h"
 #include "game/shell.h"
@@ -789,4 +790,33 @@ int16_t __cdecl Room_GetDoor(const FLOOR_INFO *const floor)
     }
 
     return (uint8_t)NO_ROOM;
+}
+
+void __cdecl Room_AlterFloorHeight(
+    const ITEM_INFO *const item, const int32_t height)
+{
+    int16_t room_num = item->room_num;
+
+    FLOOR_INFO *floor =
+        Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
+    const FLOOR_INFO *ceiling = Room_GetFloor(
+        item->pos.x, item->pos.y + height - WALL_L, item->pos.z, &room_num);
+
+    if (floor->floor == NO_HEIGHT / 256) {
+        floor->floor = ceiling->ceiling + height / 256;
+    } else {
+        floor->floor += height / 256;
+        if (floor->floor == ceiling->ceiling) {
+            floor->floor = NO_HEIGHT / 256;
+        }
+    }
+
+    BOX_INFO *const box = &g_Boxes[floor->box];
+    if (box->overlap_index & BOX_BLOCKABLE) {
+        if (height < 0) {
+            box->overlap_index |= BOX_BLOCKED;
+        } else {
+            box->overlap_index &= ~BOX_BLOCKED;
+        }
+    }
 }

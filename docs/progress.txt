@@ -3329,7 +3329,7 @@ typedef enum {
 0x00433CD0  0x004E  -R      int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);
 0x00433D20  0x0137  -R      int32_t __cdecl TestBlockPush(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
 0x00433E70  0x0225  -R      int32_t __cdecl TestBlockPull(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
-0x004340B0  0x00BB  -R      void __cdecl AlterFloorHeight(ITEM_INFO *item, int32_t height);
+0x004340B0  0x00BB  +       void __cdecl Room_AlterFloorHeight(ITEM_INFO *item, int32_t height);
 0x00434170  0x0022  -R      void __cdecl DrawMovableBlock(ITEM_INFO *item);
 0x004341A0  0x006B  -R      void __cdecl DrawUnclippedItem(ITEM_INFO *item);
 

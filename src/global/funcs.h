@@ -246,7 +246,6 @@
 #define TestBlockMovable ((int32_t __cdecl (*)(ITEM_INFO *item, int32_t block_height))0x00433CD0)
 #define TestBlockPush ((int32_t __cdecl (*)(ITEM_INFO *item, int32_t block_height, uint16_t quadrant))0x00433D20)
 #define TestBlockPull ((int32_t __cdecl (*)(ITEM_INFO *item, int32_t block_height, uint16_t quadrant))0x00433E70)
-#define AlterFloorHeight ((void __cdecl (*)(ITEM_INFO *item, int32_t height))0x004340B0)
 #define DrawMovableBlock ((void __cdecl (*)(ITEM_INFO *item))0x00434170)
 #define DrawUnclippedItem ((void __cdecl (*)(ITEM_INFO *item))0x004341A0)
 #define EarthQuake ((void __cdecl (*)(int16_t item_num))0x00434210)

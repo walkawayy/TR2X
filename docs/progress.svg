@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.45% (578)</tspan> · <tspan class="known">50.08% (610)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.54% (579)</tspan> · <tspan class="known">50% (609)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="354.49" height="6" x="0" y="0" class="decompiled"/>
-<rect width="374.11" height="6" x="354.49" y="0" class="known"/>
+<rect width="355.10" height="6" x="0" y="0" class="decompiled"/>
+<rect width="373.50" height="6" x="355.10" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -688,7 +688,7 @@
 <rect width="12" height="12" x="135" y="180" class="known"><title>int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);</title></rect>
 <rect width="12" height="12" x="150" y="180" class="known"><title>int32_t __cdecl TestBlockPush(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);</title></rect>
 <rect width="12" height="12" x="165" y="180" class="known"><title>int32_t __cdecl TestBlockPull(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);</title></rect>
-<rect width="12" height="12" x="180" y="180" class="known"><title>void __cdecl AlterFloorHeight(ITEM_INFO *item, int32_t height);</title></rect>
+<rect width="12" height="12" x="180" y="180" class="decompiled"><title>void __cdecl Room_AlterFloorHeight(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="12" height="12" x="195" y="180" class="known"><title>void __cdecl DrawMovableBlock(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="210" y="180" class="known"><title>void __cdecl DrawUnclippedItem(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="225" y="180" class="known"><title>void __cdecl EarthQuake(int16_t item_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.02%</tspan> · <tspan class="known">54.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.08%</tspan> · <tspan class="known">54.59%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="336.33" height="6" x="0" y="0" class="decompiled"/>
-<rect width="408.22" height="6" x="336.33" y="0" class="known"/>
+<rect width="336.74" height="6" x="0" y="0" class="decompiled"/>
+<rect width="407.82" height="6" x="336.74" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1779,7 +1779,7 @@
 <rect width="9.95" height="9.05" x="560.08" y="149.67" class="decompiled"><title>bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);</title></rect>
 <rect width="9.95" height="9.05" x="573.03" y="149.67" class="decompiled"><title>void __cdecl CreateZBuffer(void);</title></rect>
 <rect width="9.88" height="9.05" x="585.98" y="149.67" class="decompiled"><title>int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="9.88" height="9.05" x="598.86" y="149.67" class="known"><title>void __cdecl AlterFloorHeight(ITEM_INFO *item, int32_t height);</title></rect>
+<rect width="9.88" height="9.05" x="598.86" y="149.67" class="decompiled"><title>void __cdecl Room_AlterFloorHeight(ITEM_INFO *item, int32_t height);</title></rect>
 <rect width="9.81" height="9.05" x="611.74" y="149.67" class="known"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>
 <rect width="9.74" height="9.05" x="624.56" y="149.67" class="known"><title>int16_t __cdecl GunHit(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
 <rect width="9.74" height="9.05" x="637.30" y="149.67" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>

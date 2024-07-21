@@ -961,10 +961,10 @@ typedef struct __unaligned {
     int16_t bound_top;
     int16_t bound_bottom;
     uint16_t bound_active;
-    int16_t left;
-    int16_t right;
-    int16_t top;
-    int16_t bottom;
+    int16_t test_left;
+    int16_t test_right;
+    int16_t test_top;
+    int16_t test_bottom;
     int16_t item_num;
     int16_t fx_num;
     int16_t flipped_room;

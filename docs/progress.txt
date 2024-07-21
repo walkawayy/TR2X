@@ -945,10 +945,10 @@ typedef struct __unaligned {
     int16_t bound_top;
     int16_t bound_bottom;
     uint16_t bound_active;
-    int16_t left;
-    int16_t right;
-    int16_t top;
-    int16_t bottom;
+    int16_t test_left;
+    int16_t test_right;
+    int16_t test_top;
+    int16_t test_bottom;
     int16_t item_num;
     int16_t fx_num;
     int16_t flipped_room;
@@ -2882,8 +2882,8 @@ typedef enum {
 0x00418950  0x0037  -       int32_t __cdecl Game_DrawCinematic(void);
 0x00418990  0x0037  -       int32_t __cdecl Game_Draw(void);
 0x004189D0  0x02B0  -       void __cdecl Room_DrawAllRooms(int16_t current_room);
-0x00418C80  0x01C6  -       void __cdecl Room_GetBounds(void);
-0x00418E50  0x037F  -       void __cdecl Room_SetBounds(int16_t *objptr, int32_t room_num, ROOM_INFO *parent);
+0x00418C80  0x01C6  +       void __cdecl Room_GetBounds(void);
+0x00418E50  0x037F  -       void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);
 0x004191D0  0x03D2  -       void __cdecl Room_Clip(ROOM_INFO *r);
 0x004195B0  0x00B4  -       void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);
 0x00419670  0x0218  -       void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);
@@ -4332,3 +4332,9 @@ typedef enum {
 0x00525B04  -       ANIM_RANGE *g_AnimRanges;
 0x004D77FC  -       int16_t g_GF_NoFloor;
 0x00526260  -       int32_t g_FlipMaps[MAX_FLIPMAPS];
+0x005252B4  -       int32_t g_Outside;
+0x00526198  -       int32_t g_OutsideRight;
+0x00526178  -       int32_t g_OutsideLeft;
+0x005261AC  -       int32_t g_OutsideTop;
+0x00525B00  -       int32_t g_OutsideBottom;
+0x00525900  -       int32_t g_BoundRooms[MAX_BOUND_ROOMS];

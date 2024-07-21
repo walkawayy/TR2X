@@ -29,6 +29,7 @@
 #include "game/overlay.h"
 #include "game/random.h"
 #include "game/room.h"
+#include "game/room_draw.h"
 #include "game/shell.h"
 #include "game/sound.h"
 #include "game/text.h"
@@ -250,6 +251,7 @@ static void Inject_Room(const bool enable)
     INJECT(enable, 0x00416640, Room_FlipMap);
     INJECT(enable, 0x00416700, Room_RemoveFlipItems);
     INJECT(enable, 0x004167A0, Room_AddFlipItems);
+    INJECT(enable, 0x00418C80, Room_GetBounds);
 }
 
 static void Inject_Matrix(const bool enable)

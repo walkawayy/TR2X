@@ -820,3 +820,31 @@ void __cdecl Room_AlterFloorHeight(
         }
     }
 }
+
+void __cdecl Room_FlipMap(void)
+{
+    for (int32_t i = 0; i < g_RoomCount; i++) {
+        ROOM_INFO *const r = &g_Rooms[i];
+        if (r->flipped_room < 0) { // TODO: NO_ROOM
+            continue;
+        }
+
+        Room_RemoveFlipItems(r);
+
+        ROOM_INFO *const flipped = &g_Rooms[r->flipped_room];
+        ROOM_INFO temp = *r;
+        *r = *flipped;
+        *flipped = temp;
+
+        r->flipped_room = flipped->flipped_room;
+        flipped->flipped_room = NO_ROOM;
+
+        // TODO: is this really necessary given the assignments above?
+        r->item_num = flipped->item_num;
+        r->fx_num = flipped->fx_num;
+
+        Room_AddFlipItems(r);
+    }
+
+    g_FlipStatus = !g_FlipStatus;
+}

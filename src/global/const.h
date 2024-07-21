@@ -30,7 +30,7 @@
 #define NO_BOX (-1)
 #define NO_ITEM (-1)
 #define NO_OBJECT (-1)
-#define NO_ROOM (-1)
+#define NO_ROOM (-1) // TODO: sometimes this is used as 255, sometimes -1
 #define NO_CAMERA (-1)
 
 #define GRAVITY 6

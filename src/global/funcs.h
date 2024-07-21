@@ -8,7 +8,6 @@
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
 #define Game_Control ((int32_t __cdecl (*)(int32_t nframes, int32_t demo_mode))0x00414390)
 #define Camera_RefreshFromTrigger ((void __cdecl (*)(int16_t type, const int16_t *data))0x00415100)
-#define Room_FlipMap ((void __cdecl (*)(void))0x00416640)
 #define Room_RemoveFlipItems ((void __cdecl (*)(ROOM_INFO *r))0x00416700)
 #define Room_AddFlipItems ((void __cdecl (*)(ROOM_INFO *r))0x004167A0)
 #define Control_TriggerMusicTrack ((void __cdecl (*)(int16_t value, int16_t flags, int16_t type))0x00416800)

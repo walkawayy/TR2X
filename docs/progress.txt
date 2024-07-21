@@ -2847,7 +2847,7 @@ typedef enum {
 0x00416260  0x00DA  +       int32_t __cdecl LOS_ClipTarget(const GAME_VECTOR *start, GAME_VECTOR *target, const FLOOR_INFO *floor);
 0x00416340  0x02FE  +       int32_t __cdecl LOS_CheckSmashable(const GAME_VECTOR *start, GAME_VECTOR *target);
 0x00416640  0x00B3  +       void __cdecl Room_FlipMap(void);
-0x00416700  0x0096  -       void __cdecl Room_RemoveFlipItems(ROOM_INFO *r);
+0x00416700  0x0096  +       void __cdecl Room_RemoveFlipItems(ROOM_INFO *r);
 0x004167A0  0x005C  -       void __cdecl Room_AddFlipItems(ROOM_INFO *r);
 0x00416800  0x0024  -       void __cdecl Control_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);
 0x00416830  0x00DA  -       void __cdecl Control_TriggerMusicNormalTrack(int16_t value, int16_t flags, int16_t type);

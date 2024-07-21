@@ -848,3 +848,32 @@ void __cdecl Room_FlipMap(void)
 
     g_FlipStatus = !g_FlipStatus;
 }
+
+void __cdecl Room_RemoveFlipItems(const ROOM_INFO *const r)
+{
+    int16_t item_num = r->item_num;
+
+    while (item_num != NO_ITEM) {
+        ITEM_INFO *const item = &g_Items[item_num];
+
+        switch (item->object_num) {
+        case O_MOVABLE_BLOCK_1:
+        case O_MOVABLE_BLOCK_2:
+        case O_MOVABLE_BLOCK_3:
+        case O_MOVABLE_BLOCK_4:
+            Room_AlterFloorHeight(item, WALL_L);
+            break;
+
+        default:
+            break;
+        }
+
+        if (item->flags & IF_ONE_SHOT && g_Objects[item->object_num].intelligent
+            && item->hit_points <= 0) {
+            Item_RemoveDrawn(item_num);
+            item->flags |= IF_KILLED;
+        }
+
+        item_num = item->next_item;
+    }
+}

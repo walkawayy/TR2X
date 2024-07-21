@@ -87,9 +87,9 @@ int16_t __cdecl Room_GetTiltType(
     }
 
     if ((y + 512 >= (floor->floor << 8)) && floor->idx != 0) {
-        const int16_t *floor_data = &g_FloorData[floor->idx];
-        if (FLOORDATA_TYPE(floor_data[0]) == FT_TILT) {
-            return floor_data[1];
+        const int16_t *fd = &g_FloorData[floor->idx];
+        if (FLOORDATA_TYPE(fd[0]) == FT_TILT) {
+            return fd[1];
         }
     }
 
@@ -733,4 +733,60 @@ int32_t __cdecl Room_GetCeiling(
     }
 
     return height;
+}
+
+int16_t __cdecl Room_GetDoor(const FLOOR_INFO *const floor)
+{
+    if (!floor->idx) {
+        return (uint8_t)NO_ROOM;
+    }
+
+    const int16_t *fd = &g_FloorData[floor->idx];
+    while (true) {
+        const int16_t fd_cmd = *fd++;
+
+        switch (FLOORDATA_TYPE(fd_cmd)) {
+        case FT_DOOR:
+            return *fd;
+
+        case FT_ROOF:
+        case FT_TILT:
+            fd++;
+            break;
+
+        case FT_TRIGGER:
+            fd++;
+
+            while (true) {
+                int16_t trigger = *fd++;
+                switch (TRIGGER_TYPE(trigger)) {
+                case TO_CAMERA:
+                    trigger = *fd++;
+                    break;
+
+                default:
+                    break;
+                }
+
+                if (TRIGGER_IS_END(trigger)) {
+                    break;
+                }
+            }
+            break;
+
+        case FT_LAVA:
+        case FT_CLIMB:
+            break;
+
+        default:
+            Shell_ExitSystem("GetDoor(): Unknown floordata type");
+            break;
+        }
+
+        if (FLOORDATA_IS_END(fd_cmd)) {
+            break;
+        }
+    }
+
+    return (uint8_t)NO_ROOM;
 }

@@ -629,7 +629,7 @@ typedef struct __unaligned {
 } SAVEGAME_INFO;
 
 typedef struct __unaligned {
-    int16_t idx;
+    uint16_t idx;
     int16_t box;
     uint8_t pit_room;
     int8_t floor;

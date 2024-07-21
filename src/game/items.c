@@ -636,3 +636,27 @@ void __cdecl Item_Translate(
     item->pos.y += y;
     item->pos.z += ((c * z - s * x) >> W2V_SHIFT);
 }
+
+int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *const item)
+{
+    const bool ok = !(item->flags & IF_REVERSE);
+
+    if ((item->flags & IF_CODE_BITS) != IF_CODE_BITS) {
+        return !ok;
+    }
+
+    if (!item->timer) {
+        return ok;
+    }
+
+    if (item->timer == -1) {
+        return !ok;
+    }
+
+    item->timer--;
+    if (item->timer == 0) {
+        item->timer = -1;
+    }
+
+    return ok;
+}

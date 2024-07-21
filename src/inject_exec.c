@@ -463,6 +463,7 @@ static void Inject_Items(const bool enable)
     INJECT(enable, 0x004146F0, Item_Animate);
     INJECT(enable, 0x00414A60, Item_GetAnimChange);
     INJECT(enable, 0x00414B10, Item_Translate);
+    INJECT(enable, 0x004158D0, Item_IsTriggerActive);
 }
 
 static void Inject_Effects(const bool enable)

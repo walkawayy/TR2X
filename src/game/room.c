@@ -877,3 +877,25 @@ void __cdecl Room_RemoveFlipItems(const ROOM_INFO *const r)
         item_num = item->next_item;
     }
 }
+
+void __cdecl Room_AddFlipItems(const ROOM_INFO *const r)
+{
+    int16_t item_num = r->item_num;
+    while (item_num != NO_ITEM) {
+        const ITEM_INFO *const item = &g_Items[item_num];
+
+        switch (item->object_num) {
+        case O_MOVABLE_BLOCK_1:
+        case O_MOVABLE_BLOCK_2:
+        case O_MOVABLE_BLOCK_3:
+        case O_MOVABLE_BLOCK_4:
+            Room_AlterFloorHeight(item, -WALL_L);
+            break;
+
+        default:
+            break;
+        }
+
+        item_num = item->next_item;
+    }
+}

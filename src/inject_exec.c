@@ -249,6 +249,7 @@ static void Inject_Room(const bool enable)
     INJECT(enable, 0x004340B0, Room_AlterFloorHeight);
     INJECT(enable, 0x00416640, Room_FlipMap);
     INJECT(enable, 0x00416700, Room_RemoveFlipItems);
+    INJECT(enable, 0x004167A0, Room_AddFlipItems);
 }
 
 static void Inject_Matrix(const bool enable)

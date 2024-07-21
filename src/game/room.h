@@ -17,4 +17,6 @@ int32_t __cdecl Room_GetWaterHeight(
     int32_t x, int32_t y, int32_t z, int16_t room_num);
 int32_t __cdecl Room_GetHeight(
     const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+int32_t __cdecl Room_GetCeiling(
+    const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
 void __cdecl Room_TestTriggers(const int16_t *data, bool heavy);

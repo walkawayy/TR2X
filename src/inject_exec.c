@@ -243,6 +243,7 @@ static void Inject_Room(const bool enable)
     INJECT(enable, 0x00414B70, Room_GetFloor);
     INJECT(enable, 0x00414D10, Room_GetWaterHeight);
     INJECT(enable, 0x00414E80, Room_GetHeight);
+    INJECT(enable, 0x00415930, Room_GetCeiling);
     INJECT(enable, 0x004151F0, Room_TestTriggers);
 }
 

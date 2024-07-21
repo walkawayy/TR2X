@@ -246,20 +246,20 @@ int32_t __cdecl Room_GetHeight(
         return height;
     }
 
-    int16_t *data = &g_FloorData[floor->idx];
+    int16_t *fd = &g_FloorData[floor->idx];
     while (true) {
-        const int16_t fd_cmd = *data++;
+        const int16_t fd_cmd = *fd++;
 
         switch (FLOORDATA_TYPE(fd_cmd)) {
         case FT_DOOR:
         case FT_ROOF:
-            data++;
+            fd++;
             break;
 
         case FT_TILT: {
-            const int32_t x_off = data[0] >> 8;
-            const int32_t y_off = (int8_t)data[0];
-            data++;
+            const int32_t x_off = *fd >> 8;
+            const int32_t y_off = (int8_t)*fd;
+            fd++;
 
             if (!g_IsChunkyCamera || (ABS(x_off) <= 2 && ABS(y_off) <= 2)) {
                 if (ABS(x_off) > 2 || ABS(y_off) > 2) {
@@ -285,38 +285,38 @@ int32_t __cdecl Room_GetHeight(
 
         case FT_TRIGGER:
             if (g_TriggerIndex == NULL) {
-                g_TriggerIndex = data - 1;
+                g_TriggerIndex = fd - 1;
             }
-            data++;
+            fd++;
 
             int16_t trigger;
             do {
-                trigger = *data++;
+                trigger = *fd++;
                 switch (TRIGGER_TYPE(trigger)) {
                 case TO_OBJECT:
-                    const ITEM_INFO *const item =
-                        &g_Items[TRIGGER_VALUE(trigger)];
-                    const OBJECT_INFO *object = &g_Objects[item->object_num];
+                    const int16_t value = TRIGGER_VALUE(trigger);
+                    const ITEM_INFO *const item = &g_Items[value];
+                    const OBJECT_INFO *const object =
+                        &g_Objects[item->object_num];
                     if (object->floor) {
                         object->floor(item, x, y, z, &height);
                     }
                     break;
 
                 case TO_CAMERA:
-                    trigger = *data++;
+                    trigger = *fd++;
                     break;
                 }
             } while (!TRIGGER_IS_END(trigger));
-
             break;
 
         case FT_LAVA:
-            g_TriggerIndex = data - 1;
+            g_TriggerIndex = fd - 1;
             break;
 
         case FT_CLIMB:
             if (g_TriggerIndex == NULL) {
-                g_TriggerIndex = data - 1;
+                g_TriggerIndex = fd - 1;
             }
             break;
 
@@ -333,7 +333,7 @@ int32_t __cdecl Room_GetHeight(
     return height;
 }
 
-void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
+void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
 {
     ITEM_INFO *camera_item = NULL;
     bool switch_off = false;
@@ -344,45 +344,45 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
     if (!heavy) {
         g_Lara.climb_status = 0;
     }
-    if (data == NULL) {
+    if (fd == NULL) {
         return;
     }
 
-    if (FLOORDATA_TYPE(*data) == FT_LAVA) {
+    if (FLOORDATA_TYPE(*fd) == FT_LAVA) {
         if (!heavy
             && (g_LaraItem->pos.y == g_LaraItem->floor
                 || g_Lara.water_status != LWS_ABOVE_WATER)) {
             LavaBurn(g_LaraItem);
         }
 
-        if (FLOORDATA_IS_END(*data)) {
+        if (FLOORDATA_IS_END(*fd)) {
             return;
         }
 
-        data++;
+        fd++;
     }
 
-    if (FLOORDATA_TYPE(*data) == FT_CLIMB) {
+    if (FLOORDATA_TYPE(*fd) == FT_CLIMB) {
         if (!heavy) {
             const int32_t quad = Math_GetDirection(g_LaraItem->rot.y);
-            if (*data & (1 << (quad + 8))) {
+            if (*fd & (1 << (quad + 8))) {
                 g_Lara.climb_status = 1;
             }
         }
 
-        if (FLOORDATA_IS_END(*data)) {
+        if (FLOORDATA_IS_END(*fd)) {
             return;
         }
 
-        data++;
+        fd++;
     }
 
-    const int16_t type = (*data++ >> 8) & 0x3F;
-    const int16_t flags = *data++;
+    const int16_t type = (*fd++ >> 8) & 0x3F;
+    const int16_t flags = *fd++;
     const int16_t timer = flags & 0xFF;
 
     if (g_Camera.type != CAM_HEAVY) {
-        Camera_RefreshFromTrigger(type, data);
+        Camera_RefreshFromTrigger(type, fd);
     }
 
     if (heavy) {
@@ -399,7 +399,7 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
             break;
 
         case TT_SWITCH: {
-            const int16_t value = TRIGGER_VALUE(*data++);
+            const int16_t value = TRIGGER_VALUE(*fd++);
             if (!SwitchTrigger(value, timer)) {
                 return;
             }
@@ -408,7 +408,7 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
         }
 
         case TT_KEY: {
-            const int16_t value = TRIGGER_VALUE(*data++);
+            const int16_t value = TRIGGER_VALUE(*fd++);
             if (!KeyTrigger(value)) {
                 return;
             }
@@ -416,7 +416,7 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
         }
 
         case TT_PICKUP: {
-            const int16_t value = TRIGGER_VALUE(*data++);
+            const int16_t value = TRIGGER_VALUE(*fd++);
             if (!PickupTrigger(value)) {
                 return;
             }
@@ -440,7 +440,7 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
 
     int16_t trigger;
     do {
-        trigger = *data++;
+        trigger = *fd++;
         const int32_t value = TRIGGER_VALUE(trigger);
 
         switch (TRIGGER_TYPE(trigger)) {
@@ -500,7 +500,7 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
         }
 
         case TO_CAMERA: {
-            trigger = *data++;
+            trigger = *fd++;
             const int16_t camera_flags = trigger;
             const int16_t camera_timer = trigger & 0xFF;
 
@@ -624,4 +624,113 @@ void __cdecl Room_TestTriggers(const int16_t *data, bool heavy)
         g_FlipEffect = new_effect;
         g_FlipTimer = 0;
     }
+}
+
+int32_t __cdecl Room_GetCeiling(
+    const FLOOR_INFO *const floor, const int32_t x, const int32_t y,
+    const int32_t z)
+{
+    const FLOOR_INFO *f = floor;
+
+    while (f->sky_room != (uint8_t)NO_ROOM) {
+        const ROOM_INFO *const r = &g_Rooms[f->sky_room];
+        const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+        const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+        f = &r->floor[x_floor + y_floor * r->x_size];
+    }
+
+    int32_t height = f->ceiling << 8;
+
+    if (f->idx) {
+        const int16_t *fd = &g_FloorData[f->idx];
+        int16_t type = FLOORDATA_TYPE(*fd++);
+
+        if (type == FT_TILT) {
+            fd++;
+            type = FLOORDATA_TYPE(*fd++);
+        }
+
+        if (type == FT_ROOF) {
+            const int32_t x_off = *fd >> 8;
+            const int32_t y_off = (int8_t)*fd;
+
+            if (!g_IsChunkyCamera || (ABS(x_off) <= 2 && ABS(y_off) <= 2)) {
+                if (x_off < 0) {
+                    height += (x_off * (z & (WALL_L - 1))) >> 2;
+                } else {
+                    height -= (x_off * ((WALL_L - 1 - z) & (WALL_L - 1))) >> 2;
+                }
+
+                if (y_off < 0) {
+                    height += (y_off * ((WALL_L - 1 - x) & (WALL_L - 1))) >> 2;
+                } else {
+                    height -= (y_off * (x & (WALL_L - 1))) >> 2;
+                }
+            }
+        }
+    }
+
+    f = floor;
+    while (f->pit_room != (uint8_t)NO_ROOM) {
+        const ROOM_INFO *const r = &g_Rooms[f->pit_room];
+        const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+        const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+        f = &r->floor[x_floor + y_floor * r->x_size];
+    }
+
+    if (!f->idx) {
+        return height;
+    }
+
+    const int16_t *fd = &g_FloorData[f->idx];
+    while (true) {
+        const int16_t fd_cmd = *fd++;
+
+        switch (FLOORDATA_TYPE(fd_cmd)) {
+        case FT_DOOR:
+        case FT_TILT:
+        case FT_ROOF:
+            fd++;
+            break;
+
+        case FT_TRIGGER: {
+            fd++;
+
+            int16_t trigger;
+            do {
+                trigger = *fd++;
+                switch (TRIGGER_TYPE(trigger)) {
+                case TO_OBJECT:
+                    const int16_t value = TRIGGER_VALUE(trigger);
+                    const ITEM_INFO *const item = &g_Items[value];
+                    const OBJECT_INFO *const object =
+                        &g_Objects[item->object_num];
+                    if (object->ceiling) {
+                        object->ceiling(item, x, y, z, &height);
+                    }
+                    break;
+
+                case TO_CAMERA:
+                    trigger = *fd++;
+                    break;
+                }
+            } while (!TRIGGER_IS_END(trigger));
+            break;
+        }
+
+        case FT_LAVA:
+        case FT_CLIMB:
+            break;
+
+        default:
+            Shell_ExitSystem("GetCeiling(): Unknown type");
+            break;
+        }
+
+        if (FLOORDATA_IS_END(fd_cmd)) {
+            break;
+        }
+    }
+
+    return height;
 }

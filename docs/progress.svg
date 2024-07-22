@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.87% (583)</tspan> · <tspan class="known">49.67% (605)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.95% (584)</tspan> · <tspan class="known">49.59% (604)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="357.55" height="6" x="0" y="0" class="decompiled"/>
-<rect width="371.05" height="6" x="357.55" y="0" class="known"/>
+<rect width="358.17" height="6" x="0" y="0" class="decompiled"/>
+<rect width="370.43" height="6" x="358.17" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -286,7 +286,7 @@
 <rect width="12" height="12" x="105" y="60" class="known"><title>int32_t __cdecl Game_Draw(void);</title></rect>
 <rect width="12" height="12" x="120" y="60" class="known"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
 <rect width="12" height="12" x="135" y="60" class="decompiled"><title>void __cdecl Room_GetBounds(void);</title></rect>
-<rect width="12" height="12" x="150" y="60" class="known"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
+<rect width="12" height="12" x="150" y="60" class="decompiled"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
 <rect width="12" height="12" x="165" y="60" class="known"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
 <rect width="12" height="12" x="180" y="60" class="known"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
 <rect width="12" height="12" x="195" y="60" class="known"><title>void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.34%</tspan> · <tspan class="known">54.34%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.60%</tspan> · <tspan class="known">54.08%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="338.66" height="6" x="0" y="0" class="decompiled"/>
-<rect width="405.90" height="6" x="338.66" y="0" class="known"/>
+<rect width="340.62" height="6" x="0" y="0" class="decompiled"/>
+<rect width="403.94" height="6" x="340.62" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1385,7 +1385,7 @@
 <rect width="24.49" height="24.32" x="267.09" y="83.15" class="known"><title>void __cdecl Diver_Control(int16_t item_num);</title></rect>
 <rect width="24.49" height="24.26" x="267.09" y="110.47" class="known"><title>void __cdecl Dog_Control(int16_t item_num);</title></rect>
 <rect width="24.49" height="24.23" x="267.09" y="137.73" class="known"><title>int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);</title></rect>
-<rect width="24.49" height="24.02" x="267.09" y="164.97" class="known"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
+<rect width="24.49" height="24.02" x="267.09" y="164.97" class="decompiled"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
 <rect width="24.49" height="23.99" x="267.09" y="191.99" class="known"><title>void __cdecl AnimateShotgun(int32_t weapon_type);</title></rect>
 <rect width="24.49" height="23.81" x="267.09" y="218.98" class="known"><title>void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);</title></rect>
 <rect width="24.49" height="23.69" x="267.09" y="245.79" class="decompiled"><title>void __cdecl WinVidStart(void);</title></rect>

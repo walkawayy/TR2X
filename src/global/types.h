@@ -2622,6 +2622,12 @@ typedef struct __unaligned {
     } shift, rot;
 } OBJECT_BOUNDS;
 
+typedef struct __unaligned {
+    int32_t xv;
+    int32_t yv;
+    int32_t zv;
+} DOOR_VBUF;
+
 typedef enum {
     TO_OBJECT      = 0,
     TO_CAMERA      = 1,

@@ -321,6 +321,7 @@ extern const char *g_TR2XVersion;
 #define g_Outside (*(int32_t*)0x005252B4)
 #define g_DrawRoomsCount (*(int32_t*)0x005252B8)
 #define g_IMMatrixStack (*(MATRIX(*)[256])0x005252C0)
+#define g_DoorVBuf (*(DOOR_VBUF(*)[4])0x005258C0)
 #define g_IMFrac (*(int32_t*)0x005258F0)
 #define g_Anims (*(ANIM_STRUCT **)0x005258F4)
 #define g_BoundRooms (*(int32_t(*)[MAX_BOUND_ROOMS])0x00525900)

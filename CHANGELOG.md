@@ -1,4 +1,6 @@
 ## [Unreleased](https://github.com/LostArtefacts/TR2X/compare/stable...develop) - ××××-××-××
+- fixed sounds not playing under certain circumstances (#113, regression from 0.2)
+- fixed the excessive pitch and playback speed correction for music files with sampling rate other than 44100 Hz (LostArtefacts/TR1X#1417)
 - fixed a crash potential with certain music files
 
 ## [0.2](https://github.com/LostArtefacts/TR2X/compare/0.1.1...0.2) - 2024-05-07

@@ -137,10 +137,7 @@ library(
   'TR2X',
   dll_sources,
   name_prefix: '',
-  include_directories: [
-    'src/',
-    include_directories('subprojects/libtrx/include', is_system: true),
-  ],
+  include_directories: ['src/'],
   dependencies: dll_dependencies,
   link_args: link_args,
 )

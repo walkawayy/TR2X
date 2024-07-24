@@ -2890,7 +2890,7 @@ typedef enum {
 0x004189D0  0x02B0  -       void __cdecl Room_DrawAllRooms(int16_t current_room);
 0x00418C80  0x01C6  +       void __cdecl Room_GetBounds(void);
 0x00418E50  0x037F  +       void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);
-0x004191D0  0x03D2  -       void __cdecl Room_Clip(ROOM_INFO *r);
+0x004191D0  0x03D2  +       void __cdecl Room_Clip(ROOM_INFO *r);
 0x004195B0  0x00B4  -       void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);
 0x00419670  0x0218  -       void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);
 0x00419890  0x0147  -       void __cdecl Effect_Draw(int16_t fx_num);
@@ -4345,3 +4345,4 @@ typedef enum {
 0x00525B00  -       int32_t g_OutsideBottom;
 0x00525900  -       int32_t g_BoundRooms[MAX_BOUND_ROOMS];
 0x005258C0  -       DOOR_VBUF g_DoorVBuf[4];
+0x00464180  -       int32_t g_BoxLines[12][2];

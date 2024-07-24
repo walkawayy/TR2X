@@ -4,6 +4,8 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/utils.h>
+
 void __cdecl Room_GetBounds(void)
 {
     while (g_BoundStart != g_BoundEnd) {
@@ -106,11 +108,11 @@ void __cdecl Room_SetBounds(
         DOOR_VBUF *const dvbuf = &door_vbuf[i];
         const XYZ_16 *const dvtx = &door->vertex[i];
         const int32_t xv =
-            m->_03 + dvtx->x * m->_00 + m->_01 * dvtx->y + m->_02 * dvtx->z;
+            dvtx->x * m->_00 + dvtx->y * m->_01 + dvtx->z * m->_02 + m->_03;
         const int32_t yv =
-            m->_13 + m->_12 * dvtx->z + m->_11 * dvtx->y + m->_10 * dvtx->x;
+            dvtx->x * m->_10 + dvtx->y * m->_11 + dvtx->z * m->_12 + m->_13;
         const int32_t zv =
-            m->_23 + m->_21 * dvtx->y + m->_22 * dvtx->z + m->_20 * dvtx->x;
+            dvtx->x * m->_20 + dvtx->y * m->_21 + dvtx->z * m->_22 + m->_23;
         dvbuf->xv = xv;
         dvbuf->yv = yv;
         dvbuf->zv = zv;
@@ -221,4 +223,126 @@ void __cdecl Room_SetBounds(
         r->test_top = top;
         r->test_bottom = bottom;
     }
+}
+
+void __cdecl Room_Clip(const ROOM_INFO *const r)
+{
+    int32_t xv[8];
+    int32_t yv[8];
+    int32_t zv[8];
+
+    xv[0] = WALL_L;
+    yv[0] = r->max_ceiling - r->pos.y;
+    zv[0] = WALL_L;
+
+    xv[1] = (r->y_size - 1) * WALL_L;
+    yv[1] = r->max_ceiling - r->pos.y;
+    zv[1] = WALL_L;
+
+    xv[2] = (r->y_size - 1) * WALL_L;
+    yv[2] = r->max_ceiling - r->pos.y;
+    zv[2] = (r->x_size - 1) * WALL_L;
+
+    xv[3] = WALL_L;
+    yv[3] = r->max_ceiling - r->pos.y;
+    zv[3] = (r->x_size - 1) * WALL_L;
+
+    xv[4] = WALL_L;
+    yv[4] = r->min_floor - r->pos.y;
+    zv[4] = WALL_L;
+
+    xv[5] = (r->y_size - 1) * WALL_L;
+    yv[5] = r->min_floor - r->pos.y;
+    zv[5] = WALL_L;
+
+    xv[6] = (r->y_size - 1) * WALL_L;
+    yv[6] = r->min_floor - r->pos.y;
+    zv[6] = (r->x_size - 1) * WALL_L;
+
+    xv[7] = WALL_L;
+    yv[7] = r->min_floor - r->pos.y;
+    zv[7] = (r->x_size - 1) * WALL_L;
+
+    bool clip_room = false;
+    bool clip[8];
+
+    const MATRIX *const m = g_MatrixPtr;
+    for (int32_t i = 0; i < 8; i++) {
+        const int32_t x = xv[i];
+        const int32_t y = yv[i];
+        const int32_t z = zv[i];
+        xv[i] = x * m->_00 + y * m->_01 + z * m->_02 + m->_03;
+        yv[i] = x * m->_10 + y * m->_11 + z * m->_12 + m->_13;
+        zv[i] = x * m->_20 + y * m->_21 + z * m->_22 + m->_23;
+        if (zv[i] > g_PhdFarZ) {
+            clip_room = true;
+            clip[i] = true;
+        } else {
+            clip[i] = false;
+        }
+    }
+
+    if (!clip_room) {
+        return;
+    }
+
+    int32_t min_x = 0x10000000;
+    int32_t min_y = 0x10000000;
+    int32_t max_x = -0x10000000;
+    int32_t max_y = -0x10000000;
+    for (int32_t i = 0; i < 12; i++) {
+        const int32_t p1 = g_BoxLines[i][0];
+        const int32_t p2 = g_BoxLines[i][1];
+
+        if (clip[p1] == clip[p2]) {
+            continue;
+        }
+
+        const int32_t zdiv = (zv[p2] - zv[p1]) >> W2V_SHIFT;
+        if (zdiv) {
+            const int32_t znom = (g_PhdFarZ - zv[p1]) >> W2V_SHIFT;
+            const int32_t x = xv[p1]
+                + ((((xv[p2] - xv[p1]) >> W2V_SHIFT) * znom / zdiv)
+                   << W2V_SHIFT);
+            const int32_t y = yv[p1]
+                + ((((yv[p2] - yv[p1]) >> W2V_SHIFT) * znom / zdiv)
+                   << W2V_SHIFT);
+
+            CLAMPG(min_x, x);
+            CLAMPL(max_x, x);
+            CLAMPG(min_y, y);
+            CLAMPL(max_y, y);
+        } else {
+            CLAMPG(min_x, xv[p1]);
+            CLAMPG(min_x, xv[p2]);
+            CLAMPL(max_x, xv[p1]);
+            CLAMPL(max_x, xv[p2]);
+            CLAMPG(min_y, yv[p1]);
+            CLAMPG(min_y, yv[p2]);
+            CLAMPL(max_y, yv[p1]);
+            CLAMPL(max_y, yv[p2]);
+        }
+    }
+
+    const int32_t zp = g_PhdFarZ / g_PhdPersp;
+    min_x = g_PhdWinCenterX + min_x / zp;
+    min_y = g_PhdWinCenterY + min_y / zp;
+    max_x = g_PhdWinCenterX + max_x / zp;
+    max_y = g_PhdWinCenterY + max_y / zp;
+
+    // clang-format off
+    if (min_x > g_PhdWinRight ||
+        min_y > g_PhdWinBottom ||
+        max_x < g_PhdWinLeft ||
+        max_y < g_PhdWinTop
+    ) {
+        return;
+    }
+    // clang-format on
+
+    CLAMPL(min_x, g_PhdWinLeft);
+    CLAMPL(min_y, g_PhdWinTop);
+    CLAMPG(max_x, g_PhdWinRight);
+    CLAMPG(max_y, g_PhdWinBottom);
+    S_InsertBackPolygon(min_x, min_y, max_x, max_y);
 }

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.95% (584)</tspan> · <tspan class="known">49.59% (604)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.03% (585)</tspan> · <tspan class="known">49.51% (603)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="358.17" height="6" x="0" y="0" class="decompiled"/>
-<rect width="370.43" height="6" x="358.17" y="0" class="known"/>
+<rect width="358.78" height="6" x="0" y="0" class="decompiled"/>
+<rect width="369.82" height="6" x="358.78" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -287,7 +287,7 @@
 <rect width="12" height="12" x="120" y="60" class="known"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
 <rect width="12" height="12" x="135" y="60" class="decompiled"><title>void __cdecl Room_GetBounds(void);</title></rect>
 <rect width="12" height="12" x="150" y="60" class="decompiled"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
-<rect width="12" height="12" x="165" y="60" class="known"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
+<rect width="12" height="12" x="165" y="60" class="decompiled"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
 <rect width="12" height="12" x="180" y="60" class="known"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
 <rect width="12" height="12" x="195" y="60" class="known"><title>void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);</title></rect>
 <rect width="12" height="12" x="210" y="60" class="known"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.60%</tspan> · <tspan class="known">54.08%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.88%</tspan> · <tspan class="known">53.79%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="340.62" height="6" x="0" y="0" class="decompiled"/>
-<rect width="403.94" height="6" x="340.62" y="0" class="known"/>
+<rect width="342.75" height="6" x="0" y="0" class="decompiled"/>
+<rect width="401.80" height="6" x="342.75" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1371,7 +1371,7 @@
 <rect width="24.80" height="26.68" x="239.29" y="60.80" class="known"><title>void __cdecl SkidManControl(int16_t rider_num);</title></rect>
 <rect width="24.80" height="26.50" x="239.29" y="90.48" class="known"><title>void __cdecl InitialiseDoor(int16_t item_num);</title></rect>
 <rect width="24.80" height="26.20" x="239.29" y="119.98" class="decompiled"><title>int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);</title></rect>
-<rect width="24.80" height="26.20" x="239.29" y="149.18" class="known"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
+<rect width="24.80" height="26.20" x="239.29" y="149.18" class="decompiled"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
 <rect width="24.80" height="26.20" x="239.29" y="178.38" class="decompiled"><title>void __cdecl Text_DrawText(const TEXTSTRING *string);</title></rect>
 <rect width="24.80" height="26.17" x="239.29" y="207.59" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="24.80" height="25.96" x="239.29" y="236.76" class="known"><title>void __cdecl Worker1Control(int16_t item_num);</title></rect>

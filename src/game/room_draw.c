@@ -374,3 +374,72 @@ void __cdecl Room_DrawSingleRoomGeometry(const int16_t room_num)
         Output_InsertRoom(r->data, false);
     }
 }
+
+void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
+{
+    ROOM_INFO *const r = &g_Rooms[room_num];
+
+    if (r->flags & RF_UNDERWATER) {
+        S_SetupBelowWater(g_CameraUnderwater);
+    } else {
+        S_SetupAboveWater(g_CameraUnderwater);
+    }
+
+    r->bound_active = 0;
+
+    Matrix_Push();
+    Matrix_TranslateAbs(r->pos.x, r->pos.y, r->pos.z);
+
+    g_PhdWinLeft = r->bound_left;
+    g_PhdWinTop = r->bound_top;
+    g_PhdWinRight = r->bound_right;
+    g_PhdWinBottom = r->bound_bottom;
+
+    for (int32_t i = 0; i < r->num_meshes; i++) {
+        const MESH_INFO *const mesh = &r->mesh[i];
+        const STATIC_INFO *const static_obj =
+            &g_StaticObjects[mesh->static_num];
+        if (static_obj->flags & 2) {
+            Matrix_Push();
+            Matrix_TranslateAbs(mesh->x, mesh->y, mesh->z);
+            Matrix_RotY(mesh->y_rot);
+            const int16_t bounds =
+                S_GetObjectBounds((int16_t *)&static_obj->draw_bounds);
+            if (bounds) {
+                S_CalculateStaticMeshLight(
+                    mesh->x, mesh->y, mesh->z, mesh->shade1, mesh->shade2, r);
+                Output_InsertPolygons(g_Meshes[static_obj->mesh_index], bounds);
+            }
+            Matrix_Pop();
+        }
+    }
+
+    g_PhdWinLeft = 0;
+    g_PhdWinTop = 0;
+    g_PhdWinRight = g_PhdWinMaxX + 1;
+    g_PhdWinBottom = g_PhdWinMaxY + 1;
+
+    int16_t item_num = r->item_num;
+    while (item_num != NO_ITEM) {
+        ITEM_INFO *const item = &g_Items[item_num];
+        if (item->status != IS_INVISIBLE) {
+            const OBJECT_INFO *const object = &g_Objects[item->object_num];
+            object->draw_routine(item);
+        }
+        item_num = item->next_item;
+    }
+
+    int16_t fx_num = r->fx_num;
+    while (fx_num != NO_ITEM) {
+        const FX_INFO *const fx = &g_Effects[fx_num];
+        Effect_Draw(fx_num);
+        fx_num = fx->next_fx;
+    }
+
+    Matrix_Pop();
+
+    r->bound_left = g_PhdWinMaxX;
+    r->bound_top = g_PhdWinMaxY;
+    r->bound_right = 0;
+    r->bound_bottom = 0;
+}

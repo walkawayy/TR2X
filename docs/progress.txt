@@ -2893,7 +2893,7 @@ typedef enum {
 0x00418E50  0x037F  +       void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);
 0x004191D0  0x03D2  +       void __cdecl Room_Clip(ROOM_INFO *r);
 0x004195B0  0x00B4  +       void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);
-0x00419670  0x0218  -       void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);
+0x00419670  0x0218  +       void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);
 0x00419890  0x0147  -       void __cdecl Effect_Draw(int16_t fx_num);
 0x004199E0  0x0083  -       void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);
 0x00419A70  0x0378  -       void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);
@@ -4285,7 +4285,7 @@ typedef enum {
 0x00465608  -       INVENTORY_ITEM *g_Inv_OptionList[];
 0x004655A8  -       INVENTORY_ITEM *g_Inv_KeysList[];
 0x004644F8  -       int32_t g_Inv_NFrames;
-0x00525C00  -       STATIC_INFO g_StaticObjects[256];
+0x00525C00  -       STATIC_INFO g_StaticObjects[MAX_STATIC_OBJECTS];
 0x00521FE0  -       OBJECT_VECTOR *g_SoundEffects;
 0x0051E6E0  -       int16_t g_SampleLUT[];
 0x0051E9C4  -       SAMPLE_INFO *g_SampleInfos;

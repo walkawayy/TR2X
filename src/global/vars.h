@@ -332,7 +332,7 @@ extern const char *g_TR2XVersion;
 #define g_DrawRoomsArray (*(int16_t(*)[100])0x00525B20)
 #define g_Bones (*(int32_t **)0x00525BE8)
 #define g_DynamicLightCount (*(int32_t*)0x00525BEC)
-#define g_StaticObjects (*(STATIC_INFO(*)[256])0x00525C00)
+#define g_StaticObjects (*(STATIC_INFO(*)[MAX_STATIC_OBJECTS])0x00525C00)
 #define g_OutsideLeft (*(int32_t*)0x00526178)
 #define g_AnimChanges (*(ANIM_CHANGE **)0x0052617C)
 #define g_RoomCount (*(int32_t*)0x00526180)

@@ -255,6 +255,7 @@ static void Inject_Room(const bool enable)
     INJECT(enable, 0x00418E50, Room_SetBounds);
     INJECT(enable, 0x004191D0, Room_Clip);
     INJECT(enable, 0x004195B0, Room_DrawSingleRoomGeometry);
+    INJECT(enable, 0x00419670, Room_DrawSingleRoomObjects);
 }
 
 static void Inject_Matrix(const bool enable)

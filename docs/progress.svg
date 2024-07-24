@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.19% (587)</tspan> · <tspan class="known">49.34% (601)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.28% (588)</tspan> · <tspan class="known">49.26% (600)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="360.01" height="6" x="0" y="0" class="decompiled"/>
-<rect width="368.59" height="6" x="360.01" y="0" class="known"/>
+<rect width="360.62" height="6" x="0" y="0" class="decompiled"/>
+<rect width="367.98" height="6" x="360.62" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -284,7 +284,7 @@
 <rect width="12" height="12" x="75" y="60" class="known"><title>void __cdecl DinoControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="90" y="60" class="known"><title>int32_t __cdecl Game_DrawCinematic(void);</title></rect>
 <rect width="12" height="12" x="105" y="60" class="known"><title>int32_t __cdecl Game_Draw(void);</title></rect>
-<rect width="12" height="12" x="120" y="60" class="known"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
+<rect width="12" height="12" x="120" y="60" class="decompiled"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
 <rect width="12" height="12" x="135" y="60" class="decompiled"><title>void __cdecl Room_GetBounds(void);</title></rect>
 <rect width="12" height="12" x="150" y="60" class="decompiled"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
 <rect width="12" height="12" x="165" y="60" class="decompiled"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.09%</tspan> · <tspan class="known">53.58%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.30%</tspan> · <tspan class="known">53.38%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="344.32" height="6" x="0" y="0" class="decompiled"/>
-<rect width="400.24" height="6" x="344.32" y="0" class="known"/>
+<rect width="345.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="398.73" height="6" x="345.82" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1430,7 +1430,7 @@
 <rect width="20.95" height="21.65" x="344.65" y="124.47" class="decompiled"><title>void __cdecl Output_DrawSprite(uint32_t flags, int32_t x, int32_t y, int32_t z, int16_t sprite_idx, int16_t shade, int16_t scale);</title></rect>
 <rect width="20.95" height="21.30" x="344.65" y="149.12" class="known"><title>void __cdecl Lara_Initialise(int32_t type);</title></rect>
 <rect width="20.95" height="21.16" x="344.65" y="173.42" class="known"><title>void __cdecl SkidooAnimation(ITEM_INFO *skidoo, int32_t collide, int32_t dead);</title></rect>
-<rect width="20.95" height="20.85" x="344.65" y="197.58" class="known"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
+<rect width="20.95" height="20.85" x="344.65" y="197.58" class="decompiled"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
 <rect width="20.95" height="19.88" x="344.65" y="221.43" class="known"><title>void __cdecl PuzzleHoleCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="20.95" height="19.70" x="344.65" y="244.30" class="known"><title>void __cdecl ControlDeathSlide(int16_t item_num);</title></rect>
 <rect width="20.95" height="19.43" x="344.65" y="267.01" class="known"><title>void __cdecl DinoControl(int16_t item_num);</title></rect>

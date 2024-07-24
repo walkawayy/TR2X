@@ -443,3 +443,89 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
     r->bound_right = 0;
     r->bound_bottom = 0;
 }
+
+void __cdecl Room_DrawAllRooms(const int16_t current_room)
+{
+    ROOM_INFO *const r = &g_Rooms[current_room];
+    r->test_left = 0;
+    r->test_top = 0;
+    r->test_right = g_PhdWinMaxX;
+    r->test_bottom = g_PhdWinMaxY;
+    r->bound_active = 2;
+
+    g_PhdWinLeft = r->test_left;
+    g_PhdWinTop = r->test_top;
+    g_PhdWinRight = r->test_right;
+    g_PhdWinBottom = r->test_bottom;
+
+    g_BoundRooms[0] = current_room;
+    g_BoundStart = 0;
+    g_BoundEnd = 1;
+
+    g_DrawRoomsCount = 0;
+    g_Outside = r->flags & RF_OUTSIDE;
+
+    if (g_Outside) {
+        g_OutsideTop = 0;
+        g_OutsideLeft = 0;
+        g_OutsideRight = g_PhdWinMaxX;
+        g_OutsideBottom = g_PhdWinMaxY;
+    } else {
+        g_OutsideLeft = g_PhdWinMaxX;
+        g_OutsideTop = g_PhdWinMaxY;
+        g_OutsideBottom = 0;
+        g_OutsideRight = 0;
+    }
+
+    g_CameraUnderwater = r->flags & RF_UNDERWATER;
+    Room_GetBounds();
+
+    g_MidSort = 0;
+    if (g_Outside) {
+        g_PhdWinLeft = g_OutsideLeft;
+        g_PhdWinRight = g_OutsideRight;
+        g_PhdWinBottom = g_OutsideBottom;
+        g_PhdWinTop = g_OutsideTop;
+        if (g_Objects[O_SKYBOX].loaded) {
+            S_SetupAboveWater(g_CameraUnderwater);
+            Matrix_Push();
+            g_MatrixPtr->_03 = 0;
+            g_MatrixPtr->_13 = 0;
+            g_MatrixPtr->_23 = 0;
+            int16_t *frame =
+                g_Anims[g_Objects[O_SKYBOX].anim_idx].frame_ptr + 9;
+            Matrix_RotYXZsuperpack(&frame, 0);
+            S_InitialisePolyList(0);
+            Output_InsertSkybox(g_Meshes[g_Objects[O_SKYBOX].mesh_idx]);
+            Matrix_Pop();
+        } else {
+            S_InitialisePolyList(1);
+            g_Outside = -1;
+        }
+    } else {
+        S_InitialisePolyList(0);
+    }
+
+    if (g_Objects[O_LARA].loaded && !(g_LaraItem->flags & IF_ONE_SHOT)) {
+        if (g_Rooms[g_LaraItem->room_num].flags & RF_UNDERWATER) {
+            S_SetupBelowWater(g_CameraUnderwater);
+        } else {
+            S_SetupAboveWater(g_CameraUnderwater);
+        }
+        g_MidSort = g_Rooms[g_LaraItem->room_num].bound_active >> 8;
+        if (g_MidSort) {
+            g_MidSort--;
+        }
+        Lara_Draw(g_LaraItem);
+    }
+
+    for (int32_t i = 0; i < g_DrawRoomsCount; i++) {
+        const int16_t room_num = g_DrawRoomsArray[i];
+        Room_DrawSingleRoomGeometry(room_num);
+    }
+
+    for (int32_t i = 0; i < g_DrawRoomsCount; i++) {
+        const int16_t room_num = g_DrawRoomsArray[i];
+        Room_DrawSingleRoomObjects(room_num);
+    }
+}

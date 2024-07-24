@@ -4,6 +4,8 @@
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/music.h"
+#include "game/overlay.h"
+#include "game/room_draw.h"
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -163,4 +165,14 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
     }
 
     return 0;
+}
+
+int32_t __cdecl Game_Draw(void)
+{
+    Room_DrawAllRooms(g_Camera.pos.room_num);
+    Overlay_DrawGameInfo(true);
+    S_OutputPolyList();
+    g_Camera.num_frames = S_DumpScreen();
+    S_AnimateTextures(g_Camera.num_frames);
+    return g_Camera.num_frames;
 }

@@ -239,6 +239,7 @@ static void Inject_Collide(const bool enable)
 static void Inject_Game(const bool enable)
 {
     INJECT(enable, 0x00414390, Game_Control);
+    INJECT(enable, 0x00418990, Game_Draw);
 }
 
 static void Inject_Room(const bool enable)

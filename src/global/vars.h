@@ -339,6 +339,7 @@ extern const char *g_TR2XVersion;
 #define g_IMRate (*(int32_t*)0x00526184)
 #define g_IMMatrixPtr (*(MATRIX **)0x00526188)
 #define g_Rooms (*(ROOM_INFO **)0x0052618C)
+#define g_CameraUnderwater (*(BOOL*)0x00526190)
 #define g_OutsideRight (*(int32_t*)0x00526198)
 #define g_OutsideTop (*(int32_t*)0x005261AC)
 #define g_FlipStatus (*(int32_t*)0x00526240)

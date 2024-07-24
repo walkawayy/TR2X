@@ -929,9 +929,10 @@ typedef struct __unaligned {
 } MESH_INFO;
 
 typedef enum {
-    RF_UNDERWATER = 0x01,
-    RF_OUTSIDE = 0x08,
-    RF_INSIDE = 0x40,
+    RF_UNDERWATER  = 0x01,
+    RF_OUTSIDE     = 0x08,
+    RF_DYNAMIC_LIT = 0x10,
+    RF_INSIDE      = 0x40,
 } ROOM_FLAG;
 
 typedef struct __unaligned {

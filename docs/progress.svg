@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.03% (585)</tspan> · <tspan class="known">49.51% (603)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.11% (586)</tspan> · <tspan class="known">49.43% (602)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="358.78" height="6" x="0" y="0" class="decompiled"/>
-<rect width="369.82" height="6" x="358.78" y="0" class="known"/>
+<rect width="359.39" height="6" x="0" y="0" class="decompiled"/>
+<rect width="369.21" height="6" x="359.39" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -288,7 +288,7 @@
 <rect width="12" height="12" x="135" y="60" class="decompiled"><title>void __cdecl Room_GetBounds(void);</title></rect>
 <rect width="12" height="12" x="150" y="60" class="decompiled"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>
 <rect width="12" height="12" x="165" y="60" class="decompiled"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
-<rect width="12" height="12" x="180" y="60" class="known"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
+<rect width="12" height="12" x="180" y="60" class="decompiled"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
 <rect width="12" height="12" x="195" y="60" class="known"><title>void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);</title></rect>
 <rect width="12" height="12" x="210" y="60" class="known"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="225" y="60" class="known"><title>void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.88%</tspan> · <tspan class="known">53.79%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">45.94%</tspan> · <tspan class="known">53.74%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="342.75" height="6" x="0" y="0" class="decompiled"/>
-<rect width="401.80" height="6" x="342.75" y="0" class="known"/>
+<rect width="343.15" height="6" x="0" y="0" class="decompiled"/>
+<rect width="401.41" height="6" x="343.15" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1787,7 +1787,7 @@
 <rect width="9.68" height="9.05" x="662.79" y="149.67" class="decompiled"><title>void __cdecl Creature_Die(int16_t item_num, int32_t explode);</title></rect>
 <rect width="9.68" height="9.05" x="675.46" y="149.67" class="known"><title>void __cdecl CreateZone(ITEM_INFO *item);</title></rect>
 <rect width="9.47" height="9.05" x="688.14" y="149.67" class="decompiled"><title>void __cdecl Output_InsertLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>
-<rect width="9.40" height="9.05" x="700.61" y="149.67" class="known"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
+<rect width="9.40" height="9.05" x="700.61" y="149.67" class="decompiled"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
 <rect width="9.33" height="9.05" x="713.01" y="149.67" class="decompiled"><title>void __cdecl Gondola_Control(int16_t item_num);</title></rect>
 <rect width="9.33" height="9.05" x="725.34" y="149.67" class="decompiled"><title>void __cdecl Room_FlipMap(void);</title></rect>
 <rect width="9.33" height="9.05" x="737.67" y="149.67" class="decompiled"><title>void __cdecl Lara_Col_FastBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

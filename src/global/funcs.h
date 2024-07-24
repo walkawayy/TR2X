@@ -31,7 +31,6 @@
 #define Game_DrawCinematic ((int32_t __cdecl (*)(void))0x00418950)
 #define Game_Draw ((int32_t __cdecl (*)(void))0x00418990)
 #define Room_DrawAllRooms ((void __cdecl (*)(int16_t current_room))0x004189D0)
-#define Room_DrawSingleRoomGeometry ((void __cdecl (*)(int16_t room_num))0x004195B0)
 #define Room_DrawSingleRoomObjects ((void __cdecl (*)(int16_t room_num))0x00419670)
 #define Effect_Draw ((void __cdecl (*)(int16_t fx_num))0x00419890)
 #define Object_DrawSpriteItem ((void __cdecl (*)(ITEM_INFO *item))0x004199E0)

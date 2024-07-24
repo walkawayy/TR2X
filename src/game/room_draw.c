@@ -1,6 +1,7 @@
 #include "game/room_draw.h"
 
 #include "game/matrix.h"
+#include "game/output.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -345,4 +346,31 @@ void __cdecl Room_Clip(const ROOM_INFO *const r)
     CLAMPG(max_x, g_PhdWinRight);
     CLAMPG(max_y, g_PhdWinBottom);
     S_InsertBackPolygon(min_x, min_y, max_x, max_y);
+}
+
+void __cdecl Room_DrawSingleRoomGeometry(const int16_t room_num)
+{
+    ROOM_INFO *const r = &g_Rooms[room_num];
+
+    if (r->flags & RF_UNDERWATER) {
+        S_SetupBelowWater(g_CameraUnderwater);
+    } else {
+        S_SetupAboveWater(g_CameraUnderwater);
+    }
+
+    Matrix_TranslateAbs(r->pos.x, r->pos.y, r->pos.z);
+    g_PhdWinLeft = r->bound_left;
+    g_PhdWinRight = r->bound_right;
+    g_PhdWinTop = r->bound_top;
+    g_PhdWinBottom = r->bound_bottom;
+
+    S_LightRoom(r);
+    if (g_Outside > 0 && !(r->flags & RF_INSIDE)) {
+        Output_InsertRoom(r->data, true);
+    } else {
+        if (g_Outside >= 0) {
+            Room_Clip(r);
+        }
+        Output_InsertRoom(r->data, false);
+    }
 }

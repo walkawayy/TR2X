@@ -7,6 +7,7 @@
 #include "game/collide.h"
 #include "game/creature.h"
 #include "game/effects.h"
+#include "game/game.h"
 #include "game/hwr.h"
 #include "game/input.h"
 #include "game/inventory.h"
@@ -233,6 +234,11 @@ static void Inject_Collide(const bool enable)
 {
     INJECT(enable, 0x004128F0, Collide_GetCollisionInfo);
     INJECT(enable, 0x00412FE0, Collide_CollideStaticObjects);
+}
+
+static void Inject_Game(const bool enable)
+{
+    INJECT(enable, 0x00414390, Game_Control);
 }
 
 static void Inject_Room(const bool enable)
@@ -780,6 +786,7 @@ void Inject_Exec(void)
 
     Inject_Camera(true);
     Inject_Collide(true);
+    Inject_Game(true);
     Inject_Room(true);
     Inject_Math(true);
     Inject_Matrix(true);

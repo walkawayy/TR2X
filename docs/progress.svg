@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.28% (588)</tspan> · <tspan class="known">49.26% (600)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.36% (589)</tspan> · <tspan class="known">49.18% (599)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="360.62" height="6" x="0" y="0" class="decompiled"/>
-<rect width="367.98" height="6" x="360.62" y="0" class="known"/>
+<rect width="361.23" height="6" x="0" y="0" class="decompiled"/>
+<rect width="367.37" height="6" x="361.23" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -242,7 +242,7 @@
 <rect width="12" height="12" x="195" y="45" class="decompiled"><title>void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);</title></rect>
 <rect width="12" height="12" x="210" y="45" class="decompiled"><title>int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);</title></rect>
 <rect width="12" height="12" x="225" y="45" class="decompiled"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, const PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
-<rect width="12" height="12" x="240" y="45" class="known"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
+<rect width="12" height="12" x="240" y="45" class="decompiled"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="12" height="12" x="255" y="45" class="decompiled"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
 <rect width="12" height="12" x="285" y="45" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.30%</tspan> · <tspan class="known">53.38%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.55%</tspan> · <tspan class="known">53.13%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="345.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="398.73" height="6" x="345.82" y="0" class="known"/>
+<rect width="347.69" height="6" x="0" y="0" class="decompiled"/>
+<rect width="396.87" height="6" x="347.69" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1393,7 +1393,7 @@
 <rect width="24.49" height="23.45" x="267.09" y="299.11" class="known"><title>void __cdecl Lara_InitialiseInventory(int32_t level_num);</title></rect>
 <rect width="24.49" height="23.36" x="267.09" y="325.56" class="known"><title>void __cdecl RingNotActive(INVENTORY_ITEM *inv_item);</title></rect>
 <rect width="24.49" height="23.09" x="267.09" y="351.91" class="known"><title>int32_t __cdecl FireWeapon(int32_t weapon_type, ITEM_INFO *target, ITEM_INFO *src, PHD_ANGLE *angles);</title></rect>
-<rect width="22.47" height="24.84" x="294.58" y="0" class="known"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
+<rect width="22.47" height="24.84" x="294.58" y="0" class="decompiled"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="22.47" height="24.67" x="294.58" y="27.84" class="known"><title>INT_PTR __stdcall SE_GraphicsDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="22.47" height="24.38" x="294.58" y="55.51" class="known"><title>int32_t __cdecl SE_ReadAppSettings(APP_SETTINGS *settings);</title></rect>
 <rect width="22.47" height="24.35" x="294.58" y="82.89" class="decompiled"><title>void __cdecl Output_InsertSprite_Sorted(int32_t z, int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t sprite_idx, int16_t shade);</title></rect>

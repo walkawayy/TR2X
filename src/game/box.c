@@ -163,16 +163,17 @@ int32_t __cdecl Box_StalkBox(
     }
 
     const int32_t enemy_quad = (enemy->rot.y >> 14) + 2;
-    const int32_t box_quad = (z > 0) ? ((x > 0) ? 2 : 1) : ((x > 0) ? 3 : 0);
+    const int32_t box_quad = (z > 0) ? ((x > 0) ? DIR_SOUTH : DIR_EAST)
+                                     : ((x > 0) ? DIR_WEST : DIR_NORTH);
     if (enemy_quad == box_quad) {
         return false;
     }
 
     const int32_t baddie_quad = item->pos.z > enemy->pos.z
-        ? (item->pos.x > x ? 2 : 1)
-        : (item->pos.x > x ? 3 : 0);
+        ? (item->pos.x > x ? DIR_SOUTH : DIR_EAST)
+        : (item->pos.x > x ? DIR_WEST : DIR_NORTH);
 
-    return enemy_quad == baddie_quad && ABS(enemy_quad - box_quad) == 2;
+    return enemy_quad != baddie_quad || ABS(enemy_quad - box_quad) != 2;
 }
 
 int32_t __cdecl Box_EscapeBox(

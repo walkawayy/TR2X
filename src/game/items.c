@@ -660,3 +660,31 @@ int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *const item)
 
     return ok;
 }
+
+int32_t __cdecl Item_GetFrames(
+    const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate)
+{
+    const ANIM_STRUCT *const anim = &g_Anims[item->anim_num];
+    const int32_t key_frame_span = anim->interpolation & 0xFF;
+    const int32_t size = anim->interpolation >> 8;
+    const int32_t cur_frame_num = item->frame_num - anim->frame_base;
+    const int32_t first_key_frame_num = cur_frame_num / key_frame_span * size;
+    const int32_t second_key_frame_num = first_key_frame_num + size;
+    frmptr[0] = anim->frame_ptr + first_key_frame_num;
+    frmptr[1] = anim->frame_ptr + second_key_frame_num;
+    const int32_t key_frame_shift = cur_frame_num % key_frame_span;
+    if (!key_frame_shift) {
+        return 0;
+    }
+    // TODO: ??
+    const int32_t second_key_frame_num2 =
+        key_frame_span * (cur_frame_num / key_frame_span + 1);
+    const int32_t numerator = key_frame_shift;
+    int32_t denominator = key_frame_span;
+    if (second_key_frame_num2 > anim->frame_end) {
+        denominator += anim->frame_end - second_key_frame_num2;
+    }
+
+    *rate = denominator;
+    return numerator;
+}

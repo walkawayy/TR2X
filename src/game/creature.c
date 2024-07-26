@@ -350,8 +350,9 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 int32_t __cdecl Creature_Animate(
     const int16_t item_num, const int16_t angle, const int16_t tilt)
 {
-    ITEM_INFO *item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
     CREATURE_INFO *const creature = item->data;
+    const OBJECT_INFO *const object = &g_Objects[item->object_num];
     if (creature == NULL) {
         return false;
     }
@@ -366,7 +367,7 @@ int32_t __cdecl Creature_Animate(
         zone = g_GroundZone[creature->lot.step / STEP_L][g_FlipStatus];
     }
 
-    if (!g_Objects[item->object_num].water_creature) {
+    if (!object->water_creature) {
         int16_t room_num = item->room_num;
         Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
         if (room_num != item->room_num) {
@@ -416,13 +417,13 @@ int32_t __cdecl Creature_Animate(
         next_height = next_box != NO_BOX ? g_Boxes[next_box].height : height;
     }
 
-    int32_t x = item->pos.x;
-    int32_t z = item->pos.z;
-    int32_t pos_x = x & (WALL_L - 1);
-    int32_t pos_z = z & (WALL_L - 1);
+    const int32_t x = item->pos.x;
+    const int32_t z = item->pos.z;
+    const int32_t pos_x = x & (WALL_L - 1);
+    const int32_t pos_z = z & (WALL_L - 1);
     int32_t shift_x = 0;
     int32_t shift_z = 0;
-    int32_t radius = g_Objects[item->object_num].radius;
+    const int32_t radius = object->radius;
 
     if (pos_z < radius) {
         if (Box_BadFloor(
@@ -583,10 +584,10 @@ int32_t __cdecl Creature_Animate(
         item->rot.x = 0;
     }
 
-    if (!g_Objects[item->object_num].water_creature) {
+    if (!object->water_creature) {
         Room_GetFloor(
-            item->pos.x, item->pos.y - WALL_L / 2, item->pos.z, &room_num);
-        if ((g_Rooms[room_num].flags & RF_UNDERWATER) != 0) {
+            item->pos.x, item->pos.y - (STEP_L * 2), item->pos.z, &room_num);
+        if (g_Rooms[room_num].flags & RF_UNDERWATER) {
             item->hit_points = 0;
         }
     }

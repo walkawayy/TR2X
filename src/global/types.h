@@ -2629,6 +2629,22 @@ typedef struct __unaligned {
     int32_t zv;
 } DOOR_VBUF;
 
+typedef struct __unaligned {
+    int16_t min_x;
+    int16_t max_x;
+    int16_t min_y;
+    int16_t max_y;
+    int16_t min_z;
+    int16_t max_z;
+} BOUNDS_16;
+
+typedef struct __unaligned {
+    BOUNDS_16 bounds;
+    XYZ_16 offset;
+    int16_t nmeshes;
+    int32_t *mesh_rots;
+} FRAME_INFO;
+
 typedef enum {
     TO_OBJECT      = 0,
     TO_CAMERA      = 1,

@@ -12,6 +12,8 @@
 
 #include <assert.h>
 
+static BOUNDS_16 m_InterpolatedBounds = { 0 };
+
 static OBJECT_BOUNDS Item_ConvertBounds(const int16_t *bounds_in);
 
 static OBJECT_BOUNDS Item_ConvertBounds(const int16_t *const bounds_in)
@@ -687,4 +689,27 @@ int32_t __cdecl Item_GetFrames(
 
     *rate = denominator;
     return numerator;
+}
+
+int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
+{
+    // TODO: get rid of the FRAME_INFO/int16_t[] casts
+    int32_t rate;
+    FRAME_INFO *frmptr[2];
+    const int32_t frac = Item_GetFrames(item, (int16_t **)frmptr, &rate);
+    if (!frac) {
+        return (int16_t *)&frmptr[0]->bounds;
+    }
+
+#define CALC(result, b1, b2, prop)                                             \
+    result->prop = (b1)->prop + ((((b2)->prop - (b1)->prop) * frac) / rate);
+
+    BOUNDS_16 *const result = &m_InterpolatedBounds;
+    CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, min_x);
+    CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, max_x);
+    CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, min_y);
+    CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, max_y);
+    CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, min_z);
+    CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, max_z);
+    return (int16_t *)result;
 }

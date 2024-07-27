@@ -485,6 +485,7 @@ static void Inject_Items(const bool enable)
     INJECT(enable, 0x00414B10, Item_Translate);
     INJECT(enable, 0x004158D0, Item_IsTriggerActive);
     INJECT(enable, 0x0041BF90, Item_GetFrames);
+    INJECT(enable, 0x0041C030, Item_GetBoundsAccurate);
 }
 
 static void Inject_Effects(const bool enable)

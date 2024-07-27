@@ -27,7 +27,6 @@
 #define BartoliControl ((void __cdecl (*)(int16_t item_num))0x00418500)
 #define DinoControl ((void __cdecl (*)(int16_t item_num))0x004186A0)
 #define Game_DrawCinematic ((int32_t __cdecl (*)(void))0x00418950)
-#define Effect_Draw ((void __cdecl (*)(int16_t fx_num))0x00419890)
 #define Object_DrawSpriteItem ((void __cdecl (*)(ITEM_INFO *item))0x004199E0)
 #define Object_DrawAnimatingItem ((void __cdecl (*)(ITEM_INFO *item))0x00419A70)
 #define Lara_Draw ((void __cdecl (*)(ITEM_INFO *item))0x00419DF0)

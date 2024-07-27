@@ -1,5 +1,6 @@
 #include "game/room_draw.h"
 
+#include "game/effects.h"
 #include "game/matrix.h"
 #include "game/output.h"
 #include "global/funcs.h"

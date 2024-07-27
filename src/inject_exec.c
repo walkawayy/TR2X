@@ -496,6 +496,7 @@ static void Inject_Effects(const bool enable)
     INJECT(enable, 0x00427320, Effect_Create);
     INJECT(enable, 0x00427390, Effect_Kill);
     INJECT(enable, 0x00427480, Effect_NewRoom);
+    INJECT(enable, 0x00419890, Effect_Draw);
 }
 
 static void Inject_LOS(const bool enable)

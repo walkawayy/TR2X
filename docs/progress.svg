@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.85% (595)</tspan> · <tspan class="known">48.69% (593)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.93% (596)</tspan> · <tspan class="known">48.60% (592)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="364.91" height="6" x="0" y="0" class="decompiled"/>
-<rect width="363.69" height="6" x="364.91" y="0" class="known"/>
+<rect width="365.53" height="6" x="0" y="0" class="decompiled"/>
+<rect width="363.07" height="6" x="365.53" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -290,7 +290,7 @@
 <rect width="12" height="12" x="165" y="60" class="decompiled"><title>void __cdecl Room_Clip(ROOM_INFO *r);</title></rect>
 <rect width="12" height="12" x="180" y="60" class="decompiled"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
 <rect width="12" height="12" x="195" y="60" class="decompiled"><title>void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);</title></rect>
-<rect width="12" height="12" x="210" y="60" class="known"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
+<rect width="12" height="12" x="210" y="60" class="decompiled"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="225" y="60" class="known"><title>void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="240" y="60" class="known"><title>void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="255" y="60" class="known"><title>void __cdecl Lara_Draw(ITEM_INFO *item);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.76%</tspan> · <tspan class="known">52.91%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.86%</tspan> · <tspan class="known">52.81%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="349.33" height="6" x="0" y="0" class="decompiled"/>
-<rect width="395.23" height="6" x="349.33" y="0" class="known"/>
+<rect width="350.05" height="6" x="0" y="0" class="decompiled"/>
+<rect width="394.51" height="6" x="350.05" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1588,7 +1588,7 @@
 <rect width="13.56" height="13.49" x="602.53" y="76.23" class="known"><title>INT_PTR __stdcall SE_SoundDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="13.51" height="13.49" x="619.09" y="76.23" class="decompiled"><title>void __cdecl Lara_State_Stop(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="13.51" height="13.49" x="635.60" y="76.23" class="known"><title>void __cdecl MovableBlock(int16_t item_num);</title></rect>
-<rect width="13.46" height="13.49" x="652.10" y="76.23" class="known"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
+<rect width="13.46" height="13.49" x="652.10" y="76.23" class="decompiled"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
 <rect width="13.41" height="13.49" x="668.56" y="76.23" class="decompiled"><title>int32_t __cdecl Output_XGenXG(const int16_t *obj_ptr);</title></rect>
 <rect width="13.36" height="13.49" x="684.97" y="76.23" class="decompiled"><title>void __cdecl Overlay_DrawAssaultTimer(void);</title></rect>
 <rect width="13.31" height="13.49" x="701.33" y="76.23" class="known"><title>int16_t __cdecl StartGame(int32_t level_num, GF_LEVEL_TYPE level_type);</title></rect>

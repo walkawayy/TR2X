@@ -888,3 +888,53 @@ void __cdecl Camera_UpdateCutscene(void)
     Matrix_LookAt(
         campos.x, campos.y, campos.z, camtar.x, camtar.y, camtar.z, roll);
 }
+
+void __cdecl Camera_RefreshFromTrigger(const int16_t type, const int16_t *fd)
+{
+    int16_t target_ok = 2;
+
+    while (true) {
+        const int16_t fd_cmd = *fd++;
+        const int16_t value = TRIGGER_VALUE(fd_cmd);
+
+        switch (TRIGGER_TYPE(fd_cmd)) {
+        case TO_CAMERA: {
+            if (value == g_Camera.last) {
+                g_Camera.num = value;
+                if (g_Camera.timer < 0 || g_Camera.type == CAM_LOOK
+                    || g_Camera.type == CAM_COMBAT) {
+                    g_Camera.timer = -1;
+                    target_ok = 0;
+                } else {
+                    g_Camera.type = CAM_FIXED;
+                    target_ok = 1;
+                }
+            } else {
+                target_ok = 0;
+            }
+            break;
+        }
+
+        case TO_TARGET:
+            if (g_Camera.type != CAM_LOOK && g_Camera.type != CAM_COMBAT) {
+                g_Camera.item = &g_Items[value];
+            }
+            break;
+        }
+
+        if (FLOORDATA_IS_END(fd_cmd)) {
+            break;
+        }
+    }
+
+    if (g_Camera.item
+        && (!target_ok
+            || (target_ok == 2 && g_Camera.item->looked_at
+                && g_Camera.item != g_Camera.last_item))) {
+        g_Camera.item = NULL;
+    }
+
+    if (g_Camera.num == -1 && g_Camera.timer > 0) {
+        g_Camera.timer = -1;
+    }
+}

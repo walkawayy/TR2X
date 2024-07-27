@@ -1,6 +1,7 @@
 #include "game/room.h"
 
 #include "game/box.h"
+#include "game/camera.h"
 #include "game/items.h"
 #include "game/math.h"
 #include "game/shell.h"

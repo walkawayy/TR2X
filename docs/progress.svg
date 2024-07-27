@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.77% (594)</tspan> · <tspan class="known">48.77% (594)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.85% (595)</tspan> · <tspan class="known">48.69% (593)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="364.30" height="6" x="0" y="0" class="decompiled"/>
-<rect width="364.30" height="6" x="364.30" y="0" class="known"/>
+<rect width="364.91" height="6" x="0" y="0" class="decompiled"/>
+<rect width="363.69" height="6" x="364.91" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -249,7 +249,7 @@
 <rect width="12" height="12" x="300" y="45" class="decompiled"><title>FLOOR_INFO *__cdecl Room_GetFloor(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
 <rect width="12" height="12" x="315" y="45" class="decompiled"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="330" y="45" class="decompiled"><title>int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
-<rect width="12" height="12" x="345" y="45" class="known"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);</title></rect>
+<rect width="12" height="12" x="345" y="45" class="decompiled"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);</title></rect>
 <rect width="12" height="12" x="360" y="45" class="decompiled"><title>void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);</title></rect>
 <rect width="12" height="12" x="375" y="45" class="decompiled"><title>int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="390" y="45" class="decompiled"><title>int32_t __cdecl Room_GetCeiling(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.70%</tspan> · <tspan class="known">52.98%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.76%</tspan> · <tspan class="known">52.91%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="348.83" height="6" x="0" y="0" class="decompiled"/>
-<rect width="395.73" height="6" x="348.83" y="0" class="known"/>
+<rect width="349.33" height="6" x="0" y="0" class="decompiled"/>
+<rect width="395.23" height="6" x="349.33" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1694,7 +1694,7 @@
 <rect width="10.66" height="11.10" x="494.80" y="224.12" class="known"><title>void __cdecl Output_CalculateObjectLighting(ITEM_INFO *item, int16_t *frame);</title></rect>
 <rect width="10.66" height="11.10" x="494.80" y="238.22" class="known"><title>BOOL __stdcall DInputEnumDevicesCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef);</title></rect>
 <rect width="10.66" height="11.10" x="494.80" y="252.32" class="known"><title>void __cdecl CalculateWibbleTable(void);</title></rect>
-<rect width="10.66" height="11.04" x="494.80" y="266.42" class="known"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);</title></rect>
+<rect width="10.66" height="11.04" x="494.80" y="266.42" class="decompiled"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);</title></rect>
 <rect width="10.66" height="11.04" x="494.80" y="280.46" class="decompiled"><title>int32_t __cdecl Lara_TestWaterStepOut(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="10.66" height="11.04" x="494.80" y="294.50" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_Play(int32_t sample_id, int32_t volume, int32_t pitch, int32_t pan, int32_t flags);</title></rect>
 <rect width="10.66" height="10.98" x="494.80" y="308.54" class="known"><title>void __cdecl LavaBurn(ITEM_INFO *item);</title></rect>

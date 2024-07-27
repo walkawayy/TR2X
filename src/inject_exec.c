@@ -228,6 +228,7 @@ static void Inject_Camera(const bool enable)
     INJECT(enable, 0x00411AA0, Camera_Update);
     INJECT(enable, 0x004126A0, Camera_LoadCutsceneFrame);
     INJECT(enable, 0x00412290, Camera_UpdateCutscene);
+    INJECT(enable, 0x00415100, Camera_RefreshFromTrigger);
 }
 
 static void Inject_Collide(const bool enable)

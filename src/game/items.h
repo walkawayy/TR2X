@@ -30,5 +30,6 @@ int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);
 int32_t __cdecl Item_GetFrames(
     const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);
 int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
+int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
 
 bool Item_IsSmashable(const ITEM_INFO *item);

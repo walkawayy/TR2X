@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.60% (592)</tspan> · <tspan class="known">48.93% (596)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.69% (593)</tspan> · <tspan class="known">48.85% (595)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="363.07" height="6" x="0" y="0" class="decompiled"/>
-<rect width="365.53" height="6" x="363.07" y="0" class="known"/>
+<rect width="363.69" height="6" x="0" y="0" class="decompiled"/>
+<rect width="364.91" height="6" x="363.69" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -313,7 +313,7 @@
 <rect width="12" height="12" x="510" y="60" class="known"><title>void __cdecl Output_CalculateObjectLighting(ITEM_INFO *item, int16_t *frame);</title></rect>
 <rect width="12" height="12" x="525" y="60" class="decompiled"><title>int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
 <rect width="12" height="12" x="540" y="60" class="decompiled"><title>int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="555" y="60" class="known"><title>int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="555" y="60" class="decompiled"><title>int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="570" y="60" class="known"><title>void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);</title></rect>
 <rect width="12" height="12" x="585" y="60" class="known"><title>void __cdecl BigEelControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="600" y="60" class="known"><title>void __cdecl EelControl(int16_t item_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.64%</tspan> · <tspan class="known">53.03%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.66%</tspan> · <tspan class="known">53.02%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="348.40" height="6" x="0" y="0" class="decompiled"/>
-<rect width="396.16" height="6" x="348.40" y="0" class="known"/>
+<rect width="348.52" height="6" x="0" y="0" class="decompiled"/>
+<rect width="396.04" height="6" x="348.52" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2238,7 +2238,7 @@
 <rect width="3.70" height="3.57" x="696.39" y="290.21" class="decompiled"><title>void __cdecl Output_DrawPolyTrans(const int16_t *obj_ptr);</title></rect>
 <rect width="3.70" height="3.57" x="703.10" y="290.21" class="decompiled"><title>void __cdecl Output_DrawPolyGouraud(const int16_t *obj_ptr);</title></rect>
 <rect width="3.70" height="3.57" x="709.80" y="290.21" class="decompiled"><title>void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);</title></rect>
-<rect width="3.70" height="3.57" x="716.50" y="290.21" class="known"><title>int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
+<rect width="3.70" height="3.57" x="716.50" y="290.21" class="decompiled"><title>int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
 <rect width="3.70" height="3.57" x="723.20" y="290.21" class="decompiled"><title>void __cdecl Lara_State_HangLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.70" height="3.57" x="729.90" y="290.21" class="decompiled"><title>void __cdecl Lara_State_HangRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.70" height="3.57" x="736.60" y="290.21" class="decompiled"><title>void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

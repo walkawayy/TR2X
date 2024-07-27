@@ -713,3 +713,12 @@ int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
     CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, max_z);
     return (int16_t *)result;
 }
+
+int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *const item)
+{
+    // TODO: get rid of the FRAME_INFO/int16_t[] casts
+    int32_t rate;
+    FRAME_INFO *frmptr[2];
+    const int32_t frac = Item_GetFrames(item, (int16_t **)frmptr, &rate);
+    return (int16_t *)frmptr[frac > rate / 2 ? 1 : 0];
+}

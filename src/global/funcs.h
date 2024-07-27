@@ -38,7 +38,6 @@
 #define AddDynamicLight ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff))0x0041C0F0)
 #define BigEelControl ((void __cdecl (*)(int16_t item_num))0x0041C140)
 #define EelControl ((void __cdecl (*)(int16_t item_num))0x0041C2E0)
-#define ItemNearLara ((int32_t __cdecl (*)(PHD_3DPOS *pos, int32_t distance))0x0041C4D0)
 #define DoBloodSplat ((int16_t __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num))0x0041C5D0)
 #define DoLotsOfBlood ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE direction, int16_t room_num, int32_t num))0x0041C630)
 #define ControlBlood1 ((void __cdecl (*)(int16_t fx_num))0x0041C6E0)

@@ -722,3 +722,26 @@ int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *const item)
     const int32_t frac = Item_GetFrames(item, (int16_t **)frmptr, &rate);
     return (int16_t *)frmptr[frac > rate / 2 ? 1 : 0];
 }
+
+bool __cdecl Item_IsNearItem(
+    const ITEM_INFO *const item, const XYZ_32 *const pos,
+    const int32_t distance)
+{
+    const XYZ_32 d = {
+        .x = item->pos.x - pos->x,
+        .y = item->pos.y - pos->y,
+        .z = item->pos.z - pos->z,
+    };
+
+    if (ABS(d.x) > distance || ABS(d.z) > distance || ABS(d.y) > WALL_L * 3) {
+        return false;
+    }
+
+    if (SQUARE(d.x) + SQUARE(d.z) > SQUARE(distance)) {
+        return false;
+    }
+
+    const BOUNDS_16 *const bounds =
+        (const BOUNDS_16 *)Item_GetBoundsAccurate(item);
+    return d.y >= bounds->min_y && d.y <= bounds->max_y + 100;
+}

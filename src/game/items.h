@@ -31,5 +31,7 @@ int32_t __cdecl Item_GetFrames(
     const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);
 int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
 int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
+bool __cdecl Item_IsNearItem(
+    const ITEM_INFO *item, const XYZ_32 *pos, int32_t distance);
 
 bool Item_IsSmashable(const ITEM_INFO *item);

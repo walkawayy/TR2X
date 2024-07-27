@@ -55,3 +55,4 @@ void __cdecl Lara_Push(
     bool big_push);
 int32_t __cdecl Lara_MovePosition(
     XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
+int32_t __cdecl Lara_IsNearItem(const XYZ_32 *pos, int32_t distance);

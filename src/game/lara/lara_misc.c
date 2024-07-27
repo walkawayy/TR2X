@@ -1206,3 +1206,8 @@ int32_t __cdecl Lara_MovePosition(
     return Misc_Move3DPosTo3DPos(
         &lara_item->pos_full, &new_pos_full, MOVE_SPEED, MOVE_ANGLE);
 }
+
+int32_t __cdecl Lara_IsNearItem(const XYZ_32 *const pos, const int32_t distance)
+{
+    return Item_IsNearItem(g_LaraItem, pos, distance);
+}

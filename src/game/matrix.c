@@ -301,9 +301,9 @@ void __cdecl Matrix_RotYXZpack(uint32_t rpack)
     }
 }
 
-void __cdecl Matrix_RotYXZsuperpack(int16_t **pprot, int32_t index)
+void __cdecl Matrix_RotYXZsuperpack(const int16_t **pprot, int32_t index)
 {
-    uint16_t *prot = (uint16_t *)*pprot;
+    const uint16_t *prot = (const uint16_t *)*pprot;
 
     for (int i = 0; i < index; i++) {
         if ((*prot >> 14) == 0) {
@@ -490,7 +490,7 @@ void __cdecl Matrix_RotYXZ_I(int16_t y, int16_t x, int16_t z)
 }
 
 void __cdecl Matrix_RotYXZsuperpack_I(
-    int16_t **pprot1, int16_t **pprot2, int32_t index)
+    const int16_t **pprot1, const int16_t **pprot2, int32_t index)
 {
     Matrix_RotYXZsuperpack(pprot1, index);
     MATRIX *old_matrix = g_MatrixPtr;

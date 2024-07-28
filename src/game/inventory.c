@@ -865,7 +865,7 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
     const int32_t *bone = &g_Bones[obj->bone_idx];
     Matrix_TranslateRel(
         frame_ptr[FBBOX_X], frame_ptr[FBBOX_Y], frame_ptr[FBBOX_Z]);
-    int16_t *rot = frame_ptr + FBBOX_ROT;
+    const int16_t *rot = frame_ptr + FBBOX_ROT;
     Matrix_RotYXZsuperpack(&rot, 0);
 
     for (int32_t mesh_idx = 0; mesh_idx < obj->mesh_count; mesh_idx++) {

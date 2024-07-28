@@ -880,7 +880,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
     g_MatrixPtr->_23 = 0;
     Matrix_RotYXZ(g_LaraItem->rot.y, g_LaraItem->rot.x, g_LaraItem->rot.z);
 
-    int16_t *rot = frame_ptr + FBBOX_ROT;
+    const int16_t *rot = frame_ptr + FBBOX_ROT;
     const int32_t *bone = &g_Bones[obj->bone_idx];
 
     Matrix_TranslateRel(
@@ -921,7 +921,8 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
 
         const LARA_ARM *arm = &g_Lara.right_arm;
         const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
-        rot = &arm->frame_base[arm->frame_num * (anim->interpolation >> 8) + 9];
+        rot = &arm->frame_base
+                   [arm->frame_num * (anim->interpolation >> 8) + FBBOX_ROT];
         Matrix_RotYXZsuperpack(&rot, 8);
 
         Matrix_TranslateRel(bone[33], bone[34], bone[35]);
@@ -951,8 +952,8 @@ void __cdecl Lara_GetJointAbsPosition_I(
     Matrix_RotYXZ(item->rot.y, item->rot.x, item->rot.z);
 
     const int32_t *bone = &g_Bones[obj->bone_idx];
-    int16_t *rot1 = frame1 + 9;
-    int16_t *rot2 = frame2 + 9;
+    const int16_t *rot1 = frame1 + FBBOX_ROT;
+    const int16_t *rot2 = frame2 + FBBOX_ROT;
     Matrix_InitInterpolate(frac, rate);
 
     Matrix_TranslateRel_ID(
@@ -978,9 +979,9 @@ void __cdecl Lara_GetJointAbsPosition_I(
             rot1 = &arm->frame_base
                         [(anim->interpolation >> 8)
                              * (arm->frame_num - anim->frame_base)
-                         + 9];
+                         + FBBOX_ROT];
         } else {
-            rot1 = frame1 + 9;
+            rot1 = frame1 + FBBOX_ROT;
         }
         Matrix_RotYXZsuperpack(&rot1, 11);
 
@@ -995,8 +996,8 @@ void __cdecl Lara_GetJointAbsPosition_I(
 
         const LARA_ARM *arm = &g_Lara.right_arm;
         const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
-        rot1 =
-            &arm->frame_base[arm->frame_num * (anim->interpolation >> 8) + 9];
+        rot1 = &arm->frame_base
+                    [arm->frame_num * (anim->interpolation >> 8) + FBBOX_ROT];
         Matrix_RotYXZsuperpack(&rot1, 8);
 
         Matrix_TranslateRel(bone[33], bone[34], bone[35]);

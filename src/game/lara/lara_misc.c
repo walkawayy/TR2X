@@ -285,9 +285,9 @@ int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll)
         break;
     }
 
-    const int16_t *bounds = Item_GetBoundsAccurate(item);
-    int32_t y = bounds[FBBOX_MIN_Y];
-    int32_t h = bounds[FBBOX_MAX_Y] - y;
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
+    int32_t y = bounds->min_y;
+    int32_t h = bounds->max_y - y;
 
     int32_t shift;
     if (!Lara_TestClimbPos(item, coll->radius, coll->radius, y, h, &shift)) {
@@ -438,8 +438,8 @@ void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll)
         item->current_anim_state = LS_UP_JUMP;
         item->anim_num = LA_JUMP_UP;
         item->frame_num = g_Anims[item->anim_num].frame_base + 9;
-        const int16_t *bounds = Item_GetBoundsAccurate(item);
-        item->pos.y += bounds[FBBOX_MAX_Y];
+        const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
+        item->pos.y += bounds->max_y;
         item->pos.x += coll->shift.x;
         item->pos.z += coll->shift.z;
         item->gravity = 1;
@@ -449,8 +449,8 @@ void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll)
         return;
     }
 
-    const int16_t *bounds = Item_GetBoundsAccurate(item);
-    int32_t hdif = coll->side_front.floor - bounds[FBBOX_MIN_Y];
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
+    int32_t hdif = coll->side_front.floor - bounds->min_y;
 
     if (ABS(coll->side_left.floor - coll->side_right.floor) >= SLOPE_DIF
         || coll->side_mid.ceiling >= 0 || coll->coll_type != COLL_FRONT || flag
@@ -489,11 +489,11 @@ void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll)
 int32_t __cdecl Lara_TestEdgeCatch(
     ITEM_INFO *item, COLL_INFO *coll, int32_t *edge)
 {
-    const int16_t *bounds = Item_GetBoundsAccurate(item);
-    int32_t hdif1 = coll->side_front.floor - bounds[FBBOX_MIN_Y];
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
+    int32_t hdif1 = coll->side_front.floor - bounds->min_y;
     int32_t hdif2 = hdif1 + item->fall_speed;
     if ((hdif1 < 0 && hdif2 < 0) || (hdif1 > 0 && hdif2 > 0)) {
-        hdif1 = item->pos.y + bounds[FBBOX_MIN_Y];
+        hdif1 = item->pos.y + bounds->min_y;
         hdif2 = hdif1 + item->fall_speed;
         if ((hdif1 >> (WALL_SHIFT - 2)) == (hdif2 >> (WALL_SHIFT - 2))) {
             return 0;
@@ -535,11 +535,11 @@ int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll)
     item->anim_num = LA_REACH_TO_HANG;
     item->frame_num = g_Anims[item->anim_num].frame_base + 12;
 
-    const int16_t *bounds = Item_GetBoundsAccurate(item);
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
     if (edge_catch > 0) {
-        item->pos.y += coll->side_front.floor - bounds[FBBOX_MIN_Y];
+        item->pos.y += coll->side_front.floor - bounds->min_y;
     } else {
-        item->pos.y = edge - bounds[FBBOX_MIN_Y];
+        item->pos.y = edge - bounds->min_y;
     }
     item->pos.x += coll->shift.x;
     item->pos.z += coll->shift.z;
@@ -583,13 +583,13 @@ int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll)
     item->current_anim_state = LS_HANG;
     item->goal_anim_state = LS_HANG;
 
-    const int16_t *bounds = Item_GetBoundsAccurate(item);
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
     if (edge_catch > 0) {
-        item->pos.y += coll->side_front.floor - bounds[FBBOX_MIN_Y];
+        item->pos.y += coll->side_front.floor - bounds->min_y;
         item->pos.x += coll->shift.x;
         item->pos.z += coll->shift.z;
     } else {
-        item->pos.y = edge - bounds[FBBOX_MIN_Y];
+        item->pos.y = edge - bounds->min_y;
     }
 
     item->rot.y = angle;
@@ -837,7 +837,7 @@ int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll)
 
 void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
 {
-    int16_t *frmptr[2] = { NULL, NULL };
+    FRAME_INFO *frmptr[2] = { NULL, NULL };
     if (g_Lara.hit_direction < 0) {
         int32_t rate;
         int32_t frac = Item_GetFrames(g_LaraItem, frmptr, &rate);
@@ -848,7 +848,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
         }
     }
 
-    int16_t *frame_ptr = NULL;
+    const FRAME_INFO *frame_ptr = NULL;
     const OBJECT_INFO *obj = &g_Objects[g_LaraItem->object_num];
     if (g_Lara.hit_direction >= 0) {
         LARA_ANIMATION anim_num;
@@ -868,8 +868,9 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
         }
         const ANIM_STRUCT *anim = &g_Anims[anim_num];
         int32_t interpolation = anim->interpolation;
-        frame_ptr =
-            anim->frame_ptr + (int)(g_Lara.hit_frame * (interpolation >> 8));
+        frame_ptr = (const FRAME_INFO *)(anim->frame_ptr
+                                         + (int)(g_Lara.hit_frame
+                                                 * (interpolation >> 8)));
     } else {
         frame_ptr = frmptr[0];
     }
@@ -880,11 +881,11 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
     g_MatrixPtr->_23 = 0;
     Matrix_RotYXZ(g_LaraItem->rot.y, g_LaraItem->rot.x, g_LaraItem->rot.z);
 
-    const int16_t *rot = frame_ptr + FBBOX_ROT;
+    const int16_t *rot = frame_ptr->mesh_rots;
     const int32_t *bone = &g_Bones[obj->bone_idx];
 
     Matrix_TranslateRel(
-        frame_ptr[FBBOX_X], frame_ptr[FBBOX_Y], frame_ptr[FBBOX_Z]);
+        frame_ptr->offset.x, frame_ptr->offset.y, frame_ptr->offset.z);
     Matrix_RotYXZsuperpack(&rot, 0);
 
     Matrix_TranslateRel(bone[25], bone[26], bone[27]);
@@ -907,7 +908,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
                             * (arm->frame_num - anim->frame_base)
                         + FBBOX_ROT];
         } else {
-            rot = frame_ptr + FBBOX_ROT;
+            rot = frame_ptr->mesh_rots;
         }
         Matrix_RotYXZsuperpack(&rot, 11);
 
@@ -940,7 +941,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
 }
 
 void __cdecl Lara_GetJointAbsPosition_I(
-    ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2,
+    ITEM_INFO *item, XYZ_32 *vec, FRAME_INFO *frame1, FRAME_INFO *frame2,
     int32_t frac, int32_t rate)
 {
     const OBJECT_INFO *obj = &g_Objects[item->object_num];
@@ -951,13 +952,14 @@ void __cdecl Lara_GetJointAbsPosition_I(
     g_MatrixPtr->_23 = 0;
     Matrix_RotYXZ(item->rot.y, item->rot.x, item->rot.z);
 
-    const int32_t *bone = &g_Bones[obj->bone_idx];
-    const int16_t *rot1 = frame1 + FBBOX_ROT;
-    const int16_t *rot2 = frame2 + FBBOX_ROT;
+    const int32_t *const bone = &g_Bones[obj->bone_idx];
+    const int16_t *rot1 = frame1->mesh_rots;
+    const int16_t *rot2 = frame2->mesh_rots;
     Matrix_InitInterpolate(frac, rate);
 
     Matrix_TranslateRel_ID(
-        frame1[6], frame1[7], frame1[8], frame2[6], frame2[7], frame2[8]);
+        frame1->offset.x, frame1->offset.y, frame1->offset.z, frame2->offset.x,
+        frame2->offset.y, frame2->offset.z);
     Matrix_RotYXZsuperpack_I(&rot1, &rot2, 0);
 
     Matrix_TranslateRel_I(bone[25], bone[26], bone[27]);
@@ -981,7 +983,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
                              * (arm->frame_num - anim->frame_base)
                          + FBBOX_ROT];
         } else {
-            rot1 = frame1 + FBBOX_ROT;
+            rot1 = frame1->mesh_rots;
         }
         Matrix_RotYXZsuperpack(&rot1, 11);
 
@@ -1094,11 +1096,11 @@ void __cdecl Lara_Push(
     int32_t rx = (c * dx - s * dz) >> W2V_SHIFT;
     int32_t rz = (c * dz + s * dx) >> W2V_SHIFT;
 
-    const int16_t *bounds = Item_GetBestFrame(item);
-    int32_t min_x = bounds[FBBOX_MIN_X];
-    int32_t max_x = bounds[FBBOX_MAX_X];
-    int32_t min_z = bounds[FBBOX_MIN_Z];
-    int32_t max_z = bounds[FBBOX_MAX_Z];
+    const BOUNDS_16 *const bounds = &Item_GetBestFrame(item)->bounds;
+    int32_t min_x = bounds->min_x;
+    int32_t max_x = bounds->max_x;
+    int32_t min_z = bounds->min_z;
+    int32_t max_z = bounds->max_z;
 
     if (big_push) {
         max_x += coll->radius;
@@ -1129,12 +1131,12 @@ void __cdecl Lara_Push(
     lara_item->pos.x = item->pos.x + ((rz * s + rx * c) >> W2V_SHIFT);
     lara_item->pos.z = item->pos.z + ((rz * c - rx * s) >> W2V_SHIFT);
 
-    rz = (bounds[FBBOX_MAX_Z] + bounds[FBBOX_MIN_Z]) / 2;
-    rx = (bounds[FBBOX_MAX_X] + bounds[FBBOX_MIN_X]) / 2;
+    rz = (bounds->max_z + bounds->min_z) / 2;
+    rx = (bounds->max_x + bounds->min_x) / 2;
     dx -= (c * rx + s * rz) >> W2V_SHIFT;
     dz -= (c * rz - s * rx) >> W2V_SHIFT;
 
-    if (spaz_on && bounds[FBBOX_MAX_Y] - bounds[FBBOX_MIN_Y] > STEP_L) {
+    if (spaz_on && bounds->max_y - bounds->min_y > STEP_L) {
         Lara_TakeHit_Impl(lara_item, dx, dz);
     }
 

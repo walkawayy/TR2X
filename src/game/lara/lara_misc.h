@@ -45,7 +45,7 @@ int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);
 void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint);
 
 void __cdecl Lara_GetJointAbsPosition_I(
-    ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2,
+    ITEM_INFO *item, XYZ_32 *vec, FRAME_INFO *frame1, FRAME_INFO *frame2,
     int32_t frac, int32_t rate);
 
 void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);

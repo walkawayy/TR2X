@@ -493,9 +493,9 @@ void __cdecl Room_DrawAllRooms(const int16_t current_room)
             g_MatrixPtr->_03 = 0;
             g_MatrixPtr->_13 = 0;
             g_MatrixPtr->_23 = 0;
-            const int16_t *rot =
+            const int16_t *frame =
                 g_Anims[g_Objects[O_SKYBOX].anim_idx].frame_ptr + FBBOX_ROT;
-            Matrix_RotYXZsuperpack(&rot, 0);
+            Matrix_RotYXZsuperpack(&frame, 0);
             S_InitialisePolyList(0);
             Output_InsertSkybox(g_Meshes[g_Objects[O_SKYBOX].mesh_idx]);
             Matrix_Pop();

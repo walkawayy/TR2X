@@ -337,13 +337,13 @@ int32_t __cdecl Item_TestBoundsCollide(
     const ITEM_INFO *const src_item, const ITEM_INFO *const dst_item,
     const int32_t radius)
 {
-    const int16_t *const src_bounds = Item_GetBestFrame(src_item);
-    const int16_t *const dst_bounds = Item_GetBestFrame(dst_item);
+    const BOUNDS_16 *const src_bounds = &Item_GetBestFrame(src_item)->bounds;
+    const BOUNDS_16 *const dst_bounds = &Item_GetBestFrame(dst_item)->bounds;
 
-    if (src_item->pos.y + src_bounds[FBBOX_MAX_Y]
-            <= dst_item->pos.y + dst_bounds[FBBOX_MIN_Y]
-        || src_item->pos.y + src_bounds[FBBOX_MIN_Y]
-            >= dst_item->pos.y + dst_bounds[FBBOX_MAX_Y]) {
+    if (src_item->pos.y + src_bounds->max_y
+            <= dst_item->pos.y + dst_bounds->min_y
+        || src_item->pos.y + src_bounds->min_y
+            >= dst_item->pos.y + dst_bounds->max_y) {
         return false;
     }
 
@@ -356,10 +356,10 @@ int32_t __cdecl Item_TestBoundsCollide(
 
     // clang-format off
     return (
-        rx >= src_bounds[FBBOX_MIN_X] - radius &&
-        rx <= src_bounds[FBBOX_MAX_X] + radius &&
-        rz >= src_bounds[FBBOX_MIN_Z] - radius &&
-        rz <= src_bounds[FBBOX_MAX_Z] + radius);
+        rx >= src_bounds->min_x - radius &&
+        rx <= src_bounds->max_x + radius &&
+        rz >= src_bounds->min_z - radius &&
+        rz <= src_bounds->max_z + radius);
     // clang-format on
 }
 
@@ -664,7 +664,7 @@ int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *const item)
 }
 
 int32_t __cdecl Item_GetFrames(
-    const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate)
+    const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate)
 {
     const ANIM_STRUCT *const anim = &g_Anims[item->anim_num];
     const int32_t cur_frame_num = item->frame_num - anim->frame_base;
@@ -685,24 +685,23 @@ int32_t __cdecl Item_GetFrames(
         }
     }
 
-    frmptr[0] = anim->frame_ptr + first_key_frame_num;
-    frmptr[1] = anim->frame_ptr + second_key_frame_num;
+    frmptr[0] = (FRAME_INFO *)(anim->frame_ptr + first_key_frame_num);
+    frmptr[1] = (FRAME_INFO *)(anim->frame_ptr + second_key_frame_num);
     *rate = denominator;
     return numerator;
 }
 
-int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
+BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
 {
-    // TODO: get rid of the FRAME_INFO/int16_t[] casts
     int32_t rate;
     FRAME_INFO *frmptr[2];
-    const int32_t frac = Item_GetFrames(item, (int16_t **)frmptr, &rate);
+    const int32_t frac = Item_GetFrames(item, frmptr, &rate);
     if (!frac) {
-        return (int16_t *)&frmptr[0]->bounds;
+        return &frmptr[0]->bounds;
     }
 
-#define CALC(result, b1, b2, prop)                                             \
-    result->prop = (b1)->prop + ((((b2)->prop - (b1)->prop) * frac) / rate);
+#define CALC(target, b1, b2, prop)                                             \
+    target->prop = (b1)->prop + ((((b2)->prop - (b1)->prop) * frac) / rate);
 
     BOUNDS_16 *const result = &m_InterpolatedBounds;
     CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, min_x);
@@ -711,16 +710,15 @@ int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
     CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, max_y);
     CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, min_z);
     CALC(result, &frmptr[0]->bounds, &frmptr[1]->bounds, max_z);
-    return (int16_t *)result;
+    return result;
 }
 
-int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *const item)
+FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *const item)
 {
-    // TODO: get rid of the FRAME_INFO/int16_t[] casts
-    int32_t rate;
     FRAME_INFO *frmptr[2];
-    const int32_t frac = Item_GetFrames(item, (int16_t **)frmptr, &rate);
-    return (int16_t *)frmptr[frac > rate / 2 ? 1 : 0];
+    int32_t rate;
+    const int32_t frac = Item_GetFrames(item, frmptr, &rate);
+    return frmptr[(frac > rate / 2) ? 1 : 0];
 }
 
 bool __cdecl Item_IsNearItem(

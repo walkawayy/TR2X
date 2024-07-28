@@ -241,7 +241,7 @@ void __cdecl Creature_Mood(
         creature->lot.target = enemy->pos;
         creature->lot.required_box = enemy->box_num;
         if (creature->lot.fly != 0 && g_Lara.water_status == LWS_ABOVE_WATER) {
-            creature->lot.target.y += Item_GetBestFrame(enemy)[2];
+            creature->lot.target.y += Item_GetBestFrame(enemy)->bounds.min_y;
         }
         break;
 
@@ -381,8 +381,8 @@ int32_t __cdecl Creature_Animate(
         return false;
     }
 
-    const int16_t *const bounds = Item_GetBoundsAccurate(item);
-    int32_t y = item->pos.y + bounds[2];
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
+    int32_t y = item->pos.y + bounds->min_y;
 
     int16_t room_num = item->room_num;
     const FLOOR_INFO *floor =
@@ -535,7 +535,8 @@ int32_t __cdecl Creature_Animate(
         if (item->pos.y + dy <= height) {
             const int32_t ceiling =
                 Room_GetCeiling(floor, item->pos.x, y, item->pos.z);
-            const int32_t min_y = item->object_num == O_SHARK ? 128 : bounds[2];
+            const int32_t min_y =
+                item->object_num == O_SHARK ? 128 : bounds->min_y;
             if (item->pos.y + min_y + dy < ceiling) {
                 if (item->pos.y + min_y < ceiling) {
                     item->pos.x = old.x;

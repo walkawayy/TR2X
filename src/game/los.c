@@ -307,19 +307,19 @@ int32_t __cdecl LOS_CheckSmashable(
             }
 
             const DIRECTION direction = Math_GetDirection(item->rot.y);
-            const int16_t *const bounds = Item_GetBoundsAccurate(item);
+            const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
             const int16_t *x_extent;
             const int16_t *z_extent = NULL;
             switch (direction) {
             case DIR_EAST:
             case DIR_WEST:
-                x_extent = &bounds[FBBOX_MIN_Z];
-                z_extent = &bounds[FBBOX_MIN_X];
+                x_extent = &bounds->min_z;
+                z_extent = &bounds->min_x;
                 break;
             case DIR_NORTH:
             case DIR_SOUTH:
-                x_extent = &bounds[FBBOX_MIN_X];
-                z_extent = &bounds[FBBOX_MIN_Z];
+                x_extent = &bounds->min_x;
+                z_extent = &bounds->min_z;
                 break;
             default:
                 break;
@@ -332,9 +332,8 @@ int32_t __cdecl LOS_CheckSmashable(
                 for (int j = 0; j < 2; j++) {
                     if ((distance >= 0) == (dz >= 0)) {
                         const int32_t y = dy * distance / dz;
-                        if (y <= item->pos.y + bounds[FBBOX_MIN_Y] - start->y
-                            || y >= item->pos.y + bounds[FBBOX_MAX_Y]
-                                    - start->y) {
+                        if (y <= item->pos.y + bounds->min_y - start->y
+                            || y >= item->pos.y + bounds->max_y - start->y) {
                             continue;
                         }
 
@@ -359,9 +358,8 @@ int32_t __cdecl LOS_CheckSmashable(
                 for (int j = 0; j < 2; j++) {
                     if ((distance >= 0) == (dx >= 0)) {
                         const int32_t y = dy * distance / dx;
-                        if (y <= item->pos.y + bounds[FBBOX_MIN_Y] - start->y
-                            || y >= item->pos.y + bounds[FBBOX_MAX_Y]
-                                    - start->y) {
+                        if (y <= item->pos.y + bounds->min_y - start->y
+                            || y >= item->pos.y + bounds->max_y - start->y) {
                             continue;
                         }
 

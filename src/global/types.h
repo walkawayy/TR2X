@@ -2641,8 +2641,7 @@ typedef struct __unaligned {
 typedef struct __unaligned {
     BOUNDS_16 bounds;
     XYZ_16 offset;
-    int16_t nmeshes;
-    int32_t *mesh_rots;
+    int16_t mesh_rots[];
 } FRAME_INFO;
 
 typedef enum {

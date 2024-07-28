@@ -685,14 +685,14 @@ void __cdecl Camera_Update(void)
         && (g_Camera.type == CAM_FIXED || g_Camera.type == CAM_HEAVY);
     const ITEM_INFO *const item = fixed_camera ? g_Camera.item : g_LaraItem;
 
-    const int16_t *bounds = Item_GetBoundsAccurate(item);
+    const BOUNDS_16 *bounds = Item_GetBoundsAccurate(item);
 
     int32_t y = item->pos.y;
     if (fixed_camera) {
-        y += (bounds[FBBOX_MIN_Y] + bounds[FBBOX_MAX_Y]) / 2;
+        y += (bounds->min_y + bounds->max_y) / 2;
     } else {
-        y += bounds[FBBOX_MAX_Y]
-            + (((int32_t)(bounds[FBBOX_MIN_Y] - bounds[FBBOX_MAX_Y])) * 3 >> 2);
+        y += bounds->max_y
+            + (((int32_t)(bounds->min_y - bounds->max_y)) * 3 >> 2);
     }
 
     if (g_Camera.item && !fixed_camera) {
@@ -705,8 +705,7 @@ void __cdecl Camera_Update(void)
 
         int16_t tilt = Math_Atan(
             shift,
-            y - (bounds[FBBOX_MIN_Y] + bounds[FBBOX_MAX_Y]) / 2
-                - g_Camera.item->pos.y);
+            y - (bounds->min_y + bounds->max_y) / 2 - g_Camera.item->pos.y);
         angle >>= 1;
         tilt >>= 1;
 
@@ -758,8 +757,7 @@ void __cdecl Camera_Update(void)
         g_Camera.target.z = item->pos.z;
 
         if (g_Camera.flags == CF_FOLLOW_CENTRE) {
-            const int32_t shift =
-                (bounds[FBBOX_MIN_Z] + bounds[FBBOX_MAX_Z]) / 2;
+            const int32_t shift = (bounds->min_z + bounds->max_z) / 2;
             g_Camera.target.z += (shift * Math_Cos(item->rot.y)) >> W2V_SHIFT;
             g_Camera.target.x += (shift * Math_Sin(item->rot.y)) >> W2V_SHIFT;
         }

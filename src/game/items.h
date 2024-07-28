@@ -28,9 +28,9 @@ int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);
 void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
 int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);
 int32_t __cdecl Item_GetFrames(
-    const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);
-int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
-int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
+    const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate);
+BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
+FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
 bool __cdecl Item_IsNearItem(
     const ITEM_INFO *item, const XYZ_32 *pos, int32_t distance);
 

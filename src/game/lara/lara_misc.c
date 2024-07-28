@@ -1053,6 +1053,11 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
         int16_t item_num = g_Rooms[roomies[i]].item_num;
         while (item_num != NO_ITEM) {
             const ITEM_INFO *const item = &g_Items[item_num];
+
+            // the collision routine can destroy the item - need to store the
+            // next item beforehand
+            const int16_t next_item_num = item->next_item;
+
             if (item->collidable && item->status != IS_INVISIBLE) {
                 const OBJECT_INFO *const object = &g_Objects[item->object_num];
                 if (object->collision) {
@@ -1070,7 +1075,8 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
                     // clang-format on
                 }
             }
-            item_num = item->next_item;
+
+            item_num = next_item_num;
         }
     }
 

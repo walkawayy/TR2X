@@ -14,6 +14,7 @@
 #include "game/items.h"
 #include "game/lara/lara_col.h"
 #include "game/lara/lara_control.h"
+#include "game/lara/lara_draw.h"
 #include "game/lara/lara_look.h"
 #include "game/lara/lara_misc.h"
 #include "game/lara/lara_state.h"
@@ -61,6 +62,7 @@ static void Inject_Effects(bool enable);
 static void Inject_LOS(bool enable);
 static void Inject_Inventory(bool enable);
 static void Inject_Lara_Look(bool enable);
+static void Inject_Lara_Draw(bool enable);
 static void Inject_Lara_Misc(bool enable);
 static void Inject_Lara_State(bool enable);
 static void Inject_Lara_Col(bool enable);
@@ -524,6 +526,11 @@ static void Inject_Lara_Control(const bool enable)
     INJECT(enable, 0x00431F50, Lara_HandleUnderwater);
 }
 
+static void Inject_Lara_Draw(const bool enable)
+{
+    INJECT(enable, 0x00419DF0, Lara_Draw);
+}
+
 static void Inject_Lara_Look(const bool enable)
 {
     INJECT(enable, 0x00427720, Lara_LookUpDown);
@@ -811,6 +818,7 @@ void Inject_Exec(void)
     Inject_LOS(true);
     Inject_Inventory(true);
     Inject_Lara_Control(true);
+    Inject_Lara_Draw(true);
     Inject_Lara_Look(true);
     Inject_Lara_Misc(true);
     Inject_Lara_State(true);

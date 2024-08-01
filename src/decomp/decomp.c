@@ -8,6 +8,7 @@
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/items.h"
+#include "game/lara/lara_draw.h"
 #include "game/math.h"
 #include "game/music.h"
 #include "game/overlay.h"

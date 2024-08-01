@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.93% (596)</tspan> · <tspan class="known">48.60% (592)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.01% (597)</tspan> · <tspan class="known">48.52% (591)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="365.53" height="6" x="0" y="0" class="decompiled"/>
-<rect width="363.07" height="6" x="365.53" y="0" class="known"/>
+<rect width="366.14" height="6" x="0" y="0" class="decompiled"/>
+<rect width="362.46" height="6" x="366.14" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -293,7 +293,7 @@
 <rect width="12" height="12" x="210" y="60" class="decompiled"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="225" y="60" class="known"><title>void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="240" y="60" class="known"><title>void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="255" y="60" class="known"><title>void __cdecl Lara_Draw(const ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="255" y="60" class="decompiled"><title>void __cdecl Lara_Draw(const ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="270" y="60" class="known"><title>void __cdecl Lara_Draw_I(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);</title></rect>
 <rect width="12" height="12" x="285" y="60" class="decompiled"><title>void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);</title></rect>
 <rect width="12" height="12" x="300" y="60" class="decompiled"><title>void __cdecl Matrix_Pop_I(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">46.86%</tspan> · <tspan class="known">52.81%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">47.84%</tspan> · <tspan class="known">51.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="350.05" height="6" x="0" y="0" class="decompiled"/>
-<rect width="394.51" height="6" x="350.05" y="0" class="known"/>
+<rect width="357.33" height="6" x="0" y="0" class="decompiled"/>
+<rect width="387.23" height="6" x="357.33" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1309,7 +1309,7 @@
 <rect width="58" height="58.37" x="0" y="72.33" class="decompiled"><title>int32_t __cdecl Inv_Display(int32_t inventory_mode);</title></rect>
 <rect width="58" height="53.54" x="0" y="133.70" class="known"><title>void __cdecl BaddyObjects(void);</title></rect>
 <rect width="58" height="51.94" x="0" y="190.24" class="decompiled"><title>void __cdecl Output_GTMapPersp32FP(int32_t y1, int32_t y2, uint8_t *tex_page);</title></rect>
-<rect width="58" height="42.31" x="0" y="245.18" class="known"><title>void __cdecl Lara_Draw(const ITEM_INFO *item);</title></rect>
+<rect width="58" height="42.31" x="0" y="245.18" class="decompiled"><title>void __cdecl Lara_Draw(const ITEM_INFO *item);</title></rect>
 <rect width="58" height="41.67" x="0" y="290.49" class="known"><title>void __cdecl GF_ModifyInventory(int32_t level, int32_t type);</title></rect>
 <rect width="58" height="39.83" x="0" y="335.17" class="known"><title>void __cdecl ObjectObjects(void);</title></rect>
 <rect width="40.17" height="54.95" x="61" y="0" class="known"><title>void __cdecl Lara_Draw_I(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);</title></rect>

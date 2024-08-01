@@ -29,7 +29,6 @@
 #define Game_DrawCinematic ((int32_t __cdecl (*)(void))0x00418950)
 #define Object_DrawSpriteItem ((void __cdecl (*)(ITEM_INFO *item))0x004199E0)
 #define Object_DrawAnimatingItem ((void __cdecl (*)(ITEM_INFO *item))0x00419A70)
-#define Lara_Draw ((void __cdecl (*)(const ITEM_INFO *item))0x00419DF0)
 #define Lara_Draw_I ((void __cdecl (*)(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate))0x0041AB20)
 #define Gun_DrawFlash ((void __cdecl (*)(int32_t weapon_type, int32_t clip))0x0041BD30)
 #define Output_CalculateObjectLighting ((void __cdecl (*)(const ITEM_INFO *item, const FRAME_INFO *frame))0x0041BEA0)

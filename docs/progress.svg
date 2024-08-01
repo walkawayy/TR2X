@@ -293,8 +293,8 @@
 <rect width="12" height="12" x="210" y="60" class="decompiled"><title>void __cdecl Effect_Draw(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="225" y="60" class="known"><title>void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="240" y="60" class="known"><title>void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="255" y="60" class="known"><title>void __cdecl Lara_Draw(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="270" y="60" class="known"><title>void __cdecl Lara_Draw_I(ITEM_INFO *item, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);</title></rect>
+<rect width="12" height="12" x="255" y="60" class="known"><title>void __cdecl Lara_Draw(const ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="270" y="60" class="known"><title>void __cdecl Lara_Draw_I(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);</title></rect>
 <rect width="12" height="12" x="285" y="60" class="decompiled"><title>void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);</title></rect>
 <rect width="12" height="12" x="300" y="60" class="decompiled"><title>void __cdecl Matrix_Pop_I(void);</title></rect>
 <rect width="12" height="12" x="315" y="60" class="decompiled"><title>void __cdecl Matrix_Push_I(void);</title></rect>
@@ -304,16 +304,16 @@
 <rect width="12" height="12" x="375" y="60" class="decompiled"><title>void __cdecl Matrix_TranslateRel_I(int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="390" y="60" class="decompiled"><title>void __cdecl Matrix_TranslateRel_ID(int32_t x, int32_t y, int32_t z, int32_t x2, int32_t y2, int32_t z2);</title></rect>
 <rect width="12" height="12" x="405" y="60" class="decompiled"><title>void __cdecl Matrix_RotYXZ_I(int16_t y, int16_t x, int16_t z);</title></rect>
-<rect width="12" height="12" x="420" y="60" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack_I(int16_t **pprot1, int16_t **pprot2, int32_t skip);</title></rect>
-<rect width="12" height="12" x="435" y="60" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack(int16_t **pprot, int32_t skip);</title></rect>
+<rect width="12" height="12" x="420" y="60" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack_I(const int16_t **pprot1, const int16_t **pprot2, int32_t skip);</title></rect>
+<rect width="12" height="12" x="435" y="60" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack(const int16_t **pprot, int32_t skip);</title></rect>
 <rect width="12" height="12" x="450" y="60" class="decompiled"><title>void __cdecl Output_InsertPolygons_I(int16_t *ptr, int32_t clip);</title></rect>
 <rect width="12" height="12" x="465" y="60" class="decompiled"><title>void __cdecl Matrix_Interpolate(void);</title></rect>
 <rect width="12" height="12" x="480" y="60" class="decompiled"><title>void __cdecl Matrix_InterpolateArm(void);</title></rect>
 <rect width="12" height="12" x="495" y="60" class="known"><title>void __cdecl Gun_DrawFlash(int32_t weapon_type, int32_t clip);</title></rect>
-<rect width="12" height="12" x="510" y="60" class="known"><title>void __cdecl Output_CalculateObjectLighting(ITEM_INFO *item, int16_t *frame);</title></rect>
-<rect width="12" height="12" x="525" y="60" class="decompiled"><title>int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
-<rect width="12" height="12" x="540" y="60" class="decompiled"><title>int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="555" y="60" class="decompiled"><title>int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="510" y="60" class="known"><title>void __cdecl Output_CalculateObjectLighting(const ITEM_INFO *item, const FRAME_INFO *frame);</title></rect>
+<rect width="12" height="12" x="525" y="60" class="decompiled"><title>int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate);</title></rect>
+<rect width="12" height="12" x="540" y="60" class="decompiled"><title>BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="555" y="60" class="decompiled"><title>FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="570" y="60" class="known"><title>void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);</title></rect>
 <rect width="12" height="12" x="585" y="60" class="known"><title>void __cdecl BigEelControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="600" y="60" class="known"><title>void __cdecl EelControl(int16_t item_num);</title></rect>
@@ -1139,9 +1139,9 @@
 <rect width="12" height="12" x="150" y="315" class="known"><title>void __cdecl S_ClearScreen(void);</title></rect>
 <rect width="12" height="12" x="165" y="315" class="known"><title>void __cdecl S_InitialiseScreen(GF_LEVEL_TYPE level_type);</title></rect>
 <rect width="12" height="12" x="180" y="315" class="known"><title>void __cdecl S_OutputPolyList(void);</title></rect>
-<rect width="12" height="12" x="195" y="315" class="known"><title>int32_t __cdecl S_GetObjectBounds(int16_t *obj_ptr);</title></rect>
+<rect width="12" height="12" x="195" y="315" class="known"><title>int32_t __cdecl S_GetObjectBounds(const BOUNDS_16 *bounds);</title></rect>
 <rect width="12" height="12" x="210" y="315" class="known"><title>void __cdecl S_InsertBackPolygon(int32_t x0, int32_t y0, int32_t x1, int32_t y1);</title></rect>
-<rect width="12" height="12" x="225" y="315" class="known"><title>void __cdecl S_PrintShadow(int16_t radius, int16_t *obj_ptr, ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="225" y="315" class="known"><title>void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="240" y="315" class="known"><title>void __cdecl S_CalculateLight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="255" y="315" class="known"><title>void __cdecl S_CalculateStaticLight(int16_t adder);</title></rect>
 <rect width="12" height="12" x="270" y="315" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM_INFO *room);</title></rect>
@@ -1309,10 +1309,10 @@
 <rect width="58" height="58.37" x="0" y="72.33" class="decompiled"><title>int32_t __cdecl Inv_Display(int32_t inventory_mode);</title></rect>
 <rect width="58" height="53.54" x="0" y="133.70" class="known"><title>void __cdecl BaddyObjects(void);</title></rect>
 <rect width="58" height="51.94" x="0" y="190.24" class="decompiled"><title>void __cdecl Output_GTMapPersp32FP(int32_t y1, int32_t y2, uint8_t *tex_page);</title></rect>
-<rect width="58" height="42.31" x="0" y="245.18" class="known"><title>void __cdecl Lara_Draw(ITEM_INFO *item);</title></rect>
+<rect width="58" height="42.31" x="0" y="245.18" class="known"><title>void __cdecl Lara_Draw(const ITEM_INFO *item);</title></rect>
 <rect width="58" height="41.67" x="0" y="290.49" class="known"><title>void __cdecl GF_ModifyInventory(int32_t level, int32_t type);</title></rect>
 <rect width="58" height="39.83" x="0" y="335.17" class="known"><title>void __cdecl ObjectObjects(void);</title></rect>
-<rect width="40.17" height="54.95" x="61" y="0" class="known"><title>void __cdecl Lara_Draw_I(ITEM_INFO *item, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);</title></rect>
+<rect width="40.17" height="54.95" x="61" y="0" class="known"><title>void __cdecl Lara_Draw_I(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);</title></rect>
 <rect width="40.17" height="49.99" x="61" y="57.95" class="decompiled"><title>bool __cdecl Input_Update(void);</title></rect>
 <rect width="40.17" height="47.99" x="61" y="110.94" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT4(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="40.17" height="45.70" x="61" y="161.94" class="known"><title>void __cdecl HairControl(int32_t in_cutscene);</title></rect>
@@ -1439,7 +1439,7 @@
 <rect width="20.95" height="19.08" x="344.65" y="333.87" class="decompiled"><title>const int16_t *__cdecl Output_CalcRoomVertices(const int16_t *obj_ptr, int32_t far_clip);</title></rect>
 <rect width="20.95" height="19.05" x="344.65" y="355.95" class="known"><title>void __cdecl SharkControl(int16_t item_num);</title></rect>
 <rect width="19.35" height="20.62" x="368.60" y="0" class="known"><title>int32_t __cdecl DoShift(ITEM_INFO *skidoo, XYZ_32 *pos, XYZ_32 *old);</title></rect>
-<rect width="19.35" height="20.18" x="368.60" y="23.62" class="known"><title>int32_t __cdecl S_GetObjectBounds(int16_t *obj_ptr);</title></rect>
+<rect width="19.35" height="20.18" x="368.60" y="23.62" class="known"><title>int32_t __cdecl S_GetObjectBounds(const BOUNDS_16 *bounds);</title></rect>
 <rect width="19.35" height="20.10" x="368.60" y="46.80" class="known"><title>void __cdecl FlareControl(int16_t item_num);</title></rect>
 <rect width="19.35" height="19.81" x="368.60" y="69.90" class="decompiled"><title>void __cdecl Output_Init(int16_t x, int16_t y, int32_t width, int32_t height, int32_t near_z, int32_t far_z, int16_t view_angle, int32_t screen_width, int32_t screen_height);</title></rect>
 <rect width="19.35" height="19.77" x="368.60" y="92.71" class="decompiled"><title>int32_t __cdecl Room_GetHeight(const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);</title></rect>
@@ -1488,7 +1488,7 @@
 <rect width="17.36" height="17.42" x="390.95" y="296.59" class="decompiled"><title>void __cdecl Screenshot(LPDDS screen);</title></rect>
 <rect width="17.36" height="17.38" x="390.95" y="317.01" class="known"><title>void __cdecl MineControl(int16_t mine_num);</title></rect>
 <rect width="17.36" height="17.34" x="390.95" y="337.40" class="decompiled"><title>int32_t __cdecl Box_SearchLOT(LOT_INFO *lot, int32_t expansion);</title></rect>
-<rect width="17.36" height="17.26" x="390.95" y="357.74" class="known"><title>void __cdecl S_PrintShadow(int16_t radius, int16_t *obj_ptr, ITEM_INFO *item);</title></rect>
+<rect width="17.36" height="17.26" x="390.95" y="357.74" class="known"><title>void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM_INFO *item);</title></rect>
 <rect width="17.66" height="16.77" x="411.31" y="21.70" class="known"><title>void __cdecl Lara_WaterCurrent(COLL_INFO *coll);</title></rect>
 <rect width="17.54" height="16.77" x="431.97" y="21.70" class="known"><title>int32_t __cdecl GF_LoadScriptFile(char *fname);</title></rect>
 <rect width="17.45" height="16.77" x="452.50" y="21.70" class="decompiled"><title>void __cdecl Matrix_RotYXZpack(uint32_t rpack);</title></rect>
@@ -1691,7 +1691,7 @@
 <rect width="10.66" height="11.40" x="494.80" y="181.22" class="decompiled"><title>void __cdecl Camera_Chase(const ITEM_INFO *item);</title></rect>
 <rect width="10.66" height="11.28" x="494.80" y="195.62" class="decompiled"><title>void __cdecl Lara_State_SurfTread(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="10.66" height="11.22" x="494.80" y="209.90" class="decompiled"><title>void __cdecl Output_InsertRoom(const int16_t *obj_ptr, int32_t is_outside);</title></rect>
-<rect width="10.66" height="11.10" x="494.80" y="224.12" class="known"><title>void __cdecl Output_CalculateObjectLighting(ITEM_INFO *item, int16_t *frame);</title></rect>
+<rect width="10.66" height="11.10" x="494.80" y="224.12" class="known"><title>void __cdecl Output_CalculateObjectLighting(const ITEM_INFO *item, const FRAME_INFO *frame);</title></rect>
 <rect width="10.66" height="11.10" x="494.80" y="238.22" class="known"><title>BOOL __stdcall DInputEnumDevicesCallback(LPCDIDEVICEINSTANCE lpddi, LPVOID pvRef);</title></rect>
 <rect width="10.66" height="11.10" x="494.80" y="252.32" class="known"><title>void __cdecl CalculateWibbleTable(void);</title></rect>
 <rect width="10.66" height="11.04" x="494.80" y="266.42" class="decompiled"><title>void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);</title></rect>
@@ -1834,7 +1834,7 @@
 <rect width="8.52" height="8.75" x="603.72" y="173.80" class="known"><title>int32_t __cdecl OnTrapDoor(ITEM_INFO *item, int32_t x, int32_t z);</title></rect>
 <rect width="8.45" height="8.75" x="615.23" y="173.80" class="known"><title>bool __cdecl LoadTexturePage(int32_t page_idx, bool reset);</title></rect>
 <rect width="8.38" height="8.75" x="626.68" y="173.80" class="decompiled"><title>void __cdecl Output_AlterFOV(int16_t fov);</title></rect>
-<rect width="8.38" height="8.75" x="638.06" y="173.80" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack(int16_t **pprot, int32_t skip);</title></rect>
+<rect width="8.38" height="8.75" x="638.06" y="173.80" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack(const int16_t **pprot, int32_t skip);</title></rect>
 <rect width="8.38" height="8.75" x="649.44" y="173.80" class="decompiled"><title>void __cdecl CreateRenderBuffer(void);</title></rect>
 <rect width="8.31" height="8.75" x="660.82" y="173.80" class="decompiled"><title>int32_t __cdecl LOS_Check(const GAME_VECTOR *start, GAME_VECTOR *target);</title></rect>
 <rect width="8.24" height="8.75" x="672.12" y="173.80" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT3_Sorted(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
@@ -1875,7 +1875,7 @@
 <rect width="7.88" height="8.22" x="557.01" y="311" class="decompiled"><title>void __cdecl Misc_InitCinematicRooms(void);</title></rect>
 <rect width="7.88" height="8.22" x="557.01" y="322.22" class="decompiled"><title>void __cdecl Effect_NewRoom(int16_t fx_num, int16_t room_num);</title></rect>
 <rect width="7.88" height="8.22" x="557.01" y="333.43" class="known"><title>void __cdecl SE_AdvancedDlgUpdate(HWND hwndDlg);</title></rect>
-<rect width="7.88" height="8.14" x="557.01" y="344.65" class="decompiled"><title>int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);</title></rect>
+<rect width="7.88" height="8.14" x="557.01" y="344.65" class="decompiled"><title>int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate);</title></rect>
 <rect width="7.88" height="8.14" x="557.01" y="355.79" class="decompiled"><title>void __cdecl Music_SetVolume(int32_t volume);</title></rect>
 <rect width="7.88" height="8.07" x="557.01" y="366.93" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="7.91" height="8.03" x="567.89" y="185.54" class="decompiled"><title>void __cdecl Lara_State_Extra_SharkKill(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1942,7 +1942,7 @@
 <rect width="7.43" height="7.03" x="578.55" y="318.37" class="known"><title>void __cdecl FlashConflicts(void);</title></rect>
 <rect width="7.43" height="7.03" x="578.55" y="328.40" class="known"><title>void __cdecl S_SyncPictureBufferPalette(void);</title></rect>
 <rect width="7.43" height="6.95" x="578.55" y="338.43" class="known"><title>void __cdecl S_SaveSettings(void);</title></rect>
-<rect width="7.43" height="6.87" x="578.55" y="348.38" class="decompiled"><title>int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
+<rect width="7.43" height="6.87" x="578.55" y="348.38" class="decompiled"><title>BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="358.26" class="decompiled"><title>int32_t __cdecl Item_GlobalReplace(int32_t src_object_num, int32_t dst_object_num);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="368.13" class="decompiled"><title>void __cdecl Lara_State_StepRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.23" height="7.06" x="588.98" y="206.76" class="decompiled"><title>void __cdecl Lara_State_StepLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -2177,7 +2177,7 @@
 <rect width="4.10" height="4.25" x="742.90" y="269.04" class="decompiled"><title>DWORD __cdecl EncodePutPCX(BYTE value, BYTE num, BYTE *buffer);</title></rect>
 <rect width="4.42" height="3.93" x="648.46" y="276.30" class="known"><title>int32_t __stdcall SE_PropSheetCallback(HWND hwndDlg, UINT uMsg, LPARAM lParam);</title></rect>
 <rect width="4.42" height="3.93" x="655.89" y="276.30" class="known"><title>HWR_TEXTURE_HANDLE __cdecl GetTexturePageHandle(int32_t page_idx);</title></rect>
-<rect width="4.30" height="3.93" x="663.31" y="276.30" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack_I(int16_t **pprot1, int16_t **pprot2, int32_t skip);</title></rect>
+<rect width="4.30" height="3.93" x="663.31" y="276.30" class="decompiled"><title>void __cdecl Matrix_RotYXZsuperpack_I(const int16_t **pprot1, const int16_t **pprot2, int32_t skip);</title></rect>
 <rect width="4.30" height="3.93" x="670.61" y="276.30" class="known"><title>int32_t __cdecl KeyTrigger(int16_t item_num);</title></rect>
 <rect width="4.30" height="3.93" x="677.92" y="276.30" class="decompiled"><title>HRESULT __cdecl WinVidBufferLock(LPDDS surface, LPDDSDESC desc, DWORD flags);</title></rect>
 <rect width="4.30" height="3.93" x="685.22" y="276.30" class="known"><title>int32_t __cdecl SE_SoundTestExecute(void);</title></rect>
@@ -2238,7 +2238,7 @@
 <rect width="3.70" height="3.57" x="696.39" y="290.21" class="decompiled"><title>void __cdecl Output_DrawPolyTrans(const int16_t *obj_ptr);</title></rect>
 <rect width="3.70" height="3.57" x="703.10" y="290.21" class="decompiled"><title>void __cdecl Output_DrawPolyGouraud(const int16_t *obj_ptr);</title></rect>
 <rect width="3.70" height="3.57" x="709.80" y="290.21" class="decompiled"><title>void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);</title></rect>
-<rect width="3.70" height="3.57" x="716.50" y="290.21" class="decompiled"><title>int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
+<rect width="3.70" height="3.57" x="716.50" y="290.21" class="decompiled"><title>FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *item);</title></rect>
 <rect width="3.70" height="3.57" x="723.20" y="290.21" class="decompiled"><title>void __cdecl Lara_State_HangLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.70" height="3.57" x="729.90" y="290.21" class="decompiled"><title>void __cdecl Lara_State_HangRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.70" height="3.57" x="736.60" y="290.21" class="decompiled"><title>void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

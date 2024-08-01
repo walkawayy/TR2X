@@ -523,19 +523,19 @@ typedef struct __unaligned {
 } COLL_INFO;
 
 typedef struct __unaligned {
-    int16_t x_min;
-    int16_t x_max;
-    int16_t y_min;
-    int16_t y_max;
-    int16_t z_min;
-    int16_t z_max;
-} STATIC_BOUNDS;
+    int16_t min_x;
+    int16_t max_x;
+    int16_t min_y;
+    int16_t max_y;
+    int16_t min_z;
+    int16_t max_z;
+} BOUNDS_16;
 
 typedef struct __unaligned {
     int16_t mesh_index;
     uint16_t flags;
-    STATIC_BOUNDS draw_bounds;
-    STATIC_BOUNDS collision_bounds;
+    BOUNDS_16 draw_bounds;
+    BOUNDS_16 collision_bounds;
 } STATIC_INFO;
 
 typedef struct __unaligned {
@@ -1110,7 +1110,7 @@ typedef struct __unaligned {
     void (*ceiling)(
         const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
-    void (*draw_routine)(ITEM_INFO *item);
+    void (*draw_routine)(const ITEM_INFO *item);
     void (*collision)(int16_t
         item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 
@@ -2628,15 +2628,6 @@ typedef struct __unaligned {
     int32_t yv;
     int32_t zv;
 } DOOR_VBUF;
-
-typedef struct __unaligned {
-    int16_t min_x;
-    int16_t max_x;
-    int16_t min_y;
-    int16_t max_y;
-    int16_t min_z;
-    int16_t max_z;
-} BOUNDS_16;
 
 typedef struct __unaligned {
     BOUNDS_16 bounds;

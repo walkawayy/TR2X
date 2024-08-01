@@ -507,19 +507,19 @@ typedef struct __unaligned {
 } COLL_INFO;
 
 typedef struct __unaligned {
-    int16_t x_min;
-    int16_t x_max;
-    int16_t y_min;
-    int16_t y_max;
-    int16_t z_min;
-    int16_t z_max;
-} STATIC_BOUNDS;
+    int16_t min_x;
+    int16_t max_x;
+    int16_t min_y;
+    int16_t max_y;
+    int16_t min_z;
+    int16_t max_z;
+} BOUNDS_16;
 
 typedef struct __unaligned {
     int16_t mesh_index;
     uint16_t flags;
-    STATIC_BOUNDS draw_bounds;
-    STATIC_BOUNDS collision_bounds;
+    BOUNDS_16 draw_bounds;
+    BOUNDS_16 collision_bounds;
 } STATIC_INFO;
 
 typedef struct __unaligned {
@@ -1094,7 +1094,7 @@ typedef struct __unaligned {
     void (*ceiling)(
         const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
-    void (*draw_routine)(ITEM_INFO *item);
+    void (*draw_routine)(const ITEM_INFO *item);
     void (*collision)(int16_t
         item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 
@@ -2614,15 +2614,6 @@ typedef struct __unaligned {
 } DOOR_VBUF;
 
 typedef struct __unaligned {
-    int16_t min_x;
-    int16_t max_x;
-    int16_t min_y;
-    int16_t max_y;
-    int16_t min_z;
-    int16_t max_z;
-} BOUNDS_16;
-
-typedef struct __unaligned {
     BOUNDS_16 bounds;
     XYZ_16 offset;
     int16_t mesh_rots[];
@@ -2912,8 +2903,8 @@ typedef enum {
 0x00419890  0x0147  +       void __cdecl Effect_Draw(int16_t fx_num);
 0x004199E0  0x0083  -       void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);
 0x00419A70  0x0378  -       void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);
-0x00419DF0  0x0D02  -       void __cdecl Lara_Draw(ITEM_INFO *item);
-0x0041AB20  0x0BC6  -       void __cdecl Lara_Draw_I(ITEM_INFO *item, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
+0x00419DF0  0x0D02  -       void __cdecl Lara_Draw(const ITEM_INFO *item);
+0x0041AB20  0x0BC6  -       void __cdecl Lara_Draw_I(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);
 0x0041B710  0x0034  +       void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);
 0x0041B750  0x0022  +       void __cdecl Matrix_Pop_I(void);
 0x0041B780  0x0027  +       void __cdecl Matrix_Push_I(void);
@@ -2923,16 +2914,16 @@ typedef enum {
 0x0041B870  0x0041  +       void __cdecl Matrix_TranslateRel_I(int32_t x, int32_t y, int32_t z);
 0x0041B8C0  0x0047  +       void __cdecl Matrix_TranslateRel_ID(int32_t x, int32_t y, int32_t z, int32_t x2, int32_t y2, int32_t z2);
 0x0041B910  0x0041  +       void __cdecl Matrix_RotYXZ_I(int16_t y, int16_t x, int16_t z);
-0x0041B960  0x003D  +       void __cdecl Matrix_RotYXZsuperpack_I(int16_t **pprot1, int16_t **pprot2, int32_t skip);
-0x0041B9A0  0x00A1  +       void __cdecl Matrix_RotYXZsuperpack(int16_t **pprot, int32_t skip);
+0x0041B960  0x003D  +       void __cdecl Matrix_RotYXZsuperpack_I(const int16_t **pprot1, const int16_t **pprot2, int32_t skip);
+0x0041B9A0  0x00A1  +       void __cdecl Matrix_RotYXZsuperpack(const int16_t **pprot, int32_t skip);
 0x0041BA50  0x002A  +       void __cdecl Output_InsertPolygons_I(int16_t *ptr, int32_t clip);
 0x0041BA80  0x01A5  +       void __cdecl Matrix_Interpolate(void);
 0x0041BC30  0x00FC  +       void __cdecl Matrix_InterpolateArm(void);
 0x0041BD30  0x014B  -       void __cdecl Gun_DrawFlash(int32_t weapon_type, int32_t clip);
-0x0041BEA0  0x00E8  -       void __cdecl Output_CalculateObjectLighting(ITEM_INFO *item, int16_t *frame);
-0x0041BF90  0x0092  +       int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, int16_t *frmptr[], int32_t *rate);
-0x0041C030  0x007C  +       int16_t *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
-0x0041C0B0  0x0035  +       int16_t *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
+0x0041BEA0  0x00E8  -       void __cdecl Output_CalculateObjectLighting(const ITEM_INFO *item, const FRAME_INFO *frame);
+0x0041BF90  0x0092  +       int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate);
+0x0041C030  0x007C  +       BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
+0x0041C0B0  0x0035  +       FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
 0x0041C0F0  0x0048  -R      void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);
 
 # game/eel.c
@@ -3831,9 +3822,9 @@ typedef enum {
 0x00450C30  0x000B  -R      void __cdecl S_ClearScreen(void);
 0x00450C40  0x0037  -R      void __cdecl S_InitialiseScreen(GF_LEVEL_TYPE level_type);
 0x00450C80  0x0089  *R      void __cdecl S_OutputPolyList(void);
-0x00450CC0  0x0270  -R      int32_t __cdecl S_GetObjectBounds(int16_t *obj_ptr);
+0x00450CC0  0x0270  -R      int32_t __cdecl S_GetObjectBounds(const BOUNDS_16 *bounds);
 0x00450F30  0x0046  -R      void __cdecl S_InsertBackPolygon(int32_t x0, int32_t y0, int32_t x1, int32_t y1);
-0x00450F80  0x01F1  -R      void __cdecl S_PrintShadow(int16_t radius, int16_t *obj_ptr, ITEM_INFO *item);
+0x00450F80  0x01F1  -R      void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM_INFO *item);
 0x00451180  0x02F6  -R      void __cdecl S_CalculateLight(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00451480  0x0031  -R      void __cdecl S_CalculateStaticLight(int16_t adder);
 0x004514C0  0x0124  -R      void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM_INFO *room);

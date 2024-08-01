@@ -404,8 +404,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
             Matrix_Push();
             Matrix_TranslateAbs(mesh->x, mesh->y, mesh->z);
             Matrix_RotY(mesh->y_rot);
-            const int16_t bounds =
-                S_GetObjectBounds((int16_t *)&static_obj->draw_bounds);
+            const int16_t bounds = S_GetObjectBounds(&static_obj->draw_bounds);
             if (bounds) {
                 S_CalculateStaticMeshLight(
                     mesh->x, mesh->y, mesh->z, mesh->shade1, mesh->shade2, r);

@@ -529,6 +529,7 @@ static void Inject_Lara_Control(const bool enable)
 static void Inject_Lara_Draw(const bool enable)
 {
     INJECT(enable, 0x00419DF0, Lara_Draw);
+    INJECT(enable, 0x0041AB20, Lara_Draw_I);
 }
 
 static void Inject_Lara_Look(const bool enable)

@@ -56,3 +56,7 @@ void __cdecl Lara_Push(
 int32_t __cdecl Lara_MovePosition(
     XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
 int32_t __cdecl Lara_IsNearItem(const XYZ_32 *pos, int32_t distance);
+
+int32_t __cdecl Lara_TestClimb(
+    int32_t x, int32_t y, int32_t z, int32_t x_front, int32_t z_front,
+    int32_t item_height, int16_t item_room, int32_t *shift);

@@ -567,6 +567,7 @@ static void Inject_Lara_Misc(const bool enable)
     INJECT(enable, 0x00413A30, Lara_Push);
     INJECT(enable, 0x00414090, Lara_MovePosition);
     INJECT(enable, 0x0041C4D0, Lara_IsNearItem);
+    INJECT(enable, 0x0042E020, Lara_TestClimb);
 }
 
 static void Inject_Lara_State(const bool enable)

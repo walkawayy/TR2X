@@ -15,6 +15,8 @@
 #define MAX_BADDIE_COLLISION 20
 #define MOVE_SPEED 16
 #define MOVE_ANGLE (2 * PHD_DEGREE) // = 364
+#define CLIMB_HANG 900
+#define CLIMB_SHIFT 70
 
 static void __cdecl Lara_TakeHit_Impl(
     ITEM_INFO *const lara_item, const int32_t dx, const int32_t dz);
@@ -252,8 +254,8 @@ int32_t __cdecl Lara_TestWall(
     }
 
     const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    int32_t height = Room_GetHeight(floor, x, y, z);
-    int32_t ceiling = Room_GetCeiling(floor, x, y, z);
+    const int32_t height = Room_GetHeight(floor, x, y, z);
+    const int32_t ceiling = Room_GetCeiling(floor, x, y, z);
     if (height == NO_HEIGHT) {
         return 1;
     }
@@ -1219,4 +1221,123 @@ int32_t __cdecl Lara_MovePosition(
 int32_t __cdecl Lara_IsNearItem(const XYZ_32 *const pos, const int32_t distance)
 {
     return Item_IsNearItem(g_LaraItem, pos, distance);
+}
+
+int32_t __cdecl Lara_TestClimb(
+    const int32_t x, const int32_t y, const int32_t z, const int32_t x_front,
+    const int32_t z_front, const int32_t item_height, const int16_t item_room,
+    int32_t *const shift)
+{
+    *shift = 0;
+    bool hang = true;
+    if (!g_Lara.climb_status) {
+        return 0;
+    }
+
+    const FLOOR_INFO *floor;
+    int32_t height;
+    int32_t ceiling;
+
+    int16_t room_num = item_room;
+    floor = Room_GetFloor(x, y - 128, z, &room_num);
+    height = Room_GetHeight(floor, x, y, z);
+    if (height == NO_HEIGHT) {
+        return 0;
+    }
+
+    height -= y + item_height + STEP_L / 2;
+    if (height < -CLIMB_SHIFT) {
+        return 0;
+    }
+    if (height < 0) {
+        *shift = height;
+    }
+
+    ceiling = Room_GetCeiling(floor, x, y, z) - y;
+    if (ceiling > CLIMB_SHIFT) {
+        return 0;
+    }
+    if (ceiling > 0) {
+        if (*shift) {
+            return 0;
+        }
+        *shift = ceiling;
+    }
+
+    if (item_height + height < CLIMB_HANG) {
+        hang = false;
+    }
+
+    const int32_t x2 = x + x_front;
+    const int32_t z2 = z + z_front;
+    floor = Room_GetFloor(x2, y, z2, &room_num);
+    height = Room_GetHeight(floor, x2, y, z2);
+    if (height != NO_HEIGHT) {
+        height -= y;
+    }
+
+    if (height > CLIMB_SHIFT) {
+        ceiling = Room_GetCeiling(floor, x2, y, z2) - y;
+        if (ceiling >= LARA_CLIMB_HEIGHT) {
+            return 1;
+        }
+
+        if (ceiling > LARA_CLIMB_HEIGHT - CLIMB_SHIFT) {
+            if (*shift > 0) {
+                return hang ? -1 : 0;
+            }
+            *shift = ceiling - LARA_CLIMB_HEIGHT;
+            return 1;
+        }
+
+        if (ceiling > 0) {
+            return hang ? -1 : 0;
+        }
+
+        if (ceiling > -CLIMB_SHIFT && hang && *shift <= 0) {
+            if (*shift > ceiling) {
+                *shift = ceiling;
+            }
+
+            return -1;
+        }
+
+        return 0;
+    }
+
+    if (height > 0) {
+        if (*shift < 0) {
+            return 0;
+        }
+        if (height > *shift) {
+            *shift = height;
+        }
+    }
+
+    room_num = item_room;
+    floor = Room_GetFloor(x, item_height + y, z, &room_num);
+    floor = Room_GetFloor(x2, item_height + y, z2, &room_num);
+    ceiling = Room_GetCeiling(floor, x2, item_height + y, z2);
+    if (ceiling == NO_HEIGHT) {
+        return 1;
+    }
+
+    ceiling -= y;
+    if (ceiling <= height) {
+        return 1;
+    }
+
+    if (ceiling >= LARA_CLIMB_HEIGHT) {
+        return 1;
+    }
+
+    if (ceiling > LARA_CLIMB_HEIGHT - CLIMB_SHIFT) {
+        if (*shift > 0) {
+            return hang ? -1 : 0;
+        }
+        *shift = ceiling - LARA_CLIMB_HEIGHT;
+        return 1;
+    }
+
+    return hang ? -1 : 0;
 }

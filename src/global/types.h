@@ -276,18 +276,18 @@ typedef struct __unaligned {
     union {
         uint32_t all;
         struct {
-            uint32_t active : 1;
-            uint32_t flash : 1;
-            uint32_t rotate_h : 1;
-            uint32_t rotate_v : 1;
-            uint32_t centre_h : 1;
-            uint32_t centre_v : 1;
-            uint32_t hide : 1;
-            uint32_t right : 1;
-            uint32_t bottom : 1;
-            uint32_t background : 1;
-            uint32_t outline : 1;
-            uint32_t multiline : 1;
+            uint32_t active:     1;
+            uint32_t flash:      1;
+            uint32_t rotate_h:   1;
+            uint32_t rotate_v:   1;
+            uint32_t centre_h:   1;
+            uint32_t centre_v:   1;
+            uint32_t hide:       1;
+            uint32_t right:      1;
+            uint32_t bottom:     1;
+            uint32_t background: 1;
+            uint32_t outline:    1;
+            uint32_t multiline:  1;
         };
     } flags;
     uint16_t text_flags;
@@ -514,12 +514,13 @@ typedef struct __unaligned {
     int8_t z_tilt;
     int8_t hit_by_baddie;
     int8_t hit_static;
-    uint16_t slopes_are_walls : 1;
-    uint16_t slopes_are_pits : 1;
-    uint16_t lava_is_pit : 1;
-    uint16_t enable_baddie_push : 1;
-    uint16_t enable_spaz : 1;
-    uint16_t hit_ceiling : 1;
+    uint16_t slopes_are_walls:   1; // 0x01 1
+    uint16_t slopes_are_pits:    1; // 0x02 2
+    uint16_t lava_is_pit:        1; // 0x04 4
+    uint16_t enable_baddie_push: 1; // 0x08 8
+    uint16_t enable_spaz:        1; // 0x10 16
+    uint16_t hit_ceiling:        1; // 0x20 32
+    uint16_t pad:                10;
 } COLL_INFO;
 
 typedef struct __unaligned {
@@ -603,14 +604,14 @@ typedef struct __unaligned {
     uint8_t flares;
     uint8_t gun_status;
     uint8_t gun_type;
-    uint16_t available : 1;
-    uint16_t has_pistols : 1;
-    uint16_t has_magnums : 1;
-    uint16_t has_uzis : 1;
-    uint16_t has_shotgun : 1;
-    uint16_t has_m16 : 1;
-    uint16_t has_grenade : 1;
-    uint16_t has_harpoon : 1;
+    uint16_t available:   1; // 0x01 1
+    uint16_t has_pistols: 1; // 0x02 2
+    uint16_t has_magnums: 1; // 0x04 4
+    uint16_t has_uzis:    1; // 0x08 8
+    uint16_t has_shotgun: 1; // 0x10 16
+    uint16_t has_m16:     1; // 0x20 32
+    uint16_t has_grenade: 1; // 0x40 64
+    uint16_t has_harpoon: 1; // 0x80 128
     uint16_t pad : 8;
     uint16_t reserved2;
     STATISTICS_INFO statistics;
@@ -1075,18 +1076,18 @@ typedef struct __unaligned {
     int16_t single_level;
     uint16_t reserved2[16];
 
-    uint16_t demo_version : 1;              // 0x0001
-    uint16_t title_disabled : 1;            // 0x0002
-    uint16_t cheat_mode_check_disabled : 1; // 0x0004
-    uint16_t no_input_timeout : 1;          // 0x0008
-    uint16_t load_save_disabled : 1;        // 0x0010
-    uint16_t screen_sizing_disabled : 1;    // 0x0020
-    uint16_t lockout_option_ring : 1;       // 0x0040
-    uint16_t dozy_cheat_enabled : 1;        // 0x0080
-    uint16_t cyphered_strings : 1;          // 0x0100
-    uint16_t gym_enabled : 1;               // 0x0200
-    uint16_t play_any_level : 1;            // 0x0400
-    uint16_t cheat_enable : 1;              // 0x0800
+    uint16_t demo_version:              1; // 0x0001
+    uint16_t title_disabled:            1; // 0x0002
+    uint16_t cheat_mode_check_disabled: 1; // 0x0004
+    uint16_t no_input_timeout:          1; // 0x0008
+    uint16_t load_save_disabled:        1; // 0x0010
+    uint16_t screen_sizing_disabled:    1; // 0x0020
+    uint16_t lockout_option_ring:       1; // 0x0040
+    uint16_t dozy_cheat_enabled:        1; // 0x0080
+    uint16_t cyphered_strings:          1; // 0x0100
+    uint16_t gym_enabled:               1; // 0x0200
+    uint16_t play_any_level:            1; // 0x0400
+    uint16_t cheat_enable:              1; // 0x0800
 
     uint16_t reserved3[3];
     uint8_t cypher_code;
@@ -1123,14 +1124,14 @@ typedef struct __unaligned {
     union {
         uint16_t flags;
         struct {
-            uint16_t loaded : 1;
-            uint16_t intelligent : 1;
-            uint16_t save_position : 1;
-            uint16_t save_hitpoints : 1;
-            uint16_t save_flags : 1;
-            uint16_t save_anim : 1;
-            uint16_t semi_transparent : 1;
-            uint16_t water_creature : 1;
+            uint16_t loaded:           1; // 0x01 1
+            uint16_t intelligent:      1; // 0x02 2
+            uint16_t save_position:    1; // 0x04 4
+            uint16_t save_hitpoints:   1; // 0x08 8
+            uint16_t save_flags:       1; // 0x10 16
+            uint16_t save_anim:        1; // 0x20 32
+            uint16_t semi_transparent: 1; // 0x40 64
+            uint16_t water_creature:   1; // 0x80 128
             uint16_t pad : 8;
         };
     };
@@ -1208,14 +1209,12 @@ typedef struct __unaligned {
     int16_t weapon_item;
     int16_t back_gun;
     int16_t flare_frame;
-    uint16_t flare_control_left : 1;
-    uint16_t flare_control_right : 1;
-    uint16_t extra_anim : 1;
-    uint16_t look : 1;
-    uint16_t burn : 1;
-    uint16_t keep_ducked : 1;
-    uint16_t can_monkey_swing : 1;
-    uint16_t pad : 9;
+    uint16_t flare_control_left:  1; // 0x01 1
+    uint16_t flare_control_right: 1; // 0x02 2
+    uint16_t extra_anim:          1; // 0x04 4
+    uint16_t look:                1; // 0x08 8
+    uint16_t burn:                1; // 0x10 16
+    uint16_t pad:                 11;
     int32_t water_surface_dist;
     XYZ_32 last_pos;
     FX_INFO *spaz_effect;

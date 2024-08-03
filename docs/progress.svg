@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.26% (600)</tspan> · <tspan class="known">48.28% (588)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.34% (601)</tspan> · <tspan class="known">48.19% (587)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="367.98" height="6" x="0" y="0" class="decompiled"/>
-<rect width="360.62" height="6" x="367.98" y="0" class="known"/>
+<rect width="368.59" height="6" x="0" y="0" class="decompiled"/>
+<rect width="360.01" height="6" x="368.59" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -611,7 +611,7 @@
 <rect width="12" height="12" x="480" y="150" class="decompiled"><title>int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="495" y="150" class="decompiled"><title>int32_t __cdecl Lara_TestClimb(int32_t x, int32_t y, int32_t z, int32_t xfront, int32_t zfront, int32_t item_height, int16_t item_room, int32_t *shift);</title></rect>
 <rect width="12" height="12" x="510" y="150" class="decompiled"><title>int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);</title></rect>
-<rect width="12" height="12" x="525" y="150" class="known"><title>void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);</title></rect>
+<rect width="12" height="12" x="525" y="150" class="decompiled"><title>void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);</title></rect>
 <rect width="12" height="12" x="540" y="150" class="known"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>
 <rect width="12" height="12" x="555" y="150" class="known"><title>void __cdecl LaraGun(void);</title></rect>
 <rect width="12" height="12" x="570" y="150" class="known"><title>int32_t __cdecl CheckForHoldingState(int32_t state);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">48.95%</tspan> · <tspan class="known">50.72%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.02%</tspan> · <tspan class="known">50.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="365.67" height="6" x="0" y="0" class="decompiled"/>
-<rect width="378.89" height="6" x="365.67" y="0" class="known"/>
+<rect width="366.19" height="6" x="0" y="0" class="decompiled"/>
+<rect width="378.37" height="6" x="366.19" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1687,7 +1687,7 @@
 <rect width="10.66" height="11.71" x="494.80" y="122.81" class="known"><title>void __cdecl FireShotgun(void);</title></rect>
 <rect width="10.66" height="11.59" x="494.80" y="137.52" class="known"><title>void __cdecl SphereOfDoom(int16_t item_num);</title></rect>
 <rect width="10.66" height="11.59" x="494.80" y="152.11" class="known"><title>void __cdecl FireRocket(void);</title></rect>
-<rect width="10.66" height="11.52" x="494.80" y="166.69" class="known"><title>void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);</title></rect>
+<rect width="10.66" height="11.52" x="494.80" y="166.69" class="decompiled"><title>void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);</title></rect>
 <rect width="10.66" height="11.40" x="494.80" y="181.22" class="decompiled"><title>void __cdecl Camera_Chase(const ITEM_INFO *item);</title></rect>
 <rect width="10.66" height="11.28" x="494.80" y="195.62" class="decompiled"><title>void __cdecl Lara_State_SurfTread(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="10.66" height="11.22" x="494.80" y="209.90" class="decompiled"><title>void __cdecl Output_InsertRoom(const int16_t *obj_ptr, int32_t is_outside);</title></rect>

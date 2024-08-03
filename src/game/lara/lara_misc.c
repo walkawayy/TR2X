@@ -1386,3 +1386,43 @@ int32_t __cdecl Lara_TestClimbPos(
     return Lara_TestClimb(
         x, y, z, x_front, z_front, height, item->room_num, shift);
 }
+
+void __cdecl Lara_DoClimbLeftRight(
+    ITEM_INFO *const item, const COLL_INFO *const coll, const int32_t result,
+    const int32_t shift)
+{
+    if (result == 1) {
+        if (g_Input & IN_LEFT) {
+            item->goal_anim_state = LS_CLIMB_LEFT;
+        } else if (g_Input & IN_RIGHT) {
+            item->goal_anim_state = LS_CLIMB_RIGHT;
+        } else {
+            item->goal_anim_state = LS_CLIMB_STANCE;
+        }
+        item->pos.y += shift;
+        return;
+    }
+
+    if (result) {
+        item->goal_anim_state = LS_HANG;
+        do {
+            Item_Animate(item);
+        } while (item->current_anim_state != LS_HANG);
+        item->pos.x = coll->old.x;
+        item->pos.z = coll->old.z;
+        return;
+    }
+
+    item->pos.x = coll->old.x;
+    item->pos.z = coll->old.z;
+    item->goal_anim_state = LS_CLIMB_STANCE;
+    item->current_anim_state = LS_CLIMB_STANCE;
+    if (coll->old_anim_state == LS_CLIMB_STANCE) {
+        item->frame_num = coll->old_frame_num;
+        item->anim_num = coll->old_anim_num;
+        Lara_Animate(item);
+    } else {
+        item->anim_num = LA_LADDER_IDLE;
+        item->frame_num = g_Anims[item->anim_num].frame_base;
+    }
+}

@@ -3249,7 +3249,7 @@ typedef enum {
 0x0042DF70  0x00AA  +       int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);
 0x0042E020  0x0263  +       int32_t __cdecl Lara_TestClimb(int32_t x, int32_t y, int32_t z, int32_t xfront, int32_t zfront, int32_t item_height, int16_t item_room, int32_t *shift);
 0x0042E290  0x00BC  +       int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);
-0x0042E360  0x00EF  -       void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);
+0x0042E360  0x00EF  +       void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);
 0x0042E450  0x0235  -       int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
 
 # game/larafire.c

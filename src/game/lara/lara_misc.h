@@ -64,3 +64,6 @@ int32_t __cdecl Lara_TestClimb(
 int32_t __cdecl Lara_TestClimbPos(
     const ITEM_INFO *item, int32_t front, int32_t right, int32_t origin,
     int32_t height, int32_t *shift);
+
+void __cdecl Lara_DoClimbLeftRight(
+    ITEM_INFO *item, const COLL_INFO *coll, int32_t result, int32_t shift);

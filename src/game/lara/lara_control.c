@@ -702,3 +702,92 @@ void __cdecl Lara_InitialiseLoad(const int16_t item_num)
     g_Lara.item_num = item_num;
     g_LaraItem = &g_Items[item_num];
 }
+
+void __cdecl Lara_Initialise(const INIT_LEVEL_TYPE type)
+{
+    ITEM_INFO *const item = g_LaraItem;
+
+    item->data = &g_Lara;
+    item->collidable = 0;
+    item->hit_points = LARA_MAX_HITPOINTS;
+
+    g_Lara.hit_direction = -1;
+    g_Lara.skidoo = NO_ITEM;
+    g_Lara.weapon_item = NO_ITEM;
+    g_Lara.calc_fallspeed = 0;
+    g_Lara.climb_status = 0;
+    g_Lara.pose_count = 0;
+    g_Lara.hit_frame = 0;
+    g_Lara.air = LARA_MAX_AIR;
+    g_Lara.dive_count = 0;
+    g_Lara.death_count = 0;
+    g_Lara.current_active = 0;
+    g_Lara.spaz_effect_count = 0;
+    g_Lara.flare_age = 0;
+    g_Lara.back_gun = 0;
+    g_Lara.flare_frame = 0;
+    g_Lara.flare_control_left = 0;
+    g_Lara.flare_control_right = 0;
+    g_Lara.extra_anim = 0;
+    g_Lara.look = 1;
+    g_Lara.burn = 0;
+    g_Lara.water_surface_dist = 100;
+    g_Lara.last_pos = item->pos;
+    g_Lara.spaz_effect = NULL;
+    g_Lara.mesh_effects = 0;
+    g_Lara.target = NULL;
+    g_Lara.turn_rate = 0;
+    g_Lara.move_angle = 0;
+    g_Lara.head_x_rot = 0;
+    g_Lara.head_y_rot = 0;
+    g_Lara.head_z_rot = 0;
+    g_Lara.torso_x_rot = 0;
+    g_Lara.torso_y_rot = 0;
+    g_Lara.torso_z_rot = 0;
+    g_Lara.left_arm.flash_gun = 0;
+    g_Lara.right_arm.flash_gun = 0;
+    g_Lara.left_arm.lock = 0;
+    g_Lara.right_arm.lock = 0;
+    g_Lara.creature = NULL;
+
+    if (type == IL_NORMAL && g_GF_LaraStartAnim) {
+        g_Lara.water_status = LWS_ABOVE_WATER;
+        g_Lara.gun_status = LGS_HANDS_BUSY;
+        item->anim_num = g_Objects[O_LARA_EXTRA].anim_idx;
+        item->frame_num = g_Anims[item->anim_num].frame_base;
+        item->current_anim_state = LA_EXTRA_BREATH;
+        item->goal_anim_state = g_GF_LaraStartAnim;
+        Lara_Animate(item);
+        g_Lara.extra_anim = 1;
+        g_Camera.type = CAM_CINEMATIC;
+        g_CineFrameIdx = 0;
+        g_CinePos = item->pos_full;
+    } else if ((g_Rooms[item->room_num].flags & RF_UNDERWATER)) {
+        g_Lara.water_status = LWS_UNDERWATER;
+        item->fall_speed = 0;
+        item->goal_anim_state = LS_TREAD;
+        item->current_anim_state = LS_TREAD;
+        item->anim_num = LA_UNDERWATER_IDLE;
+        item->frame_num = g_Anims[item->anim_num].frame_base;
+    } else {
+        g_Lara.water_status = LWS_ABOVE_WATER;
+        item->goal_anim_state = LS_STOP;
+        item->current_anim_state = LS_STOP;
+        item->anim_num = LA_STAND_STILL;
+        item->frame_num = g_Anims[item->anim_num].frame_base;
+    }
+
+    if (type == IL_CUTSCENE) {
+        for (int32_t i = 0; i < LM_NUMBER_OF; i++) {
+            g_Lara.mesh_ptrs[i] = g_Meshes[g_Objects[O_LARA].mesh_idx + i];
+        }
+
+        g_Lara.mesh_ptrs[LM_THIGH_L] =
+            g_Meshes[g_Objects[O_LARA_PISTOLS].mesh_idx + LM_THIGH_L];
+        g_Lara.mesh_ptrs[LM_THIGH_R] =
+            g_Meshes[g_Objects[O_LARA_PISTOLS].mesh_idx + LM_THIGH_R];
+        g_Lara.gun_status = LGS_ARMLESS;
+    } else {
+        Lara_InitialiseInventory(g_CurrentLevel);
+    }
+}

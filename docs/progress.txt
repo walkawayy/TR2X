@@ -2646,6 +2646,17 @@ typedef enum {
     TT_ANTITRIGGER = 9,
 } TRIGGER_TYPE;
 
+typedef enum {
+    IL_TITLE                 = 0,
+    IL_NORMAL                = 1,
+    IL_SAVED                 = 2,
+    IL_DEMO                  = 3,
+    IL_CUTSCENE              = 4,
+    IL_STORY_SO_FAR          = 5,
+    IL_QUIET                 = 6,
+    IL_STORY_SO_FAR_MIDLEVEL = 7,
+} INIT_LEVEL_TYPE;
+
 # FUNCTIONS
 #   Flags:
 #   - to do
@@ -3284,7 +3295,7 @@ typedef enum {
 0x00430E30  0x00BA  +       void __cdecl Lara_CheatGetStuff(void);
 0x00430EF0  0x001B  +       void __cdecl Lara_ControlExtra(int16_t item_num);
 0x00430F10  0x0021  +       void __cdecl Lara_InitialiseLoad(int16_t item_num);
-0x00430F40  0x02BD  -       void __cdecl Lara_Initialise(int32_t type);
+0x00430F40  0x02BD  +       void __cdecl Lara_Initialise(int32_t type);
 0x00431200  0x036C  -       void __cdecl Lara_InitialiseInventory(int32_t level_num);
 0x00431570  0x00FA  -       void __cdecl Lara_InitialiseMeshes(int32_t level_num);
 
@@ -4353,3 +4364,4 @@ typedef enum {
 0x005258C0  -       DOOR_VBUF g_DoorVBuf[4];
 0x00464180  -       int32_t g_BoxLines[12][2];
 0x00526190  -       BOOL g_CameraUnderwater;
+0x004D77F0  -       int32_t g_GF_LaraStartAnim;

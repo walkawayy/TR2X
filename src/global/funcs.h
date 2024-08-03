@@ -194,7 +194,6 @@
 #define undraw_flare_meshes ((void __cdecl (*)(void))0x00430010)
 #define ready_flare ((void __cdecl (*)(void))0x00430030)
 #define FlareControl ((void __cdecl (*)(int16_t item_num))0x00430070)
-#define Lara_Initialise ((void __cdecl (*)(int32_t type))0x00430F40)
 #define Lara_InitialiseInventory ((void __cdecl (*)(int32_t level_num))0x00431200)
 #define Lara_InitialiseMeshes ((void __cdecl (*)(int32_t level_num))0x00431570)
 #define Lara_GetWaterDepth ((int32_t __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t room_num))0x004324A0)

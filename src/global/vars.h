@@ -149,6 +149,7 @@ extern const char *g_TR2XVersion;
 #define g_IsAssaultTimerDisplay (*(int32_t*)0x004D77E0)
 #define g_IsAssaultTimerActive (*(BOOL*)0x004D77E4)
 #define g_IsMonkAngry (*(BOOL*)0x004D77E8)
+#define g_GF_LaraStartAnim (*(int32_t*)0x004D77F0)
 #define g_GF_NoFloor (*(int16_t*)0x004D77FC)
 #define g_GF_StartGame (*(int8_t*)0x004D780C)
 #define g_AmmoTextInfo (*(TEXTSTRING **)0x004D792C)

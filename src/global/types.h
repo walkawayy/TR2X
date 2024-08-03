@@ -2662,4 +2662,15 @@ typedef enum {
     TT_ANTITRIGGER = 9,
 } TRIGGER_TYPE;
 
+typedef enum {
+    IL_TITLE                 = 0,
+    IL_NORMAL                = 1,
+    IL_SAVED                 = 2,
+    IL_DEMO                  = 3,
+    IL_CUTSCENE              = 4,
+    IL_STORY_SO_FAR          = 5,
+    IL_QUIET                 = 6,
+    IL_STORY_SO_FAR_MIDLEVEL = 7,
+} INIT_LEVEL_TYPE;
+
 // clang-format on

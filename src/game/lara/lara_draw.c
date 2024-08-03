@@ -102,7 +102,6 @@ void __cdecl Lara_Draw(const ITEM_INFO *const item)
     Matrix_TranslateRel(bone[21], bone[22], bone[23]);
     Matrix_RotYXZsuperpack(&mesh_rots, 0);
     Output_InsertPolygons(g_Lara.mesh_ptrs[LM_FOOT_R], clip);
-
     Matrix_Pop();
 
     Matrix_TranslateRel(bone[25], bone[26], bone[27]);
@@ -138,15 +137,12 @@ void __cdecl Lara_Draw(const ITEM_INFO *const item)
 
     if (g_Lara.back_gun) {
         Matrix_Push();
-        Matrix_TranslateRel(
-            g_Bones[g_Objects[g_Lara.back_gun].bone_idx + 53],
-            g_Bones[g_Objects[g_Lara.back_gun].bone_idx + 54],
-            g_Bones[g_Objects[g_Lara.back_gun].bone_idx + 55]);
+        const int32_t *bone_c = &g_Bones[g_Objects[g_Lara.back_gun].bone_idx];
+        Matrix_TranslateRel(bone_c[53], bone_c[54], bone_c[55]);
         mesh_rots_c = g_Objects[g_Lara.back_gun].frame_base + FBBOX_ROT;
         Matrix_RotYXZsuperpack(&mesh_rots_c, 14);
         Output_InsertPolygons(
             g_Meshes[g_Objects[g_Lara.back_gun].mesh_idx + LM_HEAD], clip);
-
         Matrix_Pop();
     }
 
@@ -365,13 +361,18 @@ void __cdecl Lara_Draw_I(
 
     if (!clip) {
         Matrix_Pop();
+        return;
     }
 
     Matrix_Push();
     Output_CalculateObjectLighting(item, frame1);
-    int32_t *bone = &g_Bones[object->bone_idx];
+
+    const int32_t *bone = &g_Bones[object->bone_idx];
     const int16_t *mesh_rots_1 = frame1->mesh_rots;
     const int16_t *mesh_rots_2 = frame2->mesh_rots;
+    const int16_t *mesh_rots_1_c;
+    const int16_t *mesh_rots_2_c;
+
     Matrix_InitInterpolate(frac, rate);
     Matrix_TranslateRel_ID(
         frame1->offset.x, frame1->offset.y, frame1->offset.z, frame2->offset.x,
@@ -427,8 +428,8 @@ void __cdecl Lara_Draw_I(
 
     Matrix_Push_I();
     Matrix_TranslateRel_I(bone[53], bone[54], bone[55]);
-    const int16_t *mesh_rots_1_c = mesh_rots_1;
-    const int16_t *mesh_rots_2_c = mesh_rots_2;
+    mesh_rots_1_c = mesh_rots_1;
+    mesh_rots_2_c = mesh_rots_2;
     Matrix_RotYXZsuperpack_I(&mesh_rots_1, &mesh_rots_2, 6);
     mesh_rots_1 = mesh_rots_1_c;
     mesh_rots_2 = mesh_rots_2_c;
@@ -447,7 +448,7 @@ void __cdecl Lara_Draw_I(
         mesh_rots_2_c = g_Objects[g_Lara.back_gun].frame_base + FBBOX_ROT;
         Matrix_RotYXZsuperpack_I(&mesh_rots_1_c, &mesh_rots_2_c, 14);
         Output_InsertPolygons_I(
-            g_Meshes[g_Objects[g_Lara.back_gun].mesh_idx + 14], clip);
+            g_Meshes[g_Objects[g_Lara.back_gun].mesh_idx + LM_HEAD], clip);
         Matrix_Pop_I();
     }
 

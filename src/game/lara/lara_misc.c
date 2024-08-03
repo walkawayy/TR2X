@@ -1341,3 +1341,48 @@ int32_t __cdecl Lara_TestClimb(
 
     return hang ? -1 : 0;
 }
+
+int32_t __cdecl Lara_TestClimbPos(
+    const ITEM_INFO *const item, const int32_t front, const int32_t right,
+    const int32_t origin, const int32_t height, int32_t *const shift)
+{
+    const int32_t y = item->pos.y + origin;
+    int32_t x;
+    int32_t z;
+    int32_t x_front = 0;
+    int32_t z_front = 0;
+
+    switch (Math_GetDirection(item->rot.y)) {
+    case DIR_NORTH:
+        x = item->pos.x + right;
+        z = item->pos.z + front;
+        z_front = 2;
+        break;
+
+    case DIR_EAST:
+        x = item->pos.x + front;
+        z = item->pos.z - right;
+        x_front = 2;
+        break;
+
+    case DIR_SOUTH:
+        x = item->pos.x - right;
+        z = item->pos.z - front;
+        z_front = -2;
+        break;
+
+    case DIR_WEST:
+        x = item->pos.x - front;
+        z = item->pos.z + right;
+        x_front = -2;
+        break;
+
+    default:
+        z = front;
+        x = front;
+        break;
+    }
+
+    return Lara_TestClimb(
+        x, y, z, x_front, z_front, height, item->room_num, shift);
+}

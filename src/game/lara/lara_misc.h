@@ -60,3 +60,7 @@ int32_t __cdecl Lara_IsNearItem(const XYZ_32 *pos, int32_t distance);
 int32_t __cdecl Lara_TestClimb(
     int32_t x, int32_t y, int32_t z, int32_t x_front, int32_t z_front,
     int32_t item_height, int16_t item_room, int32_t *shift);
+
+int32_t __cdecl Lara_TestClimbPos(
+    const ITEM_INFO *item, int32_t front, int32_t right, int32_t origin,
+    int32_t height, int32_t *shift);

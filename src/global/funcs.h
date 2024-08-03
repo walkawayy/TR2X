@@ -172,7 +172,6 @@
 #define undraw_pistol_mesh_right ((void __cdecl (*)(int32_t weapon_type))0x0042D350)
 #define PistolHandler ((void __cdecl (*)(int32_t weapon_type))0x0042D390)
 #define AnimatePistols ((void __cdecl (*)(int32_t weapon_type))0x0042D520)
-#define Lara_TestClimbPos ((int32_t __cdecl (*)(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift))0x0042E290)
 #define Lara_DoClimbLeftRight ((void __cdecl (*)(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift))0x0042E360)
 #define Lara_TestClimbUpPos ((int32_t __cdecl (*)(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge))0x0042E450)
 #define LaraGun ((void __cdecl (*)(void))0x0042E6A0)

@@ -1,6 +1,7 @@
 #include "game/inventory.h"
 
 #include "game/input.h"
+#include "game/lara/lara_control.h"
 #include "game/matrix.h"
 #include "game/music.h"
 #include "game/output.h"

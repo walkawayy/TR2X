@@ -596,3 +596,74 @@ void __cdecl Lara_Animate(ITEM_INFO *const item)
     item->pos.x += (item->speed * Math_Sin(g_Lara.move_angle)) >> W2V_SHIFT;
     item->pos.z += (item->speed * Math_Cos(g_Lara.move_angle)) >> W2V_SHIFT;
 }
+
+void __cdecl Lara_UseItem(const int16_t object_num)
+{
+    ITEM_INFO *const item = g_LaraItem;
+
+    switch (object_num) {
+    case O_PISTOL_ITEM:
+    case O_PISTOL_OPTION:
+        g_Lara.request_gun_type = LGT_PISTOLS;
+        break;
+
+    case O_SHOTGUN_ITEM:
+    case O_SHOTGUN_OPTION:
+        g_Lara.request_gun_type = LGT_SHOTGUN;
+        break;
+
+    case O_MAGNUM_ITEM:
+    case O_MAGNUM_OPTION:
+        g_Lara.request_gun_type = LGT_MAGNUMS;
+        break;
+
+    case O_UZI_ITEM:
+    case O_UZI_OPTION:
+        g_Lara.request_gun_type = LGT_UZIS;
+        break;
+
+    case O_HARPOON_ITEM:
+    case O_HARPOON_OPTION:
+        g_Lara.request_gun_type = LGT_HARPOON;
+        break;
+
+    case O_M16_ITEM:
+    case O_M16_OPTION:
+        g_Lara.request_gun_type = LGT_M16;
+        break;
+
+    case O_GRENADE_ITEM:
+    case O_GRENADE_OPTION:
+        g_Lara.request_gun_type = LGT_ROCKET;
+        break;
+
+    case O_SMALL_MEDIPACK_ITEM:
+    case O_SMALL_MEDIPACK_OPTION:
+        if (item->hit_points > 0 && item->hit_points < LARA_MAX_HITPOINTS) {
+            item->hit_points += LARA_MAX_HITPOINTS / 2;
+            CLAMPG(item->hit_points, LARA_MAX_HITPOINTS);
+            Inv_RemoveItem(O_SMALL_MEDIPACK_ITEM);
+            Sound_Effect(SFX_MENU_MEDI, NULL, SPM_ALWAYS);
+            g_SaveGame.statistics.medipacks++;
+        }
+        break;
+
+    case O_LARGE_MEDIPACK_ITEM:
+    case O_LARGE_MEDIPACK_OPTION:
+        if (item->hit_points > 0 && item->hit_points < LARA_MAX_HITPOINTS) {
+            item->hit_points = LARA_MAX_HITPOINTS;
+            Inv_RemoveItem(O_LARGE_MEDIPACK_ITEM);
+            Sound_Effect(SFX_MENU_MEDI, NULL, SPM_ALWAYS);
+            g_SaveGame.statistics.medipacks += 2;
+        }
+        break;
+
+    case O_FLARES_ITEM:
+    case O_FLARES_OPTION:
+        g_Lara.request_gun_type = LGT_FLARE;
+        break;
+
+    default:
+        break;
+    }
+}

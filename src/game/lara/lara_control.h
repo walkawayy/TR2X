@@ -13,3 +13,5 @@ void __cdecl Lara_Control(int16_t item_num);
 void __cdecl Lara_Animate(ITEM_INFO *item);
 
 void __cdecl Lara_UseItem(int16_t object_num);
+
+void __cdecl Lara_CheatGetStuff(void);

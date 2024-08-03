@@ -527,6 +527,7 @@ static void Inject_Lara_Control(const bool enable)
     INJECT(enable, 0x004302E0, Lara_Control);
     INJECT(enable, 0x00430970, Lara_Animate);
     INJECT(enable, 0x00430C70, Lara_UseItem);
+    INJECT(enable, 0x00430E30, Lara_CheatGetStuff);
 }
 
 static void Inject_Lara_Draw(const bool enable)

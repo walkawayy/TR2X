@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.84% (607)</tspan> · <tspan class="known">47.70% (581)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.92% (608)</tspan> · <tspan class="known">47.62% (580)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="372.27" height="6" x="0" y="0" class="decompiled"/>
-<rect width="356.33" height="6" x="372.27" y="0" class="known"/>
+<rect width="372.89" height="6" x="0" y="0" class="decompiled"/>
+<rect width="355.71" height="6" x="372.89" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -640,7 +640,7 @@
 <rect width="12" height="12" x="165" y="165" class="decompiled"><title>void __cdecl Lara_UseItem(int16_t object_num);</title></rect>
 <rect width="12" height="12" x="180" y="165" class="decompiled"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>
 <rect width="12" height="12" x="195" y="165" class="decompiled"><title>void __cdecl Lara_ControlExtra(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="210" y="165" class="known"><title>void __cdecl Lara_InitialiseLoad(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="210" y="165" class="decompiled"><title>void __cdecl Lara_InitialiseLoad(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="225" y="165" class="known"><title>void __cdecl Lara_Initialise(int32_t type);</title></rect>
 <rect width="12" height="12" x="240" y="165" class="known"><title>void __cdecl Lara_InitialiseInventory(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="255" y="165" class="known"><title>void __cdecl Lara_InitialiseMeshes(int32_t level_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.03%</tspan> · <tspan class="known">49.64%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.04%</tspan> · <tspan class="known">49.63%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="373.75" height="6" x="0" y="0" class="decompiled"/>
-<rect width="370.81" height="6" x="373.75" y="0" class="known"/>
+<rect width="373.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="370.74" height="6" x="373.82" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2373,7 +2373,7 @@
 <rect width="2.57" height="2.07" x="698.40" y="357.89" class="decompiled"><title>void __cdecl WinVidFreeWindow(void);</title></rect>
 <rect width="2.57" height="2.07" x="698.40" y="362.95" class="decompiled"><title>bool __cdecl DInputCreate(void);</title></rect>
 <rect width="2.57" height="2.07" x="698.40" y="368.02" class="decompiled"><title>bool __cdecl HWR_Init(void);</title></rect>
-<rect width="2.57" height="1.92" x="698.40" y="373.08" class="known"><title>void __cdecl Lara_InitialiseLoad(int16_t item_num);</title></rect>
+<rect width="2.57" height="1.92" x="698.40" y="373.08" class="decompiled"><title>void __cdecl Lara_InitialiseLoad(int16_t item_num);</title></rect>
 <rect width="2.33" height="2.14" x="703.97" y="327.05" class="known"><title>void __cdecl init_game_malloc(void);</title></rect>
 <rect width="2.33" height="2.14" x="709.30" y="327.05" class="known"><title>void __cdecl S_SetupAboveWater(BOOL underwater);</title></rect>
 <rect width="2.17" height="2.14" x="714.63" y="327.05" class="known"><title>void __cdecl Inv_Ring_MotionCameraPitch(RING_INFO *ring, int16_t target);</title></rect>

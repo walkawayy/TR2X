@@ -696,3 +696,9 @@ void __cdecl Lara_CheatGetStuff(void)
     g_Lara.m16_ammo.ammo = 300;
     g_Lara.grenade_ammo.ammo = 300;
 }
+
+void __cdecl Lara_InitialiseLoad(const int16_t item_num)
+{
+    g_Lara.item_num = item_num;
+    g_LaraItem = &g_Items[item_num];
+}

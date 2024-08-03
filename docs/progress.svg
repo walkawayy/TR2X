@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.34% (601)</tspan> · <tspan class="known">48.19% (587)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.43% (602)</tspan> · <tspan class="known">48.11% (586)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="368.59" height="6" x="0" y="0" class="decompiled"/>
-<rect width="360.01" height="6" x="368.59" y="0" class="known"/>
+<rect width="369.21" height="6" x="0" y="0" class="decompiled"/>
+<rect width="359.39" height="6" x="369.21" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -612,7 +612,7 @@
 <rect width="12" height="12" x="495" y="150" class="decompiled"><title>int32_t __cdecl Lara_TestClimb(int32_t x, int32_t y, int32_t z, int32_t xfront, int32_t zfront, int32_t item_height, int16_t item_room, int32_t *shift);</title></rect>
 <rect width="12" height="12" x="510" y="150" class="decompiled"><title>int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);</title></rect>
 <rect width="12" height="12" x="525" y="150" class="decompiled"><title>void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);</title></rect>
-<rect width="12" height="12" x="540" y="150" class="known"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>
+<rect width="12" height="12" x="540" y="150" class="decompiled"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>
 <rect width="12" height="12" x="555" y="150" class="known"><title>void __cdecl LaraGun(void);</title></rect>
 <rect width="12" height="12" x="570" y="150" class="known"><title>int32_t __cdecl CheckForHoldingState(int32_t state);</title></rect>
 <rect width="12" height="12" x="585" y="150" class="known"><title>void __cdecl InitialiseNewWeapon(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.02%</tspan> · <tspan class="known">50.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.19%</tspan> · <tspan class="known">50.49%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="366.19" height="6" x="0" y="0" class="decompiled"/>
-<rect width="378.37" height="6" x="366.19" y="0" class="known"/>
+<rect width="367.43" height="6" x="0" y="0" class="decompiled"/>
+<rect width="377.13" height="6" x="367.43" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1457,7 +1457,7 @@
 <rect width="19.35" height="18.17" x="368.60" y="356.83" class="decompiled"><title>void __cdecl GameApplySettings(APP_SETTINGS *new_settings);</title></rect>
 <rect width="18.80" height="18.70" x="390.95" y="0" class="known"><title>LRESULT __stdcall SE_SetupWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="18.77" height="18.70" x="412.75" y="0" class="known"><title>void __cdecl MovableBlockCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
-<rect width="18.61" height="18.70" x="434.52" y="0" class="known"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>
+<rect width="18.61" height="18.70" x="434.52" y="0" class="decompiled"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>
 <rect width="18.58" height="18.70" x="456.13" y="0" class="known"><title>void __cdecl SE_OptionsDlgUpdate(HWND hwndDlg);</title></rect>
 <rect width="18.54" height="18.70" x="477.71" y="0" class="known"><title>int32_t __cdecl SkidooCheckGetOff(void);</title></rect>
 <rect width="18.54" height="18.70" x="499.24" y="0" class="known"><title>void __cdecl DisplayCredits(void);</title></rect>

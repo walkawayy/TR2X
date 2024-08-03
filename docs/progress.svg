@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.43% (602)</tspan> · <tspan class="known">48.11% (586)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.51% (603)</tspan> · <tspan class="known">48.03% (585)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="369.21" height="6" x="0" y="0" class="decompiled"/>
-<rect width="359.39" height="6" x="369.21" y="0" class="known"/>
+<rect width="369.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="358.78" height="6" x="369.82" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -635,7 +635,7 @@
 <rect width="12" height="12" x="90" y="165" class="known"><title>void __cdecl undraw_flare_meshes(void);</title></rect>
 <rect width="12" height="12" x="105" y="165" class="known"><title>void __cdecl ready_flare(void);</title></rect>
 <rect width="12" height="12" x="120" y="165" class="known"><title>void __cdecl FlareControl(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="135" y="165" class="known"><title>void __cdecl Lara_Control(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="135" y="165" class="decompiled"><title>void __cdecl Lara_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="150" y="165" class="known"><title>void __cdecl Lara_Animate(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="165" y="165" class="known"><title>void __cdecl Lara_UseItem(int16_t object_num);</title></rect>
 <rect width="12" height="12" x="180" y="165" class="known"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.19%</tspan> · <tspan class="known">50.49%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.67%</tspan> · <tspan class="known">50.01%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="367.43" height="6" x="0" y="0" class="decompiled"/>
-<rect width="377.13" height="6" x="367.43" y="0" class="known"/>
+<rect width="371.01" height="6" x="0" y="0" class="decompiled"/>
+<rect width="373.54" height="6" x="371.01" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1328,7 +1328,7 @@
 <rect width="35.22" height="34.49" x="104.17" y="197.42" class="known"><title>int32_t __cdecl Inv_AddItem(int32_t item_num);</title></rect>
 <rect width="35.22" height="33.49" x="104.17" y="234.91" class="decompiled"><title>void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);</title></rect>
 <rect width="35.22" height="33.06" x="104.17" y="271.40" class="decompiled"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
-<rect width="35.22" height="32.62" x="104.17" y="307.45" class="known"><title>void __cdecl Lara_Control(int16_t item_num);</title></rect>
+<rect width="35.22" height="32.62" x="104.17" y="307.45" class="decompiled"><title>void __cdecl Lara_Control(int16_t item_num);</title></rect>
 <rect width="35.22" height="31.93" x="104.17" y="343.07" class="known"><title>void __cdecl do_passport_option(INVENTORY_ITEM *item);</title></rect>
 <rect width="31.68" height="35.34" x="142.39" y="0" class="decompiled"><title>void __cdecl Output_InsertGT3_ZBuffered(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2);</title></rect>
 <rect width="31.68" height="34.77" x="142.39" y="38.34" class="decompiled"><title>void __cdecl Boat_Control(int16_t item_num);</title></rect>

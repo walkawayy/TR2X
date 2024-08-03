@@ -524,6 +524,7 @@ static void Inject_Lara_Control(const bool enable)
     INJECT(enable, 0x00427580, Lara_HandleAboveWater);
     INJECT(enable, 0x00431670, Lara_HandleSurface);
     INJECT(enable, 0x00431F50, Lara_HandleUnderwater);
+    INJECT(enable, 0x004302E0, Lara_Control);
 }
 
 static void Inject_Lara_Draw(const bool enable)

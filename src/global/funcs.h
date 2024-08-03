@@ -194,7 +194,6 @@
 #define undraw_flare_meshes ((void __cdecl (*)(void))0x00430010)
 #define ready_flare ((void __cdecl (*)(void))0x00430030)
 #define FlareControl ((void __cdecl (*)(int16_t item_num))0x00430070)
-#define Lara_Control ((void __cdecl (*)(int16_t item_num))0x004302E0)
 #define Lara_Animate ((void __cdecl (*)(ITEM_INFO *item))0x00430970)
 #define Lara_UseItem ((void __cdecl (*)(int16_t object_num))0x00430C70)
 #define Lara_CheatGetStuff ((void __cdecl (*)(void))0x00430E30)

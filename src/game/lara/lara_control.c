@@ -461,3 +461,138 @@ void __cdecl Lara_Control(const int16_t item_num)
 
     g_Lara.last_pos = item->pos;
 }
+
+void __cdecl Lara_Animate(ITEM_INFO *const item)
+{
+    item->frame_num++;
+
+    const ANIM_STRUCT *anim = &g_Anims[item->anim_num];
+    if (anim->num_changes > 0 && Item_GetAnimChange(item, anim)) {
+        anim = &g_Anims[item->anim_num];
+        item->current_anim_state = anim->current_anim_state;
+    }
+
+    if (item->frame_num > anim->frame_end) {
+        if (anim->num_commands > 0) {
+            const int16_t *cmd_ptr = &g_AnimCommands[anim->command_idx];
+            for (int32_t i = 0; i < anim->num_commands; i++) {
+                const int16_t cmd = *cmd_ptr++;
+
+                switch (cmd) {
+                case AC_MOVE_ORIGIN:
+                    Item_Translate(item, cmd_ptr[0], cmd_ptr[1], cmd_ptr[2]);
+                    cmd_ptr += 3;
+                    break;
+
+                case AC_JUMP_VELOCITY:
+                    item->fall_speed = *cmd_ptr++;
+                    item->speed = *cmd_ptr++;
+                    item->gravity = 1;
+
+                    if (g_Lara.calc_fallspeed) {
+                        item->fall_speed = g_Lara.calc_fallspeed;
+                        g_Lara.calc_fallspeed = 0;
+                    }
+                    break;
+
+                case AC_ATTACK_READY:
+                    if (g_Lara.gun_status != LGS_SPECIAL) {
+                        g_Lara.gun_status = LGS_ARMLESS;
+                    }
+                    break;
+
+                case AC_SOUND_FX:
+                case AC_EFFECT:
+                    cmd_ptr += 2;
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        }
+
+        item->anim_num = anim->jump_anim_num;
+        item->frame_num = anim->jump_frame_num;
+        anim = &g_Anims[item->anim_num];
+        item->current_anim_state = anim->current_anim_state;
+    }
+
+    if (anim->num_commands > 0) {
+        const int16_t *cmd_ptr = &g_AnimCommands[anim->command_idx];
+        for (int32_t i = 0; i < anim->num_commands; i++) {
+            const int16_t cmd = *cmd_ptr++;
+
+            switch (cmd) {
+            case AC_MOVE_ORIGIN:
+                cmd_ptr += 3;
+                break;
+
+            case AC_JUMP_VELOCITY:
+                cmd_ptr += 2;
+                break;
+
+            case AC_SOUND_FX: {
+                const int32_t frame = cmd_ptr[0];
+                const SOUND_EFFECT_ID sound_id = cmd_ptr[1] & 0x3FFF;
+                const ANIM_COMMAND_ENVIRONMENT type =
+                    (cmd_ptr[1] & 0xC000) >> 14;
+                cmd_ptr += 2;
+
+                if (item->frame_num != frame) {
+                    break;
+                }
+
+                if (type == ACE_ALL
+                    || (type == ACE_LAND
+                        && (g_Lara.water_surface_dist >= 0
+                            || g_Lara.water_surface_dist == NO_HEIGHT))
+                    || (type == ACE_WATER && g_Lara.water_surface_dist < 0
+                        && g_Lara.water_surface_dist != NO_HEIGHT)) {
+                    Sound_Effect(sound_id, &item->pos, SPM_ALWAYS);
+                }
+                break;
+            }
+
+            case AC_EFFECT:
+                const int32_t frame = cmd_ptr[0];
+                const ANIM_COMMAND_ENVIRONMENT type =
+                    (cmd_ptr[1] & 0xC000) >> 14;
+                const int32_t fx_func_idx = cmd_ptr[1] & 0x3FFF;
+                cmd_ptr += 2;
+
+                if (item->frame_num != *cmd_ptr) {
+                    break;
+                }
+
+                if (type == ACE_ALL
+                    || (type == ACE_LAND
+                        && (g_Lara.water_surface_dist >= 0
+                            || g_Lara.water_surface_dist == NO_HEIGHT))
+                    || (type == ACE_WATER && g_Lara.water_surface_dist < 0)) {
+                    g_EffectRoutines[fx_func_idx](item);
+                }
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+
+    if (item->gravity) {
+        const int32_t speed = anim->velocity
+            + anim->acceleration * (item->frame_num - anim->frame_base - 1);
+        item->speed -= speed >> 16;
+        item->speed += (anim->acceleration + speed) >> 16;
+        item->fall_speed += (item->fall_speed >= FAST_FALL_SPEED ? 1 : GRAVITY);
+        item->pos.y += item->fall_speed;
+    } else {
+        const int32_t speed = anim->velocity
+            + anim->acceleration * (item->frame_num - anim->frame_base);
+        item->speed = speed >> 16;
+    }
+
+    item->pos.x += (item->speed * Math_Sin(g_Lara.move_angle)) >> W2V_SHIFT;
+    item->pos.z += (item->speed * Math_Cos(g_Lara.move_angle)) >> W2V_SHIFT;
+}

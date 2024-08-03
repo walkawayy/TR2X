@@ -2579,10 +2579,10 @@ typedef enum {
 } ANIM_COMMAND;
 
 typedef enum {
-    ANIM_SFX_LAND_AND_WATER = 0,
-    ANIM_SFX_LAND_ONLY      = 1,
-    ANIM_SFX_WATER_ONLY     = 2,
-} ANIM_SFX_TYPE;
+    ACE_ALL   = 0,
+    ACE_LAND  = 1,
+    ACE_WATER = 2,
+} ANIM_COMMAND_ENVIRONMENT;
 
 typedef struct __unaligned {
     DDPIXELFORMAT pixel_fmt;
@@ -3280,7 +3280,7 @@ typedef enum {
 
 # game/laramisc.c
 0x004302E0  0x0668  +       void __cdecl Lara_Control(int16_t item_num);
-0x00430970  0x02CD  -       void __cdecl Lara_Animate(ITEM_INFO *item);
+0x00430970  0x02CD  +       void __cdecl Lara_Animate(ITEM_INFO *item);
 0x00430C70  0x013F  -       void __cdecl Lara_UseItem(int16_t object_num);
 0x00430E30  0x00BA  -       void __cdecl Lara_CheatGetStuff(void);
 0x00430EF0  0x001B  -       void __cdecl Lara_ControlExtra(int16_t item_num);

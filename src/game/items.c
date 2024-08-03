@@ -538,7 +538,8 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
             case AC_SOUND_FX: {
                 const int32_t frame = cmd_ptr[0];
                 const SOUND_EFFECT_ID sound_id = cmd_ptr[1] & 0x3FFF;
-                const ANIM_SFX_TYPE type = (cmd_ptr[1] & 0xC000) >> 14;
+                const ANIM_COMMAND_ENVIRONMENT type =
+                    (cmd_ptr[1] & 0xC000) >> 14;
                 cmd_ptr += 2;
 
                 if (item->frame_num != frame) {
@@ -556,13 +557,10 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
                         item->object_num == O_LARA_HARPOON ? SPM_ALWAYS
                                                            : SPM_NORMAL);
                 } else if (g_Rooms[item->room_num].flags & RF_UNDERWATER) {
-                    if (type == ANIM_SFX_LAND_AND_WATER
-                        || type == ANIM_SFX_WATER_ONLY) {
+                    if (type == ACE_ALL || type == ACE_WATER) {
                         Sound_Effect(sound_id, &item->pos, SPM_NORMAL);
                     }
-                } else if (
-                    type == ANIM_SFX_LAND_AND_WATER
-                    || type == ANIM_SFX_LAND_ONLY) {
+                } else if (type == ACE_ALL || type == ACE_LAND) {
                     Sound_Effect(sound_id, &item->pos, SPM_NORMAL);
                 }
                 break;

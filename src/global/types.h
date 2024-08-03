@@ -2595,10 +2595,10 @@ typedef enum {
 } ANIM_COMMAND;
 
 typedef enum {
-    ANIM_SFX_LAND_AND_WATER = 0,
-    ANIM_SFX_LAND_ONLY      = 1,
-    ANIM_SFX_WATER_ONLY     = 2,
-} ANIM_SFX_TYPE;
+    ACE_ALL   = 0,
+    ACE_LAND  = 1,
+    ACE_WATER = 2,
+} ANIM_COMMAND_ENVIRONMENT;
 
 typedef struct __unaligned {
     DDPIXELFORMAT pixel_fmt;

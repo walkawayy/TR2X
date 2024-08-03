@@ -2,6 +2,7 @@
 
 #include "game/collide.h"
 #include "game/items.h"
+#include "game/lara/lara_control.h"
 #include "game/lara/lara_misc.h"
 #include "game/math.h"
 #include "game/room.h"

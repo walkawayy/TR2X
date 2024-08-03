@@ -462,6 +462,11 @@ void __cdecl Lara_Control(const int16_t item_num)
     g_Lara.last_pos = item->pos;
 }
 
+void __cdecl Lara_ControlExtra(const int16_t item_num)
+{
+    Item_Animate(&g_Items[item_num]);
+}
+
 void __cdecl Lara_Animate(ITEM_INFO *const item)
 {
     item->frame_num++;

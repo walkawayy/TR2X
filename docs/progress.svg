@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.75% (606)</tspan> · <tspan class="known">47.78% (582)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">49.84% (607)</tspan> · <tspan class="known">47.70% (581)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="371.66" height="6" x="0" y="0" class="decompiled"/>
-<rect width="356.94" height="6" x="371.66" y="0" class="known"/>
+<rect width="372.27" height="6" x="0" y="0" class="decompiled"/>
+<rect width="356.33" height="6" x="372.27" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -639,7 +639,7 @@
 <rect width="12" height="12" x="150" y="165" class="decompiled"><title>void __cdecl Lara_Animate(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="165" y="165" class="decompiled"><title>void __cdecl Lara_UseItem(int16_t object_num);</title></rect>
 <rect width="12" height="12" x="180" y="165" class="decompiled"><title>void __cdecl Lara_CheatGetStuff(void);</title></rect>
-<rect width="12" height="12" x="195" y="165" class="known"><title>void __cdecl Lara_ControlExtra(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="195" y="165" class="decompiled"><title>void __cdecl Lara_ControlExtra(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="210" y="165" class="known"><title>void __cdecl Lara_InitialiseLoad(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="225" y="165" class="known"><title>void __cdecl Lara_Initialise(int32_t type);</title></rect>
 <rect width="12" height="12" x="240" y="165" class="known"><title>void __cdecl Lara_InitialiseInventory(int32_t level_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.03%</tspan> · <tspan class="known">49.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.03%</tspan> · <tspan class="known">49.64%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="373.69" height="6" x="0" y="0" class="decompiled"/>
-<rect width="370.87" height="6" x="373.69" y="0" class="known"/>
+<rect width="373.75" height="6" x="0" y="0" class="decompiled"/>
+<rect width="370.81" height="6" x="373.75" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2411,7 +2411,7 @@
 <rect width="1.57" height="2.09" x="745.43" y="336.88" class="known"><title>void __thiscall SE_UpdateBitmapPalette(BITMAP_RESOURCE *bmpRsrc, HWND hWnd, HWND hSender);</title></rect>
 <rect width="1.91" height="1.57" x="708.89" y="341.96" class="known"><title>void __cdecl Inv_RemoveAllItems(void);</title></rect>
 <rect width="1.91" height="1.57" x="708.89" y="346.53" class="known"><title>void __cdecl ReqItemCentreAlign(REQUEST_INFO *req, TEXTSTRING *txt);</title></rect>
-<rect width="1.91" height="1.57" x="708.89" y="351.10" class="known"><title>void __cdecl Lara_ControlExtra(int16_t item_num);</title></rect>
+<rect width="1.91" height="1.57" x="708.89" y="351.10" class="decompiled"><title>void __cdecl Lara_ControlExtra(int16_t item_num);</title></rect>
 <rect width="1.91" height="1.57" x="708.89" y="355.67" class="known"><title>void __cdecl BridgeFlatCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="1.91" height="1.57" x="708.89" y="360.24" class="decompiled"><title>int32_t __fastcall Math_Sin(int16_t angle);</title></rect>
 <rect width="1.91" height="1.40" x="708.89" y="364.80" class="decompiled"><title>bool __cdecl EnumerateDisplayAdapters(DISPLAY_ADAPTER_LIST *displayAdapterList);</title></rect>

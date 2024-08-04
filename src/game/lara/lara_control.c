@@ -561,12 +561,12 @@ void __cdecl Lara_Animate(ITEM_INFO *const item)
 
             case AC_EFFECT:
                 const int32_t frame = cmd_ptr[0];
+                const int32_t fx_func_idx = cmd_ptr[1] & 0x3FFF;
                 const ANIM_COMMAND_ENVIRONMENT type =
                     (cmd_ptr[1] & 0xC000) >> 14;
-                const int32_t fx_func_idx = cmd_ptr[1] & 0x3FFF;
                 cmd_ptr += 2;
 
-                if (item->frame_num != *cmd_ptr) {
+                if (item->frame_num != frame) {
                     break;
                 }
 
@@ -586,16 +586,20 @@ void __cdecl Lara_Animate(ITEM_INFO *const item)
     }
 
     if (item->gravity) {
-        const int32_t speed = anim->velocity
+        int32_t speed = anim->velocity
             + anim->acceleration * (item->frame_num - anim->frame_base - 1);
-        item->speed -= speed >> 16;
-        item->speed += (anim->acceleration + speed) >> 16;
-        item->fall_speed += (item->fall_speed >= FAST_FALL_SPEED ? 1 : GRAVITY);
+        item->speed -= (int16_t)(speed >> 16);
+        speed += anim->acceleration;
+        item->speed += (int16_t)(speed >> 16);
+
+        item->fall_speed += item->fall_speed < FAST_FALL_SPEED ? GRAVITY : 1;
         item->pos.y += item->fall_speed;
     } else {
-        const int32_t speed = anim->velocity
-            + anim->acceleration * (item->frame_num - anim->frame_base);
-        item->speed = speed >> 16;
+        int32_t speed = anim->velocity;
+        if (anim->acceleration) {
+            speed += anim->acceleration * (item->frame_num - anim->frame_base);
+        }
+        item->speed = (int16_t)(speed >> 16);
     }
 
     item->pos.x += (item->speed * Math_Sin(g_Lara.move_angle)) >> W2V_SHIFT;

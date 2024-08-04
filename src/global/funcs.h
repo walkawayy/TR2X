@@ -194,7 +194,6 @@
 #define undraw_flare_meshes ((void __cdecl (*)(void))0x00430010)
 #define ready_flare ((void __cdecl (*)(void))0x00430030)
 #define FlareControl ((void __cdecl (*)(int16_t item_num))0x00430070)
-#define Lara_TestWaterDepth ((void __cdecl (*)(ITEM_INFO *item, COLL_INFO *coll))0x00432640)
 #define Lara_SwimCollision ((void __cdecl (*)(ITEM_INFO *item, COLL_INFO *coll))0x00432710)
 #define Lara_WaterCurrent ((void __cdecl (*)(COLL_INFO *coll))0x00432870)
 #define InitialiseLOTarray ((void __cdecl (*)(void))0x00432A60)

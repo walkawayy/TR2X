@@ -1596,3 +1596,32 @@ int32_t __cdecl Lara_GetWaterDepth(
     }
     return NO_HEIGHT;
 }
+
+void __cdecl Lara_TestWaterDepth(
+    ITEM_INFO *const item, const COLL_INFO *const coll)
+{
+    int16_t room_num = item->room_num;
+
+    const FLOOR_INFO *const floor =
+        Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
+    const int32_t water_depth =
+        Lara_GetWaterDepth(item->pos.x, item->pos.y, item->pos.z, room_num);
+
+    if (water_depth == NO_HEIGHT) {
+        item->pos = coll->old;
+        item->fall_speed = 0;
+    } else if (water_depth <= STEP_L * 2) {
+        item->anim_num = LA_UNDERWATER_TO_STAND;
+        item->frame_num = g_Anims[item->anim_num].frame_base;
+        item->current_anim_state = LS_WATER_OUT;
+        item->goal_anim_state = LS_STOP;
+        item->rot.x = 0;
+        item->rot.z = 0;
+        item->gravity = 0;
+        item->speed = 0;
+        item->fall_speed = 0;
+        g_Lara.water_status = LWS_WADE;
+        item->pos.y =
+            Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
+    }
+}

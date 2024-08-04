@@ -71,3 +71,6 @@ void __cdecl Lara_DoClimbLeftRight(
 int32_t __cdecl Lara_TestClimbUpPos(
     const ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift,
     int32_t *ledge);
+
+int32_t __cdecl Lara_GetWaterDepth(
+    int32_t x, int32_t y, int32_t z, int16_t room_num);

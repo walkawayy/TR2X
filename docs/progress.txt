@@ -3326,7 +3326,7 @@ typedef enum {
 0x00432410  0x000B  +       void __cdecl Lara_State_UWTwist(ITEM_INFO *item, COLL_INFO *coll);
 0x00432420  0x0013  +       void __cdecl Lara_Col_Swim(ITEM_INFO *item, COLL_INFO *coll);
 0x00432440  0x005B  +       void __cdecl Lara_Col_UWDeath(ITEM_INFO *item, COLL_INFO *coll);
-0x004324A0  0x0192  -       int32_t __cdecl Lara_GetWaterDepth(int32_t x, int32_t y, int32_t z, int16_t room_num);
+0x004324A0  0x0192  +       int32_t __cdecl Lara_GetWaterDepth(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00432640  0x00CE  -       void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, COLL_INFO *coll);
 0x00432710  0x015C  -       void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);
 0x00432870  0x01EC  -       void __cdecl Lara_WaterCurrent(COLL_INFO *coll);

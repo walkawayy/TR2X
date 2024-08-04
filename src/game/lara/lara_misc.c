@@ -1167,7 +1167,7 @@ void __cdecl Lara_Push(
         coll->old.x = lara_item->pos.x;
         coll->old.y = lara_item->pos.y;
         coll->old.z = lara_item->pos.z;
-        Item_UpdateRoom(lara_item, -10);
+        Item_UpdateRoom(lara_item, -WALL_SHIFT);
     }
 }
 
@@ -1527,4 +1527,72 @@ int32_t __cdecl Lara_TestClimbUpPos(
         return 1;
     }
     return 0;
+}
+
+int32_t __cdecl Lara_GetWaterDepth(
+    const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
+{
+    const ROOM_INFO *r = &g_Rooms[room_num];
+    const FLOOR_INFO *floor;
+
+    while (true) {
+        int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+        int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+
+        if (x_floor <= 0) {
+            x_floor = 0;
+            if (y_floor < 1) {
+                y_floor = 1;
+            } else if (y_floor > r->y_size - 2) {
+                y_floor = r->y_size - 2;
+            }
+        } else if (x_floor >= r->x_size - 1) {
+            x_floor = r->x_size - 1;
+            if (y_floor < 1) {
+                y_floor = 1;
+            } else if (y_floor > r->y_size - 2) {
+                y_floor = r->y_size - 2;
+            }
+        } else if (y_floor < 0) {
+            y_floor = 0;
+        } else if (y_floor >= r->y_size) {
+            y_floor = r->y_size - 1;
+        }
+
+        floor = &r->floor[x_floor + y_floor * r->x_size];
+        const int16_t data = Room_GetDoor(floor);
+        if (data == (uint8_t)NO_ROOM) {
+            break;
+        }
+        room_num = data;
+        r = &g_Rooms[room_num];
+    }
+
+    if (r->flags & RF_UNDERWATER) {
+        while (floor->sky_room != (uint8_t)NO_ROOM) {
+            r = &g_Rooms[floor->sky_room];
+            if (!(r->flags & RF_UNDERWATER)) {
+                const int32_t water_height = floor->ceiling << 8;
+                floor = Room_GetFloor(x, y, z, &room_num);
+                return Room_GetHeight(floor, x, y, z) - water_height;
+            }
+            const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+            const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+            floor = &r->floor[x_floor + y_floor * r->x_size];
+        }
+        return 0x7FFF;
+    }
+
+    while (floor->pit_room != (uint8_t)NO_ROOM) {
+        r = &g_Rooms[floor->pit_room];
+        if (r->flags & RF_UNDERWATER) {
+            const int32_t water_height = floor->floor << 8;
+            floor = Room_GetFloor(x, y, z, &room_num);
+            return Room_GetHeight(floor, x, y, z) - water_height;
+        }
+        const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
+        const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
+        floor = &r->floor[x_floor + y_floor * r->x_size];
+    }
+    return NO_HEIGHT;
 }

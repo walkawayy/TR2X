@@ -580,6 +580,7 @@ static void Inject_Lara_Misc(const bool enable)
     INJECT(enable, 0x0042E290, Lara_TestClimbPos);
     INJECT(enable, 0x0042E360, Lara_DoClimbLeftRight);
     INJECT(enable, 0x0042E450, Lara_TestClimbUpPos);
+    INJECT(enable, 0x004324A0, Lara_GetWaterDepth);
 }
 
 static void Inject_Lara_State(const bool enable)

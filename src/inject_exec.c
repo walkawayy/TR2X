@@ -531,6 +531,7 @@ static void Inject_Lara_Control(const bool enable)
     INJECT(enable, 0x00430E30, Lara_CheatGetStuff);
     INJECT(enable, 0x00430F10, Lara_InitialiseLoad);
     INJECT(enable, 0x00430F40, Lara_Initialise);
+    INJECT(enable, 0x00431200, Lara_InitialiseInventory);
 }
 
 static void Inject_Lara_Draw(const bool enable)

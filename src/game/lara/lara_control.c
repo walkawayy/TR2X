@@ -1,5 +1,6 @@
 #include "game/lara/lara_control.h"
 
+#include "game/inventory.h"
 #include "game/items.h"
 #include "game/lara/lara_look.h"
 #include "game/lara/lara_misc.h"
@@ -794,4 +795,110 @@ void __cdecl Lara_Initialise(const INIT_LEVEL_TYPE type)
     } else {
         Lara_InitialiseInventory(g_CurrentLevel);
     }
+}
+
+void __cdecl Lara_InitialiseInventory(const int32_t level_num)
+{
+    Inv_RemoveAllItems();
+
+    START_INFO *const start = &g_SaveGame.start[level_num];
+    if (g_GF_RemoveWeapons) {
+        start->has_pistols = 0;
+        start->has_magnums = 0;
+        start->has_uzis = 0;
+        start->has_shotgun = 0;
+        start->has_m16 = 0;
+        start->has_grenade = 0;
+        start->has_harpoon = 0;
+        start->gun_type = LGT_UNARMED;
+        start->gun_status = LGS_ARMLESS;
+        g_GF_RemoveWeapons = 0;
+    }
+
+    if (g_GF_RemoveAmmo) {
+        start->m16_ammo = 0;
+        start->grenade_ammo = 0;
+        start->harpoon_ammo = 0;
+        start->shotgun_ammo = 0;
+        start->uzi_ammo = 0;
+        start->magnum_ammo = 0;
+        start->pistol_ammo = 0;
+        start->flares = 0;
+        start->large_medipacks = 0;
+        start->small_medipacks = 0;
+        g_GF_RemoveAmmo = 0;
+    }
+
+    Inv_AddItem(O_COMPASS_ITEM);
+
+    g_Lara.pistol_ammo.ammo = 1000;
+    if (start->has_pistols) {
+        Inv_AddItem(O_PISTOL_ITEM);
+    }
+
+    if (start->has_magnums) {
+        Inv_AddItem(O_MAGNUM_ITEM);
+        g_Lara.magnum_ammo.ammo = start->magnum_ammo;
+        Item_GlobalReplace(O_MAGNUM_ITEM, O_MAGNUM_AMMO_ITEM);
+    } else {
+        Inv_AddItemNTimes(O_MAGNUM_AMMO_ITEM, start->magnum_ammo / 40);
+        g_Lara.magnum_ammo.ammo = 0;
+    }
+
+    if (start->has_uzis) {
+        Inv_AddItem(O_UZI_ITEM);
+        g_Lara.uzi_ammo.ammo = start->uzi_ammo;
+        Item_GlobalReplace(O_UZI_ITEM, O_UZI_AMMO_ITEM);
+    } else {
+        Inv_AddItemNTimes(O_UZI_AMMO_ITEM, start->uzi_ammo / 80);
+        g_Lara.uzi_ammo.ammo = 0;
+    }
+
+    if (start->has_shotgun) {
+        Inv_AddItem(O_SHOTGUN_ITEM);
+        g_Lara.shotgun_ammo.ammo = start->shotgun_ammo;
+        Item_GlobalReplace(O_SHOTGUN_ITEM, O_SHOTGUN_AMMO_ITEM);
+    } else {
+        Inv_AddItemNTimes(O_SHOTGUN_AMMO_ITEM, start->shotgun_ammo / 12);
+        g_Lara.shotgun_ammo.ammo = 0;
+    }
+
+    if (start->has_m16) {
+        Inv_AddItem(O_M16_ITEM);
+        g_Lara.m16_ammo.ammo = start->m16_ammo;
+        Item_GlobalReplace(O_M16_ITEM, O_M16_AMMO_ITEM);
+    } else {
+        Inv_AddItemNTimes(O_M16_AMMO_ITEM, start->m16_ammo / 40);
+        g_Lara.m16_ammo.ammo = 0;
+    }
+
+    if (start->has_grenade) {
+        Inv_AddItem(O_GRENADE_ITEM);
+        g_Lara.grenade_ammo.ammo = start->grenade_ammo;
+        Item_GlobalReplace(O_GRENADE_ITEM, O_GRENADE_AMMO_ITEM);
+    } else {
+        Inv_AddItemNTimes(O_GRENADE_AMMO_ITEM, start->grenade_ammo / 2);
+        g_Lara.grenade_ammo.ammo = 0;
+    }
+
+    if (start->has_harpoon) {
+        Inv_AddItem(O_HARPOON_ITEM);
+        g_Lara.harpoon_ammo.ammo = start->harpoon_ammo;
+        Item_GlobalReplace(O_HARPOON_ITEM, O_HARPOON_AMMO_ITEM);
+    } else {
+        Inv_AddItemNTimes(O_HARPOON_AMMO_ITEM, start->harpoon_ammo / 3);
+        g_Lara.harpoon_ammo.ammo = 0;
+    }
+
+    Inv_AddItemNTimes(O_FLARE_ITEM, start->flares);
+    Inv_AddItemNTimes(O_SMALL_MEDIPACK_ITEM, start->small_medipacks);
+    Inv_AddItemNTimes(O_LARGE_MEDIPACK_ITEM, start->large_medipacks);
+
+    g_Lara.gun_status = LGS_ARMLESS;
+    g_Lara.last_gun_type = start->gun_type;
+    g_Lara.gun_type = g_Lara.last_gun_type;
+    g_Lara.request_gun_type = g_Lara.last_gun_type;
+
+    Lara_InitialiseMeshes(level_num);
+    InitialiseNewWeapon();
 }

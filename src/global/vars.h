@@ -151,6 +151,8 @@ extern const char *g_TR2XVersion;
 #define g_IsMonkAngry (*(BOOL*)0x004D77E8)
 #define g_GF_LaraStartAnim (*(int32_t*)0x004D77F0)
 #define g_GF_NoFloor (*(int16_t*)0x004D77FC)
+#define g_GF_RemoveWeapons (*(int16_t*)0x004D7800)
+#define g_GF_RemoveAmmo (*(int16_t*)0x004D7804)
 #define g_GF_StartGame (*(int8_t*)0x004D780C)
 #define g_AmmoTextInfo (*(TEXTSTRING **)0x004D792C)
 #define g_DisplayModeTextInfo (*(TEXTSTRING **)0x004D7930)

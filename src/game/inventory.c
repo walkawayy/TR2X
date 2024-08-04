@@ -906,3 +906,10 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
 
     Matrix_Pop();
 }
+
+void Inv_AddItemNTimes(GAME_OBJECT_ID object_num, int32_t qty)
+{
+    for (int32_t i = 0; i < qty; i++) {
+        Inv_AddItem(object_num);
+    }
+}

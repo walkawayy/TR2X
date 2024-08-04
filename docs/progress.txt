@@ -3297,7 +3297,7 @@ typedef enum {
 0x00430F10  0x0021  +       void __cdecl Lara_InitialiseLoad(int16_t item_num);
 0x00430F40  0x02BD  +       void __cdecl Lara_Initialise(int32_t type);
 0x00431200  0x036C  +       void __cdecl Lara_InitialiseInventory(int32_t level_num);
-0x00431570  0x00FA  -       void __cdecl Lara_InitialiseMeshes(int32_t level_num);
+0x00431570  0x00FA  +       void __cdecl Lara_InitialiseMeshes(int32_t level_num);
 
 # game/larasurf.c
 0x00431670  0x0158  +       void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);

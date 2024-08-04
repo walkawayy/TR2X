@@ -22,3 +22,5 @@ void __cdecl Lara_InitialiseLoad(int16_t item_num);
 void __cdecl Lara_Initialise(INIT_LEVEL_TYPE type);
 
 void __cdecl Lara_InitialiseInventory(int32_t level_num);
+
+void __cdecl Lara_InitialiseMeshes(int32_t level_num);

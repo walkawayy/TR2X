@@ -902,3 +902,55 @@ void __cdecl Lara_InitialiseInventory(const int32_t level_num)
     Lara_InitialiseMeshes(level_num);
     InitialiseNewWeapon();
 }
+
+void __cdecl Lara_InitialiseMeshes(const int32_t level_num)
+{
+    for (int32_t i = 0; i < LM_NUMBER_OF; i++) {
+        g_Lara.mesh_ptrs[i] = g_Meshes[g_Objects[O_LARA].mesh_idx + i];
+    }
+
+    const START_INFO *const start = &g_SaveGame.start[level_num];
+
+    if (start->gun_type != LGT_UNARMED) {
+        GAME_OBJECT_ID gun_obj = O_LARA_PISTOLS;
+        if (start->gun_type == LGT_MAGNUMS) {
+            gun_obj = O_LARA_MAGNUMS;
+        } else if (start->gun_type == LGT_UZIS) {
+            gun_obj = O_LARA_UZIS;
+        }
+
+        g_Lara.mesh_ptrs[LM_THIGH_L] =
+            g_Lara.mesh_ptrs[g_Objects[gun_obj].mesh_idx + LM_THIGH_L];
+        g_Lara.mesh_ptrs[LM_THIGH_R] =
+            g_Lara.mesh_ptrs[g_Objects[gun_obj].mesh_idx + LM_THIGH_R];
+    }
+
+    if (start->gun_type == LGT_FLARE) {
+        g_Lara.mesh_ptrs[LM_HAND_L] =
+            g_Lara.mesh_ptrs[g_Objects[O_LARA_FLARE].mesh_idx + LM_HAND_L];
+    }
+
+    switch (start->gun_type) {
+    case LGT_M16:
+        g_Lara.back_gun = O_LARA_M16;
+        return;
+
+    case LGT_ROCKET:
+        g_Lara.back_gun = O_LARA_GRENADE;
+        return;
+
+    case LGT_HARPOON:
+        g_Lara.back_gun = O_LARA_HARPOON;
+        return;
+    }
+
+    if (start->has_shotgun) {
+        g_Lara.back_gun = O_LARA_SHOTGUN;
+    } else if (start->has_m16) {
+        g_Lara.back_gun = O_LARA_M16;
+    } else if (start->has_grenade) {
+        g_Lara.back_gun = O_LARA_GRENADE;
+    } else if (start->has_harpoon) {
+        g_Lara.back_gun = O_LARA_HARPOON;
+    }
+}

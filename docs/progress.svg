@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.08% (610)</tspan> · <tspan class="known">47.45% (578)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.16% (611)</tspan> · <tspan class="known">47.37% (577)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="374.11" height="6" x="0" y="0" class="decompiled"/>
-<rect width="354.49" height="6" x="374.11" y="0" class="known"/>
+<rect width="374.73" height="6" x="0" y="0" class="decompiled"/>
+<rect width="353.87" height="6" x="374.73" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -643,7 +643,7 @@
 <rect width="12" height="12" x="210" y="165" class="decompiled"><title>void __cdecl Lara_InitialiseLoad(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="225" y="165" class="decompiled"><title>void __cdecl Lara_Initialise(int32_t type);</title></rect>
 <rect width="12" height="12" x="240" y="165" class="decompiled"><title>void __cdecl Lara_InitialiseInventory(int32_t level_num);</title></rect>
-<rect width="12" height="12" x="255" y="165" class="known"><title>void __cdecl Lara_InitialiseMeshes(int32_t level_num);</title></rect>
+<rect width="12" height="12" x="255" y="165" class="decompiled"><title>void __cdecl Lara_InitialiseMeshes(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="270" y="165" class="decompiled"><title>void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="285" y="165" class="decompiled"><title>void __cdecl Lara_State_SurfSwim(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="300" y="165" class="decompiled"><title>void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.50%</tspan> · <tspan class="known">49.17%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.58%</tspan> · <tspan class="known">49.10%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="377.27" height="6" x="0" y="0" class="decompiled"/>
-<rect width="367.29" height="6" x="377.27" y="0" class="known"/>
+<rect width="377.81" height="6" x="0" y="0" class="decompiled"/>
+<rect width="366.74" height="6" x="377.81" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1669,7 +1669,7 @@
 <rect width="11.45" height="11.47" x="480.35" y="122.81" class="decompiled"><title>void __cdecl Matrix_InterpolateArm(void);</title></rect>
 <rect width="11.45" height="11.47" x="480.35" y="137.29" class="known"><title>void __cdecl SwitchCollision2(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="11.45" height="11.42" x="480.35" y="151.76" class="decompiled"><title>void __cdecl Lara_Col_Back(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="11.45" height="11.36" x="480.35" y="166.18" class="known"><title>void __cdecl Lara_InitialiseMeshes(int32_t level_num);</title></rect>
+<rect width="11.45" height="11.36" x="480.35" y="166.18" class="decompiled"><title>void __cdecl Lara_InitialiseMeshes(int32_t level_num);</title></rect>
 <rect width="11.45" height="11.36" x="480.35" y="180.54" class="known"><title>BOOL __cdecl DecompPCX(const uint8_t *pcx, size_t pcx_size, LPBYTE pic, RGB_888 *pal);</title></rect>
 <rect width="11.45" height="11.24" x="480.35" y="194.89" class="decompiled"><title>int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);</title></rect>
 <rect width="11.45" height="11.24" x="480.35" y="209.14" class="decompiled"><title>int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);</title></rect>

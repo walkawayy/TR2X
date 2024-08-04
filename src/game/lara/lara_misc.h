@@ -76,3 +76,5 @@ int32_t __cdecl Lara_GetWaterDepth(
     int32_t x, int32_t y, int32_t z, int16_t room_num);
 
 void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, const COLL_INFO *coll);
+
+void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);

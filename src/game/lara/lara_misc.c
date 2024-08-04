@@ -1625,3 +1625,70 @@ void __cdecl Lara_TestWaterDepth(
             Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
     }
 }
+
+void __cdecl Lara_SwimCollision(ITEM_INFO *const item, COLL_INFO *const coll)
+{
+    if (item->rot.x < -PHD_90 || item->rot.x > PHD_90) {
+        g_Lara.move_angle = item->rot.y + PHD_180;
+    } else {
+        g_Lara.move_angle = item->rot.y;
+    }
+
+    coll->facing = g_Lara.move_angle;
+
+    int32_t height = (LARA_HEIGHT * Math_Sin(item->rot.x)) >> W2V_SHIFT;
+    if (height < 0) {
+        height = -height;
+    }
+    CLAMPL(height, 200);
+
+    coll->bad_neg = -height;
+    Collide_GetCollisionInfo(
+        coll, item->pos.x, item->pos.y + height / 2, item->pos.z,
+        item->room_num, height);
+    Item_ShiftCol(item, coll);
+
+    switch (coll->coll_type) {
+    case COLL_FRONT:
+        if (item->rot.x > 35 * PHD_DEGREE) {
+            item->rot.x += LARA_UW_WALL_DEFLECT;
+        } else if (item->rot.x < -35 * PHD_DEGREE) {
+            item->rot.x -= LARA_UW_WALL_DEFLECT;
+        } else {
+            item->fall_speed = 0;
+        }
+        break;
+
+    case COLL_TOP:
+        if (item->rot.x >= -45 * PHD_DEGREE) {
+            item->rot.x -= LARA_UW_WALL_DEFLECT;
+        }
+        break;
+
+    case COLL_TOP_FRONT:
+        item->fall_speed = 0;
+        break;
+
+    case COLL_LEFT:
+        item->rot.y += 5 * PHD_DEGREE;
+        break;
+
+    case COLL_RIGHT:
+        item->rot.y -= 5 * PHD_DEGREE;
+        break;
+
+    case COLL_CLAMP:
+        item->pos = coll->old;
+        item->fall_speed = 0;
+        return;
+    }
+
+    if (coll->side_mid.floor < 0) {
+        item->rot.x += LARA_UW_WALL_DEFLECT;
+        item->pos.y = coll->side_mid.floor + item->pos.y;
+    }
+
+    if (g_Lara.water_status != LWS_CHEAT && !g_Lara.extra_anim) {
+        Lara_TestWaterDepth(item, coll);
+    }
+}

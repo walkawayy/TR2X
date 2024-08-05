@@ -165,8 +165,42 @@ void __cdecl LOT_InitialiseSlot(const int16_t item_num, const int32_t slot)
     ClearLOT(&creature->lot);
 
     if (item_num != g_Lara.item_num) {
-        CreateZone(item);
+        LOT_CreateZone(item);
     }
 
     g_SlotsUsed++;
+}
+
+void __cdecl LOT_CreateZone(ITEM_INFO *const item)
+{
+    CREATURE_INFO *const creature = item->data;
+
+    int16_t *zone;
+    int16_t *flip;
+    if (creature->lot.fly) {
+        zone = g_FlyZone[0];
+        flip = g_FlyZone[1];
+    } else {
+        const int32_t layer = creature->lot.step >> 8;
+        zone = g_GroundZone[layer][0];
+        flip = g_GroundZone[layer][1];
+    }
+
+    const ROOM_INFO *const r = &g_Rooms[item->room_num];
+    const int32_t x_floor = (item->pos.z - r->pos.z) >> WALL_SHIFT;
+    const int32_t y_floor = (item->pos.x - r->pos.x) >> WALL_SHIFT;
+    item->box_num = r->floor[x_floor + y_floor * r->x_size].box;
+
+    int16_t zone_num = zone[item->box_num];
+    int16_t flip_num = flip[item->box_num];
+
+    creature->lot.zone_count = 0;
+    BOX_NODE *node = creature->lot.node;
+    for (int32_t i = 0; i < g_BoxCount; i++) {
+        if (zone[i] == zone_num || flip[i] == flip_num) {
+            node->box_num = i;
+            node++;
+            creature->lot.zone_count++;
+        }
+    }
 }

@@ -194,7 +194,6 @@
 #define undraw_flare_meshes ((void __cdecl (*)(void))0x00430010)
 #define ready_flare ((void __cdecl (*)(void))0x00430030)
 #define FlareControl ((void __cdecl (*)(int16_t item_num))0x00430070)
-#define CreateZone ((void __cdecl (*)(ITEM_INFO *item))0x00432ED0)
 #define ClearLOT ((void __cdecl (*)(LOT_INFO *LOT))0x00432F90)
 #define ControlMissile ((void __cdecl (*)(int16_t fx_num))0x00432FE0)
 #define ShootAtLara ((void __cdecl (*)(FX_INFO *fx))0x004332B0)

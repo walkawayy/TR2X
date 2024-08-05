@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.82% (619)</tspan> · <tspan class="known">46.72% (569)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.90% (620)</tspan> · <tspan class="known">46.63% (568)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="379.63" height="6" x="0" y="0" class="decompiled"/>
-<rect width="348.97" height="6" x="379.63" y="0" class="known"/>
+<rect width="380.25" height="6" x="0" y="0" class="decompiled"/>
+<rect width="348.35" height="6" x="380.25" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -676,7 +676,7 @@
 <rect width="12" height="12" x="705" y="165" class="decompiled"><title>void __cdecl LOT_DisableBaddieAI(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="720" y="165" class="decompiled"><title>bool __cdecl LOT_EnableBaddieAI(int16_t item_num, bool always);</title></rect>
 <rect width="12" height="12" x="735" y="165" class="decompiled"><title>void __cdecl LOT_InitialiseSlot(int16_t item_num, int32_t slot);</title></rect>
-<rect width="12" height="12" x="0" y="180" class="known"><title>void __cdecl CreateZone(ITEM_INFO *item);</title></rect>
+<rect width="12" height="12" x="0" y="180" class="decompiled"><title>void __cdecl LOT_CreateZone(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="15" y="180" class="known"><title>void __cdecl ClearLOT(LOT_INFO *LOT);</title></rect>
 <rect width="12" height="12" x="30" y="180" class="known"><title>void __cdecl ControlMissile(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="45" y="180" class="known"><title>void __cdecl ShootAtLara(FX_INFO *fx);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.25%</tspan> · <tspan class="known">48.42%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.31%</tspan> · <tspan class="known">48.37%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="382.85" height="6" x="0" y="0" class="decompiled"/>
-<rect width="361.71" height="6" x="382.85" y="0" class="known"/>
+<rect width="383.26" height="6" x="0" y="0" class="decompiled"/>
+<rect width="361.30" height="6" x="383.26" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1785,7 +1785,7 @@
 <rect width="9.74" height="9.05" x="637.30" y="149.67" class="decompiled"><title>int32_t __cdecl BGND_AddTexture(int32_t tile_idx, BYTE *bitmap, int32_t pal_index, RGB_888 *bmp_pal);</title></rect>
 <rect width="9.74" height="9.05" x="650.04" y="149.67" class="decompiled"><title>bool __cdecl D3DSetViewport(void);</title></rect>
 <rect width="9.68" height="9.05" x="662.79" y="149.67" class="decompiled"><title>void __cdecl Creature_Die(int16_t item_num, int32_t explode);</title></rect>
-<rect width="9.68" height="9.05" x="675.46" y="149.67" class="known"><title>void __cdecl CreateZone(ITEM_INFO *item);</title></rect>
+<rect width="9.68" height="9.05" x="675.46" y="149.67" class="decompiled"><title>void __cdecl LOT_CreateZone(ITEM_INFO *item);</title></rect>
 <rect width="9.47" height="9.05" x="688.14" y="149.67" class="decompiled"><title>void __cdecl Output_InsertLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>
 <rect width="9.40" height="9.05" x="700.61" y="149.67" class="decompiled"><title>void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);</title></rect>
 <rect width="9.33" height="9.05" x="713.01" y="149.67" class="decompiled"><title>void __cdecl Gondola_Control(int16_t item_num);</title></rect>

@@ -755,6 +755,7 @@ static void Inject_Lot(const bool enable)
     INJECT(enable, 0x00432AC0, LOT_DisableBaddieAI);
     INJECT(enable, 0x00432B10, LOT_EnableBaddieAI);
     INJECT(enable, 0x00432CC0, LOT_InitialiseSlot);
+    INJECT(enable, 0x00432ED0, LOT_CreateZone);
 }
 
 static void Inject_Objects(const bool enable)

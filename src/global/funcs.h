@@ -194,7 +194,6 @@
 #define undraw_flare_meshes ((void __cdecl (*)(void))0x00430010)
 #define ready_flare ((void __cdecl (*)(void))0x00430030)
 #define FlareControl ((void __cdecl (*)(int16_t item_num))0x00430070)
-#define Lara_WaterCurrent ((void __cdecl (*)(COLL_INFO *coll))0x00432870)
 #define InitialiseLOTarray ((void __cdecl (*)(void))0x00432A60)
 #define DisableBaddieAI ((void __cdecl (*)(int16_t item_num))0x00432AC0)
 #define LOT_EnableBaddieAI ((int32_t __cdecl (*)(int16_t item_num, int32_t always))0x00432B10)

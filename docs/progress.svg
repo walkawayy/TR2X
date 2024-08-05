@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.41% (614)</tspan> · <tspan class="known">47.13% (574)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.49% (615)</tspan> · <tspan class="known">47.04% (573)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="376.57" height="6" x="0" y="0" class="decompiled"/>
-<rect width="352.03" height="6" x="376.57" y="0" class="known"/>
+<rect width="377.18" height="6" x="0" y="0" class="decompiled"/>
+<rect width="351.42" height="6" x="377.18" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -671,7 +671,7 @@
 <rect width="12" height="12" x="630" y="165" class="decompiled"><title>int32_t __cdecl Lara_GetWaterDepth(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="645" y="165" class="decompiled"><title>void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="660" y="165" class="decompiled"><title>void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="12" height="12" x="675" y="165" class="known"><title>void __cdecl Lara_WaterCurrent(COLL_INFO *coll);</title></rect>
+<rect width="12" height="12" x="675" y="165" class="decompiled"><title>void __cdecl Lara_WaterCurrent(COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="690" y="165" class="known"><title>void __cdecl InitialiseLOTarray(void);</title></rect>
 <rect width="12" height="12" x="705" y="165" class="known"><title>void __cdecl DisableBaddieAI(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="720" y="165" class="known"><title>int32_t __cdecl LOT_EnableBaddieAI(int16_t item_num, int32_t always);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.86%</tspan> · <tspan class="known">48.82%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51%</tspan> · <tspan class="known">48.67%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="379.91" height="6" x="0" y="0" class="decompiled"/>
-<rect width="364.65" height="6" x="379.91" y="0" class="known"/>
+<rect width="380.98" height="6" x="0" y="0" class="decompiled"/>
+<rect width="363.58" height="6" x="380.98" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1489,7 +1489,7 @@
 <rect width="17.36" height="17.38" x="390.95" y="317.01" class="known"><title>void __cdecl MineControl(int16_t mine_num);</title></rect>
 <rect width="17.36" height="17.34" x="390.95" y="337.40" class="decompiled"><title>int32_t __cdecl Box_SearchLOT(LOT_INFO *lot, int32_t expansion);</title></rect>
 <rect width="17.36" height="17.26" x="390.95" y="357.74" class="known"><title>void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM_INFO *item);</title></rect>
-<rect width="17.66" height="16.77" x="411.31" y="21.70" class="known"><title>void __cdecl Lara_WaterCurrent(COLL_INFO *coll);</title></rect>
+<rect width="17.66" height="16.77" x="411.31" y="21.70" class="decompiled"><title>void __cdecl Lara_WaterCurrent(COLL_INFO *coll);</title></rect>
 <rect width="17.54" height="16.77" x="431.97" y="21.70" class="known"><title>int32_t __cdecl GF_LoadScriptFile(char *fname);</title></rect>
 <rect width="17.45" height="16.77" x="452.50" y="21.70" class="decompiled"><title>void __cdecl Matrix_RotYXZpack(uint32_t rpack);</title></rect>
 <rect width="17.24" height="16.77" x="472.96" y="21.70" class="decompiled"><title>void __cdecl Camera_Look(const ITEM_INFO *item);</title></rect>

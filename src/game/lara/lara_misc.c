@@ -1,6 +1,7 @@
 #include "game/lara/lara_misc.h"
 
 #include "decomp/decomp.h"
+#include "game/box.h"
 #include "game/collide.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
@@ -1691,4 +1692,99 @@ void __cdecl Lara_SwimCollision(ITEM_INFO *const item, COLL_INFO *const coll)
     if (g_Lara.water_status != LWS_CHEAT && !g_Lara.extra_anim) {
         Lara_TestWaterDepth(item, coll);
     }
+}
+
+void __cdecl Lara_WaterCurrent(COLL_INFO *const coll)
+{
+    ITEM_INFO *const item = g_LaraItem;
+
+    int16_t room_num = g_LaraItem->room_num;
+    const ROOM_INFO *const r = &g_Rooms[g_LaraItem->room_num];
+    const int32_t x_floor = (g_LaraItem->pos.z - r->pos.z) >> WALL_SHIFT;
+    const int32_t y_floor = (g_LaraItem->pos.x - r->pos.x) >> WALL_SHIFT;
+    g_LaraItem->box_num = r->floor[x_floor + y_floor * r->x_size].box;
+
+    if (g_Lara.creature == NULL) {
+        g_Lara.current_active = 0;
+        return;
+    }
+
+    XYZ_32 target;
+    if (Box_CalculateTarget(&target, item, &g_Lara.creature->lot)
+        == TARGET_NONE) {
+        return;
+    }
+
+    target.x -= item->pos.x;
+    if (target.x > g_Lara.current_active) {
+        item->pos.x += g_Lara.current_active;
+    } else if (target.x < -g_Lara.current_active) {
+        item->pos.x -= g_Lara.current_active;
+    } else {
+        item->pos.x += target.x;
+    }
+
+    target.z -= item->pos.z;
+    if (target.z > g_Lara.current_active) {
+        item->pos.z += g_Lara.current_active;
+    } else if (target.z < -g_Lara.current_active) {
+        item->pos.z -= g_Lara.current_active;
+    } else {
+        item->pos.z += target.z;
+    }
+
+    target.y = target.y - item->pos.y;
+    if (target.y > g_Lara.current_active) {
+        item->pos.y += g_Lara.current_active;
+    } else if (target.y < -g_Lara.current_active) {
+        item->pos.y -= g_Lara.current_active;
+    } else {
+        item->pos.y += target.y;
+    }
+
+    g_Lara.current_active = 0;
+    coll->facing =
+        Math_Atan(item->pos.z - coll->old.z, item->pos.x - coll->old.x);
+    Collide_GetCollisionInfo(
+        coll, item->pos.x, item->pos.y + LARA_HEIGHT_UW / 2, item->pos.z,
+        room_num, LARA_HEIGHT_UW);
+
+    switch (coll->coll_type) {
+    case COLL_FRONT:
+        if (item->rot.x > 35 * PHD_DEGREE) {
+            item->rot.x = item->rot.x + LARA_UW_WALL_DEFLECT;
+        } else if (item->rot.x < -35 * PHD_DEGREE) {
+            item->rot.x = item->rot.x - LARA_UW_WALL_DEFLECT;
+        } else {
+            item->fall_speed = 0;
+        }
+        break;
+
+    case COLL_TOP:
+        item->rot.x -= LARA_UW_WALL_DEFLECT;
+        break;
+
+    case COLL_TOP_FRONT:
+        item->fall_speed = 0;
+        break;
+
+    case COLL_LEFT:
+        item->rot.y += 910;
+        break;
+
+    case COLL_RIGHT:
+        item->rot.y -= 910;
+        break;
+
+    default:
+        break;
+    }
+
+    if (coll->side_mid.floor < 0) {
+        item->pos.y += coll->side_mid.floor;
+        item->rot.x += LARA_UW_WALL_DEFLECT;
+    }
+    Item_ShiftCol(item, coll);
+
+    coll->old = item->pos;
 }

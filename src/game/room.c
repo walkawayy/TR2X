@@ -3,6 +3,7 @@
 #include "game/box.h"
 #include "game/camera.h"
 #include "game/items.h"
+#include "game/lot.h"
 #include "game/math.h"
 #include "game/shell.h"
 #include "global/const.h"
@@ -482,10 +483,10 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
                         item->touch_bits = 0;
                         item->status = IS_ACTIVE;
                         Item_AddActive(value);
-                        LOT_EnableBaddieAI(value, 1);
+                        LOT_EnableBaddieAI(value, true);
                     } else if (item->status == IS_INVISIBLE) {
                         item->touch_bits = 0;
-                        if (LOT_EnableBaddieAI(value, 0)) {
+                        if (LOT_EnableBaddieAI(value, false)) {
                             item->status = IS_ACTIVE;
                         } else {
                             item->status = IS_INVISIBLE;
@@ -537,7 +538,7 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
         case TO_SINK: {
             const OBJECT_VECTOR object_vector = g_Camera.fixed[value];
             if (!g_Lara.creature) {
-                LOT_EnableBaddieAI(g_Lara.item_num, 1);
+                LOT_EnableBaddieAI(g_Lara.item_num, true);
             }
             g_Lara.creature->lot.target.x = object_vector.x;
             g_Lara.creature->lot.target.y = object_vector.y;

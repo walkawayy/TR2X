@@ -177,6 +177,7 @@ extern const char *g_TR2XVersion;
 #define g_Assault (*(ASSAULT_STATS*)0x004D7BD8)
 #define g_LevelItemCount (*(int32_t*)0x004D7C38)
 #define g_HealthBarTimer (*(int32_t*)0x004D7C3C)
+#define g_SlotsUsed (*(int32_t*)0x004D7C50)
 #define g_SoundTrackIds (*(int32_t(*)[128])0x004D7C80)
 #define g_BGND_PictureIsReady (*(bool*)0x004D7E88)
 #define g_BGND_TexturePageIndexes (*(int32_t(*)[5])0x004D7E90)
@@ -360,5 +361,6 @@ extern const char *g_TR2XVersion;
 #define g_FlyZone (*(int16_t *(*)[2])0x005263C0)
 #define g_Overlap (*(uint16_t **)0x005263C8)
 #define g_Boxes (*(BOX_INFO **)0x005263CC)
+#define g_BoxCount (*(int32_t*)0x005263D0)
 
 // clang-format on

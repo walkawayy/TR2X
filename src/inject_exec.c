@@ -19,6 +19,7 @@
 #include "game/lara/lara_misc.h"
 #include "game/lara/lara_state.h"
 #include "game/los.h"
+#include "game/lot.h"
 #include "game/math.h"
 #include "game/math_misc.h"
 #include "game/matrix.h"
@@ -69,6 +70,7 @@ static void Inject_Lara_Col(bool enable);
 
 static void Inject_Creature(bool enable);
 static void Inject_Box(bool enable);
+static void Inject_Lot(bool enable);
 static void Inject_Objects(bool enable);
 
 static void Inject_S_Audio_Sample(bool enable);
@@ -747,6 +749,11 @@ static void Inject_Box(const bool enable)
     INJECT(enable, 0x0040F3D0, Box_BadFloor);
 }
 
+static void Inject_Lot(const bool enable)
+{
+    INJECT(enable, 0x00432A60, LOT_InitialiseArray);
+}
+
 static void Inject_Objects(const bool enable)
 {
     INJECT(enable, 0x0040C880, Bird_Initialise);
@@ -834,7 +841,9 @@ void Inject_Exec(void)
     Inject_Items(true);
     Inject_Effects(true);
     Inject_LOS(true);
+
     Inject_Inventory(true);
+
     Inject_Lara_Control(true);
     Inject_Lara_Draw(true);
     Inject_Lara_Look(true);
@@ -844,6 +853,7 @@ void Inject_Exec(void)
 
     Inject_Creature(true);
     Inject_Box(true);
+    Inject_Lot(true);
     Inject_Objects(true);
 
     Inject_S_Audio_Sample(true);

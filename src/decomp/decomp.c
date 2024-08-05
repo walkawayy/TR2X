@@ -10,6 +10,7 @@
 #include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/lara/lara_draw.h"
+#include "game/lot.h"
 #include "game/math.h"
 #include "game/music.h"
 #include "game/overlay.h"
@@ -1369,7 +1370,7 @@ int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type)
     }
     g_Effects = game_malloc(MAX_EFFECTS * sizeof(FX_INFO), GBUF_EFFECTS_ARRAY);
     Effect_InitialiseArray();
-    InitialiseLOTarray();
+    LOT_InitialiseArray();
     InitColours();
     Text_Init();
     Overlay_InitialisePickUpDisplay();

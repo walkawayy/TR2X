@@ -3332,7 +3332,7 @@ typedef enum {
 0x00432870  0x01EC  +       void __cdecl Lara_WaterCurrent(COLL_INFO *coll);
 
 # game/lot.c
-0x00432A60  0x0053  -R      void __cdecl InitialiseLOTarray(void);
+0x00432A60  0x0053  +       void __cdecl LOT_InitialiseArray(void);
 0x00432AC0  0x004F  -R      void __cdecl DisableBaddieAI(int16_t item_num);
 0x00432B10  0x01B0  -       int32_t __cdecl LOT_EnableBaddieAI(int16_t item_num, int32_t always);
 0x00432CC0  0x0106  -R      void __cdecl InitialiseSlot(int16_t item_num, int32_t slot);
@@ -4367,3 +4367,5 @@ typedef enum {
 0x004D77F0  -       int32_t g_GF_LaraStartAnim;
 0x004D7800  -       int16_t g_GF_RemoveWeapons;
 0x004D7804  -       int16_t g_GF_RemoveAmmo;
+0x005263D0  -       int32_t g_BoxCount;
+0x004D7C50  -       int32_t g_SlotsUsed;

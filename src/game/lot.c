@@ -54,7 +54,7 @@ bool __cdecl LOT_EnableBaddieAI(const int16_t item_num, const bool always)
 
     if (g_SlotsUsed < NUM_SLOTS) {
         for (int32_t slot = 0; slot < NUM_SLOTS; slot++) {
-            if (g_BaddieSlots->item_num == NO_ITEM) {
+            if (g_BaddieSlots[slot].item_num == NO_ITEM) {
                 LOT_InitialiseSlot(item_num, slot);
                 return true;
             }

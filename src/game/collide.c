@@ -25,7 +25,7 @@ void __cdecl Collide_GetCollisionInfo(
 
     x = x_pos;
     z = z_pos;
-    sector = Room_GetFloor(x, y_top, z, &room_num);
+    sector = Room_GetSector(x, y_top, z, &room_num);
     height = Room_GetHeight(sector, x, y_top, z);
     if (height != NO_HEIGHT) {
         height -= y_pos;
@@ -99,7 +99,7 @@ void __cdecl Collide_GetCollisionInfo(
 
     x = x_pos + x_front;
     z = z_pos + z_front;
-    sector = Room_GetFloor(x, y_top, z, &room_num);
+    sector = Room_GetSector(x, y_top, z, &room_num);
     height = Room_GetHeight(sector, x, y_top, z);
     if (height != NO_HEIGHT) {
         height -= y_pos;
@@ -128,7 +128,7 @@ void __cdecl Collide_GetCollisionInfo(
 
     x = x_pos + x_left;
     z = z_pos + z_left;
-    sector = Room_GetFloor(x, y_top, z, &room_num);
+    sector = Room_GetSector(x, y_top, z, &room_num);
     height = Room_GetHeight(sector, x, y_top, z);
     if (height != NO_HEIGHT) {
         height -= y_pos;
@@ -156,7 +156,7 @@ void __cdecl Collide_GetCollisionInfo(
 
     x = x_pos + x_right;
     z = z_pos + z_right;
-    sector = Room_GetFloor(x, y_top, z, &room_num);
+    sector = Room_GetSector(x, y_top, z, &room_num);
     height = Room_GetHeight(sector, x, y_top, z);
     if (height != NO_HEIGHT) {
         height -= y_pos;
@@ -190,7 +190,7 @@ void __cdecl Collide_GetCollisionInfo(
             .y = y_pos,
             .z = z_pos + coll->shift.z,
         };
-        sector = Room_GetFloor(test_pos.x, test_pos.y, test_pos.z, &room_num);
+        sector = Room_GetSector(test_pos.x, test_pos.y, test_pos.z, &room_num);
         if (Room_GetHeight(sector, test_pos.x, test_pos.y, test_pos.z)
                 < test_pos.y - WALL_L / 2
             || Room_GetCeiling(sector, test_pos.x, test_pos.y, test_pos.z)

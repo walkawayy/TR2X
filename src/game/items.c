@@ -284,7 +284,7 @@ bool __cdecl Item_Teleport(ITEM_INFO *item, int32_t x, int32_t y, int32_t z)
     if (room_num == NO_ROOM) {
         return false;
     }
-    SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
     const int16_t height = Room_GetHeight(sector, x, y, z);
     if (height != NO_HEIGHT) {
         item->pos.x = x;
@@ -326,7 +326,7 @@ void __cdecl Item_UpdateRoom(ITEM_INFO *const item, const int32_t height)
     int32_t z = item->pos.z;
 
     int16_t room_num = item->room_num;
-    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
     item->floor = Room_GetHeight(sector, x, y, z);
     if (item->room_num != room_num) {
         Item_NewRoom(g_Lara.item_num, room_num);
@@ -437,7 +437,7 @@ void __cdecl Item_AlignPosition(
 
     int16_t room_num = dst_item->room_num;
     const SECTOR_INFO *const sector =
-        Room_GetFloor(new_pos.x, new_pos.y, new_pos.z, &room_num);
+        Room_GetSector(new_pos.x, new_pos.y, new_pos.z, &room_num);
     const int32_t height =
         Room_GetHeight(sector, new_pos.x, new_pos.y, new_pos.z);
     const int32_t ceiling =

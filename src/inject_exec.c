@@ -253,7 +253,7 @@ static void Inject_Room(const bool enable)
     INJECT(enable, 0x004133D0, Room_GetNearbyRooms);
     INJECT(enable, 0x004134A0, Room_GetNewRoom);
     INJECT(enable, 0x004135A0, Room_GetTiltType);
-    INJECT(enable, 0x00414B70, Room_GetFloor);
+    INJECT(enable, 0x00414B70, Room_GetSector);
     INJECT(enable, 0x00414D10, Room_GetWaterHeight);
     INJECT(enable, 0x00414E80, Room_GetHeight);
     INJECT(enable, 0x00415930, Room_GetCeiling);

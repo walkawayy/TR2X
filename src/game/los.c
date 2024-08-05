@@ -35,7 +35,7 @@ int32_t __cdecl LOS_CheckX(
         while (x > target->x) {
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x, y, z, &room_num);
+                    Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -54,7 +54,7 @@ int32_t __cdecl LOS_CheckX(
 
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x - 1, y, z, &room_num);
+                    Room_GetSector(x - 1, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x - 1, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x - 1, y, z);
                 if (y > height || y < ceiling) {
@@ -78,7 +78,7 @@ int32_t __cdecl LOS_CheckX(
         while (x < target->x) {
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x, y, z, &room_num);
+                    Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -97,7 +97,7 @@ int32_t __cdecl LOS_CheckX(
 
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x + 1, y, z, &room_num);
+                    Room_GetSector(x + 1, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x + 1, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x + 1, y, z);
                 if (y > height || y < ceiling) {
@@ -144,7 +144,7 @@ int32_t __cdecl LOS_CheckZ(
         while (z > target->z) {
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x, y, z, &room_num);
+                    Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -163,7 +163,7 @@ int32_t __cdecl LOS_CheckZ(
 
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x, y, z - 1, &room_num);
+                    Room_GetSector(x, y, z - 1, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z - 1);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z - 1);
                 if (y > height || y < ceiling) {
@@ -187,7 +187,7 @@ int32_t __cdecl LOS_CheckZ(
         while (z < target->z) {
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x, y, z, &room_num);
+                    Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -206,7 +206,7 @@ int32_t __cdecl LOS_CheckZ(
 
             {
                 const SECTOR_INFO *const sector =
-                    Room_GetFloor(x, y, z + 1, &room_num);
+                    Room_GetSector(x, y, z + 1, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z + 1);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z + 1);
                 if (y > height || y < ceiling) {
@@ -276,7 +276,7 @@ int32_t __cdecl LOS_Check(
     }
 
     const SECTOR_INFO *const sector =
-        Room_GetFloor(target->x, target->y, target->z, &target->room_num);
+        Room_GetSector(target->x, target->y, target->z, &target->room_num);
 
     if (!LOS_ClipTarget(start, target, sector)) {
         return 0;

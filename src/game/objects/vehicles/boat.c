@@ -211,11 +211,11 @@ int32_t __cdecl Boat_TestWaterHeight(
     pos->z = item->pos.z + ((z_off * c - x_off * s) >> W2V_SHIFT);
 
     int16_t room_num = item->room_num;
-    Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
+    Room_GetSector(pos->x, pos->y, pos->z, &room_num);
     int32_t height = Room_GetWaterHeight(pos->x, pos->y, pos->z, room_num);
     if (height == NO_HEIGHT) {
         const SECTOR_INFO *const sector =
-            Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
+            Room_GetSector(pos->x, pos->y, pos->z, &room_num);
         height = Room_GetHeight(sector, pos->x, pos->y, pos->z);
         if (height != NO_HEIGHT) {
             return height;
@@ -424,7 +424,7 @@ int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
 
     int16_t room_num = boat->room_num;
     const SECTOR_INFO *const sector =
-        Room_GetFloor(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
+        Room_GetSector(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
     int32_t height =
         Room_GetWaterHeight(boat->pos.x, boat->pos.y, boat->pos.z, room_num);
     if (height == NO_HEIGHT) {
@@ -633,7 +633,7 @@ void __cdecl Boat_Control(const int16_t item_num)
 
     int16_t room_num = boat->room_num;
     const SECTOR_INFO *const sector =
-        Room_GetFloor(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
+        Room_GetSector(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
     int32_t height =
         Room_GetHeight(sector, boat->pos.x, boat->pos.y, boat->pos.z);
     const int32_t ceiling =
@@ -793,7 +793,7 @@ void __cdecl Boat_Control(const int16_t item_num)
 
         int16_t room_num = lara->room_num;
         const SECTOR_INFO *const sector =
-            Room_GetFloor(pos.x, pos.y, pos.z, &room_num);
+            Room_GetSector(pos.x, pos.y, pos.z, &room_num);
         if (Room_GetHeight(sector, pos.x, pos.y, pos.z) >= pos.y - STEP_L) {
             lara->pos.x = pos.x;
             lara->pos.z = pos.z;
@@ -823,7 +823,7 @@ void __cdecl Gondola_Control(const int16_t item_num)
     case GONDOLA_SINK: {
         gondola->pos.y = gondola->pos.y + GONDOLA_SINK_SPEED;
         int16_t room_num = gondola->room_num;
-        const SECTOR_INFO *const sector = Room_GetFloor(
+        const SECTOR_INFO *const sector = Room_GetSector(
             gondola->pos.x, gondola->pos.y, gondola->pos.z, &room_num);
         const int32_t height = Room_GetHeight(
             sector, gondola->pos.x, gondola->pos.y, gondola->pos.z);

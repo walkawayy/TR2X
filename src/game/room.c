@@ -66,7 +66,7 @@ void __cdecl Room_GetNearbyRooms(
 void __cdecl Room_GetNewRoom(
     const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
 {
-    Room_GetFloor(x, y, z, &room_num);
+    Room_GetSector(x, y, z, &room_num);
 
     for (int32_t i = 0; i < g_DrawRoomsCount; i++) {
         if (g_DrawRoomsArray[i] == room_num) {
@@ -99,7 +99,7 @@ int16_t __cdecl Room_GetTiltType(
     return 0;
 }
 
-SECTOR_INFO *__cdecl Room_GetFloor(
+SECTOR_INFO *__cdecl Room_GetSector(
     const int32_t x, const int32_t y, const int32_t z, int16_t *const room_num)
 {
     SECTOR_INFO *sector = NULL;
@@ -800,8 +800,8 @@ void __cdecl Room_AlterFloorHeight(
     int16_t room_num = item->room_num;
 
     SECTOR_INFO *const sector =
-        Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
-    const SECTOR_INFO *ceiling = Room_GetFloor(
+        Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
+    const SECTOR_INFO *ceiling = Room_GetSector(
         item->pos.x, item->pos.y + height - WALL_L, item->pos.z, &room_num);
 
     if (sector->floor == NO_HEIGHT / 256) {

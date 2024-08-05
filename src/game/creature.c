@@ -370,7 +370,7 @@ int32_t __cdecl Creature_Animate(
 
     if (!object->water_creature) {
         int16_t room_num = item->room_num;
-        Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
+        Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
         if (room_num != item->room_num) {
             Item_NewRoom(item_num, room_num);
         }
@@ -387,7 +387,7 @@ int32_t __cdecl Creature_Animate(
 
     int16_t room_num = item->room_num;
     const SECTOR_INFO *sector =
-        Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        Room_GetSector(item->pos.x, y, item->pos.z, &room_num);
     int32_t height = g_Boxes[sector->box].height;
     int16_t next_box = lot->node[sector->box].exit_box;
     int32_t next_height =
@@ -412,7 +412,7 @@ int32_t __cdecl Creature_Animate(
             item->pos.z = old.z | (WALL_L - 1);
         }
 
-        sector = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        sector = Room_GetSector(item->pos.x, y, item->pos.z, &room_num);
         height = g_Boxes[sector->box].height;
         next_box = lot->node[sector->box].exit_box;
         next_height = next_box != NO_BOX ? g_Boxes[next_box].height : height;
@@ -516,7 +516,7 @@ int32_t __cdecl Creature_Animate(
     item->pos.z += shift_z;
 
     if (shift_x || shift_z) {
-        sector = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        sector = Room_GetSector(item->pos.x, y, item->pos.z, &room_num);
         item->rot.y += angle;
         if (tilt != 0) {
             Creature_Tilt(item, tilt * 2);
@@ -557,7 +557,7 @@ int32_t __cdecl Creature_Animate(
         }
 
         item->pos.y += dy;
-        sector = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        sector = Room_GetSector(item->pos.x, y, item->pos.z, &room_num);
         item->floor = Room_GetHeight(sector, item->pos.x, y, item->pos.z);
 
         int16_t angle = item->speed != 0 ? Math_Atan(item->speed, -dy) : 0;
@@ -572,7 +572,7 @@ int32_t __cdecl Creature_Animate(
         }
     } else {
         const SECTOR_INFO *const sector =
-            Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
+            Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
         item->floor =
             Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
 
@@ -587,7 +587,7 @@ int32_t __cdecl Creature_Animate(
     }
 
     if (!object->water_creature) {
-        Room_GetFloor(
+        Room_GetSector(
             item->pos.x, item->pos.y - (STEP_L * 2), item->pos.z, &room_num);
         if (g_Rooms[room_num].flags & RF_UNDERWATER) {
             item->hit_points = 0;
@@ -677,7 +677,7 @@ void __cdecl Creature_Float(const int16_t item_num)
 
     int16_t room_num = item->room_num;
     const SECTOR_INFO *const sector =
-        Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
+        Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
     item->floor = Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
     if (room_num != item->room_num) {
         Item_NewRoom(item_num, room_num);

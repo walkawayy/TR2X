@@ -1546,23 +1546,23 @@ int32_t __cdecl Lara_GetWaterDepth(
             x_floor = 0;
             if (y_floor < 1) {
                 y_floor = 1;
-            } else if (y_floor > r->y_size - 2) {
-                y_floor = r->y_size - 2;
+            } else if (y_floor > r->x_size - 2) {
+                y_floor = r->x_size - 2;
             }
-        } else if (x_floor >= r->x_size - 1) {
-            x_floor = r->x_size - 1;
+        } else if (x_floor >= r->z_size - 1) {
+            x_floor = r->z_size - 1;
             if (y_floor < 1) {
                 y_floor = 1;
-            } else if (y_floor > r->y_size - 2) {
-                y_floor = r->y_size - 2;
+            } else if (y_floor > r->x_size - 2) {
+                y_floor = r->x_size - 2;
             }
         } else if (y_floor < 0) {
             y_floor = 0;
-        } else if (y_floor >= r->y_size) {
-            y_floor = r->y_size - 1;
+        } else if (y_floor >= r->x_size) {
+            y_floor = r->x_size - 1;
         }
 
-        sector = &r->sector[x_floor + y_floor * r->x_size];
+        sector = &r->sector[x_floor + y_floor * r->z_size];
         const int16_t data = Room_GetDoor(sector);
         if (data == (uint8_t)NO_ROOM) {
             break;
@@ -1581,7 +1581,7 @@ int32_t __cdecl Lara_GetWaterDepth(
             }
             const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
             const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-            sector = &r->sector[x_floor + y_floor * r->x_size];
+            sector = &r->sector[x_floor + y_floor * r->z_size];
         }
         return 0x7FFF;
     }
@@ -1595,7 +1595,7 @@ int32_t __cdecl Lara_GetWaterDepth(
         }
         const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-        sector = &r->sector[x_floor + y_floor * r->x_size];
+        sector = &r->sector[x_floor + y_floor * r->z_size];
     }
     return NO_HEIGHT;
 }
@@ -1704,7 +1704,7 @@ void __cdecl Lara_WaterCurrent(COLL_INFO *const coll)
     const ROOM_INFO *const r = &g_Rooms[g_LaraItem->room_num];
     const int32_t x_floor = (g_LaraItem->pos.z - r->pos.z) >> WALL_SHIFT;
     const int32_t y_floor = (g_LaraItem->pos.x - r->pos.x) >> WALL_SHIFT;
-    g_LaraItem->box_num = r->sector[x_floor + y_floor * r->x_size].box;
+    g_LaraItem->box_num = r->sector[x_floor + y_floor * r->z_size].box;
 
     if (g_Lara.creature == NULL) {
         g_Lara.current_active = 0;

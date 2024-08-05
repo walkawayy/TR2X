@@ -238,33 +238,33 @@ void __cdecl Room_Clip(const ROOM_INFO *const r)
     yv[0] = r->max_ceiling - r->pos.y;
     zv[0] = WALL_L;
 
-    xv[1] = (r->y_size - 1) * WALL_L;
+    xv[1] = (r->x_size - 1) * WALL_L;
     yv[1] = r->max_ceiling - r->pos.y;
     zv[1] = WALL_L;
 
-    xv[2] = (r->y_size - 1) * WALL_L;
+    xv[2] = (r->x_size - 1) * WALL_L;
     yv[2] = r->max_ceiling - r->pos.y;
-    zv[2] = (r->x_size - 1) * WALL_L;
+    zv[2] = (r->z_size - 1) * WALL_L;
 
     xv[3] = WALL_L;
     yv[3] = r->max_ceiling - r->pos.y;
-    zv[3] = (r->x_size - 1) * WALL_L;
+    zv[3] = (r->z_size - 1) * WALL_L;
 
     xv[4] = WALL_L;
     yv[4] = r->min_floor - r->pos.y;
     zv[4] = WALL_L;
 
-    xv[5] = (r->y_size - 1) * WALL_L;
+    xv[5] = (r->x_size - 1) * WALL_L;
     yv[5] = r->min_floor - r->pos.y;
     zv[5] = WALL_L;
 
-    xv[6] = (r->y_size - 1) * WALL_L;
+    xv[6] = (r->x_size - 1) * WALL_L;
     yv[6] = r->min_floor - r->pos.y;
-    zv[6] = (r->x_size - 1) * WALL_L;
+    zv[6] = (r->z_size - 1) * WALL_L;
 
     xv[7] = WALL_L;
     yv[7] = r->min_floor - r->pos.y;
-    zv[7] = (r->x_size - 1) * WALL_L;
+    zv[7] = (r->z_size - 1) * WALL_L;
 
     bool clip_room = false;
     bool clip[8];

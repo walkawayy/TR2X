@@ -1247,7 +1247,7 @@ int32_t __cdecl Room_FindByPos(
     for (int32_t i = 0; i < g_RoomCount; i++) {
         const ROOM_INFO *const room = &g_Rooms[i];
         if ((x >= (room->pos.x + WALL_L))
-            && (x < (room->pos.x + (room->y_size - 1) * WALL_L))
+            && (x < (room->pos.x + (room->x_size - 1) * WALL_L))
             && (y >= room->max_ceiling) && (y <= room->min_floor)
             && (z >= (room->pos.z + WALL_L))
             && (z < (room->pos.z + (room->x_size - 1) * WALL_L))) {

@@ -80,12 +80,12 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
 
             const int32_t x1 = room->pos.x + WALL_L;
             const int32_t x2 =
-                (room->y_size << WALL_SHIFT) + room->pos.x - WALL_L;
+                (room->x_size << WALL_SHIFT) + room->pos.x - WALL_L;
             const int32_t y1 = room->min_floor;
             const int32_t y2 = room->max_ceiling;
             const int32_t z1 = room->pos.z + WALL_L;
             const int32_t z2 =
-                (room->x_size << WALL_SHIFT) + room->pos.z - WALL_L;
+                (room->z_size << WALL_SHIFT) + room->pos.z - WALL_L;
 
             for (int i = 0; i < 100; i++) {
                 int32_t x = x1 + Random_GetControl() * (x2 - x1) / 0x7FFF;

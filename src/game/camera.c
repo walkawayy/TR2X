@@ -242,7 +242,7 @@ void __cdecl Camera_SmartShift(
     const ROOM_INFO *r = &g_Rooms[g_Camera.target.room_num];
     int32_t x_floor = (g_Camera.target.z - r->pos.z) >> WALL_SHIFT;
     int32_t y_floor = (g_Camera.target.x - r->pos.x) >> WALL_SHIFT;
-    int16_t item_box = r->sector[x_floor + y_floor * r->x_size].box;
+    int16_t item_box = r->sector[x_floor + y_floor * r->z_size].box;
     const BOX_INFO *box = &g_Boxes[item_box];
 
     int32_t left = (int32_t)box->left << WALL_SHIFT;
@@ -253,7 +253,7 @@ void __cdecl Camera_SmartShift(
     r = &g_Rooms[target->room_num];
     x_floor = (target->z - r->pos.z) >> WALL_SHIFT;
     y_floor = (target->x - r->pos.x) >> WALL_SHIFT;
-    int16_t camera_box = r->sector[x_floor + y_floor * r->x_size].box;
+    int16_t camera_box = r->sector[x_floor + y_floor * r->z_size].box;
 
     if (camera_box != NO_BOX
         && (target->z < left || target->z > right || target->x < top

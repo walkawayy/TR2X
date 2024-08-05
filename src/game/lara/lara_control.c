@@ -911,23 +911,27 @@ void __cdecl Lara_InitialiseMeshes(const int32_t level_num)
 
     const START_INFO *const start = &g_SaveGame.start[level_num];
 
+    GAME_OBJECT_ID holster_obj_num = NO_OBJECT;
     if (start->gun_type != LGT_UNARMED) {
-        GAME_OBJECT_ID gun_obj = O_LARA_PISTOLS;
         if (start->gun_type == LGT_MAGNUMS) {
-            gun_obj = O_LARA_MAGNUMS;
+            holster_obj_num = O_LARA_MAGNUMS;
         } else if (start->gun_type == LGT_UZIS) {
-            gun_obj = O_LARA_UZIS;
+            holster_obj_num = O_LARA_UZIS;
+        } else {
+            holster_obj_num = O_LARA_PISTOLS;
         }
+    }
 
+    if (holster_obj_num != NO_OBJECT) {
         g_Lara.mesh_ptrs[LM_THIGH_L] =
-            g_Lara.mesh_ptrs[g_Objects[gun_obj].mesh_idx + LM_THIGH_L];
+            g_Meshes[g_Objects[holster_obj_num].mesh_idx + LM_THIGH_L];
         g_Lara.mesh_ptrs[LM_THIGH_R] =
-            g_Lara.mesh_ptrs[g_Objects[gun_obj].mesh_idx + LM_THIGH_R];
+            g_Meshes[g_Objects[holster_obj_num].mesh_idx + LM_THIGH_R];
     }
 
     if (start->gun_type == LGT_FLARE) {
         g_Lara.mesh_ptrs[LM_HAND_L] =
-            g_Lara.mesh_ptrs[g_Objects[O_LARA_FLARE].mesh_idx + LM_HAND_L];
+            g_Meshes[g_Objects[O_LARA_FLARE].mesh_idx + LM_HAND_L];
     }
 
     switch (start->gun_type) {

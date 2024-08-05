@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.57% (616)</tspan> · <tspan class="known">46.96% (572)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.66% (617)</tspan> · <tspan class="known">46.88% (571)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="377.79" height="6" x="0" y="0" class="decompiled"/>
-<rect width="350.81" height="6" x="377.79" y="0" class="known"/>
+<rect width="378.41" height="6" x="0" y="0" class="decompiled"/>
+<rect width="350.19" height="6" x="378.41" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -673,7 +673,7 @@
 <rect width="12" height="12" x="660" y="165" class="decompiled"><title>void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="675" y="165" class="decompiled"><title>void __cdecl Lara_WaterCurrent(COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="690" y="165" class="decompiled"><title>void __cdecl LOT_InitialiseArray(void);</title></rect>
-<rect width="12" height="12" x="705" y="165" class="known"><title>void __cdecl DisableBaddieAI(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="705" y="165" class="decompiled"><title>void __cdecl LOT_DisableBaddieAI(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="720" y="165" class="known"><title>int32_t __cdecl LOT_EnableBaddieAI(int16_t item_num, int32_t always);</title></rect>
 <rect width="12" height="12" x="735" y="165" class="known"><title>void __cdecl InitialiseSlot(int16_t item_num, int32_t slot);</title></rect>
 <rect width="12" height="12" x="0" y="180" class="known"><title>void __cdecl CreateZone(ITEM_INFO *item);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.03%</tspan> · <tspan class="known">48.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.05%</tspan> · <tspan class="known">48.62%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="381.16" height="6" x="0" y="0" class="decompiled"/>
-<rect width="363.40" height="6" x="381.16" y="0" class="known"/>
+<rect width="381.34" height="6" x="0" y="0" class="decompiled"/>
+<rect width="363.22" height="6" x="381.34" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2097,7 +2097,7 @@
 <rect width="4.97" height="5.33" x="625.01" y="312.30" class="decompiled"><title>const FLOOR_INFO *__cdecl Camera_GoodPosition(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="4.97" height="5.33" x="625.01" y="320.63" class="known"><title>void __cdecl InitialiseCult3(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.22" x="625.01" y="328.96" class="known"><title>void __cdecl set_arm_info(LARA_ARM *arm, int32_t frame);</title></rect>
-<rect width="4.97" height="5.22" x="625.01" y="337.19" class="known"><title>void __cdecl DisableBaddieAI(int16_t item_num);</title></rect>
+<rect width="4.97" height="5.22" x="625.01" y="337.19" class="decompiled"><title>void __cdecl LOT_DisableBaddieAI(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.22" x="625.01" y="345.41" class="known"><title>void __cdecl TrapDoorControl(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="353.64" class="decompiled"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="361.76" class="decompiled"><title>int16_t __cdecl Room_GetDoor(const FLOOR_INFO *floor);</title></rect>

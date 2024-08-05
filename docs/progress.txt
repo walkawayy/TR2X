@@ -3333,7 +3333,7 @@ typedef enum {
 
 # game/lot.c
 0x00432A60  0x0053  +       void __cdecl LOT_InitialiseArray(void);
-0x00432AC0  0x004F  -R      void __cdecl DisableBaddieAI(int16_t item_num);
+0x00432AC0  0x004F  +       void __cdecl LOT_DisableBaddieAI(int16_t item_num);
 0x00432B10  0x01B0  -       int32_t __cdecl LOT_EnableBaddieAI(int16_t item_num, int32_t always);
 0x00432CC0  0x0106  -R      void __cdecl InitialiseSlot(int16_t item_num, int32_t slot);
 0x00432ED0  0x00B8  -R      void __cdecl CreateZone(ITEM_INFO *item);

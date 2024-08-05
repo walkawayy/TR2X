@@ -18,3 +18,22 @@ void __cdecl LOT_InitialiseArray(void)
 
     g_SlotsUsed = 0;
 }
+
+void __cdecl LOT_DisableBaddieAI(const int16_t item_num)
+{
+    CREATURE_INFO *creature;
+
+    if (item_num == g_Lara.item_num) {
+        creature = g_Lara.creature;
+        g_Lara.creature = NULL;
+    } else {
+        ITEM_INFO *const item = &g_Items[item_num];
+        creature = (CREATURE_INFO *)item->data;
+        item->data = NULL;
+    }
+
+    if (creature != NULL) {
+        creature->item_num = NO_ITEM;
+        g_SlotsUsed--;
+    }
+}

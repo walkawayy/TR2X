@@ -3,6 +3,7 @@
 #include "game/box.h"
 #include "game/items.h"
 #include "game/lara/lara_misc.h"
+#include "game/lot.h"
 #include "game/math.h"
 #include "game/random.h"
 #include "game/room.h"
@@ -330,7 +331,7 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
     } else {
         Item_RemoveActive(item_num);
     }
-    DisableBaddieAI(item_num);
+    LOT_DisableBaddieAI(item_num);
     item->flags |= IF_ONE_SHOT;
 
     if (item->killed) {

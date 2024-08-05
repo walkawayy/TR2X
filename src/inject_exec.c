@@ -752,6 +752,7 @@ static void Inject_Box(const bool enable)
 static void Inject_Lot(const bool enable)
 {
     INJECT(enable, 0x00432A60, LOT_InitialiseArray);
+    INJECT(enable, 0x00432AC0, LOT_DisableBaddieAI);
 }
 
 static void Inject_Objects(const bool enable)

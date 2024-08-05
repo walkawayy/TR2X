@@ -83,17 +83,17 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
 
     {
         const ROOM_INFO *const r = &g_Rooms[item->room_num];
-        const int32_t z_floor = (item->pos.z - r->pos.z) >> WALL_SHIFT;
-        const int32_t x_floor = (item->pos.x - r->pos.x) >> WALL_SHIFT;
-        item->box_num = r->sector[z_floor + r->z_size * x_floor].box;
+        const int32_t z_sector = (item->pos.z - r->pos.z) >> WALL_SHIFT;
+        const int32_t x_sector = (item->pos.x - r->pos.x) >> WALL_SHIFT;
+        item->box_num = r->sector[z_sector + x_sector * r->z_size].box;
         info->zone_num = zone[item->box_num];
     }
 
     {
         const ROOM_INFO *const r = &g_Rooms[enemy->room_num];
-        const int32_t z_floor = (enemy->pos.z - r->pos.z) >> WALL_SHIFT;
-        const int32_t x_floor = (enemy->pos.x - r->pos.x) >> WALL_SHIFT;
-        enemy->box_num = r->sector[z_floor + r->z_size * x_floor].box;
+        const int32_t z_sector = (enemy->pos.z - r->pos.z) >> WALL_SHIFT;
+        const int32_t x_sector = (enemy->pos.x - r->pos.x) >> WALL_SHIFT;
+        enemy->box_num = r->sector[z_sector + x_sector * r->z_size].box;
         info->enemy_zone_num = zone[enemy->box_num];
     }
 
@@ -734,29 +734,29 @@ int32_t __cdecl Creature_Vault(
         vault = 4;
     }
 
-    const int32_t old_x_floor = old.x >> WALL_SHIFT;
-    const int32_t old_z_floor = old.z >> WALL_SHIFT;
-    const int32_t x_floor = item->pos.x >> WALL_SHIFT;
-    const int32_t z_floor = item->pos.z >> WALL_SHIFT;
-    if (old_z_floor == z_floor) {
-        if (old_x_floor == x_floor) {
+    const int32_t old_x_sector = old.x >> WALL_SHIFT;
+    const int32_t old_z_sector = old.z >> WALL_SHIFT;
+    const int32_t x_sector = item->pos.x >> WALL_SHIFT;
+    const int32_t z_sector = item->pos.z >> WALL_SHIFT;
+    if (old_z_sector == z_sector) {
+        if (old_x_sector == x_sector) {
             return 0;
         }
 
-        if (old_x_floor >= x_floor) {
+        if (old_x_sector >= x_sector) {
             item->rot.y = -PHD_90;
-            item->pos.x = (old_x_floor << WALL_SHIFT) + shift;
+            item->pos.x = (old_x_sector << WALL_SHIFT) + shift;
         } else {
             item->rot.y = PHD_90;
-            item->pos.x = (x_floor << WALL_SHIFT) - shift;
+            item->pos.x = (x_sector << WALL_SHIFT) - shift;
         }
-    } else if (old_x_floor == x_floor) {
-        if (old_z_floor >= z_floor) {
+    } else if (old_x_sector == x_sector) {
+        if (old_z_sector >= z_sector) {
             item->rot.y = PHD_180;
-            item->pos.z = (old_z_floor << WALL_SHIFT) + shift;
+            item->pos.z = (old_z_sector << WALL_SHIFT) + shift;
         } else {
             item->rot.y = 0;
-            item->pos.z = (z_floor << WALL_SHIFT) - shift;
+            item->pos.z = (z_sector << WALL_SHIFT) - shift;
         }
     }
 

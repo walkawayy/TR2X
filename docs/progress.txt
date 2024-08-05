@@ -3337,7 +3337,7 @@ typedef enum {
 0x00432B10  0x01B0  +       bool __cdecl LOT_EnableBaddieAI(int16_t item_num, bool always);
 0x00432CC0  0x0106  +       void __cdecl LOT_InitialiseSlot(int16_t item_num, int32_t slot);
 0x00432ED0  0x00B8  +       void __cdecl LOT_CreateZone(ITEM_INFO *item);
-0x00432F90  0x0049  -R      void __cdecl ClearLOT(LOT_INFO *LOT);
+0x00432F90  0x0049  +       void __cdecl LOT_ClearLOT(LOT_INFO *LOT);
 
 # game/missile.c
 0x00432FE0  0x02D0  -R      void __cdecl ControlMissile(int16_t fx_num);

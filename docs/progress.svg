@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.90% (620)</tspan> · <tspan class="known">46.63% (568)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">50.99% (621)</tspan> · <tspan class="known">46.55% (567)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="380.25" height="6" x="0" y="0" class="decompiled"/>
-<rect width="348.35" height="6" x="380.25" y="0" class="known"/>
+<rect width="380.86" height="6" x="0" y="0" class="decompiled"/>
+<rect width="347.74" height="6" x="380.86" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -677,7 +677,7 @@
 <rect width="12" height="12" x="720" y="165" class="decompiled"><title>bool __cdecl LOT_EnableBaddieAI(int16_t item_num, bool always);</title></rect>
 <rect width="12" height="12" x="735" y="165" class="decompiled"><title>void __cdecl LOT_InitialiseSlot(int16_t item_num, int32_t slot);</title></rect>
 <rect width="12" height="12" x="0" y="180" class="decompiled"><title>void __cdecl LOT_CreateZone(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="15" y="180" class="known"><title>void __cdecl ClearLOT(LOT_INFO *LOT);</title></rect>
+<rect width="12" height="12" x="15" y="180" class="decompiled"><title>void __cdecl LOT_ClearLOT(LOT_INFO *LOT);</title></rect>
 <rect width="12" height="12" x="30" y="180" class="known"><title>void __cdecl ControlMissile(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="45" y="180" class="known"><title>void __cdecl ShootAtLara(FX_INFO *fx);</title></rect>
 <rect width="12" height="12" x="60" y="180" class="known"><title>int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.31%</tspan> · <tspan class="known">48.37%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.33%</tspan> · <tspan class="known">48.35%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="383.26" height="6" x="0" y="0" class="decompiled"/>
-<rect width="361.30" height="6" x="383.26" y="0" class="known"/>
+<rect width="383.42" height="6" x="0" y="0" class="decompiled"/>
+<rect width="361.14" height="6" x="383.42" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2125,7 +2125,7 @@
 <rect width="4.84" height="4.83" x="632.98" y="300.92" class="decompiled"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="308.76" class="known"><title>LONG __cdecl SetRegistryStringValue(LPCTSTR lpValueName, LPCTSTR value, int32_t length);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="316.59" class="decompiled"><title>void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);</title></rect>
-<rect width="4.84" height="4.73" x="632.98" y="324.32" class="known"><title>void __cdecl ClearLOT(LOT_INFO *LOT);</title></rect>
+<rect width="4.84" height="4.73" x="632.98" y="324.32" class="decompiled"><title>void __cdecl LOT_ClearLOT(LOT_INFO *LOT);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="332.05" class="known"><title>void __cdecl LaraBurn(void);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="339.78" class="known"><title>BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);</title></rect>
 <rect width="4.84" height="4.62" x="632.98" y="347.51" class="known"><title>void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);</title></rect>

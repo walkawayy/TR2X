@@ -162,7 +162,7 @@ void __cdecl LOT_InitialiseSlot(const int16_t item_num, const int32_t slot)
         break;
     }
 
-    ClearLOT(&creature->lot);
+    LOT_ClearLOT(&creature->lot);
 
     if (item_num != g_Lara.item_num) {
         LOT_CreateZone(item);
@@ -202,5 +202,21 @@ void __cdecl LOT_CreateZone(ITEM_INFO *const item)
             node++;
             creature->lot.zone_count++;
         }
+    }
+}
+
+void __cdecl LOT_ClearLOT(LOT_INFO *const lot)
+{
+    lot->search_num = 0;
+    lot->head = NO_BOX;
+    lot->tail = NO_BOX;
+    lot->target_box = NO_BOX;
+    lot->required_box = NO_BOX;
+
+    for (int32_t i = 0; i < g_BoxCount; i++) {
+        BOX_NODE *const node = &lot->node[i];
+        node->next_expansion = NO_BOX;
+        node->exit_box = NO_BOX;
+        node->search_num = 0;
     }
 }

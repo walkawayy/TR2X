@@ -141,8 +141,8 @@ void __cdecl Item_Initialise(const int16_t item_num)
 
     const int32_t dx = (item->pos.x - room->pos.x) >> WALL_SHIFT;
     const int32_t dz = (item->pos.z - room->pos.z) >> WALL_SHIFT;
-    const FLOOR_INFO *const floor = &room->floor[dx * room->x_size + dz];
-    item->floor = floor->floor << 8;
+    const SECTOR_INFO *const sector = &room->sector[dx * room->x_size + dz];
+    item->floor = sector->floor << 8;
 
     if (g_SaveGame.bonus_flag && !g_IsDemoLevelType) {
         item->hit_points *= 2;
@@ -284,8 +284,8 @@ bool __cdecl Item_Teleport(ITEM_INFO *item, int32_t x, int32_t y, int32_t z)
     if (room_num == NO_ROOM) {
         return false;
     }
-    FLOOR_INFO *const floor = Room_GetFloor(x, y, z, &room_num);
-    const int16_t height = Room_GetHeight(floor, x, y, z);
+    SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    const int16_t height = Room_GetHeight(sector, x, y, z);
     if (height != NO_HEIGHT) {
         item->pos.x = x;
         item->pos.y = y;
@@ -326,8 +326,8 @@ void __cdecl Item_UpdateRoom(ITEM_INFO *const item, const int32_t height)
     int32_t z = item->pos.z;
 
     int16_t room_num = item->room_num;
-    const FLOOR_INFO *const floor = Room_GetFloor(x, y, z, &room_num);
-    item->floor = Room_GetHeight(floor, x, y, z);
+    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    item->floor = Room_GetHeight(sector, x, y, z);
     if (item->room_num != room_num) {
         Item_NewRoom(g_Lara.item_num, room_num);
     }
@@ -436,12 +436,12 @@ void __cdecl Item_AlignPosition(
     };
 
     int16_t room_num = dst_item->room_num;
-    const FLOOR_INFO *const floor =
+    const SECTOR_INFO *const sector =
         Room_GetFloor(new_pos.x, new_pos.y, new_pos.z, &room_num);
     const int32_t height =
-        Room_GetHeight(floor, new_pos.x, new_pos.y, new_pos.z);
+        Room_GetHeight(sector, new_pos.x, new_pos.y, new_pos.z);
     const int32_t ceiling =
-        Room_GetCeiling(floor, new_pos.x, new_pos.y, new_pos.z);
+        Room_GetCeiling(sector, new_pos.x, new_pos.y, new_pos.z);
 
     if (ABS(height - dst_item->pos.y) > STEP_L
         || ABS(ceiling - dst_item->pos.y) < LARA_HEIGHT) {

@@ -85,7 +85,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
         const ROOM_INFO *const r = &g_Rooms[item->room_num];
         const int32_t z_floor = (item->pos.z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_floor = (item->pos.x - r->pos.x) >> WALL_SHIFT;
-        item->box_num = r->floor[z_floor + r->x_size * x_floor].box;
+        item->box_num = r->sector[z_floor + r->x_size * x_floor].box;
         info->zone_num = zone[item->box_num];
     }
 
@@ -93,7 +93,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
         const ROOM_INFO *const r = &g_Rooms[enemy->room_num];
         const int32_t z_floor = (enemy->pos.z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_floor = (enemy->pos.x - r->pos.x) >> WALL_SHIFT;
-        enemy->box_num = r->floor[z_floor + r->x_size * x_floor].box;
+        enemy->box_num = r->sector[z_floor + r->x_size * x_floor].box;
         info->enemy_zone_num = zone[enemy->box_num];
     }
 
@@ -386,15 +386,15 @@ int32_t __cdecl Creature_Animate(
     int32_t y = item->pos.y + bounds->min_y;
 
     int16_t room_num = item->room_num;
-    const FLOOR_INFO *floor =
+    const SECTOR_INFO *sector =
         Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
-    int32_t height = g_Boxes[floor->box].height;
-    int16_t next_box = lot->node[floor->box].exit_box;
+    int32_t height = g_Boxes[sector->box].height;
+    int16_t next_box = lot->node[sector->box].exit_box;
     int32_t next_height =
         next_box != NO_BOX ? g_Boxes[next_box].height : height;
 
     const int32_t box_height = g_Boxes[item->box_num].height;
-    if (floor->box == NO_BOX || zone[item->box_num] != zone[floor->box]
+    if (sector->box == NO_BOX || zone[item->box_num] != zone[sector->box]
         || box_height - height > lot->step || box_height - height < lot->drop) {
         const int32_t pos_x = item->pos.x >> WALL_SHIFT;
         const int32_t shift_x = old.x >> WALL_SHIFT;
@@ -412,9 +412,9 @@ int32_t __cdecl Creature_Animate(
             item->pos.z = old.z | (WALL_L - 1);
         }
 
-        floor = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
-        height = g_Boxes[floor->box].height;
-        next_box = lot->node[floor->box].exit_box;
+        sector = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        height = g_Boxes[sector->box].height;
+        next_box = lot->node[sector->box].exit_box;
         next_height = next_box != NO_BOX ? g_Boxes[next_box].height : height;
     }
 
@@ -516,7 +516,7 @@ int32_t __cdecl Creature_Animate(
     item->pos.z += shift_z;
 
     if (shift_x || shift_z) {
-        floor = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        sector = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
         item->rot.y += angle;
         if (tilt != 0) {
             Creature_Tilt(item, tilt * 2);
@@ -532,10 +532,10 @@ int32_t __cdecl Creature_Animate(
         int32_t dy = creature->target.y - item->pos.y;
         CLAMP(dy, -lot->fly, lot->fly);
 
-        height = Room_GetHeight(floor, item->pos.x, y, item->pos.z);
+        height = Room_GetHeight(sector, item->pos.x, y, item->pos.z);
         if (item->pos.y + dy <= height) {
             const int32_t ceiling =
-                Room_GetCeiling(floor, item->pos.x, y, item->pos.z);
+                Room_GetCeiling(sector, item->pos.x, y, item->pos.z);
             const int32_t min_y =
                 item->object_num == O_SHARK ? 128 : bounds->min_y;
             if (item->pos.y + min_y + dy < ceiling) {
@@ -557,8 +557,8 @@ int32_t __cdecl Creature_Animate(
         }
 
         item->pos.y += dy;
-        floor = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
-        item->floor = Room_GetHeight(floor, item->pos.x, y, item->pos.z);
+        sector = Room_GetFloor(item->pos.x, y, item->pos.z, &room_num);
+        item->floor = Room_GetHeight(sector, item->pos.x, y, item->pos.z);
 
         int16_t angle = item->speed != 0 ? Math_Atan(item->speed, -dy) : 0;
         CLAMP(angle, -MAX_X_ROT, MAX_X_ROT);
@@ -571,10 +571,10 @@ int32_t __cdecl Creature_Animate(
             item->rot.x = angle;
         }
     } else {
-        const FLOOR_INFO *const floor =
+        const SECTOR_INFO *const sector =
             Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
         item->floor =
-            Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
+            Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
 
         if (item->pos.y > item->floor) {
             item->pos.y = item->floor;
@@ -676,9 +676,9 @@ void __cdecl Creature_Float(const int16_t item_num)
     Item_Animate(item);
 
     int16_t room_num = item->room_num;
-    const FLOOR_INFO *const floor =
+    const SECTOR_INFO *const sector =
         Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
-    item->floor = Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
+    item->floor = Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
     if (room_num != item->room_num) {
         Item_NewRoom(item_num, room_num);
     }

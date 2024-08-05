@@ -10,16 +10,16 @@ void __cdecl Room_GetNearbyRooms(
     int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);
 void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
 int16_t __cdecl Room_GetTiltType(
-    const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
-FLOOR_INFO *__cdecl Room_GetFloor(
+    const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);
+SECTOR_INFO *__cdecl Room_GetFloor(
     int32_t x, int32_t y, int32_t z, int16_t *room_num);
 int32_t __cdecl Room_GetWaterHeight(
     int32_t x, int32_t y, int32_t z, int16_t room_num);
 int32_t __cdecl Room_GetHeight(
-    const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
+    const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);
 int32_t __cdecl Room_GetCeiling(
-    const FLOOR_INFO *floor, int32_t x, int32_t y, int32_t z);
-int16_t __cdecl Room_GetDoor(const FLOOR_INFO *floor);
+    const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);
+int16_t __cdecl Room_GetDoor(const SECTOR_INFO *sector);
 void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy);
 void __cdecl Room_AlterFloorHeight(const ITEM_INFO *item, int32_t height);
 void __cdecl Room_FlipMap(void);

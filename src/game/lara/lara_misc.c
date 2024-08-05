@@ -255,9 +255,9 @@ int32_t __cdecl Lara_TestWall(
         break;
     }
 
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    const int32_t height = Room_GetHeight(floor, x, y, z);
-    const int32_t ceiling = Room_GetCeiling(floor, x, y, z);
+    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    const int32_t height = Room_GetHeight(sector, x, y, z);
+    const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
     if (height == NO_HEIGHT) {
         return 1;
     }
@@ -625,9 +625,9 @@ int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle)
         break;
     }
 
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    int32_t height = Room_GetHeight(floor, x, y, z);
-    int32_t ceiling = Room_GetCeiling(floor, x, y, z);
+    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    int32_t height = Room_GetHeight(sector, x, y, z);
+    int32_t ceiling = Room_GetCeiling(sector, x, y, z);
     return height != NO_HEIGHT && height - y > 0 && ceiling - y < -400;
 }
 
@@ -743,7 +743,7 @@ int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll)
         angle = 0;
     }
 
-    int16_t angle_dif = angle - item->rot.y;
+    const int16_t angle_dif = angle - item->rot.y;
     Item_ShiftCol(item, coll);
 
     if (angle_dif >= -PHD_90 && angle_dif <= PHD_90) {
@@ -775,12 +775,12 @@ int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll)
 
 int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, int16_t ang, int32_t dist)
 {
-    int32_t x = item->pos.x + ((dist * Math_Sin(ang)) >> W2V_SHIFT);
-    int32_t y = item->pos.y - LARA_HEIGHT;
-    int32_t z = item->pos.z + ((dist * Math_Cos(ang)) >> W2V_SHIFT);
+    const int32_t x = item->pos.x + ((dist * Math_Sin(ang)) >> W2V_SHIFT);
+    const int32_t y = item->pos.y - LARA_HEIGHT;
+    const int32_t z = item->pos.z + ((dist * Math_Cos(ang)) >> W2V_SHIFT);
     int16_t room_num = item->room_num;
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    int32_t height = Room_GetHeight(floor, x, y, z);
+    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    int32_t height = Room_GetHeight(sector, x, y, z);
     if (height != NO_HEIGHT) {
         height -= item->pos.y;
     }
@@ -789,14 +789,16 @@ int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, int16_t ang, int32_t dist)
 
 int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll)
 {
-    int32_t x = item->pos.x;
-    int32_t y = item->pos.y;
-    int32_t z = item->pos.z;
+    const int32_t x = item->pos.x;
+    const int32_t y = item->pos.y;
+    const int32_t z = item->pos.z;
+
     int16_t room_num = item->room_num;
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    int32_t height = Room_GetHeight(floor, x, y - LARA_HEIGHT, z);
+    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    const int32_t height = Room_GetHeight(sector, x, y - LARA_HEIGHT, z);
     item->pos.y = height;
     item->floor = height;
+
     Room_TestTriggers(g_TriggerIndex, 0);
     int32_t land_speed = item->fall_speed - DAMAGE_START;
     item->pos.y = y;
@@ -821,8 +823,8 @@ int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll)
     int32_t x = item->pos.x;
     int32_t y = item->pos.y;
     int32_t z = item->pos.z;
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    Room_GetHeight(floor, x, y, z);
+    const SECTOR_INFO *const sector = Room_GetFloor(x, y, z, &room_num);
+    Room_GetHeight(sector, x, y, z);
     coll->trigger = g_TriggerIndex;
     if ((g_Input & IN_ACTION) && item->hit_points > 0) {
         return 0;
@@ -1199,10 +1201,10 @@ int32_t __cdecl Lara_MovePosition(
 
     if (item->object_num == O_FLARE_ITEM) {
         int16_t room_num = lara_item->room_num;
-        const FLOOR_INFO *const floor =
+        const SECTOR_INFO *const sector =
             Room_GetFloor(new_pos.x, new_pos.y, new_pos.z, &room_num);
         const int32_t height =
-            Room_GetHeight(floor, new_pos.x, new_pos.y, new_pos.z);
+            Room_GetHeight(sector, new_pos.x, new_pos.y, new_pos.z);
         if (ABS(height - lara_item->pos.y) > STEP_L * 2) {
             return false;
         }
@@ -1236,13 +1238,13 @@ int32_t __cdecl Lara_TestClimb(
         return 0;
     }
 
-    const FLOOR_INFO *floor;
+    const SECTOR_INFO *sector;
     int32_t height;
     int32_t ceiling;
 
     int16_t room_num = item_room;
-    floor = Room_GetFloor(x, y - 128, z, &room_num);
-    height = Room_GetHeight(floor, x, y, z);
+    sector = Room_GetFloor(x, y - 128, z, &room_num);
+    height = Room_GetHeight(sector, x, y, z);
     if (height == NO_HEIGHT) {
         return 0;
     }
@@ -1255,7 +1257,7 @@ int32_t __cdecl Lara_TestClimb(
         *shift = height;
     }
 
-    ceiling = Room_GetCeiling(floor, x, y, z) - y;
+    ceiling = Room_GetCeiling(sector, x, y, z) - y;
     if (ceiling > CLIMB_SHIFT) {
         return 0;
     }
@@ -1272,14 +1274,14 @@ int32_t __cdecl Lara_TestClimb(
 
     const int32_t x2 = x + x_front;
     const int32_t z2 = z + z_front;
-    floor = Room_GetFloor(x2, y, z2, &room_num);
-    height = Room_GetHeight(floor, x2, y, z2);
+    sector = Room_GetFloor(x2, y, z2, &room_num);
+    height = Room_GetHeight(sector, x2, y, z2);
     if (height != NO_HEIGHT) {
         height -= y;
     }
 
     if (height > CLIMB_SHIFT) {
-        ceiling = Room_GetCeiling(floor, x2, y, z2) - y;
+        ceiling = Room_GetCeiling(sector, x2, y, z2) - y;
         if (ceiling >= LARA_CLIMB_HEIGHT) {
             return 1;
         }
@@ -1317,9 +1319,9 @@ int32_t __cdecl Lara_TestClimb(
     }
 
     room_num = item_room;
-    floor = Room_GetFloor(x, item_height + y, z, &room_num);
-    floor = Room_GetFloor(x2, item_height + y, z2, &room_num);
-    ceiling = Room_GetCeiling(floor, x2, item_height + y, z2);
+    sector = Room_GetFloor(x, item_height + y, z, &room_num);
+    sector = Room_GetFloor(x2, item_height + y, z2, &room_num);
+    ceiling = Room_GetCeiling(sector, x2, item_height + y, z2);
     if (ceiling == NO_HEIGHT) {
         return 1;
     }
@@ -1472,13 +1474,13 @@ int32_t __cdecl Lara_TestClimbUpPos(
 
     *shift = 0;
 
-    const FLOOR_INFO *floor;
+    const SECTOR_INFO *sector;
     int32_t height;
     int32_t ceiling;
 
     int16_t room_num = item->room_num;
-    floor = Room_GetFloor(x, y, z, &room_num);
-    ceiling = Room_GetCeiling(floor, x, y, z) + STEP_L - y;
+    sector = Room_GetFloor(x, y, z, &room_num);
+    ceiling = Room_GetCeiling(sector, x, y, z) + STEP_L - y;
     if (ceiling > CLIMB_SHIFT) {
         return 0;
     }
@@ -1489,8 +1491,8 @@ int32_t __cdecl Lara_TestClimbUpPos(
 
     const int32_t x2 = x + x_front;
     const int32_t z2 = z + z_front;
-    floor = Room_GetFloor(x2, y, z2, &room_num);
-    height = Room_GetHeight(floor, x2, y, z2);
+    sector = Room_GetFloor(x2, y, z2, &room_num);
+    height = Room_GetHeight(sector, x2, y, z2);
     if (height == NO_HEIGHT) {
         *ledge = NO_HEIGHT;
         return 1;
@@ -1499,7 +1501,7 @@ int32_t __cdecl Lara_TestClimbUpPos(
     height -= y;
     *ledge = height;
     if (height > STEP_L / 2) {
-        ceiling = Room_GetCeiling(floor, x2, y, z2) - y;
+        ceiling = Room_GetCeiling(sector, x2, y, z2) - y;
         if (ceiling >= LARA_CLIMB_HEIGHT) {
             return 1;
         }
@@ -1517,9 +1519,9 @@ int32_t __cdecl Lara_TestClimbUpPos(
     }
 
     room_num = item->room_num;
-    floor = Room_GetFloor(x, y + LARA_CLIMB_HEIGHT, z, &room_num);
-    floor = Room_GetFloor(x2, y + LARA_CLIMB_HEIGHT, z2, &room_num);
-    ceiling = Room_GetCeiling(floor, x2, y + LARA_CLIMB_HEIGHT, z2) - y;
+    sector = Room_GetFloor(x, y + LARA_CLIMB_HEIGHT, z, &room_num);
+    sector = Room_GetFloor(x2, y + LARA_CLIMB_HEIGHT, z2, &room_num);
+    ceiling = Room_GetCeiling(sector, x2, y + LARA_CLIMB_HEIGHT, z2) - y;
     if (ceiling <= height) {
         return 1;
     }
@@ -1534,7 +1536,7 @@ int32_t __cdecl Lara_GetWaterDepth(
     const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
 {
     const ROOM_INFO *r = &g_Rooms[room_num];
-    const FLOOR_INFO *floor;
+    const SECTOR_INFO *sector;
 
     while (true) {
         int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
@@ -1560,8 +1562,8 @@ int32_t __cdecl Lara_GetWaterDepth(
             y_floor = r->y_size - 1;
         }
 
-        floor = &r->floor[x_floor + y_floor * r->x_size];
-        const int16_t data = Room_GetDoor(floor);
+        sector = &r->sector[x_floor + y_floor * r->x_size];
+        const int16_t data = Room_GetDoor(sector);
         if (data == (uint8_t)NO_ROOM) {
             break;
         }
@@ -1570,30 +1572,30 @@ int32_t __cdecl Lara_GetWaterDepth(
     }
 
     if (r->flags & RF_UNDERWATER) {
-        while (floor->sky_room != (uint8_t)NO_ROOM) {
-            r = &g_Rooms[floor->sky_room];
+        while (sector->sky_room != (uint8_t)NO_ROOM) {
+            r = &g_Rooms[sector->sky_room];
             if (!(r->flags & RF_UNDERWATER)) {
-                const int32_t water_height = floor->ceiling << 8;
-                floor = Room_GetFloor(x, y, z, &room_num);
-                return Room_GetHeight(floor, x, y, z) - water_height;
+                const int32_t water_height = sector->ceiling << 8;
+                sector = Room_GetFloor(x, y, z, &room_num);
+                return Room_GetHeight(sector, x, y, z) - water_height;
             }
             const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
             const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-            floor = &r->floor[x_floor + y_floor * r->x_size];
+            sector = &r->sector[x_floor + y_floor * r->x_size];
         }
         return 0x7FFF;
     }
 
-    while (floor->pit_room != (uint8_t)NO_ROOM) {
-        r = &g_Rooms[floor->pit_room];
+    while (sector->pit_room != (uint8_t)NO_ROOM) {
+        r = &g_Rooms[sector->pit_room];
         if (r->flags & RF_UNDERWATER) {
-            const int32_t water_height = floor->floor << 8;
-            floor = Room_GetFloor(x, y, z, &room_num);
-            return Room_GetHeight(floor, x, y, z) - water_height;
+            const int32_t water_height = sector->floor << 8;
+            sector = Room_GetFloor(x, y, z, &room_num);
+            return Room_GetHeight(sector, x, y, z) - water_height;
         }
         const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-        floor = &r->floor[x_floor + y_floor * r->x_size];
+        sector = &r->sector[x_floor + y_floor * r->x_size];
     }
     return NO_HEIGHT;
 }
@@ -1603,7 +1605,7 @@ void __cdecl Lara_TestWaterDepth(
 {
     int16_t room_num = item->room_num;
 
-    const FLOOR_INFO *const floor =
+    const SECTOR_INFO *const sector =
         Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
     const int32_t water_depth =
         Lara_GetWaterDepth(item->pos.x, item->pos.y, item->pos.z, room_num);
@@ -1623,7 +1625,7 @@ void __cdecl Lara_TestWaterDepth(
         item->fall_speed = 0;
         g_Lara.water_status = LWS_WADE;
         item->pos.y =
-            Room_GetHeight(floor, item->pos.x, item->pos.y, item->pos.z);
+            Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
     }
 }
 
@@ -1702,7 +1704,7 @@ void __cdecl Lara_WaterCurrent(COLL_INFO *const coll)
     const ROOM_INFO *const r = &g_Rooms[g_LaraItem->room_num];
     const int32_t x_floor = (g_LaraItem->pos.z - r->pos.z) >> WALL_SHIFT;
     const int32_t y_floor = (g_LaraItem->pos.x - r->pos.x) >> WALL_SHIFT;
-    g_LaraItem->box_num = r->floor[x_floor + y_floor * r->x_size].box;
+    g_LaraItem->box_num = r->sector[x_floor + y_floor * r->x_size].box;
 
     if (g_Lara.creature == NULL) {
         g_Lara.current_active = 0;

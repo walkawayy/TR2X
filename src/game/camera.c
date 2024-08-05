@@ -75,24 +75,24 @@ void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed)
 
     g_IsChunkyCamera = 0;
 
-    const FLOOR_INFO *floor = Room_GetFloor(
+    const SECTOR_INFO *sector = Room_GetFloor(
         g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z, &g_Camera.pos.room_num);
     int32_t height =
-        Room_GetHeight(floor, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
+        Room_GetHeight(sector, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
         - STEP_L;
 
     if (g_Camera.pos.y >= height && target->y >= height) {
         LOS_Check(&g_Camera.target, &g_Camera.pos);
-        floor = Room_GetFloor(
+        sector = Room_GetFloor(
             g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z,
             &g_Camera.pos.room_num);
         height = Room_GetHeight(
-                     floor, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
+                     sector, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
             - STEP_L;
     }
 
     int32_t ceiling =
-        Room_GetCeiling(floor, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
+        Room_GetCeiling(sector, g_Camera.pos.x, g_Camera.pos.y, g_Camera.pos.z)
         + STEP_L;
     if (height < ceiling) {
         ceiling = (height + ceiling) >> 1;
@@ -217,17 +217,17 @@ void __cdecl Camera_Shift(
     }
 }
 
-const FLOOR_INFO *__cdecl Camera_GoodPosition(
+const SECTOR_INFO *__cdecl Camera_GoodPosition(
     int32_t x, int32_t y, int32_t z, int16_t room_num)
 {
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &room_num);
-    int32_t height = Room_GetHeight(floor, x, y, z);
-    int32_t ceiling = Room_GetCeiling(floor, x, y, z);
+    const SECTOR_INFO *sector = Room_GetFloor(x, y, z, &room_num);
+    int32_t height = Room_GetHeight(sector, x, y, z);
+    int32_t ceiling = Room_GetCeiling(sector, x, y, z);
     if (y > height || y < ceiling) {
         return NULL;
     }
 
-    return floor;
+    return sector;
 }
 
 void __cdecl Camera_SmartShift(
@@ -242,7 +242,7 @@ void __cdecl Camera_SmartShift(
     const ROOM_INFO *r = &g_Rooms[g_Camera.target.room_num];
     int32_t x_floor = (g_Camera.target.z - r->pos.z) >> WALL_SHIFT;
     int32_t y_floor = (g_Camera.target.x - r->pos.x) >> WALL_SHIFT;
-    int16_t item_box = r->floor[x_floor + y_floor * r->x_size].box;
+    int16_t item_box = r->sector[x_floor + y_floor * r->x_size].box;
     const BOX_INFO *box = &g_Boxes[item_box];
 
     int32_t left = (int32_t)box->left << WALL_SHIFT;
@@ -253,7 +253,7 @@ void __cdecl Camera_SmartShift(
     r = &g_Rooms[target->room_num];
     x_floor = (target->z - r->pos.z) >> WALL_SHIFT;
     y_floor = (target->x - r->pos.x) >> WALL_SHIFT;
-    int16_t camera_box = r->floor[x_floor + y_floor * r->x_size].box;
+    int16_t camera_box = r->sector[x_floor + y_floor * r->x_size].box;
 
     if (camera_box != NO_BOX
         && (target->z < left || target->z > right || target->x < top
@@ -269,7 +269,7 @@ void __cdecl Camera_SmartShift(
     int32_t edge;
 
     test = (target->z - WALL_L) | (WALL_L - 1);
-    const FLOOR_INFO *good_left =
+    const SECTOR_INFO *good_left =
         Camera_GoodPosition(target->x, target->y, test, target->room_num);
     if (good_left) {
         camera_box = good_left->box;
@@ -282,7 +282,7 @@ void __cdecl Camera_SmartShift(
     }
 
     test = (target->z + WALL_L) & (~(WALL_L - 1));
-    const FLOOR_INFO *good_right =
+    const SECTOR_INFO *good_right =
         Camera_GoodPosition(target->x, target->y, test, target->room_num);
     if (good_right) {
         camera_box = good_right->box;
@@ -295,7 +295,7 @@ void __cdecl Camera_SmartShift(
     }
 
     test = (target->x - WALL_L) | (WALL_L - 1);
-    const FLOOR_INFO *good_top =
+    const SECTOR_INFO *good_top =
         Camera_GoodPosition(test, target->y, target->z, target->room_num);
     if (good_top) {
         camera_box = good_top->box;
@@ -308,7 +308,7 @@ void __cdecl Camera_SmartShift(
     }
 
     test = (target->x + WALL_L) & (~(WALL_L - 1));
-    const FLOOR_INFO *good_bottom =
+    const SECTOR_INFO *good_bottom =
         Camera_GoodPosition(test, target->y, target->z, target->room_num);
     if (good_bottom) {
         camera_box = good_bottom->box;
@@ -488,8 +488,8 @@ int32_t __cdecl Camera_ShiftClamp(GAME_VECTOR *pos, int32_t clamp)
     int32_t x = pos->x;
     int32_t y = pos->y;
     int32_t z = pos->z;
-    const FLOOR_INFO *floor = Room_GetFloor(x, y, z, &pos->room_num);
-    const BOX_INFO *box = &g_Boxes[floor->box];
+    const SECTOR_INFO *sector = Room_GetFloor(x, y, z, &pos->room_num);
+    const BOX_INFO *box = &g_Boxes[sector->box];
 
     int32_t left = ((int32_t)box->left << WALL_SHIFT) + clamp;
     int32_t right = ((int32_t)box->right << WALL_SHIFT) - clamp - 1;
@@ -509,8 +509,8 @@ int32_t __cdecl Camera_ShiftClamp(GAME_VECTOR *pos, int32_t clamp)
         pos->x = bottom;
     }
 
-    int32_t height = Room_GetHeight(floor, x, y, z) - clamp;
-    int32_t ceiling = Room_GetCeiling(floor, x, y, z) + clamp;
+    int32_t height = Room_GetHeight(sector, x, y, z) - clamp;
+    int32_t ceiling = Room_GetCeiling(sector, x, y, z) + clamp;
     if (height < ceiling) {
         ceiling = (height + ceiling) >> 1;
         height = ceiling;
@@ -772,10 +772,10 @@ void __cdecl Camera_Update(void)
             g_Camera.target.y += (y - g_Camera.target.y) / 4;
         }
 
-        const FLOOR_INFO *const floor = Room_GetFloor(
+        const SECTOR_INFO *const sector = Room_GetFloor(
             g_Camera.target.x, y, g_Camera.target.z, &g_Camera.target.room_num);
         const int32_t height = Room_GetHeight(
-            floor, g_Camera.target.x, g_Camera.target.y, g_Camera.target.z);
+            sector, g_Camera.target.x, g_Camera.target.y, g_Camera.target.z);
         if (g_Camera.target.y > height) {
             g_IsChunkyCamera = 0;
         }

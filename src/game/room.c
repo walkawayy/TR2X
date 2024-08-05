@@ -79,18 +79,18 @@ void __cdecl Room_GetNewRoom(
 }
 
 int16_t __cdecl Room_GetTiltType(
-    const FLOOR_INFO *floor, const int32_t x, const int32_t y, const int32_t z)
+    const SECTOR_INFO *sector, const int32_t x, const int32_t y,
+    const int32_t z)
 {
-    while (floor->pit_room != (uint8_t)NO_ROOM) {
-        const ROOM_INFO *const room = &g_Rooms[floor->pit_room];
-        const int32_t dz = z - room->pos.z;
-        const int32_t dx = x - room->pos.x;
-        floor = &room->floor
-                     [(dz >> WALL_SHIFT) + (dx >> WALL_SHIFT) * room->x_size];
+    while (sector->pit_room != (uint8_t)NO_ROOM) {
+        const ROOM_INFO *const room = &g_Rooms[sector->pit_room];
+        const int32_t x_floor = (z - room->pos.z) >> WALL_SHIFT;
+        const int32_t y_floor = (x - room->pos.x) >> WALL_SHIFT;
+        sector = &room->sector[x_floor + y_floor * room->x_size];
     }
 
-    if ((y + 512 >= (floor->floor << 8)) && floor->idx != 0) {
-        const int16_t *fd = &g_FloorData[floor->idx];
+    if ((y + 512 >= (sector->floor << 8)) && sector->idx != 0) {
+        const int16_t *fd = &g_FloorData[sector->idx];
         if (FLOORDATA_TYPE(fd[0]) == FT_TILT) {
             return fd[1];
         }
@@ -99,10 +99,10 @@ int16_t __cdecl Room_GetTiltType(
     return 0;
 }
 
-FLOOR_INFO *__cdecl Room_GetFloor(
+SECTOR_INFO *__cdecl Room_GetFloor(
     const int32_t x, const int32_t y, const int32_t z, int16_t *const room_num)
 {
-    FLOOR_INFO *floor = NULL;
+    SECTOR_INFO *sector = NULL;
 
     while (true) {
         const ROOM_INFO *r = &g_Rooms[*room_num];
@@ -129,48 +129,47 @@ FLOOR_INFO *__cdecl Room_GetFloor(
             y_floor = r->y_size - 1;
         }
 
-        floor = &r->floor[x_floor + y_floor * r->x_size];
-        const int16_t door = Room_GetDoor(floor);
+        sector = &r->sector[x_floor + y_floor * r->x_size];
+        const int16_t door = Room_GetDoor(sector);
         if (door == (uint8_t)NO_ROOM) {
             break;
         }
         *room_num = door;
     }
 
-    assert(floor != NULL);
+    assert(sector != NULL);
 
-    if (y >= (floor->floor << 8)) {
-        while (floor->pit_room != (uint8_t)NO_ROOM) {
-            *room_num = floor->pit_room;
+    if (y >= (sector->floor << 8)) {
+        while (sector->pit_room != (uint8_t)NO_ROOM) {
+            *room_num = sector->pit_room;
             const ROOM_INFO *const r = &g_Rooms[*room_num];
             const int32_t x_floor = ((z - r->pos.z) >> WALL_SHIFT);
             const int32_t y_floor = ((x - r->pos.x) >> WALL_SHIFT);
-            floor = &r->floor[x_floor + y_floor * r->x_size];
-            if (y < (floor->floor << 8)) {
+            sector = &r->sector[x_floor + y_floor * r->x_size];
+            if (y < (sector->floor << 8)) {
                 break;
             }
         }
-    } else if (y < (floor->ceiling << 8)) {
-        while (floor->sky_room != (uint8_t)NO_ROOM) {
-            *room_num = floor->sky_room;
-            const ROOM_INFO *const r =
-                &g_Rooms[(unsigned __int8)floor->sky_room];
+    } else if (y < (sector->ceiling << 8)) {
+        while (sector->sky_room != (uint8_t)NO_ROOM) {
+            *room_num = sector->sky_room;
+            const ROOM_INFO *const r = &g_Rooms[sector->sky_room];
             const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
             const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-            floor = &r->floor[x_floor + y_floor * r->x_size];
-            if (y >= (floor->ceiling << 8)) {
+            sector = &r->sector[x_floor + y_floor * r->x_size];
+            if (y >= (sector->ceiling << 8)) {
                 break;
             }
         }
     }
 
-    return floor;
+    return sector;
 }
 
 int32_t __cdecl Room_GetWaterHeight(
     const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
 {
-    const FLOOR_INFO *floor = NULL;
+    const SECTOR_INFO *sector = NULL;
     const ROOM_INFO *r = NULL;
 
     do {
@@ -198,58 +197,59 @@ int32_t __cdecl Room_GetWaterHeight(
             y_floor = r->y_size - 1;
         }
 
-        floor = &r->floor[x_floor + y_floor * r->x_size];
-        room_num = Room_GetDoor(floor);
+        sector = &r->sector[x_floor + y_floor * r->x_size];
+        room_num = Room_GetDoor(sector);
     } while (room_num != (uint8_t)NO_ROOM);
 
     if (r->flags & RF_UNDERWATER) {
-        while (floor->sky_room != (uint8_t)NO_ROOM) {
-            r = &g_Rooms[floor->sky_room];
+        while (sector->sky_room != (uint8_t)NO_ROOM) {
+            r = &g_Rooms[sector->sky_room];
             if (!(r->flags & RF_UNDERWATER)) {
                 break;
             }
             const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
             const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-            floor = &r->floor[x_floor + y_floor * r->x_size];
+            sector = &r->sector[x_floor + y_floor * r->x_size];
         }
-        return floor->ceiling << 8;
+        return sector->ceiling << 8;
     } else {
-        while (floor->pit_room != (uint8_t)NO_ROOM) {
-            r = &g_Rooms[floor->pit_room];
+        while (sector->pit_room != (uint8_t)NO_ROOM) {
+            r = &g_Rooms[sector->pit_room];
             if (r->flags & RF_UNDERWATER) {
-                return floor->floor << 8;
+                return sector->floor << 8;
             }
             const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
             const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-            floor = &r->floor[x_floor + y_floor * r->x_size];
+            sector = &r->sector[x_floor + y_floor * r->x_size];
         }
         return NO_HEIGHT;
     }
 }
 
 int32_t __cdecl Room_GetHeight(
-    const FLOOR_INFO *floor, const int32_t x, const int32_t y, const int32_t z)
+    const SECTOR_INFO *sector, const int32_t x, const int32_t y,
+    const int32_t z)
 {
     g_HeightType = 0;
     g_TriggerIndex = NULL;
 
-    while (floor->pit_room != (uint8_t)NO_ROOM) {
-        const ROOM_INFO *const r = &g_Rooms[floor->pit_room];
+    while (sector->pit_room != (uint8_t)NO_ROOM) {
+        const ROOM_INFO *const r = &g_Rooms[sector->pit_room];
         const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-        floor = &r->floor[x_floor + y_floor * r->x_size];
+        sector = &r->sector[x_floor + y_floor * r->x_size];
     }
 
-    int32_t height = floor->floor << 8;
+    int32_t height = sector->floor << 8;
     if (g_GF_NoFloor && g_GF_NoFloor == height) {
         height = 0x4000;
     }
 
-    if (!floor->idx) {
+    if (!sector->idx) {
         return height;
     }
 
-    int16_t *fd = &g_FloorData[floor->idx];
+    int16_t *fd = &g_FloorData[sector->idx];
     while (true) {
         const int16_t fd_cmd = *fd++;
 
@@ -630,16 +630,16 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
 }
 
 int32_t __cdecl Room_GetCeiling(
-    const FLOOR_INFO *const floor, const int32_t x, const int32_t y,
+    const SECTOR_INFO *const sector, const int32_t x, const int32_t y,
     const int32_t z)
 {
-    const FLOOR_INFO *f = floor;
+    const SECTOR_INFO *f = sector;
 
     while (f->sky_room != (uint8_t)NO_ROOM) {
         const ROOM_INFO *const r = &g_Rooms[f->sky_room];
         const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-        f = &r->floor[x_floor + y_floor * r->x_size];
+        f = &r->sector[x_floor + y_floor * r->x_size];
     }
 
     int32_t height = f->ceiling << 8;
@@ -673,12 +673,12 @@ int32_t __cdecl Room_GetCeiling(
         }
     }
 
-    f = floor;
+    f = sector;
     while (f->pit_room != (uint8_t)NO_ROOM) {
         const ROOM_INFO *const r = &g_Rooms[f->pit_room];
         const int32_t x_floor = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t y_floor = (x - r->pos.x) >> WALL_SHIFT;
-        f = &r->floor[x_floor + y_floor * r->x_size];
+        f = &r->sector[x_floor + y_floor * r->x_size];
     }
 
     if (!f->idx) {
@@ -738,13 +738,13 @@ int32_t __cdecl Room_GetCeiling(
     return height;
 }
 
-int16_t __cdecl Room_GetDoor(const FLOOR_INFO *const floor)
+int16_t __cdecl Room_GetDoor(const SECTOR_INFO *const sector)
 {
-    if (!floor->idx) {
+    if (!sector->idx) {
         return (uint8_t)NO_ROOM;
     }
 
-    const int16_t *fd = &g_FloorData[floor->idx];
+    const int16_t *fd = &g_FloorData[sector->idx];
     while (true) {
         const int16_t fd_cmd = *fd++;
 
@@ -799,21 +799,21 @@ void __cdecl Room_AlterFloorHeight(
 {
     int16_t room_num = item->room_num;
 
-    FLOOR_INFO *floor =
+    SECTOR_INFO *const sector =
         Room_GetFloor(item->pos.x, item->pos.y, item->pos.z, &room_num);
-    const FLOOR_INFO *ceiling = Room_GetFloor(
+    const SECTOR_INFO *ceiling = Room_GetFloor(
         item->pos.x, item->pos.y + height - WALL_L, item->pos.z, &room_num);
 
-    if (floor->floor == NO_HEIGHT / 256) {
-        floor->floor = ceiling->ceiling + height / 256;
+    if (sector->floor == NO_HEIGHT / 256) {
+        sector->floor = ceiling->ceiling + height / 256;
     } else {
-        floor->floor += height / 256;
-        if (floor->floor == ceiling->ceiling) {
-            floor->floor = NO_HEIGHT / 256;
+        sector->floor += height / 256;
+        if (sector->floor == ceiling->ceiling) {
+            sector->floor = NO_HEIGHT / 256;
         }
     }
 
-    BOX_INFO *const box = &g_Boxes[floor->box];
+    BOX_INFO *const box = &g_Boxes[sector->box];
     if (box->overlap_index & BOX_BLOCKABLE) {
         if (height < 0) {
             box->overlap_index |= BOX_BLOCKED;

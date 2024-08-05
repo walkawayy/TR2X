@@ -214,8 +214,9 @@ int32_t __cdecl Boat_TestWaterHeight(
     Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
     int32_t height = Room_GetWaterHeight(pos->x, pos->y, pos->z, room_num);
     if (height == NO_HEIGHT) {
-        FLOOR_INFO *floor = Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
-        height = Room_GetHeight(floor, pos->x, pos->y, pos->z);
+        const SECTOR_INFO *const sector =
+            Room_GetFloor(pos->x, pos->y, pos->z, &room_num);
+        height = Room_GetHeight(sector, pos->x, pos->y, pos->z);
         if (height != NO_HEIGHT) {
             return height;
         }
@@ -422,12 +423,12 @@ int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
     }
 
     int16_t room_num = boat->room_num;
-    const FLOOR_INFO *const floor =
+    const SECTOR_INFO *const sector =
         Room_GetFloor(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
     int32_t height =
         Room_GetWaterHeight(boat->pos.x, boat->pos.y, boat->pos.z, room_num);
     if (height == NO_HEIGHT) {
-        height = Room_GetHeight(floor, boat->pos.x, boat->pos.y, boat->pos.z);
+        height = Room_GetHeight(sector, boat->pos.x, boat->pos.y, boat->pos.z);
     }
     if (height < boat->pos.y - STEP_L / 2) {
         DoShift(boat, &boat->pos, &old);
@@ -631,12 +632,12 @@ void __cdecl Boat_Control(const int16_t item_num)
     const int32_t hfr = Boat_TestWaterHeight(boat, BOAT_FRONT, BOAT_SIDE, &fr);
 
     int16_t room_num = boat->room_num;
-    const FLOOR_INFO *const floor =
+    const SECTOR_INFO *const sector =
         Room_GetFloor(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
     int32_t height =
-        Room_GetHeight(floor, boat->pos.x, boat->pos.y, boat->pos.z);
+        Room_GetHeight(sector, boat->pos.x, boat->pos.y, boat->pos.z);
     const int32_t ceiling =
-        Room_GetCeiling(floor, boat->pos.x, boat->pos.y, boat->pos.z);
+        Room_GetCeiling(sector, boat->pos.x, boat->pos.y, boat->pos.z);
     if (g_Lara.skidoo == item_num) {
         Room_TestTriggers(g_TriggerIndex, 0);
         Room_TestTriggers(g_TriggerIndex, 1);
@@ -791,9 +792,9 @@ void __cdecl Boat_Control(const int16_t item_num)
         };
 
         int16_t room_num = lara->room_num;
-        const FLOOR_INFO *const floor =
+        const SECTOR_INFO *const sector =
             Room_GetFloor(pos.x, pos.y, pos.z, &room_num);
-        if (Room_GetHeight(floor, pos.x, pos.y, pos.z) >= pos.y - STEP_L) {
+        if (Room_GetHeight(sector, pos.x, pos.y, pos.z) >= pos.y - STEP_L) {
             lara->pos.x = pos.x;
             lara->pos.z = pos.z;
             if (room_num != lara->room_num) {
@@ -822,10 +823,10 @@ void __cdecl Gondola_Control(const int16_t item_num)
     case GONDOLA_SINK: {
         gondola->pos.y = gondola->pos.y + GONDOLA_SINK_SPEED;
         int16_t room_num = gondola->room_num;
-        const FLOOR_INFO *const floor = Room_GetFloor(
+        const SECTOR_INFO *const sector = Room_GetFloor(
             gondola->pos.x, gondola->pos.y, gondola->pos.z, &room_num);
         const int32_t height = Room_GetHeight(
-            floor, gondola->pos.x, gondola->pos.y, gondola->pos.z);
+            sector, gondola->pos.x, gondola->pos.y, gondola->pos.z);
         gondola->floor = height;
 
         if (gondola->pos.y >= height) {

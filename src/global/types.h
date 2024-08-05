@@ -636,7 +636,7 @@ typedef struct __unaligned {
     int8_t floor;
     uint8_t sky_room;
     int8_t ceiling;
-} FLOOR_INFO;
+} SECTOR_INFO;
 
 typedef struct __unaligned {
     int16_t lock_angles[4];
@@ -937,15 +937,15 @@ typedef enum {
 } ROOM_FLAG;
 
 typedef struct __unaligned {
-    FLOOR_INFO *floor;
-    FLOOR_INFO data;
+    SECTOR_INFO *sector;
+    SECTOR_INFO data;
     int16_t block;
 } DOORPOS_DATA;
 
 typedef struct __unaligned {
     int16_t *data;
     DOOR_INFOS *doors;
-    FLOOR_INFO *floor;
+    SECTOR_INFO *sector;
     LIGHT_INFO *light;
     MESH_INFO *mesh;
     XYZ_32 pos;

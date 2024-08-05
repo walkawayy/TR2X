@@ -189,7 +189,7 @@ void __cdecl LOT_CreateZone(ITEM_INFO *const item)
     const ROOM_INFO *const r = &g_Rooms[item->room_num];
     const int32_t x_floor = (item->pos.z - r->pos.z) >> WALL_SHIFT;
     const int32_t y_floor = (item->pos.x - r->pos.x) >> WALL_SHIFT;
-    item->box_num = r->floor[x_floor + y_floor * r->x_size].box;
+    item->box_num = r->sector[x_floor + y_floor * r->x_size].box;
 
     int16_t zone_num = zone[item->box_num];
     int16_t flip_num = flip[item->box_num];

@@ -47,7 +47,7 @@ push-image-win:                (image-win "0") (_docker_push "rrdash/tr2x")
 
 build-win target='debug':      (image-win "0") (_docker_run "-e" "TARGET="+target "rrdash/tr2x")
 
-package-win:                   (build-win "release") (_docker_run "rrdash/tr2x" "package")
+package-win target='release':  (build-win target) (_docker_run "rrdash/tr2x" "package")
 
 output-current-version:
     tools/get_version

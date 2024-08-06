@@ -67,7 +67,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
 
     // Room number
     {
-        int16_t room_num = NO_ROOM;
+        int16_t room_num = NO_ROOM_NEG;
         if (sscanf(args, "%hd", &room_num) == 1) {
             if (room_num < 0 || room_num >= g_RoomCount) {
                 Console_Log(

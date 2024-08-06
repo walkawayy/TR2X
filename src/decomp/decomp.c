@@ -1165,10 +1165,10 @@ void __cdecl Misc_InitCinematicRooms(void)
 {
     for (int32_t i = 0; i < g_RoomCount; i++) {
         const int16_t flipped_room = g_Rooms[i].flipped_room;
-        if (flipped_room >= 0) {
+        if (flipped_room != NO_ROOM_NEG) {
             g_Rooms[flipped_room].bound_active = 1;
         }
-        g_Rooms[i].flags |= 8u;
+        g_Rooms[i].flags |= RF_OUTSIDE;
     }
 
     g_DrawRoomsCount = 0;
@@ -1255,7 +1255,7 @@ int32_t __cdecl Room_FindByPos(
         }
     }
 
-    return -1;
+    return NO_ROOM_NEG;
 }
 
 void __cdecl CutscenePlayer_Control(const int16_t item_num)

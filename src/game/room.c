@@ -82,7 +82,7 @@ int16_t __cdecl Room_GetTiltType(
     const SECTOR_INFO *sector, const int32_t x, const int32_t y,
     const int32_t z)
 {
-    while (sector->pit_room != (uint8_t)NO_ROOM) {
+    while (sector->pit_room != NO_ROOM) {
         const ROOM_INFO *const room = &g_Rooms[sector->pit_room];
         const int32_t z_sector = (z - room->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - room->pos.x) >> WALL_SHIFT;
@@ -131,7 +131,7 @@ SECTOR_INFO *__cdecl Room_GetSector(
 
         sector = &r->sector[z_sector + x_sector * r->z_size];
         const int16_t door = Room_GetDoor(sector);
-        if (door == (uint8_t)NO_ROOM) {
+        if (door == NO_ROOM) {
             break;
         }
         *room_num = door;
@@ -140,7 +140,7 @@ SECTOR_INFO *__cdecl Room_GetSector(
     assert(sector != NULL);
 
     if (y >= (sector->floor << 8)) {
-        while (sector->pit_room != (uint8_t)NO_ROOM) {
+        while (sector->pit_room != NO_ROOM) {
             *room_num = sector->pit_room;
             const ROOM_INFO *const r = &g_Rooms[*room_num];
             const int32_t z_sector = ((z - r->pos.z) >> WALL_SHIFT);
@@ -151,7 +151,7 @@ SECTOR_INFO *__cdecl Room_GetSector(
             }
         }
     } else if (y < (sector->ceiling << 8)) {
-        while (sector->sky_room != (uint8_t)NO_ROOM) {
+        while (sector->sky_room != NO_ROOM) {
             *room_num = sector->sky_room;
             const ROOM_INFO *const r = &g_Rooms[sector->sky_room];
             const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
@@ -199,10 +199,10 @@ int32_t __cdecl Room_GetWaterHeight(
 
         sector = &r->sector[z_sector + x_sector * r->z_size];
         room_num = Room_GetDoor(sector);
-    } while (room_num != (uint8_t)NO_ROOM);
+    } while (room_num != NO_ROOM);
 
     if (r->flags & RF_UNDERWATER) {
-        while (sector->sky_room != (uint8_t)NO_ROOM) {
+        while (sector->sky_room != NO_ROOM) {
             r = &g_Rooms[sector->sky_room];
             if (!(r->flags & RF_UNDERWATER)) {
                 break;
@@ -213,7 +213,7 @@ int32_t __cdecl Room_GetWaterHeight(
         }
         return sector->ceiling << 8;
     } else {
-        while (sector->pit_room != (uint8_t)NO_ROOM) {
+        while (sector->pit_room != NO_ROOM) {
             r = &g_Rooms[sector->pit_room];
             if (r->flags & RF_UNDERWATER) {
                 return sector->floor << 8;
@@ -233,7 +233,7 @@ int32_t __cdecl Room_GetHeight(
     g_HeightType = 0;
     g_TriggerIndex = NULL;
 
-    while (sector->pit_room != (uint8_t)NO_ROOM) {
+    while (sector->pit_room != NO_ROOM) {
         const ROOM_INFO *const r = &g_Rooms[sector->pit_room];
         const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
@@ -635,7 +635,7 @@ int32_t __cdecl Room_GetCeiling(
 {
     const SECTOR_INFO *f = sector;
 
-    while (f->sky_room != (uint8_t)NO_ROOM) {
+    while (f->sky_room != NO_ROOM) {
         const ROOM_INFO *const r = &g_Rooms[f->sky_room];
         const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
@@ -674,7 +674,7 @@ int32_t __cdecl Room_GetCeiling(
     }
 
     f = sector;
-    while (f->pit_room != (uint8_t)NO_ROOM) {
+    while (f->pit_room != NO_ROOM) {
         const ROOM_INFO *const r = &g_Rooms[f->pit_room];
         const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
@@ -741,7 +741,7 @@ int32_t __cdecl Room_GetCeiling(
 int16_t __cdecl Room_GetDoor(const SECTOR_INFO *const sector)
 {
     if (!sector->idx) {
-        return (uint8_t)NO_ROOM;
+        return NO_ROOM;
     }
 
     const int16_t *fd = &g_FloorData[sector->idx];
@@ -791,7 +791,7 @@ int16_t __cdecl Room_GetDoor(const SECTOR_INFO *const sector)
         }
     }
 
-    return (uint8_t)NO_ROOM;
+    return NO_ROOM;
 }
 
 void __cdecl Room_AlterFloorHeight(
@@ -827,7 +827,7 @@ void __cdecl Room_FlipMap(void)
 {
     for (int32_t i = 0; i < g_RoomCount; i++) {
         ROOM_INFO *const r = &g_Rooms[i];
-        if (r->flipped_room < 0) { // TODO: NO_ROOM
+        if (r->flipped_room == NO_ROOM_NEG) {
             continue;
         }
 
@@ -839,7 +839,7 @@ void __cdecl Room_FlipMap(void)
         *flipped = temp;
 
         r->flipped_room = flipped->flipped_room;
-        flipped->flipped_room = NO_ROOM;
+        flipped->flipped_room = NO_ROOM_NEG;
 
         // TODO: is this really necessary given the assignments above?
         r->item_num = flipped->item_num;

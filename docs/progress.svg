@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.15% (623)</tspan> · <tspan class="known">46.39% (565)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.23% (624)</tspan> · <tspan class="known">46.31% (564)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="382.09" height="6" x="0" y="0" class="decompiled"/>
-<rect width="346.51" height="6" x="382.09" y="0" class="known"/>
+<rect width="382.70" height="6" x="0" y="0" class="decompiled"/>
+<rect width="345.90" height="6" x="382.70" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1032,7 +1032,7 @@
 <rect width="12" height="12" x="45" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadTexturePages(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="60" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadRooms(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="75" y="285" class="known"><title>void __cdecl AdjustTextureUVs(bool reset_uv_add);</title></rect>
-<rect width="12" height="12" x="90" y="285" class="known"><title>BOOL __cdecl Level_LoadObjects(HANDLE handle);</title></rect>
+<rect width="12" height="12" x="90" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadObjects(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="105" y="285" class="known"><title>BOOL __cdecl Level_LoadSprites(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="120" y="285" class="known"><title>BOOL __cdecl Level_LoadItems(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="135" y="285" class="known"><title>BOOL __cdecl Level_LoadDepthQ(HANDLE handle);</title></rect>
@@ -1100,8 +1100,8 @@
 <rect width="12" height="12" x="315" y="300" class="known"><title>BOOL __cdecl S_InitialiseSystem(void);</title></rect>
 <rect width="12" height="12" x="330" y="300" class="known"><title>void __cdecl GameBuf_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="345" y="300" class="known"><title>void __cdecl init_game_malloc(void);</title></rect>
-<rect width="12" height="12" x="360" y="300" class="known"><title>void *__cdecl game_malloc(uint32_t alloc_size, uint32_t buf_index);</title></rect>
-<rect width="12" height="12" x="375" y="300" class="known"><title>void __cdecl game_free(uint32_t free_size);</title></rect>
+<rect width="12" height="12" x="360" y="300" class="known"><title>void *__cdecl game_malloc(size_t alloc_size, GAME_BUFFER buf_index);</title></rect>
+<rect width="12" height="12" x="375" y="300" class="known"><title>void __cdecl game_free(size_t free_size);</title></rect>
 <rect width="12" height="12" x="390" y="300" class="known"><title>void __cdecl CalculateWibbleTable(void);</title></rect>
 <rect width="12" height="12" x="405" y="300" class="decompiled"><title>void __cdecl Random_Seed(void);</title></rect>
 <rect width="12" height="12" x="420" y="300" class="decompiled"><title>BOOL __cdecl S_Input_Key(KEYMAP keymap);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.71%</tspan> · <tspan class="known">47.96%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.13%</tspan> · <tspan class="known">47.55%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="386.30" height="6" x="0" y="0" class="decompiled"/>
-<rect width="358.26" height="6" x="386.30" y="0" class="known"/>
+<rect width="389.38" height="6" x="0" y="0" class="decompiled"/>
+<rect width="355.18" height="6" x="389.38" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1336,7 +1336,7 @@
 <rect width="31.68" height="33.31" x="142.39" y="112.80" class="known"><title>void __cdecl YetiControl(int16_t item_num);</title></rect>
 <rect width="31.68" height="32.16" x="142.39" y="149.10" class="known"><title>void __cdecl Worker3Control(int16_t item_num);</title></rect>
 <rect width="31.68" height="31.08" x="142.39" y="184.26" class="known"><title>void __cdecl XianLordControl(int16_t item_num);</title></rect>
-<rect width="31.68" height="30.65" x="142.39" y="218.34" class="known"><title>BOOL __cdecl Level_LoadObjects(HANDLE handle);</title></rect>
+<rect width="31.68" height="30.65" x="142.39" y="218.34" class="decompiled"><title>BOOL __cdecl Level_LoadObjects(HANDLE handle);</title></rect>
 <rect width="31.68" height="29.07" x="142.39" y="251.99" class="known"><title>void __cdecl Cult3Control(int16_t item_num);</title></rect>
 <rect width="31.68" height="28.66" x="142.39" y="284.06" class="known"><title>void __cdecl CreateSaveGameInfo(void);</title></rect>
 <rect width="31.68" height="28.23" x="142.39" y="315.73" class="known"><title>void __cdecl DragonControl(int16_t back_num);</title></rect>
@@ -1991,7 +1991,7 @@
 <rect width="6.68" height="6.26" x="588.98" y="331.79" class="decompiled"><title>int32_t __cdecl Output_VisibleZClip(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2);</title></rect>
 <rect width="6.68" height="6.26" x="588.98" y="341.05" class="decompiled"><title>void __cdecl Overlay_AddDisplayPickup(int16_t obj_num);</title></rect>
 <rect width="6.68" height="6.26" x="588.98" y="350.31" class="decompiled"><title>int16_t __cdecl Effect_Create(int16_t room_num);</title></rect>
-<rect width="6.68" height="6.26" x="588.98" y="359.57" class="known"><title>void *__cdecl game_malloc(uint32_t alloc_size, uint32_t buf_index);</title></rect>
+<rect width="6.68" height="6.26" x="588.98" y="359.57" class="known"><title>void *__cdecl game_malloc(size_t alloc_size, GAME_BUFFER buf_index);</title></rect>
 <rect width="6.68" height="6.17" x="588.98" y="368.83" class="decompiled"><title>void __cdecl Output_SetFarZ(int32_t far_z);</title></rect>
 <rect width="6.63" height="6.22" x="598.66" y="226.42" class="decompiled"><title>void __cdecl Lara_State_Swim(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="6.63" height="6.22" x="608.29" y="226.42" class="known"><title>void __cdecl DrawUnclippedItem(ITEM_INFO *item);</title></rect>
@@ -2257,7 +2257,7 @@
 <rect width="3.49" height="3.65" x="662.39" y="371.35" class="decompiled"><title>void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);</title></rect>
 <rect width="3.86" height="3.29" x="668.88" y="296.78" class="known"><title>void __cdecl BridgeTilt2Ceiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="3.86" height="3.29" x="675.73" y="296.78" class="known"><title>void __cdecl TempVideoAdjust(int32_t hires, double sizer);</title></rect>
-<rect width="3.86" height="3.29" x="682.59" y="296.78" class="known"><title>void __cdecl game_free(uint32_t free_size);</title></rect>
+<rect width="3.86" height="3.29" x="682.59" y="296.78" class="known"><title>void __cdecl game_free(size_t free_size);</title></rect>
 <rect width="3.73" height="3.29" x="689.45" y="296.78" class="decompiled"><title>void __cdecl Output_SortPolyList(void);</title></rect>
 <rect width="3.73" height="3.29" x="696.18" y="296.78" class="decompiled"><title>void __cdecl CutscenePlayerGen_Initialise(int16_t item_num);</title></rect>
 <rect width="3.73" height="3.29" x="702.91" y="296.78" class="decompiled"><title>void __cdecl Lara_State_RightJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

@@ -863,7 +863,7 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
         return;
     }
 
-    const int32_t *bone = &g_Bones[obj->bone_idx];
+    const int32_t *bone = &g_AnimBones[obj->bone_idx];
     Matrix_TranslateRel(
         frame_ptr->offset.x, frame_ptr->offset.y, frame_ptr->offset.z);
     const int16_t *rot = frame_ptr->mesh_rots;

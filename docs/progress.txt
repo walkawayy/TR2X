@@ -1085,7 +1085,7 @@ typedef struct __unaligned {
     int16_t mesh_count;
     int16_t mesh_idx;
     int32_t bone_idx;
-    int16_t *frame_base;
+    int16_t *frame_base; // TODO: make me FRAME_INFO
 
     void (*initialise)(int16_t item_number);
     void (*control)(int16_t item_number);
@@ -3725,7 +3725,7 @@ typedef enum {
 0x00449920  0x0188  +       BOOL __cdecl Level_LoadTexturePages(HANDLE handle);
 0x00449AB0  0x03A0  +       BOOL __cdecl Level_LoadRooms(HANDLE handle);
 0x00449E50  0x0097  -R      void __cdecl AdjustTextureUVs(bool reset_uv_add);
-0x00449EF0  0x057E  -       BOOL __cdecl Level_LoadObjects(HANDLE handle);
+0x00449EF0  0x057E  +       BOOL __cdecl Level_LoadObjects(HANDLE handle);
 0x0044A470  0x0135  -       BOOL __cdecl Level_LoadSprites(HANDLE handle);
 0x0044A5B0  0x01D6  -       BOOL __cdecl Level_LoadItems(HANDLE handle);
 0x0044A790  0x0188  -       BOOL __cdecl Level_LoadDepthQ(HANDLE handle);
@@ -3793,8 +3793,8 @@ typedef enum {
 0x0044D610  0x005C  *R      BOOL __cdecl S_InitialiseSystem(void);
 0x0044D670  0x0011  *       void __cdecl GameBuf_Shutdown(void);
 0x0044D690  0x0021  -R      void __cdecl init_game_malloc(void);
-0x0044D6C0  0x006C  -R      void *__cdecl game_malloc(uint32_t alloc_size, uint32_t buf_index);
-0x0044D740  0x0034  -R      void __cdecl game_free(uint32_t free_size);
+0x0044D6C0  0x006C  -R      void *__cdecl game_malloc(size_t alloc_size, GAME_BUFFER buf_index);
+0x0044D740  0x0034  -R      void __cdecl game_free(size_t free_size);
 0x0044D780  0x00E8  -R      void __cdecl CalculateWibbleTable(void);
 0x0044D870  0x007F  +       void __cdecl Random_Seed(void);
 0x0044D8F0  0x0120  +       BOOL __cdecl S_Input_Key(KEYMAP keymap);
@@ -4259,7 +4259,7 @@ typedef enum {
 0x005252C0  -       MATRIX g_IMMatrixStack[256];
 0x005258F0  -       int32_t g_IMFrac;
 0x005258F4  -       ANIM_STRUCT *g_Anims;
-0x00525BE8  -       int32_t *g_Bones;
+0x00525BE8  -       int32_t *g_AnimBones;
 0x00526180  -       int32_t g_RoomCount;
 0x00526184  -       int32_t g_IMRate;
 0x00526188  -       MATRIX *g_IMMatrixPtr;
@@ -4370,3 +4370,8 @@ typedef enum {
 0x005263D0  -       int32_t g_BoxCount;
 0x004D7C50  -       int32_t g_SlotsUsed;
 0x004D9360  -       int32_t g_TexturePageCount;
+0x004D9D90  -       int16_t *g_MeshBase;
+0x004D9E98  -       int32_t g_TextureInfoCount;
+0x004D93F0  -       uint8_t g_LabTextureUVFlag[MAX_TEXTURES];
+0x004B2B00  -       PHD_TEXTURE g_TextureInfo[];
+0x005251B0  -       FRAME_INFO *g_AnimFrames;

@@ -888,7 +888,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
     Matrix_RotYXZ(g_LaraItem->rot.y, g_LaraItem->rot.x, g_LaraItem->rot.z);
 
     const int16_t *rot = frame_ptr->mesh_rots;
-    const int32_t *bone = &g_Bones[obj->bone_idx];
+    const int32_t *bone = &g_AnimBones[obj->bone_idx];
 
     Matrix_TranslateRel(
         frame_ptr->offset.x, frame_ptr->offset.y, frame_ptr->offset.z);
@@ -958,7 +958,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
     g_MatrixPtr->_23 = 0;
     Matrix_RotYXZ(item->rot.y, item->rot.x, item->rot.z);
 
-    const int32_t *const bone = &g_Bones[obj->bone_idx];
+    const int32_t *const bone = &g_AnimBones[obj->bone_idx];
     const int16_t *rot1 = frame1->mesh_rots;
     const int16_t *rot2 = frame2->mesh_rots;
     Matrix_InitInterpolate(frac, rate);

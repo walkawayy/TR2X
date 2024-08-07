@@ -6,6 +6,9 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/log.h>
+#include <libtrx/memory.h>
+
 #include <assert.h>
 
 static void Level_Read(HANDLE handle, void *target, size_t size);
@@ -15,6 +18,17 @@ static int32_t Level_ReadS32(HANDLE handle);
 static uint8_t Level_ReadU8(HANDLE handle);
 static uint16_t Level_ReadU16(HANDLE handle);
 static uint32_t Level_ReadU32(HANDLE handle);
+
+static void __cdecl Level_LoadMeshBase(HANDLE handle);
+static void __cdecl Level_LoadMeshes(HANDLE handle);
+static int32_t __cdecl Level_LoadAnims(HANDLE handle, int32_t **frame_pointers);
+static void __cdecl Level_LoadAnimChanges(HANDLE handle);
+static void __cdecl Level_LoadAnimCommands(HANDLE handle);
+static void __cdecl Level_LoadAnimBones(HANDLE handle);
+static void __cdecl Level_LoadAnimFrames(HANDLE handle);
+static void __cdecl Level_LoadObjectsImpl(HANDLE handle);
+static void __cdecl Level_LoadStaticObjects(HANDLE handle);
+static void __cdecl Level_LoadTextures(HANDLE handle);
 
 static void Level_Read(HANDLE handle, void *target, size_t size)
 {
@@ -226,5 +240,227 @@ BOOL __cdecl Level_LoadRooms(HANDLE handle)
         game_malloc(sizeof(int16_t) * floor_data_size, GBUF_FLOOR_DATA);
     Level_Read(handle, g_FloorData, sizeof(int16_t) * floor_data_size);
 
+    return true;
+}
+
+static void __cdecl Level_LoadMeshBase(HANDLE handle)
+{
+    const int32_t num_meshes = Level_ReadS32(handle);
+    LOG_INFO("%d meshes", num_meshes);
+    g_MeshBase = game_malloc(sizeof(int16_t) * num_meshes, GBUF_MESHES);
+    Level_Read(handle, g_MeshBase, sizeof(int16_t) * num_meshes);
+}
+
+static void __cdecl Level_LoadMeshes(HANDLE handle)
+{
+    const int32_t num_mesh_ptrs = Level_ReadS32(handle);
+    LOG_INFO("%d mesh pointers", num_mesh_ptrs);
+    int32_t *const mesh_indices =
+        (int32_t *)Memory_Alloc(sizeof(int32_t) * num_mesh_ptrs);
+    Level_Read(handle, mesh_indices, sizeof(int32_t) * num_mesh_ptrs);
+
+    g_Meshes =
+        game_malloc(sizeof(int16_t *) * num_mesh_ptrs, GBUF_MESH_POINTERS);
+    for (int32_t i = 0; i < num_mesh_ptrs; i++) {
+        g_Meshes[i] = &g_MeshBase[mesh_indices[i] / 2];
+    }
+
+    Memory_Free(mesh_indices);
+}
+
+static int32_t __cdecl Level_LoadAnims(HANDLE handle, int32_t **frame_pointers)
+{
+    const int32_t num_anims = Level_ReadS32(handle);
+    LOG_INFO("%d anims", num_anims);
+    g_Anims = game_malloc(sizeof(ANIM_STRUCT) * num_anims, GBUF_ANIMS);
+    if (frame_pointers != NULL) {
+        *frame_pointers = Memory_Alloc(sizeof(int32_t) * num_anims);
+    }
+
+    for (int32_t i = 0; i < num_anims; i++) {
+        ANIM_STRUCT *const anim = &g_Anims[i];
+        const int32_t frame_idx = Level_ReadS32(handle);
+        if (frame_pointers != NULL) {
+            (*frame_pointers)[i] = frame_idx;
+        }
+        anim->frame_ptr = NULL; // filled later by the animation frame loader
+        anim->interpolation = Level_ReadS16(handle);
+        anim->current_anim_state = Level_ReadS16(handle);
+        anim->velocity = Level_ReadS32(handle);
+        anim->acceleration = Level_ReadS32(handle);
+        anim->frame_base = Level_ReadS16(handle);
+        anim->frame_end = Level_ReadS16(handle);
+        anim->jump_anim_num = Level_ReadS16(handle);
+        anim->jump_frame_num = Level_ReadS16(handle);
+        anim->num_changes = Level_ReadS16(handle);
+        anim->change_idx = Level_ReadS16(handle);
+        anim->num_commands = Level_ReadS16(handle);
+        anim->command_idx = Level_ReadS16(handle);
+    }
+    return num_anims;
+}
+
+static void __cdecl Level_LoadAnimChanges(HANDLE handle)
+{
+    const int32_t num_anim_changes = Level_ReadS32(handle);
+    LOG_INFO("%d anim changes", num_anim_changes);
+    g_AnimChanges =
+        game_malloc(sizeof(ANIM_CHANGE) * num_anim_changes, GBUF_STRUCTS);
+    for (int32_t i = 0; i < num_anim_changes; i++) {
+        ANIM_CHANGE *const change = &g_AnimChanges[i];
+        change->goal_anim_state = Level_ReadS16(handle);
+        change->num_ranges = Level_ReadS16(handle);
+        change->range_idx = Level_ReadS16(handle);
+    }
+}
+
+static void __cdecl Level_LoadAnimRanges(HANDLE handle)
+{
+    const int32_t num_anim_ranges = Level_ReadS32(handle);
+    LOG_INFO("%d anim ranges", num_anim_ranges);
+    g_AnimRanges =
+        game_malloc(sizeof(ANIM_RANGE) * num_anim_ranges, GBUF_ANIM_RANGES);
+    for (int32_t i = 0; i < num_anim_ranges; i++) {
+        ANIM_RANGE *const range = &g_AnimRanges[i];
+        range->start_frame = Level_ReadS16(handle);
+        range->end_frame = Level_ReadS16(handle);
+        range->link_anim_num = Level_ReadS16(handle);
+        range->link_frame_num = Level_ReadS16(handle);
+    }
+}
+
+static void __cdecl Level_LoadAnimCommands(HANDLE handle)
+{
+    const int32_t num_anim_commands = Level_ReadS32(handle);
+    LOG_INFO("%d anim commands", num_anim_commands);
+    g_AnimCommands =
+        game_malloc(sizeof(int16_t) * num_anim_commands, GBUF_ANIM_COMMANDS);
+    Level_Read(handle, g_AnimCommands, sizeof(int16_t) * num_anim_commands);
+}
+
+static void __cdecl Level_LoadAnimBones(HANDLE handle)
+{
+    const int32_t num_anim_bones = Level_ReadS32(handle);
+    LOG_INFO("%d anim bones", num_anim_bones);
+    g_AnimBones =
+        game_malloc(sizeof(int32_t) * num_anim_bones, GBUF_ANIM_BONES);
+    Level_Read(handle, g_AnimBones, sizeof(int32_t) * num_anim_bones);
+}
+
+static void __cdecl Level_LoadAnimFrames(HANDLE handle)
+{
+    const int32_t anim_frame_data_size = Level_ReadS32(handle);
+    LOG_INFO("%d anim frame data size", anim_frame_data_size);
+    g_AnimFrames =
+        game_malloc(sizeof(int16_t) * anim_frame_data_size, GBUF_ANIM_FRAMES);
+    // TODO: make me FRAME_INFO
+    int16_t *ptr = (int16_t *)&g_AnimFrames[0];
+    for (int32_t i = 0; i < anim_frame_data_size; i++) {
+        ptr[i] = Level_ReadS16(handle);
+    }
+}
+
+static void __cdecl Level_LoadObjectsImpl(HANDLE handle)
+{
+    const int32_t num_objects = Level_ReadS32(handle);
+    LOG_INFO("%d objects", num_objects);
+    for (int32_t i = 0; i < num_objects; i++) {
+        const GAME_OBJECT_ID object_num = Level_ReadS32(handle);
+        OBJECT_INFO *const object = &g_Objects[object_num];
+        object->mesh_count = Level_ReadS16(handle);
+        object->mesh_idx = Level_ReadS16(handle);
+        object->bone_idx = Level_ReadS32(handle);
+        const int32_t frame_idx = Level_ReadS32(handle);
+        object->frame_base = ((int16_t *)g_AnimFrames) + frame_idx / 2;
+        object->anim_idx = Level_ReadS16(handle);
+        object->loaded = 1;
+    }
+}
+
+static void __cdecl Level_LoadStaticObjects(HANDLE handle)
+{
+    const int32_t num_static_objects = Level_ReadS32(handle);
+    LOG_INFO("%d static objects", num_static_objects);
+    for (int32_t i = 0; i < num_static_objects; i++) {
+        const int32_t static_num = Level_ReadS32(handle);
+        STATIC_INFO *static_obj = &g_StaticObjects[static_num];
+        static_obj->mesh_index = Level_ReadS16(handle);
+        static_obj->draw_bounds.min_x = Level_ReadS16(handle);
+        static_obj->draw_bounds.max_x = Level_ReadS16(handle);
+        static_obj->draw_bounds.min_y = Level_ReadS16(handle);
+        static_obj->draw_bounds.max_y = Level_ReadS16(handle);
+        static_obj->draw_bounds.min_z = Level_ReadS16(handle);
+        static_obj->draw_bounds.max_z = Level_ReadS16(handle);
+        static_obj->collision_bounds.min_x = Level_ReadS16(handle);
+        static_obj->collision_bounds.max_x = Level_ReadS16(handle);
+        static_obj->collision_bounds.min_y = Level_ReadS16(handle);
+        static_obj->collision_bounds.max_y = Level_ReadS16(handle);
+        static_obj->collision_bounds.min_z = Level_ReadS16(handle);
+        static_obj->collision_bounds.max_z = Level_ReadS16(handle);
+        static_obj->flags = Level_ReadU16(handle);
+    }
+}
+
+static void __cdecl Level_LoadTextures(HANDLE handle)
+{
+    const int32_t num_textures = Level_ReadS32(handle);
+    LOG_INFO("%d textures", num_textures);
+    if (num_textures > MAX_TEXTURES) {
+        Shell_ExitSystem("Too many rooms");
+        return;
+    }
+
+    for (int32_t i = 0; i < num_textures; i++) {
+        PHD_TEXTURE *texture = &g_TextureInfo[i];
+        texture->draw_type = Level_ReadU16(handle);
+        texture->tex_page = Level_ReadU16(handle);
+        for (int32_t j = 0; j < 4; j++) {
+            texture->uv[j].u = Level_ReadU16(handle);
+            texture->uv[j].v = Level_ReadU16(handle);
+        }
+    }
+
+    for (int32_t i = 0; i < num_textures; i++) {
+        uint16_t *uv = (uint16_t *)&(g_TextureInfo[i].uv[0].u);
+        uint8_t byte = 0;
+        for (int32_t bit = 0; bit < 8; bit++) {
+            if (*uv & 0x80) {
+                *uv |= 0xFF;
+                byte |= (1 << bit);
+            } else {
+                *uv &= 0xFF00;
+            }
+            uv++;
+        }
+        g_LabTextureUVFlag[i] = byte;
+    }
+}
+
+BOOL __cdecl Level_LoadObjects(HANDLE handle)
+{
+    Level_LoadMeshBase(handle);
+    Level_LoadMeshes(handle);
+
+    int32_t *frame_pointers = NULL;
+    const int32_t num_anims = Level_LoadAnims(handle, &frame_pointers);
+    Level_LoadAnimChanges(handle);
+    Level_LoadAnimRanges(handle);
+    Level_LoadAnimCommands(handle);
+    Level_LoadAnimBones(handle);
+    Level_LoadAnimFrames(handle);
+
+    for (int32_t i = 0; i < num_anims; i++) {
+        ANIM_STRUCT *const anim = &g_Anims[i];
+        // TODO: this is horrible
+        anim->frame_ptr = ((int16_t *)g_AnimFrames) + frame_pointers[i] / 2;
+    }
+    Memory_FreePointer(&frame_pointers);
+
+    Level_LoadObjectsImpl(handle);
+    InitialiseObjects();
+    Level_LoadStaticObjects(handle);
+    Level_LoadTextures(handle);
+
+    AdjustTextureUVs(1);
     return true;
 }

@@ -377,7 +377,6 @@
 #define S_FadeInInventory ((void __cdecl (*)(BOOL isFade))0x00447A10)
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
 #define ReadFileSync ((BOOL __cdecl (*)(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped))0x004498D0)
-#define Level_LoadRooms ((BOOL __cdecl (*)(HANDLE handle))0x00449AB0)
 #define AdjustTextureUVs ((void __cdecl (*)(bool reset_uv_add))0x00449E50)
 #define Level_LoadObjects ((BOOL __cdecl (*)(HANDLE handle))0x00449EF0)
 #define Level_LoadSprites ((BOOL __cdecl (*)(HANDLE handle))0x0044A470)

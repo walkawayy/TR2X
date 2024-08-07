@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.07% (622)</tspan> · <tspan class="known">46.47% (566)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.15% (623)</tspan> · <tspan class="known">46.39% (565)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="381.47" height="6" x="0" y="0" class="decompiled"/>
-<rect width="347.13" height="6" x="381.47" y="0" class="known"/>
+<rect width="382.09" height="6" x="0" y="0" class="decompiled"/>
+<rect width="346.51" height="6" x="382.09" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1030,7 +1030,7 @@
 <rect width="12" height="12" x="15" y="285" class="decompiled"><title>LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);</title></rect>
 <rect width="12" height="12" x="30" y="285" class="known"><title>BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);</title></rect>
 <rect width="12" height="12" x="45" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadTexturePages(HANDLE handle);</title></rect>
-<rect width="12" height="12" x="60" y="285" class="known"><title>BOOL __cdecl Level_LoadRooms(HANDLE handle);</title></rect>
+<rect width="12" height="12" x="60" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadRooms(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="75" y="285" class="known"><title>void __cdecl AdjustTextureUVs(bool reset_uv_add);</title></rect>
 <rect width="12" height="12" x="90" y="285" class="known"><title>BOOL __cdecl Level_LoadObjects(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="105" y="285" class="known"><title>BOOL __cdecl Level_LoadSprites(HANDLE handle);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.44%</tspan> · <tspan class="known">48.23%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.71%</tspan> · <tspan class="known">47.96%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="384.27" height="6" x="0" y="0" class="decompiled"/>
-<rect width="360.29" height="6" x="384.27" y="0" class="known"/>
+<rect width="386.30" height="6" x="0" y="0" class="decompiled"/>
+<rect width="358.26" height="6" x="386.30" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1378,7 +1378,7 @@
 <rect width="24.80" height="25.49" x="239.29" y="265.73" class="known"><title>void __cdecl WarriorControl(int16_t item_num);</title></rect>
 <rect width="24.80" height="25.22" x="239.29" y="294.21" class="decompiled"><title>HRESULT __stdcall EnumDisplayModesCallback(LPDDSDESC lpDDSurfaceDesc, LPVOID lpContext);</title></rect>
 <rect width="24.80" height="24.86" x="239.29" y="322.43" class="decompiled"><title>void __cdecl RenderStart(bool is_reset);</title></rect>
-<rect width="24.80" height="24.71" x="239.29" y="350.29" class="known"><title>BOOL __cdecl Level_LoadRooms(HANDLE handle);</title></rect>
+<rect width="24.80" height="24.71" x="239.29" y="350.29" class="decompiled"><title>BOOL __cdecl Level_LoadRooms(HANDLE handle);</title></rect>
 <rect width="24.49" height="24.90" x="267.09" y="0" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="24.49" height="24.75" x="267.09" y="27.90" class="known"><title>void __cdecl ShowStatsText(char *time_str, int32_t type);</title></rect>
 <rect width="24.49" height="24.50" x="267.09" y="55.64" class="decompiled"><title>void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint);</title></rect>

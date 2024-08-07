@@ -3723,7 +3723,7 @@ typedef enum {
 0x004498C0  0x000C  +R      LPCTSTR __cdecl DecodeErrorMessage(DWORD error_code);
 0x004498D0  0x0049  -R      BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);
 0x00449920  0x0188  +       BOOL __cdecl Level_LoadTexturePages(HANDLE handle);
-0x00449AB0  0x03A0  -       BOOL __cdecl Level_LoadRooms(HANDLE handle);
+0x00449AB0  0x03A0  +       BOOL __cdecl Level_LoadRooms(HANDLE handle);
 0x00449E50  0x0097  -R      void __cdecl AdjustTextureUVs(bool reset_uv_add);
 0x00449EF0  0x057E  -       BOOL __cdecl Level_LoadObjects(HANDLE handle);
 0x0044A470  0x0135  -       BOOL __cdecl Level_LoadSprites(HANDLE handle);

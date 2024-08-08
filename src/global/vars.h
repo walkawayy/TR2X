@@ -296,6 +296,7 @@ extern const char *g_TR2XVersion;
 #define g_WaterPalette (*(RGB_888(*)[256])0x0051B305)
 #define g_PhdWinRect (*(RECT*)0x0051B918)
 #define g_HiRes (*(int32_t*)0x0051B928)
+#define g_AnimTextureRanges (*(int16_t **)0x0051B92C)
 #define g_GamePalette8 (*(RGB_888(*)[256])0x0051B930)
 #define g_WinVidNeedToResetBuffers (*(bool*)0x0051BC30)
 #define g_IsWet (*(int32_t*)0x0051BC38)

@@ -686,3 +686,12 @@ BOOL __cdecl Level_LoadBoxes(HANDLE handle)
 
     return true;
 }
+
+BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle)
+{
+    const int32_t num_ranges = Level_ReadS32(handle);
+    g_AnimTextureRanges = game_malloc(
+        sizeof(int16_t) * num_ranges, GBUF_ANIMATING_TEXTURE_RANGES);
+    Level_Read(handle, g_AnimTextureRanges, sizeof(int16_t) * num_ranges);
+    return true;
+}

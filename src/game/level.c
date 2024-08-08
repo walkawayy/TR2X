@@ -621,3 +621,23 @@ BOOL __cdecl Level_LoadCameras(HANDLE handle)
     }
     return true;
 }
+
+BOOL __cdecl Level_LoadSoundEffects(HANDLE handle)
+{
+    g_SoundEffectCount = Level_ReadS32(handle);
+    if (!g_SoundEffectCount) {
+        return true;
+    }
+
+    g_SoundEffects =
+        game_malloc(sizeof(OBJECT_VECTOR) * g_SoundEffectCount, GBUF_SOUND_FX);
+    for (int32_t i = 0; i < g_SoundEffectCount; i++) {
+        OBJECT_VECTOR *const effect = &g_SoundEffects[i];
+        effect->x = Level_ReadS32(handle);
+        effect->y = Level_ReadS32(handle);
+        effect->z = Level_ReadS32(handle);
+        effect->data = Level_ReadS16(handle);
+        effect->flags = Level_ReadS16(handle);
+    }
+    return true;
+}

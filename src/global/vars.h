@@ -357,6 +357,8 @@ extern const char *g_TR2XVersion;
 #define g_CameraUnderwater (*(BOOL*)0x00526190)
 #define g_OutsideRight (*(int32_t*)0x00526198)
 #define g_OutsideTop (*(int32_t*)0x005261AC)
+#define g_DemoPtr (*(uint32_t **)0x005261B0)
+#define g_DemoCount (*(int32_t*)0x005261B4)
 #define g_FlipStatus (*(int32_t*)0x00526240)
 #define g_FlipMaps (*(int32_t(*)[MAX_FLIPMAPS])0x00526260)
 #define g_TriggerIndex (*(int16_t **)0x00526288)

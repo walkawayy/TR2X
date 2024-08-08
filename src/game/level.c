@@ -720,3 +720,22 @@ BOOL __cdecl Level_LoadCinematic(HANDLE handle)
     g_CineLoaded = true;
     return true;
 }
+
+BOOL __cdecl Level_LoadDemo(HANDLE handle)
+{
+    g_DemoCount = 0;
+
+    // TODO: is the allocation necessary if there's no demo data?
+    // TODO: do not hardcode the allocation size
+    g_DemoPtr = game_malloc(36000, GBUF_LOAD_DEMO_BUFFER);
+
+    const int16_t demo_size = Level_ReadS16(handle);
+    if (demo_size) {
+        g_IsDemoLoaded = false;
+        return true;
+    }
+
+    Level_Read(handle, g_DemoPtr, demo_size);
+    g_IsDemoLoaded = true;
+    return true;
+}

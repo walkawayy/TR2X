@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.97% (633)</tspan> · <tspan class="known">45.57% (555)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.05% (634)</tspan> · <tspan class="known">45.48% (554)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="388.22" height="6" x="0" y="0" class="decompiled"/>
-<rect width="340.38" height="6" x="388.22" y="0" class="known"/>
+<rect width="388.83" height="6" x="0" y="0" class="decompiled"/>
+<rect width="339.77" height="6" x="388.83" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1042,7 +1042,7 @@
 <rect width="12" height="12" x="195" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadBoxes(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="210" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="225" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadCinematic(HANDLE handle);</title></rect>
-<rect width="12" height="12" x="240" y="285" class="known"><title>BOOL __cdecl Level_LoadDemo(HANDLE handle);</title></rect>
+<rect width="12" height="12" x="240" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadDemo(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="255" y="285" class="known"><title>void __cdecl Level_LoadDemoExternal(LPCTSTR level_name);</title></rect>
 <rect width="12" height="12" x="270" y="285" class="known"><title>BOOL __cdecl Level_LoadSamples(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="285" y="285" class="known"><title>void __cdecl ChangeFileNameExtension(char *file_name, const char *file_ext);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.78%</tspan> · <tspan class="known">46.90%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.82%</tspan> · <tspan class="known">46.86%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="394.25" height="6" x="0" y="0" class="decompiled"/>
-<rect width="350.31" height="6" x="394.25" y="0" class="known"/>
+<rect width="394.55" height="6" x="0" y="0" class="decompiled"/>
+<rect width="350.01" height="6" x="394.55" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1900,7 +1900,7 @@
 <rect width="7.66" height="7.82" x="567.89" y="218.21" class="decompiled"><title>D3DCOLOR __cdecl BGND_CenterLighting(int32_t x, int32_t y, int32_t width, int32_t height);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="229.03" class="decompiled"><title>void __cdecl Item_RemoveActive(int16_t item_num);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="239.77" class="decompiled"><title>void __cdecl Lara_State_TurnRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="7.66" height="7.74" x="567.89" y="250.51" class="known"><title>BOOL __cdecl Level_LoadDemo(HANDLE handle);</title></rect>
+<rect width="7.66" height="7.74" x="567.89" y="250.51" class="decompiled"><title>BOOL __cdecl Level_LoadDemo(HANDLE handle);</title></rect>
 <rect width="7.66" height="7.74" x="567.89" y="261.25" class="known"><title>INT_PTR __stdcall SE_OptionsDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="271.99" class="decompiled"><title>void __cdecl Bird_Initialise(int16_t item_num);</title></rect>
 <rect width="7.66" height="7.66" x="567.89" y="282.65" class="decompiled"><title>void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *inv_item);</title></rect>

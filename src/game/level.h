@@ -14,3 +14,4 @@ BOOL __cdecl Level_LoadSoundEffects(HANDLE handle);
 BOOL __cdecl Level_LoadBoxes(HANDLE handle);
 BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle);
 BOOL __cdecl Level_LoadCinematic(HANDLE handle);
+BOOL __cdecl Level_LoadDemo(HANDLE handle);

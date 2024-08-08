@@ -582,3 +582,22 @@ BOOL __cdecl Level_LoadDepthQ(HANDLE handle)
 
     return true;
 }
+
+BOOL __cdecl Level_LoadPalettes(HANDLE handle)
+{
+    Level_Read(handle, g_GamePalette8, sizeof(RGB_888) * 256);
+
+    g_GamePalette8[0].red = 0;
+    g_GamePalette8[0].green = 0;
+    g_GamePalette8[0].blue = 0;
+
+    for (int32_t i = 1; i < 256; i++) {
+        RGB_888 *col = &g_GamePalette8[i];
+        col->red = (col->red << 2) | (col->red >> 4);
+        col->green = (col->green << 2) | (col->green >> 4);
+        col->blue = (col->blue << 2) | (col->blue >> 4);
+    }
+
+    Level_Read(handle, g_GamePalette16, sizeof(PALETTEENTRY) * 256);
+    return true;
+}

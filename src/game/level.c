@@ -6,6 +6,7 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "specific/s_audio_sample.h"
 
 #include <libtrx/log.h>
 #include <libtrx/memory.h>
@@ -98,7 +99,7 @@ BOOL __cdecl Level_LoadTexturePages(HANDLE handle)
         }
         // skip 16-bit texture pages
         SetFilePointer(
-            handle, num_pages * texture_size_16_bit, 0, FILE_CURRENT);
+            handle, num_pages * texture_size_16_bit, NULL, FILE_CURRENT);
         return true;
     }
 
@@ -110,7 +111,8 @@ BOOL __cdecl Level_LoadTexturePages(HANDLE handle)
     }
 
     if (is_16_bit) {
-        SetFilePointer(handle, num_pages * texture_size_8_bit, 0, FILE_CURRENT);
+        SetFilePointer(
+            handle, num_pages * texture_size_8_bit, NULL, FILE_CURRENT);
         char *ptr = base;
         for (int32_t i = 0; i < num_pages; i++) {
             Level_Read(handle, ptr, texture_size_16_bit);
@@ -124,7 +126,7 @@ BOOL __cdecl Level_LoadTexturePages(HANDLE handle)
             ptr += texture_size_8_bit;
         }
         SetFilePointer(
-            handle, num_pages * texture_size_16_bit, 0, FILE_CURRENT);
+            handle, num_pages * texture_size_16_bit, NULL, FILE_CURRENT);
         HWR_LoadTexturePages((int32_t)num_pages, base, g_GamePalette8);
     }
 
@@ -670,7 +672,7 @@ BOOL __cdecl Level_LoadBoxes(HANDLE handle)
 
             if (skip) {
                 SetFilePointer(
-                    handle, sizeof(int16_t) * g_BoxCount, 0, FILE_CURRENT);
+                    handle, sizeof(int16_t) * g_BoxCount, NULL, FILE_CURRENT);
                 continue;
             }
 
@@ -758,4 +760,88 @@ void __cdecl Level_LoadDemoExternal(const char *const level_name)
     ReadFileSync(handle, g_DemoPtr, 36000, &bytes_read, 0);
     g_IsDemoLoaded = bytes_read != 0;
     CloseHandle(handle);
+}
+
+BOOL __cdecl Level_LoadSamples(HANDLE handle)
+{
+    g_SoundIsActive = false;
+    if (!S_Audio_Sample_IsEnabled()) {
+        return true;
+    }
+
+    S_Audio_Sample_CloseAllTracks();
+
+    Level_Read(handle, g_SampleLUT, sizeof(int16_t) * SFX_NUMBER_OF);
+    g_NumSampleInfos = Level_ReadS32(handle);
+    if (!g_NumSampleInfos) {
+        return false;
+    }
+
+    g_SampleInfos =
+        game_malloc(sizeof(SAMPLE_INFO) * g_NumSampleInfos, GBUF_SAMPLE_INFOS);
+    for (int32_t i = 0; i < g_NumSampleInfos; i++) {
+        SAMPLE_INFO *const sample_info = &g_SampleInfos[i];
+        sample_info->number = Level_ReadS16(handle);
+        sample_info->volume = Level_ReadS16(handle);
+        sample_info->randomness = Level_ReadS16(handle);
+        sample_info->flags = Level_ReadS16(handle);
+    }
+
+    const int32_t num_samples = Level_ReadS32(handle);
+    if (!num_samples) {
+        return false;
+    }
+    int32_t *sample_offsets = Memory_Alloc(sizeof(int32_t) * num_samples);
+    Level_Read(handle, sample_offsets, sizeof(int32_t) * num_samples);
+
+    const char *const file_name = "data\\main.sfx";
+    const char *const full_path = GetFullPath(file_name);
+    HANDLE sfx_handle = CreateFileA(
+        full_path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+        NULL);
+
+    if (sfx_handle == INVALID_HANDLE_VALUE) {
+        Shell_ExitSystemFmt(
+            g_ErrorMessage, "Could not open %s file", file_name);
+        return false;
+    }
+
+    // TODO: refactor these WAVE/RIFF shenanigans
+    int32_t sample_id = 0;
+    for (int32_t i = 0; sample_id < num_samples; i++) {
+        char header[0x2C];
+        Level_Read(sfx_handle, header, 0x2C);
+        if (*(int32_t *)(header + 0) != 0x46464952
+            || *(int32_t *)(header + 8) != 0x45564157
+            || *(int32_t *)(header + 36) != 0x61746164) {
+            LOG_ERROR("Unexpected sample header for sample %d", i);
+            Memory_FreePointer(&sample_offsets);
+            return false;
+        }
+        const int32_t data_size = *(int32_t *)(header + 0x28);
+        const int32_t aligned_size = (data_size + 1) & ~1;
+
+        *(int16_t *)(header + 16) = 0;
+        if (sample_offsets[sample_id] != i) {
+            SetFilePointer(sfx_handle, aligned_size, NULL, FILE_CURRENT);
+            continue;
+        }
+
+        char *sample_data = Memory_Alloc(aligned_size);
+        Level_Read(sfx_handle, sample_data, aligned_size);
+        // TODO: do not reconstruct the header in S_Audio_Sample_Load, just
+        // pass the entire sample directly
+        if (!S_Audio_Sample_Load(
+                sample_id, header + 20, sample_data, data_size)) {
+            return false;
+        }
+        Memory_FreePointer(&sample_data);
+
+        sample_id++;
+    }
+
+    Memory_FreePointer(&sample_offsets);
+    CloseHandle(sfx_handle);
+    g_SoundIsActive = true;
+    return true;
 }

@@ -1576,6 +1576,7 @@ typedef enum {
     SFX_EXPLOSION2 = 352,
     SFX_BURGLARS = 353,
     SFX_ZIPPER = 354,
+    SFX_NUMBER_OF = 370,
 } SOUND_EFFECT_ID;
 
 typedef enum {

@@ -311,6 +311,7 @@ extern const char *g_TR2XVersion;
 #define g_TextstringTable (*(TEXTSTRING(*)[64])0x0051C820)
 #define g_TextstringCount (*(int16_t*)0x0051D6A0) // = 0
 #define g_TextstringBuffers (*(char(*)[64][64])0x0051D6C0)
+#define g_NumSampleInfos (*(int32_t*)0x0051E6C0)
 #define g_SoundIsActive (*(int32_t*)0x0051E6C4)
 #define g_SampleLUT (*(int16_t(*)[])0x0051E6E0)
 #define g_SampleInfos (*(SAMPLE_INFO **)0x0051E9C4)

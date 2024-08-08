@@ -378,7 +378,6 @@
 #define S_FadeOutInventory ((void __cdecl (*)(BOOL isFade))0x00447A50)
 #define ReadFileSync ((BOOL __cdecl (*)(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped))0x004498D0)
 #define AdjustTextureUVs ((void __cdecl (*)(bool reset_uv_add))0x00449E50)
-#define Level_LoadSamples ((BOOL __cdecl (*)(HANDLE handle))0x0044AEA0)
 #define ChangeFileNameExtension ((void __cdecl (*)(char *file_name, const char *file_ext))0x0044B110)
 #define GetFullPath ((LPCTSTR __cdecl (*)(LPCTSTR file_name))0x0044B150)
 #define SelectDrive ((BOOL __cdecl (*)(void))0x0044B180)

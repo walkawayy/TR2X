@@ -3728,7 +3728,7 @@ typedef enum {
 0x00449EF0  0x057E  +       BOOL __cdecl Level_LoadObjects(HANDLE handle);
 0x0044A470  0x0135  +       BOOL __cdecl Level_LoadSprites(HANDLE handle);
 0x0044A5B0  0x01D6  +       BOOL __cdecl Level_LoadItems(HANDLE handle);
-0x0044A790  0x0188  -       BOOL __cdecl Level_LoadDepthQ(HANDLE handle);
+0x0044A790  0x0188  +       BOOL __cdecl Level_LoadDepthQ(HANDLE handle);
 0x0044A920  0x0071  -       BOOL __cdecl Level_LoadPalettes(HANDLE handle);
 0x0044A9A0  0x0060  -       BOOL __cdecl Level_LoadCameras(HANDLE handle);
 0x0044AA00  0x0060  -       BOOL __cdecl Level_LoadSoundEffects(HANDLE handle);
@@ -4375,3 +4375,6 @@ typedef enum {
 0x004D93F0  -       uint8_t g_LabTextureUVFlag[MAX_TEXTURES];
 0x004B2B00  -       PHD_TEXTURE g_TextureInfo[];
 0x005251B0  -       FRAME_INFO *g_AnimFrames;
+0x0051BC38  -       int32_t g_IsWet;
+0x0051B305  -       RGB_888 g_WaterPalette[256];
+0x004BF2D8  -       uint8_t g_DepthQIndex[256];

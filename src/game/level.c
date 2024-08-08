@@ -538,3 +538,47 @@ BOOL __cdecl Level_LoadItems(HANDLE handle)
 
     return true;
 }
+
+BOOL __cdecl Level_LoadDepthQ(HANDLE handle)
+{
+    for (int32_t i = 0; i < 32; i++) {
+        Level_Read(handle, g_DepthQTable[i].index, sizeof(uint8_t) * 256);
+        g_DepthQTable[i].index[0] = 0;
+    }
+
+    if (g_GameVid_IsWindowedVGA) {
+        RGB_888 palette[256];
+        CopyBitmapPalette(
+            g_GamePalette8, g_DepthQTable[0].index, 32 * sizeof(DEPTHQ_ENTRY),
+            palette);
+        SyncSurfacePalettes(
+            g_DepthQTable, 256, 32, 256, g_GamePalette8, g_DepthQTable, 256,
+            palette, true);
+        memcpy(g_GamePalette8, palette, sizeof(g_GamePalette8));
+
+        for (int32_t i = 0; i < 256; i++) {
+            g_DepthQIndex[i] = S_COLOUR(
+                g_GamePalette8[i].red, g_GamePalette8[i].green,
+                g_GamePalette8[i].blue);
+        }
+    } else {
+        for (int32_t i = 0; i < 256; i++) {
+            g_DepthQIndex[i] = g_DepthQTable[24].index[i];
+        }
+    }
+
+    for (int32_t i = 0; i < 32; i++) {
+        for (int32_t j = 0; j < 256; j++) {
+            g_GouraudTable[j].index[i] = g_DepthQTable[i].index[j];
+        }
+    }
+
+    g_IsWet = 0;
+    for (int32_t i = 0; i < 256; i++) {
+        g_WaterPalette[i].red = g_GamePalette8[i].red * 2 / 3;
+        g_WaterPalette[i].green = g_GamePalette8[i].green * 2 / 3;
+        g_WaterPalette[i].blue = g_GamePalette8[i].blue;
+    }
+
+    return true;
+}

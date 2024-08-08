@@ -855,3 +855,77 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
     g_SoundIsActive = true;
     return true;
 }
+
+bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
+{
+    init_game_malloc();
+
+    const char *full_path = GetFullPath(file_name);
+    strcpy(g_LevelFileName, full_path);
+
+    HANDLE handle = CreateFileA(
+        full_path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+        NULL);
+    if (handle == INVALID_HANDLE_VALUE) {
+        Shell_ExitSystemFmt(
+            "Could not open %s (level %d)", full_path, level_num);
+        return false;
+    }
+
+    const int32_t version = Level_ReadS32(handle);
+    if (version > 45) {
+        Shell_ExitSystemFmt(
+            "FATAL: Level %d (%s) requires a new TOMB2.EXE (version %d) to run",
+            level_num, full_path, file_name);
+        return false;
+    }
+
+    if (version < 45) {
+        Shell_ExitSystemFmt(
+            "FATAL: Level %d (%s) is OUT OF DATE (version %d). COPY NEW "
+            "EDITORS AND REMAKE LEVEL",
+            level_num, full_path, file_name);
+        return false;
+    }
+
+    g_LevelFilePalettesOffset = SetFilePointer(handle, 0, NULL, FILE_CURRENT);
+    if (!Level_LoadPalettes(handle))
+        return false;
+
+    g_LevelFileTexPagesOffset = SetFilePointer(handle, 0, NULL, FILE_CURRENT);
+    if (!Level_LoadTexturePages(handle))
+        return false;
+
+    SetFilePointer(handle, 4, NULL, FILE_CURRENT);
+    if (!Level_LoadRooms(handle))
+        return false;
+    if (!Level_LoadObjects(handle))
+        return false;
+    if (!Level_LoadSprites(handle))
+        return false;
+    if (!Level_LoadCameras(handle))
+        return false;
+    if (!Level_LoadSoundEffects(handle))
+        return false;
+    if (!Level_LoadBoxes(handle))
+        return false;
+    if (!Level_LoadAnimatedTextures(handle))
+        return false;
+    if (!Level_LoadItems(handle))
+        return false;
+
+    g_LevelFileDepthQOffset = SetFilePointer(handle, 0, NULL, FILE_CURRENT);
+    if (!Level_LoadDepthQ(handle))
+        return false;
+
+    if (!Level_LoadCinematic(handle))
+        return false;
+    if (!Level_LoadDemo(handle))
+        return false;
+    if (!Level_LoadSamples(handle))
+        return false;
+
+    Level_LoadDemoExternal(full_path);
+    CloseHandle(handle);
+    return true;
+}

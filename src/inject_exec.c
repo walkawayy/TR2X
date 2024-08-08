@@ -531,6 +531,7 @@ static void Inject_Level(const bool enable)
     INJECT(enable, 0x0044AD70, Level_LoadDemo);
     INJECT(enable, 0x0044AE00, Level_LoadDemoExternal);
     INJECT(enable, 0x0044AEA0, Level_LoadSamples);
+    INJECT(enable, 0x0044B260, Level_Load);
 }
 
 static void Inject_Inventory(const bool enable)

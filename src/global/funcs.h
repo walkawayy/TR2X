@@ -381,7 +381,6 @@
 #define ChangeFileNameExtension ((void __cdecl (*)(char *file_name, const char *file_ext))0x0044B110)
 #define GetFullPath ((LPCTSTR __cdecl (*)(LPCTSTR file_name))0x0044B150)
 #define SelectDrive ((BOOL __cdecl (*)(void))0x0044B180)
-#define LoadLevel ((BOOL __cdecl (*)(LPCTSTR file_name, int32_t level_num))0x0044B260)
 #define S_LoadLevelFile ((BOOL __cdecl (*)(LPCTSTR file_name, int32_t level_num, GF_LEVEL_TYPE level_type))0x0044B4B0)
 #define S_UnloadLevelFile ((void __cdecl (*)(void))0x0044B4D0)
 #define S_AdjustTexelCoordinates ((void __cdecl (*)(void))0x0044B500)

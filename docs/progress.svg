@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.22% (636)</tspan> · <tspan class="known">45.32% (552)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.30% (637)</tspan> · <tspan class="known">45.24% (551)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="390.06" height="6" x="0" y="0" class="decompiled"/>
-<rect width="338.54" height="6" x="390.06" y="0" class="known"/>
+<rect width="390.67" height="6" x="0" y="0" class="decompiled"/>
+<rect width="337.93" height="6" x="390.67" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1048,7 +1048,7 @@
 <rect width="12" height="12" x="285" y="285" class="known"><title>void __cdecl ChangeFileNameExtension(char *file_name, const char *file_ext);</title></rect>
 <rect width="12" height="12" x="300" y="285" class="known"><title>LPCTSTR __cdecl GetFullPath(LPCTSTR file_name);</title></rect>
 <rect width="12" height="12" x="315" y="285" class="known"><title>BOOL __cdecl SelectDrive(void);</title></rect>
-<rect width="12" height="12" x="330" y="285" class="known"><title>BOOL __cdecl LoadLevel(LPCTSTR file_name, int32_t level_num);</title></rect>
+<rect width="12" height="12" x="330" y="285" class="decompiled"><title>bool __cdecl Level_Load(const char *file_name, int32_t level_num);</title></rect>
 <rect width="12" height="12" x="345" y="285" class="known"><title>BOOL __cdecl S_LoadLevelFile(LPCTSTR file_name, int32_t level_num, GF_LEVEL_TYPE level_type);</title></rect>
 <rect width="12" height="12" x="360" y="285" class="known"><title>void __cdecl S_UnloadLevelFile(void);</title></rect>
 <rect width="12" height="12" x="375" y="285" class="known"><title>void __cdecl S_AdjustTexelCoordinates(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.04%</tspan> · <tspan class="known">46.63%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.21%</tspan> · <tspan class="known">46.46%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="396.23" height="6" x="0" y="0" class="decompiled"/>
-<rect width="348.33" height="6" x="396.23" y="0" class="known"/>
+<rect width="397.51" height="6" x="0" y="0" class="decompiled"/>
+<rect width="347.05" height="6" x="397.51" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1449,7 +1449,7 @@
 <rect width="19.35" height="19.14" x="368.60" y="183.60" class="known"><title>void __cdecl S_CopyBufferToScreen(void);</title></rect>
 <rect width="19.35" height="19.03" x="368.60" y="205.73" class="decompiled"><title>void __cdecl DrawTextureTile(int32_t sx, int32_t sy, int32_t width, int32_t height, HWR_TEXTURE_HANDLE tex_source, int32_t tu, int32_t tv, int32_t t_width, int32_t t_height, D3DCOLOR color0, D3DCOLOR color1, D3DCOLOR color2, D3DCOLOR color3);</title></rect>
 <rect width="19.35" height="18.77" x="368.60" y="227.76" class="known"><title>void __cdecl RollingBallCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);</title></rect>
-<rect width="19.35" height="18.77" x="368.60" y="249.52" class="known"><title>BOOL __cdecl LoadLevel(LPCTSTR file_name, int32_t level_num);</title></rect>
+<rect width="19.35" height="18.77" x="368.60" y="249.52" class="decompiled"><title>bool __cdecl Level_Load(const char *file_name, int32_t level_num);</title></rect>
 <rect width="19.35" height="18.58" x="368.60" y="271.29" class="decompiled"><title>void __cdecl Camera_LoadCutsceneFrame(void);</title></rect>
 <rect width="19.35" height="18.47" x="368.60" y="292.87" class="decompiled"><title>void __cdecl Creature_AIInfo(ITEM_INFO *item, AI_INFO *info);</title></rect>
 <rect width="19.35" height="18.28" x="368.60" y="314.34" class="decompiled"><title>int32_t __cdecl Room_GetCeiling(const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);</title></rect>

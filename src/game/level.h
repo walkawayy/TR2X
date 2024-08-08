@@ -17,3 +17,4 @@ BOOL __cdecl Level_LoadCinematic(HANDLE handle);
 BOOL __cdecl Level_LoadDemo(HANDLE handle);
 void __cdecl Level_LoadDemoExternal(const char *level_name);
 BOOL __cdecl Level_LoadSamples(HANDLE handle);
+bool __cdecl Level_Load(const char *file_name, int32_t level_num);

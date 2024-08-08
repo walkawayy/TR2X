@@ -384,7 +384,7 @@ static void __cdecl Level_LoadStaticObjects(HANDLE handle)
     for (int32_t i = 0; i < num_static_objects; i++) {
         const int32_t static_num = Level_ReadS32(handle);
         STATIC_INFO *static_obj = &g_StaticObjects[static_num];
-        static_obj->mesh_index = Level_ReadS16(handle);
+        static_obj->mesh_idx = Level_ReadS16(handle);
         static_obj->draw_bounds.min_x = Level_ReadS16(handle);
         static_obj->draw_bounds.max_x = Level_ReadS16(handle);
         static_obj->draw_bounds.min_y = Level_ReadS16(handle);
@@ -462,5 +462,39 @@ BOOL __cdecl Level_LoadObjects(HANDLE handle)
     Level_LoadTextures(handle);
 
     AdjustTextureUVs(1);
+    return true;
+}
+
+BOOL __cdecl Level_LoadSprites(HANDLE handle)
+{
+    const int32_t num_sprites = Level_ReadS32(handle);
+    for (int32_t i = 0; i < num_sprites; i++) {
+        PHD_SPRITE *const sprite = &g_PhdSprites[i];
+        sprite->tex_page = Level_ReadU16(handle);
+        sprite->offset = Level_ReadU16(handle);
+        sprite->width = Level_ReadU16(handle);
+        sprite->height = Level_ReadU16(handle);
+        sprite->x0 = Level_ReadS16(handle);
+        sprite->y0 = Level_ReadS16(handle);
+        sprite->x1 = Level_ReadS16(handle);
+        sprite->y1 = Level_ReadS16(handle);
+    }
+
+    const int32_t num_statics = Level_ReadS32(handle);
+    for (int32_t i = 0; i < num_statics; i++) {
+        int32_t object_id = Level_ReadS32(handle);
+        if (object_id >= O_NUMBER_OF) {
+            object_id -= O_NUMBER_OF;
+            STATIC_INFO *const static_object = &g_StaticObjects[object_id];
+            SetFilePointer(handle, sizeof(int16_t), NULL, FILE_CURRENT);
+            static_object->mesh_idx = Level_ReadS16(handle);
+        } else {
+            OBJECT_INFO *const object = &g_Objects[object_id];
+            object->mesh_count = Level_ReadS16(handle);
+            object->mesh_idx = Level_ReadS16(handle);
+            object->loaded = 1;
+        }
+    }
+
     return true;
 }

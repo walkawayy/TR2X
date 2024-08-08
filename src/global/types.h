@@ -533,7 +533,7 @@ typedef struct __unaligned {
 } BOUNDS_16;
 
 typedef struct __unaligned {
-    int16_t mesh_index;
+    int16_t mesh_idx;
     uint16_t flags;
     BOUNDS_16 draw_bounds;
     BOUNDS_16 collision_bounds;
@@ -1101,7 +1101,7 @@ typedef struct __unaligned {
     int16_t mesh_count;
     int16_t mesh_idx;
     int32_t bone_idx;
-    int16_t *frame_base;
+    int16_t *frame_base; // TODO: make me FRAME_INFO
 
     void (*initialise)(int16_t item_number);
     void (*control)(int16_t item_number);

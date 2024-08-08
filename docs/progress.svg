@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.23% (624)</tspan> · <tspan class="known">46.31% (564)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.31% (625)</tspan> · <tspan class="known">46.22% (563)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="382.70" height="6" x="0" y="0" class="decompiled"/>
-<rect width="345.90" height="6" x="382.70" y="0" class="known"/>
+<rect width="383.31" height="6" x="0" y="0" class="decompiled"/>
+<rect width="345.29" height="6" x="383.31" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1033,7 +1033,7 @@
 <rect width="12" height="12" x="60" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadRooms(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="75" y="285" class="known"><title>void __cdecl AdjustTextureUVs(bool reset_uv_add);</title></rect>
 <rect width="12" height="12" x="90" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadObjects(HANDLE handle);</title></rect>
-<rect width="12" height="12" x="105" y="285" class="known"><title>BOOL __cdecl Level_LoadSprites(HANDLE handle);</title></rect>
+<rect width="12" height="12" x="105" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadSprites(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="120" y="285" class="known"><title>BOOL __cdecl Level_LoadItems(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="135" y="285" class="known"><title>BOOL __cdecl Level_LoadDepthQ(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="150" y="285" class="known"><title>BOOL __cdecl Level_LoadPalettes(HANDLE handle);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.13%</tspan> · <tspan class="known">47.55%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.22%</tspan> · <tspan class="known">47.46%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="389.38" height="6" x="0" y="0" class="decompiled"/>
-<rect width="355.18" height="6" x="389.38" y="0" class="known"/>
+<rect width="390.05" height="6" x="0" y="0" class="decompiled"/>
+<rect width="354.51" height="6" x="390.05" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1611,7 +1611,7 @@
 <rect width="13.48" height="12.66" x="448.61" y="315.51" class="known"><title>int32_t __cdecl TestBlockPush(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);</title></rect>
 <rect width="13.48" height="12.66" x="448.61" y="331.17" class="known"><title>void __cdecl CopyBitmapPalette(RGB_888 *src_pal, BYTE *src_bitmap, int32_t bitmap_size, RGB_888 *dest_pal);</title></rect>
 <rect width="13.48" height="12.61" x="448.61" y="346.83" class="decompiled"><title>void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="13.48" height="12.56" x="448.61" y="362.44" class="known"><title>BOOL __cdecl Level_LoadSprites(HANDLE handle);</title></rect>
+<rect width="13.48" height="12.56" x="448.61" y="362.44" class="decompiled"><title>BOOL __cdecl Level_LoadSprites(HANDLE handle);</title></rect>
 <rect width="13.41" height="12.58" x="465.10" y="92.72" class="decompiled"><title>void __cdecl Output_InsertSkybox(const int16_t *obj_ptr);</title></rect>
 <rect width="13.35" height="12.58" x="481.50" y="92.72" class="decompiled"><title>void __cdecl Output_InsertLine_ZBuffered(int32_t x0, int32_t y0, int32_t x1, int32_t y1, int32_t z, uint8_t color_idx);</title></rect>
 <rect width="13.30" height="12.58" x="497.85" y="92.72" class="decompiled"><title>void __cdecl Overlay_DrawAmmoInfo(void);</title></rect>

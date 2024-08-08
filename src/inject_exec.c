@@ -519,6 +519,7 @@ static void Inject_Level(const bool enable)
     INJECT(enable, 0x00449920, Level_LoadTexturePages);
     INJECT(enable, 0x00449AB0, Level_LoadRooms);
     INJECT(enable, 0x00449EF0, Level_LoadObjects);
+    INJECT(enable, 0x0044A470, Level_LoadSprites);
 }
 
 static void Inject_Inventory(const bool enable)

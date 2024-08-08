@@ -409,7 +409,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
             if (bounds) {
                 S_CalculateStaticMeshLight(
                     mesh->x, mesh->y, mesh->z, mesh->shade1, mesh->shade2, r);
-                Output_InsertPolygons(g_Meshes[static_obj->mesh_index], bounds);
+                Output_InsertPolygons(g_Meshes[static_obj->mesh_idx], bounds);
             }
             Matrix_Pop();
         }

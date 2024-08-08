@@ -471,6 +471,7 @@ BOOL __cdecl Level_LoadObjects(HANDLE handle)
 BOOL __cdecl Level_LoadSprites(HANDLE handle)
 {
     const int32_t num_sprites = Level_ReadS32(handle);
+    LOG_DEBUG("%d sprites", num_sprites);
     for (int32_t i = 0; i < num_sprites; i++) {
         PHD_SPRITE *const sprite = &g_PhdSprites[i];
         sprite->tex_page = Level_ReadU16(handle);
@@ -484,6 +485,7 @@ BOOL __cdecl Level_LoadSprites(HANDLE handle)
     }
 
     const int32_t num_statics = Level_ReadS32(handle);
+    LOG_DEBUG("%d statics", num_statics);
     for (int32_t i = 0; i < num_statics; i++) {
         int32_t object_id = Level_ReadS32(handle);
         if (object_id >= O_NUMBER_OF) {
@@ -505,6 +507,7 @@ BOOL __cdecl Level_LoadSprites(HANDLE handle)
 BOOL __cdecl Level_LoadItems(HANDLE handle)
 {
     const int32_t num_items = Level_ReadS32(handle);
+    LOG_DEBUG("%d items", num_items);
     if (!num_items) {
         return true;
     }
@@ -607,6 +610,7 @@ BOOL __cdecl Level_LoadPalettes(HANDLE handle)
 BOOL __cdecl Level_LoadCameras(HANDLE handle)
 {
     g_NumCameras = Level_ReadS32(handle);
+    LOG_DEBUG("%d fixed cameras", g_NumCameras);
     if (!g_NumCameras) {
         return true;
     }
@@ -627,6 +631,7 @@ BOOL __cdecl Level_LoadCameras(HANDLE handle)
 BOOL __cdecl Level_LoadSoundEffects(HANDLE handle)
 {
     g_SoundEffectCount = Level_ReadS32(handle);
+    LOG_DEBUG("%d sound effects", g_SoundEffectCount);
     if (!g_SoundEffectCount) {
         return true;
     }
@@ -732,6 +737,7 @@ BOOL __cdecl Level_LoadDemo(HANDLE handle)
     g_DemoPtr = game_malloc(36000, GBUF_LOAD_DEMO_BUFFER);
 
     const int16_t demo_size = Level_ReadS16(handle);
+    LOG_DEBUG("%d demo input size", demo_size);
     if (demo_size) {
         g_IsDemoLoaded = false;
         return true;
@@ -773,6 +779,7 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
 
     Level_Read(handle, g_SampleLUT, sizeof(int16_t) * SFX_NUMBER_OF);
     g_NumSampleInfos = Level_ReadS32(handle);
+    LOG_DEBUG("%d sample infos", g_NumSampleInfos);
     if (!g_NumSampleInfos) {
         return false;
     }
@@ -788,6 +795,7 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
     }
 
     const int32_t num_samples = Level_ReadS32(handle);
+    LOG_DEBUG("%d samples", num_samples);
     if (!num_samples) {
         return false;
     }

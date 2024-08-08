@@ -409,10 +409,11 @@ static void __cdecl Level_LoadTextures(HANDLE handle)
     const int32_t num_textures = Level_ReadS32(handle);
     LOG_INFO("%d textures", num_textures);
     if (num_textures > MAX_TEXTURES) {
-        Shell_ExitSystem("Too many rooms");
+        Shell_ExitSystem("Too many textures");
         return;
     }
 
+    g_TextureInfoCount = num_textures;
     for (int32_t i = 0; i < num_textures; i++) {
         PHD_TEXTURE *texture = &g_TextureInfo[i];
         texture->draw_type = Level_ReadU16(handle);
@@ -424,19 +425,20 @@ static void __cdecl Level_LoadTextures(HANDLE handle)
     }
 
     for (int32_t i = 0; i < num_textures; i++) {
-        uint16_t *uv = (uint16_t *)&(g_TextureInfo[i].uv[0].u);
+        uint16_t *const uv = &g_TextureInfo[i].uv[0].u;
         uint8_t byte = 0;
-        for (int32_t bit = 0; bit < 8; bit++) {
-            if (*uv & 0x80) {
-                *uv |= 0xFF;
-                byte |= (1 << bit);
+        for (int32_t j = 0; j < 8; j++) {
+            if ((uv[j] & 0x80) != 0) {
+                uv[j] |= 0xFF;
+                byte |= 1 << j;
             } else {
-                *uv &= 0xFF00;
+                uv[j] &= 0xFF00;
             }
-            uv++;
         }
         g_LabTextureUVFlag[i] = byte;
     }
+
+    AdjustTextureUVs(true);
 }
 
 BOOL __cdecl Level_LoadObjects(HANDLE handle)
@@ -463,8 +465,6 @@ BOOL __cdecl Level_LoadObjects(HANDLE handle)
     InitialiseObjects();
     Level_LoadStaticObjects(handle);
     Level_LoadTextures(handle);
-
-    AdjustTextureUVs(1);
     return true;
 }
 

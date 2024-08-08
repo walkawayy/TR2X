@@ -387,9 +387,7 @@ static void __cdecl Level_LoadAnimFrames(HANDLE handle)
         game_malloc(sizeof(int16_t) * anim_frame_data_size, GBUF_ANIM_FRAMES);
     // TODO: make me FRAME_INFO
     int16_t *ptr = (int16_t *)&g_AnimFrames[0];
-    for (int32_t i = 0; i < anim_frame_data_size; i++) {
-        ptr[i] = Level_ReadS16(handle);
-    }
+    Level_Read(handle, ptr, sizeof(int16_t) * anim_frame_data_size);
     Benchmark_End(benchmark, "loading anim frames");
 }
 

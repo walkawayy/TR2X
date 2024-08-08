@@ -1,6 +1,7 @@
 #include "game/level.h"
 
 #include "game/hwr.h"
+#include "game/items.h"
 #include "game/shell.h"
 #include "global/const.h"
 #include "global/funcs.h"
@@ -494,6 +495,45 @@ BOOL __cdecl Level_LoadSprites(HANDLE handle)
             object->mesh_idx = Level_ReadS16(handle);
             object->loaded = 1;
         }
+    }
+
+    return true;
+}
+
+BOOL __cdecl Level_LoadItems(HANDLE handle)
+{
+    const int32_t num_items = Level_ReadS32(handle);
+    if (!num_items) {
+        return true;
+    }
+
+    if (num_items > MAX_ITEMS) {
+        Shell_ExitSystem("Too many items");
+        return false;
+    }
+
+    g_Items = game_malloc(sizeof(ITEM_INFO) * MAX_ITEMS, GBUF_ITEMS);
+    g_LevelItemCount = num_items;
+
+    Item_InitialiseArray(MAX_ITEMS);
+
+    for (int32_t i = 0; i < num_items; i++) {
+        ITEM_INFO *const item = &g_Items[i];
+        item->object_num = Level_ReadS16(handle);
+        item->room_num = Level_ReadS16(handle);
+        item->pos.x = Level_ReadS32(handle);
+        item->pos.y = Level_ReadS32(handle);
+        item->pos.z = Level_ReadS32(handle);
+        item->rot.y = Level_ReadS16(handle);
+        item->shade1 = Level_ReadS16(handle);
+        item->shade2 = Level_ReadS16(handle);
+        item->flags = Level_ReadS16(handle);
+        if (item->object_num < 0 || item->object_num >= O_NUMBER_OF) {
+            Shell_ExitSystemFmt(
+                "Bad object number (%d) on item %d", item->object_num, i);
+            return false;
+        }
+        Item_Initialise(i);
     }
 
     return true;

@@ -8,6 +8,7 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <stdarg.h>
 #include <stdio.h>
 
 // TODO: refactor the hell out of me
@@ -155,4 +156,14 @@ void __cdecl Shell_ExitSystem(const char *message)
     Shell_Shutdown();
     Shell_Cleanup();
     exit(1);
+}
+
+void __cdecl Shell_ExitSystemFmt(const char *fmt, ...)
+{
+    va_list va;
+    va_start(va, fmt);
+    char message[150];
+    vsnprintf(message, 150, fmt, va);
+    va_end(va);
+    Shell_ExitSystem(message);
 }

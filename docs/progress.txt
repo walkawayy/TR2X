@@ -4288,7 +4288,7 @@ typedef enum {
 0x004640A0  +       BITE_INFO g_CrowBite;
 0x00464090  +       BITE_INFO g_BirdBite;
 0x005263C0  -       int16_t *g_FlyZone[2];
-0x00526398  -       int16_t *g_GroundZone[][2];
+0x005263A0  -       int16_t *g_GroundZone[][2];
 0x005263C8  -       uint16_t *g_Overlap;
 0x005206C0  -       CREATURE_INFO *g_BaddieSlots;
 0x00526312  -       int16_t g_CineLevelID;

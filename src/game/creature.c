@@ -78,7 +78,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
     if (creature->lot.fly) {
         zone = g_FlyZone[g_FlipStatus];
     } else {
-        zone = g_GroundZone[creature->lot.step / STEP_L][g_FlipStatus];
+        zone = g_GroundZone[BOX_ZONE(creature->lot.step)][g_FlipStatus];
     }
 
     {
@@ -365,7 +365,7 @@ int32_t __cdecl Creature_Animate(
     if (creature->lot.fly != 0) {
         zone = g_FlyZone[g_FlipStatus];
     } else {
-        zone = g_GroundZone[creature->lot.step / STEP_L][g_FlipStatus];
+        zone = g_GroundZone[BOX_ZONE(creature->lot.step)][g_FlipStatus];
     }
 
     if (!object->water_creature) {

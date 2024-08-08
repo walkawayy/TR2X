@@ -357,7 +357,7 @@ extern const char *g_TR2XVersion;
 #define g_CineLevelID (*(int16_t*)0x00526312)
 #define g_CineFrameIdx (*(int16_t*)0x00526314)
 #define g_Camera (*(CAMERA_INFO*)0x00526320)
-#define g_GroundZone (*(int16_t *(*)[][2])0x00526398)
+#define g_GroundZone (*(int16_t *(*)[][2])0x005263A0)
 #define g_FlyZone (*(int16_t *(*)[2])0x005263C0)
 #define g_Overlap (*(uint16_t **)0x005263C8)
 #define g_Boxes (*(BOX_INFO **)0x005263CC)

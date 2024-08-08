@@ -181,9 +181,8 @@ void __cdecl LOT_CreateZone(ITEM_INFO *const item)
         zone = g_FlyZone[0];
         flip = g_FlyZone[1];
     } else {
-        const int32_t layer = creature->lot.step >> 8;
-        zone = g_GroundZone[layer][0];
-        flip = g_GroundZone[layer][1];
+        zone = g_GroundZone[BOX_ZONE(creature->lot.step)][0];
+        flip = g_GroundZone[BOX_ZONE(creature->lot.step)][1];
     }
 
     const ROOM_INFO *const r = &g_Rooms[item->room_num];

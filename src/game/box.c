@@ -30,7 +30,7 @@ int32_t __cdecl Box_SearchLOT(LOT_INFO *const lot, const int32_t expansion)
     if (lot->fly) {
         zone = g_FlyZone[g_FlipStatus];
     } else {
-        zone = g_GroundZone[lot->step / STEP_L][g_FlipStatus];
+        zone = g_GroundZone[BOX_ZONE(lot->step)][g_FlipStatus];
     }
 
     const int16_t search_zone = zone[lot->head];
@@ -204,7 +204,7 @@ int32_t __cdecl Box_ValidBox(
     if (creature->lot.fly) {
         zone = g_FlyZone[g_FlipStatus];
     } else {
-        zone = g_GroundZone[creature->lot.step / STEP_L][g_FlipStatus];
+        zone = g_GroundZone[BOX_ZONE(creature->lot.step)][g_FlipStatus];
     }
 
     if (zone[box_num] != zone_num) {

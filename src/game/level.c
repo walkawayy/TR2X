@@ -739,3 +739,23 @@ BOOL __cdecl Level_LoadDemo(HANDLE handle)
     g_IsDemoLoaded = true;
     return true;
 }
+
+void __cdecl Level_LoadDemoExternal(const char *const level_name)
+{
+    char file_name[MAX_PATH];
+    strcpy(file_name, level_name);
+    ChangeFileNameExtension(file_name, "DEM");
+
+    HANDLE handle = CreateFileA(
+        file_name, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+        NULL);
+    if (handle == INVALID_HANDLE_VALUE) {
+        return;
+    }
+
+    // TODO: do not hardcode the allocation size
+    DWORD bytes_read;
+    ReadFileSync(handle, g_DemoPtr, 36000, &bytes_read, 0);
+    g_IsDemoLoaded = bytes_read != 0;
+    CloseHandle(handle);
+}

@@ -3736,7 +3736,7 @@ typedef enum {
 0x0044AC90  0x0055  +       BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle);
 0x0044ACF0  0x0079  +       BOOL __cdecl Level_LoadCinematic(HANDLE handle);
 0x0044AD70  0x008A  +       BOOL __cdecl Level_LoadDemo(HANDLE handle);
-0x0044AE00  0x009A  -       void __cdecl Level_LoadDemoExternal(LPCTSTR level_name);
+0x0044AE00  0x009A  +       void __cdecl Level_LoadDemoExternal(LPCTSTR level_name);
 0x0044AEA0  0x0265  -       BOOL __cdecl Level_LoadSamples(HANDLE handle);
 0x0044B110  0x0036  -R      void __cdecl ChangeFileNameExtension(char *file_name, const char *file_ext);
 0x0044B150  0x0026  -R      LPCTSTR __cdecl GetFullPath(LPCTSTR file_name);

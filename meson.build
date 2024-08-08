@@ -71,6 +71,7 @@ dll_sources = [
   init,
   'src/decomp/decomp.c',
   'src/game/background.c',
+  'src/game/benchmark.c',
   'src/game/box.c',
   'src/game/camera.c',
   'src/game/clock.c',

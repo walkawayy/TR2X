@@ -1,5 +1,6 @@
 #include "game/level.h"
 
+#include "game/benchmark.h"
 #include "game/hwr.h"
 #include "game/items.h"
 #include "game/shell.h"
@@ -82,6 +83,9 @@ static uint32_t Level_ReadU32(HANDLE handle)
 
 BOOL __cdecl Level_LoadTexturePages(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
+    bool result = false;
+
     const bool is_16_bit = g_TextureFormat.bpp >= 16;
     const int32_t texture_size = TEXTURE_PAGE_WIDTH * TEXTURE_PAGE_HEIGHT;
     const int32_t texture_size_8_bit = texture_size * sizeof(uint8_t);
@@ -100,14 +104,15 @@ BOOL __cdecl Level_LoadTexturePages(HANDLE handle)
         // skip 16-bit texture pages
         SetFilePointer(
             handle, num_pages * texture_size_16_bit, NULL, FILE_CURRENT);
-        return true;
+        result = true;
+        goto finish;
     }
 
     char *const base = GlobalAlloc(
         GMEM_FIXED,
         num_pages * (is_16_bit ? texture_size_16_bit : texture_size_8_bit));
     if (base == NULL) {
-        return false;
+        goto finish;
     }
 
     if (is_16_bit) {
@@ -132,15 +137,21 @@ BOOL __cdecl Level_LoadTexturePages(HANDLE handle)
 
     g_TexturePageCount = num_pages;
     GlobalFree(base);
-    return true;
+    result = true;
+
+finish:
+    Benchmark_End(benchmark, "loading texture pages");
+    return result;
 }
 
 BOOL __cdecl Level_LoadRooms(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
+    bool result = false;
     g_RoomCount = Level_ReadS16(handle);
     if (g_RoomCount > MAX_ROOMS) {
         Shell_ExitSystem("Too many rooms");
-        return false;
+        goto finish;
     }
 
     g_Rooms = game_malloc(sizeof(ROOM_INFO) * g_RoomCount, GBUF_ROOM_INFOS);
@@ -242,20 +253,26 @@ BOOL __cdecl Level_LoadRooms(HANDLE handle)
     g_FloorData =
         game_malloc(sizeof(int16_t) * floor_data_size, GBUF_FLOOR_DATA);
     Level_Read(handle, g_FloorData, sizeof(int16_t) * floor_data_size);
+    result = true;
 
-    return true;
+finish:
+    Benchmark_End(benchmark, "loading room data");
+    return result;
 }
 
 static void __cdecl Level_LoadMeshBase(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_meshes = Level_ReadS32(handle);
     LOG_INFO("%d meshes", num_meshes);
     g_MeshBase = game_malloc(sizeof(int16_t) * num_meshes, GBUF_MESHES);
     Level_Read(handle, g_MeshBase, sizeof(int16_t) * num_meshes);
+    Benchmark_End(benchmark, "loading meshes");
 }
 
 static void __cdecl Level_LoadMeshes(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_mesh_ptrs = Level_ReadS32(handle);
     LOG_INFO("%d mesh pointers", num_mesh_ptrs);
     int32_t *const mesh_indices =
@@ -269,10 +286,12 @@ static void __cdecl Level_LoadMeshes(HANDLE handle)
     }
 
     Memory_Free(mesh_indices);
+    Benchmark_End(benchmark, "loading mesh pointers");
 }
 
 static int32_t __cdecl Level_LoadAnims(HANDLE handle, int32_t **frame_pointers)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anims = Level_ReadS32(handle);
     LOG_INFO("%d anims", num_anims);
     g_Anims = game_malloc(sizeof(ANIM_STRUCT) * num_anims, GBUF_ANIMS);
@@ -300,11 +319,13 @@ static int32_t __cdecl Level_LoadAnims(HANDLE handle, int32_t **frame_pointers)
         anim->num_commands = Level_ReadS16(handle);
         anim->command_idx = Level_ReadS16(handle);
     }
+    Benchmark_End(benchmark, "loading anims");
     return num_anims;
 }
 
 static void __cdecl Level_LoadAnimChanges(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anim_changes = Level_ReadS32(handle);
     LOG_INFO("%d anim changes", num_anim_changes);
     g_AnimChanges =
@@ -315,10 +336,12 @@ static void __cdecl Level_LoadAnimChanges(HANDLE handle)
         change->num_ranges = Level_ReadS16(handle);
         change->range_idx = Level_ReadS16(handle);
     }
+    Benchmark_End(benchmark, "loading anim changes");
 }
 
 static void __cdecl Level_LoadAnimRanges(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anim_ranges = Level_ReadS32(handle);
     LOG_INFO("%d anim ranges", num_anim_ranges);
     g_AnimRanges =
@@ -330,28 +353,34 @@ static void __cdecl Level_LoadAnimRanges(HANDLE handle)
         range->link_anim_num = Level_ReadS16(handle);
         range->link_frame_num = Level_ReadS16(handle);
     }
+    Benchmark_End(benchmark, "loading anim ranges");
 }
 
 static void __cdecl Level_LoadAnimCommands(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anim_commands = Level_ReadS32(handle);
     LOG_INFO("%d anim commands", num_anim_commands);
     g_AnimCommands =
         game_malloc(sizeof(int16_t) * num_anim_commands, GBUF_ANIM_COMMANDS);
     Level_Read(handle, g_AnimCommands, sizeof(int16_t) * num_anim_commands);
+    Benchmark_End(benchmark, "loading anim commands");
 }
 
 static void __cdecl Level_LoadAnimBones(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anim_bones = Level_ReadS32(handle);
     LOG_INFO("%d anim bones", num_anim_bones);
     g_AnimBones =
         game_malloc(sizeof(int32_t) * num_anim_bones, GBUF_ANIM_BONES);
     Level_Read(handle, g_AnimBones, sizeof(int32_t) * num_anim_bones);
+    Benchmark_End(benchmark, "loading anim bones");
 }
 
 static void __cdecl Level_LoadAnimFrames(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t anim_frame_data_size = Level_ReadS32(handle);
     LOG_INFO("%d anim frame data size", anim_frame_data_size);
     g_AnimFrames =
@@ -361,10 +390,12 @@ static void __cdecl Level_LoadAnimFrames(HANDLE handle)
     for (int32_t i = 0; i < anim_frame_data_size; i++) {
         ptr[i] = Level_ReadS16(handle);
     }
+    Benchmark_End(benchmark, "loading anim frames");
 }
 
 static void __cdecl Level_LoadObjectsImpl(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_objects = Level_ReadS32(handle);
     LOG_INFO("%d objects", num_objects);
     for (int32_t i = 0; i < num_objects; i++) {
@@ -378,10 +409,12 @@ static void __cdecl Level_LoadObjectsImpl(HANDLE handle)
         object->anim_idx = Level_ReadS16(handle);
         object->loaded = 1;
     }
+    Benchmark_End(benchmark, "loading objects");
 }
 
 static void __cdecl Level_LoadStaticObjects(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_static_objects = Level_ReadS32(handle);
     LOG_INFO("%d static objects", num_static_objects);
     for (int32_t i = 0; i < num_static_objects; i++) {
@@ -402,10 +435,12 @@ static void __cdecl Level_LoadStaticObjects(HANDLE handle)
         static_obj->collision_bounds.max_z = Level_ReadS16(handle);
         static_obj->flags = Level_ReadU16(handle);
     }
+    Benchmark_End(benchmark, "loading static objects");
 }
 
 static void __cdecl Level_LoadTextures(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_textures = Level_ReadS32(handle);
     LOG_INFO("%d textures", num_textures);
     if (num_textures > MAX_TEXTURES) {
@@ -439,10 +474,12 @@ static void __cdecl Level_LoadTextures(HANDLE handle)
     }
 
     AdjustTextureUVs(true);
+    Benchmark_End(benchmark, "loading textures");
 }
 
 BOOL __cdecl Level_LoadObjects(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     Level_LoadMeshBase(handle);
     Level_LoadMeshes(handle);
 
@@ -465,11 +502,13 @@ BOOL __cdecl Level_LoadObjects(HANDLE handle)
     InitialiseObjects();
     Level_LoadStaticObjects(handle);
     Level_LoadTextures(handle);
+    Benchmark_End(benchmark, "loading objects");
     return true;
 }
 
 BOOL __cdecl Level_LoadSprites(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_sprites = Level_ReadS32(handle);
     LOG_DEBUG("%d sprites", num_sprites);
     for (int32_t i = 0; i < num_sprites; i++) {
@@ -501,20 +540,25 @@ BOOL __cdecl Level_LoadSprites(HANDLE handle)
         }
     }
 
+    Benchmark_End(benchmark, "loading sprites");
     return true;
 }
 
 BOOL __cdecl Level_LoadItems(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
+    bool result = false;
+
     const int32_t num_items = Level_ReadS32(handle);
     LOG_DEBUG("%d items", num_items);
     if (!num_items) {
-        return true;
+        result = true;
+        goto finish;
     }
 
     if (num_items > MAX_ITEMS) {
         Shell_ExitSystem("Too many items");
-        return false;
+        goto finish;
     }
 
     g_Items = game_malloc(sizeof(ITEM_INFO) * MAX_ITEMS, GBUF_ITEMS);
@@ -536,16 +580,20 @@ BOOL __cdecl Level_LoadItems(HANDLE handle)
         if (item->object_num < 0 || item->object_num >= O_NUMBER_OF) {
             Shell_ExitSystemFmt(
                 "Bad object number (%d) on item %d", item->object_num, i);
-            return false;
+            goto finish;
         }
         Item_Initialise(i);
     }
+    result = true;
 
-    return true;
+finish:
+    Benchmark_End(benchmark, "loading items");
+    return result;
 }
 
 BOOL __cdecl Level_LoadDepthQ(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     for (int32_t i = 0; i < 32; i++) {
         Level_Read(handle, g_DepthQTable[i].index, sizeof(uint8_t) * 256);
         g_DepthQTable[i].index[0] = 0;
@@ -585,11 +633,13 @@ BOOL __cdecl Level_LoadDepthQ(HANDLE handle)
         g_WaterPalette[i].blue = g_GamePalette8[i].blue;
     }
 
+    Benchmark_End(benchmark, "loading depthq");
     return true;
 }
 
 BOOL __cdecl Level_LoadPalettes(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     Level_Read(handle, g_GamePalette8, sizeof(RGB_888) * 256);
 
     g_GamePalette8[0].red = 0;
@@ -604,15 +654,17 @@ BOOL __cdecl Level_LoadPalettes(HANDLE handle)
     }
 
     Level_Read(handle, g_GamePalette16, sizeof(PALETTEENTRY) * 256);
+    Benchmark_End(benchmark, "loading palettes");
     return true;
 }
 
 BOOL __cdecl Level_LoadCameras(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     g_NumCameras = Level_ReadS32(handle);
     LOG_DEBUG("%d fixed cameras", g_NumCameras);
     if (!g_NumCameras) {
-        return true;
+        goto finish;
     }
 
     g_Camera.fixed =
@@ -625,15 +677,20 @@ BOOL __cdecl Level_LoadCameras(HANDLE handle)
         camera->data = Level_ReadS16(handle);
         camera->flags = Level_ReadS16(handle);
     }
+
+finish:
+    Benchmark_End(benchmark, "loading fixed cameras");
     return true;
 }
 
 BOOL __cdecl Level_LoadSoundEffects(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
+
     g_SoundEffectCount = Level_ReadS32(handle);
     LOG_DEBUG("%d sound effects", g_SoundEffectCount);
     if (!g_SoundEffectCount) {
-        return true;
+        goto finish;
     }
 
     g_SoundEffects =
@@ -646,11 +703,15 @@ BOOL __cdecl Level_LoadSoundEffects(HANDLE handle)
         effect->data = Level_ReadS16(handle);
         effect->flags = Level_ReadS16(handle);
     }
+
+finish:
+    Benchmark_End(benchmark, "loading sound effects");
     return true;
 }
 
 BOOL __cdecl Level_LoadBoxes(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     g_BoxCount = Level_ReadS32(handle);
     g_Boxes = game_malloc(sizeof(BOX_INFO) * g_BoxCount, GBUF_BOXES);
     for (int32_t i = 0; i < g_BoxCount; i++) {
@@ -691,20 +752,24 @@ BOOL __cdecl Level_LoadBoxes(HANDLE handle)
         Level_Read(handle, g_FlyZone[i], sizeof(int16_t) * g_BoxCount);
     }
 
+    Benchmark_End(benchmark, "loading boxes");
     return true;
 }
 
 BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_ranges = Level_ReadS32(handle);
     g_AnimTextureRanges = game_malloc(
         sizeof(int16_t) * num_ranges, GBUF_ANIMATING_TEXTURE_RANGES);
     Level_Read(handle, g_AnimTextureRanges, sizeof(int16_t) * num_ranges);
+    Benchmark_End(benchmark, "loading animated textures");
     return true;
 }
 
 BOOL __cdecl Level_LoadCinematic(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     g_NumCineFrames = Level_ReadS16(handle);
     if (g_NumCineFrames <= 0) {
         g_CineLoaded = false;
@@ -725,11 +790,13 @@ BOOL __cdecl Level_LoadCinematic(HANDLE handle)
         frame->roll = Level_ReadS16(handle);
     }
     g_CineLoaded = true;
+    Benchmark_End(benchmark, "loading cinematic data");
     return true;
 }
 
 BOOL __cdecl Level_LoadDemo(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     g_DemoCount = 0;
 
     // TODO: is the allocation necessary if there's no demo data?
@@ -740,16 +807,18 @@ BOOL __cdecl Level_LoadDemo(HANDLE handle)
     LOG_DEBUG("%d demo input size", demo_size);
     if (!demo_size) {
         g_IsDemoLoaded = false;
-        return true;
+    } else {
+        g_IsDemoLoaded = true;
+        Level_Read(handle, g_DemoPtr, demo_size);
     }
 
-    Level_Read(handle, g_DemoPtr, demo_size);
-    g_IsDemoLoaded = true;
+    Benchmark_End(benchmark, "loading demo");
     return true;
 }
 
 void __cdecl Level_LoadDemoExternal(const char *const level_name)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     char file_name[MAX_PATH];
     strcpy(file_name, level_name);
     ChangeFileNameExtension(file_name, "DEM");
@@ -766,13 +835,18 @@ void __cdecl Level_LoadDemoExternal(const char *const level_name)
     ReadFileSync(handle, g_DemoPtr, 36000, &bytes_read, 0);
     g_IsDemoLoaded = bytes_read != 0;
     CloseHandle(handle);
+    Benchmark_End(benchmark, "loading demo external");
 }
 
 BOOL __cdecl Level_LoadSamples(HANDLE handle)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
+    bool result = false;
+
     g_SoundIsActive = false;
     if (!S_Audio_Sample_IsEnabled()) {
-        return true;
+        result = true;
+        goto finish;
     }
 
     S_Audio_Sample_CloseAllTracks();
@@ -781,7 +855,7 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
     g_NumSampleInfos = Level_ReadS32(handle);
     LOG_DEBUG("%d sample infos", g_NumSampleInfos);
     if (!g_NumSampleInfos) {
-        return false;
+        goto finish;
     }
 
     g_SampleInfos =
@@ -797,7 +871,7 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
     const int32_t num_samples = Level_ReadS32(handle);
     LOG_DEBUG("%d samples", num_samples);
     if (!num_samples) {
-        return false;
+        goto finish;
     }
     int32_t *sample_offsets = Memory_Alloc(sizeof(int32_t) * num_samples);
     Level_Read(handle, sample_offsets, sizeof(int32_t) * num_samples);
@@ -853,12 +927,19 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
     Memory_FreePointer(&sample_offsets);
     CloseHandle(sfx_handle);
     g_SoundIsActive = true;
-    return true;
+    result = true;
+
+finish:
+    Benchmark_End(benchmark, "loading samples");
+    return result;
 }
 
 bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
 {
     init_game_malloc();
+
+    BENCHMARK *const benchmark = Benchmark_Start();
+    bool result = false;
 
     const char *full_path = GetFullPath(file_name);
     strcpy(g_LevelFileName, full_path);
@@ -869,7 +950,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
     if (handle == INVALID_HANDLE_VALUE) {
         Shell_ExitSystemFmt(
             "Could not open %s (level %d)", full_path, level_num);
-        return false;
+        goto finish;
     }
 
     const int32_t version = Level_ReadS32(handle);
@@ -877,7 +958,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
         Shell_ExitSystemFmt(
             "FATAL: Level %d (%s) requires a new TOMB2.EXE (version %d) to run",
             level_num, full_path, file_name);
-        return false;
+        goto finish;
     }
 
     if (version < 45) {
@@ -885,47 +966,51 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
             "FATAL: Level %d (%s) is OUT OF DATE (version %d). COPY NEW "
             "EDITORS AND REMAKE LEVEL",
             level_num, full_path, file_name);
-        return false;
+        goto finish;
     }
 
     g_LevelFilePalettesOffset = SetFilePointer(handle, 0, NULL, FILE_CURRENT);
     if (!Level_LoadPalettes(handle))
-        return false;
+        goto finish;
 
     g_LevelFileTexPagesOffset = SetFilePointer(handle, 0, NULL, FILE_CURRENT);
     if (!Level_LoadTexturePages(handle))
-        return false;
+        goto finish;
 
     SetFilePointer(handle, 4, NULL, FILE_CURRENT);
     if (!Level_LoadRooms(handle))
-        return false;
+        goto finish;
     if (!Level_LoadObjects(handle))
-        return false;
+        goto finish;
     if (!Level_LoadSprites(handle))
-        return false;
+        goto finish;
     if (!Level_LoadCameras(handle))
-        return false;
+        goto finish;
     if (!Level_LoadSoundEffects(handle))
-        return false;
+        goto finish;
     if (!Level_LoadBoxes(handle))
-        return false;
+        goto finish;
     if (!Level_LoadAnimatedTextures(handle))
-        return false;
+        goto finish;
     if (!Level_LoadItems(handle))
-        return false;
+        goto finish;
 
     g_LevelFileDepthQOffset = SetFilePointer(handle, 0, NULL, FILE_CURRENT);
     if (!Level_LoadDepthQ(handle))
-        return false;
+        goto finish;
 
     if (!Level_LoadCinematic(handle))
-        return false;
+        goto finish;
     if (!Level_LoadDemo(handle))
-        return false;
+        goto finish;
     if (!Level_LoadSamples(handle))
-        return false;
+        goto finish;
 
     Level_LoadDemoExternal(full_path);
     CloseHandle(handle);
-    return true;
+    result = true;
+
+finish:
+    Benchmark_End(benchmark, "loading level data");
+    return result;
 }

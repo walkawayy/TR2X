@@ -804,13 +804,14 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
 
     const char *const file_name = "data\\main.sfx";
     const char *const full_path = GetFullPath(file_name);
+    LOG_DEBUG("Loading samples from %s", full_path);
     HANDLE sfx_handle = CreateFileA(
         full_path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
         NULL);
 
     if (sfx_handle == INVALID_HANDLE_VALUE) {
         Shell_ExitSystemFmt(
-            g_ErrorMessage, "Could not open %s file", file_name);
+            "Could not open %s file: 0x%x", file_name, GetLastError());
         return false;
     }
 

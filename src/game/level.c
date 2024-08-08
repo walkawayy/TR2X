@@ -832,7 +832,8 @@ BOOL __cdecl Level_LoadSamples(HANDLE handle)
         // TODO: do not reconstruct the header in S_Audio_Sample_Load, just
         // pass the entire sample directly
         if (!S_Audio_Sample_Load(
-                sample_id, header + 20, sample_data, data_size)) {
+                sample_id, (LPWAVEFORMATEX)(header + 20), sample_data,
+                data_size)) {
             return false;
         }
         Memory_FreePointer(&sample_data);

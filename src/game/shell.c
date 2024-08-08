@@ -8,6 +8,8 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/memory.h>
+
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -162,8 +164,15 @@ void __cdecl Shell_ExitSystemFmt(const char *fmt, ...)
 {
     va_list va;
     va_start(va, fmt);
-    char message[150];
-    vsnprintf(message, 150, fmt, va);
+    int32_t size = vsnprintf(NULL, 0, fmt, va) + 1;
+    char *message = Memory_Alloc(size);
     va_end(va);
+
+    va_start(va, fmt);
+    vsnprintf(message, size, fmt, va);
+    va_end(va);
+
     Shell_ExitSystem(message);
+
+    Memory_FreePointer(&message);
 }

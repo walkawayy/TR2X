@@ -3734,7 +3734,7 @@ typedef enum {
 0x0044AA00  0x0060  +       BOOL __cdecl Level_LoadSoundEffects(HANDLE handle);
 0x0044AA60  0x0221  +       BOOL __cdecl Level_LoadBoxes(HANDLE handle);
 0x0044AC90  0x0055  +       BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle);
-0x0044ACF0  0x0079  -       BOOL __cdecl Level_LoadCinematic(HANDLE handle);
+0x0044ACF0  0x0079  +       BOOL __cdecl Level_LoadCinematic(HANDLE handle);
 0x0044AD70  0x008A  -       BOOL __cdecl Level_LoadDemo(HANDLE handle);
 0x0044AE00  0x009A  -       void __cdecl Level_LoadDemoExternal(LPCTSTR level_name);
 0x0044AEA0  0x0265  -       BOOL __cdecl Level_LoadSamples(HANDLE handle);
@@ -4380,3 +4380,4 @@ typedef enum {
 0x004BF2D8  -       uint8_t g_DepthQIndex[256];
 0x004D7C74  -       int32_t g_NumCameras;
 0x0051B92C  -       int16_t *g_AnimTextureRanges;
+0x005262F4  -       int16_t g_CineLoaded;

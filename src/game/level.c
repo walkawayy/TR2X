@@ -695,3 +695,28 @@ BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle)
     Level_Read(handle, g_AnimTextureRanges, sizeof(int16_t) * num_ranges);
     return true;
 }
+
+BOOL __cdecl Level_LoadCinematic(HANDLE handle)
+{
+    g_NumCineFrames = Level_ReadS16(handle);
+    if (g_NumCineFrames <= 0) {
+        g_CineLoaded = false;
+        return true;
+    }
+
+    g_CineData = game_malloc(
+        sizeof(CINE_FRAME) * g_NumCineFrames, GBUF_CINEMATIC_FRAMES);
+    for (int32_t i = 0; i < g_NumCineFrames; i++) {
+        CINE_FRAME *const frame = &g_CineData[i];
+        frame->tx = Level_ReadS16(handle);
+        frame->ty = Level_ReadS16(handle);
+        frame->tz = Level_ReadS16(handle);
+        frame->cx = Level_ReadS16(handle);
+        frame->cy = Level_ReadS16(handle);
+        frame->cz = Level_ReadS16(handle);
+        frame->fov = Level_ReadS16(handle);
+        frame->roll = Level_ReadS16(handle);
+    }
+    g_CineLoaded = true;
+    return true;
+}

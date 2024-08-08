@@ -362,6 +362,7 @@ extern const char *g_TR2XVersion;
 #define g_TriggerIndex (*(int16_t **)0x00526288)
 #define g_LOSRooms (*(int32_t(*)[20])0x005262A0)
 #define g_Items (*(ITEM_INFO **)0x005262F0)
+#define g_CineLoaded (*(int16_t*)0x005262F4)
 #define g_NumCineFrames (*(int16_t*)0x005262F6)
 #define g_CineData (*(CINE_FRAME **)0x005262F8) // = NULL
 #define g_CinePos (*(PHD_3DPOS*)0x00526300)

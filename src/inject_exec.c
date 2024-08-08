@@ -527,6 +527,7 @@ static void Inject_Level(const bool enable)
     INJECT(enable, 0x0044AA00, Level_LoadSoundEffects);
     INJECT(enable, 0x0044AA60, Level_LoadBoxes);
     INJECT(enable, 0x0044AC90, Level_LoadAnimatedTextures);
+    INJECT(enable, 0x0044ACF0, Level_LoadCinematic);
 }
 
 static void Inject_Inventory(const bool enable)

@@ -736,9 +736,9 @@ BOOL __cdecl Level_LoadDemo(HANDLE handle)
     // TODO: do not hardcode the allocation size
     g_DemoPtr = game_malloc(36000, GBUF_LOAD_DEMO_BUFFER);
 
-    const int16_t demo_size = Level_ReadS16(handle);
+    const int32_t demo_size = Level_ReadU16(handle);
     LOG_DEBUG("%d demo input size", demo_size);
-    if (demo_size) {
+    if (!demo_size) {
         g_IsDemoLoaded = false;
         return true;
     }

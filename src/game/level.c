@@ -641,3 +641,48 @@ BOOL __cdecl Level_LoadSoundEffects(HANDLE handle)
     }
     return true;
 }
+
+BOOL __cdecl Level_LoadBoxes(HANDLE handle)
+{
+    g_BoxCount = Level_ReadS32(handle);
+    g_Boxes = game_malloc(sizeof(BOX_INFO) * g_BoxCount, GBUF_BOXES);
+    for (int32_t i = 0; i < g_BoxCount; i++) {
+        BOX_INFO *const box = &g_Boxes[i];
+        box->left = Level_ReadU8(handle);
+        box->right = Level_ReadU8(handle);
+        box->top = Level_ReadU8(handle);
+        box->bottom = Level_ReadU8(handle);
+        box->height = Level_ReadS16(handle);
+        box->overlap_index = Level_ReadS16(handle);
+    }
+
+    const int32_t num_overlaps = Level_ReadS32(handle);
+    g_Overlap = game_malloc(sizeof(uint16_t) * num_overlaps, GBUF_OVERLAPS);
+    Level_Read(handle, g_Overlap, sizeof(uint16_t) * num_overlaps);
+
+    for (int32_t i = 0; i < 2; i++) {
+        for (int32_t j = 0; j < 4; j++) {
+            const bool skip = j == 2
+                || (j == 1 && !g_Objects[O_SPIDER_or_WOLF].loaded
+                    && !g_Objects[O_SKIDOO_ARMED].loaded)
+                || (j == 3 && !g_Objects[O_YETI].loaded
+                    && !g_Objects[O_WORKER_3].loaded);
+
+            if (skip) {
+                SetFilePointer(
+                    handle, sizeof(int16_t) * g_BoxCount, 0, FILE_CURRENT);
+                continue;
+            }
+
+            g_GroundZone[j][i] =
+                game_malloc(sizeof(int16_t) * g_BoxCount, GBUF_GROUND_ZONE);
+            Level_Read(
+                handle, g_GroundZone[j][i], sizeof(int16_t) * g_BoxCount);
+        }
+
+        g_FlyZone[i] = game_malloc(sizeof(int16_t) * g_BoxCount, GBUF_FLY_ZONE);
+        Level_Read(handle, g_FlyZone[i], sizeof(int16_t) * g_BoxCount);
+    }
+
+    return true;
+}

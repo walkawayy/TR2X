@@ -11,3 +11,4 @@ BOOL __cdecl Level_LoadDepthQ(HANDLE handle);
 BOOL __cdecl Level_LoadPalettes(HANDLE handle);
 BOOL __cdecl Level_LoadCameras(HANDLE handle);
 BOOL __cdecl Level_LoadSoundEffects(HANDLE handle);
+BOOL __cdecl Level_LoadBoxes(HANDLE handle);

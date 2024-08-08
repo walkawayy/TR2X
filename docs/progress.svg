@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.56% (628)</tspan> · <tspan class="known">45.98% (560)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">51.64% (629)</tspan> · <tspan class="known">45.89% (559)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="385.15" height="6" x="0" y="0" class="decompiled"/>
-<rect width="343.45" height="6" x="385.15" y="0" class="known"/>
+<rect width="385.77" height="6" x="0" y="0" class="decompiled"/>
+<rect width="342.83" height="6" x="385.77" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1037,7 +1037,7 @@
 <rect width="12" height="12" x="120" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadItems(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="135" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadDepthQ(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="150" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadPalettes(HANDLE handle);</title></rect>
-<rect width="12" height="12" x="165" y="285" class="known"><title>BOOL __cdecl Level_LoadCameras(HANDLE handle);</title></rect>
+<rect width="12" height="12" x="165" y="285" class="decompiled"><title>BOOL __cdecl Level_LoadCameras(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="180" y="285" class="known"><title>BOOL __cdecl Level_LoadSoundEffects(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="195" y="285" class="known"><title>BOOL __cdecl Level_LoadBoxes(HANDLE handle);</title></rect>
 <rect width="12" height="12" x="210" y="285" class="known"><title>BOOL __cdecl Level_LoadAnimatedTextures(HANDLE handle);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.50%</tspan> · <tspan class="known">47.17%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.53%</tspan> · <tspan class="known">47.14%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="392.19" height="6" x="0" y="0" class="decompiled"/>
-<rect width="352.37" height="6" x="392.19" y="0" class="known"/>
+<rect width="392.40" height="6" x="0" y="0" class="decompiled"/>
+<rect width="352.16" height="6" x="392.40" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2033,7 +2033,7 @@
 <rect width="5.89" height="5.97" x="652.91" y="235.64" class="known"><title>void __cdecl Inv_Ring_GetView(RING_INFO *ring, PHD_3DPOS *viewer);</title></rect>
 <rect width="5.89" height="5.97" x="661.79" y="235.64" class="decompiled"><title>void __cdecl Lara_State_SurfLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="5.89" height="5.97" x="670.68" y="235.64" class="decompiled"><title>void __cdecl Lara_State_SurfRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="5.89" height="5.97" x="679.56" y="235.64" class="known"><title>BOOL __cdecl Level_LoadCameras(HANDLE handle);</title></rect>
+<rect width="5.89" height="5.97" x="679.56" y="235.64" class="decompiled"><title>BOOL __cdecl Level_LoadCameras(HANDLE handle);</title></rect>
 <rect width="5.89" height="5.97" x="688.45" y="235.64" class="known"><title>BOOL __cdecl Level_LoadSoundEffects(HANDLE handle);</title></rect>
 <rect width="5.89" height="5.97" x="697.33" y="235.64" class="known"><title>void __cdecl UT_InitAccurateTimer(void);</title></rect>
 <rect width="5.79" height="5.97" x="706.22" y="235.64" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>

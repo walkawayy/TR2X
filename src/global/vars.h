@@ -180,6 +180,7 @@ extern const char *g_TR2XVersion;
 #define g_LevelItemCount (*(int32_t*)0x004D7C38)
 #define g_HealthBarTimer (*(int32_t*)0x004D7C3C)
 #define g_SlotsUsed (*(int32_t*)0x004D7C50)
+#define g_NumCameras (*(int32_t*)0x004D7C74)
 #define g_SoundTrackIds (*(int32_t(*)[128])0x004D7C80)
 #define g_BGND_PictureIsReady (*(bool*)0x004D7E88)
 #define g_BGND_TexturePageIndexes (*(int32_t(*)[5])0x004D7E90)

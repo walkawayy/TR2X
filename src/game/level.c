@@ -601,3 +601,23 @@ BOOL __cdecl Level_LoadPalettes(HANDLE handle)
     Level_Read(handle, g_GamePalette16, sizeof(PALETTEENTRY) * 256);
     return true;
 }
+
+BOOL __cdecl Level_LoadCameras(HANDLE handle)
+{
+    g_NumCameras = Level_ReadS32(handle);
+    if (!g_NumCameras) {
+        return true;
+    }
+
+    g_Camera.fixed =
+        game_malloc(sizeof(OBJECT_VECTOR) * g_NumCameras, GBUF_CAMERAS);
+    for (int32_t i = 0; i < g_NumCameras; i++) {
+        OBJECT_VECTOR *const camera = &g_Camera.fixed[i];
+        camera->x = Level_ReadS32(handle);
+        camera->y = Level_ReadS32(handle);
+        camera->z = Level_ReadS32(handle);
+        camera->data = Level_ReadS16(handle);
+        camera->flags = Level_ReadS16(handle);
+    }
+    return true;
+}

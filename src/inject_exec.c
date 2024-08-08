@@ -523,6 +523,7 @@ static void Inject_Level(const bool enable)
     INJECT(enable, 0x0044A5B0, Level_LoadItems);
     INJECT(enable, 0x0044A790, Level_LoadDepthQ);
     INJECT(enable, 0x0044A920, Level_LoadPalettes);
+    INJECT(enable, 0x0044A9A0, Level_LoadCameras);
 }
 
 static void Inject_Inventory(const bool enable)

@@ -9,3 +9,4 @@ BOOL __cdecl Level_LoadSprites(HANDLE handle);
 BOOL __cdecl Level_LoadItems(HANDLE handle);
 BOOL __cdecl Level_LoadDepthQ(HANDLE handle);
 BOOL __cdecl Level_LoadPalettes(HANDLE handle);
+BOOL __cdecl Level_LoadCameras(HANDLE handle);

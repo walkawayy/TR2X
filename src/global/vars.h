@@ -297,7 +297,7 @@ extern const char *g_TR2XVersion;
 #define g_GameModule (*(HINSTANCE*)0x0051A238)
 #define g_CmdLine (*(char **)0x0051A23C)
 #define g_ScreenshotCounter (*(int32_t*)0x0051A240)
-#define g_WaterPalette (*(RGB_888(*)[256])0x0051B305)
+#define g_WaterPalette (*(RGB_888(*)[256])0x0051B308)
 #define g_PhdWinRect (*(RECT*)0x0051B918)
 #define g_HiRes (*(int32_t*)0x0051B928)
 #define g_AnimTextureRanges (*(int16_t **)0x0051B92C)

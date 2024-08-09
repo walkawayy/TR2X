@@ -15,8 +15,8 @@
 
 #include <assert.h>
 
-static bool __cdecl Level_LoadTexturePages(VFILE *file);
-static bool __cdecl Level_LoadRooms(VFILE *file);
+static void __cdecl Level_LoadTexturePages(VFILE *file);
+static void __cdecl Level_LoadRooms(VFILE *file);
 static void __cdecl Level_LoadMeshBase(VFILE *file);
 static void __cdecl Level_LoadMeshes(VFILE *file);
 static int32_t __cdecl Level_LoadAnims(VFILE *file, int32_t **frame_pointers);
@@ -27,24 +27,24 @@ static void __cdecl Level_LoadAnimFrames(VFILE *file);
 static void __cdecl Level_LoadObjectsImpl(VFILE *file);
 static void __cdecl Level_LoadStaticObjects(VFILE *file);
 static void __cdecl Level_LoadTextures(VFILE *file);
-static bool __cdecl Level_LoadObjects(VFILE *file);
-static bool __cdecl Level_LoadSprites(VFILE *file);
-static bool __cdecl Level_LoadItems(VFILE *file);
-static bool __cdecl Level_LoadDepthQ(VFILE *file);
-static bool __cdecl Level_LoadPalettes(VFILE *file);
-static bool __cdecl Level_LoadCameras(VFILE *file);
-static bool __cdecl Level_LoadSoundEffects(VFILE *file);
-static bool __cdecl Level_LoadBoxes(VFILE *file);
-static bool __cdecl Level_LoadAnimatedTextures(VFILE *file);
-static bool __cdecl Level_LoadCinematic(VFILE *file);
-static bool __cdecl Level_LoadDemo(VFILE *file);
+static void __cdecl Level_LoadObjects(VFILE *file);
+static void __cdecl Level_LoadSprites(VFILE *file);
+static void __cdecl Level_LoadItems(VFILE *file);
+static void __cdecl Level_LoadDepthQ(VFILE *file);
+static void __cdecl Level_LoadPalettes(VFILE *file);
+static void __cdecl Level_LoadCameras(VFILE *file);
+static void __cdecl Level_LoadSoundEffects(VFILE *file);
+static void __cdecl Level_LoadBoxes(VFILE *file);
+static void __cdecl Level_LoadAnimatedTextures(VFILE *file);
+static void __cdecl Level_LoadCinematic(VFILE *file);
+static void __cdecl Level_LoadDemo(VFILE *file);
 static void __cdecl Level_LoadDemoExternal(const char *level_name);
-static bool __cdecl Level_LoadSamples(VFILE *file);
+static void __cdecl Level_LoadSamples(VFILE *file);
 
-static bool __cdecl Level_LoadTexturePages(VFILE *const file)
+static void __cdecl Level_LoadTexturePages(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
-    bool result = false;
+    char *base = NULL;
 
     const bool is_16_bit = g_TextureFormat.bpp >= 16;
     const int32_t texture_size = TEXTURE_PAGE_WIDTH * TEXTURE_PAGE_HEIGHT;
@@ -64,16 +64,11 @@ static bool __cdecl Level_LoadTexturePages(VFILE *const file)
         }
         // skip 16-bit texture pages
         VFile_Skip(file, num_pages * texture_size_16_bit);
-        result = true;
         goto finish;
     }
 
-    char *const base = GlobalAlloc(
-        GMEM_FIXED,
+    base = Memory_Alloc(
         num_pages * (is_16_bit ? texture_size_16_bit : texture_size_8_bit));
-    if (base == NULL) {
-        goto finish;
-    }
 
     if (is_16_bit) {
         VFile_Skip(file, num_pages * texture_size_8_bit);
@@ -94,18 +89,16 @@ static bool __cdecl Level_LoadTexturePages(VFILE *const file)
     }
 
     g_TexturePageCount = num_pages;
-    GlobalFree(base);
-    result = true;
 
 finish:
+    Memory_FreePointer(&base);
     Benchmark_End(benchmark, NULL);
-    return result;
 }
 
-static bool __cdecl Level_LoadRooms(VFILE *const file)
+static void __cdecl Level_LoadRooms(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
-    bool result = false;
+
     g_RoomCount = VFile_ReadS16(file);
     LOG_INFO("rooms: %d", g_RoomCount);
     if (g_RoomCount > MAX_ROOMS) {
@@ -212,11 +205,9 @@ static bool __cdecl Level_LoadRooms(VFILE *const file)
     g_FloorData =
         game_malloc(sizeof(int16_t) * floor_data_size, GBUF_FLOOR_DATA);
     VFile_Read(file, g_FloorData, sizeof(int16_t) * floor_data_size);
-    result = true;
 
 finish:
     Benchmark_End(benchmark, NULL);
-    return result;
 }
 
 static void __cdecl Level_LoadMeshBase(VFILE *const file)
@@ -435,7 +426,7 @@ static void __cdecl Level_LoadTextures(VFILE *const file)
     Benchmark_End(benchmark, NULL);
 }
 
-static bool __cdecl Level_LoadObjects(VFILE *const file)
+static void __cdecl Level_LoadObjects(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     Level_LoadMeshBase(file);
@@ -461,10 +452,9 @@ static bool __cdecl Level_LoadObjects(VFILE *const file)
     Level_LoadStaticObjects(file);
     Level_LoadTextures(file);
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadSprites(VFILE *const file)
+static void __cdecl Level_LoadSprites(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_sprites = VFile_ReadS32(file);
@@ -499,18 +489,15 @@ static bool __cdecl Level_LoadSprites(VFILE *const file)
     }
 
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadItems(VFILE *const file)
+static void __cdecl Level_LoadItems(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
-    bool result = false;
 
     const int32_t num_items = VFile_ReadS32(file);
     LOG_DEBUG("items: %d", num_items);
     if (!num_items) {
-        result = true;
         goto finish;
     }
 
@@ -542,14 +529,12 @@ static bool __cdecl Level_LoadItems(VFILE *const file)
         }
         Item_Initialise(i);
     }
-    result = true;
 
 finish:
     Benchmark_End(benchmark, NULL);
-    return result;
 }
 
-static bool __cdecl Level_LoadDepthQ(VFILE *const file)
+static void __cdecl Level_LoadDepthQ(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     for (int32_t i = 0; i < 32; i++) {
@@ -592,10 +577,9 @@ static bool __cdecl Level_LoadDepthQ(VFILE *const file)
     }
 
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadPalettes(VFILE *const file)
+static void __cdecl Level_LoadPalettes(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     VFile_Read(file, g_GamePalette8, sizeof(RGB_888) * 256);
@@ -613,10 +597,9 @@ static bool __cdecl Level_LoadPalettes(VFILE *const file)
 
     VFile_Read(file, g_GamePalette16, sizeof(PALETTEENTRY) * 256);
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadCameras(VFILE *const file)
+static void __cdecl Level_LoadCameras(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     g_NumCameras = VFile_ReadS32(file);
@@ -638,10 +621,9 @@ static bool __cdecl Level_LoadCameras(VFILE *const file)
 
 finish:
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadSoundEffects(VFILE *const file)
+static void __cdecl Level_LoadSoundEffects(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
 
@@ -664,10 +646,9 @@ static bool __cdecl Level_LoadSoundEffects(VFILE *const file)
 
 finish:
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadBoxes(VFILE *const file)
+static void __cdecl Level_LoadBoxes(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     g_BoxCount = VFile_ReadS32(file);
@@ -709,10 +690,9 @@ static bool __cdecl Level_LoadBoxes(VFILE *const file)
     }
 
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadAnimatedTextures(VFILE *const file)
+static void __cdecl Level_LoadAnimatedTextures(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_ranges = VFile_ReadS32(file);
@@ -720,16 +700,15 @@ static bool __cdecl Level_LoadAnimatedTextures(VFILE *const file)
         sizeof(int16_t) * num_ranges, GBUF_ANIMATING_TEXTURE_RANGES);
     VFile_Read(file, g_AnimTextureRanges, sizeof(int16_t) * num_ranges);
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadCinematic(VFILE *const file)
+static void __cdecl Level_LoadCinematic(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     g_NumCineFrames = VFile_ReadS16(file);
     if (g_NumCineFrames <= 0) {
         g_CineLoaded = false;
-        return true;
+        goto finish;
     }
 
     g_CineData = game_malloc(
@@ -746,11 +725,12 @@ static bool __cdecl Level_LoadCinematic(VFILE *const file)
         frame->roll = VFile_ReadS16(file);
     }
     g_CineLoaded = true;
+
+finish:
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
-static bool __cdecl Level_LoadDemo(VFILE *const file)
+static void __cdecl Level_LoadDemo(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     g_DemoCount = 0;
@@ -769,7 +749,6 @@ static bool __cdecl Level_LoadDemo(VFILE *const file)
     }
 
     Benchmark_End(benchmark, NULL);
-    return true;
 }
 
 static void __cdecl Level_LoadDemoExternal(const char *const level_name)
@@ -794,14 +773,13 @@ static void __cdecl Level_LoadDemoExternal(const char *const level_name)
     Benchmark_End(benchmark, NULL);
 }
 
-static bool __cdecl Level_LoadSamples(VFILE *const file)
+static void __cdecl Level_LoadSamples(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
-    bool result = false;
+    int32_t *sample_offsets = NULL;
 
     g_SoundIsActive = false;
     if (!S_Audio_Sample_IsEnabled()) {
-        result = true;
         goto finish;
     }
 
@@ -829,7 +807,8 @@ static bool __cdecl Level_LoadSamples(VFILE *const file)
     if (!num_samples) {
         goto finish;
     }
-    int32_t *sample_offsets = Memory_Alloc(sizeof(int32_t) * num_samples);
+
+    sample_offsets = Memory_Alloc(sizeof(int32_t) * num_samples);
     VFile_Read(file, sample_offsets, sizeof(int32_t) * num_samples);
 
     const char *const file_name = "data\\main.sfx";
@@ -842,7 +821,7 @@ static bool __cdecl Level_LoadSamples(VFILE *const file)
     if (sfx_handle == INVALID_HANDLE_VALUE) {
         Shell_ExitSystemFmt(
             "Could not open %s file: 0x%x", file_name, GetLastError());
-        return false;
+        goto finish;
     }
 
     // TODO: refactor these WAVE/RIFF shenanigans
@@ -854,8 +833,7 @@ static bool __cdecl Level_LoadSamples(VFILE *const file)
             || *(int32_t *)(header + 8) != 0x45564157
             || *(int32_t *)(header + 36) != 0x61746164) {
             LOG_ERROR("Unexpected sample header for sample %d", i);
-            Memory_FreePointer(&sample_offsets);
-            return false;
+            goto finish;
         }
         const int32_t data_size = *(int32_t *)(header + 0x28);
         const int32_t aligned_size = (data_size + 1) & ~1;
@@ -870,24 +848,22 @@ static bool __cdecl Level_LoadSamples(VFILE *const file)
         ReadFileSync(sfx_handle, sample_data, aligned_size, NULL, NULL);
         // TODO: do not reconstruct the header in S_Audio_Sample_Load, just
         // pass the entire sample directly
-        if (!S_Audio_Sample_Load(
-                sample_id, (LPWAVEFORMATEX)(header + 20), sample_data,
-                data_size)) {
-            return false;
-        }
+        const bool result = S_Audio_Sample_Load(
+            sample_id, (LPWAVEFORMATEX)(header + 20), sample_data, data_size);
         Memory_FreePointer(&sample_data);
+        if (!result) {
+            goto finish;
+        }
 
         sample_id++;
     }
-
-    Memory_FreePointer(&sample_offsets);
     CloseHandle(sfx_handle);
+
     g_SoundIsActive = true;
-    result = true;
 
 finish:
+    Memory_FreePointer(&sample_offsets);
     Benchmark_End(benchmark, NULL);
-    return result;
 }
 
 bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
@@ -907,7 +883,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
     if (handle == INVALID_HANDLE_VALUE) {
         Shell_ExitSystemFmt(
             "Could not open %s (level %d)", full_path, level_num);
-        goto finish;
+        return false;
     }
 
     const size_t size = SetFilePointer(handle, 0, NULL, FILE_END);
@@ -925,7 +901,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
         Shell_ExitSystemFmt(
             "FATAL: Level %d (%s) requires a new TOMB2.EXE (version %d) to run",
             level_num, full_path, file_name);
-        goto finish;
+        return false;
     }
 
     if (version < 45) {
@@ -933,52 +909,35 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
             "FATAL: Level %d (%s) is OUT OF DATE (version %d). COPY NEW "
             "EDITORS AND REMAKE LEVEL",
             level_num, full_path, file_name);
-        goto finish;
+        return false;
     }
 
     g_LevelFilePalettesOffset = VFile_GetPos(file);
-    if (!Level_LoadPalettes(file))
-        goto finish;
+    Level_LoadPalettes(file);
 
     g_LevelFileTexPagesOffset = VFile_GetPos(file);
-    if (!Level_LoadTexturePages(file))
-        goto finish;
-
+    Level_LoadTexturePages(file);
     VFile_Skip(file, 4);
-    if (!Level_LoadRooms(file))
-        goto finish;
-    if (!Level_LoadObjects(file))
-        goto finish;
-    if (!Level_LoadSprites(file))
-        goto finish;
-    if (!Level_LoadCameras(file))
-        goto finish;
-    if (!Level_LoadSoundEffects(file))
-        goto finish;
-    if (!Level_LoadBoxes(file))
-        goto finish;
-    if (!Level_LoadAnimatedTextures(file))
-        goto finish;
-    if (!Level_LoadItems(file))
-        goto finish;
+
+    Level_LoadRooms(file);
+    Level_LoadObjects(file);
+    Level_LoadSprites(file);
+    Level_LoadCameras(file);
+    Level_LoadSoundEffects(file);
+    Level_LoadBoxes(file);
+    Level_LoadAnimatedTextures(file);
+    Level_LoadItems(file);
 
     g_LevelFileDepthQOffset = VFile_GetPos(file);
-    if (!Level_LoadDepthQ(file))
-        goto finish;
-
-    if (!Level_LoadCinematic(file))
-        goto finish;
-    if (!Level_LoadDemo(file))
-        goto finish;
-    if (!Level_LoadSamples(file))
-        goto finish;
+    Level_LoadDepthQ(file);
+    Level_LoadCinematic(file);
+    Level_LoadDemo(file);
+    Level_LoadSamples(file);
 
     Level_LoadDemoExternal(full_path);
     VFile_Close(file);
     file = NULL;
-    result = true;
 
-finish:
     Benchmark_End(benchmark, NULL);
-    return result;
+    return true;
 }

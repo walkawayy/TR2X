@@ -24,10 +24,9 @@ static void __cdecl Level_LoadAnimChanges(VFILE *file);
 static void __cdecl Level_LoadAnimCommands(VFILE *file);
 static void __cdecl Level_LoadAnimBones(VFILE *file);
 static void __cdecl Level_LoadAnimFrames(VFILE *file);
-static void __cdecl Level_LoadObjectsImpl(VFILE *file);
+static void __cdecl Level_LoadObjects(VFILE *file);
 static void __cdecl Level_LoadStaticObjects(VFILE *file);
 static void __cdecl Level_LoadTextures(VFILE *file);
-static void __cdecl Level_LoadObjects(VFILE *file);
 static void __cdecl Level_LoadSprites(VFILE *file);
 static void __cdecl Level_LoadItems(VFILE *file);
 static void __cdecl Level_LoadDepthQ(VFILE *file);
@@ -342,7 +341,7 @@ static void __cdecl Level_LoadAnimFrames(VFILE *const file)
     Benchmark_End(benchmark, NULL);
 }
 
-static void __cdecl Level_LoadObjectsImpl(VFILE *const file)
+static void __cdecl Level_LoadObjects(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_objects = VFile_ReadS32(file);
@@ -423,34 +422,6 @@ static void __cdecl Level_LoadTextures(VFILE *const file)
     }
 
     AdjustTextureUVs(true);
-    Benchmark_End(benchmark, NULL);
-}
-
-static void __cdecl Level_LoadObjects(VFILE *const file)
-{
-    BENCHMARK *const benchmark = Benchmark_Start();
-    Level_LoadMeshBase(file);
-    Level_LoadMeshes(file);
-
-    int32_t *frame_pointers = NULL;
-    const int32_t num_anims = Level_LoadAnims(file, &frame_pointers);
-    Level_LoadAnimChanges(file);
-    Level_LoadAnimRanges(file);
-    Level_LoadAnimCommands(file);
-    Level_LoadAnimBones(file);
-    Level_LoadAnimFrames(file);
-
-    for (int32_t i = 0; i < num_anims; i++) {
-        ANIM_STRUCT *const anim = &g_Anims[i];
-        // TODO: this is horrible
-        anim->frame_ptr = ((int16_t *)g_AnimFrames) + frame_pointers[i] / 2;
-    }
-    Memory_FreePointer(&frame_pointers);
-
-    Level_LoadObjectsImpl(file);
-    InitialiseObjects();
-    Level_LoadStaticObjects(file);
-    Level_LoadTextures(file);
     Benchmark_End(benchmark, NULL);
 }
 
@@ -920,7 +891,30 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
     VFile_Skip(file, 4);
 
     Level_LoadRooms(file);
+
+    Level_LoadMeshBase(file);
+    Level_LoadMeshes(file);
+
+    int32_t *frame_pointers = NULL;
+    const int32_t num_anims = Level_LoadAnims(file, &frame_pointers);
+    Level_LoadAnimChanges(file);
+    Level_LoadAnimRanges(file);
+    Level_LoadAnimCommands(file);
+    Level_LoadAnimBones(file);
+    Level_LoadAnimFrames(file);
+
+    for (int32_t i = 0; i < num_anims; i++) {
+        ANIM_STRUCT *const anim = &g_Anims[i];
+        // TODO: this is horrible
+        anim->frame_ptr = ((int16_t *)g_AnimFrames) + frame_pointers[i] / 2;
+    }
+    Memory_FreePointer(&frame_pointers);
+
     Level_LoadObjects(file);
+    InitialiseObjects();
+    Level_LoadStaticObjects(file);
+    Level_LoadTextures(file);
+
     Level_LoadSprites(file);
     Level_LoadCameras(file);
     Level_LoadSoundEffects(file);

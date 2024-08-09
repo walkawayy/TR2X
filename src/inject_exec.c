@@ -516,21 +516,6 @@ static void Inject_LOS(const bool enable)
 
 static void Inject_Level(const bool enable)
 {
-    INJECT(enable, 0x00449920, Level_LoadTexturePages);
-    INJECT(enable, 0x00449AB0, Level_LoadRooms);
-    INJECT(enable, 0x00449EF0, Level_LoadObjects);
-    INJECT(enable, 0x0044A470, Level_LoadSprites);
-    INJECT(enable, 0x0044A5B0, Level_LoadItems);
-    INJECT(enable, 0x0044A790, Level_LoadDepthQ);
-    INJECT(enable, 0x0044A920, Level_LoadPalettes);
-    INJECT(enable, 0x0044A9A0, Level_LoadCameras);
-    INJECT(enable, 0x0044AA00, Level_LoadSoundEffects);
-    INJECT(enable, 0x0044AA60, Level_LoadBoxes);
-    INJECT(enable, 0x0044AC90, Level_LoadAnimatedTextures);
-    INJECT(enable, 0x0044ACF0, Level_LoadCinematic);
-    INJECT(enable, 0x0044AD70, Level_LoadDemo);
-    INJECT(enable, 0x0044AE00, Level_LoadDemoExternal);
-    INJECT(enable, 0x0044AEA0, Level_LoadSamples);
     INJECT(enable, 0x0044B260, Level_Load);
 }
 

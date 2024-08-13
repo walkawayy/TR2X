@@ -1,6 +1,5 @@
 #include "game/level.h"
 
-#include "game/benchmark.h"
 #include "game/hwr.h"
 #include "game/items.h"
 #include "game/shell.h"
@@ -10,6 +9,7 @@
 #include "global/vars.h"
 #include "specific/s_audio_sample.h"
 
+#include <libtrx/benchmark.h>
 #include <libtrx/log.h>
 #include <libtrx/memory.h>
 

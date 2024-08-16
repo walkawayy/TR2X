@@ -48,8 +48,7 @@ static D3DCOLOR Output_ShadeColor(
 
 static D3DCOLOR Output_ShadeLight(uint32_t shade)
 {
-    CLAMPG(shade, 0x1FFF);
-    uint32_t value = (0x1FFF - shade) >> 4;
+    uint32_t value = (uint32_t)(0x1FFF - shade) >> 4;
     CLAMPG(value, 0xFF);
     return Output_ShadeColor(value, value, value, 0xFF);
 }
@@ -4158,8 +4157,8 @@ void __cdecl Output_InsertPoly_Gouraud(
 void __cdecl Output_DrawClippedPoly_Textured(const int32_t vtx_count)
 {
     for (int32_t i = 0; i < vtx_count; i++) {
-        const VERTEX_INFO *vbuf = &g_VBuffer[i];
-        D3DTLVERTEX *vbuf_d3d = &g_VBufferD3D[i];
+        const VERTEX_INFO *const vbuf = &g_VBuffer[i];
+        D3DTLVERTEX *const vbuf_d3d = &g_VBufferD3D[i];
         vbuf_d3d->sx = vbuf->x;
         vbuf_d3d->sy = vbuf->y;
         vbuf_d3d->sz = g_FltResZBuf - g_FltResZORhw * vbuf->rhw;

@@ -5,6 +5,7 @@
 - fixed enemy movement patterns in demo 1 and demo 3 (#98, regression from 0.1)
 - fixed underwater creatures dying (#98, regression from 0.1)
 - fixed a crash when spawning enemy drops (#125, regression from 0.1)
+- fixed how sprites are shaded (#134, regression from 0.1.1)
 - improved initial level load time by lazy-loading audio samples (#114)
 
 ## [0.2](https://github.com/LostArtefacts/TR2X/compare/0.1.1...0.2) - 2024-05-07

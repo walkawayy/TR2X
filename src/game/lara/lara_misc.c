@@ -875,8 +875,8 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
         const ANIM_STRUCT *anim = &g_Anims[anim_num];
         int32_t interpolation = anim->interpolation;
         frame_ptr = (const FRAME_INFO *)(anim->frame_ptr
-                                         + (int)(g_Lara.hit_frame
-                                                 * (interpolation >> 8)));
+                                         + (int32_t)(g_Lara.hit_frame
+                                                     * (interpolation >> 8)));
     } else {
         frame_ptr = frmptr[0];
     }

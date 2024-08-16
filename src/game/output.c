@@ -459,7 +459,7 @@ const int16_t *__cdecl Output_CalcObjectVertices(const int16_t *obj_ptr)
     obj_ptr++; // skip poly counter
     const int32_t vtx_count = *obj_ptr++;
 
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         PHD_VBUF *const vbuf = &g_PhdVBuf[i];
 
         // clang-format off
@@ -537,7 +537,7 @@ const int16_t *__cdecl Output_CalcSkyboxLight(const int16_t *obj_ptr)
         obj_ptr += count;
     }
 
-    for (int i = 0; i < count; i++) {
+    for (int32_t i = 0; i < count; i++) {
         g_PhdVBuf[i].g = 0xFFF;
     }
 
@@ -569,7 +569,7 @@ const int16_t *__cdecl Output_CalcVerticeLight(const int16_t *obj_ptr)
             ) / g_LsDivider;
             // clang-format on
 
-            for (int i = 0; i < vtx_count; i++) {
+            for (int32_t i = 0; i < vtx_count; i++) {
                 int16_t shade = g_LsAdder
                     + ((xv * obj_ptr[0] + yv * obj_ptr[1] + zv * obj_ptr[2])
                        >> 16);
@@ -582,12 +582,12 @@ const int16_t *__cdecl Output_CalcVerticeLight(const int16_t *obj_ptr)
             int16_t shade = g_LsAdder;
             CLAMP(shade, 0, 0x1FFF);
             obj_ptr += 3 * vtx_count;
-            for (int i = 0; i < vtx_count; i++) {
+            for (int32_t i = 0; i < vtx_count; i++) {
                 g_PhdVBuf[i].g = shade;
             }
         }
     } else if (vtx_count < 0) {
-        for (int i = 0; i < -vtx_count; i++) {
+        for (int32_t i = 0; i < -vtx_count; i++) {
             int16_t shade = g_LsAdder + *obj_ptr++;
             CLAMP(shade, 0, 0x1FFF);
             g_PhdVBuf[i].g = shade;
@@ -604,7 +604,7 @@ const int16_t *__cdecl Output_CalcRoomVertices(
         g_ZBufferSurface ? 0.0 : (g_MidSort << (W2V_SHIFT + 8));
     int32_t vtx_count = *obj_ptr++;
 
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         PHD_VBUF *const vbuf = &g_PhdVBuf[i];
 
         // clang-format off
@@ -731,7 +731,7 @@ void __cdecl Output_InitPolyList(void)
 void __cdecl Output_SortPolyList(void)
 {
     if (g_SurfaceCount) {
-        for (int i = 0; i < g_SurfaceCount; i++) {
+        for (int32_t i = 0; i < g_SurfaceCount; i++) {
             g_SortBuffer[i]._1 += i;
         }
         Output_QuickSort(0, g_SurfaceCount - 1);
@@ -774,7 +774,7 @@ void __cdecl Output_PrintPolyList(uint8_t *surface_ptr)
 {
     g_PrintSurfacePtr = surface_ptr;
 
-    for (int i = 0; i < g_SurfaceCount; i++) {
+    for (int32_t i = 0; i < g_SurfaceCount; i++) {
         const int16_t *obj_ptr = (const int16_t *)g_SortBuffer[i]._0;
         const int16_t poly_type = *obj_ptr++;
         g_PolyDrawRoutines[poly_type](obj_ptr);
@@ -916,7 +916,7 @@ void __cdecl Output_DrawPolyLine(const int16_t *obj_ptr)
 
     int32_t part_sum = 0;
     int32_t part = PHD_ONE * rows / cols;
-    for (int i = 0; i < cols; i++) {
+    for (int32_t i = 0; i < cols; i++) {
         part_sum += part;
         *draw_ptr = lcolor;
         draw_ptr += col_add;
@@ -1589,11 +1589,11 @@ int32_t __cdecl Output_ZedClipper(
     const int32_t vtx_count, const POINT_INFO *const points,
     VERTEX_INFO *const vtx)
 {
-    int j = 0;
+    int32_t j = 0;
     const POINT_INFO *pts0 = &points[0];
     const POINT_INFO *pts1 = &points[vtx_count - 1];
 
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         int32_t diff0 = g_FltNearZ - pts0->zv;
         int32_t diff1 = g_FltNearZ - pts1->zv;
         if ((diff0 | diff1) >= 0) {
@@ -1634,7 +1634,7 @@ int32_t __cdecl Output_ZedClipper(
 
 int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx)
 {
-    int j;
+    int32_t j;
     VERTEX_INFO vtx_buf[20];
     const VERTEX_INFO *vtx1;
     const VERTEX_INFO *vtx2;
@@ -1646,7 +1646,7 @@ int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx)
     // horizontal clip
     j = 0;
     vtx2 = &vtx[vtx_count - 1];
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         vtx1 = vtx2;
         vtx2 = &vtx[i];
 
@@ -1693,7 +1693,7 @@ int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx)
     // vertical clip
     j = 0;
     vtx2 = &vtx_buf[vtx_count - 1];
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         vtx1 = vtx2;
         vtx2 = &vtx_buf[i];
 
@@ -1740,7 +1740,7 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
     VERTEX_INFO vtx_buf[8];
     const VERTEX_INFO *vtx1;
     const VERTEX_INFO *vtx2;
-    int j;
+    int32_t j;
 
     if (vtx_count < 3) {
         return 0;
@@ -1749,7 +1749,7 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
     // horizontal clip
     j = 0;
     vtx2 = &vtx[vtx_count - 1];
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         vtx1 = vtx2;
         vtx2 = &vtx[i];
 
@@ -1794,7 +1794,7 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
     // vertical clip
     j = 0;
     vtx2 = &vtx_buf[vtx_count - 1];
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         vtx1 = vtx2;
         vtx2 = &vtx_buf[i];
 
@@ -1839,7 +1839,7 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
     VERTEX_INFO vtx_buf[8];
     const VERTEX_INFO *vtx1;
     const VERTEX_INFO *vtx2;
-    int j;
+    int32_t j;
 
     if (vtx_count < 3) {
         return 0;
@@ -1848,7 +1848,7 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
     // horizontal clip
     j = 0;
     vtx2 = &vtx[vtx_count - 1];
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         vtx1 = vtx2;
         vtx2 = &vtx[i];
 
@@ -1893,7 +1893,7 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
     // vertical clip
     j = 0;
     vtx2 = &vtx_buf[vtx_count - 1];
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         vtx1 = vtx2;
         vtx2 = &vtx_buf[i];
 
@@ -1936,7 +1936,7 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
 const int16_t *__cdecl Output_InsertObjectG3(
     const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2027,10 +2027,10 @@ const int16_t *__cdecl Output_InsertObjectG3(
         *g_Info3DPtr++ = color_idx;
         *g_Info3DPtr++ = num_points;
 
-        for (int j = 0; j < num_points; j++) {
-            *g_Info3DPtr++ = (int)g_VBuffer[j].x;
-            *g_Info3DPtr++ = (int)g_VBuffer[j].y;
-            *g_Info3DPtr++ = (int)g_VBuffer[j].g;
+        for (int32_t j = 0; j < num_points; j++) {
+            *g_Info3DPtr++ = (int32_t)g_VBuffer[j].x;
+            *g_Info3DPtr++ = (int32_t)g_VBuffer[j].y;
+            *g_Info3DPtr++ = (int32_t)g_VBuffer[j].g;
         }
         g_SurfaceCount++;
     }
@@ -2041,7 +2041,7 @@ const int16_t *__cdecl Output_InsertObjectG3(
 const int16_t *__cdecl Output_InsertObjectGT3(
     const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2078,21 +2078,21 @@ const int16_t *__cdecl Output_InsertObjectGT3(
                     *g_Info3DPtr++ = texture->tex_page;
                     *g_Info3DPtr++ = 3;
 
-                    *g_Info3DPtr++ = (int)vtx[0]->xs;
-                    *g_Info3DPtr++ = (int)vtx[0]->ys;
-                    *g_Info3DPtr++ = (int)vtx[0]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->g;
                     *g_Info3DPtr++ = uv[0].u;
                     *g_Info3DPtr++ = uv[0].v;
 
-                    *g_Info3DPtr++ = (int)vtx[1]->xs;
-                    *g_Info3DPtr++ = (int)vtx[1]->ys;
-                    *g_Info3DPtr++ = (int)vtx[1]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->g;
                     *g_Info3DPtr++ = uv[1].u;
                     *g_Info3DPtr++ = uv[1].v;
 
-                    *g_Info3DPtr++ = (int)vtx[2]->xs;
-                    *g_Info3DPtr++ = (int)vtx[2]->ys;
-                    *g_Info3DPtr++ = (int)vtx[2]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->g;
                     *g_Info3DPtr++ = uv[2].u;
                     *g_Info3DPtr++ = uv[2].v;
                 } else {
@@ -2102,9 +2102,9 @@ const int16_t *__cdecl Output_InsertObjectGT3(
                     *g_Info3DPtr++ = texture->tex_page;
                     *g_Info3DPtr++ = 3;
 
-                    *g_Info3DPtr++ = (int)vtx[0]->xs;
-                    *g_Info3DPtr++ = (int)vtx[0]->ys;
-                    *g_Info3DPtr++ = (int)vtx[0]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->g;
                     *(float *)g_Info3DPtr = vtx[0]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[0].u * vtx[0]->rhw;
@@ -2112,9 +2112,9 @@ const int16_t *__cdecl Output_InsertObjectGT3(
                     *(float *)g_Info3DPtr = (double)uv[0].v * vtx[0]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
 
-                    *g_Info3DPtr++ = (int)vtx[1]->xs;
-                    *g_Info3DPtr++ = (int)vtx[1]->ys;
-                    *g_Info3DPtr++ = (int)vtx[1]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->g;
                     *(float *)g_Info3DPtr = vtx[1]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[1].u * vtx[1]->rhw;
@@ -2122,9 +2122,9 @@ const int16_t *__cdecl Output_InsertObjectGT3(
                     *(float *)g_Info3DPtr = (double)uv[1].v * vtx[1]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
 
-                    *g_Info3DPtr++ = (int)vtx[2]->xs;
-                    *g_Info3DPtr++ = (int)vtx[2]->ys;
-                    *g_Info3DPtr++ = (int)vtx[2]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->g;
                     *(float *)g_Info3DPtr = vtx[2]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[2].u * vtx[2]->rhw;
@@ -2220,12 +2220,12 @@ const int16_t *__cdecl Output_InsertObjectGT3(
             *g_Info3DPtr++ = texture->tex_page;
             *g_Info3DPtr++ = num_points;
 
-            for (int j = 0; j < num_points; j++) {
-                *g_Info3DPtr++ = (int)g_VBuffer[j].x;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].y;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].g;
-                *g_Info3DPtr++ = (int)(g_VBuffer[j].u / g_VBuffer[j].rhw);
-                *g_Info3DPtr++ = (int)(g_VBuffer[j].v / g_VBuffer[j].rhw);
+            for (int32_t j = 0; j < num_points; j++) {
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].x;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].y;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].g;
+                *g_Info3DPtr++ = (int32_t)(g_VBuffer[j].u / g_VBuffer[j].rhw);
+                *g_Info3DPtr++ = (int32_t)(g_VBuffer[j].v / g_VBuffer[j].rhw);
             }
         } else {
             *g_Info3DPtr++ = (texture->draw_type == DRAW_OPAQUE)
@@ -2234,10 +2234,10 @@ const int16_t *__cdecl Output_InsertObjectGT3(
             *g_Info3DPtr++ = texture->tex_page;
             *g_Info3DPtr++ = num_points;
 
-            for (int j = 0; j < num_points; j++) {
-                *g_Info3DPtr++ = (int)g_VBuffer[j].x;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].y;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].g;
+            for (int32_t j = 0; j < num_points; j++) {
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].x;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].y;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].g;
                 *(float *)g_Info3DPtr = g_VBuffer[j].rhw;
                 g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                 *(float *)g_Info3DPtr = g_VBuffer[j].u;
@@ -2255,7 +2255,7 @@ const int16_t *__cdecl Output_InsertObjectGT3(
 const int16_t *__cdecl Output_InsertObjectG4(
     const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2363,7 +2363,7 @@ const int16_t *__cdecl Output_InsertObjectG4(
         *g_Info3DPtr++ = color_idx;
         *g_Info3DPtr++ = num_points;
 
-        for (int j = 0; j < num_points; j++) {
+        for (int32_t j = 0; j < num_points; j++) {
             *g_Info3DPtr++ = g_VBuffer[j].x;
             *g_Info3DPtr++ = g_VBuffer[j].y;
             *g_Info3DPtr++ = g_VBuffer[j].g;
@@ -2377,7 +2377,7 @@ const int16_t *__cdecl Output_InsertObjectG4(
 const int16_t *__cdecl Output_InsertObjectGT4(
     const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2417,27 +2417,27 @@ const int16_t *__cdecl Output_InsertObjectGT4(
                     *g_Info3DPtr++ = texture->tex_page;
                     *g_Info3DPtr++ = 4;
 
-                    *g_Info3DPtr++ = (int)vtx[0]->xs;
-                    *g_Info3DPtr++ = (int)vtx[0]->ys;
-                    *g_Info3DPtr++ = (int)vtx[0]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->g;
                     *g_Info3DPtr++ = uv[0].u;
                     *g_Info3DPtr++ = uv[0].v;
 
-                    *g_Info3DPtr++ = (int)vtx[1]->xs;
-                    *g_Info3DPtr++ = (int)vtx[1]->ys;
-                    *g_Info3DPtr++ = (int)vtx[1]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->g;
                     *g_Info3DPtr++ = uv[1].u;
                     *g_Info3DPtr++ = uv[1].v;
 
-                    *g_Info3DPtr++ = (int)vtx[2]->xs;
-                    *g_Info3DPtr++ = (int)vtx[2]->ys;
-                    *g_Info3DPtr++ = (int)vtx[2]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->g;
                     *g_Info3DPtr++ = uv[2].u;
                     *g_Info3DPtr++ = uv[2].v;
 
-                    *g_Info3DPtr++ = (int)vtx[3]->xs;
-                    *g_Info3DPtr++ = (int)vtx[3]->ys;
-                    *g_Info3DPtr++ = (int)vtx[3]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[3]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[3]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[3]->g;
                     *g_Info3DPtr++ = uv[3].u;
                     *g_Info3DPtr++ = uv[3].v;
                 } else {
@@ -2447,9 +2447,9 @@ const int16_t *__cdecl Output_InsertObjectGT4(
                     *g_Info3DPtr++ = texture->tex_page;
                     *g_Info3DPtr++ = 4;
 
-                    *g_Info3DPtr++ = (int)vtx[0]->xs;
-                    *g_Info3DPtr++ = (int)vtx[0]->ys;
-                    *g_Info3DPtr++ = (int)vtx[0]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[0]->g;
                     *(float *)g_Info3DPtr = vtx[0]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[0].u * vtx[0]->rhw;
@@ -2457,9 +2457,9 @@ const int16_t *__cdecl Output_InsertObjectGT4(
                     *(float *)g_Info3DPtr = (double)uv[0].v * vtx[0]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
 
-                    *g_Info3DPtr++ = (int)vtx[1]->xs;
-                    *g_Info3DPtr++ = (int)vtx[1]->ys;
-                    *g_Info3DPtr++ = (int)vtx[1]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[1]->g;
                     *(float *)g_Info3DPtr = vtx[1]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[1].u * vtx[1]->rhw;
@@ -2467,9 +2467,9 @@ const int16_t *__cdecl Output_InsertObjectGT4(
                     *(float *)g_Info3DPtr = (double)uv[1].v * vtx[1]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
 
-                    *g_Info3DPtr++ = (int)vtx[2]->xs;
-                    *g_Info3DPtr++ = (int)vtx[2]->ys;
-                    *g_Info3DPtr++ = (int)vtx[2]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[2]->g;
                     *(float *)g_Info3DPtr = vtx[2]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[2].u * vtx[2]->rhw;
@@ -2477,9 +2477,9 @@ const int16_t *__cdecl Output_InsertObjectGT4(
                     *(float *)g_Info3DPtr = (double)uv[2].v * vtx[2]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
 
-                    *g_Info3DPtr++ = (int)vtx[3]->xs;
-                    *g_Info3DPtr++ = (int)vtx[3]->ys;
-                    *g_Info3DPtr++ = (int)vtx[3]->g;
+                    *g_Info3DPtr++ = (int32_t)vtx[3]->xs;
+                    *g_Info3DPtr++ = (int32_t)vtx[3]->ys;
+                    *g_Info3DPtr++ = (int32_t)vtx[3]->g;
                     *(float *)g_Info3DPtr = vtx[3]->rhw;
                     g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                     *(float *)g_Info3DPtr = (double)uv[3].u * vtx[3]->rhw;
@@ -2593,12 +2593,12 @@ const int16_t *__cdecl Output_InsertObjectGT4(
             *g_Info3DPtr++ = texture->tex_page;
             *g_Info3DPtr++ = num_points;
 
-            for (int j = 0; j < num_points; j++) {
-                *g_Info3DPtr++ = (int)g_VBuffer[j].x;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].y;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].g;
-                *g_Info3DPtr++ = (int)(g_VBuffer[j].u / g_VBuffer[j].rhw);
-                *g_Info3DPtr++ = (int)(g_VBuffer[j].v / g_VBuffer[j].rhw);
+            for (int32_t j = 0; j < num_points; j++) {
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].x;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].y;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].g;
+                *g_Info3DPtr++ = (int32_t)(g_VBuffer[j].u / g_VBuffer[j].rhw);
+                *g_Info3DPtr++ = (int32_t)(g_VBuffer[j].v / g_VBuffer[j].rhw);
             }
         } else {
             *g_Info3DPtr++ = (texture->draw_type == DRAW_OPAQUE)
@@ -2607,10 +2607,10 @@ const int16_t *__cdecl Output_InsertObjectGT4(
             *g_Info3DPtr++ = texture->tex_page;
             *g_Info3DPtr++ = num_points;
 
-            for (int j = 0; j < num_points; j++) {
-                *g_Info3DPtr++ = (int)g_VBuffer[j].x;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].y;
-                *g_Info3DPtr++ = (int)g_VBuffer[j].g;
+            for (int32_t j = 0; j < num_points; j++) {
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].x;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].y;
+                *g_Info3DPtr++ = (int32_t)g_VBuffer[j].g;
                 *(float *)g_Info3DPtr = g_VBuffer[j].rhw;
                 g_Info3DPtr += sizeof(float) / sizeof(int16_t);
                 *(float *)g_Info3DPtr = g_VBuffer[j].u;
@@ -2631,7 +2631,7 @@ void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade)
 
     int8_t clip_or = 0;
     uint8_t clip_and = 0xFF;
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         clip_or |= vbuf[i].clip;
         clip_and &= vbuf[i].clip;
     }
@@ -2641,7 +2641,7 @@ void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade)
     }
 
     int32_t num_points = vtx_count;
-    for (int i = 0; i < num_points; i++) {
+    for (int32_t i = 0; i < num_points; i++) {
         g_VBuffer[i].x = vbuf[i].xs;
         g_VBuffer[i].y = vbuf[i].ys;
     }
@@ -2659,7 +2659,7 @@ void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade)
     }
 
     double poly_z = 0.0;
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         poly_z += vbuf[i].zv;
     }
     poly_z /= vtx_count;
@@ -2671,7 +2671,7 @@ void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade)
     *g_Info3DPtr++ = POLY_TRANS;
     *g_Info3DPtr++ = shade;
     *g_Info3DPtr++ = num_points;
-    for (int i = 0; i < num_points; i++) {
+    for (int32_t i = 0; i < num_points; i++) {
         *g_Info3DPtr++ = g_VBuffer[i].x;
         *g_Info3DPtr++ = g_VBuffer[i].y;
     }
@@ -2751,7 +2751,7 @@ const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(
         return obj_ptr;
     }
 
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2852,7 +2852,7 @@ const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
         return obj_ptr;
     }
 
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2963,7 +2963,7 @@ const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(
 const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(
     const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[3] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -2988,7 +2988,7 @@ const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(
 const int16_t *__cdecl Output_InsertObjectGT4_ZBuffered(
     const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         const PHD_VBUF *const vtx[4] = {
             &g_PhdVBuf[*obj_ptr++],
             &g_PhdVBuf[*obj_ptr++],
@@ -3236,7 +3236,7 @@ void __cdecl Output_InsertFlatRect_ZBuffered(
     g_VBufferD3D[2].sy = (float)y2;
     g_VBufferD3D[3].sx = (float)x2;
     g_VBufferD3D[3].sy = (float)y2;
-    for (int i = 0; i < 4; i++) {
+    for (int32_t i = 0; i < 4; i++) {
         g_VBufferD3D[i].sz = sz;
         g_VBufferD3D[i].rhw = rhw;
         g_VBufferD3D[i].color = d3d_color;
@@ -3268,7 +3268,7 @@ void __cdecl Output_InsertLine_ZBuffered(
     g_VBufferD3D[1].sx = (float)(g_PhdWinMinX + x2);
     g_VBufferD3D[1].sy = (float)(g_PhdWinMinY + y2);
 
-    for (int i = 0; i < 2; i++) {
+    for (int32_t i = 0; i < 2; i++) {
         g_VBufferD3D[i].sz = sz;
         g_VBufferD3D[i].rhw = rhw;
         g_VBufferD3D[i].color = d3d_color;
@@ -3282,7 +3282,7 @@ void __cdecl Output_InsertLine_ZBuffered(
 const int16_t *__cdecl Output_InsertObjectG3_Sorted(
     const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
             obj_ptr += (num - i) * 4;
             break;
@@ -3388,7 +3388,7 @@ const int16_t *__cdecl Output_InsertObjectG3_Sorted(
 const int16_t *__cdecl Output_InsertObjectG4_Sorted(
     const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
             obj_ptr += (num - i) * 5;
             break;
@@ -3512,7 +3512,7 @@ const int16_t *__cdecl Output_InsertObjectG4_Sorted(
 const int16_t *__cdecl Output_InsertObjectGT3_Sorted(
     const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
             obj_ptr += (num - i) * 4;
             break;
@@ -3537,7 +3537,7 @@ const int16_t *__cdecl Output_InsertObjectGT3_Sorted(
 const int16_t *__cdecl Output_InsertObjectGT4_Sorted(
     const int16_t *obj_ptr, const int32_t num, const SORT_TYPE sort_type)
 {
-    for (int i = 0; i < num; i++) {
+    for (int32_t i = 0; i < num; i++) {
         if (HWR_VertexBufferFull()) {
             obj_ptr += (num - i) * 5;
             break;
@@ -3838,7 +3838,7 @@ void __cdecl Output_InsertFlatRect_Sorted(
     g_HWR_VertexPtr[3].sx = (float)x1;
     g_HWR_VertexPtr[3].sy = (float)y2;
 
-    for (int i = 0; i < 4; i++) {
+    for (int32_t i = 0; i < 4; i++) {
         g_HWR_VertexPtr[i].color = d3d_color;
         // TODO: missing sz and rhw initialization
     }
@@ -3869,7 +3869,7 @@ void __cdecl Output_InsertLine_Sorted(
     g_HWR_VertexPtr[1].sx = (float)(g_PhdWinMinX + x2);
     g_HWR_VertexPtr[1].sy = (float)(g_PhdWinMinY + y2);
 
-    for (int i = 0; i < 2; i++) {
+    for (int32_t i = 0; i < 2; i++) {
         g_HWR_VertexPtr[i].color = d3d_color;
         // TODO: missing sz and rhw initialization
     }
@@ -3927,7 +3927,7 @@ void __cdecl Output_InsertSprite_Sorted(
     g_VBuffer[3].u = u1;
     g_VBuffer[3].v = v1;
 
-    for (int i = 0; i < 4; i++) {
+    for (int32_t i = 0; i < 4; i++) {
         g_VBuffer[i].rhw = rhw;
         g_VBuffer[i].g = (float)shade;
     }
@@ -3959,7 +3959,7 @@ void __cdecl Output_InsertTrans8_Sorted(
     int8_t clip_and = 0xFF;
     int32_t num_vtx = 8;
 
-    for (int i = 0; i < num_vtx; i++) {
+    for (int32_t i = 0; i < num_vtx; i++) {
         clip_or |= vbuf[i].clip;
         clip_and &= vbuf[i].clip;
     }
@@ -3969,7 +3969,7 @@ void __cdecl Output_InsertTrans8_Sorted(
         return;
     }
 
-    for (int i = 0; i < num_vtx; i++) {
+    for (int32_t i = 0; i < num_vtx; i++) {
         g_VBuffer[i].x = vbuf[i].xs;
         g_VBuffer[i].y = vbuf[i].ys;
         g_VBuffer[i].rhw = g_RhwFactor / (double)(vbuf[i].zv - 0x20000);
@@ -3988,7 +3988,7 @@ void __cdecl Output_InsertTrans8_Sorted(
     }
 
     int32_t poly_z = 0;
-    for (int i = 0; i < num_vtx; i++) {
+    for (int32_t i = 0; i < num_vtx; i++) {
         poly_z += vbuf[i].zv;
     }
     poly_z /= num_vtx;
@@ -4024,14 +4024,14 @@ void __cdecl Output_InsertTransQuad_Sorted(
     g_HWR_VertexPtr[3].sx = x0;
     g_HWR_VertexPtr[3].sy = y1;
 
-    for (int i = 0; i < 4; i++) {
+    for (int32_t i = 0; i < 4; i++) {
         g_HWR_VertexPtr[i].color = 0x80000000;
     }
 
     if (g_SavedAppSettings.zbuffer) {
         const double rhw = g_RhwFactor / (double)z;
         const double sz = g_FltResZBuf - rhw * g_FltResZORhw;
-        for (int i = 0; i < 4; i++) {
+        for (int32_t i = 0; i < 4; i++) {
             g_HWR_VertexPtr[i].rhw = rhw;
             g_HWR_VertexPtr[i].sz = sz;
         }
@@ -4062,7 +4062,7 @@ void __cdecl Output_InsertSprite(
 const int16_t *__cdecl Output_InsertRoomSprite(
     const int16_t *obj_ptr, const int32_t vtx_count)
 {
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         const PHD_VBUF *vbuf = &g_PhdVBuf[*obj_ptr++];
         const int16_t sprite_idx = *obj_ptr++;
         if ((int8_t)vbuf->clip < 0) {
@@ -4103,7 +4103,7 @@ void __cdecl Output_InsertClippedPoly_Textured(
     *(D3DTLVERTEX **)g_Info3DPtr = g_HWR_VertexPtr;
     g_Info3DPtr += sizeof(D3DTLVERTEX *) / sizeof(int16_t);
 
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         double tu = g_VBuffer[i].u / (double)PHD_ONE / g_VBuffer[i].rhw;
         double tv = g_VBuffer[i].v / (double)PHD_ONE / g_VBuffer[i].rhw;
         CLAMP(tu, 0.0, 1.0);
@@ -4138,7 +4138,7 @@ void __cdecl Output_InsertPoly_Gouraud(
     *(D3DTLVERTEX **)g_Info3DPtr = g_HWR_VertexPtr;
     g_Info3DPtr += sizeof(D3DTLVERTEX *) / sizeof(int16_t);
 
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         g_HWR_VertexPtr[i].sx = g_VBuffer[i].x;
         g_HWR_VertexPtr[i].sy = g_VBuffer[i].y;
         if (g_SavedAppSettings.zbuffer) {
@@ -4157,7 +4157,7 @@ void __cdecl Output_InsertPoly_Gouraud(
 
 void __cdecl Output_DrawClippedPoly_Textured(const int32_t vtx_count)
 {
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         const VERTEX_INFO *vbuf = &g_VBuffer[i];
         D3DTLVERTEX *vbuf_d3d = &g_VBufferD3D[i];
         vbuf_d3d->sx = vbuf->x;
@@ -4182,7 +4182,7 @@ void __cdecl Output_DrawPoly_Gouraud(
     const int32_t vtx_count, const int32_t red, const int32_t green,
     const int32_t blue)
 {
-    for (int i = 0; i < vtx_count; i++) {
+    for (int32_t i = 0; i < vtx_count; i++) {
         const VERTEX_INFO *vbuf = &g_VBuffer[i];
         D3DTLVERTEX *vbuf_d3d = &g_VBufferD3D[i];
         vbuf_d3d->sx = vbuf->x;
@@ -4385,10 +4385,10 @@ void __cdecl Output_DrawScaledSpriteC(const int16_t *const obj_ptr)
     const bool is_depth_q =
         depth_q != &g_DepthQTable[16] || g_GameVid_IsWindowedVGA;
 
-    for (int i = 0; i < height; i++) {
+    for (int32_t i = 0; i < height; i++) {
         int32_t u = u_base;
         const uint8_t *const src = &src_base[(v_base >> 16) << 8];
-        for (int j = 0; j < width; j++) {
+        for (int32_t j = 0; j < width; j++) {
             const uint8_t pix = src[u >> 16];
             if (pix != 0) {
                 *dst = is_depth_q ? depth_q->index[pix] : pix;

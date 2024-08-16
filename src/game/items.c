@@ -54,7 +54,7 @@ void __cdecl Item_InitialiseArray(const int32_t num_items)
     g_NextItemFree = g_LevelItemCount;
     g_PrevItemActive = NO_ITEM;
     g_NextItemActive = NO_ITEM;
-    for (int i = g_NextItemFree; i < num_items - 1; i++) {
+    for (int32_t i = g_NextItemFree; i < num_items - 1; i++) {
         ITEM_INFO *const item = &g_Items[i];
         item->active = 1;
         item->next_item = i + 1;
@@ -249,7 +249,7 @@ int32_t __cdecl Item_GlobalReplace(
 {
     int32_t changed = 0;
 
-    for (int i = 0; i < g_RoomCount; i++) {
+    for (int32_t i = 0; i < g_RoomCount; i++) {
         int16_t j = g_Rooms[i].item_num;
         while (j != NO_ITEM) {
             ITEM_INFO *const item = &g_Items[j];

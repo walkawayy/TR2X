@@ -305,7 +305,7 @@ void __cdecl Matrix_RotYXZsuperpack(const int16_t **pprot, int32_t index)
 {
     const uint16_t *prot = (const uint16_t *)*pprot;
 
-    for (int i = 0; i < index; i++) {
+    for (int32_t i = 0; i < index; i++) {
         if ((*prot >> 14) == 0) {
             prot += 2;
         } else {

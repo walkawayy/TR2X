@@ -30,7 +30,7 @@
 void __cdecl Text_Init(void)
 {
     Overlay_DisplayModeInfo(NULL);
-    for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
+    for (int32_t i = 0; i < TEXT_MAX_STRINGS; i++) {
         g_TextstringTable[i].flags.all = 0;
     }
 
@@ -50,7 +50,7 @@ TEXTSTRING *__cdecl Text_Create(
     }
 
     int32_t free_idx = -1;
-    for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
+    for (int32_t i = 0; i < TEXT_MAX_STRINGS; i++) {
         TEXTSTRING *const string = &g_TextstringTable[i];
         if (!string->flags.active) {
             free_idx = i;
@@ -306,7 +306,7 @@ void __cdecl Text_Draw(void)
 {
     // TODO: move me outta here!
     Console_Draw();
-    for (int i = 0; i < TEXT_MAX_STRINGS; i++) {
+    for (int32_t i = 0; i < TEXT_MAX_STRINGS; i++) {
         TEXTSTRING *const string = &g_TextstringTable[i];
         if (string->flags.active) {
             Text_DrawText(string);

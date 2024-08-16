@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <windows.h>
 
@@ -73,10 +74,10 @@ const char *GetDLLPath(void)
 }
 
 char *GetHostProcessArguments(
-    const char *host_process_path, const int argc, const char *const argv[])
+    const char *host_process_path, const int32_t argc, const char *const argv[])
 {
     size_t length = 1; // null terminator
-    for (int i = 0; i < argc; i++) {
+    for (int32_t i = 0; i < argc; i++) {
         if (i > 0) {
             length++;
         }
@@ -94,7 +95,7 @@ char *GetHostProcessArguments(
     char *cmdline = malloc(length);
     cmdline[0] = '\0';
 
-    for (int i = 0; i < argc; i++) {
+    for (int32_t i = 0; i < argc; i++) {
         if (i > 0) {
             strcat(cmdline, " ");
         }
@@ -112,7 +113,7 @@ char *GetHostProcessArguments(
     return cmdline;
 }
 
-int main(const int argc, const char *const argv[])
+int32_t main(const int32_t argc, const char *const argv[])
 {
     bool success = false;
     const char *dll_path = GetDLLPath();

@@ -294,7 +294,7 @@ int32_t __cdecl LOS_CheckSmashable(
     const int32_t dy = target->y - start->y;
     const int32_t dz = target->z - start->z;
 
-    for (int i = 0; i < g_LOSNumRooms; i++) {
+    for (int32_t i = 0; i < g_LOSNumRooms; i++) {
         for (int16_t item_num = g_Rooms[g_LOSRooms[i]].item_num;
              item_num != NO_ITEM; item_num = g_Items[item_num].next_item) {
             const ITEM_INFO *const item = &g_Items[item_num];
@@ -329,7 +329,7 @@ int32_t __cdecl LOS_CheckSmashable(
             int32_t failure = 0;
             if (ABS(dz) > ABS(dx)) {
                 int32_t distance = item->pos.z + z_extent[0] - start->z;
-                for (int j = 0; j < 2; j++) {
+                for (int32_t j = 0; j < 2; j++) {
                     if ((distance >= 0) == (dz >= 0)) {
                         const int32_t y = dy * distance / dz;
                         if (y <= item->pos.y + bounds->min_y - start->y
@@ -355,7 +355,7 @@ int32_t __cdecl LOS_CheckSmashable(
                 }
             } else {
                 int32_t distance = item->pos.x + x_extent[0] - start->x;
-                for (int j = 0; j < 2; j++) {
+                for (int32_t j = 0; j < 2; j++) {
                     if ((distance >= 0) == (dx >= 0)) {
                         const int32_t y = dy * distance / dx;
                         if (y <= item->pos.y + bounds->min_y - start->y

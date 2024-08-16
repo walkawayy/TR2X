@@ -102,8 +102,9 @@ void __cdecl Direct3DRelease(void);
 bool __cdecl Direct3DInit(void);
 bool __cdecl DDrawCreate(LPGUID lpGUID);
 void __cdecl DDrawRelease(void);
-void __cdecl GameWindowCalculateSizeFromClient(int *width, int *height);
-void __cdecl GameWindowCalculateSizeFromClientByZero(int *width, int *height);
+void __cdecl GameWindowCalculateSizeFromClient(int32_t *width, int32_t *height);
+void __cdecl GameWindowCalculateSizeFromClientByZero(
+    int32_t *width, int32_t *height);
 bool __thiscall CompareVideoModes(
     const DISPLAY_MODE *mode1, const DISPLAY_MODE *mode2);
 bool __cdecl WinVidGetDisplayModes(void);
@@ -119,7 +120,7 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 BOOL WINAPI EnumDisplayAdaptersCallback(
     GUID FAR *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName,
     LPVOID lpContext);
-void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect);
+void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);
 bool __cdecl WinVidCheckGameWindowPalette(HWND hWnd);
 bool __cdecl WinVidCreateGameWindow(void);
 void __cdecl WinVidFreeWindow(void);

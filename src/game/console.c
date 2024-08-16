@@ -29,7 +29,7 @@ static bool m_AreAnyLogsOnScreen = false;
 
 static struct {
     char text[MAX_PROMPT_LENGTH];
-    uint32_t caret;
+    int32_t caret;
     TEXTSTRING *prompt_ts;
     TEXTSTRING *caret_ts;
 } m_Prompt = { 0 };
@@ -64,7 +64,7 @@ static void Console_ShutdownPrompt(void)
 
 static void Console_ShutdownLogs(void)
 {
-    for (int i = 0; i < MAX_LOG_LINES; i++) {
+    for (int32_t i = 0; i < MAX_LOG_LINES; i++) {
         Text_Remove(m_Logs[i].ts);
         m_Logs[i].ts = NULL;
     }
@@ -132,7 +132,7 @@ static COMMAND_RESULT Console_Eval(const char *const cmdline)
 
 void Console_Init(void)
 {
-    for (int i = 0; i < MAX_LOG_LINES; i++) {
+    for (int32_t i = 0; i < MAX_LOG_LINES; i++) {
         m_Logs[i].expire_at = 0;
         m_Logs[i].ts = Text_Create(MARGIN, -MARGIN, 0, "");
         Text_SetScale(m_Logs[i].ts, PHD_ONE * m_LogScale, PHD_ONE * m_LogScale);
@@ -245,7 +245,7 @@ bool Console_HandleKeyDown(const uint32_t key)
         if (!m_IsOpened) {
             return false;
         }
-        if (m_Prompt.caret < strlen(m_Prompt.text)) {
+        if (m_Prompt.caret < (int32_t)strlen(m_Prompt.text)) {
             m_Prompt.caret++;
             Console_UpdateCaretTextstring();
         }
@@ -272,7 +272,7 @@ bool Console_HandleKeyDown(const uint32_t key)
             return false;
         }
         if (m_Prompt.caret > 0) {
-            for (int i = m_Prompt.caret; i < MAX_PROMPT_LENGTH; i++) {
+            for (int32_t i = m_Prompt.caret; i < MAX_PROMPT_LENGTH; i++) {
                 m_Prompt.text[i - 1] = m_Prompt.text[i];
             }
             m_Prompt.caret--;
@@ -308,7 +308,7 @@ void Console_HandleChar(const uint32_t char_)
         return;
     }
 
-    for (int i = strlen(m_Prompt.text); i >= (int)m_Prompt.caret; i--) {
+    for (int32_t i = strlen(m_Prompt.text); i >= m_Prompt.caret; i--) {
         m_Prompt.text[i + insert_length] = m_Prompt.text[i];
     }
 
@@ -335,7 +335,7 @@ void Console_Log(const char *fmt, ...)
 
     LOG_INFO("%s", text);
     int32_t dst_idx = -1;
-    for (int i = MAX_LOG_LINES - 1; i > 0; i--) {
+    for (int32_t i = MAX_LOG_LINES - 1; i > 0; i--) {
         if (m_Logs[i].ts == NULL) {
             continue;
         }
@@ -354,7 +354,7 @@ void Console_Log(const char *fmt, ...)
         - Text_GetHeight(m_Prompt.prompt_ts) * m_PromptScale * PHD_ONE
             / Text_GetScaleV(PHD_ONE);
 
-    for (int i = 0; i < MAX_LOG_LINES; i++) {
+    for (int32_t i = 0; i < MAX_LOG_LINES; i++) {
         y -= PADDING;
         y -= Text_GetHeight(m_Logs[i].ts) * m_LogScale * PHD_ONE
             / Text_GetScaleV(PHD_ONE);
@@ -367,7 +367,7 @@ void Console_Log(const char *fmt, ...)
 
 void Console_ScrollLogs(void)
 {
-    int i = MAX_LOG_LINES - 1;
+    int32_t i = MAX_LOG_LINES - 1;
     while (i >= 0 && !m_Logs[i].expire_at) {
         i--;
     }
@@ -413,7 +413,7 @@ void Console_Draw(void)
     if (m_Prompt.caret_ts) {
         Text_DrawText(m_Prompt.caret_ts);
     }
-    for (int i = 0; i < MAX_LOG_LINES; i++) {
+    for (int32_t i = 0; i < MAX_LOG_LINES; i++) {
         if (m_Logs[i].ts) {
             Text_DrawText(m_Logs[i].ts);
         }

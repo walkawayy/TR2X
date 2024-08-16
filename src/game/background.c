@@ -53,7 +53,7 @@ int32_t __cdecl BGND_AddTexture(
         uint8_t *bmp_src = &bitmap[TEXTURE_WIDTH * TEXTURE_HEIGHT];
         uint16_t *bmp_dst =
             &((uint16_t *)bitmap)[TEXTURE_WIDTH * TEXTURE_HEIGHT];
-        for (int i = 0; i < TEXTURE_WIDTH * TEXTURE_HEIGHT; i++) {
+        for (int32_t i = 0; i < TEXTURE_WIDTH * TEXTURE_HEIGHT; i++) {
             bmp_src--;
             bmp_dst--;
 

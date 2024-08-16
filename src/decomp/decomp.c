@@ -337,13 +337,13 @@ size_t __cdecl CompPCX(
     pcx_header->bytes_per_line = width;
 
     uint8_t *pic_data = *pcx_data + sizeof(PCX_HEADER);
-    for (int y = 0; y < height; y++) {
+    for (int32_t y = 0; y < height; y++) {
         pic_data += EncodeLinePCX(bitmap, width, pic_data);
         bitmap += width;
     }
 
     *pic_data++ = 0x0C;
-    for (int i = 0; i < 256; i++) {
+    for (int32_t i = 0; i < 256; i++) {
         *pic_data++ = palette[i].red;
         *pic_data++ = palette[i].green;
         *pic_data++ = palette[i].blue;
@@ -535,7 +535,7 @@ int32_t __cdecl WinGameStart(void)
     WinVidStart();
     RenderStart(1);
     WinInStart();
-    // } catch (int error) {
+    // } catch (int32_t error) {
     //     return error;
     // }
     return 0;
@@ -900,7 +900,7 @@ bool __cdecl WinVidCopyBitmapToBuffer(LPDDS surface, const BYTE *bitmap)
 
     const uint8_t *src = (const uint8_t *)bitmap;
     uint8_t *dst = (uint8_t *)desc.lpSurface;
-    for (int i = 0; i < (int)desc.dwHeight; i++) {
+    for (int32_t i = 0; i < (int32_t)desc.dwHeight; i++) {
         memcpy(dst, src, desc.dwWidth);
         src += desc.dwWidth;
         dst += desc.lPitch;
@@ -1126,7 +1126,7 @@ int32_t __cdecl Game_Cutscene_Start(const int32_t level_num)
     CutscenePlayer1_Initialise(g_Lara.item_num);
     g_Camera.target_angle = g_CineTargetAngle;
 
-    const int old_sound_active = g_SoundIsActive;
+    const int32_t old_sound_active = g_SoundIsActive;
     g_SoundIsActive = false;
 
     g_CineFrameIdx = 0;
@@ -2301,7 +2301,7 @@ void __cdecl DDrawRelease(void)
 }
 
 void __cdecl GameWindowCalculateSizeFromClient(
-    int *const width, int *const height)
+    int32_t *const width, int32_t *const height)
 {
     RECT rect = { 0, 0, *width, *height };
     const DWORD style = GetWindowLong(g_GameWindowHandle, GWL_STYLE);
@@ -2312,7 +2312,7 @@ void __cdecl GameWindowCalculateSizeFromClient(
 }
 
 void __cdecl GameWindowCalculateSizeFromClientByZero(
-    int *const width, int *const height)
+    int32_t *const width, int32_t *const height)
 {
     RECT rect = { 0, 0, 0, 0 };
     const DWORD style = GetWindowLong(g_GameWindowHandle, GWL_STYLE);
@@ -2575,12 +2575,12 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
             break;
 
         case WM_MOVE:
-            g_GameWindowPositionX = (int)(short)LOWORD(lParam);
-            g_GameWindowPositionY = (int)(short)HIWORD(lParam);
+            g_GameWindowPositionX = LOWORD(lParam);
+            g_GameWindowPositionY = HIWORD(lParam);
             break;
 
         case WM_ACTIVATEAPP:
-            g_IsGameWindowActive = (wParam != 0);
+            g_IsGameWindowActive = wParam != 0;
             break;
 
         case WM_SYSCOMMAND:
@@ -2604,8 +2604,8 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_MOVE:
-        g_GameWindowPositionX = (int)(short)LOWORD(lParam);
-        g_GameWindowPositionY = (int)(short)HIWORD(lParam);
+        g_GameWindowPositionX = LOWORD(lParam);
+        g_GameWindowPositionY = HIWORD(lParam);
         break;
 
     case WM_SIZE:
@@ -2630,13 +2630,13 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         }
 
         if (g_IsGameFullScreen
-            || ((int)(short)LOWORD(lParam) == g_GameWindowWidth
-                && (int)(short)HIWORD(lParam) == g_GameWindowHeight)) {
+            || (LOWORD(lParam) == g_GameWindowWidth
+                && HIWORD(lParam) == g_GameWindowHeight)) {
             break;
         }
 
-        g_GameWindowWidth = (int)(short)LOWORD(lParam);
-        g_GameWindowHeight = (int)(short)HIWORD(lParam);
+        g_GameWindowWidth = LOWORD(lParam);
+        g_GameWindowHeight = HIWORD(lParam);
         if (g_IsGameWindowUpdating) {
             break;
         }
@@ -2744,7 +2744,7 @@ WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
 
-void __cdecl WinVidResizeGameWindow(HWND hWnd, int edge, LPRECT rect)
+void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect)
 {
     if (g_IsGameFullScreen) {
         rect->left = 0;

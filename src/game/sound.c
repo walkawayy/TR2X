@@ -64,7 +64,7 @@ static void Sound_Slot_ClearAll(void);
 static void Sound_Slot_Close(SOUND_SLOT *const slot);
 static void Sound_Slot_Update(SOUND_SLOT *const slot);
 
-static int m_DecibelLUT[DECIBEL_LUT_SIZE] = { 0 };
+static int32_t m_DecibelLUT[DECIBEL_LUT_SIZE] = { 0 };
 static SOUND_SLOT m_SoundSlots[SOUND_MAX_SLOTS] = { 0 };
 
 static int32_t Sound_ConvertVolumeToDecibel(const int32_t volume)
@@ -132,7 +132,7 @@ static void Sound_Slot_Update(SOUND_SLOT *const slot)
 void __cdecl Sound_Init(void)
 {
     m_DecibelLUT[0] = -10000;
-    for (int i = 1; i < DECIBEL_LUT_SIZE; i++) {
+    for (int32_t i = 1; i < DECIBEL_LUT_SIZE; i++) {
         m_DecibelLUT[i] = (log2(1.0 / DECIBEL_LUT_SIZE) - log2(1.0 / i)) * 1000;
     }
 

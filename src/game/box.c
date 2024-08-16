@@ -34,7 +34,7 @@ int32_t __cdecl Box_SearchLOT(LOT_INFO *const lot, const int32_t expansion)
     }
 
     const int16_t search_zone = zone[lot->head];
-    for (int i = 0; i < expansion; i++) {
+    for (int32_t i = 0; i < expansion; i++) {
         if (lot->head == NO_BOX) {
             lot->tail = NO_BOX;
             return false;

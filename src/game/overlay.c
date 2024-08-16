@@ -201,7 +201,7 @@ void __cdecl Overlay_DrawAmmoInfo(void)
 
 void __cdecl Overlay_InitialisePickUpDisplay(void)
 {
-    for (int i = 0; i < MAX_PICKUPS; i++) {
+    for (int32_t i = 0; i < MAX_PICKUPS; i++) {
         g_Pickups[i].timer = 0;
     }
 }
@@ -222,7 +222,7 @@ void __cdecl Overlay_DrawPickups(const bool timed)
     int32_t y = g_PhdWinHeight - cell_h;
 
     int32_t column = 0;
-    for (int i = 0; i < 12; i++) {
+    for (int32_t i = 0; i < 12; i++) {
         PICKUP_INFO *const pickup = &g_Pickups[i];
         if (timed) {
             pickup->timer -= time;
@@ -249,7 +249,7 @@ void __cdecl Overlay_AddDisplayPickup(const int16_t obj_num)
         Music_Play(g_GameFlow.secret_track, false);
     }
 
-    for (int i = 0; i < MAX_PICKUPS; i++) {
+    for (int32_t i = 0; i < MAX_PICKUPS; i++) {
         PICKUP_INFO *const pickup = &g_Pickups[i];
         if (pickup->timer <= 0) {
             pickup->timer = 2.5 * FRAMES_PER_SECOND;

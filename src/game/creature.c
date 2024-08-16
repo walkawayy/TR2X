@@ -813,7 +813,7 @@ void __cdecl Creature_GetBaddieTarget(
 
     ITEM_INFO *best_item = NULL;
     int32_t best_distance = INT32_MAX;
-    for (int i = 0; i < NUM_SLOTS; i++) {
+    for (int32_t i = 0; i < NUM_SLOTS; i++) {
         const int16_t target_item_num = g_BaddieSlots[i].item_num;
         if (target_item_num == NO_ITEM || target_item_num == item_num) {
             continue;

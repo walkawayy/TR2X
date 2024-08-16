@@ -18,11 +18,11 @@ static MUSIC_TRACK_ID m_TrackLooped = MX_INACTIVE;
 
 static bool m_Initialized = false;
 static float m_MusicVolume = 0.0f;
-static int m_AudioStreamID = -1;
+static int32_t m_AudioStreamID = -1;
 static const MUSIC_BACKEND *m_Backend = NULL;
 
 static const MUSIC_BACKEND *Music_FindBackend(void);
-static void Music_StreamFinished(int stream_id, void *user_data);
+static void Music_StreamFinished(int32_t stream_id, void *user_data);
 
 static const MUSIC_BACKEND *Music_FindBackend(void)
 {
@@ -47,7 +47,7 @@ static const MUSIC_BACKEND *Music_FindBackend(void)
     return NULL;
 }
 
-static void Music_StreamFinished(const int stream_id, void *const user_data)
+static void Music_StreamFinished(const int32_t stream_id, void *const user_data)
 {
     // When a stream finishes, play the remembered background BGM.
     if (stream_id == m_AudioStreamID) {

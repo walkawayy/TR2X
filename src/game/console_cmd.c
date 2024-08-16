@@ -87,7 +87,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
             const int32_t z2 =
                 (room->z_size << WALL_SHIFT) + room->pos.z - WALL_L;
 
-            for (int i = 0; i < 100; i++) {
+            for (int32_t i = 0; i < 100; i++) {
                 int32_t x = x1 + Random_GetControl() * (x2 - x1) / 0x7FFF;
                 int32_t y = y1;
                 int32_t z = z1 + Random_GetControl() * (z2 - z1) / 0x7FFF;

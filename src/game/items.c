@@ -724,11 +724,10 @@ bool __cdecl Item_IsNearItem(
     const int32_t distance)
 {
     const XYZ_32 d = {
-        .x = item->pos.x - pos->x,
-        .y = item->pos.y - pos->y,
-        .z = item->pos.z - pos->z,
+        .x = pos->x - item->pos.x,
+        .y = pos->y - item->pos.y,
+        .z = pos->z - item->pos.z,
     };
-
     if (ABS(d.x) > distance || ABS(d.z) > distance || ABS(d.y) > WALL_L * 3) {
         return false;
     }
@@ -737,7 +736,6 @@ bool __cdecl Item_IsNearItem(
         return false;
     }
 
-    const BOUNDS_16 *const bounds =
-        (const BOUNDS_16 *)Item_GetBoundsAccurate(item);
+    const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
     return d.y >= bounds->min_y && d.y <= bounds->max_y + 100;
 }

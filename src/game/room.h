@@ -25,3 +25,4 @@ void __cdecl Room_AlterFloorHeight(const ITEM_INFO *item, int32_t height);
 void __cdecl Room_FlipMap(void);
 void __cdecl Room_RemoveFlipItems(const ROOM_INFO *r);
 void __cdecl Room_AddFlipItems(const ROOM_INFO *r);
+void __cdecl Room_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);

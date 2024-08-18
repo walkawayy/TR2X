@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.30% (637)</tspan> · <tspan class="known">45.24% (551)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.46% (639)</tspan> · <tspan class="known">45.07% (549)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="390.67" height="6" x="0" y="0" class="decompiled"/>
-<rect width="337.93" height="6" x="390.67" y="0" class="known"/>
+<rect width="391.90" height="6" x="0" y="0" class="decompiled"/>
+<rect width="336.70" height="6" x="391.90" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -262,8 +262,8 @@
 <rect width="12" height="12" x="495" y="45" class="decompiled"><title>void __cdecl Room_FlipMap(void);</title></rect>
 <rect width="12" height="12" x="510" y="45" class="decompiled"><title>void __cdecl Room_RemoveFlipItems(ROOM_INFO *r);</title></rect>
 <rect width="12" height="12" x="525" y="45" class="decompiled"><title>void __cdecl Room_AddFlipItems(ROOM_INFO *r);</title></rect>
-<rect width="12" height="12" x="540" y="45" class="known"><title>void __cdecl Control_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
-<rect width="12" height="12" x="555" y="45" class="known"><title>void __cdecl Control_TriggerMusicNormalTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
+<rect width="12" height="12" x="540" y="45" class="decompiled"><title>void __cdecl Room_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
+<rect width="12" height="12" x="555" y="45" class="decompiled"><title>void __cdecl Room_TriggerMusicTrackImpl(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="12" height="12" x="570" y="45" class="known"><title>int32_t __cdecl Demo_Control(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="585" y="45" class="known"><title>int32_t __cdecl Demo_Start(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="600" y="45" class="known"><title>void __cdecl Demo_LoadLaraPos(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.21%</tspan> · <tspan class="known">46.46%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.29%</tspan> · <tspan class="known">46.38%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="397.51" height="6" x="0" y="0" class="decompiled"/>
-<rect width="347.05" height="6" x="397.51" y="0" class="known"/>
+<rect width="398.06" height="6" x="0" y="0" class="decompiled"/>
+<rect width="346.49" height="6" x="398.06" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1720,7 +1720,7 @@
 <rect width="10.23" height="10.74" x="710.38" y="122.81" class="known"><title>void __cdecl SpringBoardControl(int16_t item_num);</title></rect>
 <rect width="10.23" height="10.74" x="723.60" y="122.81" class="known"><title>void __cdecl S_LoadSettings(void);</title></rect>
 <rect width="10.17" height="10.74" x="736.83" y="122.81" class="decompiled"><title>int32_t __cdecl LOS_ClipTarget(const GAME_VECTOR *start, GAME_VECTOR *target, const SECTOR_INFO *sector);</title></rect>
-<rect width="10.18" height="10.73" x="508.46" y="136.56" class="known"><title>void __cdecl Control_TriggerMusicNormalTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
+<rect width="10.18" height="10.73" x="508.46" y="136.56" class="decompiled"><title>void __cdecl Room_TriggerMusicTrackImpl(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="10.18" height="10.67" x="508.46" y="150.29" class="known"><title>void __cdecl CreateBartoliLight(int16_t item_num);</title></rect>
 <rect width="10.18" height="10.67" x="508.46" y="163.96" class="known"><title>void __cdecl DragonBones(int16_t item_num);</title></rect>
 <rect width="10.18" height="10.67" x="508.46" y="177.63" class="known"><title>void __cdecl MiniCopterControl(int16_t item_num);</title></rect>
@@ -2348,7 +2348,7 @@
 <rect width="2.34" height="2.75" x="693.06" y="327.16" class="decompiled"><title>HRESULT __cdecl WinVidBufferUnlock(LPDDS surface, LPDDSDESC desc);</title></rect>
 <rect width="2.34" height="2.75" x="693.06" y="332.91" class="known"><title>LPDIRECT3DTEXTURE2 __cdecl Create3DTexture(LPDDS surface);</title></rect>
 <rect width="2.34" height="2.75" x="693.06" y="338.66" class="known"><title>HRESULT __cdecl EnumerateTextureFormats(void);</title></rect>
-<rect width="2.34" height="2.60" x="693.06" y="344.42" class="known"><title>void __cdecl Control_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
+<rect width="2.34" height="2.60" x="693.06" y="344.42" class="decompiled"><title>void __cdecl Room_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="350.01" class="known"><title>void __cdecl AssaultStart(ITEM_INFO *item);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="355.61" class="known"><title>void __cdecl RemoveInventoryText(void);</title></rect>
 <rect width="2.34" height="2.60" x="693.06" y="361.21" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>

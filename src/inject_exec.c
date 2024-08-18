@@ -271,6 +271,7 @@ static void Inject_Room(const bool enable)
     INJECT(enable, 0x004189D0, Room_DrawAllRooms);
     INJECT(enable, 0x004195B0, Room_DrawSingleRoomGeometry);
     INJECT(enable, 0x00419670, Room_DrawSingleRoomObjects);
+    INJECT(enable, 0x00416800, Room_TriggerMusicTrack);
 }
 
 static void Inject_Matrix(const bool enable)

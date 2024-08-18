@@ -5,6 +5,7 @@
 #include "game/items.h"
 #include "game/lot.h"
 #include "game/math.h"
+#include "game/music.h"
 #include "game/shell.h"
 #include "global/const.h"
 #include "global/funcs.h"
@@ -598,7 +599,7 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
             break;
 
         case TO_CD:
-            Control_TriggerMusicTrack(value, flags, type);
+            Room_TriggerMusicTrack(value, flags, type);
             break;
 
         case TO_FLIP_EFFECT:
@@ -899,5 +900,45 @@ void __cdecl Room_AddFlipItems(const ROOM_INFO *const r)
         }
 
         item_num = item->next_item;
+    }
+}
+
+void __cdecl Room_TriggerMusicTrack(
+    const int16_t track, const int16_t flags, const int16_t type)
+{
+    if (track < MX_CUTSCENE_THE_GREAT_WALL || track >= MX_TITLE_THEME) {
+        return;
+    }
+
+    if (type != TT_SWITCH) {
+        const int32_t code = flags & IF_CODE_BITS;
+        if (g_MusicTrackFlags[track] & code) {
+            return;
+        }
+        if (flags & IF_ONE_SHOT) {
+            g_MusicTrackFlags[track] |= code;
+        }
+    }
+
+    if (track != g_CD_TrackID) {
+        const int32_t timer = flags & 0xFF;
+        if (timer) {
+            g_CD_TrackID = track;
+            g_MusicTrackFlags[track] =
+                (g_MusicTrackFlags[track] & 0xFF00) | ((30 * timer) & 0xFF);
+        } else {
+            Music_Play(track, false);
+        }
+    } else {
+        int32_t timer = g_MusicTrackFlags[track] & 0xFF;
+        if (timer) {
+            timer--;
+            if (timer == 0) {
+                g_CD_TrackID = -1;
+                Music_Play(track, false);
+            }
+            g_MusicTrackFlags[track] =
+                (g_MusicTrackFlags[track] & 0xFF00) | (timer & 0xFF);
+        }
     }
 }

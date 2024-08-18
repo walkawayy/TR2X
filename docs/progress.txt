@@ -2873,8 +2873,8 @@ typedef enum {
 0x00416640  0x00B3  +       void __cdecl Room_FlipMap(void);
 0x00416700  0x0096  +       void __cdecl Room_RemoveFlipItems(ROOM_INFO *r);
 0x004167A0  0x005C  +       void __cdecl Room_AddFlipItems(ROOM_INFO *r);
-0x00416800  0x0024  -       void __cdecl Control_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);
-0x00416830  0x00DA  -       void __cdecl Control_TriggerMusicNormalTrack(int16_t value, int16_t flags, int16_t type);
+0x00416800  0x0024  +       void __cdecl Room_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);
+0x00416830  0x00DA  +       void __cdecl Room_TriggerMusicTrackImpl(int16_t value, int16_t flags, int16_t type);
 
 # game/demo.c
 0x00416910  0x0059  *       int32_t __cdecl Demo_Control(int32_t level_num);
@@ -4389,3 +4389,4 @@ typedef enum {
 0x004D9BF8  -       int32_t g_LevelFileTexPagesOffset;
 0x004D9E9C  -       int32_t g_LevelFileDepthQOffset;
 0x004D9D98  -       char g_LevelFileName[256];
+0x005261C0  -       uint16_t g_MusicTrackFlags[64];

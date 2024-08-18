@@ -6,8 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Control_TriggerMusicTrack ((void __cdecl (*)(int16_t value, int16_t flags, int16_t type))0x00416800)
-#define Control_TriggerMusicNormalTrack ((void __cdecl (*)(int16_t value, int16_t flags, int16_t type))0x00416830)
 #define Demo_Control ((int32_t __cdecl (*)(int32_t level_num))0x00416910)
 #define Demo_Start ((int32_t __cdecl (*)(int32_t level_num))0x00416970)
 #define Demo_LoadLaraPos ((void __cdecl (*)(void))0x00416B20)

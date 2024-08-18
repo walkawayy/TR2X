@@ -352,7 +352,7 @@ int32_t __cdecl Creature_Animate(
     const int16_t item_num, const int16_t angle, const int16_t tilt)
 {
     ITEM_INFO *const item = &g_Items[item_num];
-    CREATURE_INFO *const creature = item->data;
+    const CREATURE_INFO *const creature = item->data;
     const OBJECT_INFO *const object = &g_Objects[item->object_num];
     if (creature == NULL) {
         return false;
@@ -362,10 +362,10 @@ int32_t __cdecl Creature_Animate(
     const XYZ_32 old = item->pos;
 
     int16_t *zone;
-    if (creature->lot.fly != 0) {
+    if (lot->fly) {
         zone = g_FlyZone[g_FlipStatus];
     } else {
-        zone = g_GroundZone[BOX_ZONE(creature->lot.step)][g_FlipStatus];
+        zone = g_GroundZone[BOX_ZONE(lot->step)][g_FlipStatus];
     }
 
     if (!object->water_creature) {
@@ -386,6 +386,7 @@ int32_t __cdecl Creature_Animate(
     int32_t y = item->pos.y + bounds->min_y;
 
     int16_t room_num = item->room_num;
+    Room_GetSector(old.x, y, old.z, &room_num);
     const SECTOR_INFO *sector =
         Room_GetSector(item->pos.x, y, item->pos.z, &room_num);
     int32_t height = g_Boxes[sector->box].height;
@@ -528,7 +529,7 @@ int32_t __cdecl Creature_Animate(
         return true;
     }
 
-    if (lot->fly != 0) {
+    if (lot->fly) {
         int32_t dy = creature->target.y - item->pos.y;
         CLAMP(dy, -lot->fly, lot->fly);
 

@@ -3,3 +3,6 @@
 /TR2X*.exe
 /TR2X*.dll
 __pycache__/
+subprojects/packagecache/
+subprojects/dwarfstack-*/
+subprojects/dwarfstack.wrap

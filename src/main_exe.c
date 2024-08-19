@@ -134,6 +134,7 @@ int32_t main(const int32_t argc, const char *const argv[])
     }
 
     if (!InjectDLL(pi.hProcess, dll_path)) {
+        fprintf(stderr, "Failed to inject the DLL.\n");
         goto finish;
     }
 

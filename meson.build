@@ -11,6 +11,7 @@ c_compiler = meson.get_compiler('c')
 build_opts = [
   '-Wno-unused',
   '-DMESON_BUILD',
+  '-fno-omit-frame-pointer',
   '-ffile-prefix-map=../../src/=',
 ]
 

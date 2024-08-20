@@ -56,7 +56,7 @@ void __cdecl Item_InitialiseArray(const int32_t num_items)
     g_NextItemActive = NO_ITEM;
     for (int32_t i = g_NextItemFree; i < num_items - 1; i++) {
         ITEM_INFO *const item = &g_Items[i];
-        item->active = 1;
+        item->active = 0;
         item->next_item = i + 1;
     }
     g_Items[num_items - 1].next_item = NO_ITEM;

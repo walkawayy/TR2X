@@ -879,7 +879,7 @@ void __cdecl Camera_UpdateCutscene(void)
         .z = g_LaraItem->pos.z + ((cz * c - cx * s) >> W2V_SHIFT),
     };
     int16_t room_num = Room_FindByPos(campos.x, campos.y, campos.z);
-    if (room_num >= 0) {
+    if (room_num != NO_ROOM_NEG) {
         g_Camera.pos.room_num = room_num;
     }
     Output_AlterFOV(fov);

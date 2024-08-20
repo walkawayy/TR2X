@@ -1250,7 +1250,7 @@ int32_t __cdecl Room_FindByPos(
             && (x < (room->pos.x + (room->x_size - 1) * WALL_L))
             && (y >= room->max_ceiling) && (y <= room->min_floor)
             && (z >= (room->pos.z + WALL_L))
-            && (z < (room->pos.z + (room->x_size - 1) * WALL_L))) {
+            && (z < (room->pos.z + (room->z_size - 1) * WALL_L))) {
             return i;
         }
     }
@@ -1270,7 +1270,7 @@ void __cdecl CutscenePlayer_Control(const int16_t item_num)
     Collide_GetJointAbsPosition(item, &pos, 0);
 
     const int16_t room_num = Room_FindByPos(pos.x, pos.y, pos.z);
-    if (room_num != NO_ROOM && item->room_num != room_num) {
+    if (room_num != NO_ROOM_NEG && item->room_num != room_num) {
         Item_NewRoom(item_num, room_num);
     }
 
@@ -1297,7 +1297,7 @@ void __cdecl Lara_Control_Cutscene(const int16_t item_num)
     Collide_GetJointAbsPosition(item, &pos, 0);
 
     const int16_t room_num = Room_FindByPos(pos.x, pos.y, pos.z);
-    if (room_num != NO_ROOM && item->room_num != room_num) {
+    if (room_num != NO_ROOM_NEG && item->room_num != room_num) {
         Item_NewRoom(item_num, room_num);
     }
 

@@ -149,6 +149,7 @@ void Console_Init(void)
 
 void Console_Shutdown(void)
 {
+    m_IsOpened = false;
     Console_ShutdownPrompt();
     Console_ShutdownLogs();
 }

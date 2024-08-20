@@ -53,7 +53,7 @@ on:
         description: "Tag name"
         required: false
         type: string
-        default: github.ref_Name
+        default: github.ref_name
 
 jobs:
   package_multiplatform:
@@ -76,7 +76,7 @@ jobs:
           fetch-depth: 0
 
       - name: Package asset (${{ matrix.platform }})
-        run: just ${{ matrix.just_target }}
+        run: just ${{ matrix.just_target }} ${{ (inputs.prerelease == true || inputs.prerelease == 'true') && 'debug' || 'release' }}
 
       - name: Upload the artifact
         uses: actions/upload-artifact@v4

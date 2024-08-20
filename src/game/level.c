@@ -847,25 +847,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
     const char *full_path = GetFullPath(file_name);
     strcpy(g_LevelFileName, full_path);
 
-    HANDLE handle = CreateFileA(
-        full_path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
-        NULL);
-
-    if (handle == INVALID_HANDLE_VALUE) {
-        Shell_ExitSystemFmt(
-            "Could not open %s (level %d)", full_path, level_num);
-        return false;
-    }
-
-    const size_t size = SetFilePointer(handle, 0, NULL, FILE_END);
-    SetFilePointer(handle, 0, NULL, FILE_BEGIN);
-    char *data = Memory_Alloc(size);
-    ReadFileSync(handle, data, size, NULL, NULL);
-    SetFilePointer(handle, 0, NULL, FILE_BEGIN);
-    CloseHandle(handle);
-
-    VFILE *file = VFile_CreateFromBuffer(data, size);
-    Memory_FreePointer(&data);
+    VFILE *file = VFile_CreateFromPath(full_path);
 
     const int32_t version = VFile_ReadS32(file);
     if (version > 45) {

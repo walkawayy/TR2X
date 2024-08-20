@@ -112,7 +112,6 @@ dll_sources = [
   'src/game/shell.c',
   'src/game/sound.c',
   'src/game/text.c',
-  'src/game/virtual_file.c',
   'src/global/vars.c',
   'src/inject_exec.c',
   'src/inject_util.c',

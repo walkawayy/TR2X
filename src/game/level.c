@@ -3,7 +3,6 @@
 #include "game/hwr.h"
 #include "game/items.h"
 #include "game/shell.h"
-#include "game/virtual_file.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -12,6 +11,7 @@
 #include <libtrx/benchmark.h>
 #include <libtrx/log.h>
 #include <libtrx/memory.h>
+#include <libtrx/virtual_file.h>
 
 #include <assert.h>
 

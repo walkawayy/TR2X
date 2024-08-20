@@ -6,6 +6,7 @@
 - fixed underwater creatures dying (#98, regression from 0.1)
 - fixed a crash when spawning enemy drops (#125, regression from 0.1)
 - fixed how sprites are shaded (#134, regression from 0.1.1)
+- fixed enemies unable to climb (#138, regression from 0.1)
 - improved initial level load time by lazy-loading audio samples (#114)
 - improved crash debug information (#137)
 

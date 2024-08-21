@@ -14,6 +14,7 @@
 #include "game/math.h"
 #include "game/music.h"
 #include "game/overlay.h"
+#include "game/room.h"
 #include "game/shell.h"
 #include "game/sound.h"
 #include "game/text.h"
@@ -1239,23 +1240,6 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
     }
 
     return 0;
-}
-
-int32_t __cdecl Room_FindByPos(
-    const int32_t x, const int32_t y, const int32_t z)
-{
-    for (int32_t i = 0; i < g_RoomCount; i++) {
-        const ROOM_INFO *const room = &g_Rooms[i];
-        if ((x >= (room->pos.x + WALL_L))
-            && (x < (room->pos.x + (room->x_size - 1) * WALL_L))
-            && (y >= room->max_ceiling) && (y <= room->min_floor)
-            && (z >= (room->pos.z + WALL_L))
-            && (z < (room->pos.z + (room->z_size - 1) * WALL_L))) {
-            return i;
-        }
-    }
-
-    return NO_ROOM_NEG;
 }
 
 void __cdecl CutscenePlayer_Control(const int16_t item_num)

@@ -105,6 +105,7 @@ dll_sources = [
   'src/game/objects/creatures/bird.c',
   'src/game/objects/creatures/diver.c',
   'src/game/objects/general/door.c',
+  'src/game/objects/general/final_level_counter.c',
   'src/game/objects/vehicles/boat.c',
   'src/game/output.c',
   'src/game/overlay.c',

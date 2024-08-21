@@ -3361,7 +3361,7 @@ typedef enum {
 0x00434210  0x00DB  -R      void __cdecl EarthQuake(int16_t item_num);
 0x004342F0  0x003C  -R      void __cdecl ControlCutShotgun(int16_t item_num);
 0x00434330  0x009D  -R      void __cdecl InitialiseFinalLevel(void);
-0x00434400  0x020F  -R      void __cdecl FinalLevelCounter(int16_t item_num);
+0x00434400  0x020F  +       void __cdecl FinalLevelCounter_Control(int16_t item_num);
 0x00434610  0x00D9  -R      void __cdecl MiniCopterControl(int16_t item_num);
 0x004346F0  0x007C  -R      void __cdecl InitialiseDyingMonk(int16_t item_num);
 0x00434770  0x0087  -R      void __cdecl DyingMonk(int16_t item_num);
@@ -4391,3 +4391,7 @@ typedef enum {
 0x004D9D98  -       char g_LevelFileName[256];
 0x005261C0  -       uint16_t g_MusicTrackFlags[64];
 0x00465AE0  -       WEAPON_INFO g_Weapons[];
+0x005206A8  -       int16_t g_FinalBossActive;
+0x005206BA  -       int16_t g_FinalLevelCount;
+0x005206BC  -       int16_t g_FinalBossCount;
+0x005206B0  -       int16_t g_FinalBossItem[5];

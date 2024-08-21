@@ -203,7 +203,6 @@
 #define EarthQuake ((void __cdecl (*)(int16_t item_num))0x00434210)
 #define ControlCutShotgun ((void __cdecl (*)(int16_t item_num))0x004342F0)
 #define InitialiseFinalLevel ((void __cdecl (*)(void))0x00434330)
-#define FinalLevelCounter ((void __cdecl (*)(int16_t item_num))0x00434400)
 #define MiniCopterControl ((void __cdecl (*)(int16_t item_num))0x00434610)
 #define InitialiseDyingMonk ((void __cdecl (*)(int16_t item_num))0x004346F0)
 #define DyingMonk ((void __cdecl (*)(int16_t item_num))0x00434770)

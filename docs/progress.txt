@@ -3399,7 +3399,7 @@ typedef enum {
 0x00435D70  0x008D  -R      void __cdecl DetonatorControl(int16_t item_num);
 
 # game/people.c
-0x00435E00  0x0085  -R      int32_t __cdecl Targetable(ITEM_INFO *item, AI_INFO *info);
+0x00435E00  0x0085  +       bool __cdecl Creature_CanTargetEnemy(const ITEM_INFO *item, const AI_INFO *info);
 0x00435E90  0x003B  -R      void __cdecl ControlGlow(int16_t fx_num);
 0x00435ED0  0x004E  -R      void __cdecl ControlGunShot(int16_t fx_num);
 0x00435F20  0x0066  -R      int16_t __cdecl GunShot(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);

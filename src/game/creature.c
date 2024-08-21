@@ -3,6 +3,7 @@
 #include "game/box.h"
 #include "game/items.h"
 #include "game/lara/lara_misc.h"
+#include "game/los.h"
 #include "game/lot.h"
 #include "game/math.h"
 #include "game/random.h"
@@ -15,13 +16,15 @@
 #define FRONT_ARC PHD_90
 #define ESCAPE_CHANCE 2048
 #define RECOVER_CHANCE 256
-#define ATTACK_RANGE SQUARE(WALL_L * 3) // = 9437184
 #define MAX_X_ROT (20 * PHD_DEGREE) // = 3640
 #define MAX_TILT (3 * PHD_DEGREE) // = 546
 #define MAX_HEAD_CHANGE (5 * PHD_DEGREE) // = 910
 #define HEAD_ARC 0x3000 // = 12288
 #define FLOAT_SPEED 32
 #define TARGET_TOLERANCE 0x400000
+
+#define CREATURE_ATTACK_RANGE SQUARE(WALL_L * 3) // = 0x900000 = 9437184
+#define CREATURE_SHOOT_RANGE SQUARE(WALL_L * 8) // = 0x4000000 = 67108864
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
@@ -185,7 +188,7 @@ void __cdecl Creature_Mood(
                     || info->zone_num != info->enemy_zone_num)) {
                 creature->mood = MOOD_ESCAPE;
             } else if (info->zone_num == info->enemy_zone_num) {
-                if (info->distance < ATTACK_RANGE
+                if (info->distance < CREATURE_ATTACK_RANGE
                     || (creature->mood == MOOD_STALK
                         && creature->lot.required_box == NO_BOX)) {
                     creature->mood = MOOD_ATTACK;
@@ -888,4 +891,28 @@ void __cdecl Creature_Collision(
         && g_Lara.water_status != LWS_SURFACE) {
         Lara_Push(item, lara_item, coll, coll->enable_spaz, false);
     }
+}
+
+bool __cdecl Creature_CanTargetEnemy(
+    const ITEM_INFO *const item, const AI_INFO *const info)
+{
+    const CREATURE_INFO *const creature = item->data;
+    const ITEM_INFO *const enemy = creature->enemy;
+    if (enemy->hit_points <= 0 || !info->ahead
+        || info->distance >= CREATURE_SHOOT_RANGE) {
+        return false;
+    }
+
+    GAME_VECTOR start;
+    start.pos.x = item->pos.x;
+    start.pos.y = item->pos.y - STEP_L * 3;
+    start.pos.z = item->pos.z;
+    start.room_num = item->room_num;
+
+    GAME_VECTOR target;
+    target.pos.x = enemy->pos.x;
+    target.pos.y = enemy->pos.y - STEP_L * 3;
+    target.pos.z = enemy->pos.z;
+
+    return LOS_Check(&start, &target);
 }

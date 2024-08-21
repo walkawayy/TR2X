@@ -62,6 +62,7 @@ static void Inject_Random(bool enable);
 static void Inject_Items(bool enable);
 static void Inject_Effects(bool enable);
 static void Inject_LOS(bool enable);
+static void Inject_People(bool enable);
 static void Inject_Level(bool enable);
 static void Inject_Inventory(bool enable);
 static void Inject_Lara_Look(bool enable);
@@ -515,6 +516,11 @@ static void Inject_LOS(const bool enable)
     INJECT(enable, 0x00416340, LOS_CheckSmashable);
 }
 
+static void Inject_People(const bool enable)
+{
+    INJECT(enable, 0x00435E00, Creature_CanTargetEnemy);
+}
+
 static void Inject_Level(const bool enable)
 {
     INJECT(enable, 0x0044B260, Level_Load);
@@ -854,6 +860,7 @@ void Inject_Exec(void)
     Inject_Items(true);
     Inject_Effects(true);
     Inject_LOS(true);
+    Inject_People(true);
     Inject_Level(true);
 
     Inject_Inventory(true);

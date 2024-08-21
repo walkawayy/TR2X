@@ -3264,17 +3264,17 @@ typedef enum {
 0x0042E450  0x0235  +       int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
 
 # game/larafire.c
-0x0042E6A0  0x04E8  -R      void __cdecl LaraGun(void);
+0x0042E6A0  0x04E8  -       void __cdecl Gun_Control(void);
 0x0042EC10  0x003B  -R      int32_t __cdecl CheckForHoldingState(int32_t state);
-0x0042EC50  0x011C  -R      void __cdecl InitialiseNewWeapon(void);
-0x0042ED90  0x0194  -R      void __cdecl LaraTargetInfo(WEAPON_INFO *winfo);
-0x0042EF30  0x021C  -R      void __cdecl LaraGetNewTarget(WEAPON_INFO *winfo);
-0x0042F150  0x00AA  -R      void __cdecl find_target_point(ITEM_INFO *item, GAME_VECTOR *target);
-0x0042F200  0x00C1  -R      void __cdecl AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);
-0x0042F2D0  0x0360  -R      int32_t __cdecl FireWeapon(int32_t weapon_type, ITEM_INFO *target, ITEM_INFO *src, PHD_ANGLE *angles);
-0x0042F640  0x0096  -R      void __cdecl HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);
-0x0042F6E0  0x0051  -R      void __cdecl SmashItem(int16_t item_num, int32_t weapon_type);
-0x0042F740  0x003B  -R      int32_t __cdecl WeaponObject(int32_t weapon_type);
+0x0042EC50  0x011C  -       void __cdecl Gun_InitialiseNewWeapon(void);
+0x0042ED90  0x0194  +       void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);
+0x0042EF30  0x021C  -       void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);
+0x0042F150  0x00AA  -       void __cdecl Gun_FindTargetPoint(ITEM_INFO *item, GAME_VECTOR *target);
+0x0042F200  0x00C1  -       void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);
+0x0042F2D0  0x0360  -       int32_t __cdecl Gun_FireWeapon(int32_t weapon_type, ITEM_INFO *target, ITEM_INFO *src, PHD_ANGLE *angles);
+0x0042F640  0x0096  -       void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);
+0x0042F6E0  0x0051  -       void __cdecl Gun_SmashItem(int16_t item_num, int32_t weapon_type);
+0x0042F740  0x003B  -       GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);
 
 # game/laraflare.c
 0x0042F7A0  0x009D  -R      int32_t __cdecl DoFlareLight(XYZ_32 *pos, int32_t flare_age);

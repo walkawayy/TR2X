@@ -8,6 +8,7 @@
 #include "game/creature.h"
 #include "game/effects.h"
 #include "game/game.h"
+#include "game/gun/gun_misc.h"
 #include "game/hwr.h"
 #include "game/input.h"
 #include "game/inventory.h"
@@ -71,6 +72,7 @@ static void Inject_Lara_Draw(bool enable);
 static void Inject_Lara_Misc(bool enable);
 static void Inject_Lara_State(bool enable);
 static void Inject_Lara_Col(bool enable);
+static void Inject_Gun(bool enable);
 
 static void Inject_Creature(bool enable);
 static void Inject_Box(bool enable);
@@ -730,6 +732,11 @@ static void Inject_Lara_Col(const bool enable)
     INJECT(enable, 0x00432440, Lara_Col_UWDeath);
 }
 
+static void Inject_Gun(bool enable)
+{
+    INJECT(enable, 0x0042ED90, Gun_TargetInfo);
+}
+
 static void Inject_Creature(const bool enable)
 {
     INJECT(enable, 0x0040E1B0, Creature_Initialise);
@@ -873,6 +880,7 @@ void Inject_Exec(void)
     Inject_Lara_Misc(true);
     Inject_Lara_State(true);
     Inject_Lara_Col(true);
+    Inject_Gun(true);
 
     Inject_Creature(true);
     Inject_Box(true);

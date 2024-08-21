@@ -43,7 +43,7 @@ void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
                 return;
             }
         } else {
-            LaraGun();
+            Gun_Control();
             return;
         }
     }
@@ -81,7 +81,7 @@ void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
     }
 
     Item_UpdateRoom(item, -LARA_HEIGHT / 2);
-    LaraGun();
+    Gun_Control();
     Room_TestTriggers(coll->trigger, 0);
 }
 
@@ -139,7 +139,7 @@ void __cdecl Lara_HandleSurface(ITEM_INFO *const item, COLL_INFO *const coll)
     }
 
     Item_UpdateRoom(item, 100);
-    LaraGun();
+    Gun_Control();
     Room_TestTriggers(coll->trigger, 0);
 }
 
@@ -219,7 +219,7 @@ void __cdecl Lara_HandleUnderwater(ITEM_INFO *const item, COLL_INFO *const coll)
     }
 
     Item_UpdateRoom(item, 0);
-    LaraGun();
+    Gun_Control();
     Room_TestTriggers(coll->trigger, 0);
 }
 
@@ -900,7 +900,7 @@ void __cdecl Lara_InitialiseInventory(const int32_t level_num)
     g_Lara.request_gun_type = g_Lara.last_gun_type;
 
     Lara_InitialiseMeshes(level_num);
-    InitialiseNewWeapon();
+    Gun_InitialiseNewWeapon();
 }
 
 void __cdecl Lara_InitialiseMeshes(const int32_t level_num)

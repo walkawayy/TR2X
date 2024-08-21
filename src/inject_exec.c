@@ -735,6 +735,7 @@ static void Inject_Lara_Col(const bool enable)
 static void Inject_Gun(bool enable)
 {
     INJECT(enable, 0x0042ED90, Gun_TargetInfo);
+    INJECT(enable, 0x0042EF30, Gun_GetNewTarget);
 }
 
 static void Inject_Creature(const bool enable)

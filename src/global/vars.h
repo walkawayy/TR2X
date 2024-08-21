@@ -35,6 +35,7 @@ extern const char *g_TR2XVersion;
 #define g_OptionMusicVolume (*(int16_t*)0x00465A60) // = 255
 #define g_JumpPermitted (*(int32_t*)0x00465AD4) // = 1
 #define g_LaraOldSlideAngle (*(int16_t*)0x00465AD8) // = 1
+#define g_Weapons (*(WEAPON_INFO(*)[])0x00465AE0)
 #define g_LaraControlRoutines (*((void(__cdecl  *(*)[71])(ITEM_INFO *item, COLL_INFO *coll))0x00465CD0))
 #define g_ExtraControlRoutines (*((void(__cdecl  *(*)[11])(ITEM_INFO *item, COLL_INFO *coll))0x00465DF0))
 #define g_LaraCollisionRoutines (*((void(__cdecl  *(*)[71])(ITEM_INFO *item, COLL_INFO *coll))0x00465E20))

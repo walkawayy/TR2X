@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.79% (643)</tspan> · <tspan class="known">44.75% (545)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.87% (644)</tspan> · <tspan class="known">44.66% (544)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="394.35" height="6" x="0" y="0" class="decompiled"/>
-<rect width="334.25" height="6" x="394.35" y="0" class="known"/>
+<rect width="394.97" height="6" x="0" y="0" class="decompiled"/>
+<rect width="333.64" height="6" x="394.97" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -620,7 +620,7 @@
 <rect width="12" height="12" x="615" y="150" class="decompiled"><title>void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);</title></rect>
 <rect width="12" height="12" x="630" y="150" class="known"><title>void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);</title></rect>
 <rect width="12" height="12" x="645" y="150" class="known"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
-<rect width="12" height="12" x="660" y="150" class="known"><title>int32_t __cdecl Gun_FireWeapon(int32_t weapon_type, ITEM_INFO *target, ITEM_INFO *src, PHD_ANGLE *angles);</title></rect>
+<rect width="12" height="12" x="660" y="150" class="decompiled"><title>int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);</title></rect>
 <rect width="12" height="12" x="675" y="150" class="known"><title>void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);</title></rect>
 <rect width="12" height="12" x="690" y="150" class="known"><title>void __cdecl Gun_SmashItem(int16_t item_num, int32_t weapon_type);</title></rect>
 <rect width="12" height="12" x="705" y="150" class="known"><title>GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);</title></rect>
@@ -806,7 +806,7 @@
 <rect width="12" height="12" x="405" y="210" class="decompiled"><title>void __cdecl Sound_Shutdown(void);</title></rect>
 <rect width="12" height="12" x="420" y="210" class="decompiled"><title>void __cdecl Sound_Init(void);</title></rect>
 <rect width="12" height="12" x="435" y="210" class="known"><title>int32_t __cdecl Collide_TestCollision(ITEM_INFO *item, const ITEM_INFO *lara_item);</title></rect>
-<rect width="12" height="12" x="450" y="210" class="known"><title>int32_t __cdecl GetSpheres(const ITEM_INFO *item, SPHERE *ptr, int32_t world_space);</title></rect>
+<rect width="12" height="12" x="450" y="210" class="known"><title>int32_t __cdecl Collide_GetSpheres(const ITEM_INFO *item, SPHERE *spheres, bool world_space);</title></rect>
 <rect width="12" height="12" x="465" y="210" class="known"><title>void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);</title></rect>
 <rect width="12" height="12" x="480" y="210" class="known"><title>void __cdecl BaddieBiteEffect(ITEM_INFO *item, BITE_INFO *bite);</title></rect>
 <rect width="12" height="12" x="495" y="210" class="known"><title>void __cdecl SpiderLeap(int16_t item_num, int16_t angle);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.87%</tspan> · <tspan class="known">45.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.12%</tspan> · <tspan class="known">45.55%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="402.40" height="6" x="0" y="0" class="decompiled"/>
-<rect width="342.16" height="6" x="402.40" y="0" class="known"/>
+<rect width="404.29" height="6" x="0" y="0" class="decompiled"/>
+<rect width="340.27" height="6" x="404.29" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1392,7 +1392,7 @@
 <rect width="24.49" height="23.63" x="267.09" y="272.48" class="decompiled"><title>void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed);</title></rect>
 <rect width="24.49" height="23.45" x="267.09" y="299.11" class="decompiled"><title>void __cdecl Lara_InitialiseInventory(int32_t level_num);</title></rect>
 <rect width="24.49" height="23.36" x="267.09" y="325.56" class="known"><title>void __cdecl RingNotActive(INVENTORY_ITEM *inv_item);</title></rect>
-<rect width="24.49" height="23.09" x="267.09" y="351.91" class="known"><title>int32_t __cdecl Gun_FireWeapon(int32_t weapon_type, ITEM_INFO *target, ITEM_INFO *src, PHD_ANGLE *angles);</title></rect>
+<rect width="24.49" height="23.09" x="267.09" y="351.91" class="decompiled"><title>int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);</title></rect>
 <rect width="22.47" height="24.84" x="294.58" y="0" class="decompiled"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="22.47" height="24.67" x="294.58" y="27.84" class="known"><title>INT_PTR __stdcall SE_GraphicsDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="22.47" height="24.38" x="294.58" y="55.51" class="known"><title>int32_t __cdecl SE_ReadAppSettings(APP_SETTINGS *settings);</title></rect>
@@ -1419,7 +1419,7 @@
 <rect width="21.61" height="21.83" x="320.05" y="230.38" class="known"><title>void __cdecl WinPlayFMV(const char *file_name, bool is_playback);</title></rect>
 <rect width="21.61" height="21.76" x="320.05" y="255.20" class="known"><title>bool __cdecl SE_ShowSetupDialog(HWND hParent, bool isDefault);</title></rect>
 <rect width="21.61" height="21.63" x="320.05" y="279.97" class="known"><title>void __cdecl do_detail_option(INVENTORY_ITEM *item);</title></rect>
-<rect width="21.61" height="21.56" x="320.05" y="304.59" class="known"><title>int32_t __cdecl GetSpheres(const ITEM_INFO *item, SPHERE *ptr, int32_t world_space);</title></rect>
+<rect width="21.61" height="21.56" x="320.05" y="304.59" class="known"><title>int32_t __cdecl Collide_GetSpheres(const ITEM_INFO *item, SPHERE *spheres, bool world_space);</title></rect>
 <rect width="21.61" height="21.46" x="320.05" y="329.15" class="known"><title>void __cdecl DrawSkidoo(ITEM_INFO *item);</title></rect>
 <rect width="21.61" height="21.39" x="320.05" y="353.61" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="20.95" height="21.96" x="344.65" y="0" class="decompiled"><title>int32_t __cdecl Output_XYClipper(int32_t vtx_count, VERTEX_INFO *vtx);</title></rect>

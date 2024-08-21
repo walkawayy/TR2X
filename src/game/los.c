@@ -288,7 +288,7 @@ int32_t __cdecl LOS_Check(
 }
 
 int32_t __cdecl LOS_CheckSmashable(
-    const GAME_VECTOR *const start, GAME_VECTOR *const target)
+    const GAME_VECTOR *const start, const GAME_VECTOR *const target)
 {
     const int32_t dx = target->x - start->x;
     const int32_t dy = target->y - start->y;

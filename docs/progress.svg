@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.55% (640)</tspan> · <tspan class="known">44.99% (548)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">52.63% (641)</tspan> · <tspan class="known">44.91% (547)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="392.51" height="6" x="0" y="0" class="decompiled"/>
-<rect width="336.09" height="6" x="392.51" y="0" class="known"/>
+<rect width="393.13" height="6" x="0" y="0" class="decompiled"/>
+<rect width="335.48" height="6" x="393.13" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -270,7 +270,7 @@
 <rect width="12" height="12" x="615" y="45" class="known"><title>void __cdecl Demo_GetInput(void);</title></rect>
 <rect width="12" height="12" x="630" y="45" class="known"><title>int16_t __cdecl Diver_Harpoon(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE y_rot, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="645" y="45" class="known"><title>int32_t __cdecl Diver_GetWaterSurface(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
-<rect width="12" height="12" x="660" y="45" class="known"><title>void __cdecl Diver_Control(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="660" y="45" class="decompiled"><title>void __cdecl Diver_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="675" y="45" class="known"><title>void __cdecl Dog_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="690" y="45" class="known"><title>void __cdecl Tiger_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="705" y="45" class="known"><title>void __cdecl ControlTwinkle(int16_t fx_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.33%</tspan> · <tspan class="known">46.35%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.59%</tspan> · <tspan class="known">46.08%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="398.36" height="6" x="0" y="0" class="decompiled"/>
-<rect width="346.20" height="6" x="398.36" y="0" class="known"/>
+<rect width="400.34" height="6" x="0" y="0" class="decompiled"/>
+<rect width="344.22" height="6" x="400.34" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1382,7 +1382,7 @@
 <rect width="24.49" height="24.90" x="267.09" y="0" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG4_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="24.49" height="24.75" x="267.09" y="27.90" class="known"><title>void __cdecl ShowStatsText(char *time_str, int32_t type);</title></rect>
 <rect width="24.49" height="24.50" x="267.09" y="55.64" class="decompiled"><title>void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint);</title></rect>
-<rect width="24.49" height="24.32" x="267.09" y="83.15" class="known"><title>void __cdecl Diver_Control(int16_t item_num);</title></rect>
+<rect width="24.49" height="24.32" x="267.09" y="83.15" class="decompiled"><title>void __cdecl Diver_Control(int16_t item_num);</title></rect>
 <rect width="24.49" height="24.26" x="267.09" y="110.47" class="known"><title>void __cdecl Dog_Control(int16_t item_num);</title></rect>
 <rect width="24.49" height="24.23" x="267.09" y="137.73" class="known"><title>int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);</title></rect>
 <rect width="24.49" height="24.02" x="267.09" y="164.97" class="decompiled"><title>void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);</title></rect>

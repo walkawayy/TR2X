@@ -893,14 +893,14 @@ void __cdecl Creature_Collision(
     }
 }
 
-bool __cdecl Creature_CanTargetEnemy(
+int32_t __cdecl Creature_CanTargetEnemy(
     const ITEM_INFO *const item, const AI_INFO *const info)
 {
     const CREATURE_INFO *const creature = item->data;
     const ITEM_INFO *const enemy = creature->enemy;
     if (enemy->hit_points <= 0 || !info->ahead
         || info->distance >= CREATURE_SHOOT_RANGE) {
-        return false;
+        return 0;
     }
 
     GAME_VECTOR start;

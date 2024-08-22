@@ -172,7 +172,6 @@
 #define Gun_Control ((void __cdecl (*)(void))0x0042E6A0)
 #define CheckForHoldingState ((int32_t __cdecl (*)(int32_t state))0x0042EC10)
 #define Gun_InitialiseNewWeapon ((void __cdecl (*)(void))0x0042EC50)
-#define Gun_FindTargetPoint ((void __cdecl (*)(const ITEM_INFO *item, GAME_VECTOR *target))0x0042F150)
 #define Gun_AimWeapon ((void __cdecl (*)(WEAPON_INFO *winfo, LARA_ARM *arm))0x0042F200)
 #define Gun_HitTarget ((void __cdecl (*)(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage))0x0042F640)
 #define Gun_SmashItem ((void __cdecl (*)(int16_t item_num, int32_t weapon_type))0x0042F6E0)

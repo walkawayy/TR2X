@@ -3269,7 +3269,7 @@ typedef enum {
 0x0042EC50  0x011C  -       void __cdecl Gun_InitialiseNewWeapon(void);
 0x0042ED90  0x0194  +       void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);
 0x0042EF30  0x021C  +       void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);
-0x0042F150  0x00AA  -       void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);
+0x0042F150  0x00AA  +       void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);
 0x0042F200  0x00C1  -       void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);
 0x0042F2D0  0x0360  +       int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);
 0x0042F640  0x0096  -       void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);

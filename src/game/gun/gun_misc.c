@@ -1,6 +1,8 @@
 #include "game/gun/gun_misc.h"
 
+#include "game/items.h"
 #include "game/los.h"
+#include "game/math.h"
 #include "game/math_misc.h"
 #include "game/matrix.h"
 #include "game/random.h"
@@ -259,4 +261,19 @@ int32_t __cdecl Gun_FireWeapon(
         Gun_HitTarget(target, &hit_pos, winfo->damage);
         return 1;
     }
+}
+
+void __cdecl Gun_FindTargetPoint(
+    const ITEM_INFO *const item, GAME_VECTOR *const target)
+{
+    const BOUNDS_16 *const bounds = &Item_GetBestFrame(item)->bounds;
+    const int32_t x = bounds->min_x + (bounds->max_x - bounds->min_x) / 2;
+    const int32_t y = bounds->min_y + (bounds->max_y - bounds->min_y) / 3;
+    const int32_t z = bounds->min_z + (bounds->max_z - bounds->min_z) / 2;
+    const int32_t cy = Math_Cos(item->rot.y);
+    const int32_t sy = Math_Sin(item->rot.y);
+    target->pos.x = item->pos.x + ((cy * x + sy * z) >> W2V_SHIFT);
+    target->pos.y = item->pos.y + y;
+    target->pos.z = item->pos.z + ((cy * z - sy * x) >> W2V_SHIFT);
+    target->room_num = item->room_num;
 }

@@ -737,6 +737,7 @@ static void Inject_Gun(bool enable)
 {
     INJECT(enable, 0x0042ED90, Gun_TargetInfo);
     INJECT(enable, 0x0042EF30, Gun_GetNewTarget);
+    INJECT(enable, 0x0042F150, Gun_FindTargetPoint);
     INJECT(enable, 0x0042F2D0, Gun_FireWeapon);
 }
 

@@ -3223,7 +3223,7 @@ typedef enum {
 0x0042B8E0  0x031A  +       void __cdecl Lara_GetJointAbsPosition_I(ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
 
 # game/lara1gun.c
-0x0042BC00  0x0033  -R      void __cdecl Gun_Rifle_DrawMeshes(LARA_GUN_TYPE weapon_type);
+0x0042BC00  0x0033  +       void __cdecl Gun_Rifle_DrawMeshes(LARA_GUN_TYPE weapon_type);
 0x0042BC40  0x002B  -R      void __cdecl Gun_Rifle_UndrawMeshes(LARA_GUN_TYPE weapon_type);
 0x0042BC70  0x0070  -R      void __cdecl Gun_Rifle_Ready(LARA_GUN_TYPE weapon_type);
 0x0042BCE0  0x00F5  -R      void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);

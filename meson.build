@@ -84,6 +84,7 @@ dll_sources = [
   'src/game/gun/gun.c',
   'src/game/gun/gun_misc.c',
   'src/game/gun/gun_pistols.c',
+  'src/game/gun/gun_rifle.c',
   'src/game/hwr.c',
   'src/game/input.c',
   'src/game/inventory.c',

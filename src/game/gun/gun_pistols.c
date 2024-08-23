@@ -137,3 +137,9 @@ void Gun_Pistols_UndrawMeshLeft(const LARA_GUN_TYPE weapon_type)
     Gun_SetLaraHandLMesh(LGT_UNARMED);
     Gun_SetLaraHolsterLMesh(weapon_type);
 }
+
+void Gun_Pistols_UndrawMeshRight(const LARA_GUN_TYPE weapon_type)
+{
+    Gun_SetLaraHandRMesh(LGT_UNARMED);
+    Gun_SetLaraHolsterRMesh(weapon_type);
+}

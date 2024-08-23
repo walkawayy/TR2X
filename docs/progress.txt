@@ -3225,7 +3225,7 @@ typedef enum {
 # game/lara1gun.c
 0x0042BC00  0x0033  +       void __cdecl Gun_Rifle_DrawMeshes(LARA_GUN_TYPE weapon_type);
 0x0042BC40  0x002B  +       void __cdecl Gun_Rifle_UndrawMeshes(LARA_GUN_TYPE weapon_type);
-0x0042BC70  0x0070  -R      void __cdecl Gun_Rifle_Ready(LARA_GUN_TYPE weapon_type);
+0x0042BC70  0x0070  +       void __cdecl Gun_Rifle_Ready(LARA_GUN_TYPE weapon_type);
 0x0042BCE0  0x00F5  -R      void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);
 0x0042BDE0  0x00F2  -R      void __cdecl Gun_Rifle_Fire(void);
 0x0042BEE0  0x007B  -R      void __cdecl FireM16(int32_t running);

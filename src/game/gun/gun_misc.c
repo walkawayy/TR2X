@@ -360,3 +360,25 @@ void __cdecl Gun_HitTarget(
         }
     }
 }
+
+void __cdecl Gun_SmashItem(
+    const int16_t item_num, const LARA_GUN_TYPE weapon_type)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+
+    switch (item->object_num) {
+    case O_WINDOW_1:
+        SmashWindow(item_num);
+        break;
+
+    case O_BELL:
+        if (item->status != IS_ACTIVE) {
+            item->status = IS_ACTIVE;
+            Item_AddActive(item_num);
+        }
+        break;
+
+    default:
+        break;
+    }
+}

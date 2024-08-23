@@ -739,6 +739,7 @@ static void Inject_Lara_Col(const bool enable)
 static void Inject_Gun(bool enable)
 {
     INJECT(enable, 0x0042BC00, Gun_Rifle_DrawMeshes);
+    INJECT(enable, 0x0042BC40, Gun_Rifle_UndrawMeshes);
     INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
     INJECT(enable, 0x0042CFB0, Gun_Pistols_Draw);
     INJECT(enable, 0x0042D030, Gun_Pistols_Undraw);

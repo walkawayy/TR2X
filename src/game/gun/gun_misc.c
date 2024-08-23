@@ -162,6 +162,36 @@ void __cdecl Gun_GetNewTarget(const WEAPON_INFO *const winfo)
     Gun_TargetInfo(winfo);
 }
 
+void __cdecl Gun_AimWeapon(const WEAPON_INFO *const winfo, LARA_ARM *const arm)
+{
+    const int16_t speed = winfo->aim_speed;
+
+    int16_t dest_y = 0;
+    int16_t dest_x = 0;
+    if (arm->lock) {
+        dest_y = g_Lara.target_angles[0];
+        dest_x = g_Lara.target_angles[1];
+    }
+
+    if (arm->rot.y >= dest_y - speed && arm->rot.y <= dest_y + speed) {
+        arm->rot.y = dest_y;
+    } else if (arm->rot.y < dest_y) {
+        arm->rot.y += speed;
+    } else {
+        arm->rot.y -= speed;
+    }
+
+    if (arm->rot.x >= dest_x - speed && arm->rot.x <= dest_x + speed) {
+        arm->rot.x = dest_x;
+    } else if (arm->rot.x < dest_x) {
+        arm->rot.x += speed;
+    } else {
+        arm->rot.x -= speed;
+    }
+
+    arm->rot.z = 0;
+}
+
 int32_t __cdecl Gun_FireWeapon(
     const LARA_GUN_TYPE weapon_type, ITEM_INFO *const target,
     const ITEM_INFO *const src, const PHD_ANGLE *const angles)

@@ -214,8 +214,8 @@ void __cdecl Lara_Draw(const ITEM_INFO *const item)
         g_MatrixPtr->_22 = g_MatrixPtr[-2]._22;
 
         Matrix_RotYXZ(
-            g_Lara.right_arm.y_rot, g_Lara.right_arm.x_rot,
-            g_Lara.right_arm.z_rot);
+            g_Lara.right_arm.rot.y, g_Lara.right_arm.rot.x,
+            g_Lara.right_arm.rot.z);
         mesh_rots =
             &g_Lara.right_arm.frame_base
                  [(g_Anims[g_Lara.right_arm.anim_num].interpolation >> 8)
@@ -250,8 +250,8 @@ void __cdecl Lara_Draw(const ITEM_INFO *const item)
         g_MatrixPtr->_21 = g_MatrixPtr[-2]._21;
         g_MatrixPtr->_22 = g_MatrixPtr[-2]._22;
         Matrix_RotYXZ(
-            g_Lara.left_arm.y_rot, g_Lara.left_arm.x_rot,
-            g_Lara.left_arm.z_rot);
+            g_Lara.left_arm.rot.y, g_Lara.left_arm.rot.x,
+            g_Lara.left_arm.rot.z);
         mesh_rots = &g_Lara.left_arm.frame_base
                          [(g_Anims[g_Lara.left_arm.anim_num].interpolation >> 8)
                               * (g_Lara.left_arm.frame_num
@@ -524,8 +524,8 @@ void __cdecl Lara_Draw_I(
         Matrix_TranslateRel_I(bone[29], bone[30], bone[31]);
         Matrix_InterpolateArm();
         Matrix_RotYXZ(
-            g_Lara.right_arm.y_rot, g_Lara.right_arm.x_rot,
-            g_Lara.right_arm.z_rot);
+            g_Lara.right_arm.rot.y, g_Lara.right_arm.rot.x,
+            g_Lara.right_arm.rot.z);
         mesh_rots_1 =
             &g_Lara.right_arm.frame_base
                  [(g_Anims[g_Lara.right_arm.anim_num].interpolation >> 8)
@@ -552,8 +552,8 @@ void __cdecl Lara_Draw_I(
         Matrix_TranslateRel_I(bone[41], bone[42], bone[43]);
         Matrix_InterpolateArm();
         Matrix_RotYXZ(
-            g_Lara.left_arm.y_rot, g_Lara.left_arm.x_rot,
-            g_Lara.left_arm.z_rot);
+            g_Lara.left_arm.rot.y, g_Lara.left_arm.rot.x,
+            g_Lara.left_arm.rot.z);
         mesh_rots_1 =
             &g_Lara.left_arm.frame_base
                  [(g_Anims[g_Lara.left_arm.anim_num].interpolation >> 8)

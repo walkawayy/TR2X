@@ -1170,9 +1170,11 @@ typedef struct __unaligned {
     int16_t frame_num;
     int16_t anim_num;
     int16_t lock;
-    int16_t y_rot;
-    int16_t x_rot;
-    int16_t z_rot;
+    struct __unaligned {
+        int16_t y;
+        int16_t x;
+        int16_t z;
+    } rot; // TODO: XYZ_16
     int16_t flash_gun;
 } LARA_ARM;
 

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.28% (649)</tspan> · <tspan class="known">44.25% (539)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.37% (650)</tspan> · <tspan class="known">44.17% (538)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="398.03" height="6" x="0" y="0" class="decompiled"/>
-<rect width="330.57" height="6" x="398.03" y="0" class="known"/>
+<rect width="398.65" height="6" x="0" y="0" class="decompiled"/>
+<rect width="329.96" height="6" x="398.65" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -619,7 +619,7 @@
 <rect width="12" height="12" x="600" y="150" class="decompiled"><title>void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);</title></rect>
 <rect width="12" height="12" x="615" y="150" class="decompiled"><title>void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);</title></rect>
 <rect width="12" height="12" x="630" y="150" class="decompiled"><title>void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);</title></rect>
-<rect width="12" height="12" x="645" y="150" class="known"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
+<rect width="12" height="12" x="645" y="150" class="decompiled"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
 <rect width="12" height="12" x="660" y="150" class="decompiled"><title>int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);</title></rect>
 <rect width="12" height="12" x="675" y="150" class="known"><title>void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);</title></rect>
 <rect width="12" height="12" x="690" y="150" class="known"><title>void __cdecl Gun_SmashItem(int16_t item_num, LARA_GUN_TYPE weapon_type);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.79%</tspan> · <tspan class="known">44.88%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.85%</tspan> · <tspan class="known">44.82%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="409.31" height="6" x="0" y="0" class="decompiled"/>
-<rect width="335.25" height="6" x="409.31" y="0" class="known"/>
+<rect width="409.73" height="6" x="0" y="0" class="decompiled"/>
+<rect width="334.83" height="6" x="409.73" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1761,7 +1761,7 @@
 <rect width="9.54" height="9.97" x="521.63" y="175.61" class="known"><title>void __thiscall SE_LoadBitmapResource(BITMAP_RESOURCE *bmpRsrc, LPCTSTR lpName);</title></rect>
 <rect width="9.54" height="9.84" x="521.63" y="188.59" class="known"><title>void __cdecl Splash(ITEM_INFO *item);</title></rect>
 <rect width="9.54" height="9.77" x="521.63" y="201.42" class="known"><title>int32_t __cdecl Inv_GetItemOption(int32_t item_num);</title></rect>
-<rect width="9.54" height="9.77" x="521.63" y="214.20" class="known"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
+<rect width="9.54" height="9.77" x="521.63" y="214.20" class="decompiled"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="226.97" class="known"><title>void __cdecl ChangeRequesterItem(REQUEST_INFO *req, int32_t item, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="239.68" class="known"><title>void __cdecl do_compass_option(INVENTORY_ITEM *item);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="252.39" class="known"><title>void __cdecl AnimateTextures(int32_t ticks);</title></rect>

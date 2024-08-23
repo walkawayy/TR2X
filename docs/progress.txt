@@ -2,6 +2,7 @@
 typedef IDirect3DDevice2 *LPDIRECT3DDEVICE2;
 typedef IDirect3DTexture2 *LPDIRECT3DTEXTURE2;
 typedef IDirect3DViewport2 *LPDIRECT3DVIEWPORT2;
+typedef IDirect3DMaterial2 *LPDIRECT3DMATERIAL2;
 typedef DDSURFACEDESC DDSDESC, *LPDDSDESC;
 typedef LPDIRECTDRAWSURFACE3 LPDDS;
 typedef LPDIRECTDRAW3 LPDD;
@@ -4211,7 +4212,7 @@ typedef enum {
 0x004D9EAC  -       int32_t g_IsFMVPlaying;
 0x004D9EC0  -       int32_t g_CurrentLevel;
 0x004D9EC4  -       int32_t g_LevelComplete;
-0x004D9ED8  -       D3DTLVERTEX g_HWR_VertexBuffer[MAX_VERTICES];
+0x004D9ED8  -       D3DTLVERTEX g_HWR_VertexBuffer[0x2000]; // MAX_VERTICES
 0x00519EE0  -       HWR_TEXTURE_HANDLE g_HWR_PageHandles[32];
 0x00519F60  -       D3DTLVERTEX *g_HWR_VertexPtr;
 0x0051A0CC  -       void *g_GameMemoryPtr;
@@ -4302,7 +4303,7 @@ typedef enum {
 0x00465608  -       INVENTORY_ITEM *g_Inv_OptionList[];
 0x004655A8  -       INVENTORY_ITEM *g_Inv_KeysList[];
 0x004644F8  -       int32_t g_Inv_NFrames;
-0x00525C00  -       STATIC_INFO g_StaticObjects[MAX_STATIC_OBJECTS];
+0x00525C00  -       STATIC_INFO g_StaticObjects[50]; // MAX_STATIC_OBJECTS
 0x00521FE0  -       OBJECT_VECTOR *g_SoundEffects;
 0x0051E6E0  -       int16_t g_SampleLUT[];
 0x0051E9C4  -       SAMPLE_INFO *g_SampleInfos;
@@ -4348,20 +4349,20 @@ typedef enum {
 0x00519F64  -       bool g_ZEnableState;
 0x00519F70  -       bool g_ZWriteEnableState;
 0x00466BDC  -       int32_t g_PaletteIndex;
-0x00519F78  -       int32_t g_HWR_TexturePageIndexes[MAX_TEXTURE_PAGES];
+0x00519F78  -       int32_t g_HWR_TexturePageIndexes[32]; // MAX_TEXTURE_PAGES
 0x004D7790  -       int32_t g_HeightType;
 0x004D9D94  -       int16_t *g_FloorData;
 0x00525B08  -       int16_t *g_AnimCommands;
 0x0052617C  -       ANIM_CHANGE *g_AnimChanges;
 0x00525B04  -       ANIM_RANGE *g_AnimRanges;
 0x004D77FC  -       int16_t g_GF_NoFloor;
-0x00526260  -       int32_t g_FlipMaps[MAX_FLIPMAPS];
+0x00526260  -       int32_t g_FlipMaps[10]; // MAX_FLIPMAPS
 0x005252B4  -       int32_t g_Outside;
 0x00526198  -       int32_t g_OutsideRight;
 0x00526178  -       int32_t g_OutsideLeft;
 0x005261AC  -       int32_t g_OutsideTop;
 0x00525B00  -       int32_t g_OutsideBottom;
-0x00525900  -       int32_t g_BoundRooms[MAX_BOUND_ROOMS];
+0x00525900  -       int32_t g_BoundRooms[128]; // MAX_BOUND_ROOMS
 0x005258C0  -       DOOR_VBUF g_DoorVBuf[4];
 0x00464180  -       int32_t g_BoxLines[12][2];
 0x00526190  -       BOOL g_CameraUnderwater;
@@ -4373,7 +4374,7 @@ typedef enum {
 0x004D9360  -       int32_t g_TexturePageCount;
 0x004D9D90  -       int16_t *g_MeshBase;
 0x004D9E98  -       int32_t g_TextureInfoCount;
-0x004D93F0  -       uint8_t g_LabTextureUVFlag[MAX_TEXTURES];
+0x004D93F0  -       uint8_t g_LabTextureUVFlag[2048]; // MAX_TEXTURES
 0x004B2B00  -       PHD_TEXTURE g_TextureInfo[];
 0x005251B0  -       FRAME_INFO *g_AnimFrames;
 0x0051BC38  -       int32_t g_IsWet;

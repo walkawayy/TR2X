@@ -169,7 +169,6 @@
 #define Gun_Pistols_UndrawMeshRight ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D350)
 #define Gun_Pistols_Control ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D390)
 #define Gun_Pistols_Animate ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D520)
-#define Gun_GetWeaponAnim ((GAME_OBJECT_ID (*)(const LARA_GUN_TYPE gun_type))0x0042F740)
 #define Flare_DoLight ((int32_t __cdecl (*)(XYZ_32 *pos, int32_t flare_age))0x0042F7A0)
 #define Flare_DoInHand ((void __cdecl (*)(int32_t flare_age))0x0042F840)
 #define Flare_DrawInAir ((void __cdecl (*)(ITEM_INFO *item))0x0042F920)

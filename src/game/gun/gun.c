@@ -323,3 +323,25 @@ void __cdecl Gun_InitialiseNewWeapon(void)
         break;
     }
 }
+
+int32_t __cdecl Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type)
+{
+    switch (gun_type) {
+    case LGT_PISTOLS:
+        return O_LARA_PISTOLS;
+    case LGT_MAGNUMS:
+        return O_LARA_MAGNUMS;
+    case LGT_UZIS:
+        return O_LARA_UZIS;
+    case LGT_SHOTGUN:
+        return O_LARA_SHOTGUN;
+    case LGT_M16:
+        return O_LARA_M16;
+    case LGT_ROCKET:
+        return O_LARA_GRENADE;
+    case LGT_HARPOON:
+        return O_LARA_HARPOON;
+    default:
+        return NO_OBJECT;
+    }
+}

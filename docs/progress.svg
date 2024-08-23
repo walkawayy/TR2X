@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.53% (652)</tspan> · <tspan class="known">44.01% (536)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.61% (653)</tspan> · <tspan class="known">43.92% (535)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="399.87" height="6" x="0" y="0" class="decompiled"/>
-<rect width="328.73" height="6" x="399.87" y="0" class="known"/>
+<rect width="400.49" height="6" x="0" y="0" class="decompiled"/>
+<rect width="328.12" height="6" x="400.49" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -623,7 +623,7 @@
 <rect width="12" height="12" x="660" y="150" class="decompiled"><title>int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);</title></rect>
 <rect width="12" height="12" x="675" y="150" class="decompiled"><title>void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);</title></rect>
 <rect width="12" height="12" x="690" y="150" class="decompiled"><title>void __cdecl Gun_SmashItem(int16_t item_num, LARA_GUN_TYPE weapon_type);</title></rect>
-<rect width="12" height="12" x="705" y="150" class="known"><title>GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);</title></rect>
+<rect width="12" height="12" x="705" y="150" class="decompiled"><title>GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);</title></rect>
 <rect width="12" height="12" x="720" y="150" class="known"><title>int32_t __cdecl Flare_DoLight(XYZ_32 *pos, int32_t flare_age);</title></rect>
 <rect width="12" height="12" x="735" y="150" class="known"><title>void __cdecl Flare_DoInHand(int32_t flare_age);</title></rect>
 <rect width="12" height="12" x="0" y="165" class="known"><title>void __cdecl Flare_DrawInAir(ITEM_INFO *item);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.92%</tspan> · <tspan class="known">44.76%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.94%</tspan> · <tspan class="known">44.74%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="410.24" height="6" x="0" y="0" class="decompiled"/>
-<rect width="334.32" height="6" x="410.24" y="0" class="known"/>
+<rect width="410.37" height="6" x="0" y="0" class="decompiled"/>
+<rect width="334.19" height="6" x="410.37" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2191,7 +2191,7 @@
 <rect width="4.18" height="3.93" x="742.82" y="276.30" class="decompiled"><title>void __cdecl Shell_ExitSystem(const char *message);</title></rect>
 <rect width="4.19" height="3.93" x="648.46" y="283.23" class="decompiled"><title>void __cdecl S_Audio_Sample_OutCloseAllTracks(void);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="290.15" class="decompiled"><title>int32_t __cdecl Gun_CheckForHoldingState(int32_t state);</title></rect>
-<rect width="4.19" height="3.81" x="648.46" y="296.96" class="known"><title>GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);</title></rect>
+<rect width="4.19" height="3.81" x="648.46" y="296.96" class="decompiled"><title>GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="303.78" class="known"><title>void __cdecl DrawBridgeCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="310.59" class="known"><title>int32_t __cdecl GetOffset(ITEM_INFO *item, int32_t x, int32_t z);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="317.40" class="known"><title>void __cdecl ControlGlow(int16_t fx_num);</title></rect>

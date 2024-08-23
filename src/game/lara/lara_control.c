@@ -608,7 +608,7 @@ void __cdecl Lara_Animate(ITEM_INFO *const item)
     item->pos.z += (item->speed * Math_Cos(g_Lara.move_angle)) >> W2V_SHIFT;
 }
 
-void __cdecl Lara_UseItem(const int16_t object_num)
+void __cdecl Lara_UseItem(const GAME_OBJECT_ID object_num)
 {
     ITEM_INFO *const item = g_LaraItem;
 

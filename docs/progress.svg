@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.20% (648)</tspan> · <tspan class="known">44.33% (540)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.28% (649)</tspan> · <tspan class="known">44.25% (539)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="397.42" height="6" x="0" y="0" class="decompiled"/>
-<rect width="331.18" height="6" x="397.42" y="0" class="known"/>
+<rect width="398.03" height="6" x="0" y="0" class="decompiled"/>
+<rect width="330.57" height="6" x="398.03" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -615,7 +615,7 @@
 <rect width="12" height="12" x="540" y="150" class="decompiled"><title>int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);</title></rect>
 <rect width="12" height="12" x="555" y="150" class="decompiled"><title>void __cdecl Gun_Control(void);</title></rect>
 <rect width="12" height="12" x="570" y="150" class="decompiled"><title>int32_t __cdecl Gun_CheckForHoldingState(int32_t state);</title></rect>
-<rect width="12" height="12" x="585" y="150" class="known"><title>void __cdecl Gun_InitialiseNewWeapon(void);</title></rect>
+<rect width="12" height="12" x="585" y="150" class="decompiled"><title>void __cdecl Gun_InitialiseNewWeapon(void);</title></rect>
 <rect width="12" height="12" x="600" y="150" class="decompiled"><title>void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);</title></rect>
 <rect width="12" height="12" x="615" y="150" class="decompiled"><title>void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);</title></rect>
 <rect width="12" height="12" x="630" y="150" class="decompiled"><title>void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.71%</tspan> · <tspan class="known">44.96%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.79%</tspan> · <tspan class="known">44.88%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="408.69" height="6" x="0" y="0" class="decompiled"/>
-<rect width="335.87" height="6" x="408.69" y="0" class="known"/>
+<rect width="409.31" height="6" x="0" y="0" class="decompiled"/>
+<rect width="335.25" height="6" x="409.31" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1628,7 +1628,7 @@
 <rect width="12.55" height="12.58" x="673.67" y="92.72" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM_INFO *room);</title></rect>
 <rect width="12.34" height="12.58" x="689.23" y="92.72" class="decompiled"><title>BOOL __cdecl S_Input_Key(KEYMAP keymap);</title></rect>
 <rect width="12.23" height="12.58" x="704.57" y="92.72" class="decompiled"><title>void __cdecl Item_Kill(int16_t item_num);</title></rect>
-<rect width="12.13" height="12.58" x="719.80" y="92.72" class="known"><title>void __cdecl Gun_InitialiseNewWeapon(void);</title></rect>
+<rect width="12.13" height="12.58" x="719.80" y="92.72" class="decompiled"><title>void __cdecl Gun_InitialiseNewWeapon(void);</title></rect>
 <rect width="12.07" height="12.58" x="734.93" y="92.72" class="decompiled"><title>void __cdecl Lara_Col_UpJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12.25" height="12.40" x="465.10" y="108.31" class="known"><title>void __cdecl SkidooGuns(void);</title></rect>
 <rect width="12.25" height="12.40" x="465.10" y="123.71" class="known"><title>void __cdecl SE_SoundDlgUpdate(HWND hwndDlg);</title></rect>

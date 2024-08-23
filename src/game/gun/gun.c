@@ -5,6 +5,20 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+typedef enum LARA_GUN_ANIMATION_FRAME {
+    LF_G_AIM_START = 0,
+    LF_G_AIM_BEND = 1,
+    LF_G_AIM_EXTEND = 3,
+    LF_G_AIM_END = 4,
+    LF_G_UNDRAW_START = 5,
+    LF_G_UNDRAW_BEND = 6,
+    LF_G_UNDRAW_END = 12,
+    LF_G_DRAW_START = 13,
+    LF_G_DRAW_END = 23,
+    LF_G_RECOIL_START = 24,
+    LF_G_RECOIL_END = 32,
+} LARA_GUN_ANIMATION_FRAME;
+
 typedef enum {
     LF_FL_HOLD_FT = 1,
     LF_FL_THROW_FT = 32,
@@ -252,5 +266,60 @@ void __cdecl Gun_Control(void)
 
     default:
         return;
+    }
+}
+
+void __cdecl Gun_InitialiseNewWeapon(void)
+{
+    g_Lara.left_arm.flash_gun = 0;
+    g_Lara.left_arm.frame_num = 0;
+    g_Lara.left_arm.lock = 0;
+    g_Lara.left_arm.x_rot = 0;
+    g_Lara.left_arm.y_rot = 0;
+    g_Lara.left_arm.z_rot = 0;
+    g_Lara.right_arm.flash_gun = 0;
+    g_Lara.right_arm.frame_num = 0;
+    g_Lara.right_arm.lock = 0;
+    g_Lara.right_arm.x_rot = 0;
+    g_Lara.right_arm.y_rot = 0;
+    g_Lara.right_arm.z_rot = 0;
+    g_Lara.target = NULL;
+
+    switch (g_Lara.gun_type) {
+    case LGT_PISTOLS:
+    case LGT_MAGNUMS:
+    case LGT_UZIS:
+        g_Lara.left_arm.frame_base = g_Objects[O_LARA_PISTOLS].frame_base;
+        g_Lara.right_arm.frame_base = g_Objects[O_LARA_PISTOLS].frame_base;
+        if (g_Lara.gun_status != LGS_ARMLESS) {
+            Gun_Pistols_DrawMeshes(g_Lara.gun_type);
+        }
+        break;
+
+    case LGT_SHOTGUN:
+    case LGT_M16:
+    case LGT_ROCKET:
+    case LGT_HARPOON:
+        g_Lara.left_arm.frame_base =
+            g_Objects[Gun_GetWeaponAnim(g_Lara.gun_type)].frame_base;
+        g_Lara.right_arm.frame_base =
+            g_Objects[Gun_GetWeaponAnim(g_Lara.gun_type)].frame_base;
+        if (g_Lara.gun_status != LGS_ARMLESS) {
+            Gun_Rifle_DrawMeshes(g_Lara.gun_type);
+        }
+        break;
+
+    case LGT_FLARE:
+        g_Lara.left_arm.frame_base = g_Objects[O_LARA_FLARE].frame_base;
+        g_Lara.right_arm.frame_base = g_Objects[O_LARA_FLARE].frame_base;
+        if (g_Lara.gun_status != LGS_ARMLESS) {
+            Flare_DrawMeshes();
+        }
+        break;
+
+    default:
+        g_Lara.left_arm.frame_base = g_Anims[g_LaraItem->anim_num].frame_ptr;
+        g_Lara.right_arm.frame_base = g_Anims[g_LaraItem->anim_num].frame_ptr;
+        break;
     }
 }

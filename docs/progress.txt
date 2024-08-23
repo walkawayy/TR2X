@@ -3241,7 +3241,7 @@ typedef enum {
 0x0042CF60  0x004F  +       void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *arm, int32_t frame);
 0x0042CFB0  0x007C  +       void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);
 0x0042D030  0x0225  +       void __cdecl Gun_Pistols_Undraw(LARA_GUN_TYPE weapon_type);
-0x0042D260  0x005C  -R      void __cdecl Gun_Pistols_Ready(LARA_GUN_TYPE weapon_type);
+0x0042D260  0x005C  +       void __cdecl Gun_Pistols_Ready(LARA_GUN_TYPE weapon_type);
 0x0042D2C0  0x004E  -R      void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);
 0x0042D310  0x003A  -R      void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);
 0x0042D350  0x003A  -R      void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);

@@ -3266,7 +3266,7 @@ typedef enum {
 
 # game/larafire.c
 0x0042E6A0  0x04E8  +       void __cdecl Gun_Control(void);
-0x0042EC10  0x003B  -       int32_t __cdecl Gun_CheckForHoldingState(int32_t state);
+0x0042EC10  0x003B  +       int32_t __cdecl Gun_CheckForHoldingState(int32_t state);
 0x0042EC50  0x011C  -       void __cdecl Gun_InitialiseNewWeapon(void);
 0x0042ED90  0x0194  +       void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);
 0x0042EF30  0x021C  +       void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);

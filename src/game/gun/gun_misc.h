@@ -2,6 +2,7 @@
 
 #include "global/types.h"
 
+int32_t __cdecl Gun_CheckForHoldingState(const LARA_STATE state);
 void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);
 void __cdecl Gun_GetNewTarget(const WEAPON_INFO *winfo);
 int32_t __cdecl Gun_FireWeapon(

@@ -169,7 +169,6 @@
 #define Gun_Pistols_UndrawMeshRight ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D350)
 #define Gun_Pistols_Control ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D390)
 #define Gun_Pistols_Animate ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D520)
-#define Gun_CheckForHoldingState ((int32_t __cdecl (*)(int32_t state))0x0042EC10)
 #define Gun_InitialiseNewWeapon ((void __cdecl (*)(void))0x0042EC50)
 #define Gun_AimWeapon ((void __cdecl (*)(WEAPON_INFO *winfo, LARA_ARM *arm))0x0042F200)
 #define Gun_HitTarget ((void __cdecl (*)(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage))0x0042F640)

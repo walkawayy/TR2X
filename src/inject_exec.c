@@ -10,6 +10,7 @@
 #include "game/game.h"
 #include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
+#include "game/gun/gun_pistols.h"
 #include "game/hwr.h"
 #include "game/input.h"
 #include "game/inventory.h"
@@ -747,6 +748,7 @@ static void Inject_Gun(bool enable)
     INJECT(enable, 0x0042F640, Gun_HitTarget);
     INJECT(enable, 0x0042F6E0, Gun_SmashItem);
     INJECT(enable, 0x0042F740, Gun_GetWeaponAnim);
+    INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
 }
 
 static void Inject_Creature(const bool enable)

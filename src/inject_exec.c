@@ -8,6 +8,7 @@
 #include "game/creature.h"
 #include "game/effects.h"
 #include "game/game.h"
+#include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
 #include "game/hwr.h"
 #include "game/input.h"
@@ -735,6 +736,7 @@ static void Inject_Lara_Col(const bool enable)
 
 static void Inject_Gun(bool enable)
 {
+    INJECT(enable, 0x0042E6A0, Gun_Control);
     INJECT(enable, 0x0042ED90, Gun_TargetInfo);
     INJECT(enable, 0x0042EF30, Gun_GetNewTarget);
     INJECT(enable, 0x0042F150, Gun_FindTargetPoint);

@@ -2931,7 +2931,7 @@ typedef enum {
 0x0041BA50  0x002A  +       void __cdecl Output_InsertPolygons_I(int16_t *ptr, int32_t clip);
 0x0041BA80  0x01A5  +       void __cdecl Matrix_Interpolate(void);
 0x0041BC30  0x00FC  +       void __cdecl Matrix_InterpolateArm(void);
-0x0041BD30  0x014B  -       void __cdecl Gun_DrawFlash(int32_t weapon_type, int32_t clip);
+0x0041BD30  0x014B  -       void __cdecl Gun_DrawFlash(LARA_GUN_TYPE weapon_type, int32_t clip);
 0x0041BEA0  0x00E8  -       void __cdecl Output_CalculateObjectLighting(const ITEM_INFO *item, const FRAME_INFO *frame);
 0x0041BF90  0x0092  +       int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate);
 0x0041C030  0x007C  +       BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
@@ -3221,30 +3221,30 @@ typedef enum {
 0x0042B8E0  0x031A  +       void __cdecl Lara_GetJointAbsPosition_I(ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
 
 # game/lara1gun.c
-0x0042BC00  0x0033  -R      void __cdecl draw_shotgun_meshes(int32_t weapon_type);
-0x0042BC40  0x002B  -R      void __cdecl undraw_shotgun_meshes(int32_t weapon_type);
-0x0042BC70  0x0070  -R      void __cdecl ready_shotgun(int32_t weapon_type);
-0x0042BCE0  0x00F5  -R      void __cdecl RifleHandler(int32_t weapon_type);
-0x0042BDE0  0x00F2  -R      void __cdecl FireShotgun(void);
+0x0042BC00  0x0033  -R      void __cdecl Gun_Rifle_DrawMeshes(LARA_GUN_TYPE weapon_type);
+0x0042BC40  0x002B  -R      void __cdecl Gun_Rifle_UndrawMeshes(LARA_GUN_TYPE weapon_type);
+0x0042BC70  0x0070  -R      void __cdecl Gun_Rifle_Ready(LARA_GUN_TYPE weapon_type);
+0x0042BCE0  0x00F5  -R      void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);
+0x0042BDE0  0x00F2  -R      void __cdecl Gun_Rifle_Fire(void);
 0x0042BEE0  0x007B  -R      void __cdecl FireM16(int32_t running);
 0x0042BF60  0x0187  -R      void __cdecl FireHarpoon(void);
 0x0042C0F0  0x0344  -R      void __cdecl ControlHarpoonBolt(int16_t item_num);
 0x0042C440  0x00F0  -R      void __cdecl FireRocket(void);
 0x0042C530  0x03FD  -R      void __cdecl ControlRocket(int16_t item_num);
-0x0042C930  0x0166  -R      void __cdecl draw_shotgun(int32_t weapon_type);
-0x0042CAA0  0x0104  -R      void __cdecl undraw_shotgun(int32_t weapon_type);
-0x0042CBB0  0x037E  -R      void __cdecl AnimateShotgun(int32_t weapon_type);
+0x0042C930  0x0166  -R      void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);
+0x0042CAA0  0x0104  -R      void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);
+0x0042CBB0  0x037E  -R      void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);
 
 # game/lara2gun.c
-0x0042CF60  0x004F  -R      void __cdecl set_arm_info(LARA_ARM *arm, int32_t frame);
-0x0042CFB0  0x007C  -R      void __cdecl draw_pistols(int32_t weapon_type);
-0x0042D030  0x0225  -R      void __cdecl undraw_pistols(int32_t weapon_type);
-0x0042D260  0x005C  -R      void __cdecl ready_pistols(int32_t weapon_type);
-0x0042D2C0  0x004E  -R      void __cdecl draw_pistol_meshes(int32_t weapon_type);
-0x0042D310  0x003A  -R      void __cdecl undraw_pistol_mesh_left(int32_t weapon_type);
-0x0042D350  0x003A  -R      void __cdecl undraw_pistol_mesh_right(int32_t weapon_type);
-0x0042D390  0x018C  -R      void __cdecl PistolHandler(int32_t weapon_type);
-0x0042D520  0x0330  -R      void __cdecl AnimatePistols(int32_t weapon_type);
+0x0042CF60  0x004F  -R      void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *arm, int32_t frame);
+0x0042CFB0  0x007C  -R      void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);
+0x0042D030  0x0225  -R      void __cdecl Gun_Pistols_Undraw(LARA_GUN_TYPE weapon_type);
+0x0042D260  0x005C  -R      void __cdecl Gun_Pistols_Ready(LARA_GUN_TYPE weapon_type);
+0x0042D2C0  0x004E  -R      void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);
+0x0042D310  0x003A  -R      void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);
+0x0042D350  0x003A  -R      void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);
+0x0042D390  0x018C  -R      void __cdecl Gun_Pistols_Control(LARA_GUN_TYPE weapon_type);
+0x0042D520  0x0330  -R      void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);
 
 # game/laraclimb.c
 0x0042D850  0x0035  +       void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);
@@ -3265,8 +3265,8 @@ typedef enum {
 0x0042E450  0x0235  +       int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
 
 # game/larafire.c
-0x0042E6A0  0x04E8  -       void __cdecl Gun_Control(void);
-0x0042EC10  0x003B  -R      int32_t __cdecl CheckForHoldingState(int32_t state);
+0x0042E6A0  0x04E8  +       void __cdecl Gun_Control(void);
+0x0042EC10  0x003B  -       int32_t __cdecl Gun_CheckForHoldingState(int32_t state);
 0x0042EC50  0x011C  -       void __cdecl Gun_InitialiseNewWeapon(void);
 0x0042ED90  0x0194  +       void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);
 0x0042EF30  0x021C  +       void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);
@@ -3274,21 +3274,21 @@ typedef enum {
 0x0042F200  0x00C1  -       void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);
 0x0042F2D0  0x0360  +       int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);
 0x0042F640  0x0096  -       void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);
-0x0042F6E0  0x0051  -       void __cdecl Gun_SmashItem(int16_t item_num, int32_t weapon_type);
+0x0042F6E0  0x0051  -       void __cdecl Gun_SmashItem(int16_t item_num, LARA_GUN_TYPE weapon_type);
 0x0042F740  0x003B  -       GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);
 
 # game/laraflare.c
-0x0042F7A0  0x009D  -R      int32_t __cdecl DoFlareLight(XYZ_32 *pos, int32_t flare_age);
-0x0042F840  0x00D3  -R      void __cdecl DoFlareInHand(int32_t flare_age);
-0x0042F920  0x00F8  -R      void __cdecl DrawFlareInAir(ITEM_INFO *item);
-0x0042FA20  0x01D7  -R      void __cdecl CreateFlare(int32_t thrown);
-0x0042FC00  0x004B  -R      void __cdecl set_flare_arm(int32_t frame);
-0x0042FC50  0x0169  -R      void __cdecl draw_flare(void);
-0x0042FDC0  0x0221  -R      void __cdecl undraw_flare(void);
-0x0042FFF0  0x0018  -R      void __cdecl draw_flare_meshes(void);
-0x00430010  0x0018  -R      void __cdecl undraw_flare_meshes(void);
-0x00430030  0x003E  -R      void __cdecl ready_flare(void);
-0x00430070  0x026E  -R      void __cdecl FlareControl(int16_t item_num);
+0x0042F7A0  0x009D  -       int32_t __cdecl Flare_DoLight(XYZ_32 *pos, int32_t flare_age);
+0x0042F840  0x00D3  -       void __cdecl Flare_DoInHand(int32_t flare_age);
+0x0042F920  0x00F8  -       void __cdecl Flare_DrawInAir(ITEM_INFO *item);
+0x0042FA20  0x01D7  -       void __cdecl Flare_Create(int32_t thrown);
+0x0042FC00  0x004B  -       void __cdecl Flare_SetArm(int32_t frame);
+0x0042FC50  0x0169  -       void __cdecl Flare_Draw(void);
+0x0042FDC0  0x0221  -       void __cdecl Flare_Undraw(void);
+0x0042FFF0  0x0018  -       void __cdecl Flare_DrawMeshes(void);
+0x00430010  0x0018  -       void __cdecl Flare_UndrawMeshes(void);
+0x00430030  0x003E  -       void __cdecl Flare_Ready(void);
+0x00430070  0x026E  -       void __cdecl Flare_Control(int16_t item_num);
 
 # game/laramisc.c
 0x004302E0  0x0668  +       void __cdecl Lara_Control(int16_t item_num);

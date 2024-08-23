@@ -334,3 +334,29 @@ void __cdecl Gun_FindTargetPoint(
     target->pos.z = item->pos.z + ((cy * z - sy * x) >> W2V_SHIFT);
     target->room_num = item->room_num;
 }
+
+void __cdecl Gun_HitTarget(
+    ITEM_INFO *const item, const GAME_VECTOR *const hit_pos,
+    const int32_t damage)
+{
+    if (item->hit_points > 0 && item->hit_points <= damage) {
+        g_SaveGame.statistics.kills++;
+    }
+    Item_TakeDamage(item, damage, true);
+
+    if (hit_pos != NULL) {
+        DoBloodSplat(
+            hit_pos->pos.x, hit_pos->pos.y, hit_pos->pos.z, item->speed,
+            item->rot.y, item->room_num);
+    }
+
+    if (!g_IsMonkAngry
+        && (item->object_num == O_MONK_1 || item->object_num == O_MONK_2)) {
+        CREATURE_INFO *const creature = item->data;
+        creature->flags += damage;
+        if ((creature->flags & 0xFFF) > MONK_FRIENDLY_FIRE_THRESHOLD
+            || creature->mood == MOOD_BORED) {
+            g_IsMonkAngry = true;
+        }
+    }
+}

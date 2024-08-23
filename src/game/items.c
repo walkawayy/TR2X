@@ -739,3 +739,14 @@ bool __cdecl Item_IsNearItem(
     const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
     return d.y >= bounds->min_y && d.y <= bounds->max_y + 100;
 }
+
+void Item_TakeDamage(
+    ITEM_INFO *const item, const int16_t damage, const bool hit_status)
+{
+    item->hit_points -= damage;
+    CLAMPL(item->hit_points, 0);
+
+    if (hit_status) {
+        item->hit_status = 1;
+    }
+}

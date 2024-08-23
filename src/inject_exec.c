@@ -744,6 +744,7 @@ static void Inject_Gun(bool enable)
     INJECT(enable, 0x0042F150, Gun_FindTargetPoint);
     INJECT(enable, 0x0042F200, Gun_AimWeapon);
     INJECT(enable, 0x0042F2D0, Gun_FireWeapon);
+    INJECT(enable, 0x0042F640, Gun_HitTarget);
 }
 
 static void Inject_Creature(const bool enable)

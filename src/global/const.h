@@ -182,3 +182,5 @@
 
 #define FLOORDATA_TYPE(t) (t & 0xFF)
 #define FLOORDATA_IS_END(t) ((t & 0x8000) == 0x8000)
+
+#define MONK_FRIENDLY_FIRE_THRESHOLD 10

@@ -2,9 +2,12 @@
 
 #include "game/gun/gun_misc.h"
 #include "game/gun/gun_pistols.h"
+#include "game/lara/lara_control.h"
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+
+#include <assert.h>
 
 typedef enum {
     LF_FL_HOLD_FT = 1,
@@ -314,6 +317,8 @@ void __cdecl Gun_InitialiseNewWeapon(void)
 int32_t __cdecl Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type)
 {
     switch (gun_type) {
+    case LGT_UNARMED:
+        return O_LARA;
     case LGT_PISTOLS:
         return O_LARA_PISTOLS;
     case LGT_MAGNUMS:
@@ -331,4 +336,39 @@ int32_t __cdecl Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type)
     default:
         return NO_OBJECT;
     }
+}
+
+void Gun_SetLaraHandLMesh(const LARA_GUN_TYPE weapon_type)
+{
+    const GAME_OBJECT_ID object_id = Gun_GetWeaponAnim(weapon_type);
+    assert(object_id != NO_OBJECT);
+    Lara_SwapSingleMesh(LM_HAND_L, object_id);
+}
+
+void Gun_SetLaraHandRMesh(const LARA_GUN_TYPE weapon_type)
+{
+    const GAME_OBJECT_ID object_id = Gun_GetWeaponAnim(weapon_type);
+    assert(object_id != NO_OBJECT);
+    Lara_SwapSingleMesh(LM_HAND_R, object_id);
+}
+
+void Gun_SetLaraBackMesh(const LARA_GUN_TYPE weapon_type)
+{
+    const GAME_OBJECT_ID object_id = Gun_GetWeaponAnim(weapon_type);
+    assert(object_id != NO_OBJECT);
+    Lara_SwapSingleMesh(LM_TORSO, object_id);
+}
+
+void Gun_SetLaraHolsterLMesh(const LARA_GUN_TYPE weapon_type)
+{
+    const GAME_OBJECT_ID object_id = Gun_GetWeaponAnim(weapon_type);
+    assert(object_id != NO_OBJECT);
+    Lara_SwapSingleMesh(LM_THIGH_L, object_id);
+}
+
+void Gun_SetLaraHolsterRMesh(const LARA_GUN_TYPE weapon_type)
+{
+    const GAME_OBJECT_ID object_id = Gun_GetWeaponAnim(weapon_type);
+    assert(object_id != NO_OBJECT);
+    Lara_SwapSingleMesh(LM_THIGH_R, object_id);
 }

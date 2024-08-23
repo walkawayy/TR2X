@@ -24,3 +24,5 @@ void __cdecl Lara_Initialise(INIT_LEVEL_TYPE type);
 void __cdecl Lara_InitialiseInventory(int32_t level_num);
 
 void __cdecl Lara_InitialiseMeshes(int32_t level_num);
+
+void Lara_SwapSingleMesh(LARA_MESH mesh, GAME_OBJECT_ID);

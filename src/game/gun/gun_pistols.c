@@ -1,5 +1,6 @@
 #include "game/gun/gun_pistols.h"
 
+#include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
 #include "game/sound.h"
 #include "global/funcs.h"
@@ -121,4 +122,12 @@ void __cdecl Gun_Pistols_Ready(const LARA_GUN_TYPE weapon_type)
     g_Lara.right_arm.rot.x = 0;
     g_Lara.right_arm.rot.y = 0;
     g_Lara.right_arm.rot.z = 0;
+}
+
+void __cdecl Gun_Pistols_DrawMeshes(const LARA_GUN_TYPE weapon_type)
+{
+    Gun_SetLaraHandLMesh(weapon_type);
+    Gun_SetLaraHandRMesh(weapon_type);
+    Gun_SetLaraHolsterLMesh(LGT_UNARMED);
+    Gun_SetLaraHolsterRMesh(LGT_UNARMED);
 }

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.94% (657)</tspan> · <tspan class="known">43.60% (531)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.02% (658)</tspan> · <tspan class="known">43.51% (530)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="402.94" height="6" x="0" y="0" class="decompiled"/>
-<rect width="325.66" height="6" x="402.94" y="0" class="known"/>
+<rect width="403.55" height="6" x="0" y="0" class="decompiled"/>
+<rect width="325.05" height="6" x="403.55" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -592,7 +592,7 @@
 <rect width="12" height="12" x="195" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="210" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="225" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Ready(LARA_GUN_TYPE weapon_type);</title></rect>
-<rect width="12" height="12" x="240" y="150" class="known"><title>void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="12" height="12" x="240" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="255" y="150" class="known"><title>void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="270" y="150" class="known"><title>void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="285" y="150" class="known"><title>void __cdecl Gun_Pistols_Control(LARA_GUN_TYPE weapon_type);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.18%</tspan> · <tspan class="known">44.49%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.21%</tspan> · <tspan class="known">44.47%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="412.21" height="6" x="0" y="0" class="decompiled"/>
-<rect width="332.35" height="6" x="412.21" y="0" class="known"/>
+<rect width="412.38" height="6" x="0" y="0" class="decompiled"/>
+<rect width="332.17" height="6" x="412.38" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2101,7 +2101,7 @@
 <rect width="4.97" height="5.22" x="625.01" y="345.41" class="known"><title>void __cdecl TrapDoorControl(int16_t item_num);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="353.64" class="decompiled"><title>void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);</title></rect>
 <rect width="4.97" height="5.12" x="625.01" y="361.76" class="decompiled"><title>int16_t __cdecl Room_GetDoor(const SECTOR_INFO *sector);</title></rect>
-<rect width="4.97" height="5.12" x="625.01" y="369.88" class="known"><title>void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="4.97" height="5.12" x="625.01" y="369.88" class="decompiled"><title>void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="4.93" height="5.16" x="632.98" y="253.38" class="known"><title>int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);</title></rect>
 <rect width="4.93" height="5.16" x="640.91" y="253.38" class="known"><title>void __cdecl ControlGunShot(int16_t fx_num);</title></rect>
 <rect width="4.93" height="5.16" x="648.84" y="253.38" class="known"><title>JOYSTICK_NODE *__cdecl GetJoystick(GUID *lpGuid);</title></rect>

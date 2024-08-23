@@ -959,3 +959,8 @@ void __cdecl Lara_InitialiseMeshes(const int32_t level_num)
         g_Lara.back_gun = O_LARA_HARPOON;
     }
 }
+
+void Lara_SwapSingleMesh(const LARA_MESH mesh, const GAME_OBJECT_ID object_id)
+{
+    g_Lara.mesh_ptrs[mesh] = g_Meshes[g_Objects[object_id].mesh_idx + mesh];
+}

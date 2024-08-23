@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.60% (665)</tspan> · <tspan class="known">42.94% (523)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.68% (666)</tspan> · <tspan class="known">42.86% (522)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="407.84" height="6" x="0" y="0" class="decompiled"/>
-<rect width="320.76" height="6" x="407.84" y="0" class="known"/>
+<rect width="408.46" height="6" x="0" y="0" class="decompiled"/>
+<rect width="320.14" height="6" x="408.46" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -578,7 +578,7 @@
 <rect width="12" height="12" x="735" y="135" class="decompiled"><title>void __cdecl Gun_Rifle_DrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="0" y="150" class="decompiled"><title>void __cdecl Gun_Rifle_UndrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="15" y="150" class="decompiled"><title>void __cdecl Gun_Rifle_Ready(LARA_GUN_TYPE weapon_type);</title></rect>
-<rect width="12" height="12" x="30" y="150" class="known"><title>void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="12" height="12" x="30" y="150" class="decompiled"><title>void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="45" y="150" class="known"><title>void __cdecl Gun_Rifle_Fire(void);</title></rect>
 <rect width="12" height="12" x="60" y="150" class="known"><title>void __cdecl FireM16(int32_t running);</title></rect>
 <rect width="12" height="12" x="75" y="150" class="known"><title>void __cdecl FireHarpoon(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.65%</tspan> · <tspan class="known">44.02%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.73%</tspan> · <tspan class="known">43.95%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="415.74" height="6" x="0" y="0" class="decompiled"/>
-<rect width="328.82" height="6" x="415.74" y="0" class="known"/>
+<rect width="416.28" height="6" x="0" y="0" class="decompiled"/>
+<rect width="328.28" height="6" x="416.28" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1677,7 +1677,7 @@
 <rect width="11.45" height="11.24" x="480.35" y="237.63" class="known"><title>void __cdecl SkidooCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);</title></rect>
 <rect width="11.45" height="11.19" x="480.35" y="251.87" class="decompiled"><title>void __cdecl Output_DrawPoly_Gouraud(int32_t vtx_count, int32_t red, int32_t green, int32_t blue);</title></rect>
 <rect width="11.45" height="11.07" x="480.35" y="266.06" class="decompiled"><title>int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="11.45" height="11.07" x="480.35" y="280.13" class="known"><title>void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="11.45" height="11.07" x="480.35" y="280.13" class="decompiled"><title>void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="11.45" height="11.07" x="480.35" y="294.20" class="known"><title>int32_t __cdecl AddTexturePage8(int32_t width, int32_t height, const uint8_t *page_buf, int32_t pal_idx);</title></rect>
 <rect width="11.45" height="10.96" x="480.35" y="308.27" class="decompiled"><title>void __cdecl Output_InsertPolygons(const int16_t *obj_ptr, int32_t clip);</title></rect>
 <rect width="11.45" height="10.96" x="480.35" y="322.23" class="known"><title>void __cdecl ControlBubble1(int16_t fx_num);</title></rect>

@@ -147,7 +147,6 @@
 #define ShowGymStatsText ((void __cdecl (*)(char *time_str, int32_t type))0x00426340)
 #define ShowStatsText ((void __cdecl (*)(char *time_str, int32_t type))0x00426520)
 #define ShowEndStatsText ((void __cdecl (*)(void))0x004268C0)
-#define Gun_Rifle_Control ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042BCE0)
 #define Gun_Rifle_Fire ((void __cdecl (*)(void))0x0042BDE0)
 #define FireM16 ((void __cdecl (*)(int32_t running))0x0042BEE0)
 #define FireHarpoon ((void __cdecl (*)(void))0x0042BF60)

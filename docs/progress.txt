@@ -3246,7 +3246,7 @@ typedef enum {
 0x0042D310  0x003A  +       void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);
 0x0042D350  0x003A  +       void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);
 0x0042D390  0x018C  +       void __cdecl Gun_Pistols_Control(LARA_GUN_TYPE weapon_type);
-0x0042D520  0x0330  -R      void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);
+0x0042D520  0x0330  +       void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);
 
 # game/laraclimb.c
 0x0042D850  0x0035  +       void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);

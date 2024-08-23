@@ -7,6 +7,9 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+static bool m_UziRight = false;
+static bool m_UziLeft = false;
+
 void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *const arm, const int32_t frame)
 {
     const int16_t anim_idx = g_Objects[O_LARA_PISTOLS].anim_idx;
@@ -191,4 +194,102 @@ void __cdecl Gun_Pistols_Control(const LARA_GUN_TYPE weapon_type)
         const int32_t z = g_LaraItem->pos.z + (c >> (W2V_SHIFT - 10));
         AddDynamicLight(x, y, z, 12, 11);
     }
+}
+
+void __cdecl Gun_Pistols_Animate(const LARA_GUN_TYPE weapon_type)
+{
+    const WEAPON_INFO *const winfo = &g_Weapons[weapon_type];
+
+    bool sound_already = false;
+    int16_t angles[2];
+
+    int32_t frame_r = g_Lara.right_arm.frame_num;
+    if (!g_Lara.right_arm.lock
+        && (!(g_Input & IN_ACTION) || g_Lara.target != NULL)) {
+        if (frame_r >= LF_G_RECOIL_START && frame_r <= LF_G_RECOIL_END) {
+            frame_r = LF_G_AIM_END;
+        } else if (frame_r >= LF_G_AIM_BEND && frame_r <= LF_G_AIM_END) {
+            frame_r--;
+        }
+        if (m_UziRight) {
+            Sound_Effect(winfo->sample_num + 1, &g_LaraItem->pos, SPM_NORMAL);
+            m_UziRight = false;
+        }
+    } else if (frame_r >= LF_G_AIM_START && frame_r <= LF_G_AIM_EXTEND) {
+        frame_r++;
+    } else if (frame_r == LF_G_AIM_END) {
+        if (g_Input & IN_ACTION) {
+            angles[0] = g_Lara.right_arm.rot.y + g_LaraItem->rot.y;
+            angles[1] = g_Lara.right_arm.rot.x;
+            if (Gun_FireWeapon(
+                    weapon_type, g_Lara.target, g_LaraItem, angles)) {
+                g_Lara.right_arm.flash_gun = winfo->flash_time;
+                Sound_Effect(winfo->sample_num, &g_LaraItem->pos, SPM_NORMAL);
+                sound_already = true;
+                if (weapon_type == LGT_UZIS) {
+                    m_UziRight = true;
+                }
+            }
+            frame_r = LF_G_RECOIL_START;
+        } else if (m_UziRight) {
+            Sound_Effect(winfo->sample_num + 1, &g_LaraItem->pos, SPM_NORMAL);
+            m_UziRight = false;
+        }
+    } else if (frame_r >= LF_G_RECOIL_START && frame_r <= LF_G_RECOIL_END) {
+        frame_r++;
+        if (frame_r == LF_G_RECOIL_START + winfo->recoil_frame) {
+            frame_r = LF_G_AIM_END;
+        }
+        if (weapon_type == LGT_UZIS) {
+            Sound_Effect(winfo->sample_num, &g_LaraItem->pos, SPM_NORMAL);
+            m_UziRight = true;
+        }
+    }
+    Gun_Pistols_SetArmInfo(&g_Lara.right_arm, frame_r);
+
+    int16_t frame_l = g_Lara.left_arm.frame_num;
+    if (!g_Lara.left_arm.lock
+        && (!(g_Input & IN_ACTION) || g_Lara.target != NULL)) {
+        if (frame_l >= LF_G_RECOIL_START && frame_l <= LF_G_RECOIL_END) {
+            frame_l = LF_G_AIM_END;
+        } else if (frame_l >= LF_G_AIM_BEND && frame_l <= LF_G_AIM_END) {
+            frame_l--;
+        }
+        if (m_UziLeft) {
+            Sound_Effect(winfo->sample_num + 1, &g_LaraItem->pos, SPM_NORMAL);
+            m_UziLeft = false;
+        }
+    } else if (frame_l >= LF_G_AIM_START && frame_l <= LF_G_AIM_EXTEND) {
+        frame_l++;
+    } else if (frame_l == LF_G_AIM_END) {
+        if (g_Input & IN_ACTION) {
+            angles[0] = g_Lara.left_arm.rot.y + g_LaraItem->rot.y;
+            angles[1] = g_Lara.left_arm.rot.x;
+            if (Gun_FireWeapon(
+                    weapon_type, g_Lara.target, g_LaraItem, angles)) {
+                g_Lara.left_arm.flash_gun = winfo->flash_time;
+                if (!sound_already) {
+                    Sound_Effect(
+                        winfo->sample_num, &g_LaraItem->pos, SPM_NORMAL);
+                }
+                if (weapon_type == LGT_UZIS) {
+                    m_UziLeft = true;
+                }
+            }
+            frame_l = LF_G_RECOIL_START;
+        } else if (m_UziLeft) {
+            Sound_Effect(winfo->sample_num + 1, &g_LaraItem->pos, SPM_NORMAL);
+            m_UziLeft = false;
+        }
+    } else if (frame_l >= LF_G_RECOIL_START) {
+        frame_l++;
+        if (frame_l == LF_G_RECOIL_START + winfo->recoil_frame) {
+            frame_l = LF_G_AIM_END;
+        }
+        if (weapon_type == LGT_UZIS) {
+            Sound_Effect(winfo->sample_num, &g_LaraItem->pos, SPM_NORMAL);
+            m_UziLeft = true;
+        }
+    }
+    Gun_Pistols_SetArmInfo(&g_Lara.left_arm, frame_l);
 }

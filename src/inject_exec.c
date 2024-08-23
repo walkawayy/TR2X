@@ -745,6 +745,7 @@ static void Inject_Gun(bool enable)
     INJECT(enable, 0x0042D310, Gun_Pistols_UndrawMeshLeft);
     INJECT(enable, 0x0042D350, Gun_Pistols_UndrawMeshRight);
     INJECT(enable, 0x0042D390, Gun_Pistols_Control);
+    INJECT(enable, 0x0042D520, Gun_Pistols_Animate);
     INJECT(enable, 0x0042E6A0, Gun_Control);
     INJECT(enable, 0x0042EC10, Gun_CheckForHoldingState);
     INJECT(enable, 0x0042EC50, Gun_InitialiseNewWeapon);

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.27% (661)</tspan> · <tspan class="known">43.27% (527)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.35% (662)</tspan> · <tspan class="known">43.19% (526)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="405.39" height="6" x="0" y="0" class="decompiled"/>
-<rect width="323.21" height="6" x="405.39" y="0" class="known"/>
+<rect width="406" height="6" x="0" y="0" class="decompiled"/>
+<rect width="322.60" height="6" x="406" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -596,7 +596,7 @@
 <rect width="12" height="12" x="255" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="270" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="285" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Control(LARA_GUN_TYPE weapon_type);</title></rect>
-<rect width="12" height="12" x="300" y="150" class="known"><title>void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="12" height="12" x="300" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="315" y="150" class="decompiled"><title>void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="330" y="150" class="decompiled"><title>void __cdecl Lara_State_ClimbRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12" height="12" x="345" y="150" class="decompiled"><title>void __cdecl Lara_State_ClimbStance(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.36%</tspan> · <tspan class="known">44.32%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.59%</tspan> · <tspan class="known">44.08%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="413.50" height="6" x="0" y="0" class="decompiled"/>
-<rect width="331.06" height="6" x="413.50" y="0" class="known"/>
+<rect width="415.29" height="6" x="0" y="0" class="decompiled"/>
+<rect width="329.27" height="6" x="415.29" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1403,7 +1403,7 @@
 <rect width="22.47" height="24.15" x="294.58" y="192.05" class="decompiled"><title>void __fastcall Output_WGTMapA(int32_t y0, int32_t y1, uint8_t *tex_page); // actually, __watcall, which is esoteric and rarely supported</title></rect>
 <rect width="22.47" height="24.05" x="294.58" y="219.20" class="decompiled"><title>void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="22.47" height="23.86" x="294.58" y="246.25" class="decompiled"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
-<rect width="22.47" height="23.60" x="294.58" y="273.11" class="known"><title>void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="22.47" height="23.60" x="294.58" y="273.11" class="decompiled"><title>void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="22.47" height="23.50" x="294.58" y="299.71" class="known"><title>void __cdecl CheckCheatMode(void);</title></rect>
 <rect width="22.47" height="22.91" x="294.58" y="326.21" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG3(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
 <rect width="22.47" height="22.88" x="294.58" y="352.12" class="decompiled"><title>void __cdecl Lara_GetJointAbsPosition_I(ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);</title></rect>

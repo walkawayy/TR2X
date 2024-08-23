@@ -10,3 +10,4 @@ void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);
 void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);
 void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);
 void __cdecl Gun_Pistols_Control(LARA_GUN_TYPE weapon_type);
+void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);

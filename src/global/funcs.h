@@ -160,7 +160,6 @@
 #define Gun_Rifle_Draw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042C930)
 #define Gun_Rifle_Undraw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042CAA0)
 #define Gun_Rifle_Animate ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042CBB0)
-#define Gun_Pistols_Animate ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D520)
 #define Flare_DoLight ((int32_t __cdecl (*)(XYZ_32 *pos, int32_t flare_age))0x0042F7A0)
 #define Flare_DoInHand ((void __cdecl (*)(int32_t flare_age))0x0042F840)
 #define Flare_DrawInAir ((void __cdecl (*)(ITEM_INFO *item))0x0042F920)

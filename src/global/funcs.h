@@ -160,7 +160,6 @@
 #define Gun_Rifle_Draw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042C930)
 #define Gun_Rifle_Undraw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042CAA0)
 #define Gun_Rifle_Animate ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042CBB0)
-#define Gun_Pistols_Undraw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D030)
 #define Gun_Pistols_Ready ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D260)
 #define Gun_Pistols_DrawMeshes ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D2C0)
 #define Gun_Pistols_UndrawMeshLeft ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042D310)

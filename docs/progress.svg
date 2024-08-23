@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.69% (654)</tspan> · <tspan class="known">43.84% (534)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">53.78% (655)</tspan> · <tspan class="known">43.76% (533)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="401.10" height="6" x="0" y="0" class="decompiled"/>
-<rect width="327.50" height="6" x="401.10" y="0" class="known"/>
+<rect width="401.71" height="6" x="0" y="0" class="decompiled"/>
+<rect width="326.89" height="6" x="401.71" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -589,7 +589,7 @@
 <rect width="12" height="12" x="150" y="150" class="known"><title>void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="165" y="150" class="known"><title>void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="180" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *arm, int32_t frame);</title></rect>
-<rect width="12" height="12" x="195" y="150" class="known"><title>void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="12" height="12" x="195" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="210" y="150" class="known"><title>void __cdecl Gun_Pistols_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="225" y="150" class="known"><title>void __cdecl Gun_Pistols_Ready(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="240" y="150" class="known"><title>void __cdecl Gun_Pistols_DrawMeshes(LARA_GUN_TYPE weapon_type);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.96%</tspan> · <tspan class="known">44.71%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">54.99%</tspan> · <tspan class="known">44.68%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="410.54" height="6" x="0" y="0" class="decompiled"/>
-<rect width="334.02" height="6" x="410.54" y="0" class="known"/>
+<rect width="410.81" height="6" x="0" y="0" class="decompiled"/>
+<rect width="333.75" height="6" x="410.81" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1946,7 +1946,7 @@
 <rect width="7.43" height="6.87" x="578.55" y="358.26" class="decompiled"><title>int32_t __cdecl Item_GlobalReplace(GAME_OBJECT_ID src_object_num, GAME_OBJECT_ID dst_object_num);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="368.13" class="decompiled"><title>void __cdecl Lara_State_StepRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.23" height="7.06" x="588.98" y="206.76" class="decompiled"><title>void __cdecl Lara_State_StepLeft(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="7.23" height="7.06" x="599.21" y="206.76" class="known"><title>void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="7.23" height="7.06" x="599.21" y="206.76" class="decompiled"><title>void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="7.23" height="7.06" x="609.45" y="206.76" class="known"><title>void __cdecl InitialiseDyingMonk(int16_t item_num);</title></rect>
 <rect width="7.23" height="7.06" x="619.68" y="206.76" class="known"><title>void __cdecl SkidooExplode(ITEM_INFO *skidoo);</title></rect>
 <rect width="7.23" height="7.06" x="629.91" y="206.76" class="decompiled"><title>int32_t __cdecl WinGameStart(void);</title></rect>

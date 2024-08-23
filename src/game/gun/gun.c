@@ -1,6 +1,7 @@
 #include "game/gun/gun.h"
 
 #include "game/gun/gun_misc.h"
+#include "game/gun/gun_pistols.h"
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"

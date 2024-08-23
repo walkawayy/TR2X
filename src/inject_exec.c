@@ -737,6 +737,8 @@ static void Inject_Lara_Col(const bool enable)
 
 static void Inject_Gun(bool enable)
 {
+    INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
+    INJECT(enable, 0x0042CFB0, Gun_Pistols_Draw);
     INJECT(enable, 0x0042E6A0, Gun_Control);
     INJECT(enable, 0x0042EC10, Gun_CheckForHoldingState);
     INJECT(enable, 0x0042EC50, Gun_InitialiseNewWeapon);
@@ -748,7 +750,6 @@ static void Inject_Gun(bool enable)
     INJECT(enable, 0x0042F640, Gun_HitTarget);
     INJECT(enable, 0x0042F6E0, Gun_SmashItem);
     INJECT(enable, 0x0042F740, Gun_GetWeaponAnim);
-    INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
 }
 
 static void Inject_Creature(const bool enable)

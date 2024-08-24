@@ -1,5 +1,6 @@
 #include "game/shell.h"
 
+#include "config.h"
 #include "decomp/decomp.h"
 #include "game/console.h"
 #include "game/input.h"
@@ -21,6 +22,7 @@ BOOL __cdecl Shell_Main(void)
     g_GameSizer = 1.0;
     g_GameSizerCopy = 1.0;
 
+    Config_Read();
     if (!S_InitialiseSystem()) {
         return false;
     }
@@ -60,11 +62,13 @@ BOOL __cdecl Shell_Main(void)
 
     bool is_frontend_fail = GF_DoFrontEndSequence();
     if (g_IsGameToExit) {
+        Config_Write();
         return true;
     }
 
     if (is_frontend_fail == 1) {
         strcpy(g_ErrorMessage, "GameMain: failed in GF_DoFrontEndSequence()");
+        Config_Write();
         return false;
     }
 
@@ -87,6 +91,7 @@ BOOL __cdecl Shell_Main(void)
                         g_ErrorMessage,
                         "GameMain: STARTGAME with invalid level number (%d)",
                         gf_param);
+                    Config_Write();
                     return false;
                 }
                 gf_option = GF_DoLevelSequence(gf_param, 1);
@@ -100,6 +105,7 @@ BOOL __cdecl Shell_Main(void)
                     g_ErrorMessage,
                     "GameMain: STARTSAVEDGAME with invalid level number (%d)",
                     g_SaveGame.current_level);
+                Config_Write();
                 return false;
             }
             gf_option = GF_DoLevelSequence(g_SaveGame.current_level, 2);
@@ -126,6 +132,7 @@ BOOL __cdecl Shell_Main(void)
                     strcpy(
                         g_ErrorMessage,
                         "GameMain Failed: Title disabled & no replacement");
+                    Config_Write();
                     return false;
                 }
                 gf_option = g_GameFlow.title_replace;
@@ -143,6 +150,7 @@ BOOL __cdecl Shell_Main(void)
 
     S_SaveSettings();
     GameBuf_Shutdown();
+    Config_Write();
     return true;
 }
 

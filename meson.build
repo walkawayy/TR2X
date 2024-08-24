@@ -70,6 +70,8 @@ exe_sources = [
 
 dll_sources = [
   init,
+  'src/config.c',
+  'src/config_map.c',
   'src/decomp/decomp.c',
   'src/game/background.c',
   'src/game/box.c',

@@ -3,6 +3,9 @@
 #include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
 #include "game/math.h"
+#include "game/random.h"
+#include "game/sound.h"
+#include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -73,5 +76,31 @@ void __cdecl Gun_Rifle_Control(const LARA_GUN_TYPE weapon_type)
         const int32_t y = g_LaraItem->pos.y - WALL_L / 2;
         const int32_t z = g_LaraItem->pos.z + (c >> (W2V_SHIFT - 10));
         AddDynamicLight(x, y, z, 12, 11);
+    }
+}
+
+void __cdecl Gun_Rifle_FireShotgun(void)
+{
+    bool fired = false;
+
+    int16_t angles[2];
+    angles[0] = g_Lara.left_arm.rot.y + g_LaraItem->rot.y;
+    angles[1] = g_Lara.left_arm.rot.x;
+
+    for (int32_t i = 0; i < SHOTGUN_AMMO_CLIP; i++) {
+        int16_t dangles[2];
+        dangles[0] = angles[0]
+            + SHOTGUN_PELLET_SCATTER * (Random_GetControl() - 0x4000) / 0x10000;
+        dangles[1] = angles[1]
+            + SHOTGUN_PELLET_SCATTER * (Random_GetControl() - 0x4000) / 0x10000;
+        if (Gun_FireWeapon(LGT_SHOTGUN, g_Lara.target, g_LaraItem, dangles)) {
+            fired = true;
+        }
+    }
+
+    if (fired) {
+        g_Lara.right_arm.flash_gun = g_Weapons[LGT_SHOTGUN].flash_time;
+        Sound_Effect(
+            g_Weapons[LGT_SHOTGUN].sample_num, &g_LaraItem->pos, SPM_NORMAL);
     }
 }

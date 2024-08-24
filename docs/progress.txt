@@ -3227,15 +3227,15 @@ typedef enum {
 0x0042BC40  0x002B  +       void __cdecl Gun_Rifle_UndrawMeshes(LARA_GUN_TYPE weapon_type);
 0x0042BC70  0x0070  +       void __cdecl Gun_Rifle_Ready(LARA_GUN_TYPE weapon_type);
 0x0042BCE0  0x00F5  +       void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);
-0x0042BDE0  0x00F2  -R      void __cdecl Gun_Rifle_Fire(void);
-0x0042BEE0  0x007B  -R      void __cdecl FireM16(int32_t running);
-0x0042BF60  0x0187  -R      void __cdecl FireHarpoon(void);
-0x0042C0F0  0x0344  -R      void __cdecl ControlHarpoonBolt(int16_t item_num);
-0x0042C440  0x00F0  -R      void __cdecl FireRocket(void);
-0x0042C530  0x03FD  -R      void __cdecl ControlRocket(int16_t item_num);
-0x0042C930  0x0166  -R      void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);
-0x0042CAA0  0x0104  -R      void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);
-0x0042CBB0  0x037E  -R      void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);
+0x0042BDE0  0x00F2  +       void __cdecl Gun_Rifle_FireShotgun(void);
+0x0042BEE0  0x007B  -       void __cdecl Gun_Rifle_FireM16(int32_t running);
+0x0042BF60  0x0187  -       void __cdecl Gun_Rifle_FireHarpoon(void);
+0x0042C0F0  0x0344  -       void __cdecl HarpoonBolt_Control(int16_t item_num);
+0x0042C440  0x00F0  -       void __cdecl Gun_Rifle_FireRocket(void);
+0x0042C530  0x03FD  -       void __cdecl Rocket_Control(int16_t item_num);
+0x0042C930  0x0166  -       void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);
+0x0042CAA0  0x0104  -       void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);
+0x0042CBB0  0x037E  -       void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);
 
 # game/lara2gun.c
 0x0042CF60  0x004F  +       void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *arm, int32_t frame);

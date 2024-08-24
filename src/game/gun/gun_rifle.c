@@ -104,3 +104,22 @@ void __cdecl Gun_Rifle_FireShotgun(void)
             g_Weapons[LGT_SHOTGUN].sample_num, &g_LaraItem->pos, SPM_NORMAL);
     }
 }
+
+void __cdecl Gun_Rifle_FireM16(const bool running)
+{
+    int16_t angles[2];
+    angles[0] = g_Lara.left_arm.rot.y + g_LaraItem->rot.y;
+    angles[1] = g_Lara.left_arm.rot.x;
+
+    if (running) {
+        g_Weapons[O_LARA_M16].shot_accuracy = PHD_DEGREE * 12;
+        g_Weapons[O_LARA_M16].damage = 1;
+    } else {
+        g_Weapons[O_LARA_M16].shot_accuracy = PHD_DEGREE * 4;
+        g_Weapons[O_LARA_M16].damage = 3;
+    }
+
+    if (Gun_FireWeapon(LGT_M16, g_Lara.target, g_LaraItem, angles)) {
+        g_Lara.right_arm.flash_gun = g_Weapons[LGT_M16].flash_time;
+    }
+}

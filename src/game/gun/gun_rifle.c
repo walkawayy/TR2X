@@ -1,5 +1,6 @@
 #include "game/gun/gun_rifle.h"
 
+#include "config.h"
 #include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
 #include "game/math.h"
@@ -111,12 +112,14 @@ void __cdecl Gun_Rifle_FireM16(const bool running)
     angles[0] = g_Lara.left_arm.rot.y + g_LaraItem->rot.y;
     angles[1] = g_Lara.left_arm.rot.x;
 
-    if (running) {
-        g_Weapons[O_LARA_M16].shot_accuracy = PHD_DEGREE * 12;
-        g_Weapons[O_LARA_M16].damage = 1;
-    } else {
-        g_Weapons[O_LARA_M16].shot_accuracy = PHD_DEGREE * 4;
-        g_Weapons[O_LARA_M16].damage = 3;
+    if (g_Config.gameplay.fix_m16_accuracy) {
+        if (running) {
+            g_Weapons[LGT_M16].shot_accuracy = PHD_DEGREE * 12;
+            g_Weapons[LGT_M16].damage = 1;
+        } else {
+            g_Weapons[LGT_M16].shot_accuracy = PHD_DEGREE * 4;
+            g_Weapons[LGT_M16].damage = 3;
+        }
     }
 
     if (Gun_FireWeapon(LGT_M16, g_Lara.target, g_LaraItem, angles)) {

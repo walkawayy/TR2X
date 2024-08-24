@@ -1,7 +1,8 @@
 ## [Unreleased](https://github.com/LostArtefacts/TR2X/compare/stable...develop) - ××××-××-××
+- added an option to fix M16 accuracy while running (#45)
 - fixed sounds not playing under certain circumstances (#113, regression from 0.2)
-- fixed the excessive pitch and playback speed correction for music files with sampling rate other than 44100 Hz (LostArtefacts/TR1X#1417)
-- fixed a crash potential with certain music files
+- fixed the excessive pitch and playback speed correction for music files with sampling rate other than 44100 Hz (LostArtefacts/TR1X#1417, regression from 0.2)
+- fixed a crash potential with certain music files (regression from 0.2)
 - fixed enemy movement patterns in demo 1 and demo 3 (#98, regression from 0.1)
 - fixed underwater creatures dying (#98, regression from 0.1)
 - fixed a crash when spawning enemy drops (#125, regression from 0.1)

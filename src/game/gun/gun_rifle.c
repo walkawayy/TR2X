@@ -3,12 +3,16 @@
 #include "config.h"
 #include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
+#include "game/items.h"
+#include "game/lara/lara_misc.h"
 #include "game/math.h"
 #include "game/random.h"
 #include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+
+#include <libtrx/utils.h>
 
 void __cdecl Gun_Rifle_DrawMeshes(const LARA_GUN_TYPE weapon_type)
 {
@@ -125,4 +129,58 @@ void __cdecl Gun_Rifle_FireM16(const bool running)
     if (Gun_FireWeapon(LGT_M16, g_Lara.target, g_LaraItem, angles)) {
         g_Lara.right_arm.flash_gun = g_Weapons[LGT_M16].flash_time;
     }
+}
+
+void __cdecl Gun_Rifle_FireHarpoon(void)
+{
+    if (g_Lara.harpoon_ammo.ammo <= 0) {
+        return;
+    }
+
+    const int16_t item_num = Item_Create();
+    if (item_num == NO_ITEM) {
+        return;
+    }
+
+    ITEM_INFO *const item = &g_Items[item_num];
+    item->object_num = O_HARPOON_BOLT;
+    item->room_num = g_LaraItem->room_num;
+
+    XYZ_32 offset = {
+        .x = -2,
+        .y = 373,
+        .z = 77,
+    };
+
+    Lara_GetJointAbsPosition(&offset, LM_HAND_R);
+    item->pos.x = offset.x;
+    item->pos.y = offset.y;
+    item->pos.z = offset.z;
+    Item_Initialise(item_num);
+
+    if (g_Lara.target != NULL) {
+        GAME_VECTOR lara_vec;
+        Gun_FindTargetPoint(g_Lara.target, &lara_vec);
+        const int32_t dx = lara_vec.pos.x - item->pos.x;
+        const int32_t dz = lara_vec.pos.z - item->pos.z;
+        const int32_t dy = lara_vec.pos.y - item->pos.y;
+        const int32_t dxz = Math_Sqrt(SQUARE(dx) + SQUARE(dz));
+        item->rot.y = Math_Atan(dz, dx);
+        item->rot.x = -Math_Atan(dxz, dy);
+        item->rot.z = 0;
+    } else {
+        item->rot.x = g_Lara.left_arm.rot.x + g_LaraItem->rot.x;
+        item->rot.y = g_Lara.left_arm.rot.y + g_LaraItem->rot.y;
+        item->rot.z = 0;
+    }
+
+    item->fall_speed =
+        (-HARPOON_BOLT_SPEED * Math_Sin(item->rot.x)) >> W2V_SHIFT;
+    item->speed = (HARPOON_BOLT_SPEED * Math_Cos(item->rot.x)) >> W2V_SHIFT;
+    Item_AddActive(item_num);
+
+    if (!g_SaveGame.bonus_flag) {
+        g_Lara.harpoon_ammo.ammo--;
+    }
+    g_SaveGame.statistics.shots++;
 }

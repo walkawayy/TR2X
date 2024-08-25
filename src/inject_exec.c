@@ -740,11 +740,12 @@ static void Inject_Gun(bool enable)
 {
     INJECT(enable, 0x0042BC00, Gun_Rifle_DrawMeshes);
     INJECT(enable, 0x0042BC40, Gun_Rifle_UndrawMeshes);
-    INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
     INJECT(enable, 0x0042BC70, Gun_Rifle_Ready);
     INJECT(enable, 0x0042BCE0, Gun_Rifle_Control);
     INJECT(enable, 0x0042BDE0, Gun_Rifle_FireShotgun);
     INJECT(enable, 0x0042BEE0, Gun_Rifle_FireM16);
+    INJECT(enable, 0x0042BF60, Gun_Rifle_FireHarpoon);
+    INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
     INJECT(enable, 0x0042CFB0, Gun_Pistols_Draw);
     INJECT(enable, 0x0042D030, Gun_Pistols_Undraw);
     INJECT(enable, 0x0042D260, Gun_Pistols_Ready);

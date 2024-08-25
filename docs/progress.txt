@@ -3229,7 +3229,7 @@ typedef enum {
 0x0042BCE0  0x00F5  +       void __cdecl Gun_Rifle_Control(LARA_GUN_TYPE weapon_type);
 0x0042BDE0  0x00F2  +       void __cdecl Gun_Rifle_FireShotgun(void);
 0x0042BEE0  0x007B  +       void __cdecl Gun_Rifle_FireM16(bool running);
-0x0042BF60  0x0187  -       void __cdecl Gun_Rifle_FireHarpoon(void);
+0x0042BF60  0x0187  +       void __cdecl Gun_Rifle_FireHarpoon(void);
 0x0042C0F0  0x0344  -       void __cdecl HarpoonBolt_Control(int16_t item_num);
 0x0042C440  0x00F0  -       void __cdecl Gun_Rifle_FireRocket(void);
 0x0042C530  0x03FD  -       void __cdecl Rocket_Control(int16_t item_num);

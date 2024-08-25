@@ -2,7 +2,7 @@
 
 #include "global/types.h"
 
-typedef enum LARA_GUN_ANIMATION_FRAME {
+typedef enum {
     LF_G_AIM_START = 0,
     LF_G_AIM_BEND = 1,
     LF_G_AIM_EXTEND = 3,
@@ -15,6 +15,19 @@ typedef enum LARA_GUN_ANIMATION_FRAME {
     LF_G_RECOIL_START = 24,
     LF_G_RECOIL_END = 32,
 } LARA_GUN_ANIMATION_FRAME;
+
+typedef enum {
+    LA_G_AIM = 0,
+    LA_G_DRAW = 1,
+    LA_G_RECOIL = 2,
+    LA_G_UNDRAW = 3,
+    LA_G_UNAIM = 4,
+    LA_G_RELOAD = 5,
+    LA_G_UAIM = 6,
+    LA_G_UUNAIM = 7,
+    LA_G_URECOIL = 8,
+    LA_G_SURF_UNDRAW = 9,
+} LARA_GUN_ANIMATION;
 
 int32_t __cdecl Gun_CheckForHoldingState(const LARA_STATE state);
 void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);

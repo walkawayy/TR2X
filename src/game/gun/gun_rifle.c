@@ -14,6 +14,9 @@
 
 #include <libtrx/utils.h>
 
+static bool m_M16Firing = false;
+static bool m_HarpoonFired = false;
+
 void __cdecl Gun_Rifle_DrawMeshes(const LARA_GUN_TYPE weapon_type)
 {
     Gun_SetLaraHandRMesh(weapon_type);
@@ -292,6 +295,140 @@ void __cdecl Gun_Rifle_Undraw(const LARA_GUN_TYPE weapon_type)
         Gun_Rifle_UndrawMeshes(weapon_type);
     }
 
+    g_Lara.left_arm.anim_num = item->anim_num;
+    g_Lara.left_arm.frame_base = g_Anims[item->anim_num].frame_ptr;
+    g_Lara.left_arm.frame_num =
+        item->frame_num - g_Anims[item->anim_num].frame_base;
+    g_Lara.right_arm.anim_num = item->anim_num;
+    g_Lara.right_arm.frame_base = g_Anims[item->anim_num].frame_ptr;
+    g_Lara.right_arm.frame_num =
+        item->frame_num - g_Anims[item->anim_num].frame_base;
+}
+
+void __cdecl Gun_Rifle_Animate(const LARA_GUN_TYPE weapon_type)
+{
+    const bool running = weapon_type == LGT_M16 && g_LaraItem->speed != 0;
+    ITEM_INFO *const item = &g_Items[g_Lara.weapon_item];
+
+    switch (item->current_anim_state) {
+    case LA_G_AIM:
+        m_M16Firing = false;
+        if (m_HarpoonFired) {
+            item->goal_anim_state = LA_G_RELOAD;
+            m_HarpoonFired = false;
+        } else if (g_Lara.water_status == LWS_UNDERWATER || running) {
+            item->goal_anim_state = LA_G_UAIM;
+        } else if (
+            ((g_Input & IN_ACTION) && g_Lara.target == NULL)
+            || g_Lara.left_arm.lock) {
+            item->goal_anim_state = LA_G_RECOIL;
+        } else {
+            item->goal_anim_state = LA_G_UNAIM;
+        }
+        break;
+
+    case LA_G_UAIM:
+        m_M16Firing = false;
+        if (m_HarpoonFired) {
+            item->goal_anim_state = LA_G_RELOAD;
+            m_HarpoonFired = false;
+        } else if (g_Lara.water_status != LWS_UNDERWATER && !running) {
+            item->goal_anim_state = LA_G_AIM;
+        } else if (
+            ((g_Input & IN_ACTION) && g_Lara.target == NULL)
+            || g_Lara.left_arm.lock) {
+            item->goal_anim_state = LA_G_URECOIL;
+        } else {
+            item->goal_anim_state = LA_G_UUNAIM;
+        }
+        break;
+
+    case LA_G_RECOIL:
+        if (item->frame_num - g_Anims[item->anim_num].frame_base == 0) {
+            item->goal_anim_state = LA_G_UNAIM;
+            if (g_Lara.water_status != LWS_UNDERWATER && !running
+                && !m_HarpoonFired) {
+                if (g_Input & IN_ACTION) {
+                    if (g_Lara.target == NULL || g_Lara.left_arm.lock) {
+                        switch (weapon_type) {
+                        case LGT_HARPOON:
+                            Gun_Rifle_FireHarpoon();
+                            if ((g_Lara.harpoon_ammo.ammo % HARPOON_RECOIL)
+                                == 0) {
+                                m_HarpoonFired = true;
+                            }
+                            break;
+
+                        case LGT_GRENADE:
+                            Gun_Rifle_FireGrenade();
+                            break;
+
+                        case LGT_M16:
+                            Gun_Rifle_FireM16(false);
+                            Sound_Effect(
+                                SFX_M16_FIRE, &g_LaraItem->pos, SPM_NORMAL);
+                            m_M16Firing = true;
+                            break;
+
+                        default:
+                            Gun_Rifle_FireShotgun();
+                            break;
+                        }
+
+                        item->goal_anim_state = LA_G_RECOIL;
+                    }
+                } else if (g_Lara.left_arm.lock) {
+                    item->goal_anim_state = LA_G_AIM;
+                }
+            }
+
+            if (item->goal_anim_state != LA_G_RECOIL && m_M16Firing) {
+                Sound_Effect(SFX_M16_STOP, &g_LaraItem->pos, SPM_NORMAL);
+                m_M16Firing = false;
+            }
+        } else if (m_M16Firing) {
+            Sound_Effect(SFX_M16_FIRE, &g_LaraItem->pos, SPM_NORMAL);
+        } else if (
+            weapon_type == LGT_SHOTGUN && !(g_Input & IN_ACTION)
+            && !g_Lara.left_arm.lock) {
+            item->goal_anim_state = LA_G_UNAIM;
+        }
+        break;
+
+    case LA_G_URECOIL:
+        if (item->frame_num - g_Anims[item->anim_num].frame_base == 0) {
+            item->goal_anim_state = LA_G_UUNAIM;
+            if ((g_Lara.water_status == LWS_UNDERWATER || running)
+                && !m_HarpoonFired) {
+                if (g_Input & IN_ACTION) {
+                    if (g_Lara.target == NULL || g_Lara.left_arm.lock) {
+                        if (weapon_type == LGT_HARPOON) {
+                            Gun_Rifle_FireHarpoon();
+                            if ((g_Lara.harpoon_ammo.ammo % HARPOON_RECOIL)
+                                == 0) {
+                                m_HarpoonFired = true;
+                            }
+                        } else {
+                            Gun_Rifle_FireM16(true);
+                        }
+                        item->goal_anim_state = LA_G_URECOIL;
+                    }
+                } else if (g_Lara.left_arm.lock) {
+                    item->goal_anim_state = LA_G_UAIM;
+                }
+            }
+        }
+
+        if (weapon_type == LGT_M16 && item->goal_anim_state == LA_G_URECOIL) {
+            Sound_Effect(SFX_M16_FIRE, &g_LaraItem->pos, SPM_NORMAL);
+        }
+        break;
+
+    default:
+        break;
+    }
+
+    Item_Animate(item);
     g_Lara.left_arm.anim_num = item->anim_num;
     g_Lara.left_arm.frame_base = g_Anims[item->anim_num].frame_ptr;
     g_Lara.left_arm.frame_num =

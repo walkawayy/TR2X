@@ -3235,7 +3235,7 @@ typedef enum {
 0x0042C530  0x03FD  -       void __cdecl Rocket_Control(int16_t item_num);
 0x0042C930  0x0166  +       void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);
 0x0042CAA0  0x0104  +       void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);
-0x0042CBB0  0x037E  -       void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);
+0x0042CBB0  0x037E  +       void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);
 
 # game/lara2gun.c
 0x0042CF60  0x004F  +       void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *arm, int32_t frame);

@@ -12,3 +12,4 @@ void __cdecl Gun_Rifle_FireHarpoon(void);
 void __cdecl Gun_Rifle_FireGrenade(void);
 void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);
 void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);
+void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);

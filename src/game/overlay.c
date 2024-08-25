@@ -179,7 +179,7 @@ void __cdecl Overlay_DrawAmmoInfo(void)
         sprintf(buffer, "%5d", g_Lara.m16_ammo.ammo);
         break;
 
-    case LGT_ROCKET:
+    case LGT_GRENADE:
         sprintf(buffer, "%5d", g_Lara.grenade_ammo.ammo);
         break;
 

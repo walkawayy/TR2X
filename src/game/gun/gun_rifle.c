@@ -184,3 +184,42 @@ void __cdecl Gun_Rifle_FireHarpoon(void)
     }
     g_SaveGame.statistics.shots++;
 }
+
+void __cdecl Gun_Rifle_FireGrenade(void)
+{
+    if (g_Lara.grenade_ammo.ammo <= 0) {
+        return;
+    }
+
+    const int16_t item_num = Item_Create();
+    if (item_num == NO_ITEM) {
+        return;
+    }
+
+    ITEM_INFO *const item = &g_Items[item_num];
+    item->object_num = O_GRENADE;
+    item->room_num = g_LaraItem->room_num;
+
+    XYZ_32 offset = {
+        .x = -2,
+        .y = 373,
+        .z = 77,
+    };
+    Lara_GetJointAbsPosition(&offset, LM_HAND_R);
+    item->pos.x = offset.x;
+    item->pos.y = offset.y;
+    item->pos.z = offset.z;
+    Item_Initialise(item_num);
+
+    item->rot.x = g_Lara.left_arm.rot.x + g_LaraItem->rot.x;
+    item->rot.y = g_Lara.left_arm.rot.y + g_LaraItem->rot.y;
+    item->rot.z = 0;
+    item->speed = GRENADE_SPEED;
+    item->fall_speed = 0;
+    Item_AddActive(item_num);
+
+    if (!g_SaveGame.bonus_flag) {
+        g_Lara.grenade_ammo.ammo--;
+    }
+    g_SaveGame.statistics.shots++;
+}

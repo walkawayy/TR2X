@@ -170,7 +170,7 @@ bool __cdecl S_Input_Update(void)
     } else if (KEY_DOWN(DIK_6) && Inv_RequestItem(O_M16_OPTION)) {
         g_Lara.request_gun_type = LGT_M16;
     } else if (KEY_DOWN(DIK_7) && Inv_RequestItem(O_GRENADE_OPTION)) {
-        g_Lara.request_gun_type = LGT_ROCKET;
+        g_Lara.request_gun_type = LGT_GRENADE;
     } else if (KEY_DOWN(DIK_0) && Inv_RequestItem(O_FLARES_OPTION)) {
         g_Lara.request_gun_type = LGT_FLARE;
     }

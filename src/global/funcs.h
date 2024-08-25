@@ -148,7 +148,6 @@
 #define ShowStatsText ((void __cdecl (*)(char *time_str, int32_t type))0x00426520)
 #define ShowEndStatsText ((void __cdecl (*)(void))0x004268C0)
 #define HarpoonBolt_Control ((void __cdecl (*)(int16_t item_num))0x0042C0F0)
-#define Gun_Rifle_FireRocket ((void __cdecl (*)(void))0x0042C440)
 #define Rocket_Control ((void __cdecl (*)(int16_t item_num))0x0042C530)
 #define Gun_Rifle_Draw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042C930)
 #define Gun_Rifle_Undraw ((void __cdecl (*)(LARA_GUN_TYPE weapon_type))0x0042CAA0)

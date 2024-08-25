@@ -281,7 +281,7 @@ void __cdecl Lara_Draw(const ITEM_INFO *const item)
 
     case LGT_SHOTGUN:
     case LGT_M16:
-    case LGT_ROCKET:
+    case LGT_GRENADE:
     case LGT_HARPOON:
         Matrix_Push();
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
@@ -584,7 +584,7 @@ void __cdecl Lara_Draw_I(
 
     case LGT_SHOTGUN:
     case LGT_M16:
-    case LGT_ROCKET:
+    case LGT_GRENADE:
     case LGT_HARPOON:
         Matrix_Push_I();
         Matrix_TranslateRel_I(bone[29], bone[30], bone[31]);

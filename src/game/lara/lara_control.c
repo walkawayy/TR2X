@@ -646,7 +646,7 @@ void __cdecl Lara_UseItem(const GAME_OBJECT_ID object_num)
 
     case O_GRENADE_ITEM:
     case O_GRENADE_OPTION:
-        g_Lara.request_gun_type = LGT_ROCKET;
+        g_Lara.request_gun_type = LGT_GRENADE;
         break;
 
     case O_SMALL_MEDIPACK_ITEM:
@@ -941,7 +941,7 @@ void __cdecl Lara_InitialiseMeshes(const int32_t level_num)
         g_Lara.back_gun = O_LARA_M16;
         return;
 
-    case LGT_ROCKET:
+    case LGT_GRENADE:
         g_Lara.back_gun = O_LARA_GRENADE;
         return;
 

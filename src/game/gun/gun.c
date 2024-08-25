@@ -140,7 +140,7 @@ void __cdecl Gun_Control(void)
 
         case LGT_SHOTGUN:
         case LGT_M16:
-        case LGT_ROCKET:
+        case LGT_GRENADE:
         case LGT_HARPOON:
             if (g_Camera.type != CAM_CINEMATIC && g_Camera.type != CAM_LOOK) {
                 g_Camera.type = CAM_COMBAT;
@@ -171,7 +171,7 @@ void __cdecl Gun_Control(void)
 
         case LGT_SHOTGUN:
         case LGT_M16:
-        case LGT_ROCKET:
+        case LGT_GRENADE:
         case LGT_HARPOON:
             Gun_Rifle_Undraw(g_Lara.gun_type);
             break;
@@ -212,7 +212,7 @@ void __cdecl Gun_Control(void)
             case LGT_M16:
                 ammo = &g_Lara.m16_ammo;
                 break;
-            case LGT_ROCKET:
+            case LGT_GRENADE:
                 ammo = &g_Lara.grenade_ammo;
                 break;
             case LGT_HARPOON:
@@ -241,7 +241,7 @@ void __cdecl Gun_Control(void)
 
         case LGT_SHOTGUN:
         case LGT_M16:
-        case LGT_ROCKET:
+        case LGT_GRENADE:
         case LGT_HARPOON:
             Gun_Rifle_Control(g_Lara.gun_type);
             break;
@@ -289,7 +289,7 @@ void __cdecl Gun_InitialiseNewWeapon(void)
 
     case LGT_SHOTGUN:
     case LGT_M16:
-    case LGT_ROCKET:
+    case LGT_GRENADE:
     case LGT_HARPOON:
         g_Lara.left_arm.frame_base =
             g_Objects[Gun_GetWeaponAnim(g_Lara.gun_type)].frame_base;
@@ -330,7 +330,7 @@ int32_t __cdecl Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type)
         return O_LARA_SHOTGUN;
     case LGT_M16:
         return O_LARA_M16;
-    case LGT_ROCKET:
+    case LGT_GRENADE:
         return O_LARA_GRENADE;
     case LGT_HARPOON:
         return O_LARA_HARPOON;

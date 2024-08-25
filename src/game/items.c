@@ -8,7 +8,8 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #include <assert.h>
 

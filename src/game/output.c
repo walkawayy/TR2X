@@ -7,11 +7,14 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define VBUF_VISIBLE(a, b, c)                                                  \
     (((a).ys - (b).ys) * ((c).xs - (b).xs)                                     \
      >= ((c).ys - (b).ys) * ((a).xs - (b).xs))
+#define MAKE_TEX_ID(v, u) ((((v >> 16) & 0xFF) << 8) | ((u >> 16) & 0xFF))
+#define MAKE_Q_ID(g) ((g >> 16) & 0xFF)
 #define MAKE_ZSORT(z) ((uint32_t)(z))
 
 static D3DCOLOR Output_ShadeLight(uint32_t shade);
@@ -174,7 +177,7 @@ static void __fastcall Output_GourA(int32_t y1, int32_t y2, uint8_t color_idx)
 
         uint8_t *line_ptr = draw_ptr + x;
         while (x_size > 0) {
-            *line_ptr = gt->index[(g >> 16) & 0xFF];
+            *line_ptr = gt->index[MAKE_Q_ID(g)];
             line_ptr++;
             g += g_add;
             x_size--;
@@ -215,9 +218,8 @@ static void __fastcall Output_GTMapA(
 
         uint8_t *line_ptr = draw_ptr + x;
         while (x_size > 0) {
-            const int32_t tex_idx = ((BYTE2(v) << 8) | BYTE2(u));
-            uint8_t color_idx = tex_page[tex_idx];
-            *line_ptr = g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+            uint8_t color_idx = tex_page[MAKE_TEX_ID(v, u)];
+            *line_ptr = g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
             line_ptr++;
             g += g_add;
             u += u_add;
@@ -260,10 +262,9 @@ static void __fastcall Output_WGTMapA(
 
         uint8_t *line_ptr = draw_ptr + x;
         while (x_size > 0) {
-            const int32_t tex_idx = ((BYTE2(v) << 8) | BYTE2(u));
-            uint8_t color_idx = tex_page[tex_idx];
+            const uint8_t color_idx = tex_page[MAKE_TEX_ID(v, u)];
             if (color_idx != 0) {
-                *line_ptr = g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+                *line_ptr = g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
             }
             line_ptr++;
             g += g_add;
@@ -1353,12 +1354,11 @@ void __cdecl Output_GTMapPersp32FP(
                 if ((ABS(u0_add) + ABS(v0_add)) < (PHD_ONE / 2)) {
                     int32_t batch_counter = batch_size / 2;
                     while (batch_counter--) {
-                        uint8_t color_idx =
-                            tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
-                        color_idx =
-                            g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
-                        *line_ptr++ = color_idx;
-                        *line_ptr++ = color_idx;
+                        const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
+                        const uint8_t color =
+                            g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                        *line_ptr++ = color;
+                        *line_ptr++ = color;
                         g += g_add * 2;
                         u0 += u0_add * 2;
                         v0 += v0_add * 2;
@@ -1366,10 +1366,10 @@ void __cdecl Output_GTMapPersp32FP(
                 } else {
                     int32_t batch_counter = batch_size;
                     while (batch_counter--) {
-                        uint8_t color_idx =
-                            tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
-                        *line_ptr++ =
-                            g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+                        const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
+                        const uint8_t color =
+                            g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                        *line_ptr++ = color;
                         g += g_add;
                         u0 += u0_add;
                         v0 += v0_add;
@@ -1394,11 +1394,11 @@ void __cdecl Output_GTMapPersp32FP(
             if ((ABS(u0_add) + ABS(v0_add)) < (PHD_ONE / 2)) {
                 int32_t batch_counter = batch_size / 2;
                 while (batch_counter--) {
-                    uint8_t color_idx = tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
-                    color_idx =
-                        g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
-                    *line_ptr++ = color_idx;
-                    *line_ptr++ = color_idx;
+                    const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
+                    const uint8_t color =
+                        g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                    *line_ptr++ = color;
+                    *line_ptr++ = color;
                     g += g_add * 2;
                     u0 += u0_add * 2;
                     v0 += v0_add * 2;
@@ -1406,9 +1406,10 @@ void __cdecl Output_GTMapPersp32FP(
             } else {
                 int32_t batch_counter = batch_size;
                 while (batch_counter--) {
-                    uint8_t color_idx = tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
-                    *line_ptr++ =
-                        g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+                    const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
+                    const uint8_t color =
+                        g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                    *line_ptr++ = color;
                     g += g_add;
                     u0 += u0_add;
                     v0 += v0_add;
@@ -1417,8 +1418,9 @@ void __cdecl Output_GTMapPersp32FP(
         }
 
         if (x_size == 1) {
-            const uint8_t color_idx = tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
-            *line_ptr = g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+            const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
+            const uint8_t color = g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+            *line_ptr = color;
         }
 
     loop_end:
@@ -1482,13 +1484,12 @@ void __cdecl Output_WGTMapPersp32FP(
                 if ((ABS(u0_add) + ABS(v0_add)) < (PHD_ONE / 2)) {
                     int32_t batch_counter = batch_size / 2;
                     while (batch_counter--) {
-                        uint8_t color_idx =
-                            tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
+                        const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
                         if (color_idx != 0) {
-                            color_idx = g_DepthQTable[(g >> 16) & 0xFF]
-                                            .index[color_idx];
-                            line_ptr[0] = color_idx;
-                            line_ptr[1] = color_idx;
+                            const uint8_t color =
+                                g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                            line_ptr[0] = color;
+                            line_ptr[1] = color;
                         }
                         line_ptr += 2;
                         g += g_add * 2;
@@ -1498,11 +1499,11 @@ void __cdecl Output_WGTMapPersp32FP(
                 } else {
                     int32_t batch_counter = batch_size;
                     while (batch_counter--) {
-                        uint8_t color_idx =
-                            tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
+                        const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
                         if (color_idx != 0) {
-                            *line_ptr =
-                                g_DepthQTable[BYTE2(g)].index[color_idx];
+                            const uint8_t color =
+                                g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                            *line_ptr = color;
                         }
                         line_ptr++;
                         g += g_add;
@@ -1529,12 +1530,12 @@ void __cdecl Output_WGTMapPersp32FP(
             if ((ABS(u0_add) + ABS(v0_add)) < (PHD_ONE / 2)) {
                 int32_t batch_counter = batch_size / 2;
                 while (batch_counter--) {
-                    uint8_t color_idx = tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
+                    const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
                     if (color_idx != 0) {
-                        color_idx =
-                            g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
-                        line_ptr[0] = color_idx;
-                        line_ptr[1] = color_idx;
+                        const uint8_t color =
+                            g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                        line_ptr[0] = color;
+                        line_ptr[1] = color;
                     }
                     line_ptr += 2;
                     g += g_add * 2;
@@ -1544,10 +1545,11 @@ void __cdecl Output_WGTMapPersp32FP(
             } else {
                 int32_t batch_counter = batch_size;
                 while (batch_counter--) {
-                    uint8_t color_idx = tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
+                    const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
                     if (color_idx != 0) {
-                        *line_ptr =
-                            g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+                        const uint8_t color =
+                            g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                        *line_ptr = color;
                     }
                     line_ptr++;
                     g += g_add;
@@ -1558,9 +1560,11 @@ void __cdecl Output_WGTMapPersp32FP(
         }
 
         if (x_size == 1) {
-            const uint8_t color_idx = tex_page[(BYTE2(v0) << 8) | BYTE2(u0)];
+            const uint8_t color_idx = tex_page[MAKE_TEX_ID(v0, u0)];
             if (color_idx != 0) {
-                *line_ptr = g_DepthQTable[(g >> 16) & 0xFF].index[color_idx];
+                const uint8_t color =
+                    g_DepthQTable[MAKE_Q_ID(g)].index[color_idx];
+                *line_ptr = color;
             }
         }
 

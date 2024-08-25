@@ -11,7 +11,8 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define FRONT_ARC PHD_90
 #define ESCAPE_CHANCE 2048

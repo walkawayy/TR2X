@@ -24,7 +24,8 @@
 #include "lib/ddraw.h"
 #include "lib/dinput.h"
 #include "specific/s_flagged_string.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #include <assert.h>
 #include <dinput.h>

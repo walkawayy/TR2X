@@ -12,7 +12,8 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define MAX_BADDIE_COLLISION 20
 #define MOVE_SPEED 16

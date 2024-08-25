@@ -5,7 +5,8 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define BOX_OVERLAP_BITS 0x3FFF
 #define BOX_SEARCH_NUM 0x7FFF

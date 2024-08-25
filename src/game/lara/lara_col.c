@@ -10,7 +10,8 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 void __cdecl Lara_CollideStop(
     ITEM_INFO *const item, const COLL_INFO *const coll)

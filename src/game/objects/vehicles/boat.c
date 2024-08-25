@@ -10,7 +10,8 @@
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define BOAT_FALL_ANIM 15
 #define BOAT_DEATH_ANIM 18

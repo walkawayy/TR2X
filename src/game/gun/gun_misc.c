@@ -9,7 +9,8 @@
 #include "game/room.h"
 #include "global/funcs.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define NEAR_ANGLE (PHD_DEGREE * 15) // = 2730
 

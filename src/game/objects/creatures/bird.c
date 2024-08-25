@@ -5,7 +5,8 @@
 #include "global/funcs.h"
 #include "global/types.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 typedef enum {
     BIRD_ANIM_EMPTY = 0,

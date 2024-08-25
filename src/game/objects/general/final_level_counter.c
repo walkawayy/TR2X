@@ -5,7 +5,8 @@
 #include "game/los.h"
 #include "game/lot.h"
 #include "global/vars.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 #define CUTSCENE_DELAY (5 * FRAMES_PER_SECOND) // = 150
 

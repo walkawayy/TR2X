@@ -1,7 +1,8 @@
 #include "game/math.h"
 
 #include "global/const.h"
-#include "util.h"
+
+#include <libtrx/utils.h>
 
 static const int16_t m_SinTable[0x402] = {
     // clang-format off

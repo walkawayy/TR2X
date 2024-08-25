@@ -747,6 +747,7 @@ static void Inject_Gun(bool enable)
     INJECT(enable, 0x0042BF60, Gun_Rifle_FireHarpoon);
     INJECT(enable, 0x0042C440, Gun_Rifle_FireGrenade);
     INJECT(enable, 0x0042C930, Gun_Rifle_Draw);
+    INJECT(enable, 0x0042CAA0, Gun_Rifle_Undraw);
     INJECT(enable, 0x0042CF60, Gun_Pistols_SetArmInfo);
     INJECT(enable, 0x0042CFB0, Gun_Pistols_Draw);
     INJECT(enable, 0x0042D030, Gun_Pistols_Undraw);

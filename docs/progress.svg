@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.09% (671)</tspan> · <tspan class="known">42.45% (517)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.17% (672)</tspan> · <tspan class="known">42.36% (516)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="411.52" height="6" x="0" y="0" class="decompiled"/>
-<rect width="317.08" height="6" x="411.52" y="0" class="known"/>
+<rect width="412.14" height="6" x="0" y="0" class="decompiled"/>
+<rect width="316.46" height="6" x="412.14" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -586,7 +586,7 @@
 <rect width="12" height="12" x="105" y="150" class="decompiled"><title>void __cdecl Gun_Rifle_FireGrenade(void);</title></rect>
 <rect width="12" height="12" x="120" y="150" class="known"><title>void __cdecl Rocket_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="135" y="150" class="decompiled"><title>void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
-<rect width="12" height="12" x="150" y="150" class="known"><title>void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="12" height="12" x="150" y="150" class="decompiled"><title>void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="165" y="150" class="known"><title>void __cdecl Gun_Rifle_Animate(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="12" height="12" x="180" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_SetArmInfo(LARA_ARM *arm, int32_t frame);</title></rect>
 <rect width="12" height="12" x="195" y="150" class="decompiled"><title>void __cdecl Gun_Pistols_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.12%</tspan> · <tspan class="known">43.55%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.20%</tspan> · <tspan class="known">43.47%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="419.24" height="6" x="0" y="0" class="decompiled"/>
-<rect width="325.32" height="6" x="419.24" y="0" class="known"/>
+<rect width="419.81" height="6" x="0" y="0" class="decompiled"/>
+<rect width="324.75" height="6" x="419.81" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1662,7 +1662,7 @@
 <rect width="11.93" height="11.51" x="646.44" y="108.31" class="known"><title>void __cdecl FallingBlock(int16_t item_num);</title></rect>
 <rect width="11.93" height="11.51" x="661.37" y="108.31" class="decompiled"><title>void __cdecl FmvBackToGame(void);</title></rect>
 <rect width="11.93" height="11.51" x="676.31" y="108.31" class="known"><title>void __cdecl S_DisplayPicture(const char *file_name, BOOL is_title);</title></rect>
-<rect width="11.88" height="11.51" x="691.24" y="108.31" class="known"><title>void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
+<rect width="11.88" height="11.51" x="691.24" y="108.31" class="decompiled"><title>void __cdecl Gun_Rifle_Undraw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="11.88" height="11.51" x="706.12" y="108.31" class="decompiled"><title>bool __cdecl WinVidGetMinMaxInfo(LPMINMAXINFO info);</title></rect>
 <rect width="11.53" height="11.51" x="720.99" y="108.31" class="known"><title>void __cdecl IcicleControl(int16_t item_num);</title></rect>
 <rect width="11.48" height="11.51" x="735.52" y="108.31" class="decompiled"><title>void __cdecl Overlay_DrawPickups(bool pickup_state);</title></rect>

@@ -266,3 +266,38 @@ void __cdecl Gun_Rifle_Draw(const LARA_GUN_TYPE weapon_type)
     g_Lara.right_arm.frame_num =
         item->frame_num - g_Anims[item->anim_num].frame_base;
 }
+
+void __cdecl Gun_Rifle_Undraw(const LARA_GUN_TYPE weapon_type)
+{
+    ITEM_INFO *const item = &g_Items[g_Lara.weapon_item];
+    if (g_Lara.water_status == LWS_SURFACE) {
+        item->goal_anim_state = LA_G_SURF_UNDRAW;
+    } else {
+        item->goal_anim_state = LA_G_UNDRAW;
+    }
+    Item_Animate(item);
+
+    if (item->status == IS_DEACTIVATED) {
+        Item_Kill(g_Lara.weapon_item);
+        g_Lara.weapon_item = NO_ITEM;
+        g_Lara.gun_status = LGS_ARMLESS;
+        g_Lara.target = NULL;
+        g_Lara.left_arm.frame_num = 0;
+        g_Lara.left_arm.lock = 0;
+        g_Lara.right_arm.frame_num = 0;
+        g_Lara.right_arm.lock = 0;
+    } else if (
+        item->current_anim_state == LA_G_UNDRAW
+        && item->frame_num - g_Anims[item->anim_num].frame_base == 21) {
+        Gun_Rifle_UndrawMeshes(weapon_type);
+    }
+
+    g_Lara.left_arm.anim_num = item->anim_num;
+    g_Lara.left_arm.frame_base = g_Anims[item->anim_num].frame_ptr;
+    g_Lara.left_arm.frame_num =
+        item->frame_num - g_Anims[item->anim_num].frame_base;
+    g_Lara.right_arm.anim_num = item->anim_num;
+    g_Lara.right_arm.frame_base = g_Anims[item->anim_num].frame_ptr;
+    g_Lara.right_arm.frame_num =
+        item->frame_num - g_Anims[item->anim_num].frame_base;
+}

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.67% (678)</tspan> · <tspan class="known">41.87% (510)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.75% (679)</tspan> · <tspan class="known">41.79% (509)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="415.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="312.78" height="6" x="415.82" y="0" class="known"/>
+<rect width="416.43" height="6" x="0" y="0" class="decompiled"/>
+<rect width="312.17" height="6" x="416.43" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -383,7 +383,7 @@
 <rect width="12" height="12" x="60" y="90" class="known"><title>void __cdecl WarriorSparkleTrail(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="75" y="90" class="known"><title>void __cdecl WarriorControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="90" y="90" class="decompiled"><title>int32_t __cdecl GF_LoadScriptFile(const char *fname);</title></rect>
-<rect width="12" height="12" x="105" y="90" class="known"><title>int32_t __cdecl GF_DoFrontEndSequence(void);</title></rect>
+<rect width="12" height="12" x="105" y="90" class="decompiled"><title>int32_t __cdecl GF_DoFrontendSequence(void);</title></rect>
 <rect width="12" height="12" x="120" y="90" class="known"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
 <rect width="12" height="12" x="135" y="90" class="known"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);</title></rect>
 <rect width="12" height="12" x="150" y="90" class="known"><title>void __cdecl GF_ModifyInventory(int32_t level, int32_t type);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.83%</tspan> · <tspan class="known">42.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.84%</tspan> · <tspan class="known">42.83%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="424.52" height="6" x="0" y="0" class="decompiled"/>
-<rect width="320.04" height="6" x="424.52" y="0" class="known"/>
+<rect width="424.58" height="6" x="0" y="0" class="decompiled"/>
+<rect width="319.98" height="6" x="424.58" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2379,7 +2379,7 @@
 <rect width="2.17" height="2.14" x="714.63" y="327.05" class="known"><title>void __cdecl Inv_Ring_MotionCameraPitch(RING_INFO *ring, int16_t target);</title></rect>
 <rect width="2.17" height="2.14" x="719.80" y="327.05" class="known"><title>void __cdecl SafeFreeTexturePage(int32_t page_idx);</title></rect>
 <rect width="2.01" height="2.14" x="724.97" y="327.05" class="known"><title>void __cdecl AssaultStop(ITEM_INFO *item);</title></rect>
-<rect width="2.01" height="2.14" x="729.98" y="327.05" class="known"><title>int32_t __cdecl GF_DoFrontEndSequence(void);</title></rect>
+<rect width="2.01" height="2.14" x="729.98" y="327.05" class="decompiled"><title>int32_t __cdecl GF_DoFrontendSequence(void);</title></rect>
 <rect width="2.01" height="2.14" x="734.98" y="327.05" class="decompiled"><title>bool __cdecl D3DCreate(void);</title></rect>
 <rect width="2.01" height="2.14" x="739.99" y="327.05" class="decompiled"><title>void __thiscall S_FlaggedString_Create(STRING_FLAGGED *string, int32_t size);</title></rect>
 <rect width="2.01" height="2.14" x="744.99" y="327.05" class="decompiled"><title>BOOL __cdecl S_Audio_Sample_OutIsTrackPlaying(int32_t track_id);</title></rect>

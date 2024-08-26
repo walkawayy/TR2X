@@ -3109,7 +3109,7 @@ typedef enum {
 
 # game/gameflow.c
 0x0041FA60  0x01E9  +       int32_t __cdecl GF_LoadScriptFile(const char *fname);
-0x0041FC50  0x001F  *R      int32_t __cdecl GF_DoFrontEndSequence(void);
+0x0041FC50  0x001F  +       int32_t __cdecl GF_DoFrontendSequence(void);
 0x0041FC70  0x0066  *R      int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);
 0x0041FCE0  0x047C  -R      int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);
 0x004201C0  0x0CD3  -R      void __cdecl GF_ModifyInventory(int32_t level, int32_t type);
@@ -4533,4 +4533,4 @@ typedef enum {
 0x00465490  -       INVENTORY_ITEM g_Inv_Item_Photo;
 0x00465620  -       REQUEST_INFO g_LoadGameRequester;
 0x00465838  -       REQUEST_INFO g_SaveGameRequester;
-
+0x00521E70  -       int16_t *g_GF_FrontendSequence;

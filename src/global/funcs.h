@@ -90,7 +90,6 @@
 #define XianLordControl ((void __cdecl (*)(int16_t item_num))0x0041EFF0)
 #define WarriorSparkleTrail ((void __cdecl (*)(ITEM_INFO *item))0x0041F5D0)
 #define WarriorControl ((void __cdecl (*)(int16_t item_num))0x0041F670)
-#define GF_DoFrontEndSequence ((int32_t __cdecl (*)(void))0x0041FC50)
 #define GF_DoLevelSequence ((int32_t __cdecl (*)(int32_t level, int32_t type))0x0041FC70)
 #define GF_InterpretSequence ((int32_t __cdecl (*)(int16_t *ptr, int32_t type, int32_t seq_type))0x0041FCE0)
 #define GF_ModifyInventory ((void __cdecl (*)(int32_t level, int32_t type))0x004201C0)

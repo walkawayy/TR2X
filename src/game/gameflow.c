@@ -66,3 +66,10 @@ int32_t __cdecl GF_LoadScriptFile(const char *const fname)
 
     return true;
 }
+
+int32_t __cdecl GF_DoFrontendSequence(void)
+{
+    const GAME_FLOW_DIR option =
+        GF_InterpretSequence(g_GF_FrontendSequence, GFL_NORMAL, 1);
+    return option == GFD_EXIT_GAME;
+}

@@ -62,14 +62,14 @@ BOOL __cdecl Shell_Main(void)
     S_DontDisplayPicture();
     g_IsVidModeLock = 0;
 
-    bool is_frontend_fail = GF_DoFrontEndSequence();
+    const bool is_frontend_fail = GF_DoFrontendSequence();
     if (g_IsGameToExit) {
         Config_Write();
         return true;
     }
 
-    if (is_frontend_fail == 1) {
-        strcpy(g_ErrorMessage, "GameMain: failed in GF_DoFrontEndSequence()");
+    if (is_frontend_fail) {
+        strcpy(g_ErrorMessage, "GameMain: failed in GF_DoFrontendSequence()");
         Config_Write();
         return false;
     }

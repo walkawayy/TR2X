@@ -373,6 +373,7 @@ extern const char *g_TR2XVersion;
 #define g_Pickups (*(PICKUP_INFO(*)[12])0x00521CA0)
 #define g_GF_CutsceneFileNames (*(char ***)0x00521DC4)
 #define g_GameFlow (*(GAME_FLOW*)0x00521DE0)
+#define g_GF_FrontendSequence (*(int16_t **)0x00521E70)
 #define g_GF_GameStrings (*(char ***)0x00521EB0)
 #define g_GF_TitleFileNames (*(char ***)0x00521F48)
 #define g_GF_PCStrings (*(char ***)0x00521F50)

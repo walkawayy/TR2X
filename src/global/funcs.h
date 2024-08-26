@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Demo_Control ((int32_t __cdecl (*)(int32_t level_num))0x00416910)
 #define Demo_Start ((int32_t __cdecl (*)(int32_t level_num))0x00416970)
 #define Demo_LoadLaraPos ((void __cdecl (*)(void))0x00416B20)
 #define Demo_GetInput ((void __cdecl (*)(void))0x00416BF0)

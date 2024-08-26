@@ -6,6 +6,7 @@
 #include "game/camera.h"
 #include "game/collide.h"
 #include "game/creature.h"
+#include "game/demo.h"
 #include "game/effects.h"
 #include "game/game.h"
 #include "game/gun/gun.h"
@@ -63,6 +64,7 @@ static void Inject_Output(bool enable);
 static void Inject_Music(bool enable);
 static void Inject_Sound(bool enable);
 
+static void Inject_Demo(bool enable);
 static void Inject_Overlay(bool enable);
 static void Inject_Random(bool enable);
 static void Inject_Items(bool enable);
@@ -452,6 +454,11 @@ static void Inject_Sound(const bool enable)
     INJECT(enable, 0x0043F8C0, Sound_EndScene);
     INJECT(enable, 0x0043F950, Sound_Shutdown);
     INJECT(enable, 0x0043F980, Sound_Init);
+}
+
+static void Inject_Demo(const bool enable)
+{
+    INJECT(enable, 0x00416910, Demo_Control);
 }
 
 static void Inject_Overlay(const bool enable)
@@ -899,6 +906,7 @@ void Inject_Exec(void)
     Inject_Music(true);
     Inject_Sound(true);
 
+    Inject_Demo(true);
     Inject_Overlay(true);
     Inject_Random(true);
     Inject_Items(true);

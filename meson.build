@@ -81,6 +81,7 @@ dll_sources = [
   'src/game/console.c',
   'src/game/console_cmd.c',
   'src/game/creature.c',
+  'src/game/demo.c',
   'src/game/effects.c',
   'src/game/game.c',
   'src/game/gun/gun.c',

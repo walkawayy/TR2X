@@ -3,6 +3,7 @@
 #include "config.h"
 #include "decomp/decomp.h"
 #include "game/console.h"
+#include "game/demo.h"
 #include "game/input.h"
 #include "game/music.h"
 #include "game/sound.h"

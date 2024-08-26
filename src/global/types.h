@@ -2677,4 +2677,11 @@ typedef enum {
     IL_STORY_SO_FAR_MIDLEVEL = 7,
 } INIT_LEVEL_TYPE;
 
+typedef enum {
+    GF_S_DETAIL_LEVEL = 0,
+    GF_S_DEMO_MODE    = 1,
+    GF_S_SOUND        = 2,
+    GF_S_CONTROLS     = 3,
+} GF_GAME_STRING;
+
 // clang-format on

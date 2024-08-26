@@ -6,7 +6,6 @@
 
 // clang-format off
 #define Output_InsertInventoryBackground ((void __cdecl (*)(const int16_t *obj_ptr))0x00401D50)
-#define Demo_Start ((int32_t __cdecl (*)(int32_t level_num))0x00416970)
 #define Demo_LoadLaraPos ((void __cdecl (*)(void))0x00416B20)
 #define Demo_GetInput ((void __cdecl (*)(void))0x00416BF0)
 #define Diver_Harpoon ((int16_t __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE y_rot, int16_t room_num))0x00416C20)

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.34% (674)</tspan> · <tspan class="known">42.20% (514)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.42% (675)</tspan> · <tspan class="known">42.12% (513)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="413.36" height="6" x="0" y="0" class="decompiled"/>
-<rect width="315.24" height="6" x="413.36" y="0" class="known"/>
+<rect width="413.98" height="6" x="0" y="0" class="decompiled"/>
+<rect width="314.62" height="6" x="413.98" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -265,7 +265,7 @@
 <rect width="12" height="12" x="540" y="45" class="decompiled"><title>void __cdecl Room_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="12" height="12" x="555" y="45" class="decompiled"><title>void __cdecl Room_TriggerMusicTrackImpl(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="12" height="12" x="570" y="45" class="decompiled"><title>int32_t __cdecl Demo_Control(int32_t level_num);</title></rect>
-<rect width="12" height="12" x="585" y="45" class="known"><title>int32_t __cdecl Demo_Start(int32_t level_num);</title></rect>
+<rect width="12" height="12" x="585" y="45" class="decompiled"><title>int32_t __cdecl Demo_Start(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="600" y="45" class="known"><title>void __cdecl Demo_LoadLaraPos(void);</title></rect>
 <rect width="12" height="12" x="615" y="45" class="known"><title>void __cdecl Demo_GetInput(void);</title></rect>
 <rect width="12" height="12" x="630" y="45" class="known"><title>int16_t __cdecl Diver_Harpoon(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE y_rot, int16_t room_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.49%</tspan> · <tspan class="known">43.19%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.61%</tspan> · <tspan class="known">43.06%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="421.96" height="6" x="0" y="0" class="decompiled"/>
-<rect width="322.60" height="6" x="421.96" y="0" class="known"/>
+<rect width="422.90" height="6" x="0" y="0" class="decompiled"/>
+<rect width="321.66" height="6" x="422.90" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1517,7 +1517,7 @@
 <rect width="16.43" height="15.80" x="411.31" y="195.08" class="decompiled"><title>void __cdecl D3DDeviceCreate(LPDDS lpBackBuffer);</title></rect>
 <rect width="16.43" height="15.71" x="411.31" y="213.88" class="known"><title>int32_t __cdecl SkidooUserControl(ITEM_INFO *skidoo, int32_t height, int32_t *pitch);</title></rect>
 <rect width="16.43" height="15.58" x="411.31" y="232.59" class="decompiled"><title>void __cdecl Item_Initialise(int16_t item_num);</title></rect>
-<rect width="16.43" height="15.45" x="411.31" y="251.17" class="known"><title>int32_t __cdecl Demo_Start(int32_t level_num);</title></rect>
+<rect width="16.43" height="15.45" x="411.31" y="251.17" class="decompiled"><title>int32_t __cdecl Demo_Start(int32_t level_num);</title></rect>
 <rect width="16.43" height="15.45" x="411.31" y="269.62" class="decompiled"><title>bool __cdecl LOT_EnableBaddieAI(int16_t item_num, bool always);</title></rect>
 <rect width="16.43" height="15.28" x="411.31" y="288.08" class="decompiled"><title>void __cdecl Output_InsertClippedPoly_Textured(int32_t vtx_count, float z, int16_t poly_type, int16_t tex_page);</title></rect>
 <rect width="16.43" height="14.98" x="411.31" y="306.36" class="decompiled"><title>void __cdecl Matrix_Interpolate(void);</title></rect>

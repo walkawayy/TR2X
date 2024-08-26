@@ -1,9 +1,15 @@
 #include "game/demo.h"
 
+#include "decomp/decomp.h"
+#include "game/lara/lara_control.h"
+#include "game/random.h"
+#include "game/shell.h"
+#include "game/text.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
 static int32_t m_DemoLevel = 0;
+static int32_t m_DemoLevel2 = 0;
 
 int32_t __cdecl Demo_Control(int32_t level_num)
 {
@@ -22,4 +28,64 @@ int32_t __cdecl Demo_Control(int32_t level_num)
     }
 
     return GF_DoLevelSequence(level_num, IL_DEMO);
+}
+
+int32_t __cdecl Demo_Start(int32_t level_num)
+{
+    if (level_num < 0 && !g_GameFlow.num_demos) {
+        return GFD_EXIT_TO_TITLE;
+    }
+
+    if (level_num >= 0) {
+        m_DemoLevel2 = level_num;
+    } else {
+        if (m_DemoLevel2 >= g_GameFlow.num_demos) {
+            m_DemoLevel2 = 0;
+        }
+        level_num = g_GF_ValidDemos[m_DemoLevel2];
+        m_DemoLevel2++;
+    }
+
+    START_INFO *const s = &g_SaveGame.start[level_num];
+    START_INFO start = *s;
+    s->available = 1;
+    s->has_pistols = 1;
+    s->pistol_ammo = 1000;
+    s->gun_status = LGS_ARMLESS;
+    s->gun_type = LGT_PISTOLS;
+    Random_SeedDraw(0xD371F947);
+    Random_SeedControl(0xD371F947);
+
+    g_IsTitleLoaded = 0;
+    if (!Level_Initialise(level_num, IL_DEMO)) {
+        return GFD_EXIT_GAME;
+    }
+
+    g_LevelComplete = 0;
+    if (!g_IsDemoLoaded) {
+        Shell_ExitSystemFmt(
+            "Level '%s' has no demo data!", g_GF_LevelFileNames[level_num]);
+    }
+
+    Demo_LoadLaraPos();
+    Lara_CheatGetStuff();
+    Random_SeedDraw(0xD371F947);
+    Random_SeedControl(0xD371F947);
+
+    TEXTSTRING *const text = Text_Create(
+        0, g_DumpHeight / 2 - 16, 0, g_GF_GameStrings[GF_S_DEMO_MODE]);
+
+    Text_Flash(text, true, 20);
+    Text_CentreV(text, true);
+    Text_CentreH(text, true);
+
+    g_Inv_DemoMode = true;
+    const int32_t result = GameLoop(true);
+    g_Inv_DemoMode = false;
+
+    Text_Remove(text);
+
+    *s = start;
+    S_FadeToBlack();
+    return result;
 }

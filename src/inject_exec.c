@@ -459,6 +459,7 @@ static void Inject_Sound(const bool enable)
 static void Inject_Demo(const bool enable)
 {
     INJECT(enable, 0x00416910, Demo_Control);
+    INJECT(enable, 0x00416970, Demo_Start);
 }
 
 static void Inject_Overlay(const bool enable)

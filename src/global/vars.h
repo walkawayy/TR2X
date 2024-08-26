@@ -338,6 +338,7 @@ extern const char *g_TR2XVersion;
 #define g_GF_CutsceneFileNames (*(char ***)0x00521DC4)
 #define g_GameFlow (*(GAME_FLOW*)0x00521DE0)
 #define g_GF_TitleFileNames (*(char ***)0x00521F48)
+#define g_GF_GameStrings (*(char ***)0x00521F50)
 #define g_GF_LevelFileNames (*(char ***)0x00521F54)
 #define g_GF_ValidDemos (*(int16_t(*)[24])0x00521F60)
 #define g_SoundEffectCount (*(int32_t*)0x00521FDC)

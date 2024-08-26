@@ -2661,6 +2661,13 @@ typedef enum {
     IL_STORY_SO_FAR_MIDLEVEL = 7,
 } INIT_LEVEL_TYPE;
 
+typedef enum {
+    GF_S_DETAIL_LEVEL = 0,
+    GF_S_DEMO_MODE    = 1,
+    GF_S_SOUND        = 2,
+    GF_S_CONTROLS     = 3,
+} GF_GAME_STRING;
+
 # FUNCTIONS
 #   Flags:
 #   - to do
@@ -2881,7 +2888,7 @@ typedef enum {
 
 # game/demo.c
 0x00416910  0x0059  +       int32_t __cdecl Demo_Control(int32_t level_num);
-0x00416970  0x01B0  -       int32_t __cdecl Demo_Start(int32_t level_num);
+0x00416970  0x01B0  +       int32_t __cdecl Demo_Start(int32_t level_num);
 0x00416B20  0x00CD  -       void __cdecl Demo_LoadLaraPos(void);
 0x00416BF0  0x002D  -       void __cdecl Demo_GetInput(void);
 
@@ -4400,3 +4407,5 @@ typedef enum {
 0x005206B0  -       int16_t g_FinalBossItem[5];
 0x004D77B4  +       int32_t g_DemoLevel;
 0x00521F60  -       int16_t g_GF_ValidDemos[24]; // MAX_DEMO_FILES
+0x004D77B8  +       int32_t g_DemoLevel2;
+0x00521F50  -       char **g_GF_GameStrings;

@@ -710,7 +710,7 @@ void __cdecl Lara_InitialiseLoad(const int16_t item_num)
     g_LaraItem = &g_Items[item_num];
 }
 
-void __cdecl Lara_Initialise(const INIT_LEVEL_TYPE type)
+void __cdecl Lara_Initialise(const GF_LEVEL_TYPE type)
 {
     ITEM_INFO *const item = g_LaraItem;
 
@@ -757,7 +757,7 @@ void __cdecl Lara_Initialise(const INIT_LEVEL_TYPE type)
     g_Lara.right_arm.lock = 0;
     g_Lara.creature = NULL;
 
-    if (type == IL_NORMAL && g_GF_LaraStartAnim) {
+    if (type == GFL_NORMAL && g_GF_LaraStartAnim) {
         g_Lara.water_status = LWS_ABOVE_WATER;
         g_Lara.gun_status = LGS_HANDS_BUSY;
         item->anim_num = g_Objects[O_LARA_EXTRA].anim_idx;
@@ -784,7 +784,7 @@ void __cdecl Lara_Initialise(const INIT_LEVEL_TYPE type)
         item->frame_num = g_Anims[item->anim_num].frame_base;
     }
 
-    if (type == IL_CUTSCENE) {
+    if (type == GFL_CUTSCENE) {
         for (int32_t i = 0; i < LM_NUMBER_OF; i++) {
             g_Lara.mesh_ptrs[i] = g_Meshes[g_Objects[O_LARA].mesh_idx + i];
         }

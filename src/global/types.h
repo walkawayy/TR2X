@@ -2667,17 +2667,6 @@ typedef enum {
 } TRIGGER_TYPE;
 
 typedef enum {
-    IL_TITLE                 = 0,
-    IL_NORMAL                = 1,
-    IL_SAVED                 = 2,
-    IL_DEMO                  = 3,
-    IL_CUTSCENE              = 4,
-    IL_STORY_SO_FAR          = 5,
-    IL_QUIET                 = 6,
-    IL_STORY_SO_FAR_MIDLEVEL = 7,
-} INIT_LEVEL_TYPE;
-
-typedef enum {
     GF_S_DETAIL_LEVEL = 0,
     GF_S_DEMO_MODE    = 1,
     GF_S_SOUND        = 2,

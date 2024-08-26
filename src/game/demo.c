@@ -29,7 +29,7 @@ int32_t __cdecl Demo_Control(int32_t level_num)
         m_DemoLevel = level_num;
     }
 
-    return GF_DoLevelSequence(level_num, IL_DEMO);
+    return GF_DoLevelSequence(level_num, GFL_DEMO);
 }
 
 int32_t __cdecl Demo_Start(int32_t level_num)
@@ -59,7 +59,7 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     Random_SeedControl(0xD371F947);
 
     g_IsTitleLoaded = 0;
-    if (!Level_Initialise(level_num, IL_DEMO)) {
+    if (!Level_Initialise(level_num, GFL_DEMO)) {
         return GFD_EXIT_GAME;
     }
 

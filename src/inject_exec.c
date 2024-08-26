@@ -461,6 +461,7 @@ static void Inject_Demo(const bool enable)
     INJECT(enable, 0x00416910, Demo_Control);
     INJECT(enable, 0x00416970, Demo_Start);
     INJECT(enable, 0x00416B20, Demo_LoadLaraPos);
+    INJECT(enable, 0x00416BF0, Demo_GetInput);
 }
 
 static void Inject_Overlay(const bool enable)

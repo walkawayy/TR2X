@@ -1,6 +1,7 @@
 #include "game/game.h"
 
 #include "game/camera.h"
+#include "game/demo.h"
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/lara/lara_control.h"

@@ -2890,7 +2890,7 @@ typedef enum {
 0x00416910  0x0059  +       int32_t __cdecl Demo_Control(int32_t level_num);
 0x00416970  0x01B0  +       int32_t __cdecl Demo_Start(int32_t level_num);
 0x00416B20  0x00CD  +       void __cdecl Demo_LoadLaraPos(void);
-0x00416BF0  0x002D  -       void __cdecl Demo_GetInput(void);
+0x00416BF0  0x002D  +       void __cdecl Demo_GetInput(void);
 
 # game/diver.c
 0x00416C20  0x007A  -       int16_t __cdecl Diver_Harpoon(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE y_rot, int16_t room_num);

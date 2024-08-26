@@ -113,3 +113,15 @@ void __cdecl Demo_LoadLaraPos(void)
 
     g_DemoCount += 8;
 }
+
+void __cdecl Demo_GetInput(void)
+{
+    if (g_DemoCount >= MAX_DEMO_SIZE) {
+        g_Input = -1;
+    } else {
+        g_Input = g_DemoPtr[g_DemoCount];
+    }
+    if (g_Input != -1) {
+        g_DemoCount++;
+    }
+}

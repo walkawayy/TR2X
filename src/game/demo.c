@@ -1,8 +1,10 @@
 #include "game/demo.h"
 
 #include "decomp/decomp.h"
+#include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/random.h"
+#include "game/room.h"
 #include "game/shell.h"
 #include "game/text.h"
 #include "global/funcs.h"
@@ -88,4 +90,26 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     *s = start;
     S_FadeToBlack();
     return result;
+}
+
+void __cdecl Demo_LoadLaraPos(void)
+{
+    g_LaraItem->pos.x = g_DemoPtr[0];
+    g_LaraItem->pos.y = g_DemoPtr[1];
+    g_LaraItem->pos.z = g_DemoPtr[2];
+    g_LaraItem->rot.x = g_DemoPtr[3];
+    g_LaraItem->rot.y = g_DemoPtr[4];
+    g_LaraItem->rot.z = g_DemoPtr[5];
+    int16_t room_num = g_DemoPtr[6];
+    if (g_LaraItem->room_num != room_num) {
+        Item_NewRoom(g_Lara.item_num, room_num);
+    }
+
+    const SECTOR_INFO *const sector = Room_GetSector(
+        g_LaraItem->pos.x, g_LaraItem->pos.y, g_LaraItem->pos.z, &room_num);
+    g_LaraItem->floor = Room_GetHeight(
+        sector, g_LaraItem->pos.x, g_LaraItem->pos.y, g_LaraItem->pos.z);
+    g_Lara.last_gun_type = g_DemoPtr[7];
+
+    g_DemoCount += 8;
 }

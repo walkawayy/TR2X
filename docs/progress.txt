@@ -2651,10 +2651,108 @@ typedef enum {
 } TRIGGER_TYPE;
 
 typedef enum {
-    GF_S_DETAIL_LEVEL = 0,
-    GF_S_DEMO_MODE    = 1,
-    GF_S_SOUND        = 2,
-    GF_S_CONTROLS     = 3,
+    GF_S_PC_DETAIL_LEVELS      = 0,
+    GF_S_PC_DEMO_MODE          = 1,
+    GF_S_PC_SOUND              = 2,
+    GF_S_PC_CONTROLS           = 3,
+    GF_S_PC_GAMMA              = 4,
+    GF_S_PC_SET_VOLUMES        = 5,
+    GF_S_PC_USER_KEYS          = 6,
+    GF_S_PC_SAVE_FILE_WARNING  = 7,
+    GF_S_PC_TRY_AGAIN_QUESTION = 8,
+    GF_S_PC_YES                = 9,
+    GF_S_PC_NO                 = 10,
+    GF_S_PC_SAVE_COMPLETE      = 11,
+    GF_S_PC_NO_SAVE_GAMES      = 12,
+    GF_S_PC_NONE_VALID         = 13,
+    GF_S_PC_SAVE_GAME_QUESTION = 14,
+    GF_S_PC_EMPTY_SLOT         = 15,
+    GF_S_PC_OFF                = 16,
+    GF_S_PC_ON                 = 17,
+    GF_S_PC_SETUP_SOUND_CARD   = 18,
+    GF_S_PC_DEFAULT_KEYS       = 19,
+    GF_S_PC_DOZY               = 20,
+} GF_PC_STRING;
+
+typedef enum {
+    GF_S_GAME_HEADING_INVENTORY       = 0,
+    GF_S_GAME_HEADING_OPTION          = 1,
+    GF_S_GAME_HEADING_ITEMS           = 2,
+    GF_S_GAME_HEADING_GAME_OVER       = 3,
+    GF_S_GAME_PASSPORT_LOAD_GAME      = 4,
+    GF_S_GAME_PASSPORT_SAVE_GAME      = 5,
+    GF_S_GAME_PASSPORT_NEW_GAME       = 6,
+    GF_S_GAME_PASSPORT_RESTART_LEVEL  = 7,
+    GF_S_GAME_PASSPORT_EXIT_TO_TITLE  = 8,
+    GF_S_GAME_PASSPORT_EXIT_DEMO      = 9,
+    GF_S_GAME_PASSPORT_EXIT_GAME      = 10,
+    GF_S_GAME_PASSPORT_SELECT_LEVEL   = 11,
+    GF_S_GAME_PASSPORT_SAVE_POSITION  = 12,
+    GF_S_GAME_DETAIL_SELECT_DETAIL    = 13,
+    GF_S_GAME_DETAIL_HIGH             = 14,
+    GF_S_GAME_DETAIL_MEDIUM           = 15,
+    GF_S_GAME_DETAIL_LOW              = 16,
+    GF_S_GAME_KEYMAP_WALK             = 17,
+    GF_S_GAME_KEYMAP_ROLL             = 18,
+    GF_S_GAME_KEYMAP_RUN              = 19,
+    GF_S_GAME_KEYMAP_LEFT             = 20,
+    GF_S_GAME_KEYMAP_RIGHT            = 21,
+    GF_S_GAME_KEYMAP_BACK             = 22,
+    GF_S_GAME_KEYMAP_STEP_LEFT        = 23,
+    GF_S_GAME_KEYMAP_RESERVED_1       = 24,
+    GF_S_GAME_KEYMAP_STEP_RIGHT       = 25,
+    GF_S_GAME_KEYMAP_RESERVED_2       = 26,
+    GF_S_GAME_KEYMAP_LOOK             = 27,
+    GF_S_GAME_KEYMAP_JUMP             = 28,
+    GF_S_GAME_KEYMAP_ACTION           = 29,
+    GF_S_GAME_KEYMAP_DRAW_WEAPON      = 30,
+    GF_S_GAME_KEYMAP_RESERVED_3       = 31,
+    GF_S_GAME_KEYMAP_INVENTORY        = 32,
+    GF_S_GAME_KEYMAP_FLARE            = 33,
+    GF_S_GAME_KEYMAP_STEP             = 34,
+    GF_S_GAME_INV_ITEM_STATISTICS     = 35,
+    GF_S_GAME_INV_ITEM_PISTOLS        = 36,
+    GF_S_GAME_INV_ITEM_SHOTGUN        = 37,
+    GF_S_GAME_INV_ITEM_MAGNUMS        = 38,
+    GF_S_GAME_INV_ITEM_UZIS           = 39,
+    GF_S_GAME_INV_ITEM_HARPOON        = 40,
+    GF_S_GAME_INV_ITEM_M16            = 41,
+    GF_S_GAME_INV_ITEM_GRENADE        = 42,
+    GF_S_GAME_INV_ITEM_FLARE          = 43,
+    GF_S_GAME_INV_ITEM_PISTOL_AMMO    = 44,
+    GF_S_GAME_INV_ITEM_SHOTGUN_AMMO   = 45,
+    GF_S_GAME_INV_ITEM_MAGNUM_AMMO    = 46,
+    GF_S_GAME_INV_ITEM_UZI_AMMO       = 47,
+    GF_S_GAME_INV_ITEM_HARPOON_AMMO   = 48,
+    GF_S_GAME_INV_ITEM_M16_AMMO       = 49,
+    GF_S_GAME_INV_ITEM_GRENADE_AMMO   = 50,
+    GF_S_GAME_INV_ITEM_SMALL_MEDIPACK = 51,
+    GF_S_GAME_INV_ITEM_LARGE_MEDIPACK = 52,
+    GF_S_GAME_INV_ITEM_PICKUP         = 53,
+    GF_S_GAME_INV_ITEM_PUZZLE         = 54,
+    GF_S_GAME_INV_ITEM_KEY            = 55,
+    GF_S_GAME_INV_ITEM_GAME           = 56,
+    GF_S_GAME_INV_ITEM_LARA_HOME      = 57,
+    GF_S_GAME_MISC_LOADING            = 58,
+    GF_S_GAME_MISC_TIME_TAKEN         = 59,
+    GF_S_GAME_MISC_SECRETS_FOUND      = 60,
+    GF_S_GAME_MISC_LOCATION           = 61,
+    GF_S_GAME_MISC_KILLS              = 62,
+    GF_S_GAME_MISC_AMMO_USED          = 63,
+    GF_S_GAME_MISC_HITS               = 64,
+    GF_S_GAME_MISC_SAVES_PERFORMED    = 65,
+    GF_S_GAME_MISC_DISTANCE_TRAVELLED = 66,
+    GF_S_GAME_MISC_HEALTH_PACKS_USED  = 67,
+    GF_S_GAME_MISC_RELEASE_VERSION    = 68,
+    GF_S_GAME_MISC_NONE               = 69,
+    GF_S_GAME_MISC_FINISH             = 70,
+    GF_S_GAME_MISC_BEST_TIMES         = 71,
+    GF_S_GAME_MISC_NO_TIMES_SET       = 72,
+    GF_S_GAME_MISC_NA                 = 73,
+    GF_S_GAME_MISC_CURRENT_POSITION   = 74,
+    GF_S_GAME_MISC_FINAL_STATISTICS   = 75,
+    GF_S_GAME_MISC_OF                 = 76,
+    GF_S_GAME_MISC_STORY_SO_FAR       = 77,
 } GF_GAME_STRING;
 
 # FUNCTIONS
@@ -3010,7 +3108,7 @@ typedef enum {
 0x0041F670  0x03BA  -R      void __cdecl WarriorControl(int16_t item_num);
 
 # game/gameflow.c
-0x0041FA60  0x01E9  *R      int32_t __cdecl GF_LoadScriptFile(char *fname);
+0x0041FA60  0x01E9  +       int32_t __cdecl GF_LoadScriptFile(const char *fname);
 0x0041FC50  0x001F  *R      int32_t __cdecl GF_DoFrontEndSequence(void);
 0x0041FC70  0x0066  *R      int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);
 0x0041FCE0  0x047C  -R      int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);
@@ -3747,7 +3845,7 @@ typedef enum {
 0x0044B500  0x0014  -R      void __cdecl S_AdjustTexelCoordinates(void);
 0x0044B520  0x00C4  -R      BOOL __cdecl S_ReloadLevelGraphics(BOOL reload_palettes, BOOL reload_tex_pages);
 0x0044B5F0  0x00C6  -R      BOOL __cdecl Read_Strings(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);
-0x0044B6C0  0x06D1  -R      BOOL __cdecl S_LoadGameFlow(const char *file_name);
+0x0044B6C0  0x06D1  *R      BOOL __cdecl S_LoadGameFlow(const char *file_name);
 0x0044BDA0  0x006B  -R      bool __cdecl PlayFMV(const char *file_name);
 0x0044BE10  0x02E0  -R      void __cdecl WinPlayFMV(const char *file_name, bool is_playback);
 0x0044C0F0  0x0048  -R      void __cdecl WinStopFMV(bool is_playback);
@@ -4397,4 +4495,42 @@ typedef enum {
 0x004D77B4  +       int32_t g_DemoLevel;
 0x00521F60  -       int16_t g_GF_ValidDemos[24]; // MAX_DEMO_FILES
 0x004D77B8  +       int32_t g_DemoLevel2;
-0x00521F50  -       char **g_GF_GameStrings;
+0x00521F50  -       char **g_GF_PCStrings;
+0x00521EB0  -       char **g_GF_GameStrings;
+0x004D77F4  -       int16_t g_GF_SunsetEnabled;
+0x00464A90  -       INVENTORY_ITEM g_Inv_Item_Stopwatch;
+0x00464AE0  -       INVENTORY_ITEM g_Inv_Item_Pistols;
+0x00464B30  -       INVENTORY_ITEM g_Inv_Item_Flare;
+0x00464B80  -       INVENTORY_ITEM g_Inv_Item_Shotgun;
+0x00464BD0  -       INVENTORY_ITEM g_Inv_Item_Magnums;
+0x00464C20  -       INVENTORY_ITEM g_Inv_Item_Uzis;
+0x00464C70  -       INVENTORY_ITEM g_Inv_Item_Harpoon;
+0x00464CC0  -       INVENTORY_ITEM g_Inv_Item_M16;
+0x00464D10  -       INVENTORY_ITEM g_Inv_Item_Grenade;
+0x00464D60  -       INVENTORY_ITEM g_Inv_Item_PistolAmmo;
+0x00464DB0  -       INVENTORY_ITEM g_Inv_Item_ShotgunAmmo;
+0x00464E00  -       INVENTORY_ITEM g_Inv_Item_MagnumAmmo;
+0x00464E50  -       INVENTORY_ITEM g_Inv_Item_UziAmmo;
+0x00464EA0  -       INVENTORY_ITEM g_Inv_Item_HarpoonAmmo;
+0x00464EF0  -       INVENTORY_ITEM g_Inv_Item_M16Ammo;
+0x00464F40  -       INVENTORY_ITEM g_Inv_Item_GrenadeAmmo;
+0x00464F90  -       INVENTORY_ITEM g_Inv_Item_SmallMedi;
+0x00464FE0  -       INVENTORY_ITEM g_Inv_Item_LargeMedi;
+0x00465030  -       INVENTORY_ITEM g_Inv_Item_Pickup1;
+0x00465080  -       INVENTORY_ITEM g_Inv_Item_Pickup2;
+0x004650D0  -       INVENTORY_ITEM g_Inv_Item_Puzzle1;
+0x00465120  -       INVENTORY_ITEM g_Inv_Item_Puzzle2;
+0x00465170  -       INVENTORY_ITEM g_Inv_Item_Puzzle3;
+0x004651C0  -       INVENTORY_ITEM g_Inv_Item_Puzzle4;
+0x00465210  -       INVENTORY_ITEM g_Inv_Item_Key1;
+0x00465260  -       INVENTORY_ITEM g_Inv_Item_Key2;
+0x004652B0  -       INVENTORY_ITEM g_Inv_Item_Key3;
+0x00465300  -       INVENTORY_ITEM g_Inv_Item_Key4;
+0x00465350  -       INVENTORY_ITEM g_Inv_Item_Passport;
+0x004653A0  -       INVENTORY_ITEM g_Inv_Item_Graphics;
+0x004653F0  -       INVENTORY_ITEM g_Inv_Item_Sound;
+0x00465440  -       INVENTORY_ITEM g_Inv_Item_Controls;
+0x00465490  -       INVENTORY_ITEM g_Inv_Item_Photo;
+0x00465620  -       REQUEST_INFO g_LoadGameRequester;
+0x00465838  -       REQUEST_INFO g_SaveGameRequester;
+

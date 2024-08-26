@@ -84,6 +84,7 @@ dll_sources = [
   'src/game/demo.c',
   'src/game/effects.c',
   'src/game/game.c',
+  'src/game/gameflow.c',
   'src/game/gun/gun.c',
   'src/game/gun/gun_misc.c',
   'src/game/gun/gun_pistols.c',

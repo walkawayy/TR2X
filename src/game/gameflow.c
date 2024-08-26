@@ -1,7 +1,11 @@
 #include "game/gameflow.h"
 
+#include "decomp/decomp.h"
+#include "game/demo.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+
+#include <stdio.h>
 
 int32_t __cdecl GF_LoadScriptFile(const char *const fname)
 {
@@ -84,7 +88,7 @@ int32_t __cdecl GF_DoLevelSequence(
             return GFD_EXIT_TO_TITLE;
         }
 
-        int16_t *const ptr = g_GF_ScriptTable[current_level];
+        const int16_t *const ptr = g_GF_ScriptTable[current_level];
         const GAME_FLOW_DIR option = GF_InterpretSequence(ptr, type, 0);
         current_level++;
 
@@ -95,4 +99,218 @@ int32_t __cdecl GF_DoLevelSequence(
             return option;
         }
     }
+}
+
+int32_t __cdecl GF_InterpretSequence(
+    const int16_t *ptr, GF_LEVEL_TYPE type, const int32_t seq_type)
+{
+    g_GF_NoFloor = false;
+    g_GF_DeadlyWater = false;
+    g_GF_SunsetEnabled = false;
+    g_GF_LaraStartAnim = 0;
+    g_GF_Kill2Complete = false;
+    g_GF_RemoveAmmo = false;
+    g_GF_RemoveWeapons = false;
+
+    for (int32_t i = 0; i < GF_ADD_INV_NUMBER_OF; i++) {
+        g_GF_SecretInvItems[i] = 0;
+        g_GF_Add2InvItems[i] = 0;
+    }
+
+    g_GF_MusicTracks[0] = 2;
+    g_CineTargetAngle = PHD_90;
+    g_GF_NumSecrets = 3;
+
+    int32_t ntracks = 0;
+    GAME_FLOW_DIR option = GFD_EXIT_TO_TITLE;
+
+    while (*ptr != GFE_END_SEQ) {
+        switch (*ptr) {
+        case GFE_PICTURE:
+            ptr += 2;
+            break;
+
+        case GFE_LIST_START:
+        case GFE_LIST_END:
+            ptr++;
+            break;
+
+        case GFE_PLAY_FMV:
+            if (type != GFL_SAVED) {
+                if (ptr[2] == GFE_PLAY_FMV) {
+                    if (S_IntroFMV(
+                            g_GF_FMVFilenames[ptr[1]],
+                            g_GF_FMVFilenames[ptr[3]])) {
+                        return GFD_EXIT_GAME;
+                    }
+                    ptr += 2;
+                } else if (S_PlayFMV(g_GF_FMVFilenames[ptr[1]])) {
+                    return GFD_EXIT_GAME;
+                }
+            }
+            ptr += 2;
+            break;
+
+        case GFE_START_LEVEL:
+            if (ptr[1] > g_GameFlow.num_levels) {
+                option = GFD_EXIT_TO_TITLE;
+            } else if (type != GFL_STORY) {
+                if (type == GFL_MIDSTORY) {
+                    return GFD_EXIT_TO_TITLE;
+                }
+                option = StartGame(ptr[1], type);
+                g_GF_StartGame = 0;
+                if (type == GFL_SAVED) {
+                    type = GFL_NORMAL;
+                }
+                if ((option & ~0xFF) != GFD_LEVEL_COMPLETE) {
+                    return option;
+                }
+            }
+            ptr += 2;
+            break;
+
+        case GFE_CUTSCENE:
+            if (type != GFL_SAVED) {
+                const int16_t level = g_CurrentLevel;
+                const int32_t result = Game_Cutscene_Start(ptr[1]);
+                g_CurrentLevel = level;
+                if (result == 2
+                    && (type == GFL_STORY || type == GFL_MIDSTORY)) {
+                    return GFD_EXIT_TO_TITLE;
+                }
+                if (result == 3) {
+                    return GFD_EXIT_GAME;
+                }
+            }
+            ptr += 2;
+            break;
+
+        case GFE_LEVEL_COMPLETE:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                if (LevelStats(g_CurrentLevel)) {
+                    return GFD_EXIT_TO_TITLE;
+                }
+                option = GFD_START_GAME | (g_CurrentLevel + 1);
+            }
+            ptr++;
+            break;
+
+        case GFE_DEMO_PLAY:
+            if (type != GFL_SAVED && type != GFL_STORY
+                && type != GFL_MIDSTORY) {
+                return Demo_Start(ptr[1]);
+            }
+            ptr += 2;
+            break;
+
+        case GFE_JUMP_TO_SEQ:
+            ptr += 2;
+            break;
+
+        case GFE_SET_TRACK:
+            g_GF_MusicTracks[ntracks] = ptr[1];
+            Game_SetCutsceneTrack(ptr[1]);
+            ntracks++;
+            ptr += 2;
+            break;
+
+        case GFE_SUNSET:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                g_GF_SunsetEnabled = true;
+            }
+            ptr++;
+            break;
+
+        case GFE_LOADING_PIC:
+            ptr += 2;
+            break;
+
+        case GFE_DEADLY_WATER:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                g_GF_DeadlyWater = true;
+            }
+            ptr++;
+            break;
+
+        case GFE_REMOVE_WEAPONS:
+            if (type != GFL_STORY && type != GFL_MIDSTORY
+                && type != GFL_SAVED) {
+                g_GF_RemoveWeapons = true;
+            }
+            ptr++;
+            break;
+
+        case GFE_GAME_COMPLETE:
+            DisplayCredits();
+            if (GameStats(g_CurrentLevel)) {
+                return GFD_EXIT_TO_TITLE;
+            }
+            option = GFD_EXIT_TO_TITLE;
+            ptr++;
+            break;
+
+        case GFE_CUT_ANGLE:
+            if (type != GFL_SAVED) {
+                g_CineTargetAngle = ptr[1];
+            }
+            ptr += 2;
+            break;
+
+        case GFE_NO_FLOOR:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                g_GF_NoFloor = ptr[1];
+            }
+            ptr += 2;
+            break;
+
+        case GFE_ADD_TO_INV:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                if (ptr[1] < 1000) {
+                    g_GF_SecretInvItems[ptr[1]]++;
+                } else if (type != GFL_SAVED) {
+                    g_GF_Add2InvItems[ptr[1] - 1000]++;
+                }
+            }
+            ptr += 2;
+            break;
+
+        case GFE_START_ANIM:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                g_GF_LaraStartAnim = ptr[1];
+            }
+            ptr += 2;
+            break;
+
+        case GFE_NUM_SECRETS:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                g_GF_NumSecrets = ptr[1];
+            }
+            ptr += 2;
+            break;
+
+        case GFE_KILL_TO_COMPLETE:
+            if (type != GFL_STORY && type != GFL_MIDSTORY) {
+                g_GF_Kill2Complete = true;
+            }
+            ptr++;
+            break;
+
+        case GFE_REMOVE_AMMO:
+            if (type != GFL_STORY && type != GFL_MIDSTORY
+                && type != GFL_SAVED) {
+                g_GF_RemoveAmmo = true;
+            }
+            ptr++;
+            break;
+
+        default:
+            return GFD_EXIT_GAME;
+        }
+    }
+
+    if (type == GFL_STORY || type == GFL_MIDSTORY) {
+        return 0;
+    }
+    return option;
 }

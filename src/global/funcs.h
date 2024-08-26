@@ -90,7 +90,6 @@
 #define XianLordControl ((void __cdecl (*)(int16_t item_num))0x0041EFF0)
 #define WarriorSparkleTrail ((void __cdecl (*)(ITEM_INFO *item))0x0041F5D0)
 #define WarriorControl ((void __cdecl (*)(int16_t item_num))0x0041F670)
-#define GF_InterpretSequence ((int32_t __cdecl (*)(int16_t *ptr, int32_t type, int32_t seq_type))0x0041FCE0)
 #define GF_ModifyInventory ((void __cdecl (*)(int32_t level, int32_t type))0x004201C0)
 #define InitialiseHair ((void __cdecl (*)(void))0x00420EA0)
 #define HairControl ((void __cdecl (*)(int32_t in_cutscene))0x00420F20)

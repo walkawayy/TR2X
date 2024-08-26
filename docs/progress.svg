@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.83% (680)</tspan> · <tspan class="known">41.71% (508)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.91% (681)</tspan> · <tspan class="known">41.63% (507)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="417.04" height="6" x="0" y="0" class="decompiled"/>
-<rect width="311.56" height="6" x="417.04" y="0" class="known"/>
+<rect width="417.66" height="6" x="0" y="0" class="decompiled"/>
+<rect width="310.94" height="6" x="417.66" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -384,8 +384,8 @@
 <rect width="12" height="12" x="75" y="90" class="known"><title>void __cdecl WarriorControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="90" y="90" class="decompiled"><title>int32_t __cdecl GF_LoadScriptFile(const char *fname);</title></rect>
 <rect width="12" height="12" x="105" y="90" class="decompiled"><title>int32_t __cdecl GF_DoFrontendSequence(void);</title></rect>
-<rect width="12" height="12" x="120" y="90" class="decompiled"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
-<rect width="12" height="12" x="135" y="90" class="known"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);</title></rect>
+<rect width="12" height="12" x="120" y="90" class="decompiled"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, GF_LEVEL_TYPE type);</title></rect>
+<rect width="12" height="12" x="135" y="90" class="decompiled"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, GF_LEVEL_TYPE type, int32_t seq_type);</title></rect>
 <rect width="12" height="12" x="150" y="90" class="known"><title>void __cdecl GF_ModifyInventory(int32_t level, int32_t type);</title></rect>
 <rect width="12" height="12" x="165" y="90" class="known"><title>void __cdecl InitialiseHair(void);</title></rect>
 <rect width="12" height="12" x="180" y="90" class="known"><title>void __cdecl HairControl(int32_t in_cutscene);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.87%</tspan> · <tspan class="known">42.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.20%</tspan> · <tspan class="known">42.47%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="424.81" height="6" x="0" y="0" class="decompiled"/>
-<rect width="319.75" height="6" x="424.81" y="0" class="known"/>
+<rect width="427.32" height="6" x="0" y="0" class="decompiled"/>
+<rect width="317.24" height="6" x="427.32" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1353,7 +1353,7 @@
 <rect width="28.60" height="28.02" x="177.07" y="286.36" class="known"><title>void __cdecl do_sound_option(INVENTORY_ITEM *item);</title></rect>
 <rect width="28.60" height="27.36" x="177.07" y="317.38" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="28.60" height="27.26" x="177.07" y="347.74" class="known"><title>void __cdecl PickUpCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
-<rect width="27.61" height="28.13" x="208.67" y="0" class="known"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);</title></rect>
+<rect width="27.61" height="28.13" x="208.67" y="0" class="decompiled"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, GF_LEVEL_TYPE type, int32_t seq_type);</title></rect>
 <rect width="27.61" height="27.18" x="208.67" y="31.13" class="decompiled"><title>TARGET_TYPE __cdecl Box_CalculateTarget(XYZ_32 *target, ITEM_INFO *item, LOT_INFO *lot);</title></rect>
 <rect width="27.61" height="26.61" x="208.67" y="61.31" class="decompiled"><title>void __cdecl Output_InsertGT4_ZBuffered(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_VBUF *vtx3, const PHD_TEXTURE *texture);</title></rect>
 <rect width="27.61" height="26.50" x="208.67" y="90.91" class="known"><title>int32_t __cdecl SkidooControl(void);</title></rect>
@@ -2012,7 +2012,7 @@
 <rect width="6.36" height="6.14" x="598.66" y="235.64" class="known"><title>void __cdecl ControlAlarmSound(int16_t item_num);</title></rect>
 <rect width="6.36" height="6.14" x="598.66" y="244.77" class="decompiled"><title>int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="6.36" height="6.14" x="598.66" y="253.91" class="decompiled"><title>void __cdecl UpdateGameResolution(void);</title></rect>
-<rect width="6.36" height="6.05" x="598.66" y="263.05" class="decompiled"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
+<rect width="6.36" height="6.05" x="598.66" y="263.05" class="decompiled"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, GF_LEVEL_TYPE type);</title></rect>
 <rect width="6.36" height="6.05" x="598.66" y="272.09" class="decompiled"><title>void __cdecl Lara_LookUpDown(void);</title></rect>
 <rect width="6.36" height="6.05" x="598.66" y="281.14" class="known"><title>int16_t __cdecl GunShot(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
 <rect width="6.36" height="5.87" x="598.66" y="290.19" class="known"><title>void __cdecl CreateBubble(PHD_3DPOS *pos, int16_t room_num);</title></rect>

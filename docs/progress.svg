@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.75% (679)</tspan> · <tspan class="known">41.79% (509)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">55.83% (680)</tspan> · <tspan class="known">41.71% (508)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="416.43" height="6" x="0" y="0" class="decompiled"/>
-<rect width="312.17" height="6" x="416.43" y="0" class="known"/>
+<rect width="417.04" height="6" x="0" y="0" class="decompiled"/>
+<rect width="311.56" height="6" x="417.04" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -384,7 +384,7 @@
 <rect width="12" height="12" x="75" y="90" class="known"><title>void __cdecl WarriorControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="90" y="90" class="decompiled"><title>int32_t __cdecl GF_LoadScriptFile(const char *fname);</title></rect>
 <rect width="12" height="12" x="105" y="90" class="decompiled"><title>int32_t __cdecl GF_DoFrontendSequence(void);</title></rect>
-<rect width="12" height="12" x="120" y="90" class="known"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
+<rect width="12" height="12" x="120" y="90" class="decompiled"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
 <rect width="12" height="12" x="135" y="90" class="known"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, int32_t type, int32_t seq_type);</title></rect>
 <rect width="12" height="12" x="150" y="90" class="known"><title>void __cdecl GF_ModifyInventory(int32_t level, int32_t type);</title></rect>
 <rect width="12" height="12" x="165" y="90" class="known"><title>void __cdecl InitialiseHair(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.84%</tspan> · <tspan class="known">42.83%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.87%</tspan> · <tspan class="known">42.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="424.58" height="6" x="0" y="0" class="decompiled"/>
-<rect width="319.98" height="6" x="424.58" y="0" class="known"/>
+<rect width="424.81" height="6" x="0" y="0" class="decompiled"/>
+<rect width="319.75" height="6" x="424.81" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2012,7 +2012,7 @@
 <rect width="6.36" height="6.14" x="598.66" y="235.64" class="known"><title>void __cdecl ControlAlarmSound(int16_t item_num);</title></rect>
 <rect width="6.36" height="6.14" x="598.66" y="244.77" class="decompiled"><title>int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="6.36" height="6.14" x="598.66" y="253.91" class="decompiled"><title>void __cdecl UpdateGameResolution(void);</title></rect>
-<rect width="6.36" height="6.05" x="598.66" y="263.05" class="known"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
+<rect width="6.36" height="6.05" x="598.66" y="263.05" class="decompiled"><title>int32_t __cdecl GF_DoLevelSequence(int32_t level, int32_t type);</title></rect>
 <rect width="6.36" height="6.05" x="598.66" y="272.09" class="decompiled"><title>void __cdecl Lara_LookUpDown(void);</title></rect>
 <rect width="6.36" height="6.05" x="598.66" y="281.14" class="known"><title>int16_t __cdecl GunShot(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
 <rect width="6.36" height="5.87" x="598.66" y="290.19" class="known"><title>void __cdecl CreateBubble(PHD_3DPOS *pos, int16_t room_num);</title></rect>

@@ -470,6 +470,7 @@ static void Inject_Gameflow(bool enable)
 {
     INJECT(enable, 0x0041FA60, GF_LoadScriptFile);
     INJECT(enable, 0x0041FC50, GF_DoFrontendSequence);
+    INJECT(enable, 0x0041FC70, GF_DoLevelSequence);
 }
 
 static void Inject_Overlay(const bool enable)

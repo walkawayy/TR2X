@@ -73,3 +73,26 @@ int32_t __cdecl GF_DoFrontendSequence(void)
         GF_InterpretSequence(g_GF_FrontendSequence, GFL_NORMAL, 1);
     return option == GFD_EXIT_GAME;
 }
+
+int32_t __cdecl GF_DoLevelSequence(
+    const int32_t start_level, const GF_LEVEL_TYPE type)
+{
+    int32_t current_level = start_level;
+    while (true) {
+        if (current_level > g_GameFlow.num_levels - 1) {
+            g_IsTitleLoaded = 0;
+            return GFD_EXIT_TO_TITLE;
+        }
+
+        int16_t *const ptr = g_GF_ScriptTable[current_level];
+        const GAME_FLOW_DIR option = GF_InterpretSequence(ptr, type, 0);
+        current_level++;
+
+        if (g_GameFlow.single_level >= 0) {
+            return option;
+        }
+        if ((option & ~0xFF) != GFD_LEVEL_COMPLETE) {
+            return option;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 #include "game/demo.h"
 
 #include "decomp/decomp.h"
+#include "game/gameflow.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/random.h"

@@ -3904,7 +3904,7 @@ typedef enum {
 0x0044C480  0x0144  +       int16_t __cdecl Game_Start(int32_t level_num, GF_LEVEL_TYPE level_type);
 0x0044C5D0  0x009A  +       int32_t __cdecl Game_Loop(bool demo_mode);
 0x0044C670  0x0006  +R      int32_t __cdecl LevelCompleteSequence(void);
-0x0044C680  0x01C2  -R      int32_t __cdecl LevelStats(int32_t level_num);
+0x0044C680  0x01C2  +R      int32_t __cdecl LevelStats(int32_t level_num);
 0x0044C850  0x0113  +R      int32_t __cdecl GameStats(int32_t level_num);
 0x0044C970  0x001E  +       int32_t __cdecl Random_GetControl(void);
 0x0044C990  0x000A  +       void __cdecl Random_SeedControl(int32_t seed);

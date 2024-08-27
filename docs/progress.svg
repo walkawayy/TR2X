@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.49% (688)</tspan> · <tspan class="known">41.05% (500)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.57% (689)</tspan> · <tspan class="known">40.97% (499)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="421.95" height="6" x="0" y="0" class="decompiled"/>
-<rect width="306.65" height="6" x="421.95" y="0" class="known"/>
+<rect width="422.56" height="6" x="0" y="0" class="decompiled"/>
+<rect width="306.04" height="6" x="422.56" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1071,7 +1071,7 @@
 <rect width="12" height="12" x="630" y="285" class="decompiled"><title>int16_t __cdecl Game_Start(int32_t level_num, GF_LEVEL_TYPE level_type);</title></rect>
 <rect width="12" height="12" x="645" y="285" class="decompiled"><title>int32_t __cdecl Game_Loop(bool demo_mode);</title></rect>
 <rect width="12" height="12" x="660" y="285" class="decompiled"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
-<rect width="12" height="12" x="675" y="285" class="known"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
+<rect width="12" height="12" x="675" y="285" class="decompiled"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="690" y="285" class="decompiled"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="705" y="285" class="decompiled"><title>int32_t __cdecl Random_GetControl(void);</title></rect>
 <rect width="12" height="12" x="720" y="285" class="decompiled"><title>void __cdecl Random_SeedControl(int32_t seed);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.96%</tspan> · <tspan class="known">40.72%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">59.09%</tspan> · <tspan class="known">40.58%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="440.41" height="6" x="0" y="0" class="decompiled"/>
-<rect width="304.15" height="6" x="440.41" y="0" class="known"/>
+<rect width="441.39" height="6" x="0" y="0" class="decompiled"/>
+<rect width="303.17" height="6" x="441.39" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1509,7 +1509,7 @@
 <rect width="16.43" height="16.52" x="411.31" y="41.46" class="known"><title>void __cdecl FadeToPal(int32_t fade_value, RGB_888 *palette);</title></rect>
 <rect width="16.43" height="16.39" x="411.31" y="60.99" class="decompiled"><title>void __cdecl Room_GetBounds(void);</title></rect>
 <rect width="16.43" height="16.31" x="411.31" y="80.38" class="known"><title>int32_t __cdecl ShotLara(ITEM_INFO *item, AI_INFO *info, BITE_INFO *gun, int16_t extra_rotation, int32_t damage);</title></rect>
-<rect width="16.43" height="16.22" x="411.31" y="99.69" class="known"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
+<rect width="16.43" height="16.22" x="411.31" y="99.69" class="decompiled"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
 <rect width="16.43" height="16.18" x="411.31" y="118.91" class="decompiled"><title>void __cdecl Boat_DoShift(int32_t boat_num);</title></rect>
 <rect width="16.43" height="16.14" x="411.31" y="138.09" class="decompiled"><title>void __cdecl WinVidResizeGameWindow(HWND hWnd, int32_t edge, LPRECT rect);</title></rect>
 <rect width="16.43" height="16.05" x="411.31" y="157.23" class="decompiled"><title>BOOL __stdcall EnumDisplayAdaptersCallback(GUID *lpGUID, LPTSTR lpDriverDescription, LPTSTR lpDriverName, LPVOID lpContext);</title></rect>

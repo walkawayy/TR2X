@@ -5,7 +5,7 @@ from tr2x.ida_progress import VAR_RE, FUNC_PTR_RE, Symbol, parse_progress_file
 from tr2x.paths import TR2X_PROGRESS_FILE, TR2X_SRC_DIR
 
 FUNCS_H_FILE = TR2X_SRC_DIR / "global/funcs.h"
-VARS_H_FILE = TR2X_SRC_DIR / "global/vars.h"
+VARS_H_FILE = TR2X_SRC_DIR / "global/vars_decomp.h"
 TYPES_H_FILE = TR2X_SRC_DIR / "global/types.h"
 
 
@@ -86,7 +86,6 @@ def make_vars_h(variables: list[Symbol]) -> None:
         '#include "inject_util.h"',
         "",
         "// clang-format off",
-        "extern const char *g_TR2XVersion;",
     ]
     footer = [
         "",

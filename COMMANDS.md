@@ -19,6 +19,12 @@ Currently supported commands:
 - `/endlevel`  
   Ends the current level. Ideal for speedruns.
 
+- `/level {num}`  
+  `/level {name}`  
+  `/play {num}`  
+  `/play {name}`  
+  Plays the specified level.
+
 - `/demo`  
   Starts the demo.
 

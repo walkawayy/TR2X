@@ -86,7 +86,8 @@ BOOL __cdecl Shell_Main(void)
         switch (gf_dir) {
         case GFD_START_GAME:
             if (g_GameFlow.single_level >= 0) {
-                gf_option = GF_DoLevelSequence(g_GameFlow.single_level, 1);
+                gf_option =
+                    GF_DoLevelSequence(g_GameFlow.single_level, GFL_NORMAL);
             } else {
                 if (gf_param > g_GameFlow.num_levels) {
                     sprintf(
@@ -96,7 +97,7 @@ BOOL __cdecl Shell_Main(void)
                     Config_Write();
                     return false;
                 }
-                gf_option = GF_DoLevelSequence(gf_param, 1);
+                gf_option = GF_DoLevelSequence(gf_param, GFL_NORMAL);
             }
             break;
 
@@ -110,7 +111,7 @@ BOOL __cdecl Shell_Main(void)
                 Config_Write();
                 return false;
             }
-            gf_option = GF_DoLevelSequence(g_SaveGame.current_level, 2);
+            gf_option = GF_DoLevelSequence(g_SaveGame.current_level, GFL_SAVED);
             break;
 
         case GFD_START_CINE:

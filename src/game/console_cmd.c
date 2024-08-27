@@ -8,6 +8,8 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/strings.h>
+
 #include <math.h>
 #include <stdio.h>
 
@@ -17,6 +19,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
 static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
+static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartDemo(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args);
 
@@ -155,6 +158,43 @@ static COMMAND_RESULT Console_Cmd_EndLevel(const char *const args)
     return CR_FAILURE;
 }
 
+static COMMAND_RESULT Console_Cmd_StartLevel(const char *args)
+{
+    int32_t level_to_load = -1;
+
+    if (level_to_load == -1) {
+        int32_t num = 0;
+        if (sscanf(args, "%d", &num) == 1) {
+            level_to_load = num;
+        }
+    }
+
+    if (level_to_load == -1 && strlen(args) >= 2) {
+        for (int i = 0; i < g_GameFlow.num_levels; i++) {
+            if (String_CaseSubstring(g_GF_LevelNames[i], args) != NULL) {
+                level_to_load = i;
+                break;
+            }
+        }
+    }
+
+    if (level_to_load == -1 && String_Equivalent(args, "gym")) {
+        level_to_load = LV_GYM;
+    }
+
+    if (level_to_load >= g_GameFlow.num_levels) {
+        Console_Log("Invalid level");
+        return CR_FAILURE;
+    }
+
+    if (level_to_load != -1) {
+        g_GF_OverrideDir = GFD_START_GAME | level_to_load;
+        Console_Log("Loading %s", g_GF_LevelNames[level_to_load]);
+        return CR_SUCCESS;
+    }
+
+    return CR_BAD_INVOCATION;
+}
 static COMMAND_RESULT Console_Cmd_StartDemo(const char *args)
 {
     g_GF_OverrideDir = GFD_START_DEMO;
@@ -173,6 +213,8 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "hp", .proc = Console_Cmd_SetHealth },
     { .prefix = "heal", .proc = Console_Cmd_Heal },
     { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
+    { .prefix = "play", .proc = Console_Cmd_StartLevel },
+    { .prefix = "level", .proc = Console_Cmd_StartLevel },
     { .prefix = "demo", .proc = Console_Cmd_StartDemo },
     { .prefix = "title", .proc = Console_Cmd_ExitToTitle },
     { .prefix = NULL, .proc = NULL },

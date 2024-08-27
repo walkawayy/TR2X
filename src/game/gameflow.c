@@ -2,6 +2,7 @@
 
 #include "decomp/decomp.h"
 #include "game/demo.h"
+#include "game/game.h"
 #include "game/gun/gun.h"
 #include "game/overlay.h"
 #include "global/funcs.h"
@@ -470,7 +471,7 @@ int32_t __cdecl GF_InterpretSequence(
                 if (type == GFL_MIDSTORY) {
                     return GFD_EXIT_TO_TITLE;
                 }
-                option = StartGame(ptr[1], type);
+                option = Game_Start(ptr[1], type);
                 g_GF_StartGame = 0;
                 if (type == GFL_SAVED) {
                     type = GFL_NORMAL;

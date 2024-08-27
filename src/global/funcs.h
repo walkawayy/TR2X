@@ -353,7 +353,6 @@
 #define S_Wait ((void __cdecl (*)(int32_t timeout, BOOL input_check))0x0044C3F0)
 #define S_PlayFMV ((bool __cdecl (*)(const char *file_name))0x0044C450)
 #define S_IntroFMV ((bool __cdecl (*)(const char *file_name1, const char *file_name2))0x0044C460)
-#define StartGame ((int16_t __cdecl (*)(int32_t level_num, GF_LEVEL_TYPE level_type))0x0044C480)
 #define GameLoop ((int32_t __cdecl (*)(BOOL demo_mode))0x0044C5D0)
 #define LevelCompleteSequence ((int32_t __cdecl (*)(void))0x0044C670)
 #define LevelStats ((int32_t __cdecl (*)(int32_t level_num))0x0044C680)

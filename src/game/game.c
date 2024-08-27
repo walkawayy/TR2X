@@ -1,5 +1,6 @@
 #include "game/game.h"
 
+#include "decomp/decomp.h"
 #include "game/camera.h"
 #include "game/demo.h"
 #include "game/input.h"
@@ -177,4 +178,68 @@ int32_t __cdecl Game_Draw(void)
     g_Camera.num_frames = S_DumpScreen();
     S_AnimateTextures(g_Camera.num_frames);
     return g_Camera.num_frames;
+}
+
+int16_t __cdecl Game_Start(
+    const int32_t level_num, const GF_LEVEL_TYPE level_type)
+{
+    if (level_type == GFL_NORMAL || level_type == GFL_SAVED
+        || level_type == GFL_DEMO) {
+        g_CurrentLevel = level_num;
+    }
+    if (level_type != GFL_SAVED) {
+        ModifyStartInfo(level_num);
+    }
+    g_IsTitleLoaded = 0;
+    if (level_type != GFL_SAVED) {
+        InitialiseLevelFlags();
+    }
+    if (!Level_Initialise(level_num, level_type)) {
+        g_CurrentLevel = 0;
+        return GFD_EXIT_GAME;
+    }
+
+    GAME_FLOW_DIR option = GameLoop(0);
+    if (option == GFD_EXIT_TO_TITLE || option == GFD_START_DEMO) {
+        return option;
+    }
+
+    if (option == GFD_EXIT_GAME) {
+        g_CurrentLevel = 0;
+        return option;
+    }
+
+    if (g_LevelComplete) {
+        if (g_GameFlow.demo_version && g_GameFlow.single_level) {
+            return GFD_EXIT_TO_TITLE;
+        }
+
+        if (g_CurrentLevel == LV_GYM) {
+            S_FadeToBlack();
+            return GFD_EXIT_TO_TITLE;
+        }
+
+        S_FadeInInventory(1);
+        return GFD_LEVEL_COMPLETE | g_CurrentLevel;
+    }
+
+    S_FadeToBlack();
+    if (!g_Inv_Chosen) {
+        return GFD_EXIT_TO_TITLE;
+    }
+
+    if (g_Inv_ExtraData[0] == 0) {
+        S_LoadGame(&g_SaveGame, sizeof(SAVEGAME_INFO), g_Inv_ExtraData[1]);
+        return GFD_START_SAVED_GAME | g_Inv_ExtraData[1];
+    }
+
+    if (g_Inv_ExtraData[0] != 1) {
+        return GFD_EXIT_TO_TITLE;
+    }
+
+    if (g_GameFlow.play_any_level) {
+        return g_Inv_ExtraData[1] + 1;
+    }
+
+    return GFD_START_GAME | LV_FIRST;
 }

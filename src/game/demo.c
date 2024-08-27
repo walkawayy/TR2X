@@ -4,7 +4,7 @@
 #include "game/game.h"
 #include "game/gameflow.h"
 #include "game/items.h"
-#include "game/lara/lara_control.h"
+#include "game/lara/lara_cheat.h"
 #include "game/random.h"
 #include "game/room.h"
 #include "game/shell.h"
@@ -72,7 +72,7 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     }
 
     Demo_LoadLaraPos();
-    Lara_CheatGetStuff();
+    Lara_Cheat_GetStuff();
     Random_SeedDraw(0xD371F947);
     Random_SeedControl(0xD371F947);
 

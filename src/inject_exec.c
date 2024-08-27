@@ -19,6 +19,7 @@
 #include "game/input.h"
 #include "game/inventory.h"
 #include "game/items.h"
+#include "game/lara/lara_cheat.h"
 #include "game/lara/lara_col.h"
 #include "game/lara/lara_control.h"
 #include "game/lara/lara_draw.h"
@@ -578,7 +579,7 @@ static void Inject_Lara_Control(const bool enable)
     INJECT(enable, 0x00430EF0, Lara_ControlExtra);
     INJECT(enable, 0x00430970, Lara_Animate);
     INJECT(enable, 0x00430C70, Lara_UseItem);
-    INJECT(enable, 0x00430E30, Lara_CheatGetStuff);
+    INJECT(enable, 0x00430E30, Lara_Cheat_GetStuff);
     INJECT(enable, 0x00430F10, Lara_InitialiseLoad);
     INJECT(enable, 0x00430F40, Lara_Initialise);
     INJECT(enable, 0x00431200, Lara_InitialiseInventory);

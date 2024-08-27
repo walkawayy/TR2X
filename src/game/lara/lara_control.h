@@ -15,8 +15,6 @@ void __cdecl Lara_Animate(ITEM_INFO *item);
 
 void __cdecl Lara_UseItem(GAME_OBJECT_ID object_num);
 
-void __cdecl Lara_CheatGetStuff(void);
-
 void __cdecl Lara_InitialiseLoad(int16_t item_num);
 
 void __cdecl Lara_Initialise(GF_LEVEL_TYPE type);

@@ -45,6 +45,10 @@ int32_t __cdecl LevelStats(const int32_t level_num)
         }
         g_InputDB = GetDebouncedInput(g_Input);
 
+        if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+            break;
+        }
+
         ShowStatsText(buffer, 0);
         Text_Draw();
         S_OutputPolyList();
@@ -89,6 +93,10 @@ int32_t __cdecl GameStats(const int32_t level_num)
             g_Input = IN_SELECT;
         }
         g_InputDB = GetDebouncedInput(g_Input);
+
+        if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+            break;
+        }
 
         ShowEndStatsText();
         Text_Draw();

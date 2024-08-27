@@ -84,14 +84,18 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     Text_CentreH(text, true);
 
     g_Inv_DemoMode = true;
-    const int32_t result = Game_Loop(true);
+    GAME_FLOW_DIR dir = Game_Loop(true);
     g_Inv_DemoMode = false;
 
     Text_Remove(text);
 
     *s = start;
     S_FadeToBlack();
-    return result;
+    if (dir == GFD_OVERRIDE) {
+        dir = g_GF_OverrideDir;
+        g_GF_OverrideDir = (GAME_FLOW_DIR)-1;
+    }
+    return dir;
 }
 
 void __cdecl Demo_LoadLaraPos(void)

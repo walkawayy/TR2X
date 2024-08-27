@@ -150,6 +150,10 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
     g_Inv_NFrames = 2;
 
     do {
+        if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+            return GFD_OVERRIDE;
+        }
+
         if (inventory_mode == INV_TITLE_MODE && g_CD_TrackID > 0) {
             Music_Init();
         }

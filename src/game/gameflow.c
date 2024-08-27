@@ -387,9 +387,9 @@ int32_t __cdecl GF_LoadScriptFile(const char *const fname)
 
 int32_t __cdecl GF_DoFrontendSequence(void)
 {
-    const GAME_FLOW_DIR option =
+    const GAME_FLOW_DIR dir =
         GF_InterpretSequence(g_GF_FrontendSequence, GFL_NORMAL, 1);
-    return option == GFD_EXIT_GAME;
+    return dir == GFD_EXIT_GAME;
 }
 
 int32_t __cdecl GF_DoLevelSequence(
@@ -403,14 +403,14 @@ int32_t __cdecl GF_DoLevelSequence(
         }
 
         const int16_t *const ptr = g_GF_ScriptTable[current_level];
-        const GAME_FLOW_DIR option = GF_InterpretSequence(ptr, type, 0);
+        const GAME_FLOW_DIR dir = GF_InterpretSequence(ptr, type, 0);
         current_level++;
 
         if (g_GameFlow.single_level >= 0) {
-            return option;
+            return dir;
         }
-        if ((option & ~0xFF) != GFD_LEVEL_COMPLETE) {
-            return option;
+        if ((dir & ~0xFF) != GFD_LEVEL_COMPLETE) {
+            return dir;
         }
     }
 }
@@ -436,7 +436,7 @@ int32_t __cdecl GF_InterpretSequence(
     g_GF_NumSecrets = 3;
 
     int32_t ntracks = 0;
-    GAME_FLOW_DIR option = GFD_EXIT_TO_TITLE;
+    GAME_FLOW_DIR dir = GFD_EXIT_TO_TITLE;
 
     while (*ptr != GFE_END_SEQ) {
         switch (*ptr) {
@@ -467,18 +467,18 @@ int32_t __cdecl GF_InterpretSequence(
 
         case GFE_START_LEVEL:
             if (ptr[1] > g_GameFlow.num_levels) {
-                option = GFD_EXIT_TO_TITLE;
+                dir = GFD_EXIT_TO_TITLE;
             } else if (type != GFL_STORY) {
                 if (type == GFL_MIDSTORY) {
                     return GFD_EXIT_TO_TITLE;
                 }
-                option = Game_Start(ptr[1], type);
+                dir = Game_Start(ptr[1], type);
                 g_GF_StartGame = 0;
                 if (type == GFL_SAVED) {
                     type = GFL_NORMAL;
                 }
-                if ((option & ~0xFF) != GFD_LEVEL_COMPLETE) {
-                    return option;
+                if ((dir & ~0xFF) != GFD_LEVEL_COMPLETE) {
+                    return dir;
                 }
             }
             ptr += 2;
@@ -505,7 +505,7 @@ int32_t __cdecl GF_InterpretSequence(
                 if (LevelStats(g_CurrentLevel)) {
                     return GFD_EXIT_TO_TITLE;
                 }
-                option = GFD_START_GAME | (g_CurrentLevel + 1);
+                dir = GFD_START_GAME | (g_CurrentLevel + 1);
             }
             ptr++;
             break;
@@ -560,7 +560,7 @@ int32_t __cdecl GF_InterpretSequence(
             if (GameStats(g_CurrentLevel)) {
                 return GFD_EXIT_TO_TITLE;
             }
-            option = GFD_EXIT_TO_TITLE;
+            dir = GFD_EXIT_TO_TITLE;
             ptr++;
             break;
 
@@ -626,7 +626,7 @@ int32_t __cdecl GF_InterpretSequence(
     if (type == GFL_STORY || type == GFL_MIDSTORY) {
         return 0;
     }
-    return option;
+    return dir;
 }
 
 void __cdecl GF_ModifyInventory(const int32_t level, const int32_t type)

@@ -20,6 +20,10 @@ static int32_t m_FrameCount = 0;
 
 int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
 {
+    if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+        return GFD_OVERRIDE;
+    }
+
     CLAMPG(nframes, MAX_FRAMES);
     m_FrameCount += nframes;
 
@@ -80,9 +84,9 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
             }
             if (g_OverlayStatus == 2) {
                 g_OverlayStatus = 1;
-                const int32_t result = Inv_Display(5);
-                if (result) {
-                    return result;
+                const GAME_FLOW_DIR dir = Inv_Display(INV_DEATH_MODE);
+                if (dir != 0) {
+                    return dir;
                 }
             } else {
                 g_OverlayStatus = 2;
@@ -100,17 +104,20 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
                     g_OverlayStatus = (g_Input & 0x400000) != 0 ? -2 : 0;
                 }
             } else {
-                int32_t result;
+                GAME_FLOW_DIR dir;
                 if (g_OverlayStatus == -1) {
-                    result = Inv_Display(INV_LOAD_MODE);
+                    dir = Inv_Display(INV_LOAD_MODE);
                 } else if (g_OverlayStatus == -2) {
-                    result = Inv_Display(INV_SAVE_MODE);
+                    dir = Inv_Display(INV_SAVE_MODE);
                 } else {
-                    result = Inv_Display(INV_GAME_MODE);
+                    dir = Inv_Display(INV_GAME_MODE);
+                }
+                if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+                    return GFD_OVERRIDE;
                 }
                 g_OverlayStatus = 1;
 
-                if (result) {
+                if (dir != 0) {
                     if (g_Inv_ExtraData[0] == 1) {
                         if (g_CurrentLevel == LV_GYM) {
                             return GFD_START_GAME | LV_FIRST;
@@ -121,7 +128,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
                             g_Inv_ExtraData[1]);
                         S_SaveSettings();
                     } else {
-                        return result;
+                        return dir;
                     }
                 }
             }
@@ -200,14 +207,19 @@ int16_t __cdecl Game_Start(
         return GFD_EXIT_GAME;
     }
 
-    GAME_FLOW_DIR option = Game_Loop(false);
-    if (option == GFD_EXIT_TO_TITLE || option == GFD_START_DEMO) {
-        return option;
+    GAME_FLOW_DIR dir = Game_Loop(false);
+    if (dir == GFD_OVERRIDE) {
+        dir = g_GF_OverrideDir;
+        g_GF_OverrideDir = (GAME_FLOW_DIR)-1;
+        return dir;
+    }
+    if (dir == GFD_EXIT_TO_TITLE || dir == GFD_START_DEMO) {
+        return dir;
     }
 
-    if (option == GFD_EXIT_GAME) {
+    if (dir == GFD_EXIT_GAME) {
         g_CurrentLevel = 0;
-        return option;
+        return dir;
     }
 
     if (g_LevelComplete) {
@@ -252,13 +264,13 @@ int32_t __cdecl Game_Loop(const bool demo_mode)
     g_NoInputCounter = 0;
     g_GameMode = demo_mode ? GAMEMODE_IN_DEMO : GAMEMODE_IN_GAME;
 
-    GAME_FLOW_DIR option = Game_Control(1, demo_mode);
-    while (option == 0) {
+    GAME_FLOW_DIR dir = Game_Control(1, demo_mode);
+    while (dir == 0) {
         const int32_t nframes = Game_Draw();
         if (g_IsGameToExit) {
-            option = GFD_EXIT_GAME;
+            dir = GFD_EXIT_GAME;
         } else {
-            option = Game_Control(nframes, demo_mode);
+            dir = Game_Control(nframes, demo_mode);
         }
     }
 
@@ -271,5 +283,5 @@ int32_t __cdecl Game_Loop(const bool demo_mode)
         Music_SetVolume(25 * g_OptionMusicVolume + 5);
     }
 
-    return option;
+    return dir;
 }

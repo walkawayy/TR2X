@@ -560,27 +560,32 @@ int16_t __cdecl TitleSequence(void)
 {
     Text_Init();
     TempVideoAdjust(1, 1.0);
-
     g_NoInputCounter = 0;
 
     if (!g_IsTitleLoaded) {
         if (!Level_Initialise(0, 0)) {
             return GFD_EXIT_GAME;
         }
-        g_IsTitleLoaded = TRUE;
+        g_IsTitleLoaded = true;
     }
 
-    S_DisplayPicture("data/title.pcx", 1);
+    S_DisplayPicture("data/title.pcx", true);
     if (g_GameFlow.title_track) {
-        Music_Play(g_GameFlow.title_track, 1);
+        Music_Play(g_GameFlow.title_track, true);
     }
 
-    Inv_Display(INV_TITLE_MODE);
+    GAME_FLOW_DIR dir = Inv_Display(INV_TITLE_MODE);
 
     S_FadeToBlack();
     S_DontDisplayPicture();
-
     Music_Stop();
+
+    if (dir == GFD_OVERRIDE) {
+        dir = g_GF_OverrideDir;
+        g_GF_OverrideDir = (GAME_FLOW_DIR)-1;
+        return dir;
+    }
+
     if (g_IsResetFlag) {
         g_IsResetFlag = 0;
         return GFD_START_DEMO;

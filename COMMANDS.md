@@ -18,3 +18,6 @@ Currently supported commands:
 
 - `/endlevel`  
   Ends the current level. Ideal for speedruns.
+
+- `/demo`  
+  Starts the demo.

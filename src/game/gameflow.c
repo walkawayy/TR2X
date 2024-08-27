@@ -563,6 +563,10 @@ void __cdecl GF_ModifyInventory(const int32_t level, const int32_t type)
             Overlay_AddDisplayPickup(O_SHOTGUN_ITEM);
             g_Lara.shotgun_ammo.ammo +=
                 SHOTGUN_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
+            for (int32_t i = 0;
+                 i < g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO]; i++) {
+                Overlay_AddDisplayPickup(O_SHOTGUN_AMMO_ITEM);
+            }
         } else {
             g_Lara.shotgun_ammo.ammo +=
                 SHOTGUN_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];

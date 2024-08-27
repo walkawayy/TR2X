@@ -1,5 +1,6 @@
 ## [Unreleased](https://github.com/LostArtefacts/TR2X/compare/stable...develop) - ××××-××-××
 - added an option to fix M16 accuracy while running (#45)
+- fixed secret rewards not displaying shotgun ammo (#159)
 - fixed sounds not playing under certain circumstances (#113, regression from 0.2)
 - fixed the excessive pitch and playback speed correction for music files with sampling rate other than 44100 Hz (LostArtefacts/TR1X#1417, regression from 0.2)
 - fixed a crash potential with certain music files (regression from 0.2)

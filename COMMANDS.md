@@ -21,3 +21,6 @@ Currently supported commands:
 
 - `/demo`  
   Starts the demo.
+
+- `/title`  
+  Exits the game to main screen.

@@ -18,6 +18,7 @@ static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartDemo(const char *args);
+static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args);
 
 static inline bool Console_Cmd_IsFloatRound(const float num)
 {
@@ -160,6 +161,12 @@ static COMMAND_RESULT Console_Cmd_StartDemo(const char *args)
     return CR_SUCCESS;
 }
 
+static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args)
+{
+    g_GF_OverrideDir = GFD_EXIT_TO_TITLE;
+    return CR_SUCCESS;
+}
+
 CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "pos", .proc = Console_Cmd_Pos },
     { .prefix = "tp", .proc = Console_Cmd_Teleport },
@@ -167,5 +174,6 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "heal", .proc = Console_Cmd_Heal },
     { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
     { .prefix = "demo", .proc = Console_Cmd_StartDemo },
+    { .prefix = "title", .proc = Console_Cmd_ExitToTitle },
     { .prefix = NULL, .proc = NULL },
 };

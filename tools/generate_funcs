@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+from pathlib import Path
 import re
 
-from tr2x.ida_progress import VAR_RE, FUNC_PTR_RE, Symbol, parse_progress_file
+from tr2x.ida_progress import FUNC_PTR_RE, VAR_RE, Symbol, parse_progress_file
 from tr2x.paths import TR2X_PROGRESS_FILE, TR2X_SRC_DIR
 
 FUNCS_H_FILE = TR2X_SRC_DIR / "global/funcs.h"
@@ -15,6 +16,11 @@ COMMON_HEADER = [
     "#pragma once",
     "",
 ]
+
+
+def update_file(path: Path, new_content: str) -> None:
+    if path.read_text() != new_content:
+        path.write_text(new_content)
 
 
 def make_func_pointer_define(function: Symbol) -> str:
@@ -76,7 +82,7 @@ def make_funcs_h(functions: list[Symbol]) -> None:
         ):
             defines.append(define)
 
-    FUNCS_H_FILE.write_text("\n".join([*header, *defines, *footer]) + "\n")
+    update_file(FUNCS_H_FILE, "\n".join([*header, *defines, *footer]) + "\n")
 
 
 def make_vars_h(variables: list[Symbol]) -> None:
@@ -99,7 +105,7 @@ def make_vars_h(variables: list[Symbol]) -> None:
         ):
             defines.append(define)
 
-    VARS_H_FILE.write_text("\n".join([*header, *defines, *footer]) + "\n")
+    update_file(VARS_H_FILE, "\n".join([*header, *defines, *footer]) + "\n")
 
 
 def make_types_h(types: list[str]) -> None:
@@ -124,7 +130,8 @@ def make_types_h(types: list[str]) -> None:
         "// clang-format on",
     ]
 
-    TYPES_H_FILE.write_text(
+    update_file(
+        TYPES_H_FILE,
         "\n".join(
             [
                 *header,
@@ -132,7 +139,7 @@ def make_types_h(types: list[str]) -> None:
                 *footer,
             ]
         )
-        + "\n"
+        + "\n",
     )
 
 

@@ -3145,7 +3145,7 @@ typedef enum {
 0x0041FC50  0x001F  +       int32_t __cdecl GF_DoFrontendSequence(void);
 0x0041FC70  0x0066  +       int32_t __cdecl GF_DoLevelSequence(int32_t level, GF_LEVEL_TYPE type);
 0x0041FCE0  0x047C  +       int32_t __cdecl GF_InterpretSequence(int16_t *ptr, GF_LEVEL_TYPE type, int32_t seq_type);
-0x004201C0  0x0CD3  -R      void __cdecl GF_ModifyInventory(int32_t level, int32_t type);
+0x004201C0  0x0CD3  +       void __cdecl GF_ModifyInventory(int32_t level, int32_t type);
 
 # game/hair.c
 0x00420EA0  0x0074  -R      void __cdecl InitialiseHair(void);

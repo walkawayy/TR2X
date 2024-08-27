@@ -2,6 +2,7 @@
 
 #include "decomp/decomp.h"
 #include "game/demo.h"
+#include "game/overlay.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -313,4 +314,363 @@ int32_t __cdecl GF_InterpretSequence(
         return 0;
     }
     return option;
+}
+
+void __cdecl GF_ModifyInventory(const int32_t level, const int32_t type)
+{
+    START_INFO *const start = &g_SaveGame.start[level];
+
+    if (!start->has_pistols && g_GF_Add2InvItems[GF_ADD_INV_PISTOLS]) {
+        start->has_pistols = 1;
+        Inv_AddItem(O_PISTOL_ITEM);
+    }
+
+    if (Inv_RequestItem(O_SHOTGUN_ITEM)) {
+        if (type) {
+            g_Lara.shotgun_ammo.ammo +=
+                SHOTGUN_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
+            for (int32_t i = 0;
+                 i < g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO]; i++) {
+                Overlay_AddDisplayPickup(O_SHOTGUN_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.shotgun_ammo.ammo +=
+                SHOTGUN_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN])
+        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN])) {
+        start->has_shotgun = 1;
+        Inv_AddItem(O_SHOTGUN_ITEM);
+        if (type) {
+            Overlay_AddDisplayPickup(O_SHOTGUN_ITEM);
+            g_Lara.shotgun_ammo.ammo +=
+                SHOTGUN_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
+        } else {
+            g_Lara.shotgun_ammo.ammo +=
+                SHOTGUN_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];
+        }
+    } else if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
+             i++) {
+            Overlay_AddDisplayPickup(O_SHOTGUN_AMMO_ITEM);
+            Inv_AddItem(O_SHOTGUN_AMMO_ITEM);
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];
+             i++) {
+            Inv_AddItem(O_SHOTGUN_AMMO_ITEM);
+        }
+    }
+
+    if (Inv_RequestItem(O_MAGNUM_ITEM)) {
+        if (type) {
+            g_Lara.magnum_ammo.ammo +=
+                MAGNUM_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_MAGNUM_AMMO];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_MAGNUM_AMMO];
+                 i++) {
+                Overlay_AddDisplayPickup(O_MAGNUM_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.magnum_ammo.ammo +=
+                MAGNUM_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_MAGNUMS])
+        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_MAGNUMS])) {
+        start->has_magnums = 1;
+        Inv_AddItem(O_MAGNUM_ITEM);
+        if (type) {
+            Overlay_AddDisplayPickup(O_MAGNUM_ITEM);
+            g_Lara.magnum_ammo.ammo +=
+                MAGNUM_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_MAGNUMS];
+                 i++) {
+                Overlay_AddDisplayPickup(O_MAGNUM_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.magnum_ammo.ammo +=
+                MAGNUM_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
+        }
+    } else if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_MAGNUM_AMMO];
+             i++) {
+            Inv_AddItem(O_MAGNUM_AMMO_ITEM);
+            Overlay_AddDisplayPickup(O_MAGNUM_AMMO_ITEM);
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
+             i++) {
+            Inv_AddItem(O_MAGNUM_AMMO_ITEM);
+        }
+    }
+
+    if (Inv_RequestItem(O_UZI_ITEM)) {
+        if (type) {
+            g_Lara.uzi_ammo.ammo +=
+                UZI_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
+                 i++) {
+                Overlay_AddDisplayPickup(O_UZI_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.uzi_ammo.ammo +=
+                UZI_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_UZI_AMMO];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_UZIS])
+        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_UZIS])) {
+        start->has_uzis = 1;
+        Inv_AddItem(O_UZI_ITEM);
+        if (type) {
+            Overlay_AddDisplayPickup(O_UZI_ITEM);
+            g_Lara.uzi_ammo.ammo +=
+                UZI_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
+                 i++) {
+                Overlay_AddDisplayPickup(O_UZI_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.uzi_ammo.ammo +=
+                UZI_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_UZI_AMMO];
+        }
+    } else if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO]; i++) {
+            Inv_AddItem(O_UZI_AMMO_ITEM);
+            Overlay_AddDisplayPickup(O_UZI_AMMO_ITEM);
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_UZI_AMMO]; i++) {
+            Inv_AddItem(O_UZI_AMMO_ITEM);
+        }
+    }
+
+    if (Inv_RequestItem(O_HARPOON_ITEM)) {
+        if (type) {
+            g_Lara.harpoon_ammo.ammo +=
+                HARPOON_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO];
+            for (int32_t i = 0;
+                 i < g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO]; i++) {
+                Overlay_AddDisplayPickup(O_HARPOON_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.harpoon_ammo.ammo +=
+                HARPOON_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_HARPOON_AMMO];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_HARPOON])
+        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_HARPOON])) {
+        start->has_harpoon = 1;
+        Inv_AddItem(O_HARPOON_ITEM);
+        if (type) {
+            Overlay_AddDisplayPickup(O_HARPOON_ITEM);
+            g_Lara.harpoon_ammo.ammo +=
+                HARPOON_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO];
+            for (int32_t i = 0;
+                 i < g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO]; i++) {
+                Overlay_AddDisplayPickup(O_HARPOON_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.harpoon_ammo.ammo +=
+                HARPOON_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_HARPOON_AMMO];
+        }
+    } else if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO];
+             i++) {
+            Inv_AddItem(O_HARPOON_AMMO_ITEM);
+            Overlay_AddDisplayPickup(O_HARPOON_AMMO_ITEM);
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_HARPOON_AMMO];
+             i++) {
+            Inv_AddItem(O_HARPOON_AMMO_ITEM);
+        }
+    }
+
+    if (Inv_RequestItem(O_M16_ITEM)) {
+        if (type) {
+            g_Lara.m16_ammo.ammo +=
+                M16_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
+                 i++) {
+                Overlay_AddDisplayPickup(O_M16_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.m16_ammo.ammo +=
+                M16_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_M16_AMMO];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_M16])
+        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_M16])) {
+        start->has_m16 = 1;
+        Inv_AddItem(O_M16_ITEM);
+        if (type) {
+            Overlay_AddDisplayPickup(O_M16_ITEM);
+            g_Lara.m16_ammo.ammo +=
+                M16_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
+                 i++) {
+                Overlay_AddDisplayPickup(O_M16_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.m16_ammo.ammo +=
+                M16_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_M16_AMMO];
+        }
+    } else if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO]; i++) {
+            Inv_AddItem(O_M16_AMMO_ITEM);
+            Overlay_AddDisplayPickup(O_M16_AMMO_ITEM);
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_M16_AMMO]; i++) {
+            Inv_AddItem(O_M16_AMMO_ITEM);
+        }
+    }
+
+    if (Inv_RequestItem(O_GRENADE_ITEM)) {
+        if (type) {
+            g_Lara.grenade_ammo.ammo +=
+                GRENADE_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO];
+            for (int32_t i = 0;
+                 i < g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO]; i++) {
+                Overlay_AddDisplayPickup(O_GRENADE_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.grenade_ammo.ammo +=
+                GRENADE_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_GRENADE_AMMO];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_GRENADE])
+        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_GRENADE])) {
+        start->has_grenade = 1;
+        Inv_AddItem(O_GRENADE_ITEM);
+        if (type) {
+            Overlay_AddDisplayPickup(O_GRENADE_ITEM);
+            g_Lara.grenade_ammo.ammo +=
+                GRENADE_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO];
+            for (int32_t i = 0;
+                 i < g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO]; i++) {
+                Overlay_AddDisplayPickup(O_GRENADE_AMMO_ITEM);
+            }
+        } else {
+            g_Lara.grenade_ammo.ammo +=
+                GRENADE_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_GRENADE_AMMO];
+        }
+    } else if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO];
+             i++) {
+            Inv_AddItem(O_GRENADE_AMMO_ITEM);
+            Overlay_AddDisplayPickup(O_GRENADE_AMMO_ITEM);
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_GRENADE_AMMO];
+             i++) {
+            Inv_AddItem(O_GRENADE_AMMO_ITEM);
+        }
+    }
+
+    if (type) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_FLARES]; i++) {
+            Inv_AddItem(O_FLARE_ITEM);
+            Overlay_AddDisplayPickup(O_FLARE_ITEM);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_SMALL_MEDI];
+             i++) {
+            Inv_AddItem(O_SMALL_MEDIPACK_ITEM);
+            Overlay_AddDisplayPickup(O_SMALL_MEDIPACK_ITEM);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_LARGE_MEDI];
+             i++) {
+            Inv_AddItem(O_LARGE_MEDIPACK_ITEM);
+            Overlay_AddDisplayPickup(O_LARGE_MEDIPACK_ITEM);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PICKUP_1]; i++) {
+            Inv_AddItem(O_PICKUP_ITEM_1);
+            Overlay_AddDisplayPickup(O_PICKUP_ITEM_1);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PICKUP_2]; i++) {
+            Inv_AddItem(O_PICKUP_ITEM_2);
+            Overlay_AddDisplayPickup(O_PICKUP_ITEM_2);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_1]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_1);
+            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_1);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_2]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_2);
+            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_2);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_3]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_3);
+            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_3);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_4]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_4);
+            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_4);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_1]; i++) {
+            Inv_AddItem(O_KEY_ITEM_1);
+            Overlay_AddDisplayPickup(O_KEY_ITEM_1);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_2]; i++) {
+            Inv_AddItem(O_KEY_ITEM_2);
+            Overlay_AddDisplayPickup(O_KEY_ITEM_2);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_3]; i++) {
+            Inv_AddItem(O_KEY_ITEM_3);
+            Overlay_AddDisplayPickup(O_KEY_ITEM_3);
+        }
+        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_4]; i++) {
+            Inv_AddItem(O_KEY_ITEM_4);
+            Overlay_AddDisplayPickup(O_KEY_ITEM_4);
+        }
+
+        for (int32_t i = 0; i < GF_ADD_INV_NUMBER_OF; i++) {
+            g_GF_SecretInvItems[i] = 0;
+        }
+    } else {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_FLARES]; i++) {
+            Inv_AddItem(O_FLARE_ITEM);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_SMALL_MEDI]; i++) {
+            Inv_AddItem(O_SMALL_MEDIPACK_ITEM);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_LARGE_MEDI]; i++) {
+            Inv_AddItem(O_LARGE_MEDIPACK_ITEM);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PICKUP_1]; i++) {
+            Inv_AddItem(O_PICKUP_ITEM_1);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PICKUP_2]; i++) {
+            Inv_AddItem(O_PICKUP_ITEM_2);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_1]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_1);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_2]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_2);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_3]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_3);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_4]; i++) {
+            Inv_AddItem(O_PUZZLE_ITEM_4);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_1]; i++) {
+            Inv_AddItem(O_KEY_ITEM_1);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_2]; i++) {
+            Inv_AddItem(O_KEY_ITEM_2);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_3]; i++) {
+            Inv_AddItem(O_KEY_ITEM_3);
+        }
+        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_4]; i++) {
+            Inv_AddItem(O_KEY_ITEM_4);
+        }
+
+        for (int32_t i = 0; i < GF_ADD_INV_NUMBER_OF; i++) {
+            g_GF_Add2InvItems[i] = 0;
+        }
+    }
 }

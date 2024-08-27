@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.24% (685)</tspan> · <tspan class="known">41.30% (503)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.32% (686)</tspan> · <tspan class="known">41.22% (502)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="420.11" height="6" x="0" y="0" class="decompiled"/>
-<rect width="308.49" height="6" x="420.11" y="0" class="known"/>
+<rect width="420.72" height="6" x="0" y="0" class="decompiled"/>
+<rect width="307.88" height="6" x="420.72" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1069,7 +1069,7 @@
 <rect width="12" height="12" x="600" y="285" class="known"><title>bool __cdecl S_PlayFMV(const char *file_name);</title></rect>
 <rect width="12" height="12" x="615" y="285" class="known"><title>bool __cdecl S_IntroFMV(const char *file_name1, const char *file_name2);</title></rect>
 <rect width="12" height="12" x="630" y="285" class="decompiled"><title>int16_t __cdecl Game_Start(int32_t level_num, GF_LEVEL_TYPE level_type);</title></rect>
-<rect width="12" height="12" x="645" y="285" class="known"><title>int32_t __cdecl GameLoop(BOOL demo_mode);</title></rect>
+<rect width="12" height="12" x="645" y="285" class="decompiled"><title>int32_t __cdecl Game_Loop(bool demo_mode);</title></rect>
 <rect width="12" height="12" x="660" y="285" class="known"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
 <rect width="12" height="12" x="675" y="285" class="known"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="690" y="285" class="known"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.83%</tspan> · <tspan class="known">40.84%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.87%</tspan> · <tspan class="known">40.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="439.46" height="6" x="0" y="0" class="decompiled"/>
-<rect width="305.10" height="6" x="439.46" y="0" class="known"/>
+<rect width="439.79" height="6" x="0" y="0" class="decompiled"/>
+<rect width="304.77" height="6" x="439.79" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1848,7 +1848,7 @@
 <rect width="8.17" height="8.52" x="545.84" y="197.13" class="decompiled"><title>void __cdecl Lara_CollideStop(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="8.17" height="8.44" x="545.84" y="208.65" class="known"><title>void __cdecl swap_meshes_with_meshswap3(ITEM_INFO *item);</title></rect>
 <rect width="8.17" height="8.44" x="545.84" y="220.10" class="decompiled"><title>void __cdecl Level_LoadDemoExternal(LPCTSTR level_name);</title></rect>
-<rect width="8.17" height="8.44" x="545.84" y="231.54" class="known"><title>int32_t __cdecl GameLoop(BOOL demo_mode);</title></rect>
+<rect width="8.17" height="8.44" x="545.84" y="231.54" class="decompiled"><title>int32_t __cdecl Game_Loop(bool demo_mode);</title></rect>
 <rect width="8.17" height="8.37" x="545.84" y="242.98" class="decompiled"><title>void __cdecl Camera_Fixed(void);</title></rect>
 <rect width="8.17" height="8.37" x="545.84" y="254.35" class="decompiled"><title>int16_t __cdecl Room_GetTiltType(const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="8.17" height="8.37" x="545.84" y="265.72" class="decompiled"><title>void __cdecl Lara_Col_FastFall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

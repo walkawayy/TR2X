@@ -321,6 +321,7 @@ extern const char *g_TR2XVersion;
 #define g_IsFMVPlaying (*(int32_t*)0x004D9EAC)
 #define g_CurrentLevel (*(int32_t*)0x004D9EC0)
 #define g_LevelComplete (*(int32_t*)0x004D9EC4)
+#define g_GameMode (*(int32_t*)0x004D9ECC)
 #define g_HWR_VertexBuffer (*(D3DTLVERTEX(*)[0x2000])0x004D9ED8)
 #define g_CurrentTexSource (*(D3DTEXTUREHANDLE*)0x00519ED8)
 #define g_HWR_PageHandles (*(HWR_TEXTURE_HANDLE(*)[32])0x00519EE0)

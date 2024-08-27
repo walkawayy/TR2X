@@ -1030,6 +1030,13 @@ typedef enum {
 } INVENTORY_MODE;
 
 typedef enum {
+    GAMEMODE_NOT_IN_GAME,
+    GAMEMODE_IN_GAME,
+    GAMEMODE_IN_DEMO,
+    GAMEMODE_IN_CUTSCENE
+} GAMEMODE;
+
+typedef enum {
     GFD_START_GAME       = 0x0000,
     GFD_START_SAVED_GAME = 0x0100,
     GFD_START_CINE       = 0x0200,
@@ -3895,7 +3902,7 @@ typedef enum {
 0x0044C450  0x000E  -R      bool __cdecl S_PlayFMV(const char *file_name);
 0x0044C460  0x0013  -R      bool __cdecl S_IntroFMV(const char *file_name1, const char *file_name2);
 0x0044C480  0x0144  +       int16_t __cdecl Game_Start(int32_t level_num, GF_LEVEL_TYPE level_type);
-0x0044C5D0  0x009A  -R      int32_t __cdecl GameLoop(BOOL demo_mode);
+0x0044C5D0  0x009A  +       int32_t __cdecl Game_Loop(bool demo_mode);
 0x0044C670  0x0006  *R      int32_t __cdecl LevelCompleteSequence(void);
 0x0044C680  0x01C2  -R      int32_t __cdecl LevelStats(int32_t level_num);
 0x0044C850  0x0113  -R      int32_t __cdecl GameStats(int32_t level_num);
@@ -4609,3 +4616,4 @@ typedef enum {
 0x00521F9C  -       char *g_GF_Key3StringsBuf;
 0x00521FA0  -       char g_GF_SecretInvItems[27]; // GF_ADD_INV_NUMBER_OF
 0x00521FC0  -       char g_GF_Add2InvItems[27]; // GF_ADD_INV_NUMBER_OF
+0x004D9ECC  -       int32_t g_GameMode; // GAMEMODE

@@ -1046,6 +1046,13 @@ typedef enum {
 } INVENTORY_MODE;
 
 typedef enum {
+    GAMEMODE_NOT_IN_GAME,
+    GAMEMODE_IN_GAME,
+    GAMEMODE_IN_DEMO,
+    GAMEMODE_IN_CUTSCENE
+} GAMEMODE;
+
+typedef enum {
     GFD_START_GAME       = 0x0000,
     GFD_START_SAVED_GAME = 0x0100,
     GFD_START_CINE       = 0x0200,

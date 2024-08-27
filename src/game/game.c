@@ -12,6 +12,7 @@
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "specific/s_audio_sample.h"
 
 #include <libtrx/utils.h>
 
@@ -199,7 +200,7 @@ int16_t __cdecl Game_Start(
         return GFD_EXIT_GAME;
     }
 
-    GAME_FLOW_DIR option = GameLoop(0);
+    GAME_FLOW_DIR option = Game_Loop(false);
     if (option == GFD_EXIT_TO_TITLE || option == GFD_START_DEMO) {
         return option;
     }
@@ -242,4 +243,33 @@ int16_t __cdecl Game_Start(
     }
 
     return GFD_START_GAME | LV_FIRST;
+}
+
+int32_t __cdecl Game_Loop(const bool demo_mode)
+{
+    g_OverlayStatus = 1;
+    Camera_Initialise();
+    g_NoInputCounter = 0;
+    g_GameMode = demo_mode ? GAMEMODE_IN_DEMO : GAMEMODE_IN_GAME;
+
+    GAME_FLOW_DIR option = Game_Control(1, demo_mode);
+    while (option == 0) {
+        const int32_t nframes = Game_Draw();
+        if (g_IsGameToExit) {
+            option = GFD_EXIT_GAME;
+        } else {
+            option = Game_Control(nframes, demo_mode);
+        }
+    }
+
+    g_GameMode = GAMEMODE_NOT_IN_GAME;
+
+    S_Audio_Sample_OutCloseAllTracks();
+    Music_Stop();
+
+    if (g_OptionMusicVolume) {
+        Music_SetVolume(25 * g_OptionMusicVolume + 5);
+    }
+
+    return option;
 }

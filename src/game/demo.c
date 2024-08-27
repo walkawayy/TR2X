@@ -1,6 +1,7 @@
 #include "game/demo.h"
 
 #include "decomp/decomp.h"
+#include "game/game.h"
 #include "game/gameflow.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
@@ -83,7 +84,7 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     Text_CentreH(text, true);
 
     g_Inv_DemoMode = true;
-    const int32_t result = GameLoop(true);
+    const int32_t result = Game_Loop(true);
     g_Inv_DemoMode = false;
 
     Text_Remove(text);

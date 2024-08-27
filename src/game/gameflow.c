@@ -7,6 +7,7 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/benchmark.h>
 #include <libtrx/memory.h>
 
 #include <stdio.h>
@@ -158,6 +159,7 @@ static void GF_ModifyInventory_Item(
 // TODO: inline me into GF_LoadScriptFile
 BOOL __cdecl GF_LoadFromFile(const char *const file_name)
 {
+    BENCHMARK *const benchmark = Benchmark_Start();
     DWORD bytes_read;
 
     const char *full_path = GetFullPath(file_name);
@@ -338,6 +340,7 @@ BOOL __cdecl GF_LoadFromFile(const char *const file_name)
     }
 
     CloseHandle(handle);
+    Benchmark_End(benchmark, NULL);
     return true;
 }
 

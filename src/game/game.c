@@ -94,15 +94,16 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
             }
         }
 
-        if (((g_Input & 0xC00100) != 0 || g_OverlayStatus <= 0)
+        if (((g_Input & (IN_LOAD | IN_SAVE | IN_OPTION))
+             || g_OverlayStatus <= 0)
             && g_Lara.death_timer == 0 && !g_Lara.extra_anim) {
             if (g_OverlayStatus > 0) {
                 if (g_GameFlow.load_save_disabled) {
                     g_OverlayStatus = 0;
-                } else if ((g_Input & 0x800000) != 0) {
+                } else if (g_Input & IN_LOAD) {
                     g_OverlayStatus = -1;
                 } else {
-                    g_OverlayStatus = (g_Input & 0x400000) != 0 ? -2 : 0;
+                    g_OverlayStatus = g_Input & IN_SAVE ? -2 : 0;
                 }
             } else {
                 GAME_FLOW_DIR dir;

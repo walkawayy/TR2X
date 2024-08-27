@@ -1038,7 +1038,12 @@ void __cdecl Lara_State_Swim(ITEM_INFO *item, COLL_INFO *coll)
 
     Lara_SwimTurn(item);
     item->fall_speed += 8;
-    CLAMPG(item->fall_speed, LARA_MAX_SWIM_SPEED);
+    if (g_Lara.water_status == LWS_CHEAT) {
+        CLAMPG(item->fall_speed, LARA_MAX_SWIM_SPEED * 2);
+    } else {
+        CLAMPG(item->fall_speed, LARA_MAX_SWIM_SPEED);
+    }
+
     if (!(g_Input & IN_JUMP)) {
         item->goal_anim_state = LS_GLIDE;
     }

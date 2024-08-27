@@ -18,6 +18,7 @@ static COMMAND_RESULT Console_Cmd_Pos(const char *args);
 static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
 static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
+static COMMAND_RESULT Console_Cmd_Fly(const char *const args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartDemo(const char *args);
@@ -150,6 +151,15 @@ static COMMAND_RESULT Console_Cmd_Heal(const char *const args)
     return CR_SUCCESS;
 }
 
+static COMMAND_RESULT Console_Cmd_Fly(const char *const args)
+{
+    if (!g_Objects[O_LARA].loaded) {
+        return CR_UNAVAILABLE;
+    }
+    Lara_Cheat_EnterFlyMode();
+    return CR_SUCCESS;
+}
+
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *const args)
 {
     if (strcmp(args, "") == 0) {
@@ -219,6 +229,7 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "tp", .proc = Console_Cmd_Teleport },
     { .prefix = "hp", .proc = Console_Cmd_SetHealth },
     { .prefix = "heal", .proc = Console_Cmd_Heal },
+    { .prefix = "fly", .proc = Console_Cmd_Fly },
     { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
     { .prefix = "play", .proc = Console_Cmd_StartLevel },
     { .prefix = "level", .proc = Console_Cmd_StartLevel },

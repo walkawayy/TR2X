@@ -3,6 +3,7 @@
 #include "game/gun/gun.h"
 #include "game/inventory.h"
 #include "game/items.h"
+#include "game/lara/lara_cheat.h"
 #include "game/lara/lara_look.h"
 #include "game/lara/lara_misc.h"
 #include "game/math.h"
@@ -75,7 +76,7 @@ void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
 
     Lara_Animate(item);
 
-    if (!g_Lara.extra_anim) {
+    if (!g_Lara.extra_anim && g_Lara.water_status != LWS_CHEAT) {
         Lara_BaddieCollision(item, coll);
         if (g_Lara.skidoo == NO_ITEM) {
             g_LaraCollisionRoutines[item->current_anim_state](item, coll);
@@ -451,6 +452,16 @@ void __cdecl Lara_Control(const int16_t item_num)
             CLAMPG(g_Lara.air, LARA_MAX_AIR);
         }
         Lara_HandleSurface(item, &coll);
+        break;
+
+    case LWS_CHEAT:
+        // TODO: make Lara immune to lava and flames
+        item->hit_points = LARA_MAX_HITPOINTS;
+        g_Lara.death_timer = 0;
+        Lara_HandleUnderwater(item, &coll);
+        if (g_Input & IN_SLOW && !(g_Input & IN_LOOK)) {
+            Lara_Cheat_ExitFlyMode();
+        }
         break;
 
     default:

@@ -290,6 +290,9 @@ int32_t __cdecl Text_GetWidth(TEXTSTRING *const string)
 
 int32_t Text_GetHeight(const TEXTSTRING *const string)
 {
+    if (string == NULL) {
+        return 0;
+    }
     int32_t height = TEXT_HEIGHT;
     char *ptr = string->text;
     if (!*ptr) {

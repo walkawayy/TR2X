@@ -16,6 +16,9 @@ Currently supported commands:
 - `/heal`  
   Tough day, Lara? Heals our girl back to full health.
 
+- `/fly`  
+  Turns on the fly cheat. Why even walk?
+
 - `/endlevel`  
   Ends the current level. Ideal for speedruns.
 

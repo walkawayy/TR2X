@@ -1211,7 +1211,7 @@ typedef struct __unaligned {
     int16_t hit_direction;
     int16_t air;
     int16_t dive_count;
-    int16_t death_count;
+    int16_t death_timer;
     int16_t current_active;
     int16_t spaz_effect_count;
     int16_t flare_age;

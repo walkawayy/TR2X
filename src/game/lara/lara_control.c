@@ -413,17 +413,17 @@ void __cdecl Lara_Control(const int16_t item_num)
 
     if (item->hit_points <= 0) {
         item->hit_points = -1;
-        if (!g_Lara.death_count) {
+        if (!g_Lara.death_timer) {
             Music_Stop();
         }
-        g_Lara.death_count++;
+        g_Lara.death_timer++;
         if (item->flags & IF_ONE_SHOT) {
-            g_Lara.death_count++;
+            g_Lara.death_timer++;
             return;
         }
     } else if (g_GF_NoFloor && item->pos.y >= g_GF_NoFloor) {
         item->hit_points = -1;
-        g_Lara.death_count = 9 * FRAMES_PER_SECOND;
+        g_Lara.death_timer = 9 * FRAMES_PER_SECOND;
     }
 
     COLL_INFO coll;
@@ -703,7 +703,7 @@ void __cdecl Lara_Initialise(const GF_LEVEL_TYPE type)
     g_Lara.hit_frame = 0;
     g_Lara.air = LARA_MAX_AIR;
     g_Lara.dive_count = 0;
-    g_Lara.death_count = 0;
+    g_Lara.death_timer = 0;
     g_Lara.current_active = 0;
     g_Lara.spaz_effect_count = 0;
     g_Lara.flare_age = 0;

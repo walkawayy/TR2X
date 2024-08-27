@@ -708,7 +708,7 @@ void __cdecl Lara_State_Extra_YetiKill(ITEM_INFO *item, COLL_INFO *coll)
     g_Camera.target_distance = CAM_YETI_KILL_DISTANCE;
     g_Lara.hit_direction = -1;
     if (item->frame_num < g_Anims[item->anim_num].frame_end - 30) {
-        g_Lara.death_count = 1;
+        g_Lara.death_timer = 1;
     }
 }
 
@@ -727,7 +727,7 @@ void __cdecl Lara_State_Extra_SharkKill(ITEM_INFO *item, COLL_INFO *coll)
     }
 
     if (item->frame_num < g_Anims[item->anim_num].frame_end - 30) {
-        g_Lara.death_count = 1;
+        g_Lara.death_timer = 1;
     }
 }
 
@@ -751,7 +751,7 @@ void __cdecl Lara_State_Extra_DinoKill(ITEM_INFO *item, COLL_INFO *coll)
     g_Camera.target_elevation = CAM_DINO_KILL_ELEVATION;
     g_Lara.hit_direction = -1;
     if (item->frame_num < g_Anims[item->anim_num].frame_end - 30) {
-        g_Lara.death_count = 1;
+        g_Lara.death_timer = 1;
     }
 }
 

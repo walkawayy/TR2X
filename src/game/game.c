@@ -66,8 +66,8 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
             }
         }
 
-        if (g_Lara.death_count > DEATH_WAIT
-            || (g_Lara.death_count > DEATH_WAIT_INPUT && g_Input != 0)
+        if (g_Lara.death_timer > DEATH_WAIT
+            || (g_Lara.death_timer > DEATH_WAIT_INPUT && g_Input != 0)
             || g_OverlayStatus == 2) {
             if (demo_mode) {
                 return g_GameFlow.on_death_demo_mode;
@@ -90,7 +90,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
         }
 
         if (((g_Input & 0xC00100) != 0 || g_OverlayStatus <= 0)
-            && g_Lara.death_count == 0 && !g_Lara.extra_anim) {
+            && g_Lara.death_timer == 0 && !g_Lara.extra_anim) {
             if (g_OverlayStatus > 0) {
                 if (g_GameFlow.load_save_disabled) {
                     g_OverlayStatus = 0;

@@ -198,30 +198,8 @@ void __cdecl Gun_Control(void)
         }
 
         if (g_Input & IN_ACTION) {
-            AMMO_INFO *ammo;
-            switch (g_Lara.gun_type) {
-            case LGT_MAGNUMS:
-                ammo = &g_Lara.magnum_ammo;
-                break;
-            case LGT_UZIS:
-                ammo = &g_Lara.uzi_ammo;
-                break;
-            case LGT_SHOTGUN:
-                ammo = &g_Lara.shotgun_ammo;
-                break;
-            case LGT_M16:
-                ammo = &g_Lara.m16_ammo;
-                break;
-            case LGT_GRENADE:
-                ammo = &g_Lara.grenade_ammo;
-                break;
-            case LGT_HARPOON:
-                ammo = &g_Lara.harpoon_ammo;
-                break;
-            default:
-                ammo = &g_Lara.pistol_ammo;
-                break;
-            }
+            AMMO_INFO *const ammo = Gun_GetAmmoInfo(g_Lara.gun_type);
+            assert(ammo != NULL);
 
             if (ammo->ammo <= 0) {
                 ammo->ammo = 0;
@@ -398,6 +376,7 @@ AMMO_INFO *Gun_GetAmmoInfo(const LARA_GUN_TYPE gun_type)
     case LGT_HARPOON: return &g_Lara.harpoon_ammo;
     case LGT_M16:     return &g_Lara.m16_ammo;
     case LGT_GRENADE: return &g_Lara.grenade_ammo;
+    case LGT_SKIDOO:  return &g_Lara.pistol_ammo;
     default:          return NULL;
     }
     // clang-format on

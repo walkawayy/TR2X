@@ -1,5 +1,6 @@
 #include "game/gun/gun_misc.h"
 
+#include "game/gun/gun.h"
 #include "game/items.h"
 #include "game/los.h"
 #include "game/math.h"
@@ -11,6 +12,8 @@
 #include "global/vars.h"
 
 #include <libtrx/utils.h>
+
+#include <assert.h>
 
 #define NEAR_ANGLE (PHD_DEGREE * 15) // = 2730
 
@@ -198,41 +201,11 @@ int32_t __cdecl Gun_FireWeapon(
     const ITEM_INFO *const src, const PHD_ANGLE *const angles)
 {
     const WEAPON_INFO *const winfo = &g_Weapons[weapon_type];
+    AMMO_INFO *const ammo = Gun_GetAmmoInfo(weapon_type);
+    assert(ammo != NULL);
 
-    AMMO_INFO *ammo;
-    switch (weapon_type) {
-    case LGT_MAGNUMS:
-        ammo = &g_Lara.magnum_ammo;
-        if (g_SaveGame.bonus_flag) {
-            ammo->ammo = 1000;
-        }
-        break;
-
-    case LGT_UZIS:
-        ammo = &g_Lara.uzi_ammo;
-        if (g_SaveGame.bonus_flag) {
-            ammo->ammo = 1000;
-        }
-        break;
-
-    case LGT_SHOTGUN:
-        ammo = &g_Lara.shotgun_ammo;
-        if (g_SaveGame.bonus_flag) {
-            ammo->ammo = 1000;
-        }
-        break;
-
-    case LGT_M16:
-        ammo = &g_Lara.m16_ammo;
-        if (g_SaveGame.bonus_flag) {
-            ammo->ammo = 1000;
-        }
-        break;
-
-    default:
-        ammo = &g_Lara.pistol_ammo;
+    if (ammo == &g_Lara.pistol_ammo || g_SaveGame.bonus_flag) {
         ammo->ammo = 1000;
-        break;
     }
 
     if (ammo->ammo <= 0) {

@@ -9,10 +9,14 @@
 
 #include <libtrx/benchmark.h>
 #include <libtrx/memory.h>
+#include <libtrx/virtual_file.h>
 
 #include <stdio.h>
 
 #define GF_CURRENT_VERSION 3
+
+static void GF_ReadStringTable(
+    VFILE *file, int32_t count, char ***table, char **buffer);
 
 static GF_ADD_INV GF_ModifyInventory_GetGunAdder(LARA_GUN_TYPE gun_type);
 static GF_ADD_INV GF_ModifyInventory_GetAmmoAdder(LARA_GUN_TYPE gun_type);
@@ -20,6 +24,29 @@ static GF_ADD_INV GF_ModifyInventory_GetItemAdder(GAME_OBJECT_ID object_id);
 static void GF_ModifyInventory_GunOrAmmo(
     START_INFO *start, int32_t type, LARA_GUN_TYPE gun_type);
 static void GF_ModifyInventory_Item(int32_t type, GAME_OBJECT_ID object_id);
+
+static void GF_ReadStringTable(
+    VFILE *const file, const int32_t count, char ***const table,
+    char **const buffer)
+{
+    VFile_Read(file, g_GF_LevelOffsets, sizeof(int16_t) * count);
+
+    const int16_t buf_size = VFile_ReadS16(file);
+    *buffer = Memory_Alloc(buf_size);
+    VFile_Read(file, *buffer, buf_size);
+
+    if (g_GameFlow.cyphered_strings) {
+        for (int32_t i = 0; i < buf_size; i++) {
+            (*buffer)[i] ^= g_GameFlow.cypher_code;
+        }
+    }
+
+    *table = Memory_Alloc(sizeof(char *) * count);
+    for (int32_t i = 0; i < count; i++) {
+        const int32_t offset = g_GF_LevelOffsets[i];
+        (*table)[i] = &(*buffer)[offset];
+    }
+}
 
 static GF_ADD_INV GF_ModifyInventory_GetGunAdder(const LARA_GUN_TYPE gun_type)
 {
@@ -163,81 +190,86 @@ BOOL __cdecl GF_LoadFromFile(const char *const file_name)
     DWORD bytes_read;
 
     const char *full_path = GetFullPath(file_name);
-    HANDLE handle = CreateFileA(
-        file_name, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
-        NULL);
-    if (handle == INVALID_HANDLE_VALUE) {
+    VFILE *const file = VFile_CreateFromPath(full_path);
+    if (file == NULL) {
         return false;
     }
 
-    ReadFileSync(
-        handle, &g_GF_ScriptVersion, sizeof(int32_t), &bytes_read, NULL);
+    g_GF_ScriptVersion = VFile_ReadS32(file);
     if (g_GF_ScriptVersion != GF_CURRENT_VERSION) {
         return false;
     }
 
-    ReadFileSync(handle, &g_GF_Description, 256, &bytes_read, NULL);
+    VFile_Read(file, g_GF_Description, 256);
 
+    if (VFile_ReadS16(file) != sizeof(GAME_FLOW)) {
+        return false;
+    }
+    g_GameFlow.first_option = VFile_ReadS32(file);
+    g_GameFlow.title_replace = VFile_ReadS32(file);
+    g_GameFlow.on_death_demo_mode = VFile_ReadS32(file);
+    g_GameFlow.on_death_in_game = VFile_ReadS32(file);
+    g_GameFlow.no_input_time = VFile_ReadS32(file);
+    g_GameFlow.on_demo_interrupt = VFile_ReadS32(file);
+    g_GameFlow.on_demo_end = VFile_ReadS32(file);
+    VFile_Skip(file, 36);
+    g_GameFlow.num_levels = VFile_ReadU16(file);
+    g_GameFlow.num_pictures = VFile_ReadU16(file);
+    g_GameFlow.num_titles = VFile_ReadU16(file);
+    g_GameFlow.num_fmvs = VFile_ReadU16(file);
+    g_GameFlow.num_cutscenes = VFile_ReadU16(file);
+    g_GameFlow.num_demos = VFile_ReadU16(file);
+    g_GameFlow.title_track = VFile_ReadU16(file);
+    g_GameFlow.single_level = VFile_ReadS16(file);
+    VFile_Skip(file, 32);
+
+    const uint16_t flags = VFile_ReadU16(file);
+    // clang-format off
+    g_GameFlow.demo_version              = flags & 0x0001 ? 1 : 0;
+    g_GameFlow.title_disabled            = flags & 0x0002 ? 1 : 0;
+    g_GameFlow.cheat_mode_check_disabled = flags & 0x0004 ? 1 : 0;
+    g_GameFlow.no_input_timeout          = flags & 0x0008 ? 1 : 0;
+    g_GameFlow.load_save_disabled        = flags & 0x0010 ? 1 : 0;
+    g_GameFlow.screen_sizing_disabled    = flags & 0x0020 ? 1 : 0;
+    g_GameFlow.lockout_option_ring       = flags & 0x0040 ? 1 : 0;
+    g_GameFlow.dozy_cheat_enabled        = flags & 0x0080 ? 1 : 0;
+    g_GameFlow.cyphered_strings          = flags & 0x0100 ? 1 : 0;
+    g_GameFlow.gym_enabled               = flags & 0x0200 ? 1 : 0;
+    g_GameFlow.play_any_level            = flags & 0x0400 ? 1 : 0;
+    g_GameFlow.cheat_enable              = flags & 0x0800 ? 1 : 0;
+    // clang-format on
+    VFile_Skip(file, 6);
+
+    g_GameFlow.cypher_code = VFile_ReadU8(file);
+    g_GameFlow.language = VFile_ReadU8(file);
+    g_GameFlow.secret_track = VFile_ReadU8(file);
+    g_GameFlow.level_complete_track = VFile_ReadU8(file);
+    VFile_Skip(file, 4);
+
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_LevelNames, &g_GF_LevelNamesBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_pictures, &g_GF_PicFilenames,
+        &g_GF_PicFilenamesBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_titles, &g_GF_TitleFileNames,
+        &g_GF_TitleFileNamesBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_fmvs, &g_GF_FMVFilenames, &g_GF_FMVFilenamesBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_LevelFileNames,
+        &g_GF_LevelFileNamesBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_cutscenes, &g_GF_CutsceneFileNames,
+        &g_GF_CutsceneFileNamesBuf);
+
+    VFile_Read(
+        file, &g_GF_LevelOffsets,
+        sizeof(int16_t) * (g_GameFlow.num_levels + 1));
     {
-        int16_t size;
-        ReadFileSync(handle, &size, sizeof(size), &bytes_read, NULL);
-        if (size != sizeof(GAME_FLOW)) {
-            return false;
-        }
-        ReadFileSync(handle, &g_GameFlow, sizeof(GAME_FLOW), &bytes_read, NULL);
-    }
-
-    g_GF_LevelNames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_LevelNames, &g_GF_LevelNamesBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_PicFilenames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_pictures);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_pictures, g_GF_PicFilenames, &g_GF_PicFilenamesBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_TitleFileNames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_titles);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_titles, g_GF_TitleFileNames, &g_GF_TitleFileNamesBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_FMVFilenames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_fmvs);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_fmvs, g_GF_FMVFilenames, &g_GF_FMVFilenamesBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_LevelFileNames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_LevelFileNames, &g_GF_LevelFileNamesBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_CutsceneFileNames =
-        Memory_Alloc(sizeof(char *) * g_GameFlow.num_cutscenes);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_cutscenes, g_GF_CutsceneFileNames,
-            &g_GF_CutsceneFileNamesBuf, &bytes_read, handle)) {
-        return false;
-    }
-
-    ReadFileSync(
-        handle, &g_GF_LevelOffsets,
-        sizeof(int16_t) * (g_GameFlow.num_levels + 1), &bytes_read, NULL);
-    {
-        int16_t size;
-        ReadFileSync(handle, &size, sizeof(int16_t), &bytes_read, NULL);
+        const int16_t size = VFile_ReadS16(file);
         g_GF_SequenceBuf = Memory_Alloc(size);
-        ReadFileSync(handle, g_GF_SequenceBuf, size, &bytes_read, NULL);
+        VFile_Read(file, g_GF_SequenceBuf, size);
     }
 
     g_GF_FrontendSequence = g_GF_SequenceBuf;
@@ -245,129 +277,45 @@ BOOL __cdecl GF_LoadFromFile(const char *const file_name)
         g_GF_ScriptTable[i] = g_GF_SequenceBuf + (g_GF_LevelOffsets[i + 1] / 2);
     }
 
-    ReadFileSync(
-        handle, g_GF_ValidDemos, sizeof(int16_t) * g_GameFlow.num_demos,
-        &bytes_read, NULL);
+    VFile_Read(file, g_GF_ValidDemos, sizeof(int16_t) * g_GameFlow.num_demos);
 
-    int16_t size;
-    ReadFileSync(handle, &size, sizeof(int16_t), &bytes_read, NULL);
-    if (size != GF_S_GAME_NUMBER_OF) {
+    if (VFile_ReadS16(file) != GF_S_GAME_NUMBER_OF) {
         return false;
     }
 
-    g_GF_GameStrings = Memory_Alloc(sizeof(char *) * GF_S_GAME_NUMBER_OF);
-    if (!GF_ReadStringTable(
-            GF_S_GAME_NUMBER_OF, g_GF_GameStrings, &g_GF_GameStringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
+    GF_ReadStringTable(
+        file, GF_S_GAME_NUMBER_OF, &g_GF_GameStrings, &g_GF_GameStringsBuf);
+    GF_ReadStringTable(
+        file, GF_S_PC_NUMBER_OF, &g_GF_PCStrings, &g_GF_PCStringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Pickup1Strings,
+        &g_GF_Pickup1StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Pickup2Strings,
+        &g_GF_Pickup2StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Puzzle1Strings,
+        &g_GF_Puzzle1StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Puzzle2Strings,
+        &g_GF_Puzzle2StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Puzzle3Strings,
+        &g_GF_Puzzle3StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Puzzle4Strings,
+        &g_GF_Puzzle4StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Key1Strings, &g_GF_Key1StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Key2Strings, &g_GF_Key2StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Key3Strings, &g_GF_Key3StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Key4Strings, &g_GF_Key4StringsBuf);
 
-    g_GF_PCStrings = Memory_Alloc(sizeof(char *) * GF_S_PC_NUMBER_OF);
-    if (!GF_ReadStringTable(
-            GF_S_PC_NUMBER_OF, g_GF_PCStrings, &g_GF_PCStringsBuf, &bytes_read,
-            handle)) {
-        return false;
-    }
-
-    g_GF_Pickup1Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Pickup1Strings, &g_GF_Pickup1StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Pickup2Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Pickup2Strings, &g_GF_Pickup2StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Puzzle1Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Puzzle1Strings, &g_GF_Puzzle1StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Puzzle2Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Puzzle2Strings, &g_GF_Puzzle2StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Puzzle3Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Puzzle3Strings, &g_GF_Puzzle3StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Puzzle4Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Puzzle4Strings, &g_GF_Puzzle4StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Key1Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Key1Strings, &g_GF_Key1StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Key2Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Key2Strings, &g_GF_Key2StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Key3Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Key3Strings, &g_GF_Key3StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    g_GF_Key4Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
-    if (!GF_ReadStringTable(
-            g_GameFlow.num_levels, g_GF_Key4Strings, &g_GF_Key4StringsBuf,
-            &bytes_read, handle)) {
-        return false;
-    }
-
-    CloseHandle(handle);
+    VFile_Close(file);
     Benchmark_End(benchmark, NULL);
-    return true;
-}
-
-BOOL __cdecl GF_ReadStringTable(
-    const int32_t count, char **const table, char **const buffer,
-    LPDWORD bytes_read, HANDLE handle)
-{
-    ReadFileSync(
-        handle, g_GF_LevelOffsets, sizeof(int16_t) * count, bytes_read, NULL);
-
-    int16_t size;
-    ReadFileSync(handle, &size, sizeof(int16_t), bytes_read, NULL);
-
-    *buffer = Memory_Alloc(size);
-    ReadFileSync(handle, *buffer, size, bytes_read, NULL);
-
-    if (g_GameFlow.cyphered_strings) {
-        for (int32_t i = 0; i < size; i++) {
-            (*buffer)[i] ^= g_GameFlow.cypher_code;
-        }
-    }
-
-    for (int32_t i = 0; i < count; i++) {
-        const int32_t offset = g_GF_LevelOffsets[i];
-        table[i] = &(*buffer)[offset];
-    }
-
     return true;
 }
 

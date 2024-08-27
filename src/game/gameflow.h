@@ -5,9 +5,6 @@
 #include <stdint.h>
 
 BOOL __cdecl GF_LoadFromFile(const char *file_name);
-BOOL __cdecl GF_ReadStringTable(
-    int32_t count, char **table, char **buffer, LPDWORD bytes_read,
-    HANDLE handle);
 int32_t __cdecl GF_LoadScriptFile(const char *fname);
 int32_t __cdecl GF_DoFrontendSequence(void);
 int32_t __cdecl GF_DoLevelSequence(int32_t level, GF_LEVEL_TYPE type);

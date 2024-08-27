@@ -2688,6 +2688,7 @@ typedef enum {
     GF_S_PC_SETUP_SOUND_CARD   = 18,
     GF_S_PC_DEFAULT_KEYS       = 19,
     GF_S_PC_DOZY               = 20,
+    GF_S_PC_NUMBER_OF          = 41,
 } GF_PC_STRING;
 
 typedef enum {
@@ -2769,6 +2770,7 @@ typedef enum {
     GF_S_GAME_MISC_FINAL_STATISTICS   = 75,
     GF_S_GAME_MISC_OF                 = 76,
     GF_S_GAME_MISC_STORY_SO_FAR       = 77,
+    GF_S_GAME_NUMBER_OF               = 89,
 } GF_GAME_STRING;
 
 typedef enum {

@@ -229,7 +229,7 @@ void __cdecl Gun_Rifle_FireGrenade(void)
 
 void __cdecl Gun_Rifle_Draw(const LARA_GUN_TYPE weapon_type)
 {
-    ITEM_INFO *item; // esi
+    ITEM_INFO *item;
     if (g_Lara.weapon_item != NO_ITEM) {
         item = &g_Items[g_Lara.weapon_item];
     } else {

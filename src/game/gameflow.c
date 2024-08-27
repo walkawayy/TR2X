@@ -6,13 +6,203 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/memory.h>
+
 #include <stdio.h>
+
+#define GF_CURRENT_VERSION 3
+
+// TODO: inline me into GF_LoadScriptFile
+int32_t __cdecl GF_LoadFromFile(const char *const file_name)
+{
+    DWORD bytes_read;
+
+    const char *full_path = GetFullPath(file_name);
+    HANDLE handle = CreateFileA(
+        file_name, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
+        NULL);
+    if (handle == INVALID_HANDLE_VALUE) {
+        return false;
+    }
+
+    ReadFileSync(
+        handle, &g_GF_ScriptVersion, sizeof(int32_t), &bytes_read, NULL);
+    if (g_GF_ScriptVersion != GF_CURRENT_VERSION) {
+        return false;
+    }
+
+    ReadFileSync(handle, &g_GF_Description, 256, &bytes_read, NULL);
+
+    {
+        int16_t size;
+        ReadFileSync(handle, &size, sizeof(size), &bytes_read, NULL);
+        if (size != sizeof(GAME_FLOW)) {
+            return false;
+        }
+        ReadFileSync(handle, &g_GameFlow, sizeof(GAME_FLOW), &bytes_read, NULL);
+    }
+
+    g_GF_LevelNames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_LevelNames, &g_GF_LevelNamesBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_PicFilenames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_pictures);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_pictures, g_GF_PicFilenames, &g_GF_PicFilenamesBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_TitleFileNames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_titles);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_titles, g_GF_TitleFileNames, &g_GF_TitleFileNamesBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_FMVFilenames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_fmvs);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_fmvs, g_GF_FMVFilenames, &g_GF_FMVFilenamesBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_LevelFileNames = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_LevelFileNames, &g_GF_LevelFileNamesBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_CutsceneFileNames =
+        Memory_Alloc(sizeof(char *) * g_GameFlow.num_cutscenes);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_cutscenes, g_GF_CutsceneFileNames,
+            &g_GF_CutsceneFileNamesBuf, &bytes_read, handle)) {
+        return false;
+    }
+
+    ReadFileSync(
+        handle, &g_GF_LevelOffsets,
+        sizeof(int16_t) * (g_GameFlow.num_levels + 1), &bytes_read, NULL);
+    {
+        int16_t size;
+        ReadFileSync(handle, &size, sizeof(int16_t), &bytes_read, NULL);
+        g_GF_SequenceBuf = Memory_Alloc(size);
+        ReadFileSync(handle, g_GF_SequenceBuf, size, &bytes_read, NULL);
+    }
+
+    g_GF_FrontendSequence = g_GF_SequenceBuf;
+    for (int32_t i = 0; i < g_GameFlow.num_levels; i++) {
+        g_GF_ScriptTable[i] = g_GF_SequenceBuf + (g_GF_LevelOffsets[i + 1] / 2);
+    }
+
+    ReadFileSync(
+        handle, g_GF_ValidDemos, sizeof(int16_t) * g_GameFlow.num_demos,
+        &bytes_read, NULL);
+
+    int16_t size;
+    ReadFileSync(handle, &size, sizeof(int16_t), &bytes_read, NULL);
+    if (size != GF_S_GAME_NUMBER_OF) {
+        return false;
+    }
+
+    g_GF_GameStrings = Memory_Alloc(sizeof(char *) * GF_S_GAME_NUMBER_OF);
+    if (!GF_ReadStringTable(
+            GF_S_GAME_NUMBER_OF, g_GF_GameStrings, &g_GF_GameStringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_PCStrings = Memory_Alloc(sizeof(char *) * GF_S_PC_NUMBER_OF);
+    if (!GF_ReadStringTable(
+            GF_S_PC_NUMBER_OF, g_GF_PCStrings, &g_GF_PCStringsBuf, &bytes_read,
+            handle)) {
+        return false;
+    }
+
+    g_GF_Pickup1Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Pickup1Strings, &g_GF_Pickup1StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Pickup2Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Pickup2Strings, &g_GF_Pickup2StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Puzzle1Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Puzzle1Strings, &g_GF_Puzzle1StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Puzzle2Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Puzzle2Strings, &g_GF_Puzzle2StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Puzzle3Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Puzzle3Strings, &g_GF_Puzzle3StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Puzzle4Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Puzzle4Strings, &g_GF_Puzzle4StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Key1Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Key1Strings, &g_GF_Key1StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Key2Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Key2Strings, &g_GF_Key2StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Key3Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Key3Strings, &g_GF_Key3StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    g_GF_Key4Strings = Memory_Alloc(sizeof(char *) * g_GameFlow.num_levels);
+    if (!GF_ReadStringTable(
+            g_GameFlow.num_levels, g_GF_Key4Strings, &g_GF_Key4StringsBuf,
+            &bytes_read, handle)) {
+        return false;
+    }
+
+    CloseHandle(handle);
+    return true;
+}
 
 int32_t __cdecl GF_LoadScriptFile(const char *const fname)
 {
     g_GF_SunsetEnabled = false;
 
-    if (!S_LoadGameFlow(fname)) {
+    if (!GF_LoadFromFile(fname)) {
         return false;
     }
 

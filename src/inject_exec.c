@@ -473,6 +473,7 @@ static void Inject_Gameflow(bool enable)
     INJECT(enable, 0x0041FC70, GF_DoLevelSequence);
     INJECT(enable, 0x0041FCE0, GF_InterpretSequence);
     INJECT(enable, 0x004201C0, GF_ModifyInventory);
+    INJECT(enable, 0x0044B6C0, GF_LoadFromFile);
 }
 
 static void Inject_Overlay(const bool enable)

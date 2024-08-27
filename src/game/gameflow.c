@@ -2,6 +2,7 @@
 
 #include "decomp/decomp.h"
 #include "game/demo.h"
+#include "game/gun/gun.h"
 #include "game/overlay.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -11,6 +12,148 @@
 #include <stdio.h>
 
 #define GF_CURRENT_VERSION 3
+
+static GF_ADD_INV GF_ModifyInventory_GetGunAdder(LARA_GUN_TYPE gun_type);
+static GF_ADD_INV GF_ModifyInventory_GetAmmoAdder(LARA_GUN_TYPE gun_type);
+static GF_ADD_INV GF_ModifyInventory_GetItemAdder(GAME_OBJECT_ID object_id);
+static void GF_ModifyInventory_GunOrAmmo(
+    START_INFO *start, int32_t type, LARA_GUN_TYPE gun_type);
+static void GF_ModifyInventory_Item(int32_t type, GAME_OBJECT_ID object_id);
+
+static GF_ADD_INV GF_ModifyInventory_GetGunAdder(const LARA_GUN_TYPE gun_type)
+{
+    // clang-format off
+    switch (gun_type) {
+    case LGT_PISTOLS: return GF_ADD_INV_PISTOLS;
+    case LGT_MAGNUMS: return GF_ADD_INV_MAGNUMS;
+    case LGT_UZIS:    return GF_ADD_INV_UZIS;
+    case LGT_SHOTGUN: return GF_ADD_INV_SHOTGUN;
+    case LGT_HARPOON: return GF_ADD_INV_HARPOON;
+    case LGT_M16:     return GF_ADD_INV_M16;
+    case LGT_GRENADE: return GF_ADD_INV_GRENADE;
+    default:          return (GF_ADD_INV)-1;
+    }
+    // clang-format on
+}
+
+static GF_ADD_INV GF_ModifyInventory_GetAmmoAdder(const LARA_GUN_TYPE gun_type)
+{
+    // clang-format off
+    switch (gun_type) {
+    case LGT_PISTOLS: return GF_ADD_INV_PISTOL_AMMO;
+    case LGT_MAGNUMS: return GF_ADD_INV_MAGNUM_AMMO;
+    case LGT_UZIS:    return GF_ADD_INV_UZI_AMMO;
+    case LGT_SHOTGUN: return GF_ADD_INV_SHOTGUN_AMMO;
+    case LGT_HARPOON: return GF_ADD_INV_HARPOON_AMMO;
+    case LGT_M16:     return GF_ADD_INV_M16_AMMO;
+    case LGT_GRENADE: return GF_ADD_INV_GRENADE_AMMO;
+    default:          return (GF_ADD_INV)-1;
+    }
+    // clang-format on
+}
+
+static GF_ADD_INV GF_ModifyInventory_GetItemAdder(
+    const GAME_OBJECT_ID object_id)
+{
+    // clang-format off
+    switch (object_id) {
+    case O_FLARE_ITEM:          return GF_ADD_INV_FLARES;
+    case O_SMALL_MEDIPACK_ITEM: return GF_ADD_INV_SMALL_MEDI;
+    case O_LARGE_MEDIPACK_ITEM: return GF_ADD_INV_LARGE_MEDI;
+    case O_PICKUP_ITEM_1:       return GF_ADD_INV_PICKUP_1;
+    case O_PICKUP_ITEM_2:       return GF_ADD_INV_PICKUP_2;
+    case O_PUZZLE_ITEM_1:       return GF_ADD_INV_PUZZLE_1;
+    case O_PUZZLE_ITEM_2:       return GF_ADD_INV_PUZZLE_2;
+    case O_PUZZLE_ITEM_3:       return GF_ADD_INV_PUZZLE_3;
+    case O_PUZZLE_ITEM_4:       return GF_ADD_INV_PUZZLE_4;
+    case O_KEY_ITEM_1:          return GF_ADD_INV_KEY_1;
+    case O_KEY_ITEM_2:          return GF_ADD_INV_KEY_2;
+    case O_KEY_ITEM_3:          return GF_ADD_INV_KEY_3;
+    case O_KEY_ITEM_4:          return GF_ADD_INV_KEY_4;
+    default:                    return (GF_ADD_INV)-1;
+    }
+    // clang-format on
+}
+
+static void GF_ModifyInventory_GunOrAmmo(
+    START_INFO *const start, const int32_t type, const LARA_GUN_TYPE gun_type)
+{
+    const GAME_OBJECT_ID gun_item = Gun_GetGunObject(gun_type);
+    const GAME_OBJECT_ID ammo_item = Gun_GetAmmoObject(gun_type);
+    const int32_t ammo_qty = Gun_GetAmmoQuantity(gun_type);
+    AMMO_INFO *const ammo_info = Gun_GetAmmoInfo(gun_type);
+
+    const GF_ADD_INV gun_adder = GF_ModifyInventory_GetGunAdder(gun_type);
+    const GF_ADD_INV ammo_adder = GF_ModifyInventory_GetAmmoAdder(gun_type);
+
+    if (Inv_RequestItem(gun_item)) {
+        if (type == 1) {
+            ammo_info->ammo += ammo_qty * g_GF_SecretInvItems[ammo_adder];
+            for (int32_t i = 0; i < g_GF_SecretInvItems[ammo_adder]; i++) {
+                Overlay_AddDisplayPickup(ammo_item);
+            }
+        } else if (type == 0) {
+            ammo_info->ammo += ammo_qty * g_GF_Add2InvItems[ammo_adder];
+        }
+    } else if (
+        (type == 0 && g_GF_Add2InvItems[gun_adder])
+        || (type == 1 && g_GF_SecretInvItems[gun_adder])) {
+
+        // clang-format off
+        // TODO: consider moving this to Inv_AddItem
+        switch (gun_type) {
+        case LGT_PISTOLS: start->has_pistols = 1; break;
+        case LGT_MAGNUMS: start->has_magnums = 1; break;
+        case LGT_UZIS:    start->has_uzis = 1;    break;
+        case LGT_SHOTGUN: start->has_shotgun = 1; break;
+        case LGT_HARPOON: start->has_harpoon = 1; break;
+        case LGT_M16:     start->has_m16 = 1;     break;
+        case LGT_GRENADE: start->has_grenade = 1; break;
+        default: break;
+        }
+        // clang-format on
+
+        Inv_AddItem(gun_item);
+
+        if (type == 1) {
+            ammo_info->ammo += ammo_qty * g_GF_SecretInvItems[ammo_adder];
+            Overlay_AddDisplayPickup(gun_item);
+            for (int32_t i = 0; i < g_GF_SecretInvItems[ammo_adder]; i++) {
+                Overlay_AddDisplayPickup(ammo_item);
+            }
+        } else if (type == 0) {
+            ammo_info->ammo += ammo_qty * g_GF_Add2InvItems[ammo_adder];
+        }
+    } else if (type == 1) {
+        for (int32_t i = 0; i < g_GF_SecretInvItems[ammo_adder]; i++) {
+            Inv_AddItem(ammo_item);
+            Overlay_AddDisplayPickup(ammo_item);
+        }
+    } else if (type == 0) {
+        for (int32_t i = 0; i < g_GF_Add2InvItems[ammo_adder]; i++) {
+            Inv_AddItem(ammo_item);
+        }
+    }
+}
+
+static void GF_ModifyInventory_Item(
+    const int32_t type, const GAME_OBJECT_ID object_id)
+{
+    const GF_ADD_INV item_adder = GF_ModifyInventory_GetItemAdder(object_id);
+    int32_t qty = 0;
+    if (type == 1) {
+        qty = g_GF_SecretInvItems[item_adder];
+    } else if (type == 0) {
+        qty = g_GF_Add2InvItems[item_adder];
+    }
+
+    for (int32_t i = 0; i < qty; i++) {
+        Inv_AddItem(object_id);
+        if (type == 1) {
+            Overlay_AddDisplayPickup(object_id);
+        }
+    }
+}
 
 // TODO: inline me into GF_LoadScriptFile
 BOOL __cdecl GF_LoadFromFile(const char *const file_name)
@@ -542,355 +685,31 @@ void __cdecl GF_ModifyInventory(const int32_t level, const int32_t type)
         Inv_AddItem(O_PISTOL_ITEM);
     }
 
-    if (Inv_RequestItem(O_SHOTGUN_ITEM)) {
-        if (type) {
-            g_Lara.shotgun_ammo.ammo +=
-                SHOTGUN_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
-            for (int32_t i = 0;
-                 i < g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO]; i++) {
-                Overlay_AddDisplayPickup(O_SHOTGUN_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.shotgun_ammo.ammo +=
-                SHOTGUN_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];
-        }
-    } else if (
-        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN])
-        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN])) {
-        start->has_shotgun = 1;
-        Inv_AddItem(O_SHOTGUN_ITEM);
-        if (type) {
-            Overlay_AddDisplayPickup(O_SHOTGUN_ITEM);
-            g_Lara.shotgun_ammo.ammo +=
-                SHOTGUN_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
-            for (int32_t i = 0;
-                 i < g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO]; i++) {
-                Overlay_AddDisplayPickup(O_SHOTGUN_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.shotgun_ammo.ammo +=
-                SHOTGUN_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];
-        }
-    } else if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_SHOTGUN_AMMO];
-             i++) {
-            Overlay_AddDisplayPickup(O_SHOTGUN_AMMO_ITEM);
-            Inv_AddItem(O_SHOTGUN_AMMO_ITEM);
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_SHOTGUN_AMMO];
-             i++) {
-            Inv_AddItem(O_SHOTGUN_AMMO_ITEM);
-        }
-    }
+    GF_ModifyInventory_GunOrAmmo(start, type, LGT_MAGNUMS);
+    GF_ModifyInventory_GunOrAmmo(start, type, LGT_UZIS);
+    GF_ModifyInventory_GunOrAmmo(start, type, LGT_SHOTGUN);
+    GF_ModifyInventory_GunOrAmmo(start, type, LGT_HARPOON);
+    GF_ModifyInventory_GunOrAmmo(start, type, LGT_M16);
+    GF_ModifyInventory_GunOrAmmo(start, type, LGT_GRENADE);
 
-    if (Inv_RequestItem(O_MAGNUM_ITEM)) {
-        if (type) {
-            g_Lara.magnum_ammo.ammo +=
-                MAGNUM_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_MAGNUM_AMMO];
-            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_MAGNUM_AMMO];
-                 i++) {
-                Overlay_AddDisplayPickup(O_MAGNUM_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.magnum_ammo.ammo +=
-                MAGNUM_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
-        }
-    } else if (
-        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_MAGNUMS])
-        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_MAGNUMS])) {
-        start->has_magnums = 1;
-        Inv_AddItem(O_MAGNUM_ITEM);
-        if (type) {
-            Overlay_AddDisplayPickup(O_MAGNUM_ITEM);
-            g_Lara.magnum_ammo.ammo +=
-                MAGNUM_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
-            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_MAGNUMS];
-                 i++) {
-                Overlay_AddDisplayPickup(O_MAGNUM_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.magnum_ammo.ammo +=
-                MAGNUM_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
-        }
-    } else if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_MAGNUM_AMMO];
-             i++) {
-            Inv_AddItem(O_MAGNUM_AMMO_ITEM);
-            Overlay_AddDisplayPickup(O_MAGNUM_AMMO_ITEM);
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_MAGNUM_AMMO];
-             i++) {
-            Inv_AddItem(O_MAGNUM_AMMO_ITEM);
-        }
-    }
+    GF_ModifyInventory_Item(type, O_FLARE_ITEM);
+    GF_ModifyInventory_Item(type, O_SMALL_MEDIPACK_ITEM);
+    GF_ModifyInventory_Item(type, O_LARGE_MEDIPACK_ITEM);
+    GF_ModifyInventory_Item(type, O_PICKUP_ITEM_1);
+    GF_ModifyInventory_Item(type, O_PICKUP_ITEM_2);
+    GF_ModifyInventory_Item(type, O_PUZZLE_ITEM_1);
+    GF_ModifyInventory_Item(type, O_PUZZLE_ITEM_2);
+    GF_ModifyInventory_Item(type, O_PUZZLE_ITEM_3);
+    GF_ModifyInventory_Item(type, O_PUZZLE_ITEM_4);
+    GF_ModifyInventory_Item(type, O_KEY_ITEM_1);
+    GF_ModifyInventory_Item(type, O_KEY_ITEM_2);
+    GF_ModifyInventory_Item(type, O_KEY_ITEM_3);
+    GF_ModifyInventory_Item(type, O_KEY_ITEM_4);
 
-    if (Inv_RequestItem(O_UZI_ITEM)) {
-        if (type) {
-            g_Lara.uzi_ammo.ammo +=
-                UZI_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
-            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
-                 i++) {
-                Overlay_AddDisplayPickup(O_UZI_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.uzi_ammo.ammo +=
-                UZI_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_UZI_AMMO];
-        }
-    } else if (
-        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_UZIS])
-        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_UZIS])) {
-        start->has_uzis = 1;
-        Inv_AddItem(O_UZI_ITEM);
-        if (type) {
-            Overlay_AddDisplayPickup(O_UZI_ITEM);
-            g_Lara.uzi_ammo.ammo +=
-                UZI_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
-            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO];
-                 i++) {
-                Overlay_AddDisplayPickup(O_UZI_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.uzi_ammo.ammo +=
-                UZI_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_UZI_AMMO];
-        }
-    } else if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_UZI_AMMO]; i++) {
-            Inv_AddItem(O_UZI_AMMO_ITEM);
-            Overlay_AddDisplayPickup(O_UZI_AMMO_ITEM);
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_UZI_AMMO]; i++) {
-            Inv_AddItem(O_UZI_AMMO_ITEM);
-        }
-    }
-
-    if (Inv_RequestItem(O_HARPOON_ITEM)) {
-        if (type) {
-            g_Lara.harpoon_ammo.ammo +=
-                HARPOON_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO];
-            for (int32_t i = 0;
-                 i < g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO]; i++) {
-                Overlay_AddDisplayPickup(O_HARPOON_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.harpoon_ammo.ammo +=
-                HARPOON_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_HARPOON_AMMO];
-        }
-    } else if (
-        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_HARPOON])
-        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_HARPOON])) {
-        start->has_harpoon = 1;
-        Inv_AddItem(O_HARPOON_ITEM);
-        if (type) {
-            Overlay_AddDisplayPickup(O_HARPOON_ITEM);
-            g_Lara.harpoon_ammo.ammo +=
-                HARPOON_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO];
-            for (int32_t i = 0;
-                 i < g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO]; i++) {
-                Overlay_AddDisplayPickup(O_HARPOON_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.harpoon_ammo.ammo +=
-                HARPOON_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_HARPOON_AMMO];
-        }
-    } else if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_HARPOON_AMMO];
-             i++) {
-            Inv_AddItem(O_HARPOON_AMMO_ITEM);
-            Overlay_AddDisplayPickup(O_HARPOON_AMMO_ITEM);
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_HARPOON_AMMO];
-             i++) {
-            Inv_AddItem(O_HARPOON_AMMO_ITEM);
-        }
-    }
-
-    if (Inv_RequestItem(O_M16_ITEM)) {
-        if (type) {
-            g_Lara.m16_ammo.ammo +=
-                M16_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
-            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
-                 i++) {
-                Overlay_AddDisplayPickup(O_M16_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.m16_ammo.ammo +=
-                M16_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_M16_AMMO];
-        }
-    } else if (
-        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_M16])
-        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_M16])) {
-        start->has_m16 = 1;
-        Inv_AddItem(O_M16_ITEM);
-        if (type) {
-            Overlay_AddDisplayPickup(O_M16_ITEM);
-            g_Lara.m16_ammo.ammo +=
-                M16_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
-            for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO];
-                 i++) {
-                Overlay_AddDisplayPickup(O_M16_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.m16_ammo.ammo +=
-                M16_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_M16_AMMO];
-        }
-    } else if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_M16_AMMO]; i++) {
-            Inv_AddItem(O_M16_AMMO_ITEM);
-            Overlay_AddDisplayPickup(O_M16_AMMO_ITEM);
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_M16_AMMO]; i++) {
-            Inv_AddItem(O_M16_AMMO_ITEM);
-        }
-    }
-
-    if (Inv_RequestItem(O_GRENADE_ITEM)) {
-        if (type) {
-            g_Lara.grenade_ammo.ammo +=
-                GRENADE_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO];
-            for (int32_t i = 0;
-                 i < g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO]; i++) {
-                Overlay_AddDisplayPickup(O_GRENADE_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.grenade_ammo.ammo +=
-                GRENADE_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_GRENADE_AMMO];
-        }
-    } else if (
-        (type == 0 && g_GF_Add2InvItems[GF_ADD_INV_GRENADE])
-        || (type == 1 && g_GF_SecretInvItems[GF_ADD_INV_GRENADE])) {
-        start->has_grenade = 1;
-        Inv_AddItem(O_GRENADE_ITEM);
-        if (type) {
-            Overlay_AddDisplayPickup(O_GRENADE_ITEM);
-            g_Lara.grenade_ammo.ammo +=
-                GRENADE_AMMO_QTY * g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO];
-            for (int32_t i = 0;
-                 i < g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO]; i++) {
-                Overlay_AddDisplayPickup(O_GRENADE_AMMO_ITEM);
-            }
-        } else {
-            g_Lara.grenade_ammo.ammo +=
-                GRENADE_AMMO_QTY * g_GF_Add2InvItems[GF_ADD_INV_GRENADE_AMMO];
-        }
-    } else if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_GRENADE_AMMO];
-             i++) {
-            Inv_AddItem(O_GRENADE_AMMO_ITEM);
-            Overlay_AddDisplayPickup(O_GRENADE_AMMO_ITEM);
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_GRENADE_AMMO];
-             i++) {
-            Inv_AddItem(O_GRENADE_AMMO_ITEM);
-        }
-    }
-
-    if (type) {
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_FLARES]; i++) {
-            Inv_AddItem(O_FLARE_ITEM);
-            Overlay_AddDisplayPickup(O_FLARE_ITEM);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_SMALL_MEDI];
-             i++) {
-            Inv_AddItem(O_SMALL_MEDIPACK_ITEM);
-            Overlay_AddDisplayPickup(O_SMALL_MEDIPACK_ITEM);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_LARGE_MEDI];
-             i++) {
-            Inv_AddItem(O_LARGE_MEDIPACK_ITEM);
-            Overlay_AddDisplayPickup(O_LARGE_MEDIPACK_ITEM);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PICKUP_1]; i++) {
-            Inv_AddItem(O_PICKUP_ITEM_1);
-            Overlay_AddDisplayPickup(O_PICKUP_ITEM_1);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PICKUP_2]; i++) {
-            Inv_AddItem(O_PICKUP_ITEM_2);
-            Overlay_AddDisplayPickup(O_PICKUP_ITEM_2);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_1]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_1);
-            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_1);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_2]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_2);
-            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_2);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_3]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_3);
-            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_3);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_PUZZLE_4]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_4);
-            Overlay_AddDisplayPickup(O_PUZZLE_ITEM_4);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_1]; i++) {
-            Inv_AddItem(O_KEY_ITEM_1);
-            Overlay_AddDisplayPickup(O_KEY_ITEM_1);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_2]; i++) {
-            Inv_AddItem(O_KEY_ITEM_2);
-            Overlay_AddDisplayPickup(O_KEY_ITEM_2);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_3]; i++) {
-            Inv_AddItem(O_KEY_ITEM_3);
-            Overlay_AddDisplayPickup(O_KEY_ITEM_3);
-        }
-        for (int32_t i = 0; i < g_GF_SecretInvItems[GF_ADD_INV_KEY_4]; i++) {
-            Inv_AddItem(O_KEY_ITEM_4);
-            Overlay_AddDisplayPickup(O_KEY_ITEM_4);
-        }
-
-        for (int32_t i = 0; i < GF_ADD_INV_NUMBER_OF; i++) {
+    for (int32_t i = 0; i < GF_ADD_INV_NUMBER_OF; i++) {
+        if (type == 1) {
             g_GF_SecretInvItems[i] = 0;
-        }
-    } else {
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_FLARES]; i++) {
-            Inv_AddItem(O_FLARE_ITEM);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_SMALL_MEDI]; i++) {
-            Inv_AddItem(O_SMALL_MEDIPACK_ITEM);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_LARGE_MEDI]; i++) {
-            Inv_AddItem(O_LARGE_MEDIPACK_ITEM);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PICKUP_1]; i++) {
-            Inv_AddItem(O_PICKUP_ITEM_1);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PICKUP_2]; i++) {
-            Inv_AddItem(O_PICKUP_ITEM_2);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_1]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_1);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_2]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_2);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_3]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_3);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_PUZZLE_4]; i++) {
-            Inv_AddItem(O_PUZZLE_ITEM_4);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_1]; i++) {
-            Inv_AddItem(O_KEY_ITEM_1);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_2]; i++) {
-            Inv_AddItem(O_KEY_ITEM_2);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_3]; i++) {
-            Inv_AddItem(O_KEY_ITEM_3);
-        }
-        for (int32_t i = 0; i < g_GF_Add2InvItems[GF_ADD_INV_KEY_4]; i++) {
-            Inv_AddItem(O_KEY_ITEM_4);
-        }
-
-        for (int32_t i = 0; i < GF_ADD_INV_NUMBER_OF; i++) {
+        } else if (type == 0) {
             g_GF_Add2InvItems[i] = 0;
         }
     }

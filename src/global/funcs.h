@@ -354,7 +354,6 @@
 #define S_PlayFMV ((bool __cdecl (*)(const char *file_name))0x0044C450)
 #define S_IntroFMV ((bool __cdecl (*)(const char *file_name1, const char *file_name2))0x0044C460)
 #define LevelStats ((int32_t __cdecl (*)(int32_t level_num))0x0044C680)
-#define GameStats ((int32_t __cdecl (*)(int32_t level_num))0x0044C850)
 #define GetValidLevelsList ((void __cdecl (*)(REQUEST_INFO *req))0x0044C9D0)
 #define GetSavedGamesList ((void __cdecl (*)(REQUEST_INFO *req))0x0044CA20)
 #define DisplayCredits ((void __cdecl (*)(void))0x0044CA70)

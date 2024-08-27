@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.40% (687)</tspan> · <tspan class="known">41.13% (501)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.49% (688)</tspan> · <tspan class="known">41.05% (500)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="421.34" height="6" x="0" y="0" class="decompiled"/>
-<rect width="307.26" height="6" x="421.34" y="0" class="known"/>
+<rect width="421.95" height="6" x="0" y="0" class="decompiled"/>
+<rect width="306.65" height="6" x="421.95" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1072,7 +1072,7 @@
 <rect width="12" height="12" x="645" y="285" class="decompiled"><title>int32_t __cdecl Game_Loop(bool demo_mode);</title></rect>
 <rect width="12" height="12" x="660" y="285" class="decompiled"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
 <rect width="12" height="12" x="675" y="285" class="known"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
-<rect width="12" height="12" x="690" y="285" class="known"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
+<rect width="12" height="12" x="690" y="285" class="decompiled"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="705" y="285" class="decompiled"><title>int32_t __cdecl Random_GetControl(void);</title></rect>
 <rect width="12" height="12" x="720" y="285" class="decompiled"><title>void __cdecl Random_SeedControl(int32_t seed);</title></rect>
 <rect width="12" height="12" x="735" y="285" class="decompiled"><title>int32_t __cdecl Random_GetDraw(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.88%</tspan> · <tspan class="known">40.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.96%</tspan> · <tspan class="known">40.72%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="439.81" height="6" x="0" y="0" class="decompiled"/>
-<rect width="304.75" height="6" x="439.81" y="0" class="known"/>
+<rect width="440.41" height="6" x="0" y="0" class="decompiled"/>
+<rect width="304.15" height="6" x="440.41" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1639,7 +1639,7 @@
 <rect width="12.25" height="12.08" x="465.10" y="200.02" class="known"><title>void __cdecl ControlCeilingSpikes(int16_t item_num);</title></rect>
 <rect width="12.25" height="12.02" x="465.10" y="215.09" class="known"><title>void __cdecl InitialiseBartoli(int16_t item_num);</title></rect>
 <rect width="12.25" height="12.02" x="465.10" y="230.12" class="known"><title>int32_t __cdecl S_SaveGame(const void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
-<rect width="12.25" height="11.97" x="465.10" y="245.14" class="known"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
+<rect width="12.25" height="11.97" x="465.10" y="245.14" class="decompiled"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
 <rect width="12.25" height="11.91" x="465.10" y="260.11" class="decompiled"><title>int32_t __cdecl Game_Cutscene_Start(int32_t level_num);</title></rect>
 <rect width="12.25" height="11.80" x="465.10" y="275.02" class="known"><title>int32_t __cdecl Inv_RemoveItem(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="12.25" height="11.80" x="465.10" y="289.83" class="decompiled"><title>int16_t __cdecl TitleSequence(void);</title></rect>

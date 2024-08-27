@@ -1,6 +1,7 @@
 #include "inject_exec.h"
 
 #include "decomp/decomp.h"
+#include "decomp/stats.h"
 #include "game/background.h"
 #include "game/box.h"
 #include "game/camera.h"
@@ -196,6 +197,7 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00446C00, WinVidStart);
     INJECT(enable, 0x00446F80, WinVidFinish);
     INJECT(enable, 0x00414220, Misc_Move3DPosTo3DPos);
+    INJECT(enable, 0x0044C850, GameStats);
 }
 
 static void Inject_HWR(bool enable)

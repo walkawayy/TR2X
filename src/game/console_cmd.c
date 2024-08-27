@@ -2,6 +2,7 @@
 
 #include "game/console.h"
 #include "game/items.h"
+#include "game/lara/lara_cheat.h"
 #include "game/random.h"
 #include "global/const.h"
 #include "global/funcs.h"
@@ -10,11 +11,12 @@
 #include <math.h>
 #include <stdio.h>
 
-static bool Console_Cmd_IsFloatRound(const float num);
-static COMMAND_RESULT Console_Cmd_Pos(const char *const args);
-static COMMAND_RESULT Console_Cmd_Teleport(const char *const args);
-static COMMAND_RESULT Console_Cmd_SetHealth(const char *const args);
-static COMMAND_RESULT Console_Cmd_Heal(const char *const args);
+static bool Console_Cmd_IsFloatRound(float num);
+static COMMAND_RESULT Console_Cmd_Pos(const char *args);
+static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
+static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
+static COMMAND_RESULT Console_Cmd_Heal(const char *args);
+static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 
 static inline bool Console_Cmd_IsFloatRound(const float num)
 {
@@ -142,10 +144,20 @@ static COMMAND_RESULT Console_Cmd_Heal(const char *const args)
     return CR_SUCCESS;
 }
 
+static COMMAND_RESULT Console_Cmd_EndLevel(const char *const args)
+{
+    if (strcmp(args, "") == 0) {
+        Lara_Cheat_EndLevel();
+        return CR_SUCCESS;
+    }
+    return CR_FAILURE;
+}
+
 CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "pos", .proc = Console_Cmd_Pos },
     { .prefix = "tp", .proc = Console_Cmd_Teleport },
     { .prefix = "hp", .proc = Console_Cmd_SetHealth },
     { .prefix = "heal", .proc = Console_Cmd_Heal },
+    { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
     { .prefix = NULL, .proc = NULL },
 };

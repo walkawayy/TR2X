@@ -1,8 +1,15 @@
 #include "game/lara/lara_cheat.h"
 
+#include "game/console.h"
 #include "game/inventory.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+
+void __cdecl Lara_Cheat_EndLevel(void)
+{
+    g_LevelComplete = true;
+    Console_Log("Level complete!");
+}
 
 void __cdecl Lara_Cheat_GetStuff(void)
 {

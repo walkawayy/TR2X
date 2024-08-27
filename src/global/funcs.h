@@ -340,7 +340,6 @@
 #define S_UnloadLevelFile ((void __cdecl (*)(void))0x0044B4D0)
 #define S_AdjustTexelCoordinates ((void __cdecl (*)(void))0x0044B500)
 #define S_ReloadLevelGraphics ((BOOL __cdecl (*)(BOOL reload_palettes, BOOL reload_tex_pages))0x0044B520)
-#define GF_ReadStringTable ((BOOL __cdecl (*)(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle))0x0044B5F0)
 #define PlayFMV ((bool __cdecl (*)(const char *file_name))0x0044BDA0)
 #define WinPlayFMV ((void __cdecl (*)(const char *file_name, bool is_playback))0x0044BE10)
 #define WinStopFMV ((void __cdecl (*)(bool is_playback))0x0044C0F0)

@@ -13,7 +13,7 @@
 #define GF_CURRENT_VERSION 3
 
 // TODO: inline me into GF_LoadScriptFile
-int32_t __cdecl GF_LoadFromFile(const char *const file_name)
+BOOL __cdecl GF_LoadFromFile(const char *const file_name)
 {
     DWORD bytes_read;
 
@@ -195,6 +195,33 @@ int32_t __cdecl GF_LoadFromFile(const char *const file_name)
     }
 
     CloseHandle(handle);
+    return true;
+}
+
+BOOL __cdecl GF_ReadStringTable(
+    const int32_t count, char **const table, char **const buffer,
+    LPDWORD bytes_read, HANDLE handle)
+{
+    ReadFileSync(
+        handle, g_GF_LevelOffsets, sizeof(int16_t) * count, bytes_read, NULL);
+
+    int16_t size;
+    ReadFileSync(handle, &size, sizeof(int16_t), bytes_read, NULL);
+
+    *buffer = Memory_Alloc(size);
+    ReadFileSync(handle, *buffer, size, bytes_read, NULL);
+
+    if (g_GameFlow.cyphered_strings) {
+        for (int32_t i = 0; i < size; i++) {
+            (*buffer)[i] ^= g_GameFlow.cypher_code;
+        }
+    }
+
+    for (int32_t i = 0; i < count; i++) {
+        const int32_t offset = g_GF_LevelOffsets[i];
+        table[i] = &(*buffer)[offset];
+    }
+
     return true;
 }
 

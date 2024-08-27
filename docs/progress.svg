@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.08% (683)</tspan> · <tspan class="known">41.46% (505)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.16% (684)</tspan> · <tspan class="known">41.38% (504)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="418.88" height="6" x="0" y="0" class="decompiled"/>
-<rect width="309.72" height="6" x="418.88" y="0" class="known"/>
+<rect width="419.50" height="6" x="0" y="0" class="decompiled"/>
+<rect width="309.10" height="6" x="419.50" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1053,7 +1053,7 @@
 <rect width="12" height="12" x="360" y="285" class="known"><title>void __cdecl S_UnloadLevelFile(void);</title></rect>
 <rect width="12" height="12" x="375" y="285" class="known"><title>void __cdecl S_AdjustTexelCoordinates(void);</title></rect>
 <rect width="12" height="12" x="390" y="285" class="known"><title>BOOL __cdecl S_ReloadLevelGraphics(BOOL reload_palettes, BOOL reload_tex_pages);</title></rect>
-<rect width="12" height="12" x="405" y="285" class="known"><title>BOOL __cdecl GF_ReadStringTable(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);</title></rect>
+<rect width="12" height="12" x="405" y="285" class="decompiled"><title>BOOL __cdecl GF_ReadStringTable(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);</title></rect>
 <rect width="12" height="12" x="420" y="285" class="decompiled"><title>BOOL __cdecl GF_LoadFromFile(const char *file_name);</title></rect>
 <rect width="12" height="12" x="435" y="285" class="known"><title>bool __cdecl PlayFMV(const char *file_name);</title></rect>
 <rect width="12" height="12" x="450" y="285" class="known"><title>void __cdecl WinPlayFMV(const char *file_name, bool is_playback);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.68%</tspan> · <tspan class="known">41%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.73%</tspan> · <tspan class="known">40.94%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="438.31" height="6" x="0" y="0" class="decompiled"/>
-<rect width="306.24" height="6" x="438.31" y="0" class="known"/>
+<rect width="438.75" height="6" x="0" y="0" class="decompiled"/>
+<rect width="305.81" height="6" x="438.75" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1752,7 +1752,7 @@
 <rect width="9.60" height="10.11" x="662.46" y="136.56" class="known"><title>bool __cdecl SE_SoundTestStart(void);</title></rect>
 <rect width="9.53" height="10.11" x="675.06" y="136.56" class="unused"><title>sub_4449D0</title></rect>
 <rect width="9.53" height="10.11" x="687.59" y="136.56" class="decompiled"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
-<rect width="9.53" height="10.11" x="700.12" y="136.56" class="known"><title>BOOL __cdecl GF_ReadStringTable(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);</title></rect>
+<rect width="9.53" height="10.11" x="700.12" y="136.56" class="decompiled"><title>BOOL __cdecl GF_ReadStringTable(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);</title></rect>
 <rect width="9.47" height="10.11" x="712.66" y="136.56" class="decompiled"><title>void __cdecl Output_QuickSort(int32_t left, int32_t right);</title></rect>
 <rect width="9.47" height="10.11" x="725.13" y="136.56" class="known"><title>void __cdecl LavaSpray(int16_t item_num);</title></rect>
 <rect width="9.41" height="10.11" x="737.59" y="136.56" class="known"><title>void __cdecl SmashWindow(int16_t item_num);</title></rect>

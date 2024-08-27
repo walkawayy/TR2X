@@ -2967,3 +2967,8 @@ int32_t __cdecl Misc_Move3DPosTo3DPos(
     );
     // clang-format on
 }
+
+int32_t __cdecl LevelCompleteSequence(void)
+{
+    return GFD_EXIT_TO_TITLE;
+}

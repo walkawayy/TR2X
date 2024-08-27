@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.32% (686)</tspan> · <tspan class="known">41.22% (502)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">56.40% (687)</tspan> · <tspan class="known">41.13% (501)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="420.72" height="6" x="0" y="0" class="decompiled"/>
-<rect width="307.88" height="6" x="420.72" y="0" class="known"/>
+<rect width="421.34" height="6" x="0" y="0" class="decompiled"/>
+<rect width="307.26" height="6" x="421.34" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1070,7 +1070,7 @@
 <rect width="12" height="12" x="615" y="285" class="known"><title>bool __cdecl S_IntroFMV(const char *file_name1, const char *file_name2);</title></rect>
 <rect width="12" height="12" x="630" y="285" class="decompiled"><title>int16_t __cdecl Game_Start(int32_t level_num, GF_LEVEL_TYPE level_type);</title></rect>
 <rect width="12" height="12" x="645" y="285" class="decompiled"><title>int32_t __cdecl Game_Loop(bool demo_mode);</title></rect>
-<rect width="12" height="12" x="660" y="285" class="known"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
+<rect width="12" height="12" x="660" y="285" class="decompiled"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
 <rect width="12" height="12" x="675" y="285" class="known"><title>int32_t __cdecl LevelStats(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="690" y="285" class="known"><title>int32_t __cdecl GameStats(int32_t level_num);</title></rect>
 <rect width="12" height="12" x="705" y="285" class="decompiled"><title>int32_t __cdecl Random_GetControl(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.87%</tspan> · <tspan class="known">40.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.88%</tspan> · <tspan class="known">40.80%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="439.79" height="6" x="0" y="0" class="decompiled"/>
-<rect width="304.77" height="6" x="439.79" y="0" class="known"/>
+<rect width="439.81" height="6" x="0" y="0" class="decompiled"/>
+<rect width="304.75" height="6" x="439.81" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2502,7 +2502,7 @@
 <rect width="0.10" height="0.10" x="745.61" y="367.58" class="decompiled"><title>void __cdecl WinVidClearMaxWindowSize(void);</title></rect>
 <rect width="0.10" height="0.10" x="748.12" y="367.58" class="decompiled"><title>bool __cdecl Direct3DInit(void);</title></rect>
 <rect width="0.10" height="0.10" x="740.28" y="370.23" class="decompiled"><title>bool __cdecl S_Audio_Sample_IsEnabled(void);</title></rect>
-<rect width="0.10" height="0.10" x="740.28" y="372.17" class="known"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
+<rect width="0.10" height="0.10" x="740.28" y="372.17" class="decompiled"><title>int32_t __cdecl LevelCompleteSequence(void);</title></rect>
 <rect width="0.10" height="0.10" x="740.28" y="374.11" class="known"><title>int32_t __cdecl GetRenderHeight(void);</title></rect>
 <rect width="0.10" height="0.10" x="740.28" y="376.06" class="known"><title>int32_t __cdecl GetRenderWidth(void);</title></rect>
 <rect width="0.10" height="0.10" x="742.84" y="370.23" class="decompiled"><title>int32_t __fastcall Math_Cos(int16_t angle);</title></rect>

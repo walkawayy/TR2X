@@ -40,9 +40,6 @@ int32_t __cdecl LevelStats(const int32_t level_num)
         S_CopyBufferToScreen();
 
         Input_Update();
-        if (g_IsResetFlag) {
-            g_Input = IN_SELECT;
-        }
         g_InputDB = GetDebouncedInput(g_Input);
 
         if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
@@ -89,9 +86,6 @@ int32_t __cdecl GameStats(const int32_t level_num)
         S_CopyBufferToScreen();
 
         Input_Update();
-        if (g_IsResetFlag) {
-            g_Input = IN_SELECT;
-        }
         g_InputDB = GetDebouncedInput(g_Input);
 
         if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {

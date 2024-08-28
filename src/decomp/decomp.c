@@ -586,8 +586,7 @@ int16_t __cdecl TitleSequence(void)
         return dir;
     }
 
-    if (g_IsResetFlag) {
-        g_IsResetFlag = 0;
+    if (dir == GFD_START_DEMO) {
         return GFD_START_DEMO;
     }
 

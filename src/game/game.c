@@ -47,9 +47,6 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
         }
 
         Input_Update();
-        if (g_IsResetFlag) {
-            return GFD_EXIT_TO_TITLE;
-        }
 
         if (demo_mode) {
             if (g_Input) {

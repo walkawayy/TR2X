@@ -189,12 +189,10 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
         g_InputDB = GetDebouncedInput(g_Input);
         if (g_Inv_Mode != INV_TITLE_MODE || g_Input != 0 || g_InputDB) {
             g_NoInputCounter = 0;
-            g_IsResetFlag = 0;
         } else if (g_GameFlow.num_demos || g_GameFlow.no_input_timeout) {
             g_NoInputCounter++;
             if (g_NoInputCounter > g_GameFlow.no_input_time) {
                 demo_needed = true;
-                g_IsResetFlag = 1;
             }
         }
 
@@ -351,7 +349,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     break;
                 }
 
-                if (g_IsResetFlag
+                if (demo_needed
                     || (((g_InputDB & IN_OPTION) || (g_InputDB & IN_DESELECT))
                         && g_Inv_Mode != INV_TITLE_MODE)) {
                     Sound_Effect(SFX_MENU_SPINOUT, 0, SPM_ALWAYS);
@@ -676,10 +674,6 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
     RemoveInventoryText();
     S_FinishInventory();
     g_Inv_IsActive = 0;
-
-    if (g_IsResetFlag) {
-        return GFD_EXIT_TO_TITLE;
-    }
 
     if (demo_needed) {
         return GFD_START_DEMO;

@@ -4253,7 +4253,7 @@ typedef enum {
 0x004D7780  -       int32_t g_CineFrameCurrent;
 0x004D778C  -       int32_t g_IsChunkyCamera;
 0x004D7794  -       int32_t g_NoInputCounter;
-0x004D7798  -       BOOL g_IsResetFlag;
+0x004D7798  +       BOOL g_IsResetFlag;
 0x004D779C  -       int32_t g_FlipTimer;
 0x004D77A0  -       int32_t g_LOSNumRooms = 0;
 0x004D77A4  -       BOOL g_StopInventory;

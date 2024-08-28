@@ -62,7 +62,14 @@ void __cdecl Inv_Construct(void)
         inv_item->current_frame = 0;
         inv_item->goal_frame = 0;
         inv_item->anim_count = 0;
+        inv_item->x_rot_pt = 0;
+        inv_item->x_rot = 0;
         inv_item->y_rot = 0;
+        inv_item->y_trans = 0;
+        inv_item->z_trans = 0;
+        if (inv_item->obj_num == O_PASSPORT_OPTION) {
+            inv_item->obj_num = O_PASSPORT_CLOSED;
+        }
     }
 
     for (int32_t i = 0; i < g_Inv_OptionObjectsCount; i++) {
@@ -70,7 +77,14 @@ void __cdecl Inv_Construct(void)
         inv_item->current_frame = 0;
         inv_item->goal_frame = 0;
         inv_item->anim_count = 0;
+        inv_item->x_rot_pt = 0;
+        inv_item->x_rot = 0;
         inv_item->y_rot = 0;
+        inv_item->y_trans = 0;
+        inv_item->z_trans = 0;
+        if (inv_item->obj_num == O_PASSPORT_OPTION) {
+            inv_item->obj_num = O_PASSPORT_CLOSED;
+        }
     }
 
     g_Inv_MainCurrent = 0;

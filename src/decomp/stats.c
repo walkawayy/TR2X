@@ -40,7 +40,6 @@ int32_t __cdecl LevelStats(const int32_t level_num)
         S_CopyBufferToScreen();
 
         Input_Update();
-        g_InputDB = GetDebouncedInput(g_Input);
 
         if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
             break;
@@ -51,7 +50,7 @@ int32_t __cdecl LevelStats(const int32_t level_num)
         S_OutputPolyList();
         S_DumpScreen();
 
-        if (g_Input & IN_SELECT) {
+        if (g_InputDB & IN_SELECT) {
             break;
         }
     }
@@ -86,7 +85,6 @@ int32_t __cdecl GameStats(const int32_t level_num)
         S_CopyBufferToScreen();
 
         Input_Update();
-        g_InputDB = GetDebouncedInput(g_Input);
 
         if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
             break;
@@ -97,7 +95,7 @@ int32_t __cdecl GameStats(const int32_t level_num)
         S_OutputPolyList();
         S_DumpScreen();
 
-        if (g_Input & IN_SELECT) {
+        if (g_InputDB & IN_SELECT) {
             break;
         }
     }

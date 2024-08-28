@@ -398,7 +398,7 @@ int32_t __cdecl GF_DoLevelSequence(
     int32_t current_level = start_level;
     while (true) {
         if (current_level > g_GameFlow.num_levels - 1) {
-            g_IsTitleLoaded = 0;
+            g_IsTitleLoaded = false;
             return GFD_EXIT_TO_TITLE;
         }
 

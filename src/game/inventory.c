@@ -175,19 +175,18 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
         Input_Update();
 
         if (g_Inv_DemoMode) {
-            if (g_Input != 0) {
+            if (g_InputDB != 0) {
                 return g_GameFlow.on_demo_interrupt;
             }
             Demo_GetInput();
             if (g_Input == -1) {
                 return g_GameFlow.on_demo_end;
             }
-        } else if (g_Input != 0) {
+        } else if (g_InputDB != 0) {
             g_NoInputCounter = 0;
         }
 
-        g_InputDB = GetDebouncedInput(g_Input);
-        if (g_Inv_Mode != INV_TITLE_MODE || g_Input != 0 || g_InputDB) {
+        if (g_Inv_Mode != INV_TITLE_MODE || g_Input != 0 || g_InputDB != 0) {
             g_NoInputCounter = 0;
         } else if (g_GameFlow.num_demos || g_GameFlow.no_input_timeout) {
             g_NoInputCounter++;
@@ -674,6 +673,9 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
     RemoveInventoryText();
     S_FinishInventory();
     g_Inv_IsActive = 0;
+
+    // enable buffering
+    g_OldInputDB = 0;
 
     if (demo_needed) {
         return GFD_START_DEMO;

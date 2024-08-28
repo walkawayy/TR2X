@@ -49,7 +49,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
         Input_Update();
 
         if (demo_mode) {
-            if (g_Input) {
+            if (g_InputDB != 0) {
                 return g_GameFlow.on_demo_interrupt;
             }
             Demo_GetInput();
@@ -58,7 +58,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
                 return g_GameFlow.on_demo_end;
             }
         } else if (g_GameFlow.no_input_timeout) {
-            if (g_Input) {
+            if (g_InputDB != 0) {
                 g_NoInputCounter = 0;
             } else {
                 g_NoInputCounter++;
@@ -91,7 +91,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
             }
         }
 
-        if (((g_Input & (IN_LOAD | IN_SAVE | IN_OPTION))
+        if (((g_InputDB & (IN_LOAD | IN_SAVE | IN_OPTION))
              || g_OverlayStatus <= 0)
             && g_Lara.death_timer == 0 && !g_Lara.extra_anim) {
             if (g_OverlayStatus > 0) {
@@ -197,7 +197,7 @@ int16_t __cdecl Game_Start(
     if (level_type != GFL_SAVED) {
         ModifyStartInfo(level_num);
     }
-    g_IsTitleLoaded = 0;
+    g_IsTitleLoaded = false;
     if (level_type != GFL_SAVED) {
         InitialiseLevelFlags();
     }

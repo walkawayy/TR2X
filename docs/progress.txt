@@ -4618,3 +4618,4 @@ typedef enum {
 0x00521FA0  -       char g_GF_SecretInvItems[27]; // GF_ADD_INV_NUMBER_OF
 0x00521FC0  -       char g_GF_Add2InvItems[27]; // GF_ADD_INV_NUMBER_OF
 0x004D9ECC  -       int32_t g_GameMode; // GAMEMODE
+0x004D7970  -       int32_t g_OldInputDB;

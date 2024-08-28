@@ -825,7 +825,7 @@ void __cdecl Lara_State_Extra_FinalAnim(ITEM_INFO *item, COLL_INFO *coll)
         g_Lara.mesh_ptrs[LM_HAND_R] =
             g_Meshes[g_Objects[O_LARA_SHOTGUN].mesh_idx + LM_HAND_R];
     } else if (item->frame_num == g_Anims[item->anim_num].frame_end - 1) {
-        g_LevelComplete = 1;
+        g_LevelComplete = true;
     }
 }
 

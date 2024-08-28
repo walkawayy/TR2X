@@ -1123,7 +1123,7 @@ void __cdecl Game_SetCutsceneTrack(const int32_t track)
 int32_t __cdecl Game_Cutscene_Start(const int32_t level_num)
 {
     g_CineLevelID = level_num;
-    g_IsTitleLoaded = 0;
+    g_IsTitleLoaded = false;
     S_FadeToBlack();
     if (!Level_Initialise(level_num, GFL_CUTSCENE)) {
         return 2;
@@ -1164,7 +1164,7 @@ int32_t __cdecl Game_Cutscene_Start(const int32_t level_num)
     g_SoundIsActive = old_sound_active;
     Sound_StopAllSamples();
 
-    g_LevelComplete = 1;
+    g_LevelComplete = true;
     return result;
 }
 
@@ -1195,10 +1195,10 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
             if (Input_Update()) {
                 return 3;
             }
-            if ((g_Input & IN_ACTION) != 0) {
+            if (g_InputDB & IN_ACTION) {
                 return 1;
             }
-            if ((g_Input & IN_OPTION) != 0) {
+            if (g_InputDB & IN_OPTION) {
                 return 2;
             }
 

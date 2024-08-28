@@ -218,20 +218,6 @@ bool Console_HandleKeyDown(const uint32_t key)
         Console_Open();
         return true;
 
-    case VK_ESCAPE:
-        if (!m_IsOpened) {
-            return false;
-        }
-        Console_Close();
-        return true;
-
-    case VK_RETURN:
-        if (!m_IsOpened) {
-            return false;
-        }
-        Console_Confirm();
-        return true;
-
     case VK_LEFT:
         if (!m_IsOpened) {
             return false;

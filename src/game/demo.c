@@ -14,6 +14,7 @@
 
 static int32_t m_DemoLevel = 0;
 static int32_t m_DemoLevel2 = 0;
+static int32_t m_OldDemoInputDB = 0;
 
 int32_t __cdecl Demo_Control(int32_t level_num)
 {
@@ -60,12 +61,12 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     Random_SeedDraw(0xD371F947);
     Random_SeedControl(0xD371F947);
 
-    g_IsTitleLoaded = 0;
+    g_IsTitleLoaded = false;
     if (!Level_Initialise(level_num, GFL_DEMO)) {
         return GFD_EXIT_GAME;
     }
 
-    g_LevelComplete = 0;
+    g_LevelComplete = false;
     if (!g_IsDemoLoaded) {
         Shell_ExitSystemFmt(
             "Level '%s' has no demo data!", g_GF_LevelFileNames[level_num]);
@@ -83,6 +84,7 @@ int32_t __cdecl Demo_Start(int32_t level_num)
     Text_CentreV(text, true);
     Text_CentreH(text, true);
 
+    m_OldDemoInputDB = 0;
     g_Inv_DemoMode = true;
     GAME_FLOW_DIR dir = Game_Loop(true);
     g_Inv_DemoMode = false;
@@ -128,6 +130,8 @@ void __cdecl Demo_GetInput(void)
         g_Input = g_DemoPtr[g_DemoCount];
     }
     if (g_Input != -1) {
+        g_InputDB = g_Input & ~m_OldDemoInputDB;
+        m_OldDemoInputDB = g_Input;
         g_DemoCount++;
     }
 }

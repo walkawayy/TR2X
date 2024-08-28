@@ -71,10 +71,6 @@ bool __cdecl S_Input_Update(void)
     WinVidSpinMessageLoop(0);
     WinInReadKeyboard(g_DIKeys);
 
-    if (Console_IsOpened()) {
-        return false;
-    }
-
     int32_t joy_xpos = 0;
     int32_t joy_ypos = 0;
     g_JoyKeys = WinInReadJoystick(&joy_xpos, &joy_ypos);
@@ -152,7 +148,7 @@ bool __cdecl S_Input_Update(void)
         input &= ~IN_RIGHT;
     }
 
-    if (g_IsFMVPlaying) {
+    if (g_IsFMVPlaying || Console_IsOpened()) {
         g_Input = input;
         return g_IsGameToExit;
     }

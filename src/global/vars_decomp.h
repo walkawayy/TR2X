@@ -208,6 +208,7 @@
 #define g_Inv_DownArrow1 (*(TEXTSTRING**)0x004D7964)
 #define g_Inv_DownArrow2 (*(TEXTSTRING**)0x004D7968)
 #define g_InputDB (*(uint32_t*)0x004D796C)
+#define g_OldInputDB (*(int32_t*)0x004D7970)
 #define g_Inv_IsActive (*(uint16_t*)0x004D7978)
 #define g_Inv_ExtraData (*(int32_t(*)[8])0x004D7980)
 #define g_Inv_DemoMode (*(BOOL*)0x004D79A0)

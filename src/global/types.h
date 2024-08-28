@@ -2812,4 +2812,10 @@ typedef enum {
     GF_ADD_INV_NUMBER_OF    = 27,
 } GF_ADD_INV;
 
+typedef enum {
+    IT_NAME      = 0,
+    IT_QTY       = 1,
+    IT_NUMBER_OF = 2,
+} INV_TEXT;
+
 // clang-format on

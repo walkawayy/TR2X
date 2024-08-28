@@ -5,6 +5,7 @@
 #include "game/lara/lara_control.h"
 #include "game/matrix.h"
 #include "game/music.h"
+#include "game/option/option.h"
 #include "game/output.h"
 #include "game/overlay.h"
 #include "game/sound.h"
@@ -165,6 +166,9 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
     do {
         if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+            INVENTORY_ITEM *inv_item = ring.list[ring.current_object];
+            RemoveInventoryText();
+            Option_ShutdownInventory(inv_item);
             return GFD_OVERRIDE;
         }
 
@@ -578,7 +582,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 }
 
                 if (!busy && !g_Inv_IsOptionsDelay) {
-                    do_inventory_options(inv_item);
+                    Option_DoInventory(inv_item);
                     if (g_InputDB & IN_DESELECT) {
                         inv_item->sprite_list = NULL;
                         Inv_Ring_MotionSetup(

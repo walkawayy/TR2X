@@ -1121,14 +1121,14 @@
 <rect width="12" height="12" x="630" y="300" class="decompiled"><title>DWORD __cdecl EncodeLinePCX(BYTE *src, DWORD width, BYTE *dst);</title></rect>
 <rect width="12" height="12" x="645" y="300" class="decompiled"><title>DWORD __cdecl EncodePutPCX(BYTE value, BYTE num, BYTE *buffer);</title></rect>
 <rect width="12" height="12" x="660" y="300" class="decompiled"><title>void __cdecl Screenshot(LPDDS screen);</title></rect>
-<rect width="12" height="12" x="675" y="300" class="known"><title>void __cdecl do_inventory_options(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="690" y="300" class="known"><title>void __cdecl do_passport_option(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="705" y="300" class="known"><title>void __cdecl do_detail_option(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="720" y="300" class="known"><title>void __cdecl do_sound_option(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="735" y="300" class="known"><title>void __cdecl do_compass_option(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="0" y="315" class="known"><title>void __cdecl FlashConflicts(void);</title></rect>
-<rect width="12" height="12" x="15" y="315" class="known"><title>void __cdecl DefaultConflict(void);</title></rect>
-<rect width="12" height="12" x="30" y="315" class="known"><title>void __cdecl do_control_option(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="675" y="300" class="known"><title>void __cdecl Option_DoInventory(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="690" y="300" class="known"><title>void __cdecl Option_Passport(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="705" y="300" class="known"><title>void __cdecl Option_Detail(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="720" y="300" class="known"><title>void __cdecl Option_Sound(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="735" y="300" class="known"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="0" y="315" class="known"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
+<rect width="12" height="12" x="15" y="315" class="known"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
+<rect width="12" height="12" x="30" y="315" class="known"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="45" y="315" class="known"><title>void __cdecl S_ShowControls(void);</title></rect>
 <rect width="12" height="12" x="60" y="315" class="known"><title>void __cdecl S_ChangeCtrlText(void);</title></rect>
 <rect width="12" height="12" x="75" y="315" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
@@ -1323,13 +1323,13 @@
 <rect width="35.22" height="38.72" x="104.17" y="0" class="decompiled"><title>void __cdecl Camera_SmartShift(GAME_VECTOR *target, void (*__cdecl shift)(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom));</title></rect>
 <rect width="35.22" height="37.07" x="104.17" y="41.72" class="known"><title>void __cdecl SE_GraphicsDlgUpdate(HWND hwndDlg);</title></rect>
 <rect width="35.22" height="36.05" x="104.17" y="81.80" class="decompiled"><title>void __cdecl Output_InsertGT3_Sorted(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2, SORT_TYPE sort_type);</title></rect>
-<rect width="35.22" height="35.66" x="104.17" y="120.85" class="known"><title>void __cdecl do_control_option(INVENTORY_ITEM *item);</title></rect>
+<rect width="35.22" height="35.66" x="104.17" y="120.85" class="known"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="35.22" height="34.90" x="104.17" y="159.51" class="decompiled"><title>BOOL __cdecl GF_LoadFromFile(const char *file_name);</title></rect>
 <rect width="35.22" height="34.49" x="104.17" y="197.42" class="known"><title>int32_t __cdecl Inv_AddItem(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="35.22" height="33.49" x="104.17" y="234.91" class="decompiled"><title>void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);</title></rect>
 <rect width="35.22" height="33.06" x="104.17" y="271.40" class="decompiled"><title>void __cdecl Collide_GetCollisionInfo(COLL_INFO *coll, int32_t xpos, int32_t ypos, int32_t zpos, int16_t room_num, int32_t obj_height);</title></rect>
 <rect width="35.22" height="32.62" x="104.17" y="307.45" class="decompiled"><title>void __cdecl Lara_Control(int16_t item_num);</title></rect>
-<rect width="35.22" height="31.93" x="104.17" y="343.07" class="known"><title>void __cdecl do_passport_option(INVENTORY_ITEM *item);</title></rect>
+<rect width="35.22" height="31.93" x="104.17" y="343.07" class="known"><title>void __cdecl Option_Passport(INVENTORY_ITEM *item);</title></rect>
 <rect width="31.68" height="35.34" x="142.39" y="0" class="decompiled"><title>void __cdecl Output_InsertGT3_ZBuffered(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2);</title></rect>
 <rect width="31.68" height="34.77" x="142.39" y="38.34" class="decompiled"><title>void __cdecl Boat_Control(int16_t item_num);</title></rect>
 <rect width="31.68" height="33.69" x="142.39" y="76.11" class="known"><title>void __cdecl TrapObjects(void);</title></rect>
@@ -1350,7 +1350,7 @@
 <rect width="28.60" height="28.12" x="177.07" y="193.12" class="known"><title>void __cdecl MonkControl(int16_t item_num);</title></rect>
 <rect width="28.60" height="28.07" x="177.07" y="224.25" class="decompiled"><title>LRESULT __stdcall WinVidGameWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);</title></rect>
 <rect width="28.60" height="28.04" x="177.07" y="255.32" class="known"><title>int32_t __cdecl SkidooDynamics(ITEM_INFO *skidoo);</title></rect>
-<rect width="28.60" height="28.02" x="177.07" y="286.36" class="known"><title>void __cdecl do_sound_option(INVENTORY_ITEM *item);</title></rect>
+<rect width="28.60" height="28.02" x="177.07" y="286.36" class="known"><title>void __cdecl Option_Sound(INVENTORY_ITEM *item);</title></rect>
 <rect width="28.60" height="27.36" x="177.07" y="317.38" class="decompiled"><title>void __cdecl Sound_Effect(int32_t sample_id, const XYZ_32 *pos, uint32_t flags);</title></rect>
 <rect width="28.60" height="27.26" x="177.07" y="347.74" class="known"><title>void __cdecl PickUpCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="27.61" height="28.13" x="208.67" y="0" class="decompiled"><title>int32_t __cdecl GF_InterpretSequence(int16_t *ptr, GF_LEVEL_TYPE type, int32_t seq_type);</title></rect>
@@ -1418,7 +1418,7 @@
 <rect width="21.61" height="22.07" x="320.05" y="205.31" class="decompiled"><title>int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="21.61" height="21.83" x="320.05" y="230.38" class="known"><title>void __cdecl WinPlayFMV(const char *file_name, bool is_playback);</title></rect>
 <rect width="21.61" height="21.76" x="320.05" y="255.20" class="known"><title>bool __cdecl SE_ShowSetupDialog(HWND hParent, bool isDefault);</title></rect>
-<rect width="21.61" height="21.63" x="320.05" y="279.97" class="known"><title>void __cdecl do_detail_option(INVENTORY_ITEM *item);</title></rect>
+<rect width="21.61" height="21.63" x="320.05" y="279.97" class="known"><title>void __cdecl Option_Detail(INVENTORY_ITEM *item);</title></rect>
 <rect width="21.61" height="21.56" x="320.05" y="304.59" class="known"><title>int32_t __cdecl Collide_GetSpheres(const ITEM_INFO *item, SPHERE *spheres, bool world_space);</title></rect>
 <rect width="21.61" height="21.46" x="320.05" y="329.15" class="known"><title>void __cdecl DrawSkidoo(ITEM_INFO *item);</title></rect>
 <rect width="21.61" height="21.39" x="320.05" y="353.61" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
@@ -1763,7 +1763,7 @@
 <rect width="9.54" height="9.77" x="521.63" y="201.42" class="known"><title>int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="9.54" height="9.77" x="521.63" y="214.20" class="decompiled"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="226.97" class="known"><title>void __cdecl ChangeRequesterItem(REQUEST_INFO *req, int32_t item, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
-<rect width="9.54" height="9.71" x="521.63" y="239.68" class="known"><title>void __cdecl do_compass_option(INVENTORY_ITEM *item);</title></rect>
+<rect width="9.54" height="9.71" x="521.63" y="239.68" class="known"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="252.39" class="known"><title>void __cdecl AnimateTextures(int32_t ticks);</title></rect>
 <rect width="9.54" height="9.64" x="521.63" y="265.09" class="known"><title>void __cdecl DeathSlideCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
 <rect width="9.54" height="9.57" x="521.63" y="277.73" class="decompiled"><title>void __cdecl Lara_Col_StepRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -1937,9 +1937,9 @@
 <rect width="7.43" height="7.11" x="578.55" y="267.90" class="known"><title>void __cdecl InitialiseSkidman(int16_t item_num);</title></rect>
 <rect width="7.43" height="7.11" x="578.55" y="278.01" class="known"><title>bool __cdecl WinInputInit(void);</title></rect>
 <rect width="7.43" height="7.11" x="578.55" y="288.12" class="decompiled"><title>void __cdecl Random_Seed(void);</title></rect>
-<rect width="7.43" height="7.11" x="578.55" y="298.23" class="known"><title>void __cdecl do_inventory_options(INVENTORY_ITEM *item);</title></rect>
+<rect width="7.43" height="7.11" x="578.55" y="298.23" class="known"><title>void __cdecl Option_DoInventory(INVENTORY_ITEM *item);</title></rect>
 <rect width="7.43" height="7.03" x="578.55" y="308.34" class="known"><title>void __cdecl BellControl(int16_t item_num);</title></rect>
-<rect width="7.43" height="7.03" x="578.55" y="318.37" class="known"><title>void __cdecl FlashConflicts(void);</title></rect>
+<rect width="7.43" height="7.03" x="578.55" y="318.37" class="known"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
 <rect width="7.43" height="7.03" x="578.55" y="328.40" class="known"><title>void __cdecl S_SyncPictureBufferPalette(void);</title></rect>
 <rect width="7.43" height="6.95" x="578.55" y="338.43" class="known"><title>void __cdecl S_SaveSettings(void);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="348.38" class="decompiled"><title>BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
@@ -2167,7 +2167,7 @@
 <rect width="4.33" height="4.25" x="670.56" y="269.04" class="decompiled"><title>void __cdecl Lara_State_FastFall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.33" height="4.25" x="677.88" y="269.04" class="known"><title>void __cdecl InitialiseSkidoo(int16_t item_num);</title></rect>
 <rect width="4.33" height="4.25" x="685.21" y="269.04" class="decompiled"><title>bool __cdecl WinVidInit(void);</title></rect>
-<rect width="4.33" height="4.25" x="692.53" y="269.04" class="known"><title>void __cdecl DefaultConflict(void);</title></rect>
+<rect width="4.33" height="4.25" x="692.53" y="269.04" class="known"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
 <rect width="4.33" height="4.25" x="699.86" y="269.04" class="known"><title>void __cdecl UpdateTicks(void);</title></rect>
 <rect width="4.21" height="4.25" x="707.19" y="269.04" class="known"><title>void __cdecl ControlDingDong(int16_t item_num);</title></rect>
 <rect width="4.21" height="4.25" x="714.40" y="269.04" class="known"><title>void __cdecl TrapDoorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>

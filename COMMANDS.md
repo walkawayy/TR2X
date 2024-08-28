@@ -30,3 +30,6 @@ Currently supported commands:
 
 - `/title`  
   Exits the game to main screen.
+
+- `/exit`  
+  Closes the game.

@@ -7,6 +7,8 @@
 #include "game/los.h"
 #include "game/lot.h"
 #include "game/math.h"
+#include "game/objects/common.h"
+#include "game/objects/vars.h"
 #include "game/random.h"
 #include "game/room.h"
 #include "global/const.h"
@@ -336,7 +338,10 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
     } else {
         Item_RemoveActive(item_num);
     }
-    LOT_DisableBaddieAI(item_num);
+
+    if (g_Objects[item->object_num].intelligent) {
+        LOT_DisableBaddieAI(item_num);
+    }
     item->flags |= IF_ONE_SHOT;
 
     if (item->killed) {
@@ -344,12 +349,14 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
         g_PrevItemActive = item_num;
     }
 
-    int16_t pickup_num = item->carried_item;
-    while (pickup_num != NO_ITEM) {
-        ITEM_INFO *const pickup = &g_Items[pickup_num];
-        pickup->pos = item->pos;
-        Item_NewRoom(pickup_num, item->room_num);
-        pickup_num = pickup->carried_item;
+    if (g_Objects[item->object_num].intelligent) {
+        int16_t pickup_num = item->carried_item;
+        while (pickup_num != NO_ITEM) {
+            ITEM_INFO *const pickup = &g_Items[pickup_num];
+            pickup->pos = item->pos;
+            Item_NewRoom(pickup_num, item->room_num);
+            pickup_num = pickup->carried_item;
+        }
     }
 }
 
@@ -918,4 +925,16 @@ int32_t __cdecl Creature_CanTargetEnemy(
     target.room_num = enemy->room_num;
 
     return LOS_Check(&start, &target);
+}
+
+bool Creature_IsEnemy(const ITEM_INFO *const item)
+{
+    return Object_IsObjectType(item->object_num, g_EnemyObjects)
+        || (g_IsMonkAngry
+            && (item->object_num == O_MONK_1 || item->object_num == O_MONK_2));
+}
+
+bool Creature_IsAlly(const ITEM_INFO *const item)
+{
+    return Object_IsObjectType(item->object_num, g_FriendObjects);
 }

@@ -47,9 +47,11 @@ const GAME_OBJECT_ID g_EnemyObjects[] = {
 
 const GAME_OBJECT_ID g_FriendObjects[] = {
     // clang-format off
+    O_LARA,
     O_WINSTON,
     O_MONK_1,
     O_MONK_2,
+    O_DYING_MONK,
     NO_OBJECT,
     // Lara's social skills: still loading...
     // clang-format on

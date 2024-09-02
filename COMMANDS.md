@@ -16,13 +16,18 @@ Currently supported commands:
 - `/heal`  
   Tough day, Lara? Heals our girl back to full health.
 
+- `/fly`  
+  Turns on the fly cheat. Why even walk?
+
+- `/kill`  
+  `/kill all`  
+  `/kill {enemy_type}`  
+  Tired of rats, spiders, tigers, Italian mafia and literally every living thing trying to spoil your adventure? This command instantly disposes of the nearest enemy, or kills them all at once.
+
 - `/flip`  
   `/flip off`  
   `/flip on`  
   Switches the global flipmap on or off, turning the reality around you on its head.
-
-- `/fly`  
-  Turns on the fly cheat. Why even walk?
 
 - `/endlevel`  
   Ends the current level. Ideal for speedruns.

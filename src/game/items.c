@@ -741,8 +741,5 @@ void Item_TakeDamage(
 int32_t Item_GetDistance(
     const ITEM_INFO *const item, const XYZ_32 *const target)
 {
-    const int32_t x = (item->pos.x - target->x);
-    const int32_t y = (item->pos.y - target->y);
-    const int32_t z = (item->pos.z - target->z);
-    return Math_Sqrt(SQUARE(x) + SQUARE(y) + SQUARE(z));
+    return XYZ_32_GetDistance(&item->pos, target);
 }

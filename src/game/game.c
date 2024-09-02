@@ -15,7 +15,6 @@
 #include "global/vars.h"
 #include "specific/s_audio_sample.h"
 
-#include <libtrx/log.h>
 #include <libtrx/utils.h>
 
 static int32_t m_FrameCount = 0;

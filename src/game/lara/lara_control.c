@@ -1,5 +1,6 @@
 #include "game/lara/lara_control.h"
 
+#include "game/creature.h"
 #include "game/gun/gun.h"
 #include "game/inventory.h"
 #include "game/items.h"
@@ -977,4 +978,30 @@ void Lara_GetOffVehicle(void)
         g_LaraItem->anim_num = LA_STAND_STILL;
         g_LaraItem->frame_num = g_Anims[g_LaraItem->anim_num].frame_base;
     }
+}
+
+int16_t Lara_GetNearestEnemy(void)
+{
+    if (g_LaraItem == NULL) {
+        return NO_ITEM;
+    }
+
+    int32_t best_distance = -1;
+    int16_t best_item_num = NO_ITEM;
+    int16_t item_num = g_NextItemActive;
+    while (item_num != NO_ITEM) {
+        const ITEM_INFO *const item = &g_Items[item_num];
+
+        if (Creature_IsEnemy(item)) {
+            const int32_t distance = Item_GetDistance(item, &g_LaraItem->pos);
+            if (best_item_num == NO_ITEM || distance < best_distance) {
+                best_item_num = item_num;
+                best_distance = distance;
+            }
+        }
+
+        item_num = item->next_active;
+    }
+
+    return best_item_num;
 }

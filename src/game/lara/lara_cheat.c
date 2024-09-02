@@ -3,6 +3,7 @@
 #include "decomp/effects.h"
 #include "game/camera.h"
 #include "game/console.h"
+#include "game/creature.h"
 #include "game/game_string.h"
 #include "game/inventory.h"
 #include "game/items.h"
@@ -12,6 +13,7 @@
 #include "game/objects/vars.h"
 #include "game/output.h"
 #include "game/room.h"
+#include "game/sound.h"
 #include "global/funcs.h"
 #include "global/utils.h"
 #include "global/vars.h"
@@ -286,5 +288,18 @@ bool Lara_Cheat_Teleport(int32_t x, int32_t y, int32_t z)
     Output_AlterFOV(GAME_FOV * PHD_DEGREE);
 
     Camera_ResetPosition();
+    return true;
+}
+
+bool Lara_Cheat_KillEnemy(const int16_t item_num)
+{
+    ITEM_INFO *const item = &g_Items[item_num];
+    if (item->killed
+        || (item->hit_points == DONT_TARGET && item->object_num != O_WINSTON)) {
+        return false;
+    }
+
+    Sound_Effect(SFX_EXPLOSION1, &item->pos, SPM_NORMAL);
+    Creature_Die(item_num, true);
     return true;
 }

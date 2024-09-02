@@ -34,3 +34,5 @@ void __cdecl Creature_Collision(
     int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 int32_t __cdecl Creature_CanTargetEnemy(
     const ITEM_INFO *item, const AI_INFO *info);
+bool Creature_IsEnemy(const ITEM_INFO *item);
+bool Creature_IsAlly(const ITEM_INFO *item);

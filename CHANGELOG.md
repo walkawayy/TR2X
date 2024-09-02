@@ -9,6 +9,7 @@
     - `/exit`
     - `/fly`
     - `/flip`
+    - `/kill`
 - added `/tp` console command's ability to teleport to specific items
 - added `/fly` console command's ability to open nearest doors
 - added an option to fix M16 accuracy while running (#45)

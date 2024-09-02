@@ -2,10 +2,12 @@
 
 #include "decomp/effects.h"
 #include "game/console.h"
+#include "game/creature.h"
 #include "game/game_string.h"
 #include "game/gameflow/gameflow_new.h"
 #include "game/items.h"
 #include "game/lara/lara_cheat.h"
+#include "game/lara/lara_control.h"
 #include "game/objects/common.h"
 #include "game/objects/names.h"
 #include "game/objects/vars.h"
@@ -16,6 +18,7 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/memory.h>
 #include <libtrx/strings.h>
 
 #include <math.h>
@@ -28,6 +31,7 @@ static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_Fly(const char *const args);
 static COMMAND_RESULT Console_Cmd_FlipMap(const char *args);
+static COMMAND_RESULT Console_Cmd_Kill(const char *args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_LoadGame(const char *args);
@@ -279,6 +283,103 @@ static COMMAND_RESULT Console_Cmd_FlipMap(const char *const args)
     return CR_SUCCESS;
 }
 
+static COMMAND_RESULT Console_Cmd_Kill(const char *args)
+{
+    // kill all the enemies in the level
+    if (String_Equivalent(args, "all")) {
+        int32_t num_killed = 0;
+        for (int16_t item_num = 0; item_num < Item_GetTotalCount();
+             item_num++) {
+            const ITEM_INFO *const item = &g_Items[item_num];
+            if (!Creature_IsEnemy(item)) {
+                continue;
+            }
+            if (Lara_Cheat_KillEnemy(item_num)) {
+                num_killed++;
+            }
+        }
+
+        if (num_killed == 0) {
+            Console_Log(GS(OSD_KILL_ALL_FAIL));
+            return CR_FAILURE;
+        }
+
+        Console_Log(GS(OSD_KILL_ALL), num_killed);
+        return CR_SUCCESS;
+    }
+
+    // kill all the enemies around Lara within one tile, or a single nearest
+    // enemy
+    if (String_Equivalent(args, "")) {
+        bool found = false;
+        while (true) {
+            const int16_t best_item_num = Lara_GetNearestEnemy();
+            if (best_item_num == NO_ITEM) {
+                break;
+            }
+
+            const ITEM_INFO *const item = &g_Items[best_item_num];
+            const int32_t distance = Item_GetDistance(item, &g_LaraItem->pos);
+            found |= Lara_Cheat_KillEnemy(best_item_num);
+            if (distance >= WALL_L) {
+                break;
+            }
+        }
+
+        if (!found) {
+            Console_Log(GS(OSD_KILL_FAIL));
+            return CR_FAILURE;
+        }
+
+        Console_Log(GS(OSD_KILL));
+        return CR_SUCCESS;
+    }
+
+    // kill a single enemy type
+    {
+        bool matches_found = false;
+        int32_t num_killed = 0;
+        int32_t match_count = 0;
+        GAME_OBJECT_ID *matching_objs = Object_IdsFromName(args, &match_count);
+
+        for (int16_t item_num = 0; item_num < Item_GetTotalCount();
+             item_num++) {
+            const ITEM_INFO *const item = &g_Items[item_num];
+            if (!Creature_IsEnemy(item) && !Creature_IsAlly(item)) {
+                continue;
+            }
+
+            bool is_matched = false;
+            for (int32_t i = 0; i < match_count; i++) {
+                if (matching_objs[i] == item->object_num) {
+                    is_matched = true;
+                    break;
+                }
+            }
+            if (!is_matched) {
+                continue;
+            }
+            matches_found = true;
+
+            if (Lara_Cheat_KillEnemy(item_num)) {
+                num_killed++;
+            }
+        }
+        Memory_FreePointer(&matching_objs);
+
+        if (!matches_found) {
+            Console_Log(GS(OSD_INVALID_OBJECT), args);
+            return CR_FAILURE;
+        }
+        if (num_killed == 0) {
+            Console_Log(GS(OSD_OBJECT_NOT_FOUND), args);
+            return CR_FAILURE;
+        }
+        Console_Log(GS(OSD_KILL_ALL), num_killed);
+        return CR_SUCCESS;
+    }
+}
+
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *const args)
 {
     if (strcmp(args, "") == 0) {
@@ -428,6 +529,7 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "fly", .proc = Console_Cmd_Fly },
     { .prefix = "flip", .proc = Console_Cmd_FlipMap },
     { .prefix = "flipmap", .proc = Console_Cmd_FlipMap },
+    { .prefix = "kill", .proc = Console_Cmd_Kill },
     { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
     { .prefix = "play", .proc = Console_Cmd_StartLevel },
     { .prefix = "level", .proc = Console_Cmd_StartLevel },

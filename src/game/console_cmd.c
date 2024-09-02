@@ -4,6 +4,7 @@
 #include "game/items.h"
 #include "game/lara/lara_cheat.h"
 #include "game/random.h"
+#include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -24,6 +25,7 @@ static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartDemo(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitGame(const char *args);
+static COMMAND_RESULT Console_Cmd_Abortion(const char *args);
 
 static inline bool Console_Cmd_IsFloatRound(const float num)
 {
@@ -224,6 +226,24 @@ static COMMAND_RESULT Console_Cmd_ExitGame(const char *args)
     return CR_SUCCESS;
 }
 
+static COMMAND_RESULT Console_Cmd_Abortion(const char *args)
+{
+    if (!g_Objects[O_LARA].loaded) {
+        return CR_UNAVAILABLE;
+    }
+
+    if (g_LaraItem->hit_points <= 0) {
+        return CR_UNAVAILABLE;
+    }
+
+    Sound_Effect(SFX_LARA_FALL, &g_LaraItem->pos, SPM_NORMAL);
+    Effect_ExplodingDeath(g_Lara.item_num, -1, 1);
+
+    g_LaraItem->hit_points = 0;
+    g_LaraItem->flags |= IF_INVISIBLE;
+    return CR_SUCCESS;
+}
+
 CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "pos", .proc = Console_Cmd_Pos },
     { .prefix = "tp", .proc = Console_Cmd_Teleport },
@@ -236,5 +256,7 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "demo", .proc = Console_Cmd_StartDemo },
     { .prefix = "title", .proc = Console_Cmd_ExitToTitle },
     { .prefix = "exit", .proc = Console_Cmd_ExitGame },
+    { .prefix = "abortion", .proc = Console_Cmd_Abortion },
+    { .prefix = "natlastinks", .proc = Console_Cmd_Abortion },
     { .prefix = NULL, .proc = NULL },
 };

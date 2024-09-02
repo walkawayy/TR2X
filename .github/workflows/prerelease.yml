@@ -9,15 +9,20 @@ on:
     - develop
 
 jobs:
+  package_multiplatform:
+    name: Build prerelease assets
+    if: vars.PRERELEASE_ENABLE == 'true'
+    uses: ./.github/workflows/job_build_game.yml
+    secrets: inherit
+
   publish_prerelease:
-    name: 'Create a prerelease'
-    uses: ./.github/workflows/release.yml
-    if: |
-      github.ref == 'refs/heads/develop' &&
-      vars.RELEASE_ENABLE == 'true'
+    if: vars.PRERELEASE_ENABLE == 'true'
+    name: Create a prerelease
+    needs:
+      - package_multiplatform
     with:
       release_name: 'Development snapshot'
       draft: false
       prerelease: true
       tag_name: 'latest'
-    secrets: inherit
+    uses: ./.github/workflows/job_release.yml

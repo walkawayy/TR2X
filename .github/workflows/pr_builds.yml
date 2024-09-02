@@ -1,0 +1,17 @@
+name: Create a test build
+
+permissions:
+  contents: write
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '!stable'
+      - '!develop'
+
+jobs:
+  package_multiplatform:
+    name: 'Create a test build'
+    uses: ./.github/workflows/job_build_game.yml
+    secrets: inherit

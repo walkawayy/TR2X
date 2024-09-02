@@ -51,6 +51,25 @@ decompilation process. We recognize that there is much work to be done.
 
 ![](docs/progress.svg)
 
+## Improvements over original game
+
+#### Gameplay
+
+- added an option to fix M16 accuracy while running
+- fixed killing the T-Rex with a grenade launcher crashing the game
+- fixed secret rewards not displaying shotgun ammo
+
+#### Visuals
+
+- fixed TGA screenshots crashing the game
+
+#### Audio
+
+- fixed music not playing with certain game versions
+
+#### Mods
+- added developer console (accessible with `/`, see [COMMANDS.md] for details)
+
 ## Contributions
 
 Please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) file for more

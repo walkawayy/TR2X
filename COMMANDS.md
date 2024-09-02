@@ -16,6 +16,11 @@ Currently supported commands:
 - `/heal`  
   Tough day, Lara? Heals our girl back to full health.
 
+- `/flip`  
+  `/flip off`  
+  `/flip on`  
+  Switches the global flipmap on or off, turning the reality around you on its head.
+
 - `/fly`  
   Turns on the fly cheat. Why even walk?
 

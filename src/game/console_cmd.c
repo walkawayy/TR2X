@@ -4,6 +4,7 @@
 #include "game/items.h"
 #include "game/lara/lara_cheat.h"
 #include "game/random.h"
+#include "game/room.h"
 #include "game/sound.h"
 #include "global/const.h"
 #include "global/funcs.h"
@@ -20,6 +21,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
 static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_Fly(const char *const args);
+static COMMAND_RESULT Console_Cmd_FlipMap(const char *args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_LoadGame(const char *args);
@@ -161,6 +163,26 @@ static COMMAND_RESULT Console_Cmd_Fly(const char *const args)
         return CR_UNAVAILABLE;
     }
     Lara_Cheat_EnterFlyMode();
+    return CR_SUCCESS;
+}
+
+static COMMAND_RESULT Console_Cmd_FlipMap(const char *const args)
+{
+    bool new_state;
+    if (String_Equivalent(args, "")) {
+        new_state = !g_FlipStatus;
+    } else if (!String_ParseBool(args, &new_state)) {
+        return CR_BAD_INVOCATION;
+    }
+
+    if (g_FlipStatus == new_state) {
+        Console_Log(
+            new_state ? "Flipmap is already ON" : "Flipmap is already OFF");
+        return CR_SUCCESS;
+    }
+
+    Room_FlipMap();
+    Console_Log(new_state ? "Flipmap set to ON" : "Flipmap set to OFF");
     return CR_SUCCESS;
 }
 
@@ -306,6 +328,8 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "hp", .proc = Console_Cmd_SetHealth },
     { .prefix = "heal", .proc = Console_Cmd_Heal },
     { .prefix = "fly", .proc = Console_Cmd_Fly },
+    { .prefix = "flip", .proc = Console_Cmd_FlipMap },
+    { .prefix = "flipmap", .proc = Console_Cmd_FlipMap },
     { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
     { .prefix = "play", .proc = Console_Cmd_StartLevel },
     { .prefix = "level", .proc = Console_Cmd_StartLevel },

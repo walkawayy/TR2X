@@ -28,6 +28,12 @@ Currently supported commands:
   `/play {name}`  
   Plays the specified level.
 
+- `/load {slot_num}`  
+  Loads the specified savegame slot.
+
+- `/save {slot_num}`  
+  Saves the game to the specified savegame slot.
+
 - `/demo`  
   Starts the demo.
 

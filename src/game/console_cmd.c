@@ -22,6 +22,8 @@ static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_Fly(const char *const args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
+static COMMAND_RESULT Console_Cmd_LoadGame(const char *args);
+static COMMAND_RESULT Console_Cmd_SaveGame(const char *args);
 static COMMAND_RESULT Console_Cmd_StartDemo(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitGame(const char *args);
@@ -171,7 +173,7 @@ static COMMAND_RESULT Console_Cmd_EndLevel(const char *const args)
     return CR_FAILURE;
 }
 
-static COMMAND_RESULT Console_Cmd_StartLevel(const char *args)
+static COMMAND_RESULT Console_Cmd_StartLevel(const char *const args)
 {
     int32_t level_to_load = -1;
 
@@ -208,25 +210,79 @@ static COMMAND_RESULT Console_Cmd_StartLevel(const char *args)
 
     return CR_BAD_INVOCATION;
 }
-static COMMAND_RESULT Console_Cmd_StartDemo(const char *args)
+
+static COMMAND_RESULT Console_Cmd_LoadGame(const char *const args)
+{
+    int32_t slot_num;
+    if (!String_ParseInteger(args, &slot_num)) {
+        return CR_BAD_INVOCATION;
+    }
+
+    // convert 1-indexing to 0-indexing
+    const int32_t slot_idx = slot_num - 1;
+
+    if (slot_idx < 0 || slot_idx >= MAX_SAVE_SLOTS) {
+        Console_Log("Invalid save slot %d", slot_num);
+        return CR_FAILURE;
+    }
+
+    // TODO: replace this with a proper status check
+    if (g_SavedLevels[slot_idx] <= 0) {
+        Console_Log("Save slot %d is not available", slot_num);
+        return CR_FAILURE;
+    }
+
+    g_GF_OverrideDir = GFD_START_SAVED_GAME | slot_idx;
+    Console_Log("Loaded game from save slot %d", slot_num);
+    return CR_SUCCESS;
+}
+
+static COMMAND_RESULT Console_Cmd_SaveGame(const char *const args)
+{
+    int32_t slot_num = -1;
+    if (sscanf(args, "%d", &slot_num) != 1) {
+        return CR_BAD_INVOCATION;
+    }
+
+    // convert 1-indexing to 0-indexing
+    const int32_t slot_idx = slot_num - 1;
+
+    if (slot_idx < 0 || slot_idx >= MAX_SAVE_SLOTS) {
+        Console_Log("Invalid save slot %d", slot_num);
+        return CR_BAD_INVOCATION;
+    }
+
+    if (g_LaraItem == NULL) {
+        Console_Log("Cannot save the game in the current state", slot_num);
+        return CR_UNAVAILABLE;
+    }
+
+    CreateSaveGameInfo();
+    S_SaveGame(&g_SaveGame, sizeof(SAVEGAME_INFO), slot_idx);
+    GetSavedGamesList(&g_LoadGameRequester);
+    Console_Log("Saved game to save slot %d", slot_num);
+    return CR_SUCCESS;
+}
+
+static COMMAND_RESULT Console_Cmd_StartDemo(const char *const args)
 {
     g_GF_OverrideDir = GFD_START_DEMO;
     return CR_SUCCESS;
 }
 
-static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args)
+static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *const args)
 {
     g_GF_OverrideDir = GFD_EXIT_TO_TITLE;
     return CR_SUCCESS;
 }
 
-static COMMAND_RESULT Console_Cmd_ExitGame(const char *args)
+static COMMAND_RESULT Console_Cmd_ExitGame(const char *const args)
 {
     g_GF_OverrideDir = GFD_EXIT_GAME;
     return CR_SUCCESS;
 }
 
-static COMMAND_RESULT Console_Cmd_Abortion(const char *args)
+static COMMAND_RESULT Console_Cmd_Abortion(const char *const args)
 {
     if (!g_Objects[O_LARA].loaded) {
         return CR_UNAVAILABLE;
@@ -253,6 +309,8 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
     { .prefix = "play", .proc = Console_Cmd_StartLevel },
     { .prefix = "level", .proc = Console_Cmd_StartLevel },
+    { .prefix = "load", .proc = Console_Cmd_LoadGame },
+    { .prefix = "save", .proc = Console_Cmd_SaveGame },
     { .prefix = "demo", .proc = Console_Cmd_StartDemo },
     { .prefix = "title", .proc = Console_Cmd_ExitToTitle },
     { .prefix = "exit", .proc = Console_Cmd_ExitGame },

@@ -84,6 +84,7 @@
 #define g_FadeLimit (*(int32_t*)0x00466494) // = 0x100000
 #define g_FadeAdder (*(int32_t*)0x00466498) // = 0x8000
 #define g_ErrorMessages (*(const char *(*)[43])0x004664E8)
+#define g_SavedLevels (*(int16_t(*)[24])0x00466B80)
 #define g_PaletteIndex (*(int32_t*)0x00466BDC)
 #define g_DumpX (*(int16_t*)0x00466BE4)
 #define g_DumpY (*(int16_t*)0x00466BE6)
@@ -324,6 +325,7 @@
 #define g_SavedGames (*(int32_t*)0x004D9EBC)
 #define g_CurrentLevel (*(int32_t*)0x004D9EC0)
 #define g_LevelComplete (*(int32_t*)0x004D9EC4)
+#define g_SaveCounter (*(int32_t*)0x004D9EC8)
 #define g_GameMode (*(int32_t*)0x004D9ECC)
 #define g_HWR_VertexBuffer (*(D3DTLVERTEX(*)[0x2000])0x004D9ED8)
 #define g_CurrentTexSource (*(D3DTEXTUREHANDLE*)0x00519ED8)
@@ -390,6 +392,8 @@
 #define g_RequesterFlags2 (*(uint32_t(*)[24])0x00520CA0)
 #define g_RequesterFlags1 (*(uint32_t(*)[24])0x00520D00)
 #define g_ValidLevelStrings2 (*(char(*)[])0x00521720)
+#define g_SaveGameReqFlags2 (*(uint32_t(*)[24])0x00521BE0)
+#define g_SaveGameReqFlags1 (*(uint32_t(*)[24])0x00521C40)
 #define g_Pickups (*(PICKUP_INFO(*)[12])0x00521CA0)
 #define g_GF_Pickup1Strings (*(char ***)0x00521DC0)
 #define g_GF_CutsceneFileNames (*(char ***)0x00521DC4)

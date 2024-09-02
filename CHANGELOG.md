@@ -4,6 +4,8 @@
     - `/demo`
     - `/title`
     - `/play [level]`
+    - `/load [slot]`
+    - `/save [slot]`
     - `/exit`
     - `/fly`
 - added an option to fix M16 accuracy while running (#45)

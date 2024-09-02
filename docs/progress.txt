@@ -4657,3 +4657,7 @@ typedef enum {
 0x004D7C2C  +       int32_t m_ShowGymStatsTextMode;
 0x00520D00  -       uint32_t g_RequesterFlags1[24]; // MAX_REQUESTER_ITEMS
 0x00520CA0  -       uint32_t g_RequesterFlags2[24]; // MAX_REQUESTER_ITEMS
+0x00521C40  -       uint32_t g_SaveGameReqFlags1[24]; // MAX_REQUESTER_ITEMS
+0x00521BE0  -       uint32_t g_SaveGameReqFlags2[24]; // MAX_REQUESTER_ITEMS
+0x004D9EC8  -       int32_t g_SaveCounter;
+0x00466B80  -       int16_t g_SavedLevels[24]; // MAX_LEVELS

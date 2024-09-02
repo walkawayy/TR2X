@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.31% (698)</tspan> · <tspan class="known">40.23% (490)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.39% (699)</tspan> · <tspan class="known">40.15% (489)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="428.08" height="6" x="0" y="0" class="decompiled"/>
-<rect width="300.52" height="6" x="428.08" y="0" class="known"/>
+<rect width="428.70" height="6" x="0" y="0" class="decompiled"/>
+<rect width="299.90" height="6" x="428.70" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -420,7 +420,7 @@
 <rect width="12" height="12" x="615" y="90" class="known"><title>int32_t __cdecl Inv_RequestItem(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="12" height="12" x="630" y="90" class="known"><title>void __cdecl Inv_RemoveAllItems(void);</title></rect>
 <rect width="12" height="12" x="645" y="90" class="known"><title>int32_t __cdecl Inv_RemoveItem(GAME_OBJECT_ID object_num);</title></rect>
-<rect width="12" height="12" x="660" y="90" class="known"><title>int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);</title></rect>
+<rect width="12" height="12" x="660" y="90" class="decompiled"><title>int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="12" height="12" x="675" y="90" class="known"><title>void __cdecl RemoveInventoryText(void);</title></rect>
 <rect width="12" height="12" x="690" y="90" class="known"><title>void __cdecl Inv_Ring_Init(RING_INFO *ring, int16_t type, INVENTORY_ITEM **list, int16_t qty, int16_t current, IMOTION_INFO *imo);</title></rect>
 <rect width="12" height="12" x="705" y="90" class="known"><title>void __cdecl Inv_Ring_GetView(RING_INFO *ring, PHD_3DPOS *viewer);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">60.47%</tspan> · <tspan class="known">39.20%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">60.53%</tspan> · <tspan class="known">39.14%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="451.73" height="6" x="0" y="0" class="decompiled"/>
-<rect width="292.83" height="6" x="451.73" y="0" class="known"/>
+<rect width="452.15" height="6" x="0" y="0" class="decompiled"/>
+<rect width="292.41" height="6" x="452.15" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1760,7 +1760,7 @@
 <rect width="9.54" height="9.97" x="521.63" y="162.64" class="known"><title>BOOL __cdecl S_ReloadLevelGraphics(BOOL reload_palettes, BOOL reload_tex_pages);</title></rect>
 <rect width="9.54" height="9.97" x="521.63" y="175.61" class="known"><title>void __thiscall SE_LoadBitmapResource(BITMAP_RESOURCE *bmpRsrc, LPCTSTR lpName);</title></rect>
 <rect width="9.54" height="9.84" x="521.63" y="188.59" class="known"><title>void __cdecl Splash(ITEM_INFO *item);</title></rect>
-<rect width="9.54" height="9.77" x="521.63" y="201.42" class="known"><title>int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);</title></rect>
+<rect width="9.54" height="9.77" x="521.63" y="201.42" class="decompiled"><title>int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="9.54" height="9.77" x="521.63" y="214.20" class="decompiled"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="226.97" class="known"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="239.68" class="decompiled"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>

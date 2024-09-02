@@ -589,6 +589,7 @@ static void Inject_Inventory(const bool enable)
     INJECT(enable, 0x00423470, Inv_SelectMeshes);
     INJECT(enable, 0x00423500, Inv_AnimateInventoryItem);
     INJECT(enable, 0x00423590, Inv_DrawInventoryItem);
+    INJECT(enable, 0x00424DE0, Inv_GetItemOption);
 }
 
 static void Inject_Lara_Control(const bool enable)

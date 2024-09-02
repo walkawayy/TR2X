@@ -5,6 +5,8 @@
 #include "game/lara/lara_control.h"
 #include "game/matrix.h"
 #include "game/music.h"
+#include "game/objects/common.h"
+#include "game/objects/vars.h"
 #include "game/option/option.h"
 #include "game/output.h"
 #include "game/overlay.h"
@@ -930,4 +932,13 @@ void Inv_AddItemNTimes(GAME_OBJECT_ID object_num, int32_t qty)
     for (int32_t i = 0; i < qty; i++) {
         Inv_AddItem(object_num);
     }
+}
+
+GAME_OBJECT_ID Inv_GetItemOption(const GAME_OBJECT_ID object_id)
+{
+    if (Object_IsObjectType(object_id, g_InvObjects)) {
+        return object_id;
+    }
+
+    return Object_GetCognate(object_id, g_ItemToInvObjectMap);
 }

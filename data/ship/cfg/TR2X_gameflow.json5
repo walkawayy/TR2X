@@ -1,0 +1,104 @@
+{
+    // NOTE: bad changes to this file may result in crashes.
+    // Lines starting with double slashes are comments and are ignored.
+
+    "levels": [
+        // 0. Lara's Home
+        {},
+
+        // 1. The Great Wall
+        {},
+
+        // 2. Venice
+        {},
+
+        // 3. Bartoli's Hideout
+        {},
+
+        // 4. Opera House
+        {},
+
+        // 5. Offshore Rig
+        {},
+
+        // 6. Diving Area
+        {},
+
+        // 7. 40 Fathoms
+        {},
+
+        // 8. The Wreck of Maria Doria
+        {},
+
+        // 9. Living Quarters
+        {},
+
+        // 10. The Deck
+        {},
+
+        // 11. Tibetan Foothills
+        {},
+
+        // 12. Barkhang Monastery
+        {},
+
+        // 13. Catacombs of the Talion
+        {},
+
+        // 14. Ice Palace
+        {},
+
+        // 15. Temple of Xian
+        {},
+
+        // 16. Floating Islands
+        {},
+
+        // 17. The Dragon's Lair
+        {},
+
+        // 18. Home Sweet Home
+        {},
+
+        // 19. Demo 1
+        {},
+
+        // 20. Demo 2
+        {},
+
+        // 21. Demo 3
+        {},
+    ],
+
+    "game_strings": {
+        "OSD_FLY_MODE_ON": "Fly mode enabled",
+        "OSD_FLY_MODE_OFF": "Fly mode disabled",
+        "OSD_POS_GET": "Room: %d\nPosition: %.3f, %.3f, %.3f\nRotation: %.3f,%.3f,%.3f",
+        "OSD_POS_SET_POS": "Teleported to position: %.3f %.3f %.3f",
+        "OSD_POS_SET_POS_FAIL": "Failed to teleport to position: %.3f %.3f %.3f",
+        "OSD_POS_SET_ROOM": "Teleported to room: %d",
+        "OSD_POS_SET_ROOM_FAIL": "Failed to teleport to room: %d",
+        "OSD_POS_SET_ITEM": "Teleported to object: %s",
+        "OSD_POS_SET_ITEM_FAIL": "Failed to teleport to object: %s",
+        "OSD_FLIPMAP_ON": "Flipmap set to ON",
+        "OSD_FLIPMAP_OFF": "Flipmap set to OFF",
+        "OSD_FLIPMAP_FAIL_ALREADY_ON": "Flipmap is already ON",
+        "OSD_FLIPMAP_FAIL_ALREADY_OFF": "Flipmap is already OFF",
+        "OSD_COMPLETE_LEVEL": "Level complete!",
+        "OSD_PLAY_LEVEL": "Loading %s",
+        "OSD_INVALID_ROOM": "Invalid room: %d. Valid rooms are 0-%d",
+        "OSD_INVALID_LEVEL": "Invalid level",
+        "OSD_INVALID_SAVE_SLOT": "Invalid save slot %d",
+        "OSD_UNKNOWN_COMMAND": "Unknown command: %s",
+        "OSD_COMMAND_BAD_INVOCATION": "Invalid invocation: %s",
+        "OSD_COMMAND_UNAVAILABLE": "This command is not currently available",
+        "OSD_LOAD_GAME": "Loaded game from save slot %d",
+        "OSD_LOAD_GAME_FAIL_UNAVAILABLE_SLOT": "Save slot %d is not available",
+        "OSD_SAVE_GAME": "Saved game to save slot %d",
+        "OSD_SAVE_GAME_FAIL": "Cannot save the game in the current state",
+        "OSD_CURRENT_HEALTH_GET": "Current Lara's health: %d",
+        "OSD_CURRENT_HEALTH_SET": "Lara's health set to %d",
+        "OSD_HEAL_ALREADY_FULL_HP": "Lara's already at full health",
+        "OSD_HEAL_SUCCESS": "Healed Lara back to full health",
+    },
+}

@@ -2,6 +2,7 @@
 
 #include "game/clock.h"
 #include "game/console_cmd.h"
+#include "game/game_string.h"
 #include "game/input.h"
 #include "game/output.h"
 #include "game/text.h"
@@ -109,17 +110,17 @@ static COMMAND_RESULT Console_Eval(const char *const cmdline)
     }
 
     if (matching_cmd == NULL) {
-        Console_Log("Unknown command: %s", cmdline);
+        Console_Log(GS(OSD_UNKNOWN_COMMAND), cmdline);
         return CR_BAD_INVOCATION;
     }
 
     const COMMAND_RESULT result = matching_cmd->proc(args);
     switch (result) {
     case CR_BAD_INVOCATION:
-        Console_Log("Invalid invocation: %s", cmdline);
+        Console_Log(GS(OSD_COMMAND_BAD_INVOCATION), cmdline);
         break;
     case CR_UNAVAILABLE:
-        Console_Log("This command is not currently available");
+        Console_Log(GS(OSD_COMMAND_UNAVAILABLE));
         break;
     case CR_SUCCESS:
     case CR_FAILURE:

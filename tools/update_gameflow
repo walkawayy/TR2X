@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json
+import re
+
+from tr2x.paths import TR2X_DATA_DIR, TR2X_SRC_DIR
+
+SHIP_DIR = TR2X_DATA_DIR / "ship"
+GAME_STRINGS_DEF_PATH = TR2X_SRC_DIR / "game/game_string.def"
+OBJECT_STRINGS_DEF_PATH = TR2X_SRC_DIR / "game/objects/names.def"
+
+
+def get_string_map(path: Path) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for line in path.read_text().splitlines():
+        if match := re.match(r'^[A-Z_]*_DEFINE\((\w+),\s*"([^"]+)"\)$', line.strip()):
+            result[match.group(1)] = match.group(2)
+    return result
+
+
+def postprocess_gameflow(gameflow: str, game_strings_map: dict[str, str]) -> str:
+    gameflow = re.sub(
+        r'^(    "game_strings": {)[^}]*(})',
+        '    "game_strings": {\n'
+        + "\n".join(
+            f"        {json.dumps(key)}: {json.dumps(value)},"
+            for key, value in game_strings_map.items()
+        )
+        + "\n    }",
+        gameflow,
+        flags=re.M | re.DOTALL,
+    )
+    return gameflow
+
+
+def main() -> None:
+    game_strings_map = get_string_map(GAME_STRINGS_DEF_PATH)
+    assert game_strings_map
+
+    for gameflow_path in SHIP_DIR.rglob("*gameflow*.json*"):
+        old_gameflow = gameflow_path.read_text()
+        new_gameflow = postprocess_gameflow(old_gameflow, game_strings_map)
+        if new_gameflow != old_gameflow:
+            gameflow_path.write_text(new_gameflow)
+
+
+if __name__ == "__main__":
+    main()

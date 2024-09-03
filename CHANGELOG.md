@@ -9,6 +9,7 @@
     - `/exit`
     - `/fly`
     - `/flip`
+- added `/tp` console command's ability to teleport to specific items
 - added an option to fix M16 accuracy while running (#45)
 - fixed killing the T-Rex with a grenade launcher crashing the game (#168)
 - fixed secret rewards not displaying shotgun ammo (#159)

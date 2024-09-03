@@ -6,6 +6,7 @@
 #include "game/effects.h"
 #include "game/game.h"
 #include "game/gameflow.h"
+#include "game/gameflow/gameflow_new.h"
 #include "game/hwr.h"
 #include "game/input.h"
 #include "game/inventory.h"
@@ -559,6 +560,8 @@ void __cdecl Shell_Shutdown(void)
 
 int16_t __cdecl TitleSequence(void)
 {
+    GF_N_LoadStrings(-1);
+
     Text_Init();
     TempVideoAdjust(1, 1.0);
     g_NoInputCounter = 0;

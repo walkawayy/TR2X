@@ -5,6 +5,7 @@
 #include "game/console.h"
 #include "game/demo.h"
 #include "game/gameflow.h"
+#include "game/gameflow/reader.h"
 #include "game/input.h"
 #include "game/music.h"
 #include "game/sound.h"
@@ -31,6 +32,11 @@ BOOL __cdecl Shell_Main(void)
 
     if (!GF_LoadScriptFile("data\\tombPC.dat")) {
         Shell_ExitSystem("GameMain: could not load script file");
+        return false;
+    }
+
+    if (!GF_N_Load("cfg/TR2X_gameflow.json5")) {
+        Shell_ExitSystem("GameMain: could not load new script file");
         return false;
     }
 

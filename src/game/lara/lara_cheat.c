@@ -1,6 +1,7 @@
 #include "game/lara/lara_cheat.h"
 
 #include "game/console.h"
+#include "game/game_string.h"
 #include "game/inventory.h"
 #include "game/lara/lara_control.h"
 #include "game/output.h"
@@ -11,7 +12,7 @@
 void __cdecl Lara_Cheat_EndLevel(void)
 {
     g_LevelComplete = true;
-    Console_Log("Level complete!");
+    Console_Log(GS(OSD_COMPLETE_LEVEL));
 }
 
 bool __cdecl Lara_Cheat_EnterFlyMode(void)
@@ -57,7 +58,7 @@ bool __cdecl Lara_Cheat_EnterFlyMode(void)
     g_Camera.type = CAM_CHASE;
     Output_AlterFOV(GAME_FOV * PHD_DEGREE);
 
-    Console_Log("Fly mode enabled");
+    Console_Log(GS(OSD_FLY_MODE_ON));
     return true;
 }
 
@@ -88,7 +89,7 @@ bool __cdecl Lara_Cheat_ExitFlyMode(void)
     }
     g_Lara.gun_status = LGS_ARMLESS;
 
-    Console_Log("Fly mode disabled");
+    Console_Log(GS(OSD_FLY_MODE_OFF));
     return true;
 }
 

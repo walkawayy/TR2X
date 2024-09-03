@@ -6,6 +6,7 @@
 #include "game/game.h"
 #include "game/gun/gun.h"
 #include "game/overlay.h"
+#include "gameflow/gameflow_new.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
@@ -370,7 +371,7 @@ int32_t __cdecl GF_LoadScriptFile(const char *const fname)
 
     g_Inv_Item_Passport.string = g_GF_GameStrings[GF_S_GAME_INV_ITEM_GAME];
     g_Inv_Item_Graphics.string = g_GF_PCStrings[GF_S_PC_DETAIL_LEVELS];
-    ;
+
     g_Inv_Item_Sound.string = g_GF_PCStrings[GF_S_PC_SOUND];
     g_Inv_Item_Controls.string = g_GF_PCStrings[GF_S_PC_CONTROLS];
     g_Inv_Item_Photo.string = g_GF_GameStrings[GF_S_GAME_INV_ITEM_LARA_HOME];
@@ -387,6 +388,7 @@ int32_t __cdecl GF_LoadScriptFile(const char *const fname)
 
 int32_t __cdecl GF_DoFrontendSequence(void)
 {
+    GF_N_LoadStrings(-1);
     const GAME_FLOW_DIR dir =
         GF_InterpretSequence(g_GF_FrontendSequence, GFL_NORMAL, 1);
     return dir == GFD_EXIT_GAME;
@@ -395,6 +397,8 @@ int32_t __cdecl GF_DoFrontendSequence(void)
 int32_t __cdecl GF_DoLevelSequence(
     const int32_t start_level, const GF_LEVEL_TYPE type)
 {
+    GF_N_LoadStrings(start_level);
+
     int32_t current_level = start_level;
     while (true) {
         if (current_level > g_GameFlow.num_levels - 1) {

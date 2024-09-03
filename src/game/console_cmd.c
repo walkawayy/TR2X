@@ -1,6 +1,7 @@
 #include "game/console_cmd.h"
 
 #include "game/console.h"
+#include "game/game_string.h"
 #include "game/items.h"
 #include "game/lara/lara_cheat.h"
 #include "game/random.h"
@@ -43,9 +44,9 @@ static COMMAND_RESULT Console_Cmd_Pos(const char *const args)
     }
 
     Console_Log(
-        "Room: %d\nPosition: %.3f, %.3f, %.3f\nRotation: %.3f,%.3f,%.3f",
-        g_LaraItem->room_num, g_LaraItem->pos.x / (float)WALL_L,
-        g_LaraItem->pos.y / (float)WALL_L, g_LaraItem->pos.z / (float)WALL_L,
+        GS(OSD_POS_GET), g_LaraItem->room_num,
+        g_LaraItem->pos.x / (float)WALL_L, g_LaraItem->pos.y / (float)WALL_L,
+        g_LaraItem->pos.z / (float)WALL_L,
         g_LaraItem->rot.x * 360.0f / (float)PHD_ONE,
         g_LaraItem->rot.y * 360.0f / (float)PHD_ONE,
         g_LaraItem->rot.z * 360.0f / (float)PHD_ONE);
@@ -70,12 +71,11 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
             }
 
             if (Item_Teleport(g_LaraItem, x * WALL_L, y * WALL_L, z * WALL_L)) {
-                Console_Log("Teleported to position: %.3f %.3f %.3f", x, y, z);
+                Console_Log(GS(OSD_POS_SET_POS), x, y, z);
                 return CR_SUCCESS;
             }
 
-            Console_Log(
-                "Failed to teleport to position: %.3f %.3f %.3f", x, y, z);
+            Console_Log(GS(OSD_POS_SET_POS_FAIL), x, y, z);
             return CR_FAILURE;
         }
     }
@@ -85,9 +85,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
         int16_t room_num = NO_ROOM_NEG;
         if (sscanf(args, "%hd", &room_num) == 1) {
             if (room_num < 0 || room_num >= g_RoomCount) {
-                Console_Log(
-                    "Invalid room: %d. Valid rooms are 0-%d", room_num,
-                    g_RoomCount - 1);
+                Console_Log(GS(OSD_INVALID_ROOM), room_num, g_RoomCount - 1);
                 return CR_FAILURE;
             }
 
@@ -107,12 +105,12 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
                 int32_t y = y1;
                 int32_t z = z1 + Random_GetControl() * (z2 - z1) / 0x7FFF;
                 if (Item_Teleport(g_LaraItem, x, y, z)) {
-                    Console_Log("Teleported to room: %d", room_num);
+                    Console_Log(GS(OSD_POS_SET_ROOM), room_num);
                     return CR_SUCCESS;
                 }
             }
 
-            Console_Log("Failed to teleport to room: %d", room_num);
+            Console_Log(GS(OSD_POS_SET_ROOM_FAIL), room_num);
             return CR_FAILURE;
         }
     }
@@ -127,7 +125,7 @@ static COMMAND_RESULT Console_Cmd_SetHealth(const char *const args)
     }
 
     if (strcmp(args, "") == 0) {
-        Console_Log("Current Lara's health: %d", g_LaraItem->hit_points);
+        Console_Log(GS(OSD_CURRENT_HEALTH_GET), g_LaraItem->hit_points);
         return CR_SUCCESS;
     }
 
@@ -137,7 +135,7 @@ static COMMAND_RESULT Console_Cmd_SetHealth(const char *const args)
     }
 
     g_LaraItem->hit_points = hp;
-    Console_Log("Lara's health set to %d", hp);
+    Console_Log(GS(OSD_CURRENT_HEALTH_SET), hp);
     return CR_SUCCESS;
 }
 
@@ -148,12 +146,12 @@ static COMMAND_RESULT Console_Cmd_Heal(const char *const args)
     }
 
     if (g_LaraItem->hit_points == LARA_MAX_HITPOINTS) {
-        Console_Log("Lara's already at full health");
+        Console_Log(GS(OSD_HEAL_ALREADY_FULL_HP));
         return CR_SUCCESS;
     }
 
     g_LaraItem->hit_points = LARA_MAX_HITPOINTS;
-    Console_Log("Healed Lara back to full health");
+    Console_Log(GS(OSD_HEAL_SUCCESS));
     return CR_SUCCESS;
 }
 
@@ -177,12 +175,13 @@ static COMMAND_RESULT Console_Cmd_FlipMap(const char *const args)
 
     if (g_FlipStatus == new_state) {
         Console_Log(
-            new_state ? "Flipmap is already ON" : "Flipmap is already OFF");
+            new_state ? GS(OSD_FLIPMAP_FAIL_ALREADY_ON)
+                      : GS(OSD_FLIPMAP_FAIL_ALREADY_OFF));
         return CR_SUCCESS;
     }
 
     Room_FlipMap();
-    Console_Log(new_state ? "Flipmap set to ON" : "Flipmap set to OFF");
+    Console_Log(new_state ? GS(OSD_FLIPMAP_ON) : GS(OSD_FLIPMAP_OFF));
     return CR_SUCCESS;
 }
 
@@ -220,13 +219,13 @@ static COMMAND_RESULT Console_Cmd_StartLevel(const char *const args)
     }
 
     if (level_to_load >= g_GameFlow.num_levels) {
-        Console_Log("Invalid level");
+        Console_Log(GS(OSD_INVALID_LEVEL));
         return CR_FAILURE;
     }
 
     if (level_to_load != -1) {
         g_GF_OverrideDir = GFD_START_GAME | level_to_load;
-        Console_Log("Loading %s", g_GF_LevelNames[level_to_load]);
+        Console_Log(GS(OSD_PLAY_LEVEL), g_GF_LevelNames[level_to_load]);
         return CR_SUCCESS;
     }
 
@@ -244,18 +243,18 @@ static COMMAND_RESULT Console_Cmd_LoadGame(const char *const args)
     const int32_t slot_idx = slot_num - 1;
 
     if (slot_idx < 0 || slot_idx >= MAX_SAVE_SLOTS) {
-        Console_Log("Invalid save slot %d", slot_num);
+        Console_Log(GS(OSD_INVALID_SAVE_SLOT), slot_num);
         return CR_FAILURE;
     }
 
     // TODO: replace this with a proper status check
     if (g_SavedLevels[slot_idx] <= 0) {
-        Console_Log("Save slot %d is not available", slot_num);
+        Console_Log(GS(OSD_LOAD_GAME_FAIL_UNAVAILABLE_SLOT), slot_num);
         return CR_FAILURE;
     }
 
     g_GF_OverrideDir = GFD_START_SAVED_GAME | slot_idx;
-    Console_Log("Loaded game from save slot %d", slot_num);
+    Console_Log(GS(OSD_LOAD_GAME), slot_num);
     return CR_SUCCESS;
 }
 
@@ -270,19 +269,19 @@ static COMMAND_RESULT Console_Cmd_SaveGame(const char *const args)
     const int32_t slot_idx = slot_num - 1;
 
     if (slot_idx < 0 || slot_idx >= MAX_SAVE_SLOTS) {
-        Console_Log("Invalid save slot %d", slot_num);
+        Console_Log(GS(OSD_INVALID_SAVE_SLOT), slot_num);
         return CR_BAD_INVOCATION;
     }
 
     if (g_LaraItem == NULL) {
-        Console_Log("Cannot save the game in the current state", slot_num);
+        Console_Log(GS(OSD_SAVE_GAME_FAIL), slot_num);
         return CR_UNAVAILABLE;
     }
 
     CreateSaveGameInfo();
     S_SaveGame(&g_SaveGame, sizeof(SAVEGAME_INFO), slot_idx);
     GetSavedGamesList(&g_LoadGameRequester);
-    Console_Log("Saved game to save slot %d", slot_num);
+    Console_Log(GS(OSD_SAVE_GAME), slot_num);
     return CR_SUCCESS;
 }
 

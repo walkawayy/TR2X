@@ -16,6 +16,8 @@
 
 #include <libtrx/utils.h>
 
+static int32_t m_OpenDoorsCheatCooldown = 0;
+
 void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
 {
     coll->old.x = item->pos.x;
@@ -215,6 +217,15 @@ void __cdecl Lara_HandleUnderwater(ITEM_INFO *const item, COLL_INFO *const coll)
 
     if (g_Lara.water_status != LWS_CHEAT && !g_Lara.extra_anim) {
         Lara_BaddieCollision(item, coll);
+    }
+
+    if (g_Lara.water_status == LWS_CHEAT) {
+        if (m_OpenDoorsCheatCooldown) {
+            m_OpenDoorsCheatCooldown--;
+        } else if (g_InputDB & IN_DRAW) {
+            m_OpenDoorsCheatCooldown = FRAMES_PER_SECOND;
+            Lara_Cheat_OpenNearestDoor();
+        }
     }
 
     if (!g_Lara.extra_anim) {

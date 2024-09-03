@@ -91,6 +91,29 @@ const GAME_OBJECT_ID g_PickupObjects[] = {
     // clang-format on
 };
 
+const GAME_OBJECT_ID g_DoorObjects[] = {
+    // clang-format off
+    O_DOOR_TYPE_1,
+    O_DOOR_TYPE_2,
+    O_DOOR_TYPE_3,
+    O_DOOR_TYPE_4,
+    O_DOOR_TYPE_5,
+    O_DOOR_TYPE_6,
+    O_DOOR_TYPE_7,
+    O_DOOR_TYPE_8,
+    NO_OBJECT,
+    // clang-format on
+};
+
+const GAME_OBJECT_ID g_TrapdoorObjects[] = {
+    // clang-format off
+    O_TRAPDOOR_TYPE_1,
+    O_TRAPDOOR_TYPE_2,
+    O_TRAPDOOR_TYPE_3,
+    NO_OBJECT,
+    // clang-format on
+};
+
 const GAME_OBJECT_ID g_InvObjects[] = {
     // clang-format off
     O_PISTOL_OPTION,

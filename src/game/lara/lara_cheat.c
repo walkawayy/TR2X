@@ -7,6 +7,8 @@
 #include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/math.h"
+#include "game/objects/common.h"
+#include "game/objects/vars.h"
 #include "game/output.h"
 #include "game/room.h"
 #include "global/funcs.h"
@@ -93,6 +95,55 @@ bool __cdecl Lara_Cheat_ExitFlyMode(void)
 
     Console_Log(GS(OSD_FLY_MODE_OFF));
     return true;
+}
+
+bool Lara_Cheat_OpenNearestDoor(void)
+{
+    if (g_LaraItem == NULL) {
+        return false;
+    }
+
+    int32_t opened = 0;
+    int32_t closed = 0;
+
+    const int32_t shift = 8; // constant shift to avoid overflow errors
+    const int32_t max_dist = SQUARE((WALL_L * 2) >> shift);
+    for (int item_num = 0; item_num < g_LevelItemCount; item_num++) {
+        ITEM_INFO *const item = &g_Items[item_num];
+        if (!Object_IsObjectType(item->object_num, g_DoorObjects)
+            && !Object_IsObjectType(item->object_num, g_TrapdoorObjects)) {
+            continue;
+        }
+
+        const int32_t dx = (item->pos.x - g_LaraItem->pos.x) >> shift;
+        const int32_t dy = (item->pos.y - g_LaraItem->pos.y) >> shift;
+        const int32_t dz = (item->pos.z - g_LaraItem->pos.z) >> shift;
+        const int32_t dist = SQUARE(dx) + SQUARE(dy) + SQUARE(dz);
+        if (dist > max_dist) {
+            continue;
+        }
+
+        if (!item->active) {
+            Item_AddActive(item_num);
+            item->flags |= IF_CODE_BITS;
+            opened++;
+        } else if (item->flags & IF_CODE_BITS) {
+            item->flags &= ~IF_CODE_BITS;
+            closed++;
+        } else {
+            item->flags |= IF_CODE_BITS;
+            opened++;
+        }
+        item->timer = 0;
+        item->touch_bits = 0;
+    }
+
+    if (opened > 0 || closed > 0) {
+        Console_Log(opened > 0 ? GS(OSD_DOOR_OPEN) : GS(OSD_DOOR_CLOSE));
+        return true;
+    }
+    Console_Log(GS(OSD_DOOR_OPEN_FAIL));
+    return false;
 }
 
 void __cdecl Lara_Cheat_GetStuff(void)

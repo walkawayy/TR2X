@@ -489,12 +489,18 @@ int32_t __cdecl GF_InterpretSequence(
                 const int16_t level = g_CurrentLevel;
                 const int32_t result = Game_Cutscene_Start(ptr[1]);
                 g_CurrentLevel = level;
+                // TODO: make Game_Cutscene_Start return GAME_FLOW_DIR
                 if (result == 2
                     && (type == GFL_STORY || type == GFL_MIDSTORY)) {
                     return GFD_EXIT_TO_TITLE;
                 }
                 if (result == 3) {
                     return GFD_EXIT_GAME;
+                }
+                if (result == 4) {
+                    dir = g_GF_OverrideDir;
+                    g_GF_OverrideDir = (GAME_FLOW_DIR)-1;
+                    return dir;
                 }
             }
             ptr += 2;

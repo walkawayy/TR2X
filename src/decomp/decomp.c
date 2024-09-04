@@ -1192,6 +1192,10 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
 
     if (g_CineTickCount >= 0) {
         while (1) {
+            if (g_GF_OverrideDir != (GAME_FLOW_DIR)-1) {
+                return 4;
+            }
+
             if (Input_Update()) {
                 return 3;
             }

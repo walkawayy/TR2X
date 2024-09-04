@@ -1005,3 +1005,8 @@ int16_t Lara_GetNearestEnemy(void)
 
     return best_item_num;
 }
+
+void Lara_TakeDamage(const int16_t damage, const bool hit_status)
+{
+    Item_TakeDamage(g_LaraItem, damage, hit_status);
+}

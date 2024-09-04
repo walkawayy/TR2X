@@ -27,3 +27,4 @@ void Lara_GetOffVehicle(void);
 void Lara_SwapSingleMesh(LARA_MESH mesh, GAME_OBJECT_ID);
 
 int16_t Lara_GetNearestEnemy(void);
+void Lara_TakeDamage(int16_t damage, bool hit_status);

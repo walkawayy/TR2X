@@ -681,7 +681,7 @@
 <rect width="12" height="12" x="30" y="180" class="known"><title>void __cdecl ControlMissile(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="45" y="180" class="known"><title>void __cdecl ShootAtLara(FX_INFO *fx);</title></rect>
 <rect width="12" height="12" x="60" y="180" class="decompiled"><title>int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);</title></rect>
-<rect width="12" height="12" x="75" y="180" class="known"><title>void __cdecl ControlBodyPart(int16_t fx_num);</title></rect>
+<rect width="12" height="12" x="75" y="180" class="known"><title>void __cdecl BodyPart_Control(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="90" y="180" class="known"><title>void __cdecl InitialiseMovingBlock(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="105" y="180" class="known"><title>void __cdecl MovableBlock(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="120" y="180" class="known"><title>void __cdecl MovableBlockCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>
@@ -1482,7 +1482,7 @@
 <rect width="17.36" height="18.04" x="390.95" y="171.84" class="decompiled"><title>bool __cdecl ApplySettings(APP_SETTINGS *new_settings);</title></rect>
 <rect width="17.36" height="17.91" x="390.95" y="192.88" class="known"><title>void __cdecl CreateStartInfo(int32_t level_num);</title></rect>
 <rect width="17.36" height="17.87" x="390.95" y="213.79" class="decompiled"><title>void __cdecl Bird_Control(int16_t item_num);</title></rect>
-<rect width="17.36" height="17.87" x="390.95" y="234.66" class="known"><title>void __cdecl ControlBodyPart(int16_t fx_num);</title></rect>
+<rect width="17.36" height="17.87" x="390.95" y="234.66" class="known"><title>void __cdecl BodyPart_Control(int16_t fx_num);</title></rect>
 <rect width="17.36" height="17.59" x="390.95" y="255.54" class="known"><title>void __cdecl SkidooBaddieCollision(ITEM_INFO *skidoo);</title></rect>
 <rect width="17.36" height="17.46" x="390.95" y="276.12" class="known"><title>void __cdecl S_DrawAirBar(int32_t percent);</title></rect>
 <rect width="17.36" height="17.42" x="390.95" y="296.59" class="decompiled"><title>void __cdecl Screenshot(LPDDS screen);</title></rect>

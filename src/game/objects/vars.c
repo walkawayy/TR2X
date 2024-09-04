@@ -12,7 +12,6 @@ const GAME_OBJECT_ID g_EnemyObjects[] = {
     O_CULT_3,
     O_MOUSE,
     O_DRAGON_FRONT,
-    O_DRAGON_BACK,
     O_SHARK,
     O_EEL,
     O_BIG_EEL,

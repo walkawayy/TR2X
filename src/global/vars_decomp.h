@@ -60,8 +60,6 @@
 #define g_Inv_MainList (*(INVENTORY_ITEM *(*)[])0x00465518)
 #define g_InvKeysQtys (*(int16_t(*)[])0x00465578)
 #define g_Inv_KeysList (*(INVENTORY_ITEM *(*)[])0x004655A8)
-#define g_Inv_OptionObjectsCount (*(int16_t*)0x00465604) // = 4
-#define g_Inv_OptionList (*(INVENTORY_ITEM *(*)[])0x00465608)
 #define g_GymInvOpenEnabled (*(BOOL*)0x00465618) // = TRUE
 #define g_LoadGameRequester (*(REQUEST_INFO*)0x00465620)
 #define g_SaveGameRequester (*(REQUEST_INFO*)0x00465838)

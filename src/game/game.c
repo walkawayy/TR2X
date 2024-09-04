@@ -4,7 +4,7 @@
 #include "game/camera.h"
 #include "game/demo.h"
 #include "game/input.h"
-#include "game/inventory.h"
+#include "game/inventory/common.h"
 #include "game/lara/lara_control.h"
 #include "game/music.h"
 #include "game/overlay.h"

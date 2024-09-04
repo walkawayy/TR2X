@@ -4170,7 +4170,7 @@ typedef enum {
 0x00464310  -       int16_t g_CineTargetAngle = 0x4000; // PHD_90
 0x004644E0  -       int32_t g_OverlayStatus = 1;
 0x004654E0  -       int16_t g_Inv_MainObjectsCount = 8;
-0x00465604  -       int16_t g_Inv_OptionObjectsCount = 4;
+0x00465604  +       int16_t g_Inv_OptionObjectsCount = 4;
 0x00465618  -       BOOL g_GymInvOpenEnabled = TRUE;
 0x00465A50  -       int16_t g_Inv_Chosen = -1;
 0x00465A54  -       INVENTORY_MODE g_Inv_Mode = INV_TITLE_MODE;
@@ -4460,7 +4460,7 @@ typedef enum {
 0x004D7784  -       int32_t g_CineTickCount;
 0x004D7788  -       int32_t g_OriginalRoom;
 0x00465518  -       INVENTORY_ITEM *g_Inv_MainList[];
-0x00465608  -       INVENTORY_ITEM *g_Inv_OptionList[];
+0x00465608  +       INVENTORY_ITEM *g_Inv_OptionList[];
 0x004655A8  -       INVENTORY_ITEM *g_Inv_KeysList[];
 0x004644F8  -       int32_t g_Inv_NFrames;
 0x00525C00  -       STATIC_INFO g_StaticObjects[50]; // MAX_STATIC_OBJECTS

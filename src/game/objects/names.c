@@ -1,6 +1,6 @@
 #include "game/objects/names.h"
 
-#include "game/inventory.h"
+#include "game/inventory/common.h"
 #include "game/objects/common.h"
 #include "game/objects/vars.h"
 #include "global/vars.h"

@@ -9,7 +9,7 @@
 #include "game/gameflow/gameflow_new.h"
 #include "game/hwr.h"
 #include "game/input.h"
-#include "game/inventory.h"
+#include "game/inventory/common.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/lara/lara_draw.h"

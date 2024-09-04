@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.80% (704)</tspan> · <tspan class="known">39.74% (484)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.88% (705)</tspan> · <tspan class="known">39.66% (483)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="431.76" height="6" x="0" y="0" class="decompiled"/>
-<rect width="296.84" height="6" x="431.76" y="0" class="known"/>
+<rect width="432.38" height="6" x="0" y="0" class="decompiled"/>
+<rect width="296.22" height="6" x="432.38" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1128,7 +1128,7 @@
 <rect width="12" height="12" x="735" y="300" class="decompiled"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="0" y="315" class="decompiled"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
 <rect width="12" height="12" x="15" y="315" class="decompiled"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
-<rect width="12" height="12" x="30" y="315" class="known"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="30" y="315" class="decompiled"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="45" y="315" class="known"><title>void __cdecl S_ShowControls(void);</title></rect>
 <rect width="12" height="12" x="60" y="315" class="known"><title>void __cdecl S_ChangeCtrlText(void);</title></rect>
 <rect width="12" height="12" x="75" y="315" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.57%</tspan> · <tspan class="known">38.11%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.09%</tspan> · <tspan class="known">37.58%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="459.91" height="6" x="0" y="0" class="decompiled"/>
-<rect width="284.65" height="6" x="459.91" y="0" class="known"/>
+<rect width="463.80" height="6" x="0" y="0" class="decompiled"/>
+<rect width="280.76" height="6" x="463.80" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1323,7 +1323,7 @@
 <rect width="35.22" height="38.72" x="104.17" y="0" class="decompiled"><title>void __cdecl Camera_SmartShift(GAME_VECTOR *target, void (*__cdecl shift)(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom));</title></rect>
 <rect width="35.22" height="37.07" x="104.17" y="41.72" class="known"><title>void __cdecl SE_GraphicsDlgUpdate(HWND hwndDlg);</title></rect>
 <rect width="35.22" height="36.05" x="104.17" y="81.80" class="decompiled"><title>void __cdecl Output_InsertGT3_Sorted(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_TEXTURE *texture, const PHD_UV *uv0, const PHD_UV *uv1, const PHD_UV *uv2, SORT_TYPE sort_type);</title></rect>
-<rect width="35.22" height="35.66" x="104.17" y="120.85" class="known"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
+<rect width="35.22" height="35.66" x="104.17" y="120.85" class="decompiled"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="35.22" height="34.90" x="104.17" y="159.51" class="decompiled"><title>BOOL __cdecl GF_LoadFromFile(const char *file_name);</title></rect>
 <rect width="35.22" height="34.49" x="104.17" y="197.42" class="decompiled"><title>int32_t __cdecl Inv_AddItem(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="35.22" height="33.49" x="104.17" y="234.91" class="decompiled"><title>void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);</title></rect>

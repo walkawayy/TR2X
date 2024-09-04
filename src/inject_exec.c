@@ -371,6 +371,7 @@ static void Inject_Option(const bool enable)
     INJECT(enable, 0x0044FCA0, Option_Compass);
     INJECT(enable, 0x0044FD60, Option_Controls_FlashConflicts);
     INJECT(enable, 0x0044FDE0, Option_Controls_DefaultConflict);
+    INJECT(enable, 0x0044FE20, Option_Controls);
 }
 
 static void Inject_Text(const bool enable)

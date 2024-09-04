@@ -19,7 +19,6 @@
 #define InitialiseBartoli ((void __cdecl (*)(int16_t item_num))0x004183E0)
 #define BartoliControl ((void __cdecl (*)(int16_t item_num))0x00418500)
 #define DinoControl ((void __cdecl (*)(int16_t item_num))0x004186A0)
-#define Game_DrawCinematic ((int32_t __cdecl (*)(void))0x00418950)
 #define Object_DrawSpriteItem ((void __cdecl (*)(ITEM_INFO *item))0x004199E0)
 #define Object_DrawAnimatingItem ((void __cdecl (*)(ITEM_INFO *item))0x00419A70)
 #define Gun_DrawFlash ((void __cdecl (*)(LARA_GUN_TYPE weapon_type, int32_t clip))0x0041BD30)

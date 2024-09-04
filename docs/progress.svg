@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.22% (697)</tspan> · <tspan class="known">40.31% (491)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.31% (698)</tspan> · <tspan class="known">40.23% (490)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="427.47" height="6" x="0" y="0" class="decompiled"/>
-<rect width="301.13" height="6" x="427.47" y="0" class="known"/>
+<rect width="428.08" height="6" x="0" y="0" class="decompiled"/>
+<rect width="300.52" height="6" x="428.08" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -282,7 +282,7 @@
 <rect width="12" height="12" x="45" y="60" class="known"><title>void __cdecl InitialiseBartoli(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="60" y="60" class="known"><title>void __cdecl BartoliControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="75" y="60" class="known"><title>void __cdecl DinoControl(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="90" y="60" class="known"><title>int32_t __cdecl Game_DrawCinematic(void);</title></rect>
+<rect width="12" height="12" x="90" y="60" class="decompiled"><title>int32_t __cdecl Game_DrawCinematic(void);</title></rect>
 <rect width="12" height="12" x="105" y="60" class="decompiled"><title>int32_t __cdecl Game_Draw(void);</title></rect>
 <rect width="12" height="12" x="120" y="60" class="decompiled"><title>void __cdecl Room_DrawAllRooms(int16_t current_room);</title></rect>
 <rect width="12" height="12" x="135" y="60" class="decompiled"><title>void __cdecl Room_GetBounds(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">60.46%</tspan> · <tspan class="known">39.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">60.47%</tspan> · <tspan class="known">39.20%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="451.61" height="6" x="0" y="0" class="decompiled"/>
-<rect width="292.95" height="6" x="451.61" y="0" class="known"/>
+<rect width="451.73" height="6" x="0" y="0" class="decompiled"/>
+<rect width="292.83" height="6" x="451.73" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2218,7 +2218,7 @@
 <rect width="3.54" height="3.99" x="736.93" y="283.23" class="decompiled"><title>void __cdecl Output_DrawPolyGTMapPersp(const int16_t *obj_ptr);</title></rect>
 <rect width="3.54" height="3.99" x="743.46" y="283.23" class="decompiled"><title>void __cdecl Output_DrawPolyWGTMapPersp(const int16_t *obj_ptr);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="290.21" class="decompiled"><title>void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
-<rect width="3.73" height="3.78" x="655.65" y="296.99" class="known"><title>int32_t __cdecl Game_DrawCinematic(void);</title></rect>
+<rect width="3.73" height="3.78" x="655.65" y="296.99" class="decompiled"><title>int32_t __cdecl Game_DrawCinematic(void);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="303.78" class="decompiled"><title>int32_t __cdecl Game_Draw(void);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="310.56" class="known"><title>void __cdecl ControlLaraAlarm(int16_t item_num);</title></rect>
 <rect width="3.73" height="3.78" x="655.65" y="317.34" class="decompiled"><title>void __cdecl Text_ChangeText(TEXTSTRING *string, const char *text);</title></rect>

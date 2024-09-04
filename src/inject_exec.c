@@ -270,6 +270,7 @@ static void Inject_Game(const bool enable)
 {
     INJECT(enable, 0x00414390, Game_Control);
     INJECT(enable, 0x00418990, Game_Draw);
+    INJECT(enable, 0x00418950, Game_DrawCinematic);
     INJECT(enable, 0x0044C480, Game_Start);
     INJECT(enable, 0x0044C5D0, Game_Loop);
 }

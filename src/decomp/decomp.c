@@ -4,6 +4,7 @@
 #include "game/camera.h"
 #include "game/console.h"
 #include "game/effects.h"
+#include "game/game.h"
 #include "game/gameflow.h"
 #include "game/hwr.h"
 #include "game/input.h"

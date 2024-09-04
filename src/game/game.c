@@ -187,6 +187,16 @@ int32_t __cdecl Game_Draw(void)
     return g_Camera.num_frames;
 }
 
+int32_t __cdecl Game_DrawCinematic(void)
+{
+    g_CameraUnderwater = false;
+    Room_DrawAllRooms(g_Camera.pos.room_num);
+    S_OutputPolyList();
+    g_Camera.num_frames = S_DumpScreen();
+    S_AnimateTextures(g_Camera.num_frames);
+    return g_Camera.num_frames;
+}
+
 int16_t __cdecl Game_Start(
     const int32_t level_num, const GF_LEVEL_TYPE level_type)
 {

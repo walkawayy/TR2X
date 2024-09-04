@@ -346,6 +346,7 @@
 #define g_GameModule (*(HINSTANCE*)0x0051A238)
 #define g_CmdLine (*(char **)0x0051A23C)
 #define g_ScreenshotCounter (*(int32_t*)0x0051A240)
+#define g_LayoutPage (*(int32_t*)0x0051A250)
 #define g_ControlsTextB (*(TEXTSTRING *(*)[14])0x0051A258)
 #define g_ControlsTextA (*(TEXTSTRING *(*)[14])0x0051A290)
 #define g_PasswordText1 (*(TEXTSTRING **)0x0051A2CC)

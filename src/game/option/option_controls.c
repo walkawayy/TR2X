@@ -3,6 +3,20 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+void __cdecl Option_Controls_FlashConflicts(void)
+{
+    for (int32_t i = 0; i < 14; i++) {
+        Text_Flash(g_ControlsTextA[i], 0, 0);
+        for (int32_t j = 0; j < 14; j++) {
+            const uint16_t key1 = g_Layout[g_LayoutPage].key[i];
+            const uint16_t key2 = g_Layout[g_LayoutPage].key[j];
+            if (i != j && key1 == key2) {
+                Text_Flash(g_ControlsTextA[i], 1, 20);
+            }
+        }
+    }
+}
+
 void Option_Controls_Shutdown(INVENTORY_ITEM *const item)
 {
     for (int32_t i = 0; i < 14; i++) {

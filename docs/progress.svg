@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.72% (703)</tspan> · <tspan class="known">39.82% (485)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.80% (704)</tspan> · <tspan class="known">39.74% (484)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="431.15" height="6" x="0" y="0" class="decompiled"/>
-<rect width="297.45" height="6" x="431.15" y="0" class="known"/>
+<rect width="431.76" height="6" x="0" y="0" class="decompiled"/>
+<rect width="296.84" height="6" x="431.76" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1127,7 +1127,7 @@
 <rect width="12" height="12" x="720" y="300" class="known"><title>void __cdecl Option_Sound(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="735" y="300" class="decompiled"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="0" y="315" class="decompiled"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
-<rect width="12" height="12" x="15" y="315" class="known"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
+<rect width="12" height="12" x="15" y="315" class="decompiled"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
 <rect width="12" height="12" x="30" y="315" class="known"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="45" y="315" class="known"><title>void __cdecl S_ShowControls(void);</title></rect>
 <rect width="12" height="12" x="60" y="315" class="known"><title>void __cdecl S_ChangeCtrlText(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.55%</tspan> · <tspan class="known">38.12%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.57%</tspan> · <tspan class="known">38.11%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="459.77" height="6" x="0" y="0" class="decompiled"/>
-<rect width="284.79" height="6" x="459.77" y="0" class="known"/>
+<rect width="459.91" height="6" x="0" y="0" class="decompiled"/>
+<rect width="284.65" height="6" x="459.91" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2167,7 +2167,7 @@
 <rect width="4.33" height="4.25" x="670.56" y="269.04" class="decompiled"><title>void __cdecl Lara_State_FastFall(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="4.33" height="4.25" x="677.88" y="269.04" class="known"><title>void __cdecl InitialiseSkidoo(int16_t item_num);</title></rect>
 <rect width="4.33" height="4.25" x="685.21" y="269.04" class="decompiled"><title>bool __cdecl WinVidInit(void);</title></rect>
-<rect width="4.33" height="4.25" x="692.53" y="269.04" class="known"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
+<rect width="4.33" height="4.25" x="692.53" y="269.04" class="decompiled"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
 <rect width="4.33" height="4.25" x="699.86" y="269.04" class="known"><title>void __cdecl UpdateTicks(void);</title></rect>
 <rect width="4.21" height="4.25" x="707.19" y="269.04" class="known"><title>void __cdecl ControlDingDong(int16_t item_num);</title></rect>
 <rect width="4.21" height="4.25" x="714.40" y="269.04" class="known"><title>void __cdecl TrapDoorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>

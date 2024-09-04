@@ -17,6 +17,20 @@ void __cdecl Option_Controls_FlashConflicts(void)
     }
 }
 
+void __cdecl Option_Controls_DefaultConflict(void)
+{
+    for (int32_t i = 0; i < 14; i++) {
+        g_ConflictLayout[i] = false;
+        for (int32_t j = 0; j < 14; j++) {
+            uint16_t key1 = g_Layout[0].key[i];
+            uint16_t key2 = g_Layout[1].key[j];
+            if (key1 == key2) {
+                g_ConflictLayout[i] = true;
+            }
+        }
+    }
+}
+
 void Option_Controls_Shutdown(INVENTORY_ITEM *const item)
 {
     for (int32_t i = 0; i < 14; i++) {

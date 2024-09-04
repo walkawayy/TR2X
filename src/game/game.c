@@ -10,6 +10,7 @@
 #include "game/overlay.h"
 #include "game/room_draw.h"
 #include "game/sound.h"
+#include "game/text.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 #include "specific/s_audio_sample.h"
@@ -191,6 +192,7 @@ int32_t __cdecl Game_DrawCinematic(void)
 {
     g_CameraUnderwater = false;
     Room_DrawAllRooms(g_Camera.pos.room_num);
+    Text_Draw();
     S_OutputPolyList();
     g_Camera.num_frames = S_DumpScreen();
     S_AnimateTextures(g_Camera.num_frames);

@@ -357,7 +357,6 @@
 #define game_free ((void __cdecl (*)(size_t free_size))0x0044D740)
 #define CalculateWibbleTable ((void __cdecl (*)(void))0x0044D780)
 #define Option_Sound ((void __cdecl (*)(INVENTORY_ITEM *item))0x0044F800)
-#define S_ShowControls ((void __cdecl (*)(void))0x00450530)
 #define S_ChangeCtrlText ((void __cdecl (*)(void))0x00450A00)
 #define S_RemoveCtrlText ((void __cdecl (*)(void))0x00450AA0)
 #define GetRenderHeight ((int32_t __cdecl (*)(void))0x00450AE0)

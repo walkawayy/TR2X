@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.88% (705)</tspan> · <tspan class="known">39.66% (483)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.96% (706)</tspan> · <tspan class="known">39.57% (482)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="432.38" height="6" x="0" y="0" class="decompiled"/>
-<rect width="296.22" height="6" x="432.38" y="0" class="known"/>
+<rect width="432.99" height="6" x="0" y="0" class="decompiled"/>
+<rect width="295.61" height="6" x="432.99" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1129,7 +1129,7 @@
 <rect width="12" height="12" x="0" y="315" class="decompiled"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
 <rect width="12" height="12" x="15" y="315" class="decompiled"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
 <rect width="12" height="12" x="30" y="315" class="decompiled"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="45" y="315" class="known"><title>void __cdecl S_ShowControls(void);</title></rect>
+<rect width="12" height="12" x="45" y="315" class="decompiled"><title>void __cdecl Option_Controls_ShowControls(void);</title></rect>
 <rect width="12" height="12" x="60" y="315" class="known"><title>void __cdecl S_ChangeCtrlText(void);</title></rect>
 <rect width="12" height="12" x="75" y="315" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
 <rect width="12" height="12" x="90" y="315" class="known"><title>int32_t __cdecl GetRenderHeight(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.09%</tspan> · <tspan class="known">37.58%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.45%</tspan> · <tspan class="known">37.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="463.80" height="6" x="0" y="0" class="decompiled"/>
-<rect width="280.76" height="6" x="463.80" y="0" class="known"/>
+<rect width="466.50" height="6" x="0" y="0" class="decompiled"/>
+<rect width="278.06" height="6" x="466.50" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1344,7 +1344,7 @@
 <rect width="28.60" height="29.99" x="177.07" y="0" class="decompiled"><title>void __cdecl Gun_Control(void);</title></rect>
 <rect width="28.60" height="29.70" x="177.07" y="32.99" class="decompiled"><title>int32_t __cdecl Boat_Dynamics(int16_t boat_num);</title></rect>
 <rect width="28.60" height="29.54" x="177.07" y="65.69" class="decompiled"><title>void __cdecl Output_InsertGT4_Sorted(const PHD_VBUF *vtx0, const PHD_VBUF *vtx1, const PHD_VBUF *vtx2, const PHD_VBUF *vtx3, const PHD_TEXTURE *texture, SORT_TYPE sort_type);</title></rect>
-<rect width="28.60" height="29.36" x="177.07" y="98.23" class="known"><title>void __cdecl S_ShowControls(void);</title></rect>
+<rect width="28.60" height="29.36" x="177.07" y="98.23" class="decompiled"><title>void __cdecl Option_Controls_ShowControls(void);</title></rect>
 <rect width="28.60" height="28.33" x="177.07" y="130.59" class="decompiled"><title>void __cdecl Camera_Update(void);</title></rect>
 <rect width="28.60" height="28.20" x="177.07" y="161.92" class="decompiled"><title>void __cdecl Output_InsertTrans8(const PHD_VBUF *vbuf, int16_t shade);</title></rect>
 <rect width="28.60" height="28.12" x="177.07" y="193.12" class="known"><title>void __cdecl MonkControl(int16_t item_num);</title></rect>

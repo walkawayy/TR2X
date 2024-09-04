@@ -3,6 +3,8 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/utils.h>
+
 #include <dinput.h>
 
 static void Option_Controls_InitText(void);
@@ -31,7 +33,7 @@ static void Option_Controls_InitText(void)
             [g_LayoutPage == 0 ? GF_S_PC_DEFAULT_KEYS : GF_S_PC_USER_KEYS]);
     Text_CentreH(g_ControlsText[0], 1);
     Text_CentreV(g_ControlsText[0], 1);
-    S_ShowControls();
+    Option_Controls_ShowControls();
     m_Cursor = -1;
     Text_AddBackground(g_ControlsText[0], 0, 0, 0, 0, 48, 0, 0, 0);
     Text_AddOutline(g_ControlsText[0], 1, 15, 0, 0);
@@ -311,5 +313,112 @@ void __cdecl Option_Controls(INVENTORY_ITEM *const item)
     default:
         g_Input = 0;
         g_InputDB = 0;
+    }
+}
+
+void __cdecl Option_Controls_ShowControls(void)
+{
+    int32_t right_col = GetRenderWidth() / 2;
+    CLAMPG(right_col, 320);
+
+    if (g_ControlsTextA[0] == NULL) {
+        int32_t left_col = right_col - 140;
+        if (right_col >= 320) {
+            left_col = right_col - 200;
+        }
+
+        const CONTROL_LAYOUT *const layout = &g_Layout[g_LayoutPage];
+
+        g_ControlsTextA[0] =
+            Text_Create(left_col, -25, 16, g_KeyNames[layout->key[0]]);
+        g_ControlsTextA[1] =
+            Text_Create(left_col, -10, 16, g_KeyNames[layout->key[1]]);
+        g_ControlsTextA[2] =
+            Text_Create(left_col, 5, 16, g_KeyNames[layout->key[2]]);
+        g_ControlsTextA[3] =
+            Text_Create(left_col, 20, 16, g_KeyNames[layout->key[3]]);
+        g_ControlsTextA[4] =
+            Text_Create(left_col, 35, 16, g_KeyNames[layout->key[4]]);
+        g_ControlsTextA[5] =
+            Text_Create(left_col, 50, 16, g_KeyNames[layout->key[5]]);
+        g_ControlsTextA[6] =
+            Text_Create(left_col, 65, 16, g_KeyNames[layout->key[6]]);
+        g_ControlsTextA[7] =
+            Text_Create(right_col + 10, -25, 16, g_KeyNames[layout->key[7]]);
+        g_ControlsTextA[8] =
+            Text_Create(right_col + 10, -10, 16, g_KeyNames[layout->key[8]]);
+        g_ControlsTextA[9] =
+            Text_Create(right_col + 10, 5, 16, g_KeyNames[layout->key[9]]);
+        g_ControlsTextA[10] =
+            Text_Create(right_col + 10, 20, 16, g_KeyNames[layout->key[10]]);
+        g_ControlsTextA[11] =
+            Text_Create(right_col + 10, 35, 16, g_KeyNames[layout->key[11]]);
+        g_ControlsTextA[12] =
+            Text_Create(right_col + 10, 50, 16, g_KeyNames[layout->key[12]]);
+        g_ControlsTextA[13] =
+            Text_Create(right_col + 10, 65, 16, g_KeyNames[layout->key[13]]);
+
+        for (int32_t i = 0; i < 14; i++) {
+            Text_CentreV(g_ControlsTextA[i], true);
+        }
+
+        m_Cursor = 0;
+    }
+
+    if (g_ControlsTextB[0] == NULL) {
+        int32_t left_col = right_col - 70;
+        if (right_col >= 320) {
+            left_col = right_col - 130;
+        }
+
+        g_ControlsTextB[0] = Text_Create(
+            left_col, -25, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_RUN]);
+        g_ControlsTextB[1] = Text_Create(
+            left_col, -10, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_BACK]);
+        g_ControlsTextB[2] = Text_Create(
+            left_col, 5, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_LEFT]);
+        g_ControlsTextB[3] = Text_Create(
+            left_col, 20, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_RIGHT]);
+        g_ControlsTextB[4] = Text_Create(
+            left_col, 35, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_STEP_LEFT]);
+        g_ControlsTextB[5] = Text_Create(
+            left_col, 50, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_STEP_RIGHT]);
+        g_ControlsTextB[6] = Text_Create(
+            left_col, 65, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_WALK]);
+        g_ControlsTextB[7] = Text_Create(
+            right_col + 90, -25, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_JUMP]);
+        g_ControlsTextB[8] = Text_Create(
+            right_col + 90, -10, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_ACTION]);
+        g_ControlsTextB[9] = Text_Create(
+            right_col + 90, 5, 16,
+            g_GF_GameStrings[GF_S_GAME_KEYMAP_DRAW_WEAPON]);
+        g_ControlsTextB[10] = Text_Create(
+            right_col + 90, 20, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_FLARE]);
+        g_ControlsTextB[11] = Text_Create(
+            right_col + 90, 35, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_LOOK]);
+        g_ControlsTextB[12] = Text_Create(
+            right_col + 90, 50, 16, g_GF_GameStrings[GF_S_GAME_KEYMAP_ROLL]);
+        g_ControlsTextB[13] = Text_Create(
+            right_col + 90, 65, 16,
+            g_GF_GameStrings[GF_S_GAME_KEYMAP_INVENTORY]);
+
+        for (int32_t i = 0; i < 14; i++) {
+            Text_CentreV(g_ControlsTextB[i], true);
+        }
+    }
+
+    g_ControlsText[1] = Text_Create(0, -55, 0, " ");
+    Text_CentreV(g_ControlsText[1], 1);
+    Text_CentreH(g_ControlsText[1], 1);
+    Text_AddOutline(g_ControlsText[1], 1, 15, 0, 0);
+
+    if (right_col < 320) {
+        for (int32_t i = 0; i < 14; ++i) {
+            Text_SetScale(g_ControlsTextA[i], PHD_ONE * 0.5, PHD_ONE);
+            Text_SetScale(g_ControlsTextB[i], PHD_ONE * 0.5, PHD_ONE);
+        }
+        Text_AddBackground(g_ControlsText[1], 300, 140, 0, 0, 48, 0, 0, 0);
+    } else {
+        Text_AddBackground(g_ControlsText[1], 420, 150, 0, 0, 48, 0, 0, 0);
     }
 }

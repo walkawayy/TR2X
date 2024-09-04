@@ -19,6 +19,13 @@ Currently supported commands:
 - `/fly`  
   Turns on the fly cheat. Why even walk?
 
+- `/give {item_name}`  
+  `/give {num} {item_name}`  
+  `/give all`  
+  `/give guns`  
+  `/give keys`  
+  Gives Lara an item. Try `/give guns` to arm her to the teeth, and `/give keys` to get her all important puzzle items. Ain't nobody got time for searching!
+
 - `/kill`  
   `/kill all`  
   `/kill {enemy_type}`  

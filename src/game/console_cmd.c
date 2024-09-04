@@ -5,6 +5,7 @@
 #include "game/creature.h"
 #include "game/game_string.h"
 #include "game/gameflow/gameflow_new.h"
+#include "game/inventory.h"
 #include "game/items.h"
 #include "game/lara/lara_cheat.h"
 #include "game/lara/lara_control.h"
@@ -31,6 +32,7 @@ static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_Fly(const char *const args);
 static COMMAND_RESULT Console_Cmd_FlipMap(const char *args);
+static COMMAND_RESULT Console_Cmd_GiveItem(const char *args);
 static COMMAND_RESULT Console_Cmd_Kill(const char *args);
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *args);
 static COMMAND_RESULT Console_Cmd_StartLevel(const char *args);
@@ -385,6 +387,66 @@ static COMMAND_RESULT Console_Cmd_Kill(const char *args)
     }
 }
 
+static COMMAND_RESULT Console_Cmd_GiveItem(const char *args)
+{
+    if (g_GameInfo.current_level.type == GFL_TITLE
+        || g_GameInfo.current_level.type == GFL_DEMO
+        || g_GameInfo.current_level.type == GFL_CUTSCENE) {
+        return CR_UNAVAILABLE;
+    }
+
+    if (g_LaraItem == NULL) {
+        return CR_UNAVAILABLE;
+    }
+
+    if (String_Equivalent(args, "keys")) {
+        return Lara_Cheat_GiveAllKeys() ? CR_SUCCESS : CR_FAILURE;
+    }
+
+    if (String_Equivalent(args, "guns")) {
+        return Lara_Cheat_GiveAllGuns() ? CR_SUCCESS : CR_FAILURE;
+    }
+
+    if (String_Equivalent(args, "all")) {
+        return Lara_Cheat_GiveAllItems() ? CR_SUCCESS : CR_FAILURE;
+    }
+
+    int32_t num = 1;
+    if (sscanf(args, "%d ", &num) == 1) {
+        args = strstr(args, " ");
+        if (!args) {
+            return CR_BAD_INVOCATION;
+        }
+        args++;
+    }
+
+    if (String_Equivalent(args, "")) {
+        return CR_BAD_INVOCATION;
+    }
+
+    bool found = false;
+    int32_t match_count = 0;
+    GAME_OBJECT_ID *matching_objs = Object_IdsFromName(args, &match_count);
+    for (int32_t i = 0; i < match_count; i++) {
+        const GAME_OBJECT_ID obj_id = matching_objs[i];
+        if (Object_IsObjectType(obj_id, g_PickupObjects)) {
+            if (g_Objects[obj_id].loaded) {
+                Inv_AddItemNTimes(obj_id, num);
+                Console_Log(GS(OSD_GIVE_ITEM), Object_GetName(obj_id));
+                found = true;
+            }
+        }
+    }
+    Memory_FreePointer(&matching_objs);
+
+    if (!found) {
+        Console_Log(GS(OSD_INVALID_ITEM), args);
+        return CR_FAILURE;
+    }
+
+    return CR_SUCCESS;
+}
+
 static COMMAND_RESULT Console_Cmd_EndLevel(const char *const args)
 {
     if (strcmp(args, "") == 0) {
@@ -532,6 +594,8 @@ CONSOLE_COMMAND g_ConsoleCommands[] = {
     { .prefix = "hp", .proc = Console_Cmd_SetHealth },
     { .prefix = "heal", .proc = Console_Cmd_Heal },
     { .prefix = "fly", .proc = Console_Cmd_Fly },
+    { .prefix = "give", .proc = Console_Cmd_GiveItem },
+    { .prefix = "gimme", .proc = Console_Cmd_GiveItem },
     { .prefix = "flip", .proc = Console_Cmd_FlipMap },
     { .prefix = "flipmap", .proc = Console_Cmd_FlipMap },
     { .prefix = "kill", .proc = Console_Cmd_Kill },

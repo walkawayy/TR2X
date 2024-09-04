@@ -21,6 +21,48 @@
 #include <libtrx/utils.h>
 #include <libtrx/vector.h>
 
+static void Lara_Cheat_GiveAllGunsImpl(void);
+static void Lara_Cheat_GiveAllMedpacksImpl(void);
+static void Lara_Cheat_GiveAllKeysImpl(void);
+
+static void Lara_Cheat_GiveAllGunsImpl(void)
+{
+    Inv_AddItem(O_PISTOL_ITEM);
+    Inv_AddItem(O_MAGNUM_ITEM);
+    Inv_AddItem(O_UZI_ITEM);
+    Inv_AddItem(O_SHOTGUN_ITEM);
+    Inv_AddItem(O_HARPOON_ITEM);
+    Inv_AddItem(O_M16_ITEM);
+    Inv_AddItem(O_GRENADE_ITEM);
+    g_Lara.magnum_ammo.ammo = 1000;
+    g_Lara.uzi_ammo.ammo = 2000;
+    g_Lara.shotgun_ammo.ammo = 300;
+    g_Lara.harpoon_ammo.ammo = 300;
+    g_Lara.m16_ammo.ammo = 300;
+    g_Lara.grenade_ammo.ammo = 300;
+}
+
+static void Lara_Cheat_GiveAllMedpacksImpl(void)
+{
+    Inv_AddItemNTimes(O_FLARES_ITEM, 10);
+    Inv_AddItemNTimes(O_SMALL_MEDIPACK_ITEM, 10);
+    Inv_AddItemNTimes(O_LARGE_MEDIPACK_ITEM, 10);
+}
+
+static void Lara_Cheat_GiveAllKeysImpl(void)
+{
+    Inv_AddItem(O_PUZZLE_ITEM_1);
+    Inv_AddItem(O_PUZZLE_ITEM_2);
+    Inv_AddItem(O_PUZZLE_ITEM_3);
+    Inv_AddItem(O_PUZZLE_ITEM_4);
+    Inv_AddItem(O_KEY_ITEM_1);
+    Inv_AddItem(O_KEY_ITEM_2);
+    Inv_AddItem(O_KEY_ITEM_3);
+    Inv_AddItem(O_KEY_ITEM_4);
+    Inv_AddItem(O_PICKUP_ITEM_1);
+    Inv_AddItem(O_PICKUP_ITEM_2);
+}
+
 void __cdecl Lara_Cheat_EndLevel(void)
 {
     g_LevelComplete = true;
@@ -151,24 +193,49 @@ bool Lara_Cheat_OpenNearestDoor(void)
 
 void __cdecl Lara_Cheat_GetStuff(void)
 {
-    Inv_AddItem(O_PISTOL_ITEM);
-    Inv_AddItem(O_MAGNUM_ITEM);
-    Inv_AddItem(O_UZI_ITEM);
-    Inv_AddItem(O_SHOTGUN_ITEM);
-    Inv_AddItem(O_HARPOON_ITEM);
-    Inv_AddItem(O_M16_ITEM);
-    Inv_AddItem(O_GRENADE_ITEM);
+    Lara_Cheat_GiveAllGunsImpl();
+    Lara_Cheat_GiveAllMedpacksImpl();
+}
 
-    Inv_AddItemNTimes(O_FLARES_ITEM, 10);
-    Inv_AddItemNTimes(O_SMALL_MEDIPACK_ITEM, 10);
-    Inv_AddItemNTimes(O_LARGE_MEDIPACK_ITEM, 10);
+bool Lara_Cheat_GiveAllKeys(void)
+{
+    if (g_LaraItem == NULL) {
+        return false;
+    }
 
-    g_Lara.magnum_ammo.ammo = 1000;
-    g_Lara.uzi_ammo.ammo = 2000;
-    g_Lara.shotgun_ammo.ammo = 300;
-    g_Lara.harpoon_ammo.ammo = 300;
-    g_Lara.m16_ammo.ammo = 300;
-    g_Lara.grenade_ammo.ammo = 300;
+    Lara_Cheat_GiveAllKeysImpl();
+
+    Sound_Effect(SFX_LARA_KEY, NULL, SPM_ALWAYS);
+    Console_Log(GS(OSD_GIVE_ITEM_ALL_KEYS));
+    return true;
+}
+
+bool Lara_Cheat_GiveAllGuns(void)
+{
+    if (g_LaraItem == NULL) {
+        return false;
+    }
+
+    Lara_Cheat_GiveAllGunsImpl();
+
+    Sound_Effect(SFX_LARA_RELOAD, NULL, SPM_ALWAYS);
+    Console_Log(GS(OSD_GIVE_ITEM_ALL_GUNS));
+    return true;
+}
+
+bool Lara_Cheat_GiveAllItems(void)
+{
+    if (g_LaraItem == NULL) {
+        return false;
+    }
+
+    Lara_Cheat_GiveAllGunsImpl();
+    Lara_Cheat_GiveAllKeysImpl();
+    Lara_Cheat_GiveAllMedpacksImpl();
+
+    Sound_Effect(SFX_LARA_HOLSTER, &g_LaraItem->pos, SPM_NORMAL);
+    Console_Log(GS(OSD_GIVE_ITEM_CHEAT));
+    return true;
 }
 
 bool Lara_Cheat_Teleport(int32_t x, int32_t y, int32_t z)

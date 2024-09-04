@@ -947,6 +947,9 @@ GAME_OBJECT_ID Inv_GetItemOption(const GAME_OBJECT_ID object_id)
 int32_t __cdecl Inv_AddItem(const GAME_OBJECT_ID object_id)
 {
     const GAME_OBJECT_ID inv_object_id = Inv_GetItemOption(object_id);
+    if (!g_Objects[object_id].loaded) {
+        return false;
+    }
 
     for (int32_t i = 0; i < g_Inv_MainObjectsCount; i++) {
         const INVENTORY_ITEM *const inv_item = g_Inv_MainList[i];

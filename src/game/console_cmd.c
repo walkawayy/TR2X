@@ -141,11 +141,15 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
         for (int16_t item_num = 0; item_num < Item_GetTotalCount();
              item_num++) {
             const ITEM_INFO *const item = &g_Items[item_num];
-            const bool is_pickup =
-                Object_IsObjectType(item->object_num, g_PickupObjects);
-            if (is_pickup
+            if (Object_IsObjectType(item->object_num, g_PickupObjects)
                 && (item->status == IS_INVISIBLE
                     || item->status == IS_DEACTIVATED)) {
+                continue;
+            }
+
+            if (Object_IsObjectType(item->object_num, g_NullObjects)
+                || Object_IsObjectType(item->object_num, g_AnimObjects)
+                || Object_IsObjectType(item->object_num, g_InvObjects)) {
                 continue;
             }
 

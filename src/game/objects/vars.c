@@ -116,6 +116,62 @@ const GAME_OBJECT_ID g_TrapdoorObjects[] = {
     // clang-format on
 };
 
+const GAME_OBJECT_ID g_AnimObjects[] = {
+    // clang-format off
+    O_LARA_PISTOLS,
+    O_LARA_HAIR,
+    O_LARA_SHOTGUN,
+    O_LARA_MAGNUMS,
+    O_LARA_UZIS,
+    O_LARA_M16,
+    O_LARA_GRENADE,
+    O_LARA_HARPOON,
+    O_LARA_FLARE,
+    O_LARA_SKIDOO,
+    O_LARA_BOAT,
+    O_LARA_EXTRA,
+    // clang-format on
+};
+
+const GAME_OBJECT_ID g_NullObjects[] = {
+    // clang-format off
+    O_WATER_SPRITE,
+    O_SNOW_SPRITE,
+    O_TEXT_BOX,
+    O_FLARE_ITEM,
+    O_SPHERE_OF_DOOM_1,
+    O_SPHERE_OF_DOOM_2,
+    O_SPHERE_OF_DOOM_3,
+    O_DRAGON_BONES_2,
+    O_DRAGON_BONES_3,
+    O_HOT_LIQUID,
+    O_INV_BACKGROUND,O_FX_RESERVED,O_GONG_BONGER,O_EXPLOSION,O_SPLASH,
+    O_BUBBLES,
+    O_BUBBLE_EMITTER,
+    O_BLOOD,
+    O_DART_EFFECT,
+    O_FLARE_FIRE,
+    O_GLOW,
+    O_GLOW_RESERVED,
+    O_RICOCHET,
+    O_TWINKLE,
+    O_GUN_FLASH,
+    O_M16_FLASH,
+    O_MISSILE_HARPOON,
+    O_MISSILE_FLAME,
+    O_MISSILE_KNIFE,
+    O_GRENADE,
+    O_HARPOON_BOLT,
+    O_LAVA,
+    O_SKYBOX,
+    O_ALPHABET,
+    O_ASSAULT_DIGITS,
+    O_FINAL_LEVEL_COUNTER,
+    O_CUT_SHOTGUN,
+    O_EARTHQUAKE,
+    // clang-format on
+};
+
 const GAME_OBJECT_ID g_InvObjects[] = {
     // clang-format off
     O_PISTOL_OPTION,

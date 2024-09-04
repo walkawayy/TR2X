@@ -25,6 +25,9 @@
 #include <math.h>
 #include <stdio.h>
 
+static bool Console_Cmd_CanTargetObject(GAME_OBJECT_ID object_id);
+static bool Console_Cmd_CanTargetObjectCreature(GAME_OBJECT_ID object_id);
+static bool Console_Cmd_CanTargetObjectPickup(GAME_OBJECT_ID object_id);
 static bool Console_Cmd_IsFloatRound(float num);
 static COMMAND_RESULT Console_Cmd_Pos(const char *args);
 static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
@@ -42,6 +45,24 @@ static COMMAND_RESULT Console_Cmd_StartDemo(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitToTitle(const char *args);
 static COMMAND_RESULT Console_Cmd_ExitGame(const char *args);
 static COMMAND_RESULT Console_Cmd_Abortion(const char *args);
+
+static bool Console_Cmd_CanTargetObject(const GAME_OBJECT_ID object_id)
+{
+    return !Object_IsObjectType(object_id, g_NullObjects)
+        && !Object_IsObjectType(object_id, g_AnimObjects)
+        && !Object_IsObjectType(object_id, g_InvObjects);
+}
+
+static bool Console_Cmd_CanTargetObjectCreature(const GAME_OBJECT_ID object_id)
+{
+    return Object_IsObjectType(object_id, g_EnemyObjects)
+        || Object_IsObjectType(object_id, g_FriendObjects);
+}
+
+static bool Console_Cmd_CanTargetObjectPickup(const GAME_OBJECT_ID object_id)
+{
+    return Object_IsObjectType(object_id, g_PickupObjects);
+}
 
 static inline bool Console_Cmd_IsFloatRound(const float num)
 {
@@ -135,7 +156,8 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
     // Nearest item of this name
     if (!String_Equivalent(args, "")) {
         int32_t match_count = 0;
-        GAME_OBJECT_ID *matching_objs = Object_IdsFromName(args, &match_count);
+        GAME_OBJECT_ID *matching_objs =
+            Object_IdsFromName(args, &match_count, Console_Cmd_CanTargetObject);
 
         const ITEM_INFO *best_item = NULL;
         int32_t best_distance = INT32_MAX;
@@ -146,12 +168,6 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
             if (Object_IsObjectType(item->object_num, g_PickupObjects)
                 && (item->status == IS_INVISIBLE
                     || item->status == IS_DEACTIVATED)) {
-                continue;
-            }
-
-            if (Object_IsObjectType(item->object_num, g_NullObjects)
-                || Object_IsObjectType(item->object_num, g_AnimObjects)
-                || Object_IsObjectType(item->object_num, g_InvObjects)) {
                 continue;
             }
 
@@ -347,14 +363,12 @@ static COMMAND_RESULT Console_Cmd_Kill(const char *args)
         bool matches_found = false;
         int32_t num_killed = 0;
         int32_t match_count = 0;
-        GAME_OBJECT_ID *matching_objs = Object_IdsFromName(args, &match_count);
+        GAME_OBJECT_ID *matching_objs = Object_IdsFromName(
+            args, &match_count, Console_Cmd_CanTargetObjectCreature);
 
         for (int16_t item_num = 0; item_num < Item_GetTotalCount();
              item_num++) {
             const ITEM_INFO *const item = &g_Items[item_num];
-            if (!Creature_IsEnemy(item) && !Creature_IsAlly(item)) {
-                continue;
-            }
 
             bool is_matched = false;
             for (int32_t i = 0; i < match_count; i++) {
@@ -426,15 +440,14 @@ static COMMAND_RESULT Console_Cmd_GiveItem(const char *args)
 
     bool found = false;
     int32_t match_count = 0;
-    GAME_OBJECT_ID *matching_objs = Object_IdsFromName(args, &match_count);
+    GAME_OBJECT_ID *matching_objs = Object_IdsFromName(
+        args, &match_count, Console_Cmd_CanTargetObjectPickup);
     for (int32_t i = 0; i < match_count; i++) {
         const GAME_OBJECT_ID obj_id = matching_objs[i];
-        if (Object_IsObjectType(obj_id, g_PickupObjects)) {
-            if (g_Objects[obj_id].loaded) {
-                Inv_AddItemNTimes(obj_id, num);
-                Console_Log(GS(OSD_GIVE_ITEM), Object_GetName(obj_id));
-                found = true;
-            }
+        if (g_Objects[obj_id].loaded) {
+            Inv_AddItemNTimes(obj_id, num);
+            Console_Log(GS(OSD_GIVE_ITEM), Object_GetName(obj_id));
+            found = true;
         }
     }
     Memory_FreePointer(&matching_objs);

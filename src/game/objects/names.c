@@ -92,7 +92,10 @@ static void Object_TryMatch(
     VECTOR *const matches, const char *const user_input, const char *const name,
     const GAME_OBJECT_ID obj_id)
 {
-    const int32_t score = Object_NameMatch(user_input, name);
+    int32_t score = Object_NameMatch(user_input, name);
+    if (!g_Objects[obj_id].loaded) {
+        score -= GOOD_MATCH_THRESHOLD;
+    }
     if (score > 0) {
         MATCH match = {
             .score = score,
@@ -134,7 +137,8 @@ void Object_SetName(const GAME_OBJECT_ID obj_id, const char *const name)
 }
 
 GAME_OBJECT_ID *Object_IdsFromName(
-    const char *user_input, int32_t *out_match_count)
+    const char *user_input, int32_t *out_match_count,
+    bool (*filter)(GAME_OBJECT_ID))
 {
     // first, calculate the number of matches to allocate
     VECTOR *matches = Vector_Create(sizeof(MATCH));
@@ -145,11 +149,17 @@ GAME_OBJECT_ID *Object_IdsFromName(
         const INVENTORY_ITEM *const item = *item_ptr;
         const GAME_OBJECT_ID obj_id =
             Object_GetCognateInverse(item->obj_num, g_ItemToInvObjectMap);
+        if (filter != NULL && !filter(obj_id)) {
+            continue;
+        }
         Object_TryMatch(matches, user_input, item->string, obj_id);
     }
 
     // Store matches from hardcoded strings
     for (GAME_OBJECT_ID obj_id = 0; obj_id < O_NUMBER_OF; obj_id++) {
+        if (filter != NULL && !filter(obj_id)) {
+            continue;
+        }
         Object_TryMatch(matches, user_input, Object_GetName(obj_id), obj_id);
     }
 

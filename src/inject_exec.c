@@ -373,6 +373,7 @@ static void Inject_Option(const bool enable)
     INJECT(enable, 0x0044FDE0, Option_Controls_DefaultConflict);
     INJECT(enable, 0x0044FE20, Option_Controls);
     INJECT(enable, 0x00450530, Option_Controls_ShowControls);
+    INJECT(enable, 0x00450A00, Option_Controls_UpdateText);
 }
 
 static void Inject_Text(const bool enable)

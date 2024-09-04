@@ -18,6 +18,7 @@ void __cdecl Option_Controls_DefaultConflict(void);
 void __cdecl Option_Controls(INVENTORY_ITEM *item);
 void __cdecl Option_Controls_Shutdown(INVENTORY_ITEM *item);
 void __cdecl Option_Controls_ShowControls(void);
+void __cdecl Option_Controls_UpdateText(void);
 
 void __cdecl Option_Compass(INVENTORY_ITEM *item);
 void __cdecl Option_Compass_Shutdown(INVENTORY_ITEM *item);

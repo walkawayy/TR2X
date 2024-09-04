@@ -60,7 +60,7 @@ static void Option_Controls_Control_Navigate(void)
     if (g_InputDB & (IN_LEFT | IN_RIGHT)) {
         if (m_Cursor == -1) {
             g_LayoutPage = 1 - g_LayoutPage;
-            S_ChangeCtrlText();
+            Option_Controls_UpdateText();
             Option_Controls_FlashConflicts();
         } else {
             g_ControlsTextB[m_Cursor]->pos.z = 16;
@@ -420,5 +420,22 @@ void __cdecl Option_Controls_ShowControls(void)
         Text_AddBackground(g_ControlsText[1], 300, 140, 0, 0, 48, 0, 0, 0);
     } else {
         Text_AddBackground(g_ControlsText[1], 420, 150, 0, 0, 48, 0, 0, 0);
+    }
+}
+
+void __cdecl Option_Controls_UpdateText(void)
+{
+    Text_ChangeText(
+        g_ControlsText[0],
+        g_GF_PCStrings
+            [g_LayoutPage == 0 ? GF_S_PC_DEFAULT_KEYS : GF_S_PC_USER_KEYS]);
+
+    for (int32_t i = 0; i < 14; i++) {
+        const uint16_t key = g_Layout[g_LayoutPage].key[i];
+        if (g_KeyNames[key] != NULL) {
+            Text_ChangeText(g_ControlsTextA[i], g_KeyNames[key]);
+        } else {
+            Text_ChangeText(g_ControlsTextA[i], "BAD");
+        }
     }
 }

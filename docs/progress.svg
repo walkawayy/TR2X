@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.96% (706)</tspan> · <tspan class="known">39.57% (482)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.05% (707)</tspan> · <tspan class="known">39.49% (481)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="432.99" height="6" x="0" y="0" class="decompiled"/>
-<rect width="295.61" height="6" x="432.99" y="0" class="known"/>
+<rect width="433.60" height="6" x="0" y="0" class="decompiled"/>
+<rect width="295" height="6" x="433.60" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1130,7 +1130,7 @@
 <rect width="12" height="12" x="15" y="315" class="decompiled"><title>void __cdecl Option_Controls_DefaultConflict(void);</title></rect>
 <rect width="12" height="12" x="30" y="315" class="decompiled"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="45" y="315" class="decompiled"><title>void __cdecl Option_Controls_ShowControls(void);</title></rect>
-<rect width="12" height="12" x="60" y="315" class="known"><title>void __cdecl S_ChangeCtrlText(void);</title></rect>
+<rect width="12" height="12" x="60" y="315" class="decompiled"><title>void __cdecl Option_Controls_UpdateText(void);</title></rect>
 <rect width="12" height="12" x="75" y="315" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
 <rect width="12" height="12" x="90" y="315" class="known"><title>int32_t __cdecl GetRenderHeight(void);</title></rect>
 <rect width="12" height="12" x="105" y="315" class="known"><title>int32_t __cdecl GetRenderWidth(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.45%</tspan> · <tspan class="known">37.22%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.49%</tspan> · <tspan class="known">37.18%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="466.50" height="6" x="0" y="0" class="decompiled"/>
-<rect width="278.06" height="6" x="466.50" y="0" class="known"/>
+<rect width="466.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="277.73" height="6" x="466.82" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1866,7 +1866,7 @@
 <rect width="7.88" height="8.45" x="557.01" y="208.44" class="decompiled"><title>void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);</title></rect>
 <rect width="7.88" height="8.45" x="557.01" y="219.88" class="known"><title>void __cdecl WindowControl(int16_t item_num);</title></rect>
 <rect width="7.88" height="8.45" x="557.01" y="231.33" class="known"><title>int32_t __cdecl S_LoadGame(void *save_data, uint32_t save_size, int32_t slot_num);</title></rect>
-<rect width="7.88" height="8.45" x="557.01" y="242.78" class="known"><title>void __cdecl S_ChangeCtrlText(void);</title></rect>
+<rect width="7.88" height="8.45" x="557.01" y="242.78" class="decompiled"><title>void __cdecl Option_Controls_UpdateText(void);</title></rect>
 <rect width="7.88" height="8.37" x="557.01" y="254.22" class="decompiled"><title>void __cdecl Output_SetNearZ(int32_t near_z);</title></rect>
 <rect width="7.88" height="8.37" x="557.01" y="265.59" class="decompiled"><title>void __cdecl Box_TargetBox(LOT_INFO *lot, int16_t box_num);</title></rect>
 <rect width="7.88" height="8.37" x="557.01" y="276.96" class="decompiled"><title>void __cdecl Lara_Col_TurnRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

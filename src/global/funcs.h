@@ -146,7 +146,6 @@
 #define Flare_Control ((void __cdecl (*)(int16_t item_num))0x00430070)
 #define ControlMissile ((void __cdecl (*)(int16_t fx_num))0x00432FE0)
 #define ShootAtLara ((void __cdecl (*)(FX_INFO *fx))0x004332B0)
-#define Effect_ExplodingDeath ((int32_t __cdecl (*)(int16_t item_num, int32_t mesh_bits, int16_t damage))0x00433360)
 #define ControlBodyPart ((void __cdecl (*)(int16_t fx_num))0x004336F0)
 #define InitialiseMovingBlock ((void __cdecl (*)(int16_t item_num))0x004338F0)
 #define MovableBlock ((void __cdecl (*)(int16_t item_num))0x00433920)

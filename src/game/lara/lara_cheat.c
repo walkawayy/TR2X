@@ -1,5 +1,6 @@
 #include "game/lara/lara_cheat.h"
 
+#include "decomp/effects.h"
 #include "game/camera.h"
 #include "game/console.h"
 #include "game/game_string.h"

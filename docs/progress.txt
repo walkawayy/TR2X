@@ -1606,6 +1606,9 @@ typedef enum {
 typedef enum {
     BF_MATRIX_POP  = 1,
     BF_MATRIX_PUSH = 2,
+    BF_ROT_X       = 4,
+    BF_ROT_Y       = 8,
+    BF_ROT_Z       = 16,
 } BONE_FLAGS;
 
 typedef struct __unaligned {
@@ -3501,7 +3504,7 @@ typedef enum {
 # game/missile.c
 0x00432FE0  0x02D0  -R      void __cdecl ControlMissile(int16_t fx_num);
 0x004332B0  0x00A7  -R      void __cdecl ShootAtLara(FX_INFO *fx);
-0x00433360  0x0386  -       int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);
+0x00433360  0x0386  +R      int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);
 0x004336F0  0x0200  -R      void __cdecl ControlBodyPart(int16_t fx_num);
 
 # game/moveblock.c

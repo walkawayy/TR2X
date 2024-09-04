@@ -1,6 +1,7 @@
 #include "inject_exec.h"
 
 #include "decomp/decomp.h"
+#include "decomp/effects.h"
 #include "decomp/stats.h"
 #include "game/background.h"
 #include "game/box.h"
@@ -54,7 +55,9 @@
 #include "specific/s_flagged_string.h"
 #include "specific/s_input.h"
 
-static void Inject_Decomp(const bool enable);
+static void Inject_Decomp_General(const bool enable);
+static void Inject_Decomp_Stats(const bool enable);
+static void Inject_Decomp_Effects(const bool enable);
 static void Inject_HWR(bool enable);
 
 static void Inject_Camera(bool enable);
@@ -97,7 +100,7 @@ static void Inject_S_Audio_Sample(bool enable);
 static void Inject_S_Input(bool enable);
 static void Inject_S_FlaggedString(bool enable);
 
-static void Inject_Decomp(const bool enable)
+static void Inject_Decomp_General(const bool enable)
 {
     INJECT(enable, 0x00411F50, Game_SetCutsceneTrack);
     INJECT(enable, 0x00411F60, Game_Cutscene_Start);
@@ -202,11 +205,20 @@ static void Inject_Decomp(const bool enable)
     INJECT(enable, 0x00446C00, WinVidStart);
     INJECT(enable, 0x00446F80, WinVidFinish);
     INJECT(enable, 0x00414220, Misc_Move3DPosTo3DPos);
+}
+
+static void Inject_Decomp_Stats(const bool enable)
+{
     INJECT(enable, 0x00426340, ShowGymStatsText);
     INJECT(enable, 0x00426520, ShowStatsText);
     INJECT(enable, 0x004268C0, ShowEndStatsText);
     INJECT(enable, 0x0044C680, LevelStats);
     INJECT(enable, 0x0044C850, GameStats);
+}
+
+static void Inject_Decomp_Effects(const bool enable)
+{
+    INJECT(enable, 0x00433360, Effect_ExplodingDeath);
 }
 
 static void Inject_HWR(bool enable)
@@ -932,7 +944,9 @@ static void Inject_S_FlaggedString(const bool enable)
 
 void Inject_Exec(void)
 {
-    Inject_Decomp(true);
+    Inject_Decomp_General(true);
+    Inject_Decomp_Stats(true);
+    Inject_Decomp_Effects(true);
     Inject_HWR(true);
     Inject_Background(true);
 

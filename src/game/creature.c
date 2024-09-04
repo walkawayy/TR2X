@@ -1,5 +1,6 @@
 #include "game/creature.h"
 
+#include "decomp/effects.h"
 #include "game/box.h"
 #include "game/items.h"
 #include "game/lara/lara_misc.h"

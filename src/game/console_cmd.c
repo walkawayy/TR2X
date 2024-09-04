@@ -1,5 +1,6 @@
 #include "game/console_cmd.h"
 
+#include "decomp/effects.h"
 #include "game/console.h"
 #include "game/game_string.h"
 #include "game/gameflow/gameflow_new.h"

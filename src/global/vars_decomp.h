@@ -93,6 +93,7 @@
 #define g_DumpWidth (*(int16_t*)0x00466BE8)
 #define g_DumpHeight (*(int16_t*)0x00466BEA)
 #define g_Layout (*(CONTROL_LAYOUT(*)[2])0x00466F70)
+#define g_DetailLevel (*(int32_t*)0x0046773C)
 #define g_MidSort (*(int32_t*)0x0046C300) // = 0
 #define g_ViewportAspectRatio (*(float*)0x0046C304) // = 0.0f
 #define g_XGenY1 (*(int32_t*)0x0046C308)

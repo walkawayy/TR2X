@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.55% (701)</tspan> · <tspan class="known">39.98% (487)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">57.64% (702)</tspan> · <tspan class="known">39.90% (486)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="429.92" height="6" x="0" y="0" class="decompiled"/>
-<rect width="298.68" height="6" x="429.92" y="0" class="known"/>
+<rect width="430.54" height="6" x="0" y="0" class="decompiled"/>
+<rect width="298.06" height="6" x="430.54" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1123,7 +1123,7 @@
 <rect width="12" height="12" x="660" y="300" class="decompiled"><title>void __cdecl Screenshot(LPDDS screen);</title></rect>
 <rect width="12" height="12" x="675" y="300" class="decompiled"><title>void __cdecl Option_DoInventory(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="690" y="300" class="decompiled"><title>void __cdecl Option_Passport(INVENTORY_ITEM *item);</title></rect>
-<rect width="12" height="12" x="705" y="300" class="known"><title>void __cdecl Option_Detail(INVENTORY_ITEM *item);</title></rect>
+<rect width="12" height="12" x="705" y="300" class="decompiled"><title>void __cdecl Option_Detail(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="720" y="300" class="known"><title>void __cdecl Option_Sound(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="735" y="300" class="decompiled"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="0" y="315" class="known"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.30%</tspan> · <tspan class="known">38.38%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.51%</tspan> · <tspan class="known">38.16%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="457.90" height="6" x="0" y="0" class="decompiled"/>
-<rect width="286.66" height="6" x="457.90" y="0" class="known"/>
+<rect width="459.49" height="6" x="0" y="0" class="decompiled"/>
+<rect width="285.07" height="6" x="459.49" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1418,7 +1418,7 @@
 <rect width="21.61" height="22.07" x="320.05" y="205.31" class="decompiled"><title>int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="21.61" height="21.83" x="320.05" y="230.38" class="known"><title>void __cdecl WinPlayFMV(const char *file_name, bool is_playback);</title></rect>
 <rect width="21.61" height="21.76" x="320.05" y="255.20" class="known"><title>bool __cdecl SE_ShowSetupDialog(HWND hParent, bool isDefault);</title></rect>
-<rect width="21.61" height="21.63" x="320.05" y="279.97" class="known"><title>void __cdecl Option_Detail(INVENTORY_ITEM *item);</title></rect>
+<rect width="21.61" height="21.63" x="320.05" y="279.97" class="decompiled"><title>void __cdecl Option_Detail(INVENTORY_ITEM *item);</title></rect>
 <rect width="21.61" height="21.56" x="320.05" y="304.59" class="known"><title>int32_t __cdecl Collide_GetSpheres(const ITEM_INFO *item, SPHERE *spheres, bool world_space);</title></rect>
 <rect width="21.61" height="21.46" x="320.05" y="329.15" class="known"><title>void __cdecl DrawSkidoo(ITEM_INFO *item);</title></rect>
 <rect width="21.61" height="21.39" x="320.05" y="353.61" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectG3_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>

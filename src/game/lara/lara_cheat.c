@@ -272,6 +272,12 @@ bool Lara_Cheat_Teleport(int32_t x, int32_t y, int32_t z)
         g_LaraItem->goal_anim_state = LS_STOP;
         g_LaraItem->anim_num = g_Objects[O_LARA].anim_idx + LA_STAND_STILL;
         g_LaraItem->frame_num = g_Anims[g_LaraItem->anim_num].frame_base;
+        g_LaraItem->rot.x = 0;
+        g_LaraItem->rot.z = 0;
+        g_Lara.head_x_rot = 0;
+        g_Lara.head_y_rot = 0;
+        g_Lara.torso_x_rot = 0;
+        g_Lara.torso_y_rot = 0;
     }
 
     g_Lara.spaz_effect_count = 0;

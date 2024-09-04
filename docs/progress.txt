@@ -4595,10 +4595,7 @@ typedef enum {
 0x004D780C  -       int8_t g_GF_StartGame;
 0x004D7818  -       char g_GF_Description[256];
 0x004D9C00  -       int16_t g_GF_LevelOffsets[200];
-0x00521DC0  -       char **g_GF_Pickup1Strings;
 0x00521DC4  -       char **g_GF_CutsceneFileNames;
-0x00521E60  -       char **g_GF_Puzzle2Strings;
-0x00521E64  -       char *g_GF_Puzzle3StringsBuf;
 0x00521E68  -       char *g_GF_FMVFilenamesBuf;
 0x00521E6C  -       char *g_GF_Key1StringsBuf;
 0x00521E70  -       int16_t *g_GF_FrontendSequence;
@@ -4607,33 +4604,36 @@ typedef enum {
 0x00521E7C  -       char *g_GF_Key4StringsBuf;
 0x00521E80  -       int16_t *g_GF_SequenceBuf;
 0x00521E84  -       char *g_GF_Key2StringsBuf;
-0x00521E88  -       char *g_GF_Puzzle4StringsBuf;
 0x00521E8C  -       char *g_GF_PicFilenamesBuf;
 0x00521E90  -       char **g_GF_Key4Strings;
-0x00521E94  -       char **g_GF_Puzzle3Strings;
-0x00521E98  -       char **g_GF_Pickup2Strings;
+0x00521DC0  -       char **g_GF_Puzzle1Strings;
+0x00521E98  -       char **g_GF_Puzzle2Strings;
+0x00521EC0  -       char **g_GF_Puzzle3Strings;
+0x00521E60  -       char **g_GF_Puzzle4Strings;
+0x00521E94  -       char **g_GF_Pickup1Strings;
+0x00521F44  -       char **g_GF_Pickup2Strings;
+0x00521EA8  -       char *g_GF_Puzzle1StringsBuf;
+0x00521F40  -       char *g_GF_Puzzle2StringsBuf;
+0x00521F98  -       char *g_GF_Puzzle3StringsBuf;
+0x00521F90  -       char *g_GF_Puzzle4StringsBuf;
+0x00521E64  -       char *g_GF_Pickup1StringsBuf;
+0x00521E88  -       char *g_GF_Pickup2StringsBuf;
 0x00521E9C  -       char *g_GF_LevelFileNamesBuf;
 0x00521EA0  -       char **g_GF_PicFilenames;
 0x00521EA4  -       char **g_GF_Key1Strings;
-0x00521EA8  -       char *g_GF_Pickup1StringsBuf;
 0x00521EAC  -       char *g_GF_LevelNamesBuf;
 0x00521EB0  -       char **g_GF_GameStrings;
 0x00521EB4  -       char *g_GF_PCStringsBuf;
 0x00521EB8  -       char *g_GF_GameStringsBuf;
 0x00521EBC  -       char **g_GF_Key3Strings;
-0x00521EC0  -       char **g_GF_Puzzle1Strings;
 0x00521EC4  -       char **g_GF_LevelNames;
 0x00521EE0  -       int16_t *g_GF_ScriptTable[24]; // MAX_LEVELS
-0x00521F40  -       char *g_GF_Pickup2StringsBuf;
-0x00521F44  -       char **g_GF_Puzzle4Strings;
 0x00521F48  -       char **g_GF_TitleFileNames;
 0x00521F4C  -       char *g_GF_TitleFileNamesBuf;
 0x00521F50  -       char **g_GF_PCStrings;
 0x00521F54  -       char **g_GF_LevelFileNames;
 0x00521F60  -       int16_t g_GF_ValidDemos[24]; // MAX_DEMO_FILES
-0x00521F90  -       char *g_GF_Puzzle2StringsBuf;
 0x00521F94  -       char **g_GF_FMVFilenames;
-0x00521F98  -       char *g_GF_Puzzle1StringsBuf;
 0x00521F9C  -       char *g_GF_Key3StringsBuf;
 0x00521FA0  -       char g_GF_SecretInvItems[27]; // GF_ADD_INV_NUMBER_OF
 0x00521FC0  -       char g_GF_Add2InvItems[27]; // GF_ADD_INV_NUMBER_OF

@@ -292,12 +292,6 @@ BOOL __cdecl GF_LoadFromFile(const char *const file_name)
     GF_ReadStringTable(
         file, GF_S_PC_NUMBER_OF, &g_GF_PCStrings, &g_GF_PCStringsBuf);
     GF_ReadStringTable(
-        file, g_GameFlow.num_levels, &g_GF_Pickup1Strings,
-        &g_GF_Pickup1StringsBuf);
-    GF_ReadStringTable(
-        file, g_GameFlow.num_levels, &g_GF_Pickup2Strings,
-        &g_GF_Pickup2StringsBuf);
-    GF_ReadStringTable(
         file, g_GameFlow.num_levels, &g_GF_Puzzle1Strings,
         &g_GF_Puzzle1StringsBuf);
     GF_ReadStringTable(
@@ -309,6 +303,12 @@ BOOL __cdecl GF_LoadFromFile(const char *const file_name)
     GF_ReadStringTable(
         file, g_GameFlow.num_levels, &g_GF_Puzzle4Strings,
         &g_GF_Puzzle4StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Pickup1Strings,
+        &g_GF_Pickup1StringsBuf);
+    GF_ReadStringTable(
+        file, g_GameFlow.num_levels, &g_GF_Pickup2Strings,
+        &g_GF_Pickup2StringsBuf);
     GF_ReadStringTable(
         file, g_GameFlow.num_levels, &g_GF_Key1Strings, &g_GF_Key1StringsBuf);
     GF_ReadStringTable(

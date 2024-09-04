@@ -1,5 +1,6 @@
 #include "game/lara/lara_state.h"
 
+#include "game/inventory.h"
 #include "game/lara/lara_control.h"
 #include "game/lara/lara_look.h"
 #include "game/lara/lara_misc.h"

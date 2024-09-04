@@ -3986,7 +3986,7 @@ typedef enum {
 0x0044FE20  0x06F4  +       void __cdecl Option_Controls(INVENTORY_ITEM *item);
 0x00450530  0x04D0  +       void __cdecl Option_Controls_ShowControls(void);
 0x00450A00  0x0096  +       void __cdecl Option_Controls_UpdateText(void);
-0x00450AA0  0x003B  -R      void __cdecl S_RemoveCtrlText(void);
+0x00450AA0  0x003B  +R      void __cdecl S_RemoveCtrlText(void);
 0x00450AE0  0x0006  -R      int32_t __cdecl GetRenderHeight(void);
 0x00450AF0  0x0006  -R      int32_t __cdecl GetRenderWidth(void);
 0x00450B00  0x00E4  *R      void __cdecl S_InitialisePolyList(BOOL clear_back_buffer);

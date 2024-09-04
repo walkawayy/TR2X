@@ -81,12 +81,7 @@ static void Option_Controls_Control_Navigate(void)
     } else if (
         (g_InputDB & IN_DESELECT)
         || ((g_InputDB & IN_SELECT) && m_Cursor == -1)) {
-        Text_Remove(g_ControlsText[0]);
-        g_ControlsText[0] = NULL;
-        Text_Remove(g_ControlsText[1]);
-        g_ControlsText[1] = NULL;
-        S_RemoveCtrlText();
-        Option_Controls_DefaultConflict();
+        Option_Controls_Shutdown();
         return;
     }
 
@@ -282,9 +277,10 @@ void __cdecl Option_Controls_DefaultConflict(void)
     }
 }
 
-void Option_Controls_Shutdown(INVENTORY_ITEM *const item)
+void Option_Controls_Shutdown(void)
 {
     Option_Controls_ShutdownText();
+    Option_Controls_DefaultConflict();
 }
 
 void __cdecl Option_Controls(INVENTORY_ITEM *const item)

@@ -27,7 +27,7 @@ void __cdecl Option_Compass(INVENTORY_ITEM *const item)
     Sound_Effect(SFX_MENU_STOPWATCH, 0, SPM_ALWAYS);
 }
 
-void Option_Compass_Shutdown(INVENTORY_ITEM *const item)
+void Option_Compass_Shutdown(void)
 {
     Requester_Shutdown(&g_StatsRequester);
 }

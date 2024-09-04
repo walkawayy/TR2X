@@ -78,7 +78,7 @@ void __cdecl Option_Detail(INVENTORY_ITEM *const item)
     }
 }
 
-void Option_Detail_Shutdown(INVENTORY_ITEM *const item)
+void Option_Detail_Shutdown(void)
 {
     Option_Detail_ShutdownText();
 }

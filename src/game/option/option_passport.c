@@ -267,7 +267,7 @@ void __cdecl Option_Passport(INVENTORY_ITEM *const item)
     }
 }
 
-void Option_Passport_Shutdown(INVENTORY_ITEM *const item)
+void Option_Passport_Shutdown(void)
 {
     Text_Remove(g_Inv_ItemText[IT_NAME]);
     g_Inv_ItemText[IT_NAME] = NULL;

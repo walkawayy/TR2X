@@ -3,7 +3,7 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
-void Option_Sound_Shutdown(INVENTORY_ITEM *const item)
+void Option_Sound_Shutdown(void)
 {
     for (int32_t i = 0; i < 4; i++) {
         Text_Remove(g_SoundText[i]);

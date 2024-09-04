@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.05% (707)</tspan> · <tspan class="known">39.49% (481)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.13% (708)</tspan> · <tspan class="known">39.41% (480)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="433.60" height="6" x="0" y="0" class="decompiled"/>
-<rect width="295" height="6" x="433.60" y="0" class="known"/>
+<rect width="434.22" height="6" x="0" y="0" class="decompiled"/>
+<rect width="294.38" height="6" x="434.22" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1131,7 +1131,7 @@
 <rect width="12" height="12" x="30" y="315" class="decompiled"><title>void __cdecl Option_Controls(INVENTORY_ITEM *item);</title></rect>
 <rect width="12" height="12" x="45" y="315" class="decompiled"><title>void __cdecl Option_Controls_ShowControls(void);</title></rect>
 <rect width="12" height="12" x="60" y="315" class="decompiled"><title>void __cdecl Option_Controls_UpdateText(void);</title></rect>
-<rect width="12" height="12" x="75" y="315" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
+<rect width="12" height="12" x="75" y="315" class="decompiled"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
 <rect width="12" height="12" x="90" y="315" class="known"><title>int32_t __cdecl GetRenderHeight(void);</title></rect>
 <rect width="12" height="12" x="105" y="315" class="known"><title>int32_t __cdecl GetRenderWidth(void);</title></rect>
 <rect width="12" height="12" x="120" y="315" class="known"><title>void __cdecl S_InitialisePolyList(BOOL clear_back_buffer);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.49%</tspan> · <tspan class="known">37.18%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.51%</tspan> · <tspan class="known">37.16%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="466.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="277.73" height="6" x="466.82" y="0" class="known"/>
+<rect width="466.95" height="6" x="0" y="0" class="decompiled"/>
+<rect width="277.61" height="6" x="466.95" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2196,7 +2196,7 @@
 <rect width="4.19" height="3.81" x="648.46" y="310.59" class="known"><title>int32_t __cdecl GetOffset(ITEM_INFO *item, int32_t x, int32_t z);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="317.40" class="known"><title>void __cdecl ControlGlow(int16_t fx_num);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="324.21" class="decompiled"><title>void __cdecl WaitPrimaryBufferFlip(void);</title></rect>
-<rect width="4.19" height="3.81" x="648.46" y="331.02" class="known"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
+<rect width="4.19" height="3.81" x="648.46" y="331.02" class="decompiled"><title>void __cdecl S_RemoveCtrlText(void);</title></rect>
 <rect width="4.19" height="3.81" x="648.46" y="337.83" class="known"><title>void __cdecl TexturePageReleaseVidMemSurface(TEXPAGE_DESC *page);</title></rect>
 <rect width="4.19" height="3.70" x="648.46" y="344.64" class="decompiled"><title>void __cdecl Gun_Pistols_UndrawMeshLeft(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="4.19" height="3.70" x="648.46" y="351.33" class="decompiled"><title>void __cdecl Gun_Pistols_UndrawMeshRight(LARA_GUN_TYPE weapon_type);</title></rect>

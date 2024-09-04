@@ -67,7 +67,8 @@ int32_t __cdecl Effect_ExplodingDeath(
         Matrix_TranslateRel(bone[0], bone[1], bone[2]);
         Matrix_RotYXZsuperpack(&mesh_rots, 0);
 
-        if (bone_flags & (BF_ROT_X | BF_ROT_Y | BF_ROT_Z)) {
+        if (extra_rotation != NULL
+            && bone_flags & (BF_ROT_X | BF_ROT_Y | BF_ROT_Z)) {
             if (bone_flags & BF_ROT_Y) {
                 Matrix_RotY(*extra_rotation++);
             }

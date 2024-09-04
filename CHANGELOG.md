@@ -17,6 +17,7 @@
 - fixed explosions sometimes being drawn too dark (#187)
 - fixed killing the T-Rex with a grenade launcher crashing the game (#168)
 - fixed secret rewards not displaying shotgun ammo (#159)
+- fixed controls dialog remapping being too sensitive (#5)
 - fixed `/tp` console command during special animations in HSH and Offshore Rig (#178, regression from 0.2)
 - fixed console commands being able to interfere with demos, cutscenes and the title screen (#182, #179, regression from 0.2)
 - fixed console registering key inputs too eagerly (regression from 0.2)

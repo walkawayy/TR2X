@@ -160,15 +160,11 @@ static void Option_Controls_Control_Navigate(void)
 
 static void Option_Controls_Control_WaitToListen(void)
 {
-    if (g_InputDB & IN_SELECT) {
-        g_Input = 0;
-        g_InputDB = 0;
+    if (g_Input) {
         return;
     }
 
     m_State = STATE_LISTEN;
-    g_Input = 0;
-    g_InputDB = 0;
 }
 
 static void Option_Controls_Control_Listen(void)

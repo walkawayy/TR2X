@@ -173,7 +173,8 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
 
         if (best_item != NULL) {
             if (Lara_Cheat_Teleport(
-                    best_item->pos.x, best_item->pos.y, best_item->pos.z)) {
+                    best_item->pos.x, best_item->pos.y - STEP_L,
+                    best_item->pos.z)) {
                 Console_Log(
                     GS(OSD_POS_SET_ITEM),
                     Object_GetName(best_item->object_num));

@@ -118,6 +118,7 @@ dll_sources = [
   'src/game/objects/creatures/diver.c',
   'src/game/objects/general/door.c',
   'src/game/objects/general/final_level_counter.c',
+  'src/game/objects/names.c',
   'src/game/objects/vars.c',
   'src/game/objects/vehicles/boat.c',
   'src/game/option/option.c',

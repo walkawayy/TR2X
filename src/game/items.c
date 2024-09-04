@@ -1,6 +1,5 @@
 #include "game/items.h"
 
-#include "game/camera.h"
 #include "game/math.h"
 #include "game/matrix.h"
 #include "game/room.h"
@@ -13,6 +12,7 @@
 
 #include <assert.h>
 
+static int16_t m_MaxUsedItemCount = 0;
 static BOUNDS_16 m_InterpolatedBounds = { 0 };
 
 static OBJECT_BOUNDS Item_ConvertBounds(const int16_t *bounds_in);
@@ -55,6 +55,7 @@ void __cdecl Item_InitialiseArray(const int32_t num_items)
     g_NextItemFree = g_LevelItemCount;
     g_PrevItemActive = NO_ITEM;
     g_NextItemActive = NO_ITEM;
+    m_MaxUsedItemCount = g_LevelItemCount;
     for (int32_t i = g_NextItemFree; i < num_items - 1; i++) {
         ITEM_INFO *const item = &g_Items[i];
         item->active = 0;
@@ -63,14 +64,20 @@ void __cdecl Item_InitialiseArray(const int32_t num_items)
     g_Items[num_items - 1].next_item = NO_ITEM;
 }
 
+int32_t Item_GetTotalCount(void)
+{
+    return m_MaxUsedItemCount;
+}
+
 int16_t __cdecl Item_Create(void)
 {
-    const int16_t result = g_NextItemFree;
-    if (result != NO_ITEM) {
-        g_Items[result].flags = 0;
-        g_NextItemFree = g_Items[result].next_item;
+    const int16_t item_num = g_NextItemFree;
+    if (item_num != NO_ITEM) {
+        g_Items[item_num].flags = 0;
+        g_NextItemFree = g_Items[item_num].next_item;
     }
-    return result;
+    m_MaxUsedItemCount = MAX(m_MaxUsedItemCount, item_num + 1);
+    return item_num;
 }
 
 void __cdecl Item_Kill(const int16_t item_num)
@@ -88,6 +95,11 @@ void __cdecl Item_Kill(const int16_t item_num)
     } else {
         item->next_item = g_NextItemFree;
         g_NextItemFree = item_num;
+    }
+
+    while (m_MaxUsedItemCount > 0
+           && g_Items[m_MaxUsedItemCount - 1].flags & IF_KILLED) {
+        m_MaxUsedItemCount--;
     }
 }
 
@@ -277,32 +289,6 @@ void __cdecl Item_ClearKilled(void)
         item->next_active = NO_ITEM;
     }
     g_PrevItemActive = NO_ITEM;
-}
-
-bool __cdecl Item_Teleport(ITEM_INFO *item, int32_t x, int32_t y, int32_t z)
-{
-    int16_t room_num = Room_GetIndexFromPos(x, y, z);
-    if (room_num == NO_ROOM) {
-        return false;
-    }
-    SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
-    const int16_t height = Room_GetHeight(sector, x, y, z);
-    if (height != NO_HEIGHT) {
-        item->pos.x = x;
-        item->pos.y = y;
-        item->pos.z = z;
-        item->floor = height;
-        if (item->room_num != room_num) {
-            const int16_t item_num = item - g_Items;
-            Item_NewRoom(item_num, room_num);
-        }
-
-        if (item->object_num == O_LARA) {
-            Camera_ResetPosition();
-        }
-        return true;
-    }
-    return false;
 }
 
 bool Item_IsSmashable(const ITEM_INFO *item)
@@ -750,4 +736,13 @@ void Item_TakeDamage(
     if (hit_status) {
         item->hit_status = 1;
     }
+}
+
+int32_t Item_GetDistance(
+    const ITEM_INFO *const item, const XYZ_32 *const target)
+{
+    const int32_t x = (item->pos.x - target->x);
+    const int32_t y = (item->pos.y - target->y);
+    const int32_t z = (item->pos.z - target->z);
+    return Math_Sqrt(SQUARE(x) + SQUARE(y) + SQUARE(z));
 }

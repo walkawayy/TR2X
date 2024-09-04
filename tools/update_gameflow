@@ -18,7 +18,19 @@ def get_string_map(path: Path) -> dict[str, str]:
     return result
 
 
-def postprocess_gameflow(gameflow: str, game_strings_map: dict[str, str]) -> str:
+def postprocess_gameflow(gameflow: str, object_strings_map: dict[str, str], game_strings_map: dict[str, str]) -> str:
+    gameflow = re.sub(
+        r'^(    "object_strings": {)[^}]*(})',
+        '    "object_strings": {\n'
+        + "\n".join(
+            f"        {json.dumps(key)}: {json.dumps(value)},"
+            for key, value in object_strings_map.items()
+        )
+        + "\n    }",
+        gameflow,
+        flags=re.M | re.DOTALL,
+    )
+
     gameflow = re.sub(
         r'^(    "game_strings": {)[^}]*(})',
         '    "game_strings": {\n'
@@ -34,12 +46,14 @@ def postprocess_gameflow(gameflow: str, game_strings_map: dict[str, str]) -> str
 
 
 def main() -> None:
+    object_strings_map = get_string_map(OBJECT_STRINGS_DEF_PATH)
     game_strings_map = get_string_map(GAME_STRINGS_DEF_PATH)
+    assert object_strings_map
     assert game_strings_map
 
     for gameflow_path in SHIP_DIR.rglob("*gameflow*.json*"):
         old_gameflow = gameflow_path.read_text()
-        new_gameflow = postprocess_gameflow(old_gameflow, game_strings_map)
+        new_gameflow = postprocess_gameflow(old_gameflow, object_strings_map, game_strings_map)
         if new_gameflow != old_gameflow:
             gameflow_path.write_text(new_gameflow)
 

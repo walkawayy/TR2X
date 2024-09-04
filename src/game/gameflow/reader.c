@@ -106,6 +106,8 @@ static bool GF_N_LoadScriptLevels(
         }
 
         result &= GF_N_LoadStringTable(
+            jlvl_obj, "object_strings", &level->object_strings);
+        result &= GF_N_LoadStringTable(
             jlvl_obj, "game_strings", &level->game_strings);
     }
 
@@ -141,6 +143,8 @@ bool GF_N_Load(const char *const path)
 
     GAMEFLOW_NEW *const gf = &g_GameflowNew;
     struct json_object_s *root_obj = json_value_as_object(root);
+    result &=
+        GF_N_LoadStringTable(root_obj, "object_strings", &gf->object_strings);
     result &= GF_N_LoadStringTable(root_obj, "game_strings", &gf->game_strings);
     result &= GF_N_LoadScriptLevels(root_obj, gf);
 
@@ -163,8 +167,10 @@ void GF_N_Shutdown(void)
     GAMEFLOW_NEW *const gf = &g_GameflowNew;
 
     for (int32_t i = 0; i < gf->level_count; i++) {
+        GF_N_StringTableShutdown(gf->levels[i].object_strings);
         GF_N_StringTableShutdown(gf->levels[i].game_strings);
     }
 
+    GF_N_StringTableShutdown(gf->object_strings);
     GF_N_StringTableShutdown(gf->game_strings);
 }

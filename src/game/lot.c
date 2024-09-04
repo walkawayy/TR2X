@@ -149,7 +149,7 @@ void __cdecl LOT_InitialiseSlot(const int16_t item_num, const int32_t slot)
         creature->lot.drop = -WALL_L;
         break;
 
-    case O_SPIDER_or_WOLF:
+    case O_SPIDER:
     case O_SKIDOO_ARMED:
         creature->lot.step = WALL_L / 2;
         creature->lot.drop = -WALL_L;

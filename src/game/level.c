@@ -641,7 +641,7 @@ static void __cdecl Level_LoadBoxes(VFILE *const file)
     for (int32_t i = 0; i < 2; i++) {
         for (int32_t j = 0; j < 4; j++) {
             const bool skip = j == 2
-                || (j == 1 && !g_Objects[O_SPIDER_or_WOLF].loaded
+                || (j == 1 && !g_Objects[O_SPIDER].loaded
                     && !g_Objects[O_SKIDOO_ARMED].loaded)
                 || (j == 3 && !g_Objects[O_YETI].loaded
                     && !g_Objects[O_WORKER_3].loaded);

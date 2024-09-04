@@ -5,6 +5,7 @@
 #include "game/demo.h"
 #include "game/game.h"
 #include "game/gun/gun.h"
+#include "game/objects/names.h"
 #include "game/overlay.h"
 #include "gameflow/gameflow_new.h"
 #include "global/funcs.h"

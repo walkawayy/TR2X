@@ -952,3 +952,18 @@ void Lara_SwapSingleMesh(const LARA_MESH mesh, const GAME_OBJECT_ID object_id)
 {
     g_Lara.mesh_ptrs[mesh] = g_Meshes[g_Objects[object_id].mesh_idx + mesh];
 }
+
+void Lara_GetOffVehicle(void)
+{
+    if (g_Lara.skidoo != NO_ITEM) {
+        ITEM_INFO *const vehicle = &g_Items[g_Lara.skidoo];
+        vehicle->anim_num = g_Objects[vehicle->object_num].anim_idx;
+        vehicle->frame_num = g_Anims[vehicle->anim_num].frame_base;
+        g_Lara.skidoo = NO_ITEM;
+
+        g_LaraItem->current_anim_state = LS_STOP;
+        g_LaraItem->goal_anim_state = LS_STOP;
+        g_LaraItem->anim_num = LA_STAND_STILL;
+        g_LaraItem->frame_num = g_Anims[g_LaraItem->anim_num].frame_base;
+    }
+}

@@ -4,6 +4,9 @@
 #include "game/game_string.h"
 #include "game/items.h"
 #include "game/lara/lara_cheat.h"
+#include "game/objects/common.h"
+#include "game/objects/names.h"
+#include "game/objects/vars.h"
 #include "game/random.h"
 #include "game/room.h"
 #include "game/sound.h"
@@ -70,7 +73,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
                 z += 0.5f;
             }
 
-            if (Item_Teleport(g_LaraItem, x * WALL_L, y * WALL_L, z * WALL_L)) {
+            if (Lara_Cheat_Teleport(x * WALL_L, y * WALL_L, z * WALL_L)) {
                 Console_Log(GS(OSD_POS_SET_POS), x, y, z);
                 return CR_SUCCESS;
             }
@@ -104,13 +107,72 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
                 int32_t x = x1 + Random_GetControl() * (x2 - x1) / 0x7FFF;
                 int32_t y = y1;
                 int32_t z = z1 + Random_GetControl() * (z2 - z1) / 0x7FFF;
-                if (Item_Teleport(g_LaraItem, x, y, z)) {
+                if (Lara_Cheat_Teleport(x, y, z)) {
                     Console_Log(GS(OSD_POS_SET_ROOM), room_num);
                     return CR_SUCCESS;
                 }
             }
 
             Console_Log(GS(OSD_POS_SET_ROOM_FAIL), room_num);
+            return CR_FAILURE;
+        }
+    }
+
+    // Nearest item of this name
+    if (!String_Equivalent(args, "")) {
+        int32_t match_count = 0;
+        GAME_OBJECT_ID *matching_objs = Object_IdsFromName(args, &match_count);
+
+        const ITEM_INFO *best_item = NULL;
+        int32_t best_distance = INT32_MAX;
+
+        for (int16_t item_num = 0; item_num < Item_GetTotalCount();
+             item_num++) {
+            const ITEM_INFO *const item = &g_Items[item_num];
+            const bool is_pickup =
+                Object_IsObjectType(item->object_num, g_PickupObjects);
+            if (is_pickup
+                && (item->status == IS_INVISIBLE
+                    || item->status == IS_DEACTIVATED)) {
+                continue;
+            }
+
+            if (item->flags & IF_KILLED) {
+                continue;
+            }
+
+            bool is_matched = false;
+            for (int32_t i = 0; i < match_count; i++) {
+                if (matching_objs[i] == item->object_num) {
+                    is_matched = true;
+                    break;
+                }
+            }
+            if (!is_matched) {
+                continue;
+            }
+
+            const int32_t distance = Item_GetDistance(item, &g_LaraItem->pos);
+            if (distance < best_distance) {
+                best_distance = distance;
+                best_item = item;
+            }
+        }
+
+        if (best_item != NULL) {
+            if (Lara_Cheat_Teleport(
+                    best_item->pos.x, best_item->pos.y, best_item->pos.z)) {
+                Console_Log(
+                    GS(OSD_POS_SET_ITEM),
+                    Object_GetName(best_item->object_num));
+            } else {
+                Console_Log(
+                    GS(OSD_POS_SET_ITEM_FAIL),
+                    Object_GetName(best_item->object_num));
+            }
+            return CR_SUCCESS;
+        } else {
+            Console_Log(GS(OSD_POS_SET_ITEM_FAIL), args);
             return CR_FAILURE;
         }
     }

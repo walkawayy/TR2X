@@ -11,6 +11,7 @@ void __cdecl Option_Passport_Shutdown(void);
 void __cdecl Option_Detail(INVENTORY_ITEM *item);
 void __cdecl Option_Detail_Shutdown(void);
 
+void __cdecl Option_Sound(INVENTORY_ITEM *item);
 void __cdecl Option_Sound_Shutdown(void);
 
 void __cdecl Option_Controls_FlashConflicts(void);

@@ -368,6 +368,7 @@ static void Inject_Option(const bool enable)
     INJECT(enable, 0x0044EDC0, Option_DoInventory);
     INJECT(enable, 0x0044EED0, Option_Passport);
     INJECT(enable, 0x0044F520, Option_Detail);
+    INJECT(enable, 0x0044F800, Option_Sound);
     INJECT(enable, 0x0044FCA0, Option_Compass);
     INJECT(enable, 0x0044FD60, Option_Controls_FlashConflicts);
     INJECT(enable, 0x0044FDE0, Option_Controls_DefaultConflict);

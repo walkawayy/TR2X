@@ -356,7 +356,6 @@
 #define game_malloc ((void *__cdecl (*)(size_t alloc_size, GAME_BUFFER buf_index))0x0044D6C0)
 #define game_free ((void __cdecl (*)(size_t free_size))0x0044D740)
 #define CalculateWibbleTable ((void __cdecl (*)(void))0x0044D780)
-#define Option_Sound ((void __cdecl (*)(INVENTORY_ITEM *item))0x0044F800)
 #define GetRenderHeight ((int32_t __cdecl (*)(void))0x00450AE0)
 #define GetRenderWidth ((int32_t __cdecl (*)(void))0x00450AF0)
 #define S_InitialisePolyList ((void __cdecl (*)(BOOL clear_back_buffer))0x00450B00)

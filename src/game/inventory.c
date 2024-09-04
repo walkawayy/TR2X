@@ -20,8 +20,6 @@
 
 #define TITLE_RING_OBJECTS 3
 #define OPTION_RING_OBJECTS 3
-#define LOW_LIGHT 5120
-#define HIGH_LIGHT 4096
 
 static TEXTSTRING *m_VersionText = NULL;
 

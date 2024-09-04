@@ -223,3 +223,6 @@
     #define FLARE_AMMO_BOX 6
 #endif
 #define FLARE_AMMO_QTY FLARE_AMMO_BOX
+
+#define LOW_LIGHT 5120
+#define HIGH_LIGHT 4096

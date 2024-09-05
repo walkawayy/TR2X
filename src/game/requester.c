@@ -153,3 +153,31 @@ void __cdecl Requester_ChangeItem(
         req->pitem_flags2[item] = 0;
     }
 }
+
+void __cdecl Requester_AddItem(
+    REQUEST_INFO *const req, const char *const text1, const uint32_t flags1,
+    const char *const text2, const uint32_t flags2)
+{
+    req->pitem_flags1 = g_RequesterFlags1;
+    req->pitem_flags2 = g_RequesterFlags2;
+
+    if (text1 != NULL) {
+        strcpy(
+            &req->pitem_strings1[req->items_count * req->item_string_len],
+            text1);
+        req->pitem_flags1[req->items_count] = flags1 | REQ_USE;
+    } else {
+        g_RequesterFlags1[req->items_count] = 0;
+    }
+
+    if (text2 != NULL) {
+        strcpy(
+            &req->pitem_strings2[req->items_count * req->item_string_len],
+            text2);
+        req->pitem_flags2[req->items_count] = flags2 | REQ_USE;
+    } else {
+        req->pitem_flags2[req->items_count] = 0;
+    }
+
+    req->items_count++;
+}

@@ -122,7 +122,6 @@
 #define Inv_Ring_MotionItemDeselect ((void __cdecl (*)(RING_INFO *ring, INVENTORY_ITEM *inv_item))0x00425530)
 #define Requester_Display ((int32_t __cdecl (*)(REQUEST_INFO *req, int32_t des, int32_t backgrounds))0x004257C0)
 #define Requster_RemoveAllItems ((void __cdecl (*)(REQUEST_INFO *req))0x004260E0)
-#define Requester_AddItem ((void __cdecl (*)(REQUEST_INFO *req, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2))0x004261C0)
 #define Requester_SetSize ((void __cdecl (*)(REQUEST_INFO *req, int32_t maxlines, int32_t ypos))0x00426270)
 #define AddAssaultTime ((int32_t __cdecl (*)(uint32_t time))0x004262B0)
 #define HarpoonBolt_Control ((void __cdecl (*)(int16_t item_num))0x0042C0F0)

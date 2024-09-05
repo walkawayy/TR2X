@@ -366,6 +366,7 @@ static void Inject_Requester(const bool enable)
     INJECT(enable, 0x00425760, Requester_Item_RightAlign);
     INJECT(enable, 0x00426030, Requester_SetHeading);
     INJECT(enable, 0x00426100, Requester_ChangeItem);
+    INJECT(enable, 0x004261C0, Requester_AddItem);
 }
 
 static void Inject_Option(const bool enable)

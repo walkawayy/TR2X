@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.54% (713)</tspan> · <tspan class="known">39% (475)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.62% (714)</tspan> · <tspan class="known">38.92% (474)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="437.28" height="6" x="0" y="0" class="decompiled"/>
-<rect width="291.32" height="6" x="437.28" y="0" class="known"/>
+<rect width="437.90" height="6" x="0" y="0" class="decompiled"/>
+<rect width="290.70" height="6" x="437.90" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -445,7 +445,7 @@
 <rect width="12" height="12" x="240" y="105" class="known"><title>int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
 <rect width="12" height="12" x="255" y="105" class="decompiled"><title>void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="270" y="105" class="known"><title>void __cdecl Requster_RemoveAllItems(REQUEST_INFO *req);</title></rect>
-<rect width="12" height="12" x="285" y="105" class="known"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
+<rect width="12" height="12" x="285" y="105" class="decompiled"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="300" y="105" class="known"><title>void __cdecl Requester_AddItem(REQUEST_INFO *req, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="315" y="105" class="known"><title>void __cdecl Requester_SetSize(REQUEST_INFO *req, int32_t maxlines, int32_t ypos);</title></rect>
 <rect width="12" height="12" x="330" y="105" class="known"><title>int32_t __cdecl AddAssaultTime(uint32_t time);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.96%</tspan> · <tspan class="known">36.71%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">63.02%</tspan> · <tspan class="known">36.65%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="470.34" height="6" x="0" y="0" class="decompiled"/>
-<rect width="274.22" height="6" x="470.34" y="0" class="known"/>
+<rect width="470.76" height="6" x="0" y="0" class="decompiled"/>
+<rect width="273.80" height="6" x="470.76" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1762,7 +1762,7 @@
 <rect width="9.54" height="9.84" x="521.63" y="188.59" class="known"><title>void __cdecl Splash(ITEM_INFO *item);</title></rect>
 <rect width="9.54" height="9.77" x="521.63" y="201.42" class="decompiled"><title>int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);</title></rect>
 <rect width="9.54" height="9.77" x="521.63" y="214.20" class="decompiled"><title>void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);</title></rect>
-<rect width="9.54" height="9.71" x="521.63" y="226.97" class="known"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
+<rect width="9.54" height="9.71" x="521.63" y="226.97" class="decompiled"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="239.68" class="decompiled"><title>void __cdecl Option_Compass(INVENTORY_ITEM *item);</title></rect>
 <rect width="9.54" height="9.71" x="521.63" y="252.39" class="known"><title>void __cdecl AnimateTextures(int32_t ticks);</title></rect>
 <rect width="9.54" height="9.64" x="521.63" y="265.09" class="known"><title>void __cdecl DeathSlideCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);</title></rect>

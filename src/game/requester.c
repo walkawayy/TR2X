@@ -128,3 +128,28 @@ void __cdecl Requester_SetHeading(
         req->heading_flags2 = 0;
     }
 }
+
+void __cdecl Requester_ChangeItem(
+    REQUEST_INFO *const req, const int32_t item, const char *const text1,
+    const uint32_t flags1, const char *const text2, const uint32_t flags2)
+{
+    Text_Remove(req->item_texts1[item]);
+    req->item_texts1[item] = NULL;
+
+    Text_Remove(req->item_texts2[item]);
+    req->item_texts2[item] = NULL;
+
+    if (text1 != NULL) {
+        strcpy(&req->pitem_strings1[item * req->item_string_len], text1);
+        req->pitem_flags1[item] = flags1 | REQ_USE;
+    } else {
+        req->pitem_flags1[item] = 0;
+    }
+
+    if (text2 != NULL) {
+        strcpy(&req->pitem_strings2[item * req->item_string_len], text2);
+        req->pitem_flags2[item] = flags2 | REQ_USE;
+    } else {
+        req->pitem_flags2[item] = 0;
+    }
+}

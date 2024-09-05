@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.87% (717)</tspan> · <tspan class="known">38.67% (471)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.95% (718)</tspan> · <tspan class="known">38.59% (470)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="439.74" height="6" x="0" y="0" class="decompiled"/>
-<rect width="288.86" height="6" x="439.74" y="0" class="known"/>
+<rect width="440.35" height="6" x="0" y="0" class="decompiled"/>
+<rect width="288.25" height="6" x="440.35" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -442,7 +442,7 @@
 <rect width="12" height="12" x="195" y="105" class="decompiled"><title>void __cdecl Requester_Item_CenterAlign(REQUEST_INFO *req, TEXTSTRING *txt);</title></rect>
 <rect width="12" height="12" x="210" y="105" class="decompiled"><title>void __cdecl Requester_Item_LeftAlign(REQUEST_INFO *req, TEXTSTRING *txt);</title></rect>
 <rect width="12" height="12" x="225" y="105" class="decompiled"><title>void __cdecl Requester_Item_RightAlign(REQUEST_INFO *req, TEXTSTRING *txt);</title></rect>
-<rect width="12" height="12" x="240" y="105" class="known"><title>int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
+<rect width="12" height="12" x="240" y="105" class="decompiled"><title>int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
 <rect width="12" height="12" x="255" y="105" class="decompiled"><title>void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="270" y="105" class="decompiled"><title>void __cdecl Requester_RemoveAllItems(REQUEST_INFO *req);</title></rect>
 <rect width="12" height="12" x="285" y="105" class="decompiled"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">63.09%</tspan> · <tspan class="known">36.58%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">63.72%</tspan> · <tspan class="known">35.95%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="471.30" height="6" x="0" y="0" class="decompiled"/>
-<rect width="273.26" height="6" x="471.30" y="0" class="known"/>
+<rect width="476" height="6" x="0" y="0" class="decompiled"/>
+<rect width="268.56" height="6" x="476" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1318,7 +1318,7 @@
 <rect width="40.17" height="45.70" x="61" y="161.94" class="known"><title>void __cdecl HairControl(int32_t in_cutscene);</title></rect>
 <rect width="40.17" height="40.30" x="61" y="210.64" class="decompiled"><title>int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);</title></rect>
 <rect width="40.17" height="38.57" x="61" y="253.94" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT3(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
-<rect width="40.17" height="38.34" x="61" y="295.51" class="known"><title>int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
+<rect width="40.17" height="38.34" x="61" y="295.51" class="decompiled"><title>int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
 <rect width="40.17" height="38.15" x="61" y="336.85" class="known"><title>void __cdecl ExtractSaveGameInfo(void);</title></rect>
 <rect width="35.22" height="38.72" x="104.17" y="0" class="decompiled"><title>void __cdecl Camera_SmartShift(GAME_VECTOR *target, void (*__cdecl shift)(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom));</title></rect>
 <rect width="35.22" height="37.07" x="104.17" y="41.72" class="known"><title>void __cdecl SE_GraphicsDlgUpdate(HWND hwndDlg);</title></rect>

@@ -4,6 +4,8 @@
 
 void __cdecl Requester_Init(REQUEST_INFO *req);
 void __cdecl Requester_Shutdown(REQUEST_INFO *req);
+int32_t __cdecl Requester_Display(
+    REQUEST_INFO *req, bool destroy, bool backgrounds);
 void __cdecl Requester_RemoveAllItems(REQUEST_INFO *req);
 void __cdecl Requester_Item_CenterAlign(REQUEST_INFO *req, TEXTSTRING *text);
 void __cdecl Requester_Item_LeftAlign(REQUEST_INFO *req, TEXTSTRING *text);

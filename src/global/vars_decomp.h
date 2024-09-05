@@ -22,6 +22,12 @@
 #define g_CineTargetAngle (*(int16_t*)0x00464310) // = 0x4000
 #define g_OverlayStatus (*(int32_t*)0x004644E0) // = 1
 #define g_Inv_NFrames (*(int32_t*)0x004644F8)
+#define g_Requester_BackgroundGour1 (*(const uint16_t(*)[])0x00464500)
+#define g_Requester_BackgroundGour2 (*(const uint16_t(*)[])0x00464520)
+#define g_Requester_MainGour1 (*(const uint16_t(*)[])0x00464538)
+#define g_Requester_MainGour2 (*(const uint16_t(*)[])0x00464558)
+#define g_Requester_SelectionGour2 (*(const uint16_t(*)[])0x00464590)
+#define g_Requester_UnselectionGour1 (*(const uint16_t(*)[])0x004645A8)
 #define g_Inv_Item_Stopwatch (*(INVENTORY_ITEM*)0x00464A90)
 #define g_Inv_Item_Pistols (*(INVENTORY_ITEM*)0x00464AE0)
 #define g_Inv_Item_Flare (*(INVENTORY_ITEM*)0x00464B30)

@@ -3242,7 +3242,7 @@ typedef enum {
 0x004256E0  0x001B  +       void __cdecl Requester_Item_CenterAlign(REQUEST_INFO *req, TEXTSTRING *txt);
 0x00425700  0x0054  +       void __cdecl Requester_Item_LeftAlign(REQUEST_INFO *req, TEXTSTRING *txt);
 0x00425760  0x0056  +       void __cdecl Requester_Item_RightAlign(REQUEST_INFO *req, TEXTSTRING *txt);
-0x004257C0  0x0866  -       int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);
+0x004257C0  0x0866  +       int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);
 0x00426030  0x00AA  +       void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);
 0x004260E0  0x0013  +       void __cdecl Requester_RemoveAllItems(REQUEST_INFO *req);
 0x00426100  0x00C0  +       void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);
@@ -4671,3 +4671,9 @@ typedef enum {
 0x0051A24C  +       int32_t g_KeySelector;
 0x0051A248  +       int32_t g_KeyCursor;
 0x00466FA8  -       const char *g_KeyNames[];
+0x00464500  -       const uint16_t g_Requester_BackgroundGour1[];
+0x00464520  -       const uint16_t g_Requester_BackgroundGour2[];
+0x00464538  -       const uint16_t g_Requester_MainGour1[];
+0x00464558  -       const uint16_t g_Requester_MainGour2[];
+0x00464590  -       const uint16_t g_Requester_SelectionGour2[];
+0x004645A8  -       const uint16_t g_Requester_UnselectionGour1[];

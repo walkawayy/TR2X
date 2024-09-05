@@ -101,3 +101,30 @@ void __cdecl Requester_Item_RightAlign(
     text->pos.x = x + req->x_pos;
     text->bgnd_off.x = -x;
 }
+
+void __cdecl Requester_SetHeading(
+    REQUEST_INFO *const req, const char *const text1, const uint32_t flags1,
+    const char *const text2, const uint32_t flags2)
+{
+    Text_Remove(req->heading_text1);
+    req->heading_text1 = NULL;
+
+    Text_Remove(req->heading_text2);
+    req->heading_text2 = NULL;
+
+    if (text1 != NULL) {
+        strcpy(req->heading_string1, text1);
+        req->heading_flags1 = flags1 | REQ_USE;
+    } else {
+        strcpy(req->heading_string1, "u");
+        req->heading_flags1 = 0;
+    }
+
+    if (text2 != NULL) {
+        strcpy(req->heading_string2, text2);
+        req->heading_flags2 = flags2 | REQ_USE;
+    } else {
+        strcpy(req->heading_string2, "u");
+        req->heading_flags2 = 0;
+    }
+}

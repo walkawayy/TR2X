@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.46% (712)</tspan> · <tspan class="known">39.08% (476)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.54% (713)</tspan> · <tspan class="known">39% (475)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="436.67" height="6" x="0" y="0" class="decompiled"/>
-<rect width="291.93" height="6" x="436.67" y="0" class="known"/>
+<rect width="437.28" height="6" x="0" y="0" class="decompiled"/>
+<rect width="291.32" height="6" x="437.28" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -443,7 +443,7 @@
 <rect width="12" height="12" x="210" y="105" class="decompiled"><title>void __cdecl Requester_Item_LeftAlign(REQUEST_INFO *req, TEXTSTRING *txt);</title></rect>
 <rect width="12" height="12" x="225" y="105" class="decompiled"><title>void __cdecl Requester_Item_RightAlign(REQUEST_INFO *req, TEXTSTRING *txt);</title></rect>
 <rect width="12" height="12" x="240" y="105" class="known"><title>int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);</title></rect>
-<rect width="12" height="12" x="255" y="105" class="known"><title>void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
+<rect width="12" height="12" x="255" y="105" class="decompiled"><title>void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="270" y="105" class="known"><title>void __cdecl Requster_RemoveAllItems(REQUEST_INFO *req);</title></rect>
 <rect width="12" height="12" x="285" y="105" class="known"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="300" y="105" class="known"><title>void __cdecl Requester_AddItem(REQUEST_INFO *req, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.91%</tspan> · <tspan class="known">36.76%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">62.96%</tspan> · <tspan class="known">36.71%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="469.97" height="6" x="0" y="0" class="decompiled"/>
-<rect width="274.59" height="6" x="469.97" y="0" class="known"/>
+<rect width="470.34" height="6" x="0" y="0" class="decompiled"/>
+<rect width="274.22" height="6" x="470.34" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1813,7 +1813,7 @@
 <rect width="8.66" height="9.17" x="534.18" y="185.97" class="known"><title>void __cdecl S_CopyScreenToBuffer(void);</title></rect>
 <rect width="8.66" height="9.10" x="534.18" y="198.14" class="decompiled"><title>void __cdecl Matrix_RotX(int16_t rx);</title></rect>
 <rect width="8.66" height="9.10" x="534.18" y="210.24" class="decompiled"><title>const int16_t *__cdecl Output_InsertObjectGT3_ZBuffered(const int16_t *obj_ptr, int32_t num, SORT_TYPE sort_type);</title></rect>
-<rect width="8.66" height="9.10" x="534.18" y="222.34" class="known"><title>void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
+<rect width="8.66" height="9.10" x="534.18" y="222.34" class="decompiled"><title>void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);</title></rect>
 <rect width="8.66" height="9.10" x="534.18" y="234.44" class="decompiled"><title>int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="8.66" height="9.10" x="534.18" y="246.54" class="decompiled"><title>void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);</title></rect>
 <rect width="8.66" height="9.10" x="534.18" y="258.64" class="known"><title>bool __cdecl GuidStringToBinary(LPCTSTR lpString, GUID *guid);</title></rect>

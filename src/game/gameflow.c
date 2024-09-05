@@ -8,6 +8,7 @@
 #include "game/inventory/common.h"
 #include "game/objects/names.h"
 #include "game/overlay.h"
+#include "game/requester.h"
 #include "gameflow/gameflow_new.h"
 #include "global/funcs.h"
 #include "global/vars.h"

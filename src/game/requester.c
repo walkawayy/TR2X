@@ -68,6 +68,13 @@ void __cdecl Requester_Shutdown(REQUEST_INFO *const req)
     req->ready = 0;
 }
 
+void __cdecl Requester_RemoveAllItems(REQUEST_INFO *const req)
+{
+    req->items_count = 0;
+    req->line_offset = 0;
+    req->selected = 0;
+}
+
 void __cdecl Requester_Item_CenterAlign(
     REQUEST_INFO *const req, TEXTSTRING *const text)
 {

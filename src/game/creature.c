@@ -329,7 +329,23 @@ int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
 
 void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 {
-    ITEM_INFO *item = &g_Items[item_num];
+    ITEM_INFO *const item = &g_Items[item_num];
+
+    if (item->object_num == O_DRAGON_FRONT) {
+        item->hit_points = 0;
+        return;
+    }
+
+    if (item->object_num == O_SKIDMAN) {
+        if (explode) {
+            Effect_ExplodingDeath(item_num, -1, 0);
+        }
+        const int16_t vehicle_item_num = (int16_t)(intptr_t)item->data;
+        ITEM_INFO *const vehicle_item = &g_Items[vehicle_item_num];
+        vehicle_item->hit_points = 0;
+        return;
+    }
+
     item->collidable = 0;
     item->hit_points = DONT_TARGET;
     if (explode) {

@@ -372,11 +372,6 @@ bool Lara_Cheat_KillEnemy(const int16_t item_num)
         return false;
     }
 
-    if (item->object_num == O_DRAGON_FRONT) {
-        item->hit_points = 0;
-        return true;
-    }
-
     Sound_Effect(SFX_EXPLOSION1, &item->pos, SPM_NORMAL);
     Creature_Die(item_num, true);
     return true;

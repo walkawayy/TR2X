@@ -65,3 +65,12 @@ void __cdecl Requester_Shutdown(REQUEST_INFO *const req)
     Requester_ClearTextStrings(req);
     req->ready = 0;
 }
+
+void __cdecl Requester_Item_CenterAlign(
+    REQUEST_INFO *const req, TEXTSTRING *const text)
+{
+    if (text != NULL) {
+        text->bgnd_off.x = 0;
+        text->pos.x = req->x_pos;
+    }
+}

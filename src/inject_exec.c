@@ -210,6 +210,7 @@ static void Inject_Decomp_General(const bool enable)
 
 static void Inject_Decomp_Stats(const bool enable)
 {
+    INJECT(enable, 0x004262B0, AddAssaultTime);
     INJECT(enable, 0x00426340, ShowGymStatsText);
     INJECT(enable, 0x00426520, ShowStatsText);
     INJECT(enable, 0x004268C0, ShowEndStatsText);

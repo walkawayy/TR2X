@@ -4,6 +4,8 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/utils.h>
+
 static void Requester_ClearTextStrings(REQUEST_INFO *req);
 
 static void Requester_ClearTextStrings(REQUEST_INFO *const req)
@@ -180,4 +182,13 @@ void __cdecl Requester_AddItem(
     }
 
     req->items_count++;
+}
+
+void __cdecl Requester_SetSize(
+    REQUEST_INFO *const req, const int32_t max_lines, const int32_t y_pos)
+{
+    int32_t visible_lines = GetRenderHeight() / 2 / 18;
+    CLAMPG(visible_lines, max_lines);
+    req->y_pos = y_pos;
+    req->visible_count = visible_lines;
 }

@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.70% (715)</tspan> · <tspan class="known">38.83% (473)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">58.78% (716)</tspan> · <tspan class="known">38.75% (472)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="438.51" height="6" x="0" y="0" class="decompiled"/>
-<rect width="290.09" height="6" x="438.51" y="0" class="known"/>
+<rect width="439.12" height="6" x="0" y="0" class="decompiled"/>
+<rect width="289.48" height="6" x="439.12" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -447,7 +447,7 @@
 <rect width="12" height="12" x="270" y="105" class="known"><title>void __cdecl Requster_RemoveAllItems(REQUEST_INFO *req);</title></rect>
 <rect width="12" height="12" x="285" y="105" class="decompiled"><title>void __cdecl Requester_ChangeItem(REQUEST_INFO *req, int32_t item, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="12" height="12" x="300" y="105" class="decompiled"><title>void __cdecl Requester_AddItem(REQUEST_INFO *req, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
-<rect width="12" height="12" x="315" y="105" class="known"><title>void __cdecl Requester_SetSize(REQUEST_INFO *req, int32_t maxlines, int32_t ypos);</title></rect>
+<rect width="12" height="12" x="315" y="105" class="decompiled"><title>void __cdecl Requester_SetSize(REQUEST_INFO *req, int32_t maxlines, int32_t ypos);</title></rect>
 <rect width="12" height="12" x="330" y="105" class="known"><title>int32_t __cdecl AddAssaultTime(uint32_t time);</title></rect>
 <rect width="12" height="12" x="345" y="105" class="decompiled"><title>void __cdecl ShowGymStatsText(char *time_str, int32_t type);</title></rect>
 <rect width="12" height="12" x="360" y="105" class="decompiled"><title>void __cdecl ShowStatsText(char *time_str, int32_t type);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">63.07%</tspan> · <tspan class="known">36.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">63.09%</tspan> · <tspan class="known">36.59%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="471.14" height="6" x="0" y="0" class="decompiled"/>
-<rect width="273.42" height="6" x="471.14" y="0" class="known"/>
+<rect width="471.26" height="6" x="0" y="0" class="decompiled"/>
+<rect width="273.30" height="6" x="471.26" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -2203,7 +2203,7 @@
 <rect width="4.19" height="3.70" x="648.46" y="358.03" class="known"><title>void __cdecl TrapDoorFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);</title></rect>
 <rect width="4.19" height="3.70" x="648.46" y="364.72" class="decompiled"><title>void __cdecl WinVidHideGameWindow(void);</title></rect>
 <rect width="4.19" height="3.58" x="648.46" y="371.42" class="decompiled"><title>void __cdecl Output_InitPolyList(void);</title></rect>
-<rect width="3.77" height="3.99" x="655.65" y="283.23" class="known"><title>void __cdecl Requester_SetSize(REQUEST_INFO *req, int32_t maxlines, int32_t ypos);</title></rect>
+<rect width="3.77" height="3.99" x="655.65" y="283.23" class="decompiled"><title>void __cdecl Requester_SetSize(REQUEST_INFO *req, int32_t maxlines, int32_t ypos);</title></rect>
 <rect width="3.77" height="3.99" x="662.43" y="283.23" class="decompiled"><title>int16_t __cdecl Item_Create(void);</title></rect>
 <rect width="3.77" height="3.99" x="669.20" y="283.23" class="decompiled"><title>void __cdecl Lara_State_SwitchOn(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="3.77" height="3.99" x="675.97" y="283.23" class="known"><title>void __cdecl SwitchControl(int16_t item_num);</title></rect>

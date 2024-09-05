@@ -16,3 +16,5 @@ void __cdecl Requester_ChangeItem(
 void __cdecl Requester_AddItem(
     REQUEST_INFO *req, const char *text1, uint32_t flags1, const char *text2,
     uint32_t flags2);
+void __cdecl Requester_SetSize(
+    REQUEST_INFO *req, int32_t max_lines, int32_t y_pos);

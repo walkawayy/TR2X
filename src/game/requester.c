@@ -88,3 +88,16 @@ void __cdecl Requester_Item_LeftAlign(
     text->pos.x = req->x_pos - x;
     text->bgnd_off.x = x;
 }
+
+void __cdecl Requester_Item_RightAlign(
+    REQUEST_INFO *const req, TEXTSTRING *const text)
+{
+    const uint32_t scale_h = Text_GetScaleH(text->scale.h);
+    if (text == NULL) {
+        return;
+    }
+    const int32_t x = ((scale_h * req->pix_width) >> 16) / 2
+        - Text_GetWidth(text) / 2 - ((8 * scale_h) >> 16);
+    text->pos.x = x + req->x_pos;
+    text->bgnd_off.x = -x;
+}

@@ -3240,7 +3240,7 @@ typedef enum {
 0x004255A0  0x0082  +       void __cdecl Requester_Init(REQUEST_INFO *req);
 0x00425630  0x00A3  +       void __cdecl Requester_Shutdown(REQUEST_INFO *req);
 0x004256E0  0x001B  +       void __cdecl Requester_Item_CenterAlign(REQUEST_INFO *req, TEXTSTRING *txt);
-0x00425700  0x0054  -       void __cdecl Requester_Item_LeftAlign(REQUEST_INFO *req, TEXTSTRING *txt);
+0x00425700  0x0054  +       void __cdecl Requester_Item_LeftAlign(REQUEST_INFO *req, TEXTSTRING *txt);
 0x00425760  0x0056  -       void __cdecl Requester_Item_RightAlign(REQUEST_INFO *req, TEXTSTRING *txt);
 0x004257C0  0x0866  -       int32_t __cdecl Requester_Display(REQUEST_INFO *req, int32_t des, int32_t backgrounds);
 0x00426030  0x00AA  -       void __cdecl Requester_SetHeading(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2);

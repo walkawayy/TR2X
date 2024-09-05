@@ -69,8 +69,22 @@ void __cdecl Requester_Shutdown(REQUEST_INFO *const req)
 void __cdecl Requester_Item_CenterAlign(
     REQUEST_INFO *const req, TEXTSTRING *const text)
 {
-    if (text != NULL) {
-        text->bgnd_off.x = 0;
-        text->pos.x = req->x_pos;
+    if (text == NULL) {
+        return;
     }
+    text->bgnd_off.x = 0;
+    text->pos.x = req->x_pos;
+}
+
+void __cdecl Requester_Item_LeftAlign(
+    REQUEST_INFO *const req, TEXTSTRING *const text)
+{
+    if (text == NULL) {
+        return;
+    }
+    const uint32_t scale_h = Text_GetScaleH(text->scale.h);
+    const int32_t x = ((scale_h * req->pix_width) >> 16) / 2
+        - Text_GetWidth(text) / 2 - ((8 * scale_h) >> 16);
+    text->pos.x = req->x_pos - x;
+    text->bgnd_off.x = x;
 }

@@ -120,7 +120,6 @@
 #define Inv_Ring_MotionCameraPitch ((void __cdecl (*)(RING_INFO *ring, int16_t target))0x004254B0)
 #define Inv_Ring_MotionItemSelect ((void __cdecl (*)(RING_INFO *ring, INVENTORY_ITEM *inv_item))0x004254D0)
 #define Inv_Ring_MotionItemDeselect ((void __cdecl (*)(RING_INFO *ring, INVENTORY_ITEM *inv_item))0x00425530)
-#define Requester_Item_LeftAlign ((void __cdecl (*)(REQUEST_INFO *req, TEXTSTRING *txt))0x00425700)
 #define Requester_Item_RightAlign ((void __cdecl (*)(REQUEST_INFO *req, TEXTSTRING *txt))0x00425760)
 #define Requester_Display ((int32_t __cdecl (*)(REQUEST_INFO *req, int32_t des, int32_t backgrounds))0x004257C0)
 #define Requester_SetHeading ((void __cdecl (*)(REQUEST_INFO *req, char *text1, uint32_t flags1, char *text2, uint32_t flags2))0x00426030)

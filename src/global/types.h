@@ -1129,8 +1129,8 @@ typedef struct __unaligned {
     int32_t bone_idx;
     int16_t *frame_base; // TODO: make me FRAME_INFO
 
-    void (*initialise)(int16_t item_number);
-    void (*control)(int16_t item_number);
+    void (*initialise)(int16_t item_num);
+    void (*control)(int16_t item_num);
     void (*floor)(
         const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);

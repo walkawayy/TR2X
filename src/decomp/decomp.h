@@ -131,3 +131,4 @@ int32_t __cdecl Misc_Move3DPosTo3DPos(
     PHD_3DPOS *src_pos, const PHD_3DPOS *dst_pos, int32_t velocity,
     PHD_ANGLE ang_add);
 int32_t __cdecl LevelCompleteSequence(void);
+void __cdecl S_LoadSettings(void);

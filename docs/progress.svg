@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.33% (747)</tspan> · <tspan class="known">36.21% (441)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.41% (748)</tspan> · <tspan class="known">36.12% (440)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="458.14" height="6" x="0" y="0" class="decompiled"/>
-<rect width="270.47" height="6" x="458.14" y="0" class="known"/>
+<rect width="458.75" height="6" x="0" y="0" class="decompiled"/>
+<rect width="269.85" height="6" x="458.75" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1203,7 +1203,7 @@
 <rect width="12" height="12" x="360" y="330" class="decompiled"><title>int16_t __cdecl TitleSequence(void);</title></rect>
 <rect width="12" height="12" x="375" y="330" class="known"><title>void __cdecl CheckCheatMode(void);</title></rect>
 <rect width="12" height="12" x="390" y="330" class="known"><title>void __cdecl S_SaveSettings(void);</title></rect>
-<rect width="12" height="12" x="405" y="330" class="known"><title>void __cdecl S_LoadSettings(void);</title></rect>
+<rect width="12" height="12" x="405" y="330" class="decompiled"><title>void __cdecl S_LoadSettings(void);</title></rect>
 <rect width="12" height="12" x="420" y="330" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_OutPlay(int32_t sample_id, uint16_t volume, int32_t pitch, int32_t pan);</title></rect>
 <rect width="12" height="12" x="435" y="330" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_CalculateSampleVolume(int32_t volume);</title></rect>
 <rect width="12" height="12" x="450" y="330" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_CalculateSamplePan(int16_t pan);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">64.97%</tspan> · <tspan class="known">34.71%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.03%</tspan> · <tspan class="known">34.64%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="485.31" height="6" x="0" y="0" class="decompiled"/>
-<rect width="259.25" height="6" x="485.31" y="0" class="known"/>
+<rect width="485.79" height="6" x="0" y="0" class="decompiled"/>
+<rect width="258.77" height="6" x="485.79" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1718,7 +1718,7 @@
 <rect width="10.23" height="10.74" x="683.92" y="122.81" class="known"><title>void __cdecl EarthQuake(int16_t item_num);</title></rect>
 <rect width="10.23" height="10.74" x="697.15" y="122.81" class="known"><title>void __cdecl ModifyStartInfo(int32_t level_num);</title></rect>
 <rect width="10.23" height="10.74" x="710.38" y="122.81" class="known"><title>void __cdecl SpringBoardControl(int16_t item_num);</title></rect>
-<rect width="10.23" height="10.74" x="723.60" y="122.81" class="known"><title>void __cdecl S_LoadSettings(void);</title></rect>
+<rect width="10.23" height="10.74" x="723.60" y="122.81" class="decompiled"><title>void __cdecl S_LoadSettings(void);</title></rect>
 <rect width="10.17" height="10.74" x="736.83" y="122.81" class="decompiled"><title>int32_t __cdecl LOS_ClipTarget(const GAME_VECTOR *start, GAME_VECTOR *target, const SECTOR_INFO *sector);</title></rect>
 <rect width="10.18" height="10.73" x="508.46" y="136.56" class="decompiled"><title>void __cdecl Room_TriggerMusicTrackImpl(int16_t value, int16_t flags, int16_t type);</title></rect>
 <rect width="10.18" height="10.67" x="508.46" y="150.29" class="known"><title>void __cdecl CreateBartoliLight(int16_t item_num);</title></rect>

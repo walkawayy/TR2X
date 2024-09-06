@@ -2988,3 +2988,40 @@ int32_t __cdecl LevelCompleteSequence(void)
 {
     return GFD_EXIT_TO_TITLE;
 }
+
+void __cdecl S_LoadSettings(void)
+{
+    OpenGameRegistryKey("Game");
+
+    {
+        DWORD tmp;
+        GetRegistryDwordValue("MusicVolume", &tmp, 165);
+        g_OptionMusicVolume = tmp;
+    }
+
+    {
+        DWORD tmp;
+        GetRegistryDwordValue("SoundFXVolume", &tmp, 10);
+        g_OptionSoundVolume = tmp;
+    }
+
+    {
+        DWORD tmp;
+        GetRegistryDwordValue("DetailLevel", &tmp, 1);
+        g_DetailLevel = tmp;
+    }
+
+    GetRegistryFloatValue("Sizer", &g_GameSizerCopy, 1.0);
+    GetRegistryBinaryValue(
+        "Layout", (uint8_t *)&g_Layout[1], sizeof(uint16_t) * 14, 0);
+
+    CloseGameRegistryKey();
+
+    Sound_SetMasterVolume(6 * g_OptionSoundVolume + 4);
+
+    if (g_OptionMusicVolume) {
+        Music_SetVolume(25 * g_OptionMusicVolume + 5);
+    } else {
+        Music_SetVolume(0);
+    }
+}

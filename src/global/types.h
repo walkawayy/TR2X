@@ -1618,10 +1618,6 @@ typedef enum {
     IS_INVISIBLE   = 3,
 } ITEM_STATUS;
 
-typedef struct __unaligned {
-    uint16_t key[14];
-} CONTROL_LAYOUT;
-
 typedef enum {
     IN_FORWARD     = 0x00000001,
     IN_BACK        = 0x00000002,

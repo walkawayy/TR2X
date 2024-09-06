@@ -5,6 +5,8 @@
 #include "global/vars.h"
 #include "specific/s_input.h"
 
+bool g_ConflictLayout[14] = { false };
+
 bool Input_Update(void)
 {
     bool result = S_Input_Update();

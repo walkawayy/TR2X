@@ -2,6 +2,7 @@
 
 #include "decomp/decomp.h"
 #include "game/console.h"
+#include "game/input.h"
 #include "game/inventory/backpack.h"
 #include "game/lara/lara_control.h"
 #include "global/const.h"
@@ -13,6 +14,41 @@
 #include <dinput.h>
 
 #define KEY_DOWN(key) ((g_DIKeys[(key)] & 0x80))
+
+INPUT_LAYOUT g_Layout[2] = {
+    { .key = {
+        DIK_UP,
+        DIK_DOWN,
+        DIK_LEFT,
+        DIK_RIGHT,
+        DIK_DELETE,
+        DIK_NEXT,
+        DIK_RSHIFT,
+        DIK_RMENU,
+        DIK_RCONTROL,
+        DIK_SPACE,
+        DIK_SLASH,
+        DIK_NUMPAD0,
+        DIK_END,
+        DIK_ESCAPE,
+    } },
+    { .key = {
+        DIK_NUMPAD8,
+        DIK_NUMPAD2,
+        DIK_NUMPAD4,
+        DIK_NUMPAD6,
+        DIK_NUMPAD7,
+        DIK_NUMPAD9,
+        DIK_NUMPAD1,
+        DIK_ADD,
+        DIK_NUMPADENTER,
+        DIK_NUMPAD3,
+        DIK_SUBTRACT,
+        DIK_NUMPAD0,
+        DIK_NUMPAD5,
+        DIK_DECIMAL,
+    } }
+};
 
 static bool m_IsF3Pressed = false;
 static bool m_IsF4Pressed = false;

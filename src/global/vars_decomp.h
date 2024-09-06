@@ -96,7 +96,6 @@
 #define g_DumpY (*(int16_t*)0x00466BE6)
 #define g_DumpWidth (*(int16_t*)0x00466BE8)
 #define g_DumpHeight (*(int16_t*)0x00466BEA)
-#define g_Layout (*(CONTROL_LAYOUT(*)[2])0x00466F70)
 #define g_KeyNames (*(const char *(*)[])0x00466FA8)
 #define g_DetailLevel (*(int32_t*)0x0046773C)
 #define g_MidSort (*(int32_t*)0x0046C300) // = 0
@@ -345,7 +344,6 @@
 #define g_ZWriteEnableState (*(bool*)0x00519F70)
 #define g_HWR_TexturePageIndexes (*(int32_t(*)[32])0x00519F78)
 #define g_GameMemoryPtr (*(void **)0x0051A0CC)
-#define g_ConflictLayout (*(BOOL(*)[14])0x0051A0D0)
 #define g_DIKeys (*(uint8_t(*)[256])0x0051A108)
 #define g_Input (*(int32_t*)0x0051A208)
 #define g_IsVidModeLock (*(int8_t*)0x0051A20C)

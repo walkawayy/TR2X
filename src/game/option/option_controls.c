@@ -1,3 +1,4 @@
+#include "game/input.h"
 #include "game/option/option.h"
 #include "game/text.h"
 #include "global/funcs.h"
@@ -325,7 +326,7 @@ void __cdecl Option_Controls_ShowControls(void)
             left_col = right_col - 200;
         }
 
-        const CONTROL_LAYOUT *const layout = &g_Layout[g_LayoutPage];
+        const INPUT_LAYOUT *const layout = &g_Layout[g_LayoutPage];
 
         g_ControlsTextA[0] =
             Text_Create(left_col, -25, 16, g_KeyNames[layout->key[0]]);

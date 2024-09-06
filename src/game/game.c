@@ -140,7 +140,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
             while (item_num != NO_ITEM) {
                 ITEM_INFO *const item = &g_Items[item_num];
                 const int16_t next = item->next_active;
-                const OBJECT_INFO *object = &g_Objects[item->object_num];
+                const OBJECT_INFO *object = &g_Objects[item->object_id];
                 if (!(item->flags & IF_KILLED) && object->control != NULL) {
                     object->control(item_num);
                 }
@@ -152,7 +152,7 @@ int32_t __cdecl Game_Control(int32_t nframes, const bool demo_mode)
             int16_t fx_num = g_NextEffectActive;
             while (fx_num != NO_ITEM) {
                 FX_INFO *const fx = &g_Effects[fx_num];
-                const OBJECT_INFO *const object = &g_Objects[fx->object_num];
+                const OBJECT_INFO *const object = &g_Objects[fx->object_id];
                 const int32_t next = fx->next_active;
                 if (object->control != NULL) {
                     object->control(fx_num);

@@ -243,10 +243,10 @@ void __cdecl Overlay_DrawPickups(const bool timed)
     }
 }
 
-void __cdecl Overlay_AddDisplayPickup(const int16_t obj_num)
+void __cdecl Overlay_AddDisplayPickup(const GAME_OBJECT_ID object_id)
 {
-    if (obj_num == O_SECRET_1 || obj_num == O_SECRET_2
-        || obj_num == O_SECRET_3) {
+    if (object_id == O_SECRET_1 || object_id == O_SECRET_2
+        || object_id == O_SECRET_3) {
         Music_Play(g_GameFlow.secret_track, false);
     }
 
@@ -254,7 +254,7 @@ void __cdecl Overlay_AddDisplayPickup(const int16_t obj_num)
         PICKUP_INFO *const pickup = &g_Pickups[i];
         if (pickup->timer <= 0) {
             pickup->timer = 2.5 * FRAMES_PER_SECOND;
-            pickup->sprite = g_Objects[obj_num].mesh_idx;
+            pickup->sprite = g_Objects[object_id].mesh_idx;
             return;
         }
     }

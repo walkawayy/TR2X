@@ -12,7 +12,7 @@ int32_t __cdecl Effect_ExplodingDeath(
     const int16_t item_num, const int32_t mesh_bits, const int16_t damage)
 {
     ITEM_INFO *const item = &g_Items[item_num];
-    const OBJECT_INFO *const object = &g_Objects[item->object_num];
+    const OBJECT_INFO *const object = &g_Objects[item->object_id];
 
     S_CalculateLight(item->pos.x, item->pos.y, item->pos.z, item->room_num);
 
@@ -45,7 +45,7 @@ int32_t __cdecl Effect_ExplodingDeath(
             fx->speed = Random_GetControl() >> 8;
             fx->fall_speed = -Random_GetControl() >> 8;
             fx->counter = damage;
-            fx->object_num = O_BODY_PART;
+            fx->object_id = O_BODY_PART;
             fx->frame_num = object->mesh_idx;
             fx->shade = g_LsAdder - 0x300;
         }
@@ -93,7 +93,7 @@ int32_t __cdecl Effect_ExplodingDeath(
                 fx->speed = Random_GetControl() >> 8;
                 fx->fall_speed = -Random_GetControl() >> 8;
                 fx->counter = damage;
-                fx->object_num = O_BODY_PART;
+                fx->object_id = O_BODY_PART;
                 fx->frame_num = object->mesh_idx + i;
                 fx->shade = g_LsAdder - 0x300;
             }

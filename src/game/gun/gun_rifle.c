@@ -146,7 +146,7 @@ void __cdecl Gun_Rifle_FireHarpoon(void)
     }
 
     ITEM_INFO *const item = &g_Items[item_num];
-    item->object_num = O_HARPOON_BOLT;
+    item->object_id = O_HARPOON_BOLT;
     item->room_num = g_LaraItem->room_num;
 
     XYZ_32 offset = {
@@ -200,7 +200,7 @@ void __cdecl Gun_Rifle_FireGrenade(void)
     }
 
     ITEM_INFO *const item = &g_Items[item_num];
-    item->object_num = O_GRENADE;
+    item->object_id = O_GRENADE;
     item->room_num = g_LaraItem->room_num;
 
     XYZ_32 offset = {
@@ -235,19 +235,19 @@ void __cdecl Gun_Rifle_Draw(const LARA_GUN_TYPE weapon_type)
     } else {
         g_Lara.weapon_item = Item_Create();
         item = &g_Items[g_Lara.weapon_item];
-        item->object_num = Gun_GetWeaponAnim(weapon_type);
+        item->object_id = Gun_GetWeaponAnim(weapon_type);
         if (weapon_type == LGT_GRENADE) {
             item->anim_num = g_Objects[O_LARA_GRENADE].anim_idx;
         } else {
-            item->anim_num = g_Objects[item->object_num].anim_idx + 1;
+            item->anim_num = g_Objects[item->object_id].anim_idx + 1;
         }
         item->frame_num = g_Anims[item->anim_num].frame_base;
         item->goal_anim_state = LA_G_DRAW;
         item->current_anim_state = LA_G_DRAW;
         item->status = IS_ACTIVE;
         item->room_num = NO_ROOM;
-        g_Lara.right_arm.frame_base = g_Objects[item->object_num].frame_base;
-        g_Lara.left_arm.frame_base = g_Objects[item->object_num].frame_base;
+        g_Lara.right_arm.frame_base = g_Objects[item->object_id].frame_base;
+        g_Lara.left_arm.frame_base = g_Objects[item->object_id].frame_base;
     }
     Item_Animate(item);
 

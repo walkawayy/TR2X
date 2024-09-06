@@ -44,7 +44,7 @@ void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
     g_Lara.look = 1;
 
     if (g_Lara.skidoo != NO_ITEM) {
-        if (g_Items[g_Lara.skidoo].object_num == O_SKIDOO_FAST) {
+        if (g_Items[g_Lara.skidoo].object_id == O_SKIDOO_FAST) {
             if (SkidooControl()) {
                 return;
             }
@@ -632,11 +632,11 @@ void __cdecl Lara_Animate(ITEM_INFO *const item)
     item->pos.z += (item->speed * Math_Cos(g_Lara.move_angle)) >> W2V_SHIFT;
 }
 
-void __cdecl Lara_UseItem(const GAME_OBJECT_ID object_num)
+void __cdecl Lara_UseItem(const GAME_OBJECT_ID object_id)
 {
     ITEM_INFO *const item = g_LaraItem;
 
-    switch (object_num) {
+    switch (object_id) {
     case O_PISTOL_ITEM:
     case O_PISTOL_OPTION:
         g_Lara.request_gun_type = LGT_PISTOLS;
@@ -912,22 +912,22 @@ void __cdecl Lara_InitialiseMeshes(const int32_t level_num)
 
     const START_INFO *const start = &g_SaveGame.start[level_num];
 
-    GAME_OBJECT_ID holster_obj_num = NO_OBJECT;
+    GAME_OBJECT_ID holster_object_id = NO_OBJECT;
     if (start->gun_type != LGT_UNARMED) {
         if (start->gun_type == LGT_MAGNUMS) {
-            holster_obj_num = O_LARA_MAGNUMS;
+            holster_object_id = O_LARA_MAGNUMS;
         } else if (start->gun_type == LGT_UZIS) {
-            holster_obj_num = O_LARA_UZIS;
+            holster_object_id = O_LARA_UZIS;
         } else {
-            holster_obj_num = O_LARA_PISTOLS;
+            holster_object_id = O_LARA_PISTOLS;
         }
     }
 
-    if (holster_obj_num != NO_OBJECT) {
+    if (holster_object_id != NO_OBJECT) {
         g_Lara.mesh_ptrs[LM_THIGH_L] =
-            g_Meshes[g_Objects[holster_obj_num].mesh_idx + LM_THIGH_L];
+            g_Meshes[g_Objects[holster_object_id].mesh_idx + LM_THIGH_L];
         g_Lara.mesh_ptrs[LM_THIGH_R] =
-            g_Meshes[g_Objects[holster_obj_num].mesh_idx + LM_THIGH_R];
+            g_Meshes[g_Objects[holster_object_id].mesh_idx + LM_THIGH_R];
     }
 
     if (start->gun_type == LGT_FLARE) {
@@ -969,7 +969,7 @@ void Lara_GetOffVehicle(void)
 {
     if (g_Lara.skidoo != NO_ITEM) {
         ITEM_INFO *const vehicle = &g_Items[g_Lara.skidoo];
-        vehicle->anim_num = g_Objects[vehicle->object_num].anim_idx;
+        vehicle->anim_num = g_Objects[vehicle->object_id].anim_idx;
         vehicle->frame_num = g_Anims[vehicle->anim_num].frame_base;
         g_Lara.skidoo = NO_ITEM;
 

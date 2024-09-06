@@ -40,7 +40,7 @@ void __cdecl Bird_Initialise(const int16_t item_num)
 {
     Creature_Initialise(item_num);
     ITEM_INFO *const item = &g_Items[item_num];
-    if (item->object_num == O_CROW) {
+    if (item->object_id == O_CROW) {
         item->anim_num = g_Objects[O_CROW].anim_idx + CROW_START_ANIM;
         item->frame_num = g_Anims[item->anim_num].frame_base;
         item->goal_anim_state = BIRD_ANIM_EAT;
@@ -78,7 +78,7 @@ void __cdecl Bird_Control(const int16_t item_num)
             break;
 
         default:
-            if (item->object_num == O_CROW) {
+            if (item->object_id == O_CROW) {
                 item->anim_num = g_Objects[O_CROW].anim_idx + CROW_DIE_ANIM;
             } else {
                 item->anim_num = g_Objects[O_EAGLE].anim_idx + BIRD_DIE_ANIM;
@@ -134,7 +134,7 @@ void __cdecl Bird_Control(const int16_t item_num)
         if (!bird->flags && item->touch_bits) {
             g_LaraItem->hit_points -= BIRD_DAMAGE;
             g_LaraItem->hit_status = 1;
-            if (item->object_num == O_CROW) {
+            if (item->object_id == O_CROW) {
                 Creature_Effect(item, &m_CrowBite, DoBloodSplat);
             } else {
                 Creature_Effect(item, &m_BirdBite, DoBloodSplat);

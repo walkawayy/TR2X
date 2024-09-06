@@ -1214,7 +1214,7 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
 
             for (int32_t id = g_NextItemActive; id != NO_ITEM;) {
                 const ITEM_INFO *const item = &g_Items[id];
-                const OBJECT_INFO *obj = &g_Objects[item->object_num];
+                const OBJECT_INFO *obj = &g_Objects[item->object_id];
                 if (obj->control != NULL) {
                     obj->control(id);
                 }
@@ -1223,7 +1223,7 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
 
             for (int32_t id = g_NextEffectActive; id != NO_ITEM;) {
                 const FX_INFO *const fx = &g_Effects[id];
-                const OBJECT_INFO *const obj = &g_Objects[fx->object_num];
+                const OBJECT_INFO *const obj = &g_Objects[fx->object_id];
                 if (obj->control != NULL) {
                     obj->control(id);
                 }

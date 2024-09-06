@@ -530,7 +530,7 @@ typedef struct __unaligned {
     int32_t floor;
     uint32_t touch_bits;
     uint32_t mesh_bits;
-    int16_t object_num;
+    int16_t object_id;
     int16_t current_anim_state;
     int16_t goal_anim_state;
     int16_t required_anim_state;
@@ -643,7 +643,7 @@ typedef struct __unaligned {
     XYZ_32 pos;
     XYZ_16 rot;
     int16_t room_num;
-    int16_t object_num;
+    int16_t object_id;
     int16_t next_fx;
     int16_t next_active;
     int16_t speed;
@@ -713,7 +713,7 @@ typedef struct __unaligned {
 
 typedef struct __unaligned {
     char *string;
-    int16_t obj_num;
+    int16_t object_id;
     int16_t frames_total;
     int16_t current_frame;
     int16_t goal_frame;
@@ -3208,7 +3208,7 @@ typedef enum {
 0x00421CF0  0x0132  +       void __cdecl Overlay_DrawAmmoInfo(void);
 0x00421E40  0x0015  +       void __cdecl Overlay_InitialisePickUpDisplay(void);
 0x00421E60  0x00FD  +       void __cdecl Overlay_DrawPickups(bool pickup_state);
-0x00421F60  0x006C  +       void __cdecl Overlay_AddDisplayPickup(GAME_OBJECT_ID object_num);
+0x00421F60  0x006C  +       void __cdecl Overlay_AddDisplayPickup(GAME_OBJECT_ID object_id);
 0x00421FD0  0x007A  +       void __cdecl Overlay_DisplayModeInfo(char* string);
 0x00422050  0x002C  +       void __cdecl Overlay_DrawModeInfo(void);
 
@@ -3228,12 +3228,12 @@ typedef enum {
 0x00423DB0  0x0081  +       void __cdecl Inv_RingIsNotOpen(RING_INFO *ring);
 0x00423E40  0x0369  +       void __cdecl Inv_RingNotActive(INVENTORY_ITEM *inv_item);
 0x004242B0  0x0032  +       void __cdecl Inv_RingActive(void);
-0x004242F0  0x06BE  +       int32_t __cdecl Inv_AddItem(GAME_OBJECT_ID object_num);
+0x004242F0  0x06BE  +       int32_t __cdecl Inv_AddItem(GAME_OBJECT_ID object_id);
 0x00424B00  0x0129  +       void __cdecl Inv_InsertItem(INVENTORY_ITEM *inv_item);
-0x00424C30  0x0077  +       int32_t __cdecl Inv_RequestItem(GAME_OBJECT_ID object_num);
+0x00424C30  0x0077  +       int32_t __cdecl Inv_RequestItem(GAME_OBJECT_ID object_id);
 0x00424CB0  0x001B  +       void __cdecl Inv_RemoveAllItems(void);
-0x00424CD0  0x0110  +       int32_t __cdecl Inv_RemoveItem(GAME_OBJECT_ID object_num);
-0x00424DE0  0x00C1  +       int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_num);
+0x00424CD0  0x0110  +       int32_t __cdecl Inv_RemoveItem(GAME_OBJECT_ID object_id);
+0x00424DE0  0x00C1  +       int32_t __cdecl Inv_GetItemOption(GAME_OBJECT_ID object_id);
 0x00424FD0  0x0024  +       void __cdecl Inv_RemoveInventoryText(void);
 0x00425000  0x010F  +       void __cdecl Inv_Ring_Init(RING_INFO *ring, int16_t type, INVENTORY_ITEM **list, int16_t qty, int16_t current, IMOTION_INFO *imo);
 0x00425110  0x0060  +       void __cdecl Inv_Ring_GetView(RING_INFO *ring, PHD_3DPOS *viewer);
@@ -3277,7 +3277,7 @@ typedef enum {
 0x00427100  0x006F  +       void __cdecl Item_RemoveDrawn(int16_t item_num);
 0x00427170  0x005A  +       void __cdecl Item_AddActive(int16_t item_num);
 0x004271D0  0x009C  +       void __cdecl Item_NewRoom(int16_t item_num, int16_t room_num);
-0x00427270  0x007C  +       int32_t __cdecl Item_GlobalReplace(GAME_OBJECT_ID src_object_num, GAME_OBJECT_ID dst_object_num);
+0x00427270  0x007C  +       int32_t __cdecl Item_GlobalReplace(GAME_OBJECT_ID src_object_id, GAME_OBJECT_ID dst_object_id);
 0x004272F0  0x0030  +       void __cdecl Effect_InitialiseArray(void);
 0x00427320  0x006C  +       int16_t __cdecl Effect_Create(int16_t room_num);
 0x00427390  0x00E3  +       void __cdecl Effect_Kill(int16_t fx_num);
@@ -3468,7 +3468,7 @@ typedef enum {
 # game/laramisc.c
 0x004302E0  0x0668  +       void __cdecl Lara_Control(int16_t item_num);
 0x00430970  0x02CD  +       void __cdecl Lara_Animate(ITEM_INFO *item);
-0x00430C70  0x013F  +       void __cdecl Lara_UseItem(GAME_OBJECT_ID object_num);
+0x00430C70  0x013F  +       void __cdecl Lara_UseItem(GAME_OBJECT_ID object_id);
 0x00430E30  0x00BA  +       void __cdecl Lara_CheatGetStuff(void);
 0x00430EF0  0x001B  +       void __cdecl Lara_ControlExtra(int16_t item_num);
 0x00430F10  0x0021  +       void __cdecl Lara_InitialiseLoad(int16_t item_num);

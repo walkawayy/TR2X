@@ -18,7 +18,7 @@
 
 typedef struct {
     int32_t score;
-    GAME_OBJECT_ID obj_id;
+    GAME_OBJECT_ID object_id;
 } MATCH;
 
 static const INVENTORY_ITEM *const m_InvItems[] = {
@@ -63,7 +63,7 @@ ENUM_STRING_MAP ENUM_STRING_MAP(GAME_OBJECT_ID)[] = {
 static int32_t Object_NameMatch(const char *user_input, const char *name);
 static void Object_TryMatch(
     VECTOR *matches, const char *user_input, const char *name,
-    GAME_OBJECT_ID obj_id);
+    GAME_OBJECT_ID object_id);
 
 static int32_t Object_NameMatch(
     const char *const user_input, const char *const name)
@@ -90,26 +90,26 @@ static int32_t Object_NameMatch(
 
 static void Object_TryMatch(
     VECTOR *const matches, const char *const user_input, const char *const name,
-    const GAME_OBJECT_ID obj_id)
+    const GAME_OBJECT_ID object_id)
 {
     int32_t score = Object_NameMatch(user_input, name);
-    if (!g_Objects[obj_id].loaded) {
+    if (!g_Objects[object_id].loaded) {
         score -= GOOD_MATCH_THRESHOLD;
     }
     if (score > 0) {
         MATCH match = {
             .score = score,
-            .obj_id = obj_id,
+            .object_id = object_id,
         };
         Vector_Add(matches, &match);
     }
 }
 
-const char *Object_GetName(const GAME_OBJECT_ID obj_id)
+const char *Object_GetName(const GAME_OBJECT_ID object_id)
 {
     // TODO: remove this in favor of changing the INVENTORY_ITEM.text directly
     // clang-format off
-    switch (obj_id) {
+    switch (object_id) {
         case O_PUZZLE_ITEM_1: return g_GF_Puzzle1Strings[g_CurrentLevel];
         case O_PUZZLE_ITEM_2: return g_GF_Puzzle2Strings[g_CurrentLevel];
         case O_PUZZLE_ITEM_3: return g_GF_Puzzle3Strings[g_CurrentLevel];
@@ -124,16 +124,17 @@ const char *Object_GetName(const GAME_OBJECT_ID obj_id)
     }
     // clang-format on
 
-    return m_ObjectNames[obj_id] != NULL ? (const char *)m_ObjectNames[obj_id]
-                                         : m_DefaultObjectNames[obj_id];
+    return m_ObjectNames[object_id] != NULL
+        ? (const char *)m_ObjectNames[object_id]
+        : m_DefaultObjectNames[object_id];
 }
 
-void Object_SetName(const GAME_OBJECT_ID obj_id, const char *const name)
+void Object_SetName(const GAME_OBJECT_ID object_id, const char *const name)
 {
-    assert(obj_id >= 0);
-    assert(obj_id < O_NUMBER_OF);
-    Memory_FreePointer(&m_ObjectNames[obj_id]);
-    m_ObjectNames[obj_id] = Memory_DupStr(name);
+    assert(object_id >= 0);
+    assert(object_id < O_NUMBER_OF);
+    Memory_FreePointer(&m_ObjectNames[object_id]);
+    m_ObjectNames[object_id] = Memory_DupStr(name);
 }
 
 GAME_OBJECT_ID *Object_IdsFromName(
@@ -147,20 +148,21 @@ GAME_OBJECT_ID *Object_IdsFromName(
     for (const INVENTORY_ITEM *const *item_ptr = m_InvItems; *item_ptr != NULL;
          item_ptr++) {
         const INVENTORY_ITEM *const item = *item_ptr;
-        const GAME_OBJECT_ID obj_id =
-            Object_GetCognateInverse(item->obj_num, g_ItemToInvObjectMap);
-        if (filter != NULL && !filter(obj_id)) {
+        const GAME_OBJECT_ID object_id =
+            Object_GetCognateInverse(item->object_id, g_ItemToInvObjectMap);
+        if (filter != NULL && !filter(object_id)) {
             continue;
         }
-        Object_TryMatch(matches, user_input, item->string, obj_id);
+        Object_TryMatch(matches, user_input, item->string, object_id);
     }
 
     // Store matches from hardcoded strings
-    for (GAME_OBJECT_ID obj_id = 0; obj_id < O_NUMBER_OF; obj_id++) {
-        if (filter != NULL && !filter(obj_id)) {
+    for (GAME_OBJECT_ID object_id = 0; object_id < O_NUMBER_OF; object_id++) {
+        if (filter != NULL && !filter(object_id)) {
             continue;
         }
-        Object_TryMatch(matches, user_input, Object_GetName(obj_id), obj_id);
+        Object_TryMatch(
+            matches, user_input, Object_GetName(object_id), object_id);
     }
 
     // If we got a perfect match, discard poor matches
@@ -192,7 +194,7 @@ GAME_OBJECT_ID *Object_IdsFromName(
     for (int i = 0; i < matches->count; i++) {
         const MATCH *const match = Vector_Get(matches, i);
         LOG_DEBUG(
-            "%d. %s (%d)", i, Object_GetName(match->obj_id), match->score);
+            "%d. %s (%d)", i, Object_GetName(match->object_id), match->score);
     }
 
     // Make sure the returned matching object ids are unique
@@ -204,13 +206,13 @@ GAME_OBJECT_ID *Object_IdsFromName(
         const MATCH *const match = Vector_Get(matches, i);
         bool is_unique = true;
         for (int32_t j = 0; j < unique_count; j++) {
-            if (match->obj_id == unique_ids[j]) {
+            if (match->object_id == unique_ids[j]) {
                 is_unique = false;
                 break;
             }
         }
         if (is_unique) {
-            unique_ids[unique_count++] = match->obj_id;
+            unique_ids[unique_count++] = match->object_id;
         }
     }
 

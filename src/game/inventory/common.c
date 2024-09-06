@@ -111,8 +111,8 @@ void __cdecl Inv_Construct(void)
         inv_item->y_rot = 0;
         inv_item->y_trans = 0;
         inv_item->z_trans = 0;
-        if (inv_item->obj_num == O_PASSPORT_OPTION) {
-            inv_item->obj_num = O_PASSPORT_CLOSED;
+        if (inv_item->object_id == O_PASSPORT_OPTION) {
+            inv_item->object_id = O_PASSPORT_CLOSED;
         }
     }
 
@@ -126,8 +126,8 @@ void __cdecl Inv_Construct(void)
         inv_item->y_rot = 0;
         inv_item->y_trans = 0;
         inv_item->z_trans = 0;
-        if (inv_item->obj_num == O_PASSPORT_OPTION) {
-            inv_item->obj_num = O_PASSPORT_CLOSED;
+        if (inv_item->object_id == O_PASSPORT_OPTION) {
+            inv_item->object_id = O_PASSPORT_CLOSED;
         }
     }
 
@@ -451,7 +451,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                     g_Input = 0;
                     g_InputDB = 0;
 
-                    switch (inv_item->obj_num) {
+                    switch (inv_item->object_id) {
                     case O_COMPASS_OPTION:
                         Sound_Effect(SFX_MENU_STOPWATCH, 0, SPM_ALWAYS);
                         break;
@@ -612,8 +612,8 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
             case RNG_SELECTED: {
                 INVENTORY_ITEM *inv_item = ring.list[ring.current_object];
-                if (inv_item->obj_num == O_PASSPORT_CLOSED) {
-                    inv_item->obj_num = O_PASSPORT_OPTION;
+                if (inv_item->object_id == O_PASSPORT_CLOSED) {
+                    inv_item->object_id = O_PASSPORT_OPTION;
                 }
 
                 bool busy = false;
@@ -644,17 +644,17 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
                     if ((g_InputDB & IN_SELECT) != 0) {
                         inv_item->sprite_list = NULL;
-                        g_Inv_Chosen = inv_item->obj_num;
+                        g_Inv_Chosen = inv_item->object_id;
                         if (ring.type != RT_MAIN) {
                             g_Inv_OptionCurrent = ring.current_object;
                         } else {
                             g_Inv_MainCurrent = ring.current_object;
                         }
                         if (g_Inv_Mode == INV_TITLE_MODE
-                            && (inv_item->obj_num == O_DETAIL_OPTION
-                                || inv_item->obj_num == O_SOUND_OPTION
-                                || inv_item->obj_num == O_CONTROL_OPTION
-                                || inv_item->obj_num == O_GAMMA_OPTION)) {
+                            && (inv_item->object_id == O_DETAIL_OPTION
+                                || inv_item->object_id == O_SOUND_OPTION
+                                || inv_item->object_id == O_CONTROL_OPTION
+                                || inv_item->object_id == O_GAMMA_OPTION)) {
                             Inv_Ring_MotionSetup(
                                 &ring, RNG_CLOSING_ITEM, RNG_DESELECT, 0);
                         } else {
@@ -682,8 +682,8 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
                 INVENTORY_ITEM *inv_item = ring.list[ring.current_object];
                 for (int32_t frame = 0; frame < g_Inv_NFrames; frame++) {
                     if (!Inv_AnimateInventoryItem(inv_item)) {
-                        if (inv_item->obj_num == O_PASSPORT_OPTION) {
-                            inv_item->obj_num = O_PASSPORT_CLOSED;
+                        if (inv_item->object_id == O_PASSPORT_OPTION) {
+                            inv_item->object_id = O_PASSPORT_CLOSED;
                             inv_item->current_frame = 0;
                         }
 
@@ -774,7 +774,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
 void __cdecl Inv_SelectMeshes(INVENTORY_ITEM *const inv_item)
 {
-    switch (inv_item->obj_num) {
+    switch (inv_item->object_id) {
     case O_PASSPORT_OPTION:
         if (inv_item->current_frame < 4) {
             inv_item->meshes_drawn = PM_COMMON | PM_IN_FRONT;
@@ -837,7 +837,7 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
     int32_t minutes;
     int32_t hours;
     int32_t seconds;
-    if (inv_item->obj_num == O_COMPASS_OPTION) {
+    if (inv_item->object_id == O_COMPASS_OPTION) {
         const int32_t total_seconds =
             g_SaveGame.statistics.timer / FRAMES_PER_SECOND;
         hours = (total_seconds % 43200) * PHD_DEGREE * -360 / 43200;
@@ -851,7 +851,7 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
 
     Matrix_TranslateRel(0, inv_item->y_trans, inv_item->z_trans);
     Matrix_RotYXZ(inv_item->y_rot, inv_item->x_rot, 0);
-    const OBJECT_INFO *const obj = &g_Objects[inv_item->obj_num];
+    const OBJECT_INFO *const obj = &g_Objects[inv_item->object_id];
     if ((obj->flags & 1) == 0) {
         return;
     }
@@ -944,7 +944,7 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
             Matrix_RotYXZsuperpack(&rot, 0);
             bone += 4;
 
-            if (inv_item->obj_num == O_COMPASS_OPTION) {
+            if (inv_item->object_id == O_COMPASS_OPTION) {
                 if (mesh_idx == 6) {
                     Matrix_RotZ(seconds);
                     const int32_t tmp = inv_item->reserved[0];
@@ -1096,7 +1096,7 @@ void __cdecl Inv_RingIsNotOpen(RING_INFO *const ring)
 void __cdecl Inv_RingNotActive(const INVENTORY_ITEM *const inv_item)
 {
     if (g_Inv_ItemText[0] == NULL) {
-        switch (inv_item->obj_num) {
+        switch (inv_item->object_id) {
         case O_PASSPORT_OPTION:
             break;
         case O_PUZZLE_OPTION_1:
@@ -1150,8 +1150,8 @@ void __cdecl Inv_RingNotActive(const INVENTORY_ITEM *const inv_item)
         }
     }
 
-    const int32_t qty = Inv_RequestItem(inv_item->obj_num);
-    switch (inv_item->obj_num) {
+    const int32_t qty = Inv_RequestItem(inv_item->object_id);
+    switch (inv_item->object_id) {
     case O_SHOTGUN_OPTION:
         Inv_ShowAmmoQuantity(
             "%5d", g_Lara.shotgun_ammo.ammo / SHOTGUN_AMMO_CLIP);

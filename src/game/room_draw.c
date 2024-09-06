@@ -424,7 +424,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
     while (item_num != NO_ITEM) {
         ITEM_INFO *const item = &g_Items[item_num];
         if (item->status != IS_INVISIBLE) {
-            const OBJECT_INFO *const object = &g_Objects[item->object_num];
+            const OBJECT_INFO *const object = &g_Objects[item->object_id];
             object->draw_routine(item);
         }
         item_num = item->next_item;

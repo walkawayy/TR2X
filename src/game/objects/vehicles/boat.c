@@ -235,7 +235,7 @@ void __cdecl Boat_DoShift(const int32_t boat_num)
     while (item_num != NO_ITEM) {
         ITEM_INFO *item = &g_Items[item_num];
 
-        if (item->object_num == O_BOAT && item_num != boat_num
+        if (item->object_id == O_BOAT && item_num != boat_num
             && g_Lara.skidoo != item_num) {
             const int32_t dx = item->pos.x - boat->pos.x;
             const int32_t dz = item->pos.z - boat->pos.z;
@@ -248,7 +248,7 @@ void __cdecl Boat_DoShift(const int32_t boat_num)
             break;
         }
 
-        if (item->object_num == O_GONDOLA
+        if (item->object_id == O_GONDOLA
             && item->current_anim_state == GONDOLA_FLOATING) {
             const int32_t c = Math_Cos(item->rot.y);
             const int32_t s = Math_Sin(item->rot.y);
@@ -288,7 +288,7 @@ void __cdecl Boat_DoWakeEffect(const ITEM_INFO *const boat)
         }
 
         FX_INFO *const fx = &g_Effects[fx_num];
-        fx->object_num = O_WATER_SPRITE;
+        fx->object_id = O_WATER_SPRITE;
         fx->room_num = boat->room_num;
         fx->frame_num = frame;
 

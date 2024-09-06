@@ -13,7 +13,7 @@ void __cdecl Lara_ControlExtra(int16_t item_num);
 
 void __cdecl Lara_Animate(ITEM_INFO *item);
 
-void __cdecl Lara_UseItem(GAME_OBJECT_ID object_num);
+void __cdecl Lara_UseItem(GAME_OBJECT_ID object_id);
 
 void __cdecl Lara_InitialiseLoad(int16_t item_num);
 

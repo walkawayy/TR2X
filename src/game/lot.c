@@ -121,7 +121,7 @@ void __cdecl LOT_InitialiseSlot(const int16_t item_num, const int32_t slot)
     creature->lot.block_mask = BOX_BLOCKED;
     creature->lot.fly = 0;
 
-    switch (item->object_num) {
+    switch (item->object_id) {
     case O_LARA:
         creature->lot.step = WALL_L * 20;
         creature->lot.drop = -WALL_L * 20;
@@ -137,7 +137,7 @@ void __cdecl LOT_InitialiseSlot(const int16_t item_num, const int32_t slot)
         creature->lot.step = WALL_L * 20;
         creature->lot.drop = -WALL_L * 20;
         creature->lot.fly = STEP_L / 16;
-        if (item->object_num == O_SHARK) {
+        if (item->object_id == O_SHARK) {
             creature->lot.block_mask = BOX_BLOCKABLE;
         }
         break;

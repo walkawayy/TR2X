@@ -325,7 +325,7 @@ void __cdecl Gun_HitTarget(
     }
 
     if (!g_IsMonkAngry
-        && (item->object_num == O_MONK_1 || item->object_num == O_MONK_2)) {
+        && (item->object_id == O_MONK_1 || item->object_id == O_MONK_2)) {
         CREATURE_INFO *const creature = item->data;
         creature->flags += damage;
         if ((creature->flags & 0xFFF) > MONK_FRIENDLY_FIRE_THRESHOLD
@@ -340,7 +340,7 @@ void __cdecl Gun_SmashItem(
 {
     ITEM_INFO *const item = &g_Items[item_num];
 
-    switch (item->object_num) {
+    switch (item->object_id) {
     case O_WINDOW_1:
         SmashWindow(item_num);
         break;

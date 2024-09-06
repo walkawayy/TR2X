@@ -49,7 +49,7 @@ int32_t __cdecl Inv_AddItem(const GAME_OBJECT_ID object_id)
 
     for (int32_t i = 0; i < g_Inv_MainObjectsCount; i++) {
         const INVENTORY_ITEM *const inv_item = g_Inv_MainList[i];
-        if (inv_item->obj_num == inv_object_id) {
+        if (inv_item->object_id == inv_object_id) {
             const int32_t qty = object_id == O_FLARES_ITEM ? FLARE_AMMO_QTY : 1;
             g_Inv_MainQtys[i] += qty;
             return true;
@@ -58,7 +58,7 @@ int32_t __cdecl Inv_AddItem(const GAME_OBJECT_ID object_id)
 
     for (int32_t i = 0; i < g_Inv_KeyObjectsCount; i++) {
         const INVENTORY_ITEM *const inv_item = g_Inv_KeysList[i];
-        if (inv_item->obj_num == inv_object_id) {
+        if (inv_item->object_id == inv_object_id) {
             g_Inv_KeysQtys[i]++;
             return true;
         }
@@ -293,25 +293,25 @@ int32_t __cdecl Inv_AddItem(const GAME_OBJECT_ID object_id)
     }
 }
 
-void Inv_AddItemNTimes(GAME_OBJECT_ID object_num, int32_t qty)
+void Inv_AddItemNTimes(GAME_OBJECT_ID object_id, int32_t qty)
 {
     for (int32_t i = 0; i < qty; i++) {
-        Inv_AddItem(object_num);
+        Inv_AddItem(object_id);
     }
 }
 
-int32_t __cdecl Inv_RequestItem(const GAME_OBJECT_ID object_num)
+int32_t __cdecl Inv_RequestItem(const GAME_OBJECT_ID object_id)
 {
-    const GAME_OBJECT_ID inv_object_id = Inv_GetItemOption(object_num);
+    const GAME_OBJECT_ID inv_object_id = Inv_GetItemOption(object_id);
 
     for (int32_t i = 0; i < g_Inv_MainObjectsCount; i++) {
-        if (g_Inv_MainList[i]->obj_num == inv_object_id) {
+        if (g_Inv_MainList[i]->object_id == inv_object_id) {
             return g_Inv_MainQtys[i];
         }
     }
 
     for (int32_t i = 0; i < g_Inv_KeyObjectsCount; i++) {
-        if (g_Inv_KeysList[i]->obj_num == inv_object_id) {
+        if (g_Inv_KeysList[i]->object_id == inv_object_id) {
             return g_Inv_KeysQtys[i];
         }
     }
@@ -332,7 +332,7 @@ int32_t Inv_RemoveItem(const GAME_OBJECT_ID object_id)
     const GAME_OBJECT_ID inv_object_id = Inv_GetItemOption(object_id);
 
     for (int32_t i = 0; i < g_Inv_MainObjectsCount; i++) {
-        if (g_Inv_MainList[i]->obj_num == inv_object_id) {
+        if (g_Inv_MainList[i]->object_id == inv_object_id) {
             g_Inv_MainQtys[i]--;
             if (g_Inv_MainQtys[i] > 0) {
                 return true;
@@ -346,7 +346,7 @@ int32_t Inv_RemoveItem(const GAME_OBJECT_ID object_id)
     }
 
     for (int32_t i = 0; i < g_Inv_KeyObjectsCount; i++) {
-        if (g_Inv_KeysList[i]->obj_num == inv_object_id) {
+        if (g_Inv_KeysList[i]->object_id == inv_object_id) {
             g_Inv_KeysQtys[i]--;
             if (g_Inv_KeysQtys[i] > 0) {
                 return true;

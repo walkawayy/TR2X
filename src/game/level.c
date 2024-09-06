@@ -347,8 +347,8 @@ static void __cdecl Level_LoadObjects(VFILE *const file)
     const int32_t num_objects = VFile_ReadS32(file);
     LOG_INFO("objects: %d", num_objects);
     for (int32_t i = 0; i < num_objects; i++) {
-        const GAME_OBJECT_ID object_num = VFile_ReadS32(file);
-        OBJECT_INFO *const object = &g_Objects[object_num];
+        const GAME_OBJECT_ID object_id = VFile_ReadS32(file);
+        OBJECT_INFO *const object = &g_Objects[object_id];
         object->mesh_count = VFile_ReadS16(file);
         object->mesh_idx = VFile_ReadS16(file);
         object->bone_idx = VFile_ReadS32(file);
@@ -484,7 +484,7 @@ static void __cdecl Level_LoadItems(VFILE *const file)
 
     for (int32_t i = 0; i < num_items; i++) {
         ITEM_INFO *const item = &g_Items[i];
-        item->object_num = VFile_ReadS16(file);
+        item->object_id = VFile_ReadS16(file);
         item->room_num = VFile_ReadS16(file);
         item->pos.x = VFile_ReadS32(file);
         item->pos.y = VFile_ReadS32(file);
@@ -493,9 +493,9 @@ static void __cdecl Level_LoadItems(VFILE *const file)
         item->shade1 = VFile_ReadS16(file);
         item->shade2 = VFile_ReadS16(file);
         item->flags = VFile_ReadS16(file);
-        if (item->object_num < 0 || item->object_num >= O_NUMBER_OF) {
+        if (item->object_id < 0 || item->object_id >= O_NUMBER_OF) {
             Shell_ExitSystemFmt(
-                "Bad object number (%d) on item %d", item->object_num, i);
+                "Bad object number (%d) on item %d", item->object_id, i);
             goto finish;
         }
         Item_Initialise(i);

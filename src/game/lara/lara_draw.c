@@ -32,7 +32,7 @@ void __cdecl Lara_Draw(const ITEM_INFO *const item)
         }
     }
 
-    const OBJECT_INFO *const object = &g_Objects[item->object_num];
+    const OBJECT_INFO *const object = &g_Objects[item->object_id];
     if (g_Lara.hit_direction < 0) {
         frame = frames[0];
     } else {
@@ -345,7 +345,7 @@ void __cdecl Lara_Draw_I(
     const ITEM_INFO *const item, const FRAME_INFO *const frame1,
     const FRAME_INFO *const frame2, const int32_t frac, const int32_t rate)
 {
-    const OBJECT_INFO *const object = &g_Objects[item->object_num];
+    const OBJECT_INFO *const object = &g_Objects[item->object_id];
     const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
 
     if (g_Lara.skidoo == NO_ITEM) {

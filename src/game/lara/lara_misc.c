@@ -856,7 +856,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
     }
 
     const FRAME_INFO *frame_ptr = NULL;
-    const OBJECT_INFO *obj = &g_Objects[g_LaraItem->object_num];
+    const OBJECT_INFO *obj = &g_Objects[g_LaraItem->object_id];
     if (g_Lara.hit_direction >= 0) {
         LARA_ANIMATION anim_num;
         switch (g_Lara.hit_direction) {
@@ -951,7 +951,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
     ITEM_INFO *item, XYZ_32 *vec, FRAME_INFO *frame1, FRAME_INFO *frame2,
     int32_t frac, int32_t rate)
 {
-    const OBJECT_INFO *obj = &g_Objects[item->object_num];
+    const OBJECT_INFO *obj = &g_Objects[item->object_id];
 
     Matrix_PushUnit();
     g_MatrixPtr->_03 = 0;
@@ -1066,7 +1066,7 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
             const int16_t next_item_num = item->next_item;
 
             if (item->collidable && item->status != IS_INVISIBLE) {
-                const OBJECT_INFO *const object = &g_Objects[item->object_num];
+                const OBJECT_INFO *const object = &g_Objects[item->object_id];
                 if (object->collision) {
                     // clang-format off
                     const XYZ_32 d = {
@@ -1200,7 +1200,7 @@ int32_t __cdecl Lara_MovePosition(
         .z = item->pos.z + shift.z,
     };
 
-    if (item->object_num == O_FLARE_ITEM) {
+    if (item->object_id == O_FLARE_ITEM) {
         int16_t room_num = lara_item->room_num;
         const SECTOR_INFO *const sector =
             Room_GetSector(new_pos.x, new_pos.y, new_pos.z, &room_num);

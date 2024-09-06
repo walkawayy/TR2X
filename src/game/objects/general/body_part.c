@@ -34,7 +34,7 @@ void __cdecl BodyPart_Control(const int16_t fx_num)
             splash_fx->rot.y = 0;
             splash_fx->speed = 0;
             splash_fx->frame_num = 0;
-            splash_fx->object_num = O_SPLASH;
+            splash_fx->object_id = O_SPLASH;
         }
     }
 
@@ -52,7 +52,7 @@ void __cdecl BodyPart_Control(const int16_t fx_num)
             fx->speed = 0;
             fx->frame_num = 0;
             fx->counter = 0;
-            fx->object_num = O_EXPLOSION;
+            fx->object_id = O_EXPLOSION;
             fx->shade = HIGH_LIGHT;
             Sound_Effect(SFX_EXPLOSION1, &fx->pos, SPM_NORMAL);
         } else {
@@ -68,7 +68,7 @@ void __cdecl BodyPart_Control(const int16_t fx_num)
             fx->speed = 0;
             fx->frame_num = 0;
             fx->counter = 0;
-            fx->object_num = O_EXPLOSION;
+            fx->object_id = O_EXPLOSION;
             fx->shade = HIGH_LIGHT;
             Sound_Effect(SFX_EXPLOSION1, &fx->pos, SPM_NORMAL);
             g_Lara.spaz_effect_count = 5;

@@ -546,7 +546,7 @@ typedef struct __unaligned {
     int32_t floor;
     uint32_t touch_bits;
     uint32_t mesh_bits;
-    int16_t object_num;
+    int16_t object_id;
     int16_t current_anim_state;
     int16_t goal_anim_state;
     int16_t required_anim_state;
@@ -659,7 +659,7 @@ typedef struct __unaligned {
     XYZ_32 pos;
     XYZ_16 rot;
     int16_t room_num;
-    int16_t object_num;
+    int16_t object_id;
     int16_t next_fx;
     int16_t next_active;
     int16_t speed;
@@ -729,7 +729,7 @@ typedef struct __unaligned {
 
 typedef struct __unaligned {
     char *string;
-    int16_t obj_num;
+    int16_t object_id;
     int16_t frames_total;
     int16_t current_frame;
     int16_t goal_frame;

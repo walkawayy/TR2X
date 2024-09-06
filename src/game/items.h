@@ -12,7 +12,7 @@ void __cdecl Item_RemoveDrawn(int16_t item_num);
 void __cdecl Item_AddActive(int16_t item_num);
 void __cdecl Item_NewRoom(int16_t item_num, int16_t room_num);
 int32_t __cdecl Item_GlobalReplace(
-    int32_t src_object_num, int32_t dst_object_num);
+    GAME_OBJECT_ID src_object_id, GAME_OBJECT_ID dst_object_id);
 void __cdecl Item_ClearKilled(void);
 void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
 void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);

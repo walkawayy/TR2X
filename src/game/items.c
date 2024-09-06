@@ -106,7 +106,7 @@ void __cdecl Item_Kill(const int16_t item_num)
 void __cdecl Item_Initialise(const int16_t item_num)
 {
     ITEM_INFO *const item = &g_Items[item_num];
-    item->anim_num = g_Objects[item->object_num].anim_idx;
+    item->anim_num = g_Objects[item->object_id].anim_idx;
     item->frame_num = g_Anims[item->anim_num].frame_base;
     item->goal_anim_state = g_Anims[item->anim_num].current_anim_state;
     item->current_anim_state = item->goal_anim_state;
@@ -115,7 +115,7 @@ void __cdecl Item_Initialise(const int16_t item_num)
     item->rot.z = 0;
     item->speed = 0;
     item->fall_speed = 0;
-    item->hit_points = g_Objects[item->object_num].hit_points;
+    item->hit_points = g_Objects[item->object_id].hit_points;
     item->timer = 0;
     item->mesh_bits = 0xFFFFFFFF;
     item->touch_bits = 0;
@@ -132,7 +132,7 @@ void __cdecl Item_Initialise(const int16_t item_num)
     if ((item->flags & IF_INVISIBLE) != 0) {
         item->status = IS_INVISIBLE;
         item->flags &= ~IF_INVISIBLE;
-    } else if (g_Objects[item->object_num].intelligent) {
+    } else if (g_Objects[item->object_id].intelligent) {
         item->status = IS_INVISIBLE;
     }
 
@@ -161,8 +161,8 @@ void __cdecl Item_Initialise(const int16_t item_num)
         item->hit_points *= 2;
     }
 
-    if (g_Objects[item->object_num].initialise != NULL) {
-        g_Objects[item->object_num].initialise(item_num);
+    if (g_Objects[item->object_id].initialise != NULL) {
+        g_Objects[item->object_id].initialise(item_num);
     }
 }
 
@@ -215,7 +215,7 @@ void __cdecl Item_RemoveDrawn(const int16_t item_num)
 void __cdecl Item_AddActive(const int16_t item_num)
 {
     ITEM_INFO *const item = &g_Items[item_num];
-    if (g_Objects[item->object_num].control == NULL) {
+    if (g_Objects[item->object_id].control == NULL) {
         item->status = IS_INACTIVE;
         return;
     }
@@ -258,7 +258,7 @@ void __cdecl Item_NewRoom(const int16_t item_num, const int16_t room_num)
 }
 
 int32_t __cdecl Item_GlobalReplace(
-    const int32_t src_object_num, const int32_t dst_object_num)
+    const GAME_OBJECT_ID src_object_id, const GAME_OBJECT_ID dst_object_id)
 {
     int32_t changed = 0;
 
@@ -266,8 +266,8 @@ int32_t __cdecl Item_GlobalReplace(
         int16_t j = g_Rooms[i].item_num;
         while (j != NO_ITEM) {
             ITEM_INFO *const item = &g_Items[j];
-            if (item->object_num == src_object_num) {
-                item->object_num = dst_object_num;
+            if (item->object_id == src_object_id) {
+                item->object_id = dst_object_id;
                 changed++;
             }
             j = item->next_item;
@@ -293,7 +293,7 @@ void __cdecl Item_ClearKilled(void)
 
 bool Item_IsSmashable(const ITEM_INFO *item)
 {
-    return (item->object_num == O_WINDOW_1 || item->object_num == O_BELL);
+    return (item->object_id == O_WINDOW_1 || item->object_id == O_BELL);
 }
 
 void __cdecl Item_ShiftCol(ITEM_INFO *const item, COLL_INFO *const coll)
@@ -533,7 +533,7 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
                     break;
                 }
 
-                if (g_Objects[item->object_num].water_creature) {
+                if (g_Objects[item->object_id].water_creature) {
                     Sound_Effect(sound_id, &item->pos, SPM_UNDERWATER);
                 } else if (item->room_num == NO_ROOM) {
                     item->pos.x = g_LaraItem->pos.x;
@@ -541,8 +541,8 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
                     item->pos.z = g_LaraItem->pos.z;
                     Sound_Effect(
                         sound_id, &item->pos,
-                        item->object_num == O_LARA_HARPOON ? SPM_ALWAYS
-                                                           : SPM_NORMAL);
+                        item->object_id == O_LARA_HARPOON ? SPM_ALWAYS
+                                                          : SPM_NORMAL);
                 } else if (g_Rooms[item->room_num].flags & RF_UNDERWATER) {
                     if (type == ACE_ALL || type == ACE_WATER) {
                         Sound_Effect(sound_id, &item->pos, SPM_NORMAL);

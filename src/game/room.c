@@ -314,7 +314,7 @@ int32_t __cdecl Room_GetHeight(
                     const int16_t value = TRIGGER_VALUE(trigger);
                     const ITEM_INFO *const item = &g_Items[value];
                     const OBJECT_INFO *const object =
-                        &g_Objects[item->object_num];
+                        &g_Objects[item->object_id];
                     if (object->floor) {
                         object->floor(item, x, y, z, &height);
                     }
@@ -492,7 +492,7 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
             }
 
             if (!item->active) {
-                if (g_Objects[item->object_num].intelligent) {
+                if (g_Objects[item->object_id].intelligent) {
                     if (item->status == IS_INACTIVE) {
                         item->touch_bits = 0;
                         item->status = IS_ACTIVE;
@@ -721,7 +721,7 @@ int32_t __cdecl Room_GetCeiling(
                     const int16_t value = TRIGGER_VALUE(trigger);
                     const ITEM_INFO *const item = &g_Items[value];
                     const OBJECT_INFO *const object =
-                        &g_Objects[item->object_num];
+                        &g_Objects[item->object_id];
                     if (object->ceiling) {
                         object->ceiling(item, x, y, z, &height);
                     }
@@ -872,7 +872,7 @@ void __cdecl Room_RemoveFlipItems(const ROOM_INFO *const r)
     while (item_num != NO_ITEM) {
         ITEM_INFO *const item = &g_Items[item_num];
 
-        switch (item->object_num) {
+        switch (item->object_id) {
         case O_MOVABLE_BLOCK_1:
         case O_MOVABLE_BLOCK_2:
         case O_MOVABLE_BLOCK_3:
@@ -884,7 +884,7 @@ void __cdecl Room_RemoveFlipItems(const ROOM_INFO *const r)
             break;
         }
 
-        if (item->flags & IF_ONE_SHOT && g_Objects[item->object_num].intelligent
+        if (item->flags & IF_ONE_SHOT && g_Objects[item->object_id].intelligent
             && item->hit_points <= 0) {
             Item_RemoveDrawn(item_num);
             item->flags |= IF_KILLED;
@@ -900,7 +900,7 @@ void __cdecl Room_AddFlipItems(const ROOM_INFO *const r)
     while (item_num != NO_ITEM) {
         const ITEM_INFO *const item = &g_Items[item_num];
 
-        switch (item->object_num) {
+        switch (item->object_id) {
         case O_MOVABLE_BLOCK_1:
         case O_MOVABLE_BLOCK_2:
         case O_MOVABLE_BLOCK_3:

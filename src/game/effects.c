@@ -117,12 +117,12 @@ void __cdecl Effect_NewRoom(const int16_t fx_num, const int16_t room_num)
 void __cdecl Effect_Draw(const int16_t fx_num)
 {
     const FX_INFO *const fx = &g_Effects[fx_num];
-    const OBJECT_INFO *const object = &g_Objects[fx->object_num];
+    const OBJECT_INFO *const object = &g_Objects[fx->object_id];
     if (!object->loaded) {
         return;
     }
 
-    if (fx->object_num == O_GLOW) {
+    if (fx->object_id == O_GLOW) {
         Output_DrawSprite(
             (fx->rot.y << 16) | (unsigned __int16)fx->rot.x, fx->pos.x,
             fx->pos.y, fx->pos.z, g_Objects[O_GLOW].mesh_idx, fx->shade,

@@ -165,7 +165,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
         for (int16_t item_num = 0; item_num < Item_GetTotalCount();
              item_num++) {
             const ITEM_INFO *const item = &g_Items[item_num];
-            if (Object_IsObjectType(item->object_num, g_PickupObjects)
+            if (Object_IsObjectType(item->object_id, g_PickupObjects)
                 && (item->status == IS_INVISIBLE
                     || item->status == IS_DEACTIVATED)) {
                 continue;
@@ -177,7 +177,7 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
 
             bool is_matched = false;
             for (int32_t i = 0; i < match_count; i++) {
-                if (matching_objs[i] == item->object_num) {
+                if (matching_objs[i] == item->object_id) {
                     is_matched = true;
                     break;
                 }
@@ -198,12 +198,11 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
                     best_item->pos.x, best_item->pos.y - STEP_L,
                     best_item->pos.z)) {
                 Console_Log(
-                    GS(OSD_POS_SET_ITEM),
-                    Object_GetName(best_item->object_num));
+                    GS(OSD_POS_SET_ITEM), Object_GetName(best_item->object_id));
             } else {
                 Console_Log(
                     GS(OSD_POS_SET_ITEM_FAIL),
-                    Object_GetName(best_item->object_num));
+                    Object_GetName(best_item->object_id));
             }
             return CR_SUCCESS;
         } else {
@@ -372,7 +371,7 @@ static COMMAND_RESULT Console_Cmd_Kill(const char *args)
 
             bool is_matched = false;
             for (int32_t i = 0; i < match_count; i++) {
-                if (matching_objs[i] == item->object_num) {
+                if (matching_objs[i] == item->object_id) {
                     is_matched = true;
                     break;
                 }
@@ -443,10 +442,10 @@ static COMMAND_RESULT Console_Cmd_GiveItem(const char *args)
     GAME_OBJECT_ID *matching_objs = Object_IdsFromName(
         args, &match_count, Console_Cmd_CanTargetObjectPickup);
     for (int32_t i = 0; i < match_count; i++) {
-        const GAME_OBJECT_ID obj_id = matching_objs[i];
-        if (g_Objects[obj_id].loaded) {
-            Inv_AddItemNTimes(obj_id, num);
-            Console_Log(GS(OSD_GIVE_ITEM), Object_GetName(obj_id));
+        const GAME_OBJECT_ID object_id = matching_objs[i];
+        if (g_Objects[object_id].loaded) {
+            Inv_AddItemNTimes(object_id, num);
+            Console_Log(GS(OSD_GIVE_ITEM), Object_GetName(object_id));
             found = true;
         }
     }

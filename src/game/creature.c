@@ -60,7 +60,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
         return;
     }
 
-    switch (item->object_num) {
+    switch (item->object_id) {
     case O_BANDIT_1:
     case O_BANDIT_2:
         Creature_GetBaddieTarget(creature->item_num, false);
@@ -111,7 +111,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
         info->enemy_zone_num |= BOX_BLOCKED;
     }
 
-    const OBJECT_INFO *const object = &g_Objects[item->object_num];
+    const OBJECT_INFO *const object = &g_Objects[item->object_id];
     const int32_t z = enemy->pos.z
         - ((object->pivot_length * Math_Cos(item->rot.y)) >> W2V_SHIFT)
         - item->pos.z;
@@ -306,7 +306,7 @@ int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
     const int32_t x = item->pos.x;
     const int32_t y = item->pos.y;
     const int32_t z = item->pos.z;
-    const int32_t radius = SQUARE(g_Objects[item->object_num].radius);
+    const int32_t radius = SQUARE(g_Objects[item->object_id].radius);
 
     int16_t link = g_Rooms[item->room_num].item_num;
     while (link != NO_ITEM && link != item_num) {
@@ -331,12 +331,12 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 {
     ITEM_INFO *const item = &g_Items[item_num];
 
-    if (item->object_num == O_DRAGON_FRONT) {
+    if (item->object_id == O_DRAGON_FRONT) {
         item->hit_points = 0;
         return;
     }
 
-    if (item->object_num == O_SKIDMAN) {
+    if (item->object_id == O_SKIDMAN) {
         if (explode) {
             Effect_ExplodingDeath(item_num, -1, 0);
         }
@@ -355,7 +355,7 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
         Item_RemoveActive(item_num);
     }
 
-    if (g_Objects[item->object_num].intelligent) {
+    if (g_Objects[item->object_id].intelligent) {
         LOT_DisableBaddieAI(item_num);
     }
     item->flags |= IF_ONE_SHOT;
@@ -365,7 +365,7 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
         g_PrevItemActive = item_num;
     }
 
-    if (g_Objects[item->object_num].intelligent) {
+    if (g_Objects[item->object_id].intelligent) {
         int16_t pickup_num = item->carried_item;
         while (pickup_num != NO_ITEM) {
             ITEM_INFO *const pickup = &g_Items[pickup_num];
@@ -381,7 +381,7 @@ int32_t __cdecl Creature_Animate(
 {
     ITEM_INFO *const item = &g_Items[item_num];
     const CREATURE_INFO *const creature = item->data;
-    const OBJECT_INFO *const object = &g_Objects[item->object_num];
+    const OBJECT_INFO *const object = &g_Objects[item->object_id];
     if (creature == NULL) {
         return false;
     }
@@ -566,7 +566,7 @@ int32_t __cdecl Creature_Animate(
             const int32_t ceiling =
                 Room_GetCeiling(sector, item->pos.x, y, item->pos.z);
             const int32_t min_y =
-                item->object_num == O_SHARK ? 128 : bounds->min_y;
+                item->object_id == O_SHARK ? 128 : bounds->min_y;
             if (item->pos.y + min_y + dy < ceiling) {
                 if (item->pos.y + min_y < ceiling) {
                     item->pos.x = old.x;
@@ -802,7 +802,7 @@ void __cdecl Creature_Kill(
     ITEM_INFO *const item, const int32_t kill_anim, const int32_t kill_state,
     const int32_t lara_kill_state)
 {
-    item->anim_num = g_Objects[item->object_num].anim_idx + kill_anim;
+    item->anim_num = g_Objects[item->object_id].anim_idx + kill_anim;
     item->frame_num = g_Anims[item->anim_num].frame_base;
     item->current_anim_state = kill_state;
 
@@ -849,10 +849,10 @@ void __cdecl Creature_GetBaddieTarget(
         }
 
         ITEM_INFO *target = &g_Items[target_item_num];
-        const int16_t object_num = target->object_num;
-        if (goody && object_num != O_BANDIT_1 && object_num != O_BANDIT_2) {
+        const GAME_OBJECT_ID object_id = target->object_id;
+        if (goody && object_id != O_BANDIT_1 && object_id != O_BANDIT_2) {
             continue;
-        } else if (!goody && object_num != O_MONK_1 && object_num != O_MONK_2) {
+        } else if (!goody && object_id != O_MONK_1 && object_id != O_MONK_2) {
             continue;
         }
 
@@ -945,12 +945,12 @@ int32_t __cdecl Creature_CanTargetEnemy(
 
 bool Creature_IsEnemy(const ITEM_INFO *const item)
 {
-    return Object_IsObjectType(item->object_num, g_EnemyObjects)
+    return Object_IsObjectType(item->object_id, g_EnemyObjects)
         || (g_IsMonkAngry
-            && (item->object_num == O_MONK_1 || item->object_num == O_MONK_2));
+            && (item->object_id == O_MONK_1 || item->object_id == O_MONK_2));
 }
 
 bool Creature_IsAlly(const ITEM_INFO *const item)
 {
-    return Object_IsObjectType(item->object_num, g_FriendObjects);
+    return Object_IsObjectType(item->object_id, g_FriendObjects);
 }

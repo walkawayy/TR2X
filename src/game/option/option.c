@@ -5,7 +5,7 @@
 
 void __cdecl Option_DoInventory(INVENTORY_ITEM *const item)
 {
-    switch (item->obj_num) {
+    switch (item->object_id) {
     case O_PASSPORT_OPTION:
         Option_Passport(item);
         break;
@@ -66,7 +66,7 @@ void __cdecl Option_DoInventory(INVENTORY_ITEM *const item)
 
 void __cdecl Option_ShutdownInventory(INVENTORY_ITEM *const item)
 {
-    switch (item->obj_num) {
+    switch (item->object_id) {
     case O_PASSPORT_OPTION:
         Option_Passport_Shutdown();
         break;

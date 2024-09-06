@@ -6,3 +6,5 @@ __pycache__/
 subprojects/packagecache/
 subprojects/dwarfstack-*/
 subprojects/dwarfstack.wrap
+.dotnet/
+.local/

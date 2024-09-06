@@ -132,3 +132,4 @@ int32_t __cdecl Misc_Move3DPosTo3DPos(
     PHD_ANGLE ang_add);
 int32_t __cdecl LevelCompleteSequence(void);
 void __cdecl S_LoadSettings(void);
+void __cdecl S_SaveSettings(void);

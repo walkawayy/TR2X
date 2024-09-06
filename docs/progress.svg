@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.41% (748)</tspan> · <tspan class="known">36.12% (440)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.49% (749)</tspan> · <tspan class="known">36.04% (439)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="458.75" height="6" x="0" y="0" class="decompiled"/>
-<rect width="269.85" height="6" x="458.75" y="0" class="known"/>
+<rect width="459.36" height="6" x="0" y="0" class="decompiled"/>
+<rect width="269.24" height="6" x="459.36" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1202,7 +1202,7 @@
 <rect width="12" height="12" x="345" y="330" class="decompiled"><title>BOOL __cdecl Shell_Main(void);</title></rect>
 <rect width="12" height="12" x="360" y="330" class="decompiled"><title>int16_t __cdecl TitleSequence(void);</title></rect>
 <rect width="12" height="12" x="375" y="330" class="known"><title>void __cdecl CheckCheatMode(void);</title></rect>
-<rect width="12" height="12" x="390" y="330" class="known"><title>void __cdecl S_SaveSettings(void);</title></rect>
+<rect width="12" height="12" x="390" y="330" class="decompiled"><title>void __cdecl S_SaveSettings(void);</title></rect>
 <rect width="12" height="12" x="405" y="330" class="decompiled"><title>void __cdecl S_LoadSettings(void);</title></rect>
 <rect width="12" height="12" x="420" y="330" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_OutPlay(int32_t sample_id, uint16_t volume, int32_t pitch, int32_t pan);</title></rect>
 <rect width="12" height="12" x="435" y="330" class="decompiled"><title>int32_t __cdecl S_Audio_Sample_CalculateSampleVolume(int32_t volume);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.03%</tspan> · <tspan class="known">34.64%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.07%</tspan> · <tspan class="known">34.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="485.79" height="6" x="0" y="0" class="decompiled"/>
-<rect width="258.77" height="6" x="485.79" y="0" class="known"/>
+<rect width="486.06" height="6" x="0" y="0" class="decompiled"/>
+<rect width="258.49" height="6" x="486.06" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1941,7 +1941,7 @@
 <rect width="7.43" height="7.03" x="578.55" y="308.34" class="known"><title>void __cdecl BellControl(int16_t item_num);</title></rect>
 <rect width="7.43" height="7.03" x="578.55" y="318.37" class="decompiled"><title>void __cdecl Option_Controls_FlashConflicts(void);</title></rect>
 <rect width="7.43" height="7.03" x="578.55" y="328.40" class="known"><title>void __cdecl S_SyncPictureBufferPalette(void);</title></rect>
-<rect width="7.43" height="6.95" x="578.55" y="338.43" class="known"><title>void __cdecl S_SaveSettings(void);</title></rect>
+<rect width="7.43" height="6.95" x="578.55" y="338.43" class="decompiled"><title>void __cdecl S_SaveSettings(void);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="348.38" class="decompiled"><title>BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="358.26" class="decompiled"><title>int32_t __cdecl Item_GlobalReplace(GAME_OBJECT_ID src_object_id, GAME_OBJECT_ID dst_object_id);</title></rect>
 <rect width="7.43" height="6.87" x="578.55" y="368.13" class="decompiled"><title>void __cdecl Lara_State_StepRight(ITEM_INFO *item, COLL_INFO *coll);</title></rect>

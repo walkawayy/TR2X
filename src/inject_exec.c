@@ -209,6 +209,7 @@ static void Inject_Decomp_General(const bool enable)
     INJECT(enable, 0x00446F80, WinVidFinish);
     INJECT(enable, 0x00414220, Misc_Move3DPosTo3DPos);
     INJECT(enable, 0x00455140, S_LoadSettings);
+    INJECT(enable, 0x004550C0, S_SaveSettings);
 }
 
 static void Inject_Decomp_Stats(const bool enable)

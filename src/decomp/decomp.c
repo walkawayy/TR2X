@@ -3025,3 +3025,15 @@ void __cdecl S_LoadSettings(void)
         Music_SetVolume(0);
     }
 }
+
+void __cdecl S_SaveSettings(void)
+{
+    OpenGameRegistryKey("Game");
+    SetRegistryDwordValue("MusicVolume", g_OptionMusicVolume);
+    SetRegistryDwordValue("SoundFxVolume", g_OptionSoundVolume);
+    SetRegistryDwordValue("DetailLevel", g_DetailLevel);
+    SetRegistryFloatValue("Sizer", g_GameSizerCopy);
+    SetRegistryBinaryValue(
+        "Layout", (uint8_t *)&g_Layout[1], sizeof(uint16_t) * 14);
+    CloseGameRegistryKey();
+}

@@ -113,6 +113,9 @@ def make_types_h(types: list[str]) -> None:
         *COMMON_HEADER,
         '#include "const.h"',
         "",
+        "#include <libtrx/game/items.h>",
+        "#include <libtrx/game/math.h>",
+        "",
         "#include <ddraw.h>",
         "#include <ddrawi.h>",
         "#include <d3dhal.h>",
@@ -135,7 +138,7 @@ def make_types_h(types: list[str]) -> None:
         "\n".join(
             [
                 *header,
-                "\n\n".join([definition.strip() for definition in types]),
+                "\n\n".join([definition.strip() for definition in types if '// decompiled' not in definition.strip()]),
                 *footer,
             ]
         )

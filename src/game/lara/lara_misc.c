@@ -1219,8 +1219,15 @@ int32_t __cdecl Lara_MovePosition(
         .pos = new_pos,
         .rot = rot,
     };
-    return Misc_Move3DPosTo3DPos(
-        &lara_item->pos_full, &new_pos_full, MOVE_SPEED, MOVE_ANGLE);
+    PHD_3DPOS src_pos = {
+        .pos = lara_item->pos,
+        .rot = lara_item->rot,
+    };
+    const int32_t result =
+        Misc_Move3DPosTo3DPos(&src_pos, &new_pos_full, MOVE_SPEED, MOVE_ANGLE);
+    lara_item->pos = src_pos.pos;
+    lara_item->rot = src_pos.rot;
+    return result;
 }
 
 int32_t __cdecl Lara_IsNearItem(const XYZ_32 *const pos, const int32_t distance)

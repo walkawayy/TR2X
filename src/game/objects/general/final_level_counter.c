@@ -69,7 +69,8 @@ static void __cdecl FinalLevelCounter_PrepareCutscene(const int16_t item_num)
     g_Lara.mesh_ptrs[LM_HAND_R] =
         g_Meshes[g_Objects[O_LARA].mesh_idx + LM_HAND_R];
     g_CineFrameIdx = 428;
-    g_CinePos = item->pos_full;
+    g_CinePos.pos = item->pos;
+    g_CinePos.rot = item->rot;
 }
 
 void __cdecl FinalLevelCounter_Control(const int16_t item_num)

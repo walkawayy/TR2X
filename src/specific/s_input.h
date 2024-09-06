@@ -1,6 +1,6 @@
 #pragma once
 
-#include "global/types.h"
+#include "game/input.h"
 
-BOOL __cdecl S_Input_Key(const KEYMAP keymap);
+bool __cdecl S_Input_Key(INPUT_ROLE role);
 bool __cdecl S_Input_Update(void);

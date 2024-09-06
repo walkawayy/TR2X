@@ -385,23 +385,6 @@ typedef struct __unaligned {
     float g;
 } VERTEX_INFO;
 
-typedef enum {
-    KM_FORWARD     = 0,
-    KM_BACK        = 1,
-    KM_LEFT        = 2,
-    KM_RIGHT       = 3,
-    KM_STEP_LEFT   = 4,
-    KM_STEP_RIGHT  = 5,
-    KM_SLOW        = 6,
-    KM_JUMP        = 7,
-    KM_ACTION      = 8,
-    KM_WEAPON_DRAW = 9,
-    KM_FLARE       = 10,
-    KM_LOOK        = 11,
-    KM_ROLL        = 12,
-    KM_OPTION      = 13,
-} KEYMAP;
-
 typedef struct __unaligned {
     uint16_t no_selector : 1;
     uint16_t ready : 1; // not present in the OG
@@ -1617,6 +1600,10 @@ typedef enum {
     IS_DEACTIVATED = 2,
     IS_INVISIBLE   = 3,
 } ITEM_STATUS;
+
+typedef struct __unaligned {
+    uint16_t key[14]; // INPUT_ROLE_NUMBER_OF
+} CONTROL_LAYOUT;
 
 typedef enum {
     IN_FORWARD     = 0x00000001,

@@ -57,12 +57,12 @@ static bool m_IsF8Pressed = false;
 static bool m_IsF11Pressed = false;
 static int32_t m_MediPackCooldown = 0;
 
-static bool S_Input_KbdKey(const KEYMAP keymap, const int32_t layout_num);
-static bool S_Input_JoyKey(const KEYMAP keymap, const int32_t layout_num);
+static bool S_Input_KbdKey(int32_t layout_num, INPUT_ROLE role);
+static bool S_Input_JoyKey(int32_t layout_num, INPUT_ROLE role);
 
-static bool S_Input_KbdKey(const KEYMAP keymap, const int32_t layout_num)
+static bool S_Input_KbdKey(const int32_t layout_num, const INPUT_ROLE role)
 {
-    uint16_t key = g_Layout[layout_num].key[keymap];
+    uint16_t key = g_Layout[layout_num].key[role];
     if (key >= 0x100) {
         return false;
     }
@@ -87,19 +87,19 @@ static bool S_Input_KbdKey(const KEYMAP keymap, const int32_t layout_num)
     return false;
 }
 
-static bool S_Input_JoyKey(const KEYMAP keymap, const int32_t layout_num)
+static bool S_Input_JoyKey(const int32_t layout_num, const INPUT_ROLE role)
 {
-    uint16_t key = g_Layout[layout_num].key[keymap];
+    uint16_t key = g_Layout[layout_num].key[role];
     if (key < 0x100) {
         return false;
     }
     return (g_JoyKeys & (1 << key)) != 0;
 }
 
-BOOL __cdecl S_Input_Key(const KEYMAP keymap)
+bool __cdecl S_Input_Key(const INPUT_ROLE role)
 {
-    return S_Input_KbdKey(keymap, 1) || S_Input_JoyKey(keymap, 1)
-        || (!g_ConflictLayout[keymap] && S_Input_KbdKey(keymap, 0));
+    return S_Input_KbdKey(1, role) || S_Input_JoyKey(1, role)
+        || (!g_ConflictLayout[role] && S_Input_KbdKey(0, role));
 }
 
 // TODO: refactor me!!!
@@ -125,48 +125,48 @@ bool __cdecl S_Input_Update(void)
         input |= IN_FORWARD;
     }
 
-    if (S_Input_Key(KM_FORWARD)) {
+    if (S_Input_Key(INPUT_ROLE_FORWARD)) {
         input |= IN_FORWARD;
     }
-    if (S_Input_Key(KM_BACK)) {
+    if (S_Input_Key(INPUT_ROLE_BACK)) {
         input |= IN_BACK;
     }
-    if (S_Input_Key(KM_LEFT)) {
+    if (S_Input_Key(INPUT_ROLE_LEFT)) {
         input |= IN_LEFT;
     }
-    if (S_Input_Key(KM_RIGHT)) {
+    if (S_Input_Key(INPUT_ROLE_RIGHT)) {
         input |= IN_RIGHT;
     }
-    if (S_Input_Key(KM_STEP_LEFT)) {
+    if (S_Input_Key(INPUT_ROLE_STEP_LEFT)) {
         input |= IN_STEP_LEFT;
     }
-    if (S_Input_Key(KM_STEP_RIGHT)) {
+    if (S_Input_Key(INPUT_ROLE_STEP_RIGHT)) {
         input |= IN_STEP_RIGHT;
     }
-    if (S_Input_Key(KM_SLOW)) {
+    if (S_Input_Key(INPUT_ROLE_SLOW)) {
         input |= IN_SLOW;
     }
-    if (S_Input_Key(KM_JUMP)) {
+    if (S_Input_Key(INPUT_ROLE_JUMP)) {
         input |= IN_JUMP;
     }
 
-    if (S_Input_Key(KM_ACTION)) {
+    if (S_Input_Key(INPUT_ROLE_ACTION)) {
         input |= IN_ACTION;
     }
-    if (S_Input_Key(KM_WEAPON_DRAW)) {
+    if (S_Input_Key(INPUT_ROLE_DRAW_WEAPON)) {
         input |= IN_DRAW;
     }
-    if (S_Input_Key(KM_FLARE)) {
+    if (S_Input_Key(INPUT_ROLE_FLARE)) {
         input |= IN_FLARE;
     }
-    if (S_Input_Key(KM_LOOK)) {
+    if (S_Input_Key(INPUT_ROLE_LOOK)) {
         input |= IN_LOOK;
     }
-    if (S_Input_Key(KM_ROLL)) {
+    if (S_Input_Key(INPUT_ROLE_ROLL)) {
         input |= IN_ROLL;
     }
 
-    if (S_Input_Key(KM_OPTION) && g_Camera.type != CAM_CINEMATIC) {
+    if (S_Input_Key(INPUT_ROLE_OPTION) && g_Camera.type != CAM_CINEMATIC) {
         input |= IN_OPTION;
     }
     if ((input & IN_FORWARD) && (input & IN_BACK)) {

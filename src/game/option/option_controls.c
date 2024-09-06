@@ -8,13 +8,7 @@
 
 #include <dinput.h>
 
-static void Option_Controls_InitText(void);
-static void Option_Controls_ShutdownText(void);
-
-static void Option_Controls_Control_Navigate(void);
-static void Option_Controls_Control_WaitToListen(void);
-static void Option_Controls_Control_Listen(void);
-static void Option_Controls_Control_EndListen(void);
+#define RIGHT_COLUMN_START (INPUT_ROLE_NUMBER_OF / 2)
 
 typedef enum {
     STATE_NAVIGATE,
@@ -25,6 +19,13 @@ typedef enum {
 
 static int32_t m_Cursor = 0;
 static int32_t m_State = STATE_NAVIGATE;
+
+static void Option_Controls_InitText(void);
+static void Option_Controls_ShutdownText(void);
+static void Option_Controls_Control_Navigate(void);
+static void Option_Controls_Control_WaitToListen(void);
+static void Option_Controls_Control_Listen(void);
+static void Option_Controls_Control_EndListen(void);
 
 static void Option_Controls_InitText(void)
 {
@@ -43,7 +44,7 @@ static void Option_Controls_InitText(void)
 
 static void Option_Controls_ShutdownText(void)
 {
-    for (int32_t i = 0; i < 14; i++) {
+    for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
         Text_Remove(g_ControlsTextA[i]);
         g_ControlsTextA[i] = NULL;
 
@@ -68,12 +69,12 @@ static void Option_Controls_Control_Navigate(void)
             g_ControlsTextB[m_Cursor]->pos.z = 16;
             Text_RemoveBackground(g_ControlsTextB[m_Cursor]);
             Text_RemoveOutline(g_ControlsTextB[m_Cursor]);
-            if (m_Cursor < 7) {
-                m_Cursor += 7;
-            } else if (m_Cursor < 14) {
-                m_Cursor -= 7;
+            if (m_Cursor < RIGHT_COLUMN_START) {
+                m_Cursor += RIGHT_COLUMN_START;
+            } else if (m_Cursor < INPUT_ROLE_NUMBER_OF) {
+                m_Cursor -= RIGHT_COLUMN_START;
             } else {
-                m_Cursor = 7;
+                m_Cursor = RIGHT_COLUMN_START;
             }
             g_ControlsTextB[m_Cursor]->pos.z = 0;
             Text_AddBackground(
@@ -254,9 +255,9 @@ static void Option_Controls_Control_EndListen(void)
 
 void __cdecl Option_Controls_FlashConflicts(void)
 {
-    for (int32_t i = 0; i < 14; i++) {
+    for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
         Text_Flash(g_ControlsTextA[i], 0, 0);
-        for (int32_t j = 0; j < 14; j++) {
+        for (int32_t j = 0; j < INPUT_ROLE_NUMBER_OF; j++) {
             const uint16_t key1 = g_Layout[g_LayoutPage].key[i];
             const uint16_t key2 = g_Layout[g_LayoutPage].key[j];
             if (i != j && key1 == key2) {
@@ -268,9 +269,9 @@ void __cdecl Option_Controls_FlashConflicts(void)
 
 void __cdecl Option_Controls_DefaultConflict(void)
 {
-    for (int32_t i = 0; i < 14; i++) {
+    for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
         g_ConflictLayout[i] = false;
-        for (int32_t j = 0; j < 14; j++) {
+        for (int32_t j = 0; j < INPUT_ROLE_NUMBER_OF; j++) {
             uint16_t key1 = g_Layout[0].key[i];
             uint16_t key2 = g_Layout[1].key[j];
             if (key1 == key2) {
@@ -357,7 +358,7 @@ void __cdecl Option_Controls_ShowControls(void)
         g_ControlsTextA[13] =
             Text_Create(right_col + 10, 65, 16, g_KeyNames[layout->key[13]]);
 
-        for (int32_t i = 0; i < 14; i++) {
+        for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
             Text_CentreV(g_ControlsTextA[i], true);
         }
 
@@ -401,7 +402,7 @@ void __cdecl Option_Controls_ShowControls(void)
             right_col + 90, 65, 16,
             g_GF_GameStrings[GF_S_GAME_KEYMAP_INVENTORY]);
 
-        for (int32_t i = 0; i < 14; i++) {
+        for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
             Text_CentreV(g_ControlsTextB[i], true);
         }
     }
@@ -412,7 +413,7 @@ void __cdecl Option_Controls_ShowControls(void)
     Text_AddOutline(g_ControlsText[1], 1, 15, 0, 0);
 
     if (right_col < 320) {
-        for (int32_t i = 0; i < 14; ++i) {
+        for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; ++i) {
             Text_SetScale(g_ControlsTextA[i], PHD_ONE * 0.5, PHD_ONE);
             Text_SetScale(g_ControlsTextB[i], PHD_ONE * 0.5, PHD_ONE);
         }
@@ -429,7 +430,7 @@ void __cdecl Option_Controls_UpdateText(void)
         g_GF_PCStrings
             [g_LayoutPage == 0 ? GF_S_PC_DEFAULT_KEYS : GF_S_PC_USER_KEYS]);
 
-    for (int32_t i = 0; i < 14; i++) {
+    for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
         const uint16_t key = g_Layout[g_LayoutPage].key[i];
         if (g_KeyNames[key] != NULL) {
             Text_ChangeText(g_ControlsTextA[i], g_KeyNames[key]);

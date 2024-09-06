@@ -378,22 +378,22 @@ typedef struct __unaligned {
     float g;
 } VERTEX_INFO;
 
-typedef enum {
-    KM_FORWARD     = 0,
-    KM_BACK        = 1,
-    KM_LEFT        = 2,
-    KM_RIGHT       = 3,
-    KM_STEP_LEFT   = 4,
-    KM_STEP_RIGHT  = 5,
-    KM_SLOW        = 6,
-    KM_JUMP        = 7,
-    KM_ACTION      = 8,
-    KM_WEAPON_DRAW = 9,
-    KM_FLARE       = 10,
-    KM_LOOK        = 11,
-    KM_ROLL        = 12,
-    KM_OPTION      = 13,
-} KEYMAP;
+typedef enum { // decompiled
+    INPUT_ROLE_FORWARD     = 0,
+    INPUT_ROLE_BACK        = 1,
+    INPUT_ROLE_LEFT        = 2,
+    INPUT_ROLE_RIGHT       = 3,
+    INPUT_ROLE_STEP_LEFT   = 4,
+    INPUT_ROLE_STEP_RIGHT  = 5,
+    INPUT_ROLE_SLOW        = 6,
+    INPUT_ROLE_JUMP        = 7,
+    INPUT_ROLE_ACTION      = 8,
+    INPUT_ROLE_DRAW_WEAPON = 9,
+    INPUT_ROLE_FLARE       = 10,
+    INPUT_ROLE_LOOK        = 11,
+    INPUT_ROLE_ROLL        = 12,
+    INPUT_ROLE_OPTION      = 13,
+} INPUT_ROLE;
 
 typedef struct __unaligned {
     uint16_t no_selector : 1;
@@ -1652,9 +1652,9 @@ typedef enum {
     IS_INVISIBLE   = 3,
 } ITEM_STATUS;
 
-typedef struct __unaligned { // decompiled
-    uint16_t key[14];
-} INPUT_LAYOUT;
+typedef struct __unaligned {
+    uint16_t key[14]; // INPUT_ROLE_NUMBER_OF
+} CONTROL_LAYOUT;
 
 typedef enum {
     IN_FORWARD     = 0x00000001,
@@ -4207,7 +4207,7 @@ typedef enum {
 0x004664E8  -       const char *g_ErrorMessages[43];
 0x00466BB0  +       int32_t g_RandControl;
 0x00466BB4  +       int32_t g_RandDraw;
-0x00466F70  +       INPUT_LAYOUT g_Layout[2];
+0x00466F70  +       CONTROL_LAYOUT g_Layout[2];
 0x00467DD0  +       const int32_t g_AtanBaseTable[8];
 0x00467DF0  +       const int16_t g_AtanAngleTable[0x800];
 0x00468DF4  +       const int16_t g_SinTable[0x402];
@@ -4391,7 +4391,7 @@ typedef enum {
 0x00519EE0  -       HWR_TEXTURE_HANDLE g_HWR_PageHandles[32];
 0x00519F60  -       D3DTLVERTEX *g_HWR_VertexPtr;
 0x0051A0CC  -       void *g_GameMemoryPtr;
-0x0051A0D0  +       BOOL g_ConflictLayout[14];
+0x0051A0D0  +       BOOL g_ConflictLayout[14]; // INPUT_ROLE_NUMBER_OF
 0x0051A108  -       uint8_t g_DIKeys[256];
 0x0051A208  -       int32_t g_Input;
 0x0051A20C  -       int8_t g_IsVidModeLock;
@@ -4665,8 +4665,8 @@ typedef enum {
 0x0051A2D0  -       int32_t g_PassportMode;
 0x0051A2D8  -       TEXTSTRING *g_DetailText[5];
 0x0051A2F0  -       TEXTSTRING *g_SoundText[4];
-0x0051A290  -       TEXTSTRING *g_ControlsTextA[14];
-0x0051A258  -       TEXTSTRING *g_ControlsTextB[14];
+0x0051A290  -       TEXTSTRING *g_ControlsTextA[14]; // INPUT_ROLE_NUMBER_OF
+0x0051A258  -       TEXTSTRING *g_ControlsTextB[14]; // INPUT_ROLE_NUMBER_OF
 0x0051A300  -       TEXTSTRING *g_ControlsText[2];
 0x004D7C30  +       int32_t m_ShowStatsTextMode;
 0x005207E0  -       char g_ValidLevelStrings1[];

@@ -5,7 +5,7 @@
 #include "global/vars.h"
 #include "specific/s_input.h"
 
-bool g_ConflictLayout[14] = { false };
+bool g_ConflictLayout[INPUT_ROLE_NUMBER_OF] = { false };
 
 bool Input_Update(void)
 {

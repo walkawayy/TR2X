@@ -3013,7 +3013,8 @@ void __cdecl S_LoadSettings(void)
 
     GetRegistryFloatValue("Sizer", &g_GameSizerCopy, 1.0);
     GetRegistryBinaryValue(
-        "Layout", (uint8_t *)&g_Layout[1], sizeof(uint16_t) * 14, 0);
+        "Layout", (uint8_t *)&g_Layout[1],
+        sizeof(uint16_t) * INPUT_ROLE_NUMBER_OF, 0);
 
     CloseGameRegistryKey();
 
@@ -3034,6 +3035,7 @@ void __cdecl S_SaveSettings(void)
     SetRegistryDwordValue("DetailLevel", g_DetailLevel);
     SetRegistryFloatValue("Sizer", g_GameSizerCopy);
     SetRegistryBinaryValue(
-        "Layout", (uint8_t *)&g_Layout[1], sizeof(uint16_t) * 14);
+        "Layout", (uint8_t *)&g_Layout[1],
+        sizeof(uint16_t) * INPUT_ROLE_NUMBER_OF);
     CloseGameRegistryKey();
 }

@@ -12,9 +12,9 @@
 #include <assert.h>
 #include <string.h>
 
+#define MAX_TEXTSTRINGS 128
 #define TEXT_HEIGHT 24
 #define TEXT_Y_SPACING 3
-#define TEXT_MAX_STRINGS 64
 #define TEXT_MAX_STRING_SIZE 64
 #define CHAR_SECRET_1 0x7Fu
 #define CHAR_SECRET_2 0x80u
@@ -28,11 +28,13 @@
 
 // TODO: replace textstring == NULL checks with assertions
 
+static TEXTSTRING m_TextStrings[MAX_TEXTSTRINGS];
+
 void __cdecl Text_Init(void)
 {
     Overlay_DisplayModeInfo(NULL);
-    for (int32_t i = 0; i < TEXT_MAX_STRINGS; i++) {
-        g_TextstringTable[i].flags.all = 0;
+    for (int32_t i = 0; i < MAX_TEXTSTRINGS; i++) {
+        m_TextStrings[i].flags.all = 0;
     }
 
     // TODO: move me outta here!
@@ -51,8 +53,8 @@ TEXTSTRING *__cdecl Text_Create(
     }
 
     int32_t free_idx = -1;
-    for (int32_t i = 0; i < TEXT_MAX_STRINGS; i++) {
-        TEXTSTRING *const string = &g_TextstringTable[i];
+    for (int32_t i = 0; i < MAX_TEXTSTRINGS; i++) {
+        TEXTSTRING *const string = &m_TextStrings[i];
         if (!string->flags.active) {
             free_idx = i;
             break;
@@ -63,7 +65,7 @@ TEXTSTRING *__cdecl Text_Create(
         return NULL;
     }
 
-    TEXTSTRING *result = &g_TextstringTable[free_idx];
+    TEXTSTRING *result = &m_TextStrings[free_idx];
     result->text = g_TextstringBuffers[free_idx];
     result->scale.h = PHD_ONE;
     result->scale.v = PHD_ONE;
@@ -310,8 +312,8 @@ void __cdecl Text_Draw(void)
 {
     // TODO: move me outta here!
     Console_Draw();
-    for (int32_t i = 0; i < TEXT_MAX_STRINGS; i++) {
-        TEXTSTRING *const string = &g_TextstringTable[i];
+    for (int32_t i = 0; i < MAX_TEXTSTRINGS; i++) {
+        TEXTSTRING *const string = &m_TextStrings[i];
         if (string->flags.active) {
             Text_DrawText(string);
         }

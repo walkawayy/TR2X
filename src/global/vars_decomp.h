@@ -374,7 +374,6 @@
 #define g_CD_LoopTrack (*(int32_t*)0x0051BDB0)
 #define g_TextureFormat (*(TEXTURE_FORMAT*)0x0051C1B8)
 #define g_TexturesAlphaChannel (*(bool*)0x0051C20C)
-#define g_TextstringTable (*(TEXTSTRING(*)[64])0x0051C820)
 #define g_TextstringCount (*(int16_t*)0x0051D6A0) // = 0
 #define g_TextstringBuffers (*(char(*)[64][64])0x0051D6C0)
 #define g_NumSampleInfos (*(int32_t*)0x0051E6C0)

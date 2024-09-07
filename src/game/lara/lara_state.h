@@ -5,7 +5,7 @@
 #include "global/types.h"
 
 // TODO: make static
-void __cdecl Lara_SwimTurn(ITEM_INFO *const item);
+void __cdecl Lara_SwimTurn(ITEM_INFO *item);
 
 void __cdecl Lara_State_Walk(ITEM_INFO *item, COLL_INFO *coll);
 void __cdecl Lara_State_Run(ITEM_INFO *item, COLL_INFO *coll);

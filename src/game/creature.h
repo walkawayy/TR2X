@@ -26,10 +26,9 @@ int16_t __cdecl Creature_Effect(
 int32_t __cdecl Creature_Vault(
     int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
 void __cdecl Creature_Kill(
-    ITEM_INFO *const item, int32_t kill_anim, int32_t kill_state,
+    ITEM_INFO *item, int32_t kill_anim, int32_t kill_state,
     int32_t lara_kill_state);
-void __cdecl Creature_GetBaddieTarget(
-    const int16_t item_num, const int32_t goody);
+void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
 void __cdecl Creature_Collision(
     int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
 int32_t __cdecl Creature_CanTargetEnemy(

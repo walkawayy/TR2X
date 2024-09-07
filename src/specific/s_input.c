@@ -62,7 +62,7 @@ static bool S_Input_JoyKey(int32_t layout_num, INPUT_ROLE role);
 
 static bool S_Input_KbdKey(const int32_t layout_num, const INPUT_ROLE role)
 {
-    uint16_t key = g_Layout[layout_num].key[role];
+    uint16_t key = Input_GetAssignedKey(layout_num, role);
     if (key >= 0x100) {
         return false;
     }
@@ -89,7 +89,7 @@ static bool S_Input_KbdKey(const int32_t layout_num, const INPUT_ROLE role)
 
 static bool S_Input_JoyKey(const int32_t layout_num, const INPUT_ROLE role)
 {
-    uint16_t key = g_Layout[layout_num].key[role];
+    uint16_t key = Input_GetAssignedKey(layout_num, role);
     if (key < 0x100) {
         return false;
     }

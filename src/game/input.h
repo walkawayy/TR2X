@@ -2,6 +2,8 @@
 
 #include "global/types.h"
 
+#define INPUT_MAX_LAYOUT 2
+
 typedef enum {
     // clang-format off
     INPUT_ROLE_UP          = 0,
@@ -33,3 +35,10 @@ extern bool g_ConflictLayout[INPUT_ROLE_NUMBER_OF];
 
 bool Input_Update(void);
 int32_t __cdecl Input_GetDebounced(int32_t input);
+
+void Input_AssignKey(int32_t layout, INPUT_ROLE role, uint16_t key);
+uint16_t Input_GetAssignedKey(int32_t layout, INPUT_ROLE role);
+
+const char *Input_GetLayoutName(int32_t layout);
+const char *Input_GetRoleName(INPUT_ROLE role);
+const char *Input_GetKeyName(uint16_t key);

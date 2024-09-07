@@ -431,7 +431,7 @@ void __cdecl Text_DrawText(TEXTSTRING *const string)
                 x += spacing * scale_h / PHD_ONE;
             }
 
-            if (x > 0 && x < GetRenderWidth() && y > 0
+            if (x >= 0 && x < GetRenderWidth() && y >= 0
                 && y < GetRenderHeight()) {
                 Output_DrawScreenSprite2D(
                     x, y, z, scale_h, scale_v,

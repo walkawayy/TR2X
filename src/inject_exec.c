@@ -384,11 +384,8 @@ static void Inject_Option(const bool enable)
     INJECT(enable, 0x0044F520, Option_Detail);
     INJECT(enable, 0x0044F800, Option_Sound);
     INJECT(enable, 0x0044FCA0, Option_Compass);
-    INJECT(enable, 0x0044FD60, Option_Controls_FlashConflicts);
     INJECT(enable, 0x0044FDE0, Option_Controls_DefaultConflict);
     INJECT(enable, 0x0044FE20, Option_Controls);
-    INJECT(enable, 0x00450530, Option_Controls_ShowControls);
-    INJECT(enable, 0x00450A00, Option_Controls_UpdateText);
 }
 
 static void Inject_Text(const bool enable)

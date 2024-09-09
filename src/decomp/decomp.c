@@ -3018,6 +3018,8 @@ void __cdecl S_LoadSettings(void)
 
     CloseGameRegistryKey();
 
+    Input_CheckConflictsWithDefaults();
+
     Sound_SetMasterVolume(6 * g_OptionSoundVolume + 4);
 
     if (g_OptionMusicVolume) {

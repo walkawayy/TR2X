@@ -127,3 +127,18 @@ const char *Input_GetKeyName(const uint16_t key)
 {
     return m_KeyNames[key];
 }
+
+void __cdecl Input_CheckConflictsWithDefaults(void)
+{
+    for (int32_t i = 0; i < INPUT_ROLE_NUMBER_OF; i++) {
+        g_ConflictLayout[i] = false;
+        for (int32_t j = 0; j < INPUT_ROLE_NUMBER_OF; j++) {
+            const uint16_t key1 = Input_GetAssignedKey(0, i);
+            const uint16_t key2 = Input_GetAssignedKey(1, j);
+            if (key1 == key2) {
+                g_ConflictLayout[i] = true;
+                break;
+            }
+        }
+    }
+}

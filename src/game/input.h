@@ -73,3 +73,5 @@ uint16_t Input_GetAssignedKey(int32_t layout, INPUT_ROLE role);
 const char *Input_GetLayoutName(int32_t layout);
 const char *Input_GetRoleName(INPUT_ROLE role);
 const char *Input_GetKeyName(uint16_t key);
+
+void __cdecl Input_CheckConflictsWithDefaults(void);

@@ -2,6 +2,7 @@
 
 #include "decomp/effects.h"
 #include "game/effects.h"
+#include "game/input.h"
 #include "game/items.h"
 #include "game/lara/lara_look.h"
 #include "game/math.h"

@@ -1,4 +1,5 @@
 #include "decomp/stats.h"
+#include "game/input.h"
 #include "game/option/option.h"
 #include "game/requester.h"
 #include "game/sound.h"

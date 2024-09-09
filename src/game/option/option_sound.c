@@ -1,3 +1,4 @@
+#include "game/input.h"
 #include "game/music.h"
 #include "game/option/option.h"
 #include "game/sound.h"

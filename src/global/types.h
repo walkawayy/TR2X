@@ -1606,33 +1606,6 @@ typedef struct __unaligned {
 } CONTROL_LAYOUT;
 
 typedef enum {
-    IN_FORWARD     = 0x00000001,
-    IN_BACK        = 0x00000002,
-    IN_LEFT        = 0x00000004,
-    IN_RIGHT       = 0x00000008,
-    IN_JUMP        = 0x00000010,
-    IN_DRAW        = 0x00000020,
-    IN_ACTION      = 0x00000040,
-    IN_SLOW        = 0x00000080,
-    IN_OPTION      = 0x00000100,
-    IN_LOOK        = 0x00000200,
-    IN_STEP_LEFT   = 0x00000400,
-    IN_STEP_RIGHT  = 0x00000800,
-    IN_ROLL        = 0x00001000,
-    IN_PAUSE       = 0x00002000,
-    IN_RESERVED1   = 0x00004000,
-    IN_RESERVED2   = 0x00008000,
-    IN_DOZY_CHEAT  = 0x00010000,
-    IN_STUFF_CHEAT = 0x00020000,
-    IN_DEBUG_INFO  = 0x00040000,
-    IN_FLARE       = 0x00080000,
-    IN_SELECT      = 0x00100000,
-    IN_DESELECT    = 0x00200000,
-    IN_SAVE        = 0x00400000,
-    IN_LOAD        = 0x00800000,
-} INPUT_STATE;
-
-typedef enum {
     LA_RUN                                   = 0,
     LA_WALK_FORWARD                          = 1,
     LA_WALK_STOP_RIGHT                       = 2,

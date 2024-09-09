@@ -3,6 +3,7 @@
 #include "game/gun/gun_misc.h"
 #include "game/gun/gun_pistols.h"
 #include "game/gun/gun_rifle.h"
+#include "game/input.h"
 #include "game/inventory/backpack.h"
 #include "game/lara/lara_control.h"
 #include "game/sound.h"

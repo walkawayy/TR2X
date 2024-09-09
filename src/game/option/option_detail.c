@@ -1,3 +1,4 @@
+#include "game/input.h"
 #include "game/option/option.h"
 #include "game/text.h"
 #include "global/funcs.h"

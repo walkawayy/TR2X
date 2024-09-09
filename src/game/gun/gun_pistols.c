@@ -2,6 +2,7 @@
 
 #include "game/gun/gun.h"
 #include "game/gun/gun_misc.h"
+#include "game/input.h"
 #include "game/math.h"
 #include "game/sound.h"
 #include "global/funcs.h"

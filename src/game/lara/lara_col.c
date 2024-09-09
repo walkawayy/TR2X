@@ -1,6 +1,7 @@
 #include "game/lara/lara_col.h"
 
 #include "game/collide.h"
+#include "game/input.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/lara/lara_misc.h"

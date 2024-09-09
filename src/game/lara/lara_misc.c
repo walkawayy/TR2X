@@ -3,6 +3,7 @@
 #include "decomp/decomp.h"
 #include "game/box.h"
 #include "game/collide.h"
+#include "game/input.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
 #include "game/math.h"

@@ -1656,7 +1656,7 @@ typedef struct __unaligned {
     uint16_t key[14]; // INPUT_ROLE_NUMBER_OF
 } CONTROL_LAYOUT;
 
-typedef enum {
+typedef enum { // decompiled
     IN_FORWARD     = 0x00000001,
     IN_BACK        = 0x00000002,
     IN_LEFT        = 0x00000004,

@@ -49,7 +49,9 @@ bool g_ConflictLayout[INPUT_ROLE_NUMBER_OF] = { false };
 bool Input_Update(void)
 {
     bool result = S_Input_Update();
+
     g_InputDB = Input_GetDebounced(g_Input);
+
     if (Console_IsOpened()) {
         if (g_InputDB & IN_DESELECT) {
             Console_Close();
@@ -59,7 +61,12 @@ bool Input_Update(void)
 
         g_Input = 0;
         g_InputDB = 0;
+    } else if (g_InputDB & IN_CONSOLE) {
+        Console_Open();
+        g_Input = 0;
+        g_InputDB = 0;
     }
+
     return result;
 }
 
@@ -110,6 +117,7 @@ const char *Input_GetRoleName(const INPUT_ROLE role)
     case INPUT_ROLE_LOOK:        return g_GF_GameStrings[GF_S_GAME_KEYMAP_LOOK];
     case INPUT_ROLE_ROLL:        return g_GF_GameStrings[GF_S_GAME_KEYMAP_ROLL];
     case INPUT_ROLE_OPTION:      return g_GF_GameStrings[GF_S_GAME_KEYMAP_INVENTORY];
+    case INPUT_ROLE_CONSOLE:     return "Console";
     default:                     return "";
     }
     // clang-format on

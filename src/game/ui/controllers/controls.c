@@ -2,6 +2,8 @@
 
 #include "global/vars.h"
 
+#include <libtrx/utils.h>
+
 #include <dinput.h>
 
 static const INPUT_ROLE m_LeftRoles[] = {
@@ -11,9 +13,9 @@ static const INPUT_ROLE m_LeftRoles[] = {
 };
 
 static const INPUT_ROLE m_RightRoles[] = {
-    INPUT_ROLE_JUMP,   INPUT_ROLE_ACTION, INPUT_ROLE_DRAW_WEAPON,
-    INPUT_ROLE_FLARE,  INPUT_ROLE_LOOK,   INPUT_ROLE_ROLL,
-    INPUT_ROLE_OPTION, (INPUT_ROLE)-1,
+    INPUT_ROLE_JUMP,   INPUT_ROLE_ACTION,  INPUT_ROLE_DRAW_WEAPON,
+    INPUT_ROLE_FLARE,  INPUT_ROLE_LOOK,    INPUT_ROLE_ROLL,
+    INPUT_ROLE_OPTION, INPUT_ROLE_CONSOLE, (INPUT_ROLE)-1,
 };
 
 static const INPUT_ROLE *UI_ControlsController_GetInputRoles(int32_t col);
@@ -67,10 +69,12 @@ static bool UI_ControlsController_NavigateInputs(
 {
     if (g_InputDB & IN_DESELECT) {
         controller->state = UI_CONTROLS_STATE_EXIT;
-    } else if (g_InputDB & IN_RIGHT) {
+    } else if (g_InputDB & (IN_LEFT | IN_RIGHT)) {
         controller->active_col ^= 1;
-    } else if (g_InputDB & IN_LEFT) {
-        controller->active_col ^= 1;
+        CLAMP(
+            controller->active_row, 0,
+            UI_ControlsController_GetInputRoleCount(controller->active_col)
+                - 1);
     } else if (g_InputDB & IN_FORWARD) {
         controller->active_row--;
         if (controller->active_row < 0) {

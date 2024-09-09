@@ -27,10 +27,11 @@ INPUT_LAYOUT g_Layout[2] = {
         DIK_RMENU,
         DIK_RCONTROL,
         DIK_SPACE,
-        DIK_SLASH,
+        DIK_PERIOD,
         DIK_NUMPAD0,
         DIK_END,
         DIK_ESCAPE,
+        DIK_SLASH,
     } },
     { .key = {
         DIK_NUMPAD8,
@@ -47,6 +48,7 @@ INPUT_LAYOUT g_Layout[2] = {
         DIK_NUMPAD0,
         DIK_NUMPAD5,
         DIK_DECIMAL,
+        DIK_SLASH,
     } }
 };
 
@@ -164,6 +166,10 @@ bool __cdecl S_Input_Update(void)
     }
     if (S_Input_Key(INPUT_ROLE_ROLL)) {
         input |= IN_ROLL;
+    }
+
+    if (S_Input_Key(INPUT_ROLE_CONSOLE)) {
+        input |= IN_CONSOLE;
     }
 
     if (S_Input_Key(INPUT_ROLE_OPTION) && g_Camera.type != CAM_CINEMATIC) {

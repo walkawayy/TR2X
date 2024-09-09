@@ -215,10 +215,6 @@ bool Console_HandleKeyDown(const uint32_t key)
 #endif
 
     switch (key) {
-    case VK_OEM_2: // TODO: make me configurable!
-        Console_Open();
-        return true;
-
     case VK_LEFT:
         if (!m_IsOpened) {
             return false;

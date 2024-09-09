@@ -30,7 +30,11 @@ static void UI_ControlsInputSelector_UpdateText(
 {
     const uint16_t key =
         Input_GetAssignedKey(self->controller->active_layout, self->input_role);
-    UI_Label_ChangeText(self->choice, Input_GetKeyName(key));
+    if (Input_GetKeyName(key) == NULL) {
+        UI_Label_ChangeText(self->choice, "BAD");
+    } else {
+        UI_Label_ChangeText(self->choice, Input_GetKeyName(key));
+    }
     UI_Label_ChangeText(self->label, Input_GetRoleName(self->input_role));
 }
 
@@ -69,6 +73,7 @@ static void UI_ControlsInputSelector_Control(
             UI_Label_AddFrame(self->choice);
         }
     }
+
     UI_ControlsInputSelector_UpdateText(self);
 
     // Flash conflicts

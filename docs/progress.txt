@@ -4685,7 +4685,7 @@ typedef enum {
 0x0051A250  +       int32_t g_LayoutPage;
 0x0051A24C  +       int32_t g_KeySelector;
 0x0051A248  +       int32_t g_KeyCursor;
-0x00466FA8  -       const char *g_KeyNames[];
+0x00466FA8  +       const char *g_KeyNames[];
 0x00464500  -       const uint16_t g_Requester_BackgroundGour1[];
 0x00464520  -       const uint16_t g_Requester_BackgroundGour2[];
 0x00464538  -       const uint16_t g_Requester_MainGour1[];

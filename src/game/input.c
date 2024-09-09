@@ -5,6 +5,45 @@
 #include "global/vars.h"
 #include "specific/s_input.h"
 
+#include <libtrx/log.h>
+
+static const char *m_KeyNames[] = {
+    NULL,   "ESC",   "1",     "2",     "3",     "4",     "5",     "6",
+    "7",    "8",     "9",     "0",     "-",     "+",     "BKSP",  "TAB",
+    "Q",    "W",     "E",     "R",     "T",     "Y",     "U",     "I",
+    "O",    "P",     "<",     ">",     "RET",   "CTRL",  "A",     "S",
+    "D",    "F",     "G",     "H",     "J",     "K",     "L",     ";",
+    "'",    "`",     "SHIFT", "#",     "Z",     "X",     "C",     "V",
+    "B",    "N",     "M",     ",",     ".",     "/",     "SHIFT", "PADx",
+    "ALT",  "SPACE", "CAPS",  NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    "NMLK",  NULL,    "PAD7",
+    "PAD8", "PAD9",  "PAD-",  "PAD4",  "PAD5",  "PAD6",  "PAD+",  "PAD1",
+    "PAD2", "PAD3",  "PAD0",  "PAD.",  NULL,    NULL,    "\\",    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    "ENTER", "CTRL",  NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    "SHIFT", NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    "PAD/",  NULL,    NULL,
+    "ALT",  NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    "HOME",
+    "UP",   "PGUP",  NULL,    "LEFT",  NULL,    "RIGHT", NULL,    "END",
+    "DOWN", "PGDN",  "INS",   "DEL",   NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    NULL,   NULL,    NULL,    NULL,    NULL,    NULL,    NULL,    NULL,
+    "JOY1", "JOY2",  "JOY3",  "JOY4",  "JOY5",  "JOY6",  "JOY7",  "JOY8",
+    "JOY9", "JOY10", "JOY11", "JOY12", "JOY13", "JOY14", "JOY15", "JOY16",
+};
+
 bool g_ConflictLayout[INPUT_ROLE_NUMBER_OF] = { false };
 
 bool Input_Update(void)
@@ -78,5 +117,5 @@ const char *Input_GetRoleName(const INPUT_ROLE role)
 
 const char *Input_GetKeyName(const uint16_t key)
 {
-    return g_KeyNames[key];
+    return m_KeyNames[key];
 }

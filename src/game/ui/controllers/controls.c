@@ -143,7 +143,7 @@ static bool UI_ControlsController_Listen(
 
     if (!pressed
         // clang-format off
-        || g_KeyNames[pressed] == NULL
+        || Input_GetKeyName(pressed) == NULL
         || pressed == DIK_RETURN
         || pressed == DIK_LEFT
         || pressed == DIK_RIGHT

@@ -2293,8 +2293,8 @@ typedef enum { // decompiled
     O_MISSILE_KNIFE         = 247,
     O_GRENADE               = 248,
     O_HARPOON_BOLT          = 249,
-    O_LAVA                  = 250,
-    O_LAVA_EMITTER          = 251,
+    O_EMBER                 = 250,
+    O_EMBER_EMITTER         = 251,
     O_FLAME                 = 252,
     O_FLAME_EMITTER         = 253,
     O_SKYBOX                = 254,
@@ -3733,7 +3733,7 @@ typedef enum {
 0x00442BC0  0x0164  +       void __cdecl Flame_Control(int16_t fx_num);
 0x00442D30  0x0049  +       void __cdecl Lara_CatchFire(void);
 0x00442D80  0x00E6  +       void __cdecl Lara_TouchLava(ITEM_INFO *item);
-0x00442E70  0x00C5  -R      void __cdecl LavaSpray(int16_t item_num);
+0x00442E70  0x00C5  +       void __cdecl EmberEmitter_Control(int16_t item_num);
 0x00442F40  0x010B  -R      void __cdecl ControlLavaBlob(int16_t fx_num);
 
 # game/yeti.c

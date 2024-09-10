@@ -259,7 +259,6 @@
 #define DartsControl ((void __cdecl (*)(int16_t item_num))0x00442980)
 #define DartEffectControl ((void __cdecl (*)(int16_t fx_num))0x00442AE0)
 #define FlameEmitterControl ((void __cdecl (*)(int16_t item_num))0x00442B30)
-#define LavaSpray ((void __cdecl (*)(int16_t item_num))0x00442E70)
 #define ControlLavaBlob ((void __cdecl (*)(int16_t fx_num))0x00442F40)
 #define GiantYetiControl ((void __cdecl (*)(int16_t item_num))0x00443050)
 #define YetiControl ((void __cdecl (*)(int16_t item_num))0x00443350)

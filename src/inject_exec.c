@@ -43,6 +43,7 @@
 #include "game/objects/general/body_part.h"
 #include "game/objects/general/door.h"
 #include "game/objects/general/final_level_counter.h"
+#include "game/objects/traps/ember_emitter.h"
 #include "game/objects/vehicles/boat.h"
 #include "game/option/option.h"
 #include "game/output.h"
@@ -949,6 +950,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x004336F0, BodyPart_Control);
     INJECT(enable, 0x00434400, FinalLevelCounter_Control);
     INJECT(enable, 0x00442BC0, Flame_Control);
+    INJECT(enable, 0x00442E70, EmberEmitter_Control);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

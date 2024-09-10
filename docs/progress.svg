@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.74% (752)</tspan> · <tspan class="known">35.80% (436)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.82% (753)</tspan> · <tspan class="known">35.71% (435)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="461.20" height="6" x="0" y="0" class="decompiled"/>
-<rect width="267.40" height="6" x="461.20" y="0" class="known"/>
+<rect width="461.82" height="6" x="0" y="0" class="decompiled"/>
+<rect width="266.79" height="6" x="461.82" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -866,7 +866,7 @@
 <rect width="12" height="12" x="555" y="225" class="decompiled"><title>void __cdecl Flame_Control(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="570" y="225" class="decompiled"><title>void __cdecl Lara_CatchFire(void);</title></rect>
 <rect width="12" height="12" x="585" y="225" class="decompiled"><title>void __cdecl Lara_TouchLava(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="600" y="225" class="known"><title>void __cdecl LavaSpray(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="600" y="225" class="decompiled"><title>void __cdecl EmberEmitter_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="615" y="225" class="known"><title>void __cdecl ControlLavaBlob(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="630" y="225" class="known"><title>void __cdecl GiantYetiControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="645" y="225" class="known"><title>void __cdecl YetiControl(int16_t item_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.26%</tspan> · <tspan class="known">34.41%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.32%</tspan> · <tspan class="known">34.35%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="487.51" height="6" x="0" y="0" class="decompiled"/>
-<rect width="257.05" height="6" x="487.51" y="0" class="known"/>
+<rect width="487.94" height="6" x="0" y="0" class="decompiled"/>
+<rect width="256.62" height="6" x="487.94" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1754,7 +1754,7 @@
 <rect width="9.53" height="10.11" x="687.59" y="136.56" class="decompiled"><title>bool __cdecl WinVidCreateGameWindow(void);</title></rect>
 <rect width="9.53" height="10.11" x="700.12" y="136.56" class="decompiled"><title>BOOL __cdecl GF_ReadStringTable(DWORD count, char **string_table, char **string_buf, LPDWORD buf_size, HANDLE handle);</title></rect>
 <rect width="9.47" height="10.11" x="712.66" y="136.56" class="decompiled"><title>void __cdecl Output_QuickSort(int32_t left, int32_t right);</title></rect>
-<rect width="9.47" height="10.11" x="725.13" y="136.56" class="known"><title>void __cdecl LavaSpray(int16_t item_num);</title></rect>
+<rect width="9.47" height="10.11" x="725.13" y="136.56" class="decompiled"><title>void __cdecl EmberEmitter_Control(int16_t item_num);</title></rect>
 <rect width="9.41" height="10.11" x="737.59" y="136.56" class="known"><title>void __cdecl SmashWindow(int16_t item_num);</title></rect>
 <rect width="9.54" height="9.97" x="521.63" y="149.67" class="decompiled"><title>bool __cdecl S_Audio_Sample_DSoundBufferTest(void);</title></rect>
 <rect width="9.54" height="9.97" x="521.63" y="162.64" class="known"><title>BOOL __cdecl S_ReloadLevelGraphics(BOOL reload_palettes, BOOL reload_tex_pages);</title></rect>

@@ -161,7 +161,6 @@ const GAME_OBJECT_ID g_NullObjects[] = {
     O_MISSILE_KNIFE,
     O_GRENADE,
     O_HARPOON_BOLT,
-    O_LAVA,
     O_SKYBOX,
     O_ALPHABET,
     O_ASSAULT_DIGITS,

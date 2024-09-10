@@ -656,6 +656,7 @@ int32_t __cdecl Inv_Display(int32_t inventory_mode)
 
                 if (!busy && !g_Inv_IsOptionsDelay) {
                     Option_DoInventory(inv_item);
+
                     if (g_InputDB & IN_DESELECT) {
                         inv_item->sprite_list = NULL;
                         Inv_Ring_MotionSetup(

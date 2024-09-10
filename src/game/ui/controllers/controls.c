@@ -1,5 +1,6 @@
 #include "game/ui/controllers/controls.h"
 
+#include "game/input.h"
 #include "global/vars.h"
 
 #include <libtrx/utils.h>
@@ -110,9 +111,10 @@ static bool UI_ControlsController_NavigateInputs(
 static bool UI_ControlsController_ListenDebounce(
     UI_CONTROLS_CONTROLLER *const controller)
 {
-    if (g_Input) {
+    if (Input_IsAnythingPressed()) {
         return false;
     }
+    Input_EnterListenMode();
     controller->state = UI_CONTROLS_STATE_LISTEN;
     return true;
 }
@@ -172,9 +174,11 @@ static bool UI_ControlsController_Listen(
 static bool UI_ControlsController_NavigateInputsDebounce(
     UI_CONTROLS_CONTROLLER *const controller)
 {
-    if (g_Input) {
+    if (Input_IsAnythingPressed()) {
         return false;
     }
+
+    Input_ExitListenMode();
     controller->state = UI_CONTROLS_STATE_NAVIGATE_INPUTS;
     return true;
 }

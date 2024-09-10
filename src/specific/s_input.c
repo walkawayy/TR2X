@@ -499,3 +499,13 @@ bool __cdecl S_Input_Update(void)
     g_Input = input;
     return g_IsGameToExit;
 }
+
+bool Input_IsAnythingPressed(void)
+{
+    for (int32_t i = 0; i < 256; i++) {
+        if (KEY_DOWN(i)) {
+            return true;
+        }
+    }
+    return false;
+}

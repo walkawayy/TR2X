@@ -45,10 +45,17 @@ static const char *m_KeyNames[] = {
 };
 
 bool g_ConflictLayout[INPUT_ROLE_NUMBER_OF] = { false };
+bool m_ListenMode = false;
 
 bool Input_Update(void)
 {
     bool result = S_Input_Update();
+
+    if (m_ListenMode) {
+        g_Input = 0;
+        g_InputDB = 0;
+        return true;
+    }
 
     g_InputDB = Input_GetDebounced(g_Input);
 
@@ -141,4 +148,14 @@ void __cdecl Input_CheckConflictsWithDefaults(void)
             }
         }
     }
+}
+
+void Input_EnterListenMode(void)
+{
+    m_ListenMode = true;
+}
+
+void Input_ExitListenMode(void)
+{
+    m_ListenMode = false;
 }

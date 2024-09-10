@@ -67,6 +67,9 @@ extern bool g_ConflictLayout[INPUT_ROLE_NUMBER_OF];
 bool Input_Update(void);
 int32_t __cdecl Input_GetDebounced(int32_t input);
 
+void Input_EnterListenMode(void);
+void Input_ExitListenMode(void);
+bool Input_IsAnythingPressed(void);
 void Input_AssignKey(int32_t layout, INPUT_ROLE role, uint16_t key);
 uint16_t Input_GetAssignedKey(int32_t layout, INPUT_ROLE role);
 

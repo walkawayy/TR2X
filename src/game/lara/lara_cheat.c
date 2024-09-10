@@ -117,6 +117,7 @@ bool __cdecl Lara_Cheat_EnterFlyMode(void)
     g_Lara.air = LARA_MAX_AIR;
     g_Lara.death_timer = 0;
     g_Lara.mesh_effects = 0;
+    g_Lara.burn = 0;
     g_Lara.extra_anim = 0;
 
     Lara_Cheat_ReinitialiseGunMeshes();

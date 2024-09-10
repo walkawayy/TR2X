@@ -1825,7 +1825,7 @@ void __cdecl Lara_Extinguish(void)
 
 void __cdecl Lara_CatchFire(void)
 {
-    if (g_Lara.burn) {
+    if (g_Lara.burn || g_Lara.water_status == LWS_CHEAT) {
         return;
     }
 
@@ -1843,7 +1843,7 @@ void __cdecl Lara_CatchFire(void)
 
 void __cdecl Lara_TouchLava(ITEM_INFO *const item)
 {
-    if (item->hit_points < 0) {
+    if (item->hit_points < 0 || g_Lara.water_status == LWS_CHEAT) {
         return;
     }
 

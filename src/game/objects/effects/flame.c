@@ -52,14 +52,15 @@ void __cdecl Flame_Control(const int16_t fx_num)
 
         const int32_t water_height =
             Room_GetWaterHeight(fx->pos.x, fx->pos.y, fx->pos.z, fx->room_num);
-        if (water_height == NO_HEIGHT || fx->pos.y <= water_height) {
-            Sound_Effect(SFX_LOOP_FOR_SMALL_FIRES, &fx->pos, SPM_ALWAYS);
-            Lara_TakeDamage(7, false);
-            g_Lara.burn = 1;
-        } else {
+        if ((water_height != NO_HEIGHT && fx->pos.y > water_height)
+            || g_Lara.water_status == LWS_CHEAT) {
             fx->counter = 0;
             Effect_Kill(fx_num);
             g_Lara.burn = 0;
+        } else {
+            Sound_Effect(SFX_LOOP_FOR_SMALL_FIRES, &fx->pos, SPM_ALWAYS);
+            Lara_TakeDamage(7, false);
+            g_Lara.burn = 1;
         }
     }
 }

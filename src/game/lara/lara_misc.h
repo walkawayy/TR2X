@@ -81,6 +81,7 @@ void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);
 
 void __cdecl Lara_WaterCurrent(COLL_INFO *coll);
 
+void __cdecl Lara_Extinguish(void);
 void __cdecl Lara_CatchFire(void);
 
 void __cdecl Lara_TouchLava(ITEM_INFO *item);

@@ -18,6 +18,7 @@
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
+#include "lara/lara_misc.h"
 
 #include <libtrx/memory.h>
 #include <libtrx/strings.h>
@@ -260,6 +261,7 @@ static COMMAND_RESULT Console_Cmd_Heal(const char *const args)
     }
 
     g_LaraItem->hit_points = LARA_MAX_HITPOINTS;
+    Lara_Extinguish();
     Console_Log(GS(OSD_HEAL_SUCCESS));
     return CR_SUCCESS;
 }

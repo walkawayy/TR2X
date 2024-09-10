@@ -80,3 +80,5 @@ void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, const COLL_INFO *coll);
 void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);
 
 void __cdecl Lara_WaterCurrent(COLL_INFO *coll);
+
+void __cdecl Lara_CatchFire(void);

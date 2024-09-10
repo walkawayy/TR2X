@@ -32,7 +32,7 @@ void __cdecl Flame_Control(const int16_t fx_num)
             const int32_t dist = SQUARE(dx) + SQUARE(dz);
             if (dist < SQUARE(450)) {
                 fx->counter = 100;
-                LaraBurn();
+                Lara_CatchFire();
             }
         }
     } else {

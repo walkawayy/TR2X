@@ -3,6 +3,7 @@
 #include "decomp/decomp.h"
 #include "game/box.h"
 #include "game/collide.h"
+#include "game/effects.h"
 #include "game/input.h"
 #include "game/items.h"
 #include "game/lara/lara_control.h"
@@ -1798,4 +1799,22 @@ void __cdecl Lara_WaterCurrent(COLL_INFO *const coll)
     Item_ShiftCol(item, coll);
 
     coll->old = item->pos;
+}
+
+void __cdecl Lara_CatchFire(void)
+{
+    if (g_Lara.burn) {
+        return;
+    }
+
+    const int16_t fx_num = Effect_Create(g_LaraItem->room_num);
+    if (fx_num == NO_ITEM) {
+        return;
+    }
+
+    FX_INFO *const fx = &g_Effects[fx_num];
+    fx->frame_num = 0;
+    fx->object_id = O_FLAME;
+    fx->counter = -1;
+    g_Lara.burn = 1;
 }

@@ -96,7 +96,6 @@
 #define g_DumpY (*(int16_t*)0x00466BE6)
 #define g_DumpWidth (*(int16_t*)0x00466BE8)
 #define g_DumpHeight (*(int16_t*)0x00466BEA)
-#define g_KeyNames (*(const char *(*)[])0x00466FA8)
 #define g_DetailLevel (*(int32_t*)0x0046773C)
 #define g_MidSort (*(int32_t*)0x0046C300) // = 0
 #define g_ViewportAspectRatio (*(float*)0x0046C304) // = 0.0f

@@ -39,6 +39,7 @@
 #include "game/objects/common.h"
 #include "game/objects/creatures/bird.h"
 #include "game/objects/creatures/diver.h"
+#include "game/objects/effects/flame.h"
 #include "game/objects/general/body_part.h"
 #include "game/objects/general/door.h"
 #include "game/objects/general/final_level_counter.h"
@@ -945,6 +946,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x00416DB0, Diver_Control);
     INJECT(enable, 0x004336F0, BodyPart_Control);
     INJECT(enable, 0x00434400, FinalLevelCounter_Control);
+    INJECT(enable, 0x00442BC0, Flame_Control);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

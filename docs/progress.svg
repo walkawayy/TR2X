@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.49% (749)</tspan> · <tspan class="known">36.04% (439)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.58% (750)</tspan> · <tspan class="known">35.96% (438)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="459.36" height="6" x="0" y="0" class="decompiled"/>
-<rect width="269.24" height="6" x="459.36" y="0" class="known"/>
+<rect width="459.98" height="6" x="0" y="0" class="decompiled"/>
+<rect width="268.63" height="6" x="459.98" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -863,7 +863,7 @@
 <rect width="12" height="12" x="510" y="225" class="known"><title>void __cdecl DartsControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="525" y="225" class="known"><title>void __cdecl DartEffectControl(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="540" y="225" class="known"><title>void __cdecl FlameEmitterControl(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="555" y="225" class="known"><title>void __cdecl FlameControl(int16_t fx_num);</title></rect>
+<rect width="12" height="12" x="555" y="225" class="decompiled"><title>void __cdecl Flame_Control(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="570" y="225" class="known"><title>void __cdecl LaraBurn(void);</title></rect>
 <rect width="12" height="12" x="585" y="225" class="known"><title>void __cdecl LavaBurn(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="600" y="225" class="known"><title>void __cdecl LavaSpray(int16_t item_num);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.07%</tspan> · <tspan class="known">34.60%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.17%</tspan> · <tspan class="known">34.50%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="486.06" height="6" x="0" y="0" class="decompiled"/>
-<rect width="258.49" height="6" x="486.06" y="0" class="known"/>
+<rect width="486.84" height="6" x="0" y="0" class="decompiled"/>
+<rect width="257.72" height="6" x="486.84" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1571,7 +1571,7 @@
 <rect width="14.70" height="13.84" x="610.13" y="59.39" class="decompiled"><title>void __cdecl Inv_RingIsOpen(RING_INFO *ring);</title></rect>
 <rect width="14.65" height="13.84" x="627.83" y="59.39" class="decompiled"><title>void __cdecl Gun_Rifle_Draw(LARA_GUN_TYPE weapon_type);</title></rect>
 <rect width="14.60" height="13.84" x="645.48" y="59.39" class="known"><title>BOOL __cdecl S_FrontEndCheck(void);</title></rect>
-<rect width="14.55" height="13.84" x="663.08" y="59.39" class="known"><title>void __cdecl FlameControl(int16_t fx_num);</title></rect>
+<rect width="14.55" height="13.84" x="663.08" y="59.39" class="decompiled"><title>void __cdecl Flame_Control(int16_t fx_num);</title></rect>
 <rect width="14.45" height="13.84" x="680.63" y="59.39" class="decompiled"><title>void __cdecl Lara_Col_Wade(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="14.35" height="13.84" x="698.08" y="59.39" class="decompiled"><title>void __fastcall Output_GourA(int32_t y0, int32_t y1, uint8_t color_idx); // actually, __watcall, which is esoteric and rarely supported</title></rect>
 <rect width="14.31" height="13.84" x="715.44" y="59.39" class="decompiled"><title>int32_t __cdecl Level_Initialise(int32_t level_num, int32_t level_type);</title></rect>

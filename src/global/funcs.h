@@ -259,7 +259,6 @@
 #define DartsControl ((void __cdecl (*)(int16_t item_num))0x00442980)
 #define DartEffectControl ((void __cdecl (*)(int16_t fx_num))0x00442AE0)
 #define FlameEmitterControl ((void __cdecl (*)(int16_t item_num))0x00442B30)
-#define FlameControl ((void __cdecl (*)(int16_t fx_num))0x00442BC0)
 #define LaraBurn ((void __cdecl (*)(void))0x00442D30)
 #define LavaBurn ((void __cdecl (*)(ITEM_INFO *item))0x00442D80)
 #define LavaSpray ((void __cdecl (*)(int16_t item_num))0x00442E70)

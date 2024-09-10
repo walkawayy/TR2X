@@ -120,6 +120,7 @@ dll_sources = [
   'src/game/objects/common.c',
   'src/game/objects/creatures/bird.c',
   'src/game/objects/creatures/diver.c',
+  'src/game/objects/effects/flame.c',
   'src/game/objects/general/body_part.c',
   'src/game/objects/general/door.c',
   'src/game/objects/general/final_level_counter.c',

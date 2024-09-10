@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.90% (754)</tspan> · <tspan class="known">35.63% (434)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.99% (755)</tspan> · <tspan class="known">35.55% (433)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="462.43" height="6" x="0" y="0" class="decompiled"/>
-<rect width="266.17" height="6" x="462.43" y="0" class="known"/>
+<rect width="463.04" height="6" x="0" y="0" class="decompiled"/>
+<rect width="265.56" height="6" x="463.04" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -862,7 +862,7 @@
 <rect width="12" height="12" x="495" y="225" class="known"><title>void __cdecl DartEmitterControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="510" y="225" class="known"><title>void __cdecl DartsControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="525" y="225" class="known"><title>void __cdecl DartEffectControl(int16_t fx_num);</title></rect>
-<rect width="12" height="12" x="540" y="225" class="known"><title>void __cdecl FlameEmitterControl(int16_t item_num);</title></rect>
+<rect width="12" height="12" x="540" y="225" class="decompiled"><title>void __cdecl FlameEmitter_Control(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="555" y="225" class="decompiled"><title>void __cdecl Flame_Control(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="570" y="225" class="decompiled"><title>void __cdecl Lara_CatchFire(void);</title></rect>
 <rect width="12" height="12" x="585" y="225" class="decompiled"><title>void __cdecl Lara_TouchLava(ITEM_INFO *item);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.40%</tspan> · <tspan class="known">34.28%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.44%</tspan> · <tspan class="known">34.23%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="488.52" height="6" x="0" y="0" class="decompiled"/>
-<rect width="256.04" height="6" x="488.52" y="0" class="known"/>
+<rect width="488.84" height="6" x="0" y="0" class="decompiled"/>
+<rect width="255.72" height="6" x="488.84" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1883,7 +1883,7 @@
 <rect width="7.91" height="8.03" x="589.71" y="185.54" class="known"><title>bool __cdecl GetRegistryGuidValue(LPCTSTR lpValueName, GUID *value, GUID *defaultValue);</title></rect>
 <rect width="7.84" height="8.03" x="600.62" y="185.54" class="decompiled"><title>void __cdecl Lara_Col_Reach(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="7.84" height="8.03" x="611.46" y="185.54" class="known"><title>int32_t __cdecl GetCollisionAnim(ITEM_INFO *skidoo, XYZ_32 *moved);</title></rect>
-<rect width="7.84" height="8.03" x="622.29" y="185.54" class="known"><title>void __cdecl FlameEmitterControl(int16_t item_num);</title></rect>
+<rect width="7.84" height="8.03" x="622.29" y="185.54" class="decompiled"><title>void __cdecl FlameEmitter_Control(int16_t item_num);</title></rect>
 <rect width="7.84" height="8.03" x="633.13" y="185.54" class="decompiled"><title>bool __cdecl WinVidCopyBitmapToBuffer(LPDDS surface, const BYTE *bitmap);</title></rect>
 <rect width="7.76" height="8.03" x="643.97" y="185.54" class="decompiled"><title>void __cdecl CutscenePlayer1_Initialise(int16_t item_num);</title></rect>
 <rect width="7.76" height="8.03" x="654.73" y="185.54" class="known"><title>void __cdecl FloodFX(ITEM_INFO *item);</title></rect>

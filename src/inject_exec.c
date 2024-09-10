@@ -717,6 +717,7 @@ static void Inject_Lara_Misc(const bool enable)
     INJECT(enable, 0x00432710, Lara_SwimCollision);
     INJECT(enable, 0x00432870, Lara_WaterCurrent);
     INJECT(enable, 0x00442D30, Lara_CatchFire);
+    INJECT(enable, 0x00442D80, Lara_TouchLava);
 }
 
 static void Inject_Lara_State(const bool enable)

@@ -18,6 +18,7 @@
 #define WALL_SHIFT 10
 #define STEP_L (WALL_L / 4) // = 256
 #define NO_HEIGHT (-32512)
+#define MAX_HEIGHT 32000
 #define NO_BAD_POS (-NO_HEIGHT) // = 32512
 #define NO_BAD_NEG (NO_HEIGHT) // = -32512
 #define BAD_JUMP_CEILING ((STEP_L * 3) / 4) // = 192

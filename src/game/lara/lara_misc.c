@@ -9,6 +9,7 @@
 #include "game/lara/lara_control.h"
 #include "game/math.h"
 #include "game/matrix.h"
+#include "game/random.h"
 #include "game/room.h"
 #include "game/sound.h"
 #include "global/const.h"
@@ -1817,4 +1818,34 @@ void __cdecl Lara_CatchFire(void)
     fx->object_id = O_FLAME;
     fx->counter = -1;
     g_Lara.burn = 1;
+}
+
+void __cdecl Lara_TouchLava(ITEM_INFO *const item)
+{
+    if (item->hit_points < 0) {
+        return;
+    }
+
+    int16_t room_num = item->room_num;
+    const SECTOR_INFO *const sector =
+        Room_GetSector(item->pos.x, MAX_HEIGHT, item->pos.z, &room_num);
+    const int32_t height =
+        Room_GetHeight(sector, item->pos.x, MAX_HEIGHT, item->pos.z);
+    if (item->floor != height) {
+        return;
+    }
+
+    item->hit_points = -1;
+    item->hit_status = 1;
+
+    for (int32_t i = 0; i < 10; i++) {
+        const int16_t fx_num = Effect_Create(item->room_num);
+        if (fx_num != NO_ITEM) {
+            FX_INFO *const fx = &g_Effects[fx_num];
+            fx->object_id = O_FLAME;
+            fx->frame_num =
+                g_Objects[O_FLAME].mesh_count * Random_GetControl() / 0x7FFF;
+            fx->counter = -1 - 24 * Random_GetControl() / 0x7FFF;
+        }
+    }
 }

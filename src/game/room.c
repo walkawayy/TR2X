@@ -3,6 +3,7 @@
 #include "game/box.h"
 #include "game/camera.h"
 #include "game/items.h"
+#include "game/lara/lara_misc.h"
 #include "game/lot.h"
 #include "game/math.h"
 #include "game/music.h"
@@ -369,7 +370,7 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
         if (!heavy
             && (g_LaraItem->pos.y == g_LaraItem->floor
                 || g_Lara.water_status != LWS_ABOVE_WATER)) {
-            LavaBurn(g_LaraItem);
+            Lara_TouchLava(g_LaraItem);
         }
 
         if (FLOORDATA_IS_END(*fd)) {

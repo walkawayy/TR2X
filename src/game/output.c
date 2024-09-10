@@ -649,17 +649,15 @@ const int16_t *__cdecl Output_CalcRoomVertices(
             const double persp = g_FltPersp / zv;
             const int32_t depth = zv_int >> W2V_SHIFT;
             vbuf->zv += base_z;
+            vbuf->rhw = persp * g_FltRhwOPersp;
 
             if (depth < FOG_END) {
                 if (depth > FOG_START) {
                     shade += depth - FOG_START;
                 }
-                vbuf->rhw = persp * g_FltRhwOPersp;
             } else {
                 clip_flags = far_clip;
                 shade = 0x1FFF;
-                vbuf->zv = g_FltFarZ;
-                vbuf->rhw = 0.0; // *(int32_t*)0x00478054
             }
 
             double xs = xv * persp + g_FltWinCenterX;

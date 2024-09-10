@@ -9,8 +9,10 @@ static UI_CONTROLS_CONTROLLER m_ControlsDialogController;
 
 void Option_Controls_Shutdown(void)
 {
-    m_ControlsDialog->free(m_ControlsDialog);
-    m_ControlsDialog = NULL;
+    if (m_ControlsDialog != NULL) {
+        m_ControlsDialog->free(m_ControlsDialog);
+        m_ControlsDialog = NULL;
+    }
     Input_CheckConflictsWithDefaults();
 }
 

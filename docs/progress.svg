@@ -69,10 +69,10 @@
 </g>
 <g transform="translate(0 116)">
 <text x="0" y="7.50">Tomb2.exe progress according to the physical function order:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.82% (753)</tspan> · <tspan class="known">35.71% (435)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">61.90% (754)</tspan> · <tspan class="known">35.63% (434)</tspan> · <tspan class="todo">0% (0)</tspan> · <tspan class="unused">2.46% (30)</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="461.82" height="6" x="0" y="0" class="decompiled"/>
-<rect width="266.79" height="6" x="461.82" y="0" class="known"/>
+<rect width="462.43" height="6" x="0" y="0" class="decompiled"/>
+<rect width="266.17" height="6" x="462.43" y="0" class="known"/>
 <rect width="18.40" height="6" x="728.60" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -867,7 +867,7 @@
 <rect width="12" height="12" x="570" y="225" class="decompiled"><title>void __cdecl Lara_CatchFire(void);</title></rect>
 <rect width="12" height="12" x="585" y="225" class="decompiled"><title>void __cdecl Lara_TouchLava(ITEM_INFO *item);</title></rect>
 <rect width="12" height="12" x="600" y="225" class="decompiled"><title>void __cdecl EmberEmitter_Control(int16_t item_num);</title></rect>
-<rect width="12" height="12" x="615" y="225" class="known"><title>void __cdecl ControlLavaBlob(int16_t fx_num);</title></rect>
+<rect width="12" height="12" x="615" y="225" class="decompiled"><title>void __cdecl Ember_Control(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="630" y="225" class="known"><title>void __cdecl GiantYetiControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="645" y="225" class="known"><title>void __cdecl YetiControl(int16_t item_num);</title></rect>
 <rect width="12" height="12" x="660" y="225" class="decompiled"><title>void __cdecl BGND_Make640x480(uint8_t *bitmap, RGB_888 *palette);</title></rect>
@@ -1298,10 +1298,10 @@
 </g>
 <g transform="translate(0 546)">
 <text x="0" y="7.50">Tomb2.exe progress according to the function sizes:</text>
-<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.32%</tspan> · <tspan class="known">34.35%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
+<text class="todo" style="font-size: 12px; " x="747" y="9"><tspan text-anchor="end"><tspan class="decompiled">65.40%</tspan> · <tspan class="known">34.28%</tspan> · <tspan class="todo">0%</tspan> · <tspan class="unused">0.33%</tspan></tspan></text>
 <g transform="translate(0 20)">
-<rect width="487.94" height="6" x="0" y="0" class="decompiled"/>
-<rect width="256.62" height="6" x="487.94" y="0" class="known"/>
+<rect width="488.52" height="6" x="0" y="0" class="decompiled"/>
+<rect width="256.04" height="6" x="488.52" y="0" class="known"/>
 <rect width="2.44" height="6" x="744.56" y="0" class="unused"/>
 </g>
 <g transform="translate(0 31)">
@@ -1648,7 +1648,7 @@
 <rect width="12.25" height="11.70" x="465.10" y="334.13" class="decompiled"><title>bool __cdecl S_Audio_Sample_Load(int32_t sample_id, LPWAVEFORMATEX format, const void *data, int32_t data_size);</title></rect>
 <rect width="12.25" height="11.59" x="465.10" y="348.83" class="decompiled"><title>void __cdecl Lara_State_Compress(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
 <rect width="12.25" height="11.59" x="465.10" y="363.41" class="known"><title>void __cdecl CopterControl(int16_t item_num);</title></rect>
-<rect width="12.28" height="11.51" x="480.35" y="108.31" class="known"><title>void __cdecl ControlLavaBlob(int16_t fx_num);</title></rect>
+<rect width="12.28" height="11.51" x="480.35" y="108.31" class="decompiled"><title>void __cdecl Ember_Control(int16_t fx_num);</title></rect>
 <rect width="12.28" height="11.51" x="495.62" y="108.31" class="decompiled"><title>bool __cdecl WinVidGoWindowed(int32_t width, int32_t height, DISPLAY_MODE *dispMode);</title></rect>
 <rect width="12.22" height="11.51" x="510.90" y="108.31" class="decompiled"><title>void __cdecl Inv_InitColors(void);</title></rect>
 <rect width="12.22" height="11.51" x="526.12" y="108.31" class="known"><title>void __cdecl Pendulum(int16_t item_num);</title></rect>

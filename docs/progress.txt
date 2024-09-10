@@ -3734,7 +3734,7 @@ typedef enum {
 0x00442D30  0x0049  +       void __cdecl Lara_CatchFire(void);
 0x00442D80  0x00E6  +       void __cdecl Lara_TouchLava(ITEM_INFO *item);
 0x00442E70  0x00C5  +       void __cdecl EmberEmitter_Control(int16_t item_num);
-0x00442F40  0x010B  -R      void __cdecl ControlLavaBlob(int16_t fx_num);
+0x00442F40  0x010B  +       void __cdecl Ember_Control(int16_t fx_num);
 
 # game/yeti.c
 0x00443050  0x02CA  -R      void __cdecl GiantYetiControl(int16_t item_num);

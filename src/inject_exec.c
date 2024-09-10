@@ -39,6 +39,7 @@
 #include "game/objects/common.h"
 #include "game/objects/creatures/bird.h"
 #include "game/objects/creatures/diver.h"
+#include "game/objects/effects/ember.h"
 #include "game/objects/effects/flame.h"
 #include "game/objects/general/body_part.h"
 #include "game/objects/general/door.h"
@@ -951,6 +952,7 @@ static void Inject_Objects(const bool enable)
     INJECT(enable, 0x00434400, FinalLevelCounter_Control);
     INJECT(enable, 0x00442BC0, Flame_Control);
     INJECT(enable, 0x00442E70, EmberEmitter_Control);
+    INJECT(enable, 0x00442F40, Ember_Control);
 }
 
 static void Inject_S_Audio_Sample(const bool enable)

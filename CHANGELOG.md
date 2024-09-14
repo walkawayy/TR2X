@@ -38,6 +38,7 @@
 - fixed pulling the dagger from the dragon not activating triggers (#148, regression from 0.1)
 - fixed the music at the beginning of Offshore Rig not playing (#150, regression from 0.1)
 - fixed wade animation when moving from deep to shallow water (#231, regression from 0.1)
+- fixed the distorted skybox in room 5 of Barkhang Monastery (#196)
 - improved initial level load time by lazy-loading audio samples (#114)
 - improved crash debug information (#137)
 - improved the console caret sprite (#91)

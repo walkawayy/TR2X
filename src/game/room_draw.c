@@ -39,7 +39,7 @@ void __cdecl Room_GetBounds(void)
             }
         }
 
-        if (!(r->flags & RF_INSIDE)) {
+        if (!(r->flags & RF_INSIDE) || (r->flags & RF_OUTSIDE)) {
             if (r->bound_left < g_OutsideLeft) {
                 g_OutsideLeft = r->bound_left;
             }

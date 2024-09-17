@@ -7,6 +7,7 @@ typedef struct GAME_OBJECT_PAIR {
     const GAME_OBJECT_ID value_id;
 } GAME_OBJECT_PAIR;
 
+OBJECT_INFO *Object_Get(GAME_OBJECT_ID object_id);
 GAME_OBJECT_ID Object_GetCognate(
     GAME_OBJECT_ID key_id, const GAME_OBJECT_PAIR *test_map);
 GAME_OBJECT_ID Object_GetCognateInverse(

@@ -1,7 +1,6 @@
 #include "game/console.h"
 
 #include "game/clock.h"
-#include "game/console_cmd.h"
 #include "game/game_string.h"
 #include "game/input.h"
 #include "game/output.h"
@@ -9,6 +8,7 @@
 #include "global/const.h"
 #include "global/types.h"
 
+#include <libtrx/game/console/common.h>
 #include <libtrx/log.h>
 #include <libtrx/memory.h>
 #include <libtrx/utils.h>
@@ -51,6 +51,7 @@ static void Console_UpdatePromptTextstring(void);
 static void Console_UpdateCaretTextstring(void);
 static COMMAND_RESULT Console_Eval(const char *cmdline);
 
+extern CONSOLE_COMMAND *g_ConsoleCommands[];
 static void Console_ShutdownPrompt(void)
 {
     if (m_Prompt.prompt_ts != NULL) {
@@ -91,8 +92,11 @@ static COMMAND_RESULT Console_Eval(const char *const cmdline)
     const char *args = NULL;
     const CONSOLE_COMMAND *matching_cmd = NULL;
 
-    for (CONSOLE_COMMAND *cur_cmd = &g_ConsoleCommands[0];
-         cur_cmd->proc != NULL; cur_cmd++) {
+    for (int32_t i = 0;; i++) {
+        CONSOLE_COMMAND *cur_cmd = g_ConsoleCommands[i];
+        if (cur_cmd == NULL) {
+            break;
+        }
         if (strstr(cmdline, cur_cmd->prefix) != cmdline) {
             continue;
         }

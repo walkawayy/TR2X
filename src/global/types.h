@@ -4,8 +4,10 @@
 
 #include "const.h"
 
+#include <libtrx/game/collision.h>
 #include <libtrx/game/items.h>
 #include <libtrx/game/math.h>
+#include <libtrx/game/objects/common.h>
 
 #include <ddraw.h>
 #include <ddrawi.h>
@@ -462,43 +464,6 @@ typedef enum {
     DRAW_OPAQUE    = 0,
     DRAW_COLOR_KEY = 1,
 } DRAW_TYPE;
-
-typedef struct __unaligned {
-    int32_t floor;
-    int32_t ceiling;
-    int32_t type;
-} COLL_SIDE;
-
-typedef struct __unaligned {
-    COLL_SIDE side_mid;
-    COLL_SIDE side_front;
-    COLL_SIDE side_left;
-    COLL_SIDE side_right;
-    int32_t radius;
-    int32_t bad_pos;
-    int32_t bad_neg;
-    int32_t bad_ceiling;
-    XYZ_32 shift;
-    XYZ_32 old;
-    int16_t old_anim_state;
-    int16_t old_anim_num;
-    int16_t old_frame_num;
-    int16_t facing;
-    int16_t quadrant;
-    int16_t coll_type;
-    int16_t *trigger;
-    int8_t x_tilt;
-    int8_t z_tilt;
-    int8_t hit_by_baddie;
-    int8_t hit_static;
-    uint16_t slopes_are_walls:   1; // 0x01 1
-    uint16_t slopes_are_pits:    1; // 0x02 2
-    uint16_t lava_is_pit:        1; // 0x04 4
-    uint16_t enable_baddie_push: 1; // 0x08 8
-    uint16_t enable_spaz:        1; // 0x10 16
-    uint16_t hit_ceiling:        1; // 0x20 32
-    uint16_t pad:                10;
-} COLL_INFO;
 
 typedef struct __unaligned {
     int16_t min_x;
@@ -1055,46 +1020,6 @@ typedef struct __unaligned {
     uint8_t level_complete_track;
     uint16_t reserved4[2];
 } GAME_FLOW;
-
-typedef struct __unaligned {
-    int16_t mesh_count;
-    int16_t mesh_idx;
-    int32_t bone_idx;
-    int16_t *frame_base; // TODO: make me FRAME_INFO
-
-    void (*initialise)(int16_t item_num);
-    void (*control)(int16_t item_num);
-    void (*floor)(
-        const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
-        int32_t *height);
-    void (*ceiling)(
-        const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
-        int32_t *height);
-    void (*draw_routine)(const ITEM_INFO *item);
-    void (*collision)(int16_t
-        item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-
-    int16_t anim_idx;
-    int16_t hit_points;
-    int16_t pivot_length;
-    int16_t radius;
-    int16_t shadow_size;
-
-    union {
-        uint16_t flags;
-        struct {
-            uint16_t loaded:           1; // 0x01 1
-            uint16_t intelligent:      1; // 0x02 2
-            uint16_t save_position:    1; // 0x04 4
-            uint16_t save_hitpoints:   1; // 0x08 8
-            uint16_t save_flags:       1; // 0x10 16
-            uint16_t save_anim:        1; // 0x20 32
-            uint16_t semi_transparent: 1; // 0x40 64
-            uint16_t water_creature:   1; // 0x80 128
-            uint16_t pad : 8;
-        };
-    };
-} OBJECT_INFO;
 
 typedef struct __unaligned {
     GAME_VECTOR pos;

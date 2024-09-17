@@ -110,6 +110,7 @@ dll_sources = [
   'src/game/inventory/ring.c',
   'src/game/inventory/vars.c',
   'src/game/items.c',
+  'src/game/lara/common.c',
   'src/game/lara/lara_cheat.c',
   'src/game/lara/lara_col.c',
   'src/game/lara/lara_control.c',

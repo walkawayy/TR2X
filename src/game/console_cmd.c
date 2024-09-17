@@ -1,5 +1,3 @@
-#include "game/console_cmd.h"
-
 #include "decomp/effects.h"
 #include "game/console.h"
 #include "game/creature.h"
@@ -20,6 +18,8 @@
 #include "global/vars.h"
 #include "lara/lara_misc.h"
 
+#include <libtrx/game/console/commands/pos.h>
+#include <libtrx/game/console/common.h>
 #include <libtrx/memory.h>
 #include <libtrx/strings.h>
 
@@ -30,7 +30,6 @@ static bool Console_Cmd_CanTargetObject(GAME_OBJECT_ID object_id);
 static bool Console_Cmd_CanTargetObjectCreature(GAME_OBJECT_ID object_id);
 static bool Console_Cmd_CanTargetObjectPickup(GAME_OBJECT_ID object_id);
 static bool Console_Cmd_IsFloatRound(float num);
-static COMMAND_RESULT Console_Cmd_Pos(const char *args);
 static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
 static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
@@ -68,22 +67,6 @@ static bool Console_Cmd_CanTargetObjectPickup(const GAME_OBJECT_ID object_id)
 static inline bool Console_Cmd_IsFloatRound(const float num)
 {
     return (fabsf(num) - roundf(num)) < 0.0001f;
-}
-
-static COMMAND_RESULT Console_Cmd_Pos(const char *const args)
-{
-    if (!g_Objects[O_LARA].loaded) {
-        return CR_UNAVAILABLE;
-    }
-
-    Console_Log(
-        GS(OSD_POS_GET), g_LaraItem->room_num,
-        g_LaraItem->pos.x / (float)WALL_L, g_LaraItem->pos.y / (float)WALL_L,
-        g_LaraItem->pos.z / (float)WALL_L,
-        g_LaraItem->rot.x * 360.0f / (float)PHD_ONE,
-        g_LaraItem->rot.y * 360.0f / (float)PHD_ONE,
-        g_LaraItem->rot.z * 360.0f / (float)PHD_ONE);
-    return CR_SUCCESS;
 }
 
 static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
@@ -603,26 +586,27 @@ static COMMAND_RESULT Console_Cmd_Abortion(const char *const args)
     return CR_SUCCESS;
 }
 
-CONSOLE_COMMAND g_ConsoleCommands[] = {
-    { .prefix = "pos", .proc = Console_Cmd_Pos },
-    { .prefix = "tp", .proc = Console_Cmd_Teleport },
-    { .prefix = "hp", .proc = Console_Cmd_SetHealth },
-    { .prefix = "heal", .proc = Console_Cmd_Heal },
-    { .prefix = "fly", .proc = Console_Cmd_Fly },
-    { .prefix = "give", .proc = Console_Cmd_GiveItem },
-    { .prefix = "gimme", .proc = Console_Cmd_GiveItem },
-    { .prefix = "flip", .proc = Console_Cmd_FlipMap },
-    { .prefix = "flipmap", .proc = Console_Cmd_FlipMap },
-    { .prefix = "kill", .proc = Console_Cmd_Kill },
-    { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
-    { .prefix = "play", .proc = Console_Cmd_StartLevel },
-    { .prefix = "level", .proc = Console_Cmd_StartLevel },
-    { .prefix = "load", .proc = Console_Cmd_LoadGame },
-    { .prefix = "save", .proc = Console_Cmd_SaveGame },
-    { .prefix = "demo", .proc = Console_Cmd_StartDemo },
-    { .prefix = "title", .proc = Console_Cmd_ExitToTitle },
-    { .prefix = "exit", .proc = Console_Cmd_ExitGame },
-    { .prefix = "abortion", .proc = Console_Cmd_Abortion },
-    { .prefix = "natlastinks", .proc = Console_Cmd_Abortion },
-    { .prefix = NULL, .proc = NULL },
+CONSOLE_COMMAND *g_ConsoleCommands[] = {
+    &(CONSOLE_COMMAND) { .prefix = "tp", .proc = Console_Cmd_Teleport },
+    &(CONSOLE_COMMAND) { .prefix = "hp", .proc = Console_Cmd_SetHealth },
+    &(CONSOLE_COMMAND) { .prefix = "heal", .proc = Console_Cmd_Heal },
+    &(CONSOLE_COMMAND) { .prefix = "fly", .proc = Console_Cmd_Fly },
+    &(CONSOLE_COMMAND) { .prefix = "give", .proc = Console_Cmd_GiveItem },
+    &(CONSOLE_COMMAND) { .prefix = "gimme", .proc = Console_Cmd_GiveItem },
+    &(CONSOLE_COMMAND) { .prefix = "flip", .proc = Console_Cmd_FlipMap },
+    &(CONSOLE_COMMAND) { .prefix = "flipmap", .proc = Console_Cmd_FlipMap },
+    &(CONSOLE_COMMAND) { .prefix = "kill", .proc = Console_Cmd_Kill },
+    &(CONSOLE_COMMAND) { .prefix = "endlevel", .proc = Console_Cmd_EndLevel },
+    &(CONSOLE_COMMAND) { .prefix = "play", .proc = Console_Cmd_StartLevel },
+    &(CONSOLE_COMMAND) { .prefix = "level", .proc = Console_Cmd_StartLevel },
+    &(CONSOLE_COMMAND) { .prefix = "load", .proc = Console_Cmd_LoadGame },
+    &(CONSOLE_COMMAND) { .prefix = "save", .proc = Console_Cmd_SaveGame },
+    &(CONSOLE_COMMAND) { .prefix = "demo", .proc = Console_Cmd_StartDemo },
+    &(CONSOLE_COMMAND) { .prefix = "title", .proc = Console_Cmd_ExitToTitle },
+    &(CONSOLE_COMMAND) { .prefix = "exit", .proc = Console_Cmd_ExitGame },
+    &(CONSOLE_COMMAND) { .prefix = "abortion", .proc = Console_Cmd_Abortion },
+    &(CONSOLE_COMMAND) { .prefix = "natlastinks",
+                         .proc = Console_Cmd_Abortion },
+    &g_Console_Cmd_Pos,
+    NULL,
 };

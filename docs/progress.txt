@@ -473,13 +473,13 @@ typedef enum {
     DRAW_COLOR_KEY = 1,
 } DRAW_TYPE;
 
-typedef struct __unaligned {
+typedef struct __unaligned { // decompiled
     int32_t floor;
     int32_t ceiling;
     int32_t type;
 } COLL_SIDE;
 
-typedef struct __unaligned {
+typedef struct __unaligned { // decompiled
     COLL_SIDE side_mid;
     COLL_SIDE side_front;
     COLL_SIDE side_left;
@@ -1107,7 +1107,7 @@ typedef struct __unaligned {
     uint16_t reserved4[2];
 } GAME_FLOW;
 
-typedef struct __unaligned {
+typedef struct __unaligned { // decompiled
     int16_t mesh_count;
     int16_t mesh_idx;
     int32_t bone_idx;

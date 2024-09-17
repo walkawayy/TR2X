@@ -19,6 +19,7 @@
 #include "lara/lara_misc.h"
 
 #include <libtrx/game/console/commands/pos.h>
+#include <libtrx/game/console/commands/set_health.h>
 #include <libtrx/game/console/common.h>
 #include <libtrx/memory.h>
 #include <libtrx/strings.h>
@@ -31,7 +32,6 @@ static bool Console_Cmd_CanTargetObjectCreature(GAME_OBJECT_ID object_id);
 static bool Console_Cmd_CanTargetObjectPickup(GAME_OBJECT_ID object_id);
 static bool Console_Cmd_IsFloatRound(float num);
 static COMMAND_RESULT Console_Cmd_Teleport(const char *args);
-static COMMAND_RESULT Console_Cmd_SetHealth(const char *args);
 static COMMAND_RESULT Console_Cmd_Heal(const char *args);
 static COMMAND_RESULT Console_Cmd_Fly(const char *const args);
 static COMMAND_RESULT Console_Cmd_FlipMap(const char *args);
@@ -197,33 +197,6 @@ static COMMAND_RESULT Console_Cmd_Teleport(const char *const args)
     }
 
     return CR_BAD_INVOCATION;
-}
-
-static COMMAND_RESULT Console_Cmd_SetHealth(const char *const args)
-{
-    if (g_GameInfo.current_level.type == GFL_TITLE
-        || g_GameInfo.current_level.type == GFL_DEMO
-        || g_GameInfo.current_level.type == GFL_CUTSCENE) {
-        return CR_UNAVAILABLE;
-    }
-
-    if (!g_Objects[O_LARA].loaded) {
-        return CR_UNAVAILABLE;
-    }
-
-    if (strcmp(args, "") == 0) {
-        Console_Log(GS(OSD_CURRENT_HEALTH_GET), g_LaraItem->hit_points);
-        return CR_SUCCESS;
-    }
-
-    int32_t hp;
-    if (sscanf(args, "%d", &hp) != 1) {
-        return CR_BAD_INVOCATION;
-    }
-
-    g_LaraItem->hit_points = hp;
-    Console_Log(GS(OSD_CURRENT_HEALTH_SET), hp);
-    return CR_SUCCESS;
 }
 
 static COMMAND_RESULT Console_Cmd_Heal(const char *const args)
@@ -588,7 +561,6 @@ static COMMAND_RESULT Console_Cmd_Abortion(const char *const args)
 
 CONSOLE_COMMAND *g_ConsoleCommands[] = {
     &(CONSOLE_COMMAND) { .prefix = "tp", .proc = Console_Cmd_Teleport },
-    &(CONSOLE_COMMAND) { .prefix = "hp", .proc = Console_Cmd_SetHealth },
     &(CONSOLE_COMMAND) { .prefix = "heal", .proc = Console_Cmd_Heal },
     &(CONSOLE_COMMAND) { .prefix = "fly", .proc = Console_Cmd_Fly },
     &(CONSOLE_COMMAND) { .prefix = "give", .proc = Console_Cmd_GiveItem },
@@ -608,5 +580,6 @@ CONSOLE_COMMAND *g_ConsoleCommands[] = {
     &(CONSOLE_COMMAND) { .prefix = "natlastinks",
                          .proc = Console_Cmd_Abortion },
     &g_Console_Cmd_Pos,
+    &g_Console_Cmd_SetHealth,
     NULL,
 };

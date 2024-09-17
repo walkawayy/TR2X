@@ -3,6 +3,7 @@
 #include "decomp/decomp.h"
 #include "game/camera.h"
 #include "game/demo.h"
+#include "game/gameflow/gameflow_new.h"
 #include "game/input.h"
 #include "game/inventory/common.h"
 #include "game/lara/lara_control.h"
@@ -295,4 +296,19 @@ int32_t __cdecl Game_Loop(const bool demo_mode)
     }
 
     return dir;
+}
+
+bool Game_IsPlayable(void)
+{
+    if (g_GameInfo.current_level.type == GFL_TITLE
+        || g_GameInfo.current_level.type == GFL_DEMO
+        || g_GameInfo.current_level.type == GFL_CUTSCENE) {
+        return false;
+    }
+
+    if (!g_Objects[O_LARA].loaded) {
+        return false;
+    }
+
+    return true;
 }

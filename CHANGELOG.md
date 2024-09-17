@@ -23,6 +23,7 @@
 - fixed secret rewards not displaying shotgun ammo (#159)
 - fixed controls dialog remapping being too sensitive (#5)
 - fixed `/tp` console command during special animations in HSH and Offshore Rig (#178, regression from 0.2)
+- fixed `/hp` console command taking arbitrary integers
 - fixed console commands being able to interfere with demos, cutscenes and the title screen (#182, #179, regression from 0.2)
 - fixed console registering key inputs too eagerly (regression from 0.2)
 - fixed console not being drawn in cutscenes (#180, regression from 0.2)

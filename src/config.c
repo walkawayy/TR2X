@@ -36,3 +36,16 @@ bool Config_Write(void)
     File_CreateDirectory(DIR_CONFIG);
     return ConfigFile_Write(m_ConfigPath, &Config_Dump);
 }
+
+void Config_Sanitize(void)
+{
+}
+
+void Config_ApplyChanges(void)
+{
+}
+
+const CONFIG_OPTION *Config_GetOptionMap(void)
+{
+    return g_ConfigOptionMap;
+}

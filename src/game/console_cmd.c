@@ -18,6 +18,7 @@
 #include "global/vars.h"
 #include "lara/lara_misc.h"
 
+#include <libtrx/game/console/commands/config.h>
 #include <libtrx/game/console/commands/pos.h>
 #include <libtrx/game/console/commands/set_health.h>
 #include <libtrx/game/console/common.h>
@@ -579,6 +580,7 @@ CONSOLE_COMMAND *g_ConsoleCommands[] = {
     &(CONSOLE_COMMAND) { .prefix = "abortion", .proc = Console_Cmd_Abortion },
     &(CONSOLE_COMMAND) { .prefix = "natlastinks",
                          .proc = Console_Cmd_Abortion },
+    &g_Console_Cmd_Config,
     &g_Console_Cmd_Pos,
     &g_Console_Cmd_SetHealth,
     NULL,

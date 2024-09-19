@@ -351,9 +351,14 @@
     },
 
     "game_strings": {
+        "MISC_OFF": "Off",
+        "MISC_ON": "On",
         "OSD_COMMAND_BAD_INVOCATION": "Invalid invocation: %s",
         "OSD_COMMAND_UNAVAILABLE": "This command is not currently available",
         "OSD_COMPLETE_LEVEL": "Level complete!",
+        "OSD_CONFIG_OPTION_GET": "%s is currently set to %s",
+        "OSD_CONFIG_OPTION_SET": "%s changed to %s",
+        "OSD_CONFIG_OPTION_UNKNOWN_OPTION": "Unknown option: %s",
         "OSD_CURRENT_HEALTH_GET": "Current Lara's health: %d",
         "OSD_CURRENT_HEALTH_SET": "Lara's health set to %d",
         "OSD_DOOR_CLOSE": "Close Sesame!",

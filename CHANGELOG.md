@@ -11,6 +11,7 @@
     - `/give`
     - `/kill`
     - `/flip`
+    - `/set`
 - added an ability to remap the console key (#163)
 - added `/tp` console command's ability to teleport to specific items
 - added `/fly` console command's ability to open nearest doors

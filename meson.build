@@ -85,6 +85,7 @@ dll_sources = [
   'src/decomp/effects.c',
   'src/decomp/stats.c',
   'src/game/background.c',
+  'src/game/backpack.c',
   'src/game/box.c',
   'src/game/camera.c',
   'src/game/clock.c',

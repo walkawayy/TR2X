@@ -118,6 +118,7 @@ dll_sources = [
   'src/game/lara/lara_look.c',
   'src/game/lara/lara_misc.c',
   'src/game/lara/lara_state.c',
+  'src/game/lara/misc.c',
   'src/game/level.c',
   'src/game/los.c',
   'src/game/lot.c',

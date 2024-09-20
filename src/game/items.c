@@ -732,3 +732,8 @@ int32_t Item_GetDistance(
 {
     return XYZ_32_GetDistance(&item->pos, target);
 }
+
+ITEM_INFO *Item_Get(const int16_t item_num)
+{
+    return &g_Items[item_num];
+}

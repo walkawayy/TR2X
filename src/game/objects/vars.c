@@ -44,7 +44,7 @@ const GAME_OBJECT_ID g_EnemyObjects[] = {
     // clang-format on
 };
 
-const GAME_OBJECT_ID g_FriendObjects[] = {
+const GAME_OBJECT_ID g_AllyObjects[] = {
     // clang-format off
     O_LARA,
     O_WINSTON,

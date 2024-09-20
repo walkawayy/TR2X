@@ -952,5 +952,5 @@ bool Creature_IsEnemy(const ITEM_INFO *const item)
 
 bool Creature_IsAlly(const ITEM_INFO *const item)
 {
-    return Object_IsObjectType(item->object_id, g_FriendObjects);
+    return Object_IsObjectType(item->object_id, g_AllyObjects);
 }

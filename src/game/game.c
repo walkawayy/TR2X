@@ -306,7 +306,7 @@ bool Game_IsPlayable(void)
         return false;
     }
 
-    if (!g_Objects[O_LARA].loaded) {
+    if (!g_Objects[O_LARA].loaded || g_LaraItem == NULL) {
         return false;
     }
 

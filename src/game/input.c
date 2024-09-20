@@ -1,6 +1,6 @@
 #include "game/input.h"
 
-#include "game/console.h"
+#include "game/console/common.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 #include "specific/s_input.h"

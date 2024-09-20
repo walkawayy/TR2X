@@ -2,7 +2,7 @@
 
 #include "config.h"
 #include "decomp/decomp.h"
-#include "game/console.h"
+#include "game/console/common.h"
 #include "game/demo.h"
 #include "game/game_string.h"
 #include "game/gameflow.h"

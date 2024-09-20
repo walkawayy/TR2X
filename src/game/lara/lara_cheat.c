@@ -2,7 +2,7 @@
 
 #include "decomp/effects.h"
 #include "game/camera.h"
-#include "game/console.h"
+#include "game/console/common.h"
 #include "game/creature.h"
 #include "game/game_string.h"
 #include "game/gun/gun.h"

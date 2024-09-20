@@ -1,7 +1,7 @@
 #include "specific/s_input.h"
 
 #include "decomp/decomp.h"
-#include "game/console.h"
+#include "game/console/common.h"
 #include "game/gameflow/gameflow_new.h"
 #include "game/input.h"
 #include "game/inventory/backpack.h"

@@ -1,6 +1,6 @@
 #include "game/text.h"
 
-#include "game/console.h"
+#include "game/console/common.h"
 #include "game/output.h"
 #include "game/overlay.h"
 #include "global/const.h"

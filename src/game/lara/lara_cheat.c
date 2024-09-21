@@ -110,7 +110,7 @@ void __cdecl Lara_Cheat_EndLevel(void)
     Console_Log(GS(OSD_COMPLETE_LEVEL));
 }
 
-bool __cdecl Lara_Cheat_EnterFlyMode(void)
+bool Lara_Cheat_EnterFlyMode(void)
 {
     if (g_LaraItem == NULL) {
         return false;
@@ -157,7 +157,7 @@ bool __cdecl Lara_Cheat_EnterFlyMode(void)
     return true;
 }
 
-bool __cdecl Lara_Cheat_ExitFlyMode(void)
+bool Lara_Cheat_ExitFlyMode(void)
 {
     if (g_LaraItem == NULL) {
         return false;

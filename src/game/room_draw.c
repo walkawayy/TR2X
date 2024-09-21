@@ -434,7 +434,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
     while (fx_num != NO_ITEM) {
         const FX_INFO *const fx = &g_Effects[fx_num];
         Effect_Draw(fx_num);
-        fx_num = fx->next_fx;
+        fx_num = fx->next_free;
     }
 
     Matrix_Pop();

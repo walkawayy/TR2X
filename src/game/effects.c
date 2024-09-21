@@ -32,16 +32,16 @@ static void M_RemoveDrawn(const int16_t fx_num)
     FX_INFO *const fx = &g_Effects[fx_num];
     int16_t link_num = g_Rooms[fx->room_num].fx_num;
     if (link_num == fx_num) {
-        g_Rooms[fx->room_num].fx_num = fx->next_fx;
+        g_Rooms[fx->room_num].fx_num = fx->next_free;
         return;
     }
 
     while (link_num != NO_ITEM) {
-        if (g_Effects[link_num].next_fx == fx_num) {
-            g_Effects[link_num].next_fx = fx->next_fx;
+        if (g_Effects[link_num].next_free == fx_num) {
+            g_Effects[link_num].next_free = fx->next_free;
             return;
         }
-        link_num = g_Effects[link_num].next_fx;
+        link_num = g_Effects[link_num].next_free;
     }
 }
 
@@ -52,9 +52,9 @@ void __cdecl Effect_InitialiseArray(void)
 
     for (int32_t i = 0; i < MAX_EFFECTS - 1; i++) {
         FX_INFO *const fx = &g_Effects[i];
-        fx->next_fx = i + 1;
+        fx->next_free = i + 1;
     }
-    g_Effects[MAX_EFFECTS - 1].next_fx = NO_ITEM;
+    g_Effects[MAX_EFFECTS - 1].next_free = NO_ITEM;
 }
 
 int16_t __cdecl Effect_Create(const int16_t room_num)
@@ -65,11 +65,11 @@ int16_t __cdecl Effect_Create(const int16_t room_num)
     }
 
     FX_INFO *const fx = &g_Effects[fx_num];
-    g_NextEffectFree = fx->next_fx;
+    g_NextEffectFree = fx->next_free;
 
     ROOM_INFO *const room = &g_Rooms[room_num];
     fx->room_num = room_num;
-    fx->next_fx = room->fx_num;
+    fx->next_free = room->fx_num;
     room->fx_num = fx_num;
 
     fx->next_active = g_NextEffectActive;
@@ -86,7 +86,7 @@ void __cdecl Effect_Kill(const int16_t fx_num)
     M_RemoveActive(fx_num);
     M_RemoveDrawn(fx_num);
 
-    fx->next_fx = g_NextEffectFree;
+    fx->next_free = g_NextEffectFree;
     g_NextEffectFree = fx_num;
 }
 
@@ -97,20 +97,20 @@ void __cdecl Effect_NewRoom(const int16_t fx_num, const int16_t room_num)
 
     int16_t link_num = room->fx_num;
     if (link_num == fx_num) {
-        room->fx_num = fx->next_fx;
+        room->fx_num = fx->next_free;
     } else {
         while (link_num != NO_ITEM) {
-            if (g_Effects[link_num].next_fx == fx_num) {
-                g_Effects[link_num].next_fx = fx->next_fx;
+            if (g_Effects[link_num].next_free == fx_num) {
+                g_Effects[link_num].next_free = fx->next_free;
                 break;
             }
-            link_num = g_Effects[link_num].next_fx;
+            link_num = g_Effects[link_num].next_free;
         }
     }
 
     fx->room_num = room_num;
     room = &g_Rooms[room_num];
-    fx->next_fx = room->fx_num;
+    fx->next_free = room->fx_num;
     room->fx_num = fx_num;
 }
 

@@ -244,7 +244,7 @@
 <rect width="12" height="12" x="225" y="45" class="decompiled"><title>int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, const PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);</title></rect>
 <rect width="12" height="12" x="240" y="45" class="decompiled"><title>int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);</title></rect>
 <rect width="12" height="12" x="255" y="45" class="decompiled"><title>void __cdecl Item_Animate(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
+<rect width="12" height="12" x="270" y="45" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM *anim);</title></rect>
 <rect width="12" height="12" x="285" y="45" class="decompiled"><title>void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);</title></rect>
 <rect width="12" height="12" x="300" y="45" class="decompiled"><title>SECTOR_INFO *__cdecl Room_GetSector(int32_t x, int32_t y, int32_t z, int16_t *room_num);</title></rect>
 <rect width="12" height="12" x="315" y="45" class="decompiled"><title>int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
@@ -677,7 +677,7 @@
 <rect width="12" height="12" x="720" y="165" class="decompiled"><title>bool __cdecl LOT_EnableBaddieAI(int16_t item_num, bool always);</title></rect>
 <rect width="12" height="12" x="735" y="165" class="decompiled"><title>void __cdecl LOT_InitialiseSlot(int16_t item_num, int32_t slot);</title></rect>
 <rect width="12" height="12" x="0" y="180" class="decompiled"><title>void __cdecl LOT_CreateZone(ITEM_INFO *item);</title></rect>
-<rect width="12" height="12" x="15" y="180" class="decompiled"><title>void __cdecl LOT_ClearLOT(LOT_INFO *LOT);</title></rect>
+<rect width="12" height="12" x="15" y="180" class="decompiled"><title>void __cdecl LOT_ClearLOT(LOT_INFO *lot);</title></rect>
 <rect width="12" height="12" x="30" y="180" class="known"><title>void __cdecl ControlMissile(int16_t fx_num);</title></rect>
 <rect width="12" height="12" x="45" y="180" class="known"><title>void __cdecl ShootAtLara(FX_INFO *fx);</title></rect>
 <rect width="12" height="12" x="60" y="180" class="decompiled"><title>int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);</title></rect>
@@ -1806,7 +1806,7 @@
 <rect width="8.82" height="9.08" x="679.34" y="161.72" class="decompiled"><title>void __cdecl Requester_AddItem(REQUEST_INFO *req, const char *text1, uint32_t flags1, const char *text2, uint32_t flags2);</title></rect>
 <rect width="8.82" height="9.08" x="691.16" y="161.72" class="known"><title>void __cdecl SpiderLeap(int16_t item_num, int16_t angle);</title></rect>
 <rect width="8.75" height="9.08" x="702.99" y="161.72" class="decompiled"><title>bool __cdecl Matrix_TranslateRel(int32_t x, int32_t y, int32_t z);</title></rect>
-<rect width="8.75" height="9.08" x="714.74" y="161.72" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM_STRUCT *anim);</title></rect>
+<rect width="8.75" height="9.08" x="714.74" y="161.72" class="decompiled"><title>int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM *anim);</title></rect>
 <rect width="8.75" height="9.08" x="726.49" y="161.72" class="known"><title>int16_t __cdecl DragonFire(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);</title></rect>
 <rect width="8.75" height="9.08" x="738.25" y="161.72" class="decompiled"><title>void __cdecl Overlay_DrawHealthBar(bool flash_state);</title></rect>
 <rect width="8.66" height="9.17" x="534.18" y="173.80" class="decompiled"><title>void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll);</title></rect>
@@ -2125,7 +2125,7 @@
 <rect width="4.84" height="4.83" x="632.98" y="300.92" class="decompiled"><title>void __cdecl HWR_FreeTexturePages(void);</title></rect>
 <rect width="4.84" height="4.83" x="632.98" y="308.76" class="known"><title>LONG __cdecl SetRegistryStringValue(LPCTSTR lpValueName, LPCTSTR value, int32_t length);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="316.59" class="decompiled"><title>void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);</title></rect>
-<rect width="4.84" height="4.73" x="632.98" y="324.32" class="decompiled"><title>void __cdecl LOT_ClearLOT(LOT_INFO *LOT);</title></rect>
+<rect width="4.84" height="4.73" x="632.98" y="324.32" class="decompiled"><title>void __cdecl LOT_ClearLOT(LOT_INFO *lot);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="332.05" class="decompiled"><title>void __cdecl Lara_CatchFire(void);</title></rect>
 <rect width="4.84" height="4.73" x="632.98" y="339.78" class="known"><title>BOOL __cdecl ReadFileSync(HANDLE handle, LPVOID lpBuffer, DWORD nBytesToRead, LPDWORD lpnBytesRead, LPOVERLAPPED lpOverlapped);</title></rect>
 <rect width="4.84" height="4.62" x="632.98" y="347.51" class="known"><title>void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);</title></rect>

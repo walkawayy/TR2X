@@ -450,7 +450,7 @@
 #define g_IMMatrixStack (*(MATRIX(*)[256])0x005252C0)
 #define g_DoorVBuf (*(DOOR_VBUF(*)[4])0x005258C0)
 #define g_IMFrac (*(int32_t*)0x005258F0)
-#define g_Anims (*(ANIM_STRUCT **)0x005258F4)
+#define g_Anims (*(ANIM **)0x005258F4)
 #define g_BoundRooms (*(int32_t(*)[128])0x00525900)
 #define g_OutsideBottom (*(int32_t*)0x00525B00)
 #define g_AnimRanges (*(ANIM_RANGE **)0x00525B04)

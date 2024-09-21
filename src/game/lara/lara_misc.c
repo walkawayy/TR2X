@@ -876,7 +876,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
             anim_num = LA_HIT_FRONT;
             break;
         }
-        const ANIM_STRUCT *anim = &g_Anims[anim_num];
+        const ANIM *anim = &g_Anims[anim_num];
         int32_t interpolation = anim->interpolation;
         frame_ptr = (const FRAME_INFO *)(anim->frame_ptr
                                          + (int32_t)(g_Lara.hit_frame
@@ -912,7 +912,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
         Matrix_TranslateRel(bone[41], bone[42], bone[43]);
         if (g_Lara.flare_control_left) {
             const LARA_ARM *arm = &g_Lara.left_arm;
-            const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+            const ANIM *anim = &g_Anims[arm->anim_num];
             rot = &arm->frame_base
                        [(anim->interpolation >> 8)
                             * (arm->frame_num - anim->frame_base)
@@ -931,7 +931,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
 
         const LARA_ARM *arm = &g_Lara.right_arm;
-        const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+        const ANIM *anim = &g_Anims[arm->anim_num];
         rot = &arm->frame_base
                    [arm->frame_num * (anim->interpolation >> 8) + FBBOX_ROT];
         Matrix_RotYXZsuperpack(&rot, 8);
@@ -987,7 +987,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
         if (g_Lara.flare_control_left) {
             const LARA_ARM *arm = &g_Lara.left_arm;
-            const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+            const ANIM *anim = &g_Anims[arm->anim_num];
             rot1 = &arm->frame_base
                         [(anim->interpolation >> 8)
                              * (arm->frame_num - anim->frame_base)
@@ -1007,7 +1007,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
         Matrix_TranslateRel(bone[29], bone[30], bone[31]);
 
         const LARA_ARM *arm = &g_Lara.right_arm;
-        const ANIM_STRUCT *anim = &g_Anims[arm->anim_num];
+        const ANIM *anim = &g_Anims[arm->anim_num];
         rot1 = &arm->frame_base
                     [arm->frame_num * (anim->interpolation >> 8) + FBBOX_ROT];
         Matrix_RotYXZsuperpack(&rot1, 8);

@@ -243,13 +243,13 @@ static int32_t __cdecl M_LoadAnims(VFILE *const file, int32_t **frame_pointers)
     BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anims = VFile_ReadS32(file);
     LOG_INFO("anims: %d", num_anims);
-    g_Anims = game_malloc(sizeof(ANIM_STRUCT) * num_anims, GBUF_ANIMS);
+    g_Anims = game_malloc(sizeof(ANIM) * num_anims, GBUF_ANIMS);
     if (frame_pointers != NULL) {
         *frame_pointers = Memory_Alloc(sizeof(int32_t) * num_anims);
     }
 
     for (int32_t i = 0; i < num_anims; i++) {
-        ANIM_STRUCT *const anim = &g_Anims[i];
+        ANIM *const anim = &g_Anims[i];
         const int32_t frame_idx = VFile_ReadS32(file);
         if (frame_pointers != NULL) {
             (*frame_pointers)[i] = frame_idx;
@@ -886,7 +886,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
     M_LoadAnimFrames(file);
 
     for (int32_t i = 0; i < num_anims; i++) {
-        ANIM_STRUCT *const anim = &g_Anims[i];
+        ANIM *const anim = &g_Anims[i];
         // TODO: this is horrible
         anim->frame_ptr = ((int16_t *)g_AnimFrames) + frame_pointers[i] / 2;
     }

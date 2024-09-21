@@ -2,6 +2,7 @@
 #include "global/vars.h"
 
 #include <libtrx/game/lara/misc.h>
+#include <libtrx/game/math.h>
 
 void __cdecl Lara_Extinguish(void)
 {

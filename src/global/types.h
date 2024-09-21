@@ -5,7 +5,10 @@
 #include "const.h"
 
 #include <libtrx/game/collision.h>
+#include <libtrx/game/effects.h>
 #include <libtrx/game/items.h>
+#include <libtrx/game/lara/types.h>
+#include <libtrx/game/lot.h>
 #include <libtrx/game/math.h>
 #include <libtrx/game/objects/common.h>
 
@@ -466,15 +469,6 @@ typedef enum {
 } DRAW_TYPE;
 
 typedef struct __unaligned {
-    int16_t min_x;
-    int16_t max_x;
-    int16_t min_y;
-    int16_t max_y;
-    int16_t min_z;
-    int16_t max_z;
-} BOUNDS_16;
-
-typedef struct __unaligned {
     int16_t mesh_idx;
     uint16_t flags;
     BOUNDS_16 draw_bounds;
@@ -554,20 +548,6 @@ typedef struct __unaligned {
 } WEAPON_INFO;
 
 typedef struct __unaligned {
-    XYZ_32 pos;
-    XYZ_16 rot;
-    int16_t room_num;
-    int16_t object_id;
-    int16_t next_fx;
-    int16_t next_active;
-    int16_t speed;
-    int16_t fall_speed;
-    int16_t frame_num;
-    int16_t counter;
-    int16_t shade;
-} FX_INFO;
-
-typedef struct __unaligned {
     int16_t zone_num;
     int16_t enemy_zone_num;
     int32_t distance;
@@ -576,28 +556,6 @@ typedef struct __unaligned {
     int16_t angle;
     int16_t enemy_facing;
 } AI_INFO;
-
-typedef struct __unaligned {
-    int16_t exit_box;
-    uint16_t search_num;
-    int16_t next_expansion;
-    int16_t box_num;
-} BOX_NODE;
-
-typedef struct __unaligned {
-    BOX_NODE *node;
-    int16_t head;
-    int16_t tail;
-    uint16_t search_num;
-    uint16_t block_mask;
-    int16_t step;
-    int16_t drop;
-    int16_t fly;
-    int16_t zone_count;
-    int16_t target_box;
-    int16_t required_box;
-    XYZ_32 target;
-} LOT_INFO;
 
 typedef enum {
     GFL_NOLEVEL  = -1,
@@ -751,13 +709,6 @@ typedef enum {
 } GF_EVENTS;
 
 typedef enum {
-    MOOD_BORED  = 0,
-    MOOD_ATTACK = 1,
-    MOOD_ESCAPE = 2,
-    MOOD_STALK  = 3,
-} MOOD_TYPE;
-
-typedef enum {
     TARGET_NONE      = 0,
     TARGET_PRIMARY   = 1,
     TARGET_SECONDARY = 2,
@@ -767,35 +718,6 @@ typedef struct __unaligned {
     XYZ_32 pos;
     int32_t mesh_num;
 } BITE_INFO;
-
-typedef struct __unaligned {
-    int16_t *frame_ptr;
-    int16_t interpolation;
-    int16_t current_anim_state;
-    int32_t velocity;
-    int32_t acceleration;
-    int16_t frame_base;
-    int16_t frame_end;
-    int16_t jump_anim_num;
-    int16_t jump_frame_num;
-    int16_t num_changes;
-    int16_t change_idx;
-    int16_t num_commands;
-    int16_t command_idx;
-} ANIM_STRUCT;
-
-typedef struct {
-    int16_t goal_anim_state;
-    int16_t num_ranges;
-    int16_t range_idx;
-} ANIM_CHANGE;
-
-typedef struct {
-    int16_t start_frame;
-    int16_t end_frame;
-    int16_t link_anim_num;
-    int16_t link_frame_num;
-} ANIM_RANGE;
 
 typedef struct __unaligned {
     int16_t room;
@@ -873,18 +795,6 @@ typedef struct __unaligned {
     int16_t flipped_room;
     uint16_t flags;
 } ROOM_INFO;
-
-typedef struct __unaligned {
-    int16_t head_rotation;
-    int16_t neck_rotation;
-    int16_t maximum_turn;
-    uint16_t flags;
-    int16_t item_num;
-    MOOD_TYPE mood;
-    LOT_INFO lot;
-    XYZ_32 target;
-    ITEM_INFO *enemy;
-} CREATURE_INFO;
 
 typedef enum {
     CAM_CHASE     = 0,
@@ -1047,86 +957,6 @@ typedef struct __unaligned {
     int32_t is_lara_mic;
     XYZ_32 mic_pos;
 } CAMERA_INFO;
-
-typedef struct __unaligned {
-    int16_t *frame_base;
-    int16_t frame_num;
-    int16_t anim_num;
-    int16_t lock;
-    struct __unaligned {
-        int16_t y;
-        int16_t x;
-        int16_t z;
-    } rot; // TODO: XYZ_16
-    int16_t flash_gun;
-} LARA_ARM;
-
-typedef struct __unaligned {
-    int32_t ammo;
-} AMMO_INFO;
-
-typedef enum {
-    LWS_ABOVE_WATER = 0,
-    LWS_UNDERWATER = 1,
-    LWS_SURFACE = 2,
-    LWS_CHEAT = 3,
-    LWS_WADE = 4,
-} LARA_WATER_STATE;
-
-typedef struct __unaligned {
-    int16_t item_num;
-    int16_t gun_status;
-    int16_t gun_type;
-    int16_t request_gun_type;
-    int16_t last_gun_type;
-    int16_t calc_fallspeed;
-    int16_t water_status;
-    int16_t climb_status;
-    int16_t pose_count;
-    int16_t hit_frame;
-    int16_t hit_direction;
-    int16_t air;
-    int16_t dive_count;
-    int16_t death_timer;
-    int16_t current_active;
-    int16_t spaz_effect_count;
-    int16_t flare_age;
-    int16_t skidoo;
-    int16_t weapon_item;
-    int16_t back_gun;
-    int16_t flare_frame;
-    uint16_t flare_control_left:  1; // 0x01 1
-    uint16_t flare_control_right: 1; // 0x02 2
-    uint16_t extra_anim:          1; // 0x04 4
-    uint16_t look:                1; // 0x08 8
-    uint16_t burn:                1; // 0x10 16
-    uint16_t pad:                 11;
-    int32_t water_surface_dist;
-    XYZ_32 last_pos;
-    FX_INFO *spaz_effect;
-    uint32_t mesh_effects;
-    int16_t *mesh_ptrs[15];
-    ITEM_INFO *target;
-    int16_t target_angles[2];
-    int16_t turn_rate;
-    int16_t move_angle;
-    int16_t head_y_rot;
-    int16_t head_x_rot;
-    int16_t head_z_rot;
-    int16_t torso_y_rot;
-    int16_t torso_x_rot;
-    int16_t torso_z_rot;
-    LARA_ARM left_arm;
-    LARA_ARM right_arm;
-    AMMO_INFO pistol_ammo;
-    AMMO_INFO magnum_ammo;
-    AMMO_INFO uzi_ammo;
-    AMMO_INFO shotgun_ammo;
-    AMMO_INFO harpoon_ammo;
-    AMMO_INFO grenade_ammo;
-    AMMO_INFO m16_ammo;
-    CREATURE_INFO *creature;
-} LARA_INFO;
 
 typedef enum {
     SFX_LARA_FEET = 0,
@@ -1512,14 +1342,6 @@ typedef struct __unaligned {
 } CINE_FRAME;
 
 typedef enum {
-    IF_ONE_SHOT  = 0x0100,
-    IF_CODE_BITS = 0x3E00,
-    IF_REVERSE   = 0x4000,
-    IF_INVISIBLE = 0x0100,
-    IF_KILLED    = 0x8000,
-} ITEM_FLAG;
-
-typedef enum {
     IS_INACTIVE    = 0,
     IS_ACTIVE      = 1,
     IS_DEACTIVATED = 2,
@@ -1529,364 +1351,6 @@ typedef enum {
 typedef struct __unaligned {
     uint16_t key[14]; // INPUT_ROLE_NUMBER_OF
 } CONTROL_LAYOUT;
-
-typedef enum {
-    LA_RUN                                   = 0,
-    LA_WALK_FORWARD                          = 1,
-    LA_WALK_STOP_RIGHT                       = 2,
-    LA_WALK_STOP_LEFT                        = 3,
-    LA_WALK_TO_RUN_RIGHT                     = 4,
-    LA_WALK_TO_RUN_LEFT                      = 5,
-    LA_RUN_START                             = 6,
-    LA_RUN_TO_WALK_RIGHT                     = 7,
-    LA_RUN_TO_STAND_LEFT                     = 8,
-    LA_RUN_TO_WALK_LEFT                      = 9,
-    LA_RUN_TO_STAND_RIGHT                    = 10,
-    LA_STAND_STILL                           = 11,
-    LA_TURN_RIGHT_SLOW                       = 12,
-    LA_TURN_LEFT_SLOW                        = 13,
-    LA_JUMP_FORWARD_LAND_START               = 14,
-    LA_JUMP_FORWARD_LAND_END_UNUSED          = 15,
-    LA_RUN_JUMP_RIGHT_START                  = 16,
-    LA_RUN_JUMP_RIGHT_CONTINUE               = 17,
-    LA_RUN_JUMP_LEFT_START                   = 18,
-    LA_RUN_JUMP_LEFT_CONTINUE                = 19,
-    LA_WALK_FORWARD_START                    = 20,
-    LA_WALK_FORWARD_START_CONTINUE           = 21,
-    LA_JUMP_FORWARD_TO_FREEFALL              = 22,
-    LA_FREEFALL                              = 23,
-    LA_FREEFALL_LAND                         = 24,
-    LA_FREEFALL_LAND_DEATH                   = 25,
-    LA_STAND_TO_JUMP_UP                      = 26,
-    LA_STAND_TO_JUMP_UP_CONTINUE             = 27,
-    LA_JUMP_UP                               = 28,
-    LA_JUMP_UP_TO_HANG                       = 29,
-    LA_JUMP_UP_TO_FREEFALL                   = 30,
-    LA_JUMP_UP_LAND                          = 31,
-    LA_SMASH_JUMP                            = 32,
-    LA_SMASH_JUMP_CONTINUE                   = 33,
-    LA_FALL_START                            = 34,
-    LA_FALL                                  = 35,
-    LA_FALL_TO_FREEFALL                      = 36,
-    LA_HANG_TO_FREEFALL                      = 37,
-    LA_WALK_BACK_END_RIGHT                   = 38,
-    LA_WALK_BACK_END_LEFT                    = 39,
-    LA_WALK_BACK                             = 40,
-    LA_WALK_BACK_START                       = 41,
-    LA_CLIMB_3CLICK                          = 42,
-    LA_CLIMB_3CLICK_END_TO_RUN               = 43,
-    LA_TURN_RIGHT                            = 44,
-    LA_JUMP_FORWARD_TO_FREEFALL_2            = 45,
-    LA_REACH_TO_FREEFALL                     = 46,
-    LA_ROLL_ALTERNATE                        = 47,
-    LA_ROLL_END_ALTERNATE                    = 48,
-    LA_JUMP_FORWARD_END_TO_FREEFALL          = 49,
-    LA_CLIMB_2CLICK                          = 50,
-    LA_CLIMB_2CLICK_END                      = 51,
-    LA_CLIMB_2CLICK_END_TO_RUN               = 52,
-    LA_WALL_SMASH_LEFT                       = 53,
-    LA_WALL_SMASH_RIGHT                      = 54,
-    LA_RUN_UP_STEP_RIGHT                     = 55,
-    LA_RUN_UP_STEP_LEFT                      = 56,
-    LA_WALK_UP_STEP_RIGHT                    = 57,
-    LA_WALK_UP_STEP_LEFT                     = 58,
-    LA_WALK_DOWN_LEFT                        = 59,
-    LA_WALK_DOWN_RIGHT                       = 60,
-    LA_WALK_DOWN_BACK_LEFT                   = 61,
-    LA_WALK_DOWN_BACK_RIGHT                  = 62,
-    LA_WALLSWITCH_DOWN                       = 63,
-    LA_WALLSWITCH_UP                         = 64,
-    LA_SIDESTEP_LEFT                         = 65,
-    LA_SIDESTEP_LEFT_END                     = 66,
-    LA_SIDESTEP_RIGHT                        = 67,
-    LA_SIDESTEP_RIGHT_END                    = 68,
-    LA_ROTATE_LEFT                           = 69,
-    LA_SLIDE_FORWARD                         = 70,
-    LA_SLIDE_FORWARD_END                     = 71,
-    LA_SLIDE_FORWARD_STOP                    = 72,
-    LA_STAND_TO_JUMP                         = 73,
-    LA_JUMP_BACK_START                       = 74,
-    LA_JUMP_BACK                             = 75,
-    LA_JUMP_FORWARD_START                    = 76,
-    LA_JUMP_FORWARD                          = 77,
-    LA_JUMP_LEFT_START                       = 78,
-    LA_JUMP_LEFT                             = 79,
-    LA_JUMP_RIGHT_START                      = 80,
-    LA_JUMP_RIGHT                            = 81,
-    LA_LAND                                  = 82,
-    LA_JUMP_BACK_TO_FREEFALL                 = 83,
-    LA_JUMP_LEFT_TO_FREEFALL                 = 84,
-    LA_JUMP_RIGHT_TO_FREEFALL                = 85,
-    LA_UNDERWATER_SWIM_FORWARD               = 86,
-    LA_UNDERWATER_SWIM_FORWARD_DRIFT         = 87,
-    LA_SMALL_JUMP_BACK_START                 = 88,
-    LA_SMALL_JUMP_BACK                       = 89,
-    LA_SMALL_JUMP_BACK_END                   = 90,
-    LA_JUMP_UP_START                         = 91,
-    LA_LAND_TO_RUN                           = 92,
-    LA_FALL_BACK                             = 93,
-    LA_JUMP_FORWARD_TO_REACH                 = 94,
-    LA_REACH                                 = 95,
-    LA_REACH_TO_HANG                         = 96,
-    LA_CLIMB_ON                              = 97,
-    LA_REACH_TO_FREEFALL_2                   = 98,
-    LA_FALL_CROUCHING_LANDING                = 99,
-    LA_JUMP_FORWARD_TO_REACH_LATE            = 100,
-    LA_JUMP_FORWARD_START_TO_REACH_ALTERNATE = 101,
-    LA_CLIMB_ON_END                          = 102,
-    LA_STAND_IDLE                            = 103,
-    LA_SLIDE_BACKWARD_START                  = 104,
-    LA_SLIDE_BACKWARD                        = 105,
-    LA_SLIDE_BACKWARD_END                    = 106,
-    LA_UNDERWATER_SWIM_TO_IDLE               = 107,
-    LA_UNDERWATER_IDLE                       = 108,
-    LA_UNDERWARER_IDLE_TO_SWIM               = 109,
-    LA_ONWATER_IDLE                          = 110,
-    LA_ONWATER_TO_STAND_HIGH                 = 111,
-    LA_FREEFALL_TO_UNDERWATER                = 112,
-    LA_ONWATER_DIVE_ALTERNATE                = 113,
-    LA_UNDERWATER_TO_ONWATER                 = 114,
-    LA_ONWATER_SWIM_FORWARD_DIVE             = 115,
-    LA_ONWATER_SWIM_FORWARD                  = 116,
-    LA_ONWATER_SWIM_FORWARD_TO_IDLE          = 117,
-    LA_ONWATER_IDLE_TO_SWIM_FORWARD          = 118,
-    LA_ONWATER_DIVE                          = 119,
-    LA_PUSHABLE_GRAB                         = 120,
-    LA_PUSHABLE_RELEASE                      = 121,
-    LA_PUSHABLE_PULL                         = 122,
-    LA_PUSHABLE_PUSH                         = 123,
-    LA_UNDERWATER_DEATH                      = 124,
-    LA_HIT_FRONT                             = 125,
-    LA_HIT_BACK                              = 126,
-    LA_HIT_LEFT                              = 127,
-    LA_HIT_RIGHT                             = 128,
-    LA_UNDERWATER_SWITCH                     = 129,
-    LA_UNDERWATER_PICKUP                     = 130,
-    LA_USE_KEY                               = 131,
-    LA_ONWATER_DEATH                         = 132,
-    LA_RUN_DEATH                             = 133,
-    LA_USE_PUZZLE                            = 134,
-    LA_PICKUP                                = 135,
-    LA_SHIMMY_LEFT                           = 136,
-    LA_SHIMMY_RIGHT                          = 137,
-    LA_STAND_DEATH                           = 138,
-    LA_BOULDER_DEATH                         = 139,
-    LA_ONWATER_IDLE_TO_SWIM_BACK             = 140,
-    LA_ONWATER_SWIM_BACK                     = 141,
-    LA_ONWATER_SWIM_BACK_TO_IDLE             = 142,
-    LA_ONWATER_SWIM_LEFT                     = 143,
-    LA_ONWATER_SWIM_RIGHT                    = 144,
-    LA_DEATH_JUMP                            = 145,
-    LA_ROLL_START                            = 146,
-    LA_ROLL_CONTINUE                         = 147,
-    LA_ROLL_END                              = 148,
-    LA_SPIKE_DEATH                           = 149,
-    LA_REACH_TO_THIN_LEDGE                   = 150,
-    LA_SWANDIVE_ROLL                         = 151,
-    LA_SWANDIVE_TO_UNDERWATER                = 152,
-    LA_FREEFALL_SWANDIVE                     = 153,
-    LA_FREEFALL_SWANDIVE_TO_UNDERWATER       = 154,
-    LA_SWANDIVE_DEATH                        = 155,
-    LA_SWANDIVE_LEFT                         = 156,
-    LA_SWANDIVE_RIGHT                        = 157,
-    LA_SWANDIVE_START                        = 158,
-    LA_CLIMB_ON_HANDSTAND                    = 159,
-    LA_STAND_TO_LADDER                       = 160,
-    LA_LADDER_UP                             = 161,
-    LA_LADDER_UP_STOP_RIGHT                  = 162,
-    LA_LADDER_UP_STOP_LEFT                   = 163,
-    LA_LADDER_IDLE                           = 164,
-    LA_LADDER_UP_START                       = 165,
-    LA_LADDER_DOWN_STOP_LEFT                 = 166,
-    LA_LADDER_DOWN_STOP_RIGHT                = 167,
-    LA_LADDER_DOWN                           = 168,
-    LA_LADDER_DOWN_START                     = 169,
-    LA_LADDER_RIGHT                          = 170,
-    LA_LADDER_LEFT                           = 171,
-    LA_LADDER_HANG                           = 172,
-    LA_LADDER_HANG_TO_IDLE                   = 173,
-    LA_LADDER_CLIMB_ON                       = 174,
-    LA_UNKNOWN                               = 175,
-    LA_ONWATER_TO_WADE_SHALLOW               = 176,
-    LA_WADE                                  = 177,
-    LA_RUN_TO_WADE_LEFT                      = 178,
-    LA_RUN_TO_WADE_RIGHT                     = 179,
-    LA_WADE_TO_RUN_LEFT                      = 180,
-    LA_WADE_TO_RUN_RIGHT                     = 181,
-    LA_LADDER_BACKFLIP_START                 = 182,
-    LA_LADDER_BACKFLIP_CONTINUE              = 183,
-    LA_WADE_TO_STAND_RIGHT                   = 184,
-    LA_WADE_TO_STAND_LEFT                    = 185,
-    LA_STAND_TO_WADE                         = 186,
-    LA_LADDER_UP_HANGING                     = 187,
-    LA_LADDER_DOWN_HANGING                   = 188,
-    LA_FLARE_THROW                           = 189,
-    LA_ONWATER_TO_WADE                       = 190,
-    LA_ONWATER_TO_STAND_MEDIUM               = 191,
-    LA_UNDERWATER_TO_STAND                   = 192,
-    LA_ONWATER_TO_WADE_LOW                   = 193,
-    LA_LADDER_TO_HANG_DOWN                   = 194,
-    LA_SWITCH_SMALL_DOWN                     = 195,
-    LA_SWITCH_SMALL_UP                       = 196,
-    LA_BUTTON_PUSH                           = 197,
-    LA_UNDERWATER_SWIM_TO_STILL_HUDDLE       = 198,
-    LA_UNDERWATER_SWIM_TO_STILL_SPRAWL       = 199,
-    LA_UNDERWATER_SWIM_TO_STILL_MEDIUM       = 200,
-    LA_LADDER_TO_HANG_RIGHT                  = 201,
-    LA_LADDER_TO_HANG_LEFT                   = 202,
-    LA_UNDERWATER_ROLL_START                 = 203,
-    LA_FLARE_PICKUP                          = 204,
-    LA_UNDERWATER_ROLL_END                   = 205,
-    LA_UNDERWATER_FLARE_PICKUP               = 206,
-    LA_RUN_JUMP_ROLL_START                   = 207,
-    LA_SOMERSAULT                            = 208,
-    LA_RUN_JUMP_ROLL_END                     = 209,
-    LA_JUMP_FORWARD_ROLL_START               = 210,
-    LA_JUMP_FORWARD_ROLL_END                 = 211,
-    LA_JUMP_BACK_ROLL_START                  = 212,
-    LA_JUMP_BACK_ROLL_END                    = 213,
-    LA_KICK                                  = 214,
-    LA_ZIPLINE_GRAB                          = 215,
-    LA_ZIPLINE_RIDE                          = 216,
-    LA_ZIPLINE_FALL                          = 217,
-} LARA_ANIMATION;
-
-typedef enum {
-    LA_EXTRA_BREATH      = 0,
-    LA_EXTRA_PLUNGER     = 1,
-    LA_EXTRA_YETI_KILL   = 2,
-    LA_EXTRA_SHARK_KILL  = 3,
-    LA_EXTRA_AIRLOCK     = 4,
-    LA_EXTRA_GONG_BONG   = 5,
-    LA_EXTRA_DINO_KILL   = 6,
-    LA_EXTRA_PULL_DAGGER = 7,
-    LA_EXTRA_START_ANIM  = 8,
-    LA_EXTRA_START_HOUSE = 9,
-    LA_EXTRA_FINAL_ANIM  = 10,
-} LARA_EXTRA_ANIMATION;
-
-typedef enum {
-    LS_WALK         = 0,
-    LS_RUN          = 1,
-    LS_STOP         = 2,
-    LS_FORWARD_JUMP = 3,
-    LS_POSE         = 4,
-    LS_FAST_BACK    = 5,
-    LS_TURN_RIGHT   = 6,
-    LS_TURN_LEFT    = 7,
-    LS_DEATH        = 8,
-    LS_FAST_FALL    = 9,
-    LS_HANG         = 10,
-    LS_REACH        = 11,
-    LS_SPLAT        = 12,
-    LS_TREAD        = 13,
-    LS_LAND         = 14,
-    LS_COMPRESS     = 15,
-    LS_BACK         = 16,
-    LS_SWIM         = 17,
-    LS_GLIDE        = 18,
-    LS_NULL         = 19,
-    LS_FAST_TURN    = 20,
-    LS_STEP_RIGHT   = 21,
-    LS_STEP_LEFT    = 22,
-    LS_HIT          = 23,
-    LS_SLIDE        = 24,
-    LS_BACK_JUMP    = 25,
-    LS_RIGHT_JUMP   = 26,
-    LS_LEFT_JUMP    = 27,
-    LS_UP_JUMP      = 28,
-    LS_FALL_BACK    = 29,
-    LS_HANG_LEFT    = 30,
-    LS_HANG_RIGHT   = 31,
-    LS_SLIDE_BACK   = 32,
-    LS_SURF_TREAD   = 33,
-    LS_SURF_SWIM    = 34,
-    LS_DIVE         = 35,
-    LS_PUSH_BLOCK   = 36,
-    LS_PULL_BLOCK   = 37,
-    LS_PP_READY     = 38,
-    LS_PICKUP       = 39,
-    LS_SWITCH_ON    = 40,
-    LS_SWITCH_OFF   = 41,
-    LS_USE_KEY      = 42,
-    LS_USE_PUZZLE   = 43,
-    LS_UW_DEATH     = 44,
-    LS_ROLL         = 45,
-    LS_SPECIAL      = 46,
-    LS_SURF_BACK    = 47,
-    LS_SURF_LEFT    = 48,
-    LS_SURF_RIGHT   = 49,
-    LS_USE_MIDAS    = 50,
-    LS_DIE_MIDAS    = 51,
-    LS_SWAN_DIVE    = 52,
-    LS_FAST_DIVE    = 53,
-    LS_GYMNAST      = 54,
-    LS_WATER_OUT    = 55,
-    LS_CLIMB_STANCE = 56,
-    LS_CLIMBING     = 57,
-    LS_CLIMB_LEFT   = 58,
-    LS_CLIMB_END    = 59,
-    LS_CLIMB_RIGHT  = 60,
-    LS_CLIMB_DOWN   = 61,
-    LS_LARA_TEST1   = 62,
-    LS_LARA_TEST2   = 63,
-    LS_LARA_TEST3   = 64,
-    LS_WADE         = 65,
-    LS_WATER_ROLL   = 66,
-    LS_FLARE_PICKUP = 67,
-    LS_TWIST        = 68,
-    LS_KICK         = 69,
-    LS_DEATH_SLIDE  = 70,
-    LS_DUCK         = 71,
-    LS_DUCK_ROLL    = 72,
-    LS_DASH         = 73,
-    LS_DASH_DIVE    = 74,
-    LS_MONKEY_SWING = 75,
-    LS_MONKEYF      = 76,
-    LS_LAST         = 77,
-} LARA_STATE;
-
-typedef enum {
-    LGS_ARMLESS = 0,
-    LGS_HANDS_BUSY = 1,
-    LGS_DRAW = 2,
-    LGS_UNDRAW = 3,
-    LGS_READY = 4,
-    LGS_SPECIAL = 5,
-} LARA_GUN_STATE;
-
-typedef enum {
-    LGT_UNARMED = 0,
-    LGT_PISTOLS = 1,
-    LGT_MAGNUMS = 2,
-    LGT_UZIS    = 3,
-    LGT_SHOTGUN = 4,
-    LGT_M16     = 5,
-    LGT_GRENADE = 6,
-    LGT_HARPOON = 7,
-    LGT_FLARE   = 8 ,
-    LGT_SKIDOO  = 9,
-    NUM_WEAPONS = 10,
-} LARA_GUN_TYPE;
-
-typedef enum {
-    LM_HIPS      = 0,
-    LM_THIGH_L   = 1,
-    LM_CALF_L    = 2,
-    LM_FOOT_L    = 3,
-    LM_THIGH_R   = 4,
-    LM_CALF_R    = 5,
-    LM_FOOT_R    = 6,
-    LM_TORSO     = 7,
-    LM_UARM_R    = 8,
-    LM_LARM_R    = 9,
-    LM_HAND_R    = 10,
-    LM_UARM_L    = 11,
-    LM_LARM_L    = 12,
-    LM_HAND_L    = 13,
-    LM_HEAD      = 14,
-    LM_NUMBER_OF = 15,
-} LARA_MESH;
 
 typedef enum {
     MX_INACTIVE                = -1,
@@ -1983,14 +1447,6 @@ typedef enum {
     HT_SMALL_SLOPE = 1,
     HT_BIG_SLOPE   = 2,
 } HEIGHT_TYPE;
-
-typedef enum {
-    DIR_UNKNOWN = -1,
-    DIR_NORTH   = 0,
-    DIR_EAST    = 1,
-    DIR_SOUTH   = 2,
-    DIR_WEST    = 3,
-} DIRECTION;
 
 typedef struct __unaligned {
     uint16_t x;

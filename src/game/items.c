@@ -445,7 +445,7 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
     item->hit_status = 0;
     item->touch_bits = 0;
 
-    const ANIM_STRUCT *anim = &g_Anims[item->anim_num];
+    const ANIM *anim = &g_Anims[item->anim_num];
 
     item->frame_num++;
 
@@ -586,7 +586,7 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
 }
 
 int32_t __cdecl Item_GetAnimChange(
-    ITEM_INFO *const item, const ANIM_STRUCT *const anim)
+    ITEM_INFO *const item, const ANIM *const anim)
 {
     if (item->current_anim_state == item->goal_anim_state) {
         return false;
@@ -651,7 +651,7 @@ int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *const item)
 int32_t __cdecl Item_GetFrames(
     const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate)
 {
-    const ANIM_STRUCT *const anim = &g_Anims[item->anim_num];
+    const ANIM *const anim = &g_Anims[item->anim_num];
     const int32_t cur_frame_num = item->frame_num - anim->frame_base;
     const int32_t size = anim->interpolation >> 8;
     const int32_t key_frame_span = anim->interpolation & 0xFF;

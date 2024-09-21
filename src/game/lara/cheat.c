@@ -1,4 +1,4 @@
-#include "game/lara/lara_cheat.h"
+#include "game/lara/cheat.h"
 
 #include "decomp/effects.h"
 #include "game/camera.h"
@@ -8,7 +8,7 @@
 #include "game/gun/gun.h"
 #include "game/inventory/backpack.h"
 #include "game/items.h"
-#include "game/lara/lara_control.h"
+#include "game/lara/control.h"
 #include "game/math.h"
 #include "game/objects/common.h"
 #include "game/objects/vars.h"

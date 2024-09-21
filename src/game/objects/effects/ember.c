@@ -1,8 +1,8 @@
 #include "game/objects/effects/ember.h"
 
 #include "game/effects.h"
-#include "game/lara/lara_control.h"
-#include "game/lara/lara_misc.h"
+#include "game/lara/control.h"
+#include "game/lara/misc.h"
 #include "game/math.h"
 #include "game/room.h"
 #include "global/vars.h"

@@ -5,7 +5,7 @@
 #include "game/inventory/backpack.h"
 #include "game/inventory/ring.h"
 #include "game/inventory/vars.h"
-#include "game/lara/lara_control.h"
+#include "game/lara/control.h"
 #include "game/math_misc.h"
 #include "game/matrix.h"
 #include "game/music.h"

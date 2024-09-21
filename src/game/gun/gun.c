@@ -5,7 +5,7 @@
 #include "game/gun/gun_rifle.h"
 #include "game/input.h"
 #include "game/inventory/backpack.h"
-#include "game/lara/lara_control.h"
+#include "game/lara/control.h"
 #include "game/sound.h"
 #include "global/funcs.h"
 #include "global/vars.h"

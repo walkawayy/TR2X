@@ -6,7 +6,7 @@
 #include "game/gameflow/gameflow_new.h"
 #include "game/input.h"
 #include "game/inventory/common.h"
-#include "game/lara/lara_control.h"
+#include "game/lara/control.h"
 #include "game/music.h"
 #include "game/overlay.h"
 #include "game/room_draw.h"

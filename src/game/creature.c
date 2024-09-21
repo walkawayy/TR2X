@@ -3,7 +3,7 @@
 #include "decomp/effects.h"
 #include "game/box.h"
 #include "game/items.h"
-#include "game/lara/lara_misc.h"
+#include "game/lara/misc.h"
 #include "game/los.h"
 #include "game/lot.h"
 #include "game/math.h"

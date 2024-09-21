@@ -1,4 +1,4 @@
-#include "game/lara/lara_draw.h"
+#include "game/lara/draw.h"
 
 #include "game/items.h"
 #include "game/matrix.h"

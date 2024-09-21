@@ -4,7 +4,7 @@
 #include "game/game.h"
 #include "game/gameflow.h"
 #include "game/items.h"
-#include "game/lara/lara_cheat.h"
+#include "game/lara/cheat.h"
 #include "game/random.h"
 #include "game/room.h"
 #include "game/shell.h"

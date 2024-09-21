@@ -1,4 +1,4 @@
-#include "game/lara/lara_look.h"
+#include "game/lara/look.h"
 
 #include "game/input.h"
 #include "global/const.h"

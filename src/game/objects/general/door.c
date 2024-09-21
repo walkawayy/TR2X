@@ -1,7 +1,7 @@
 #include "game/objects/general/door.h"
 
 #include "game/items.h"
-#include "game/lara/lara_misc.h"
+#include "game/lara/misc.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 

@@ -11,6 +11,7 @@
 #include <libtrx/game/lot.h>
 #include <libtrx/game/math.h>
 #include <libtrx/game/objects/common.h>
+#include <libtrx/game/rooms/types.h>
 
 #include <ddraw.h>
 #include <ddrawi.h>
@@ -525,15 +526,6 @@ typedef struct __unaligned {
 } SAVEGAME_INFO;
 
 typedef struct __unaligned {
-    uint16_t idx;
-    int16_t box;
-    uint8_t pit_room;
-    int8_t floor;
-    uint8_t sky_room;
-    int8_t ceiling;
-} SECTOR_INFO;
-
-typedef struct __unaligned {
     int16_t lock_angles[4];
     int16_t left_angles[4];
     int16_t right_angles[4];
@@ -719,39 +711,6 @@ typedef struct __unaligned {
     int32_t mesh_num;
 } BITE_INFO;
 
-typedef struct __unaligned {
-    int16_t room;
-    int16_t x;
-    int16_t y;
-    int16_t z;
-    XYZ_16 vertex[4];
-} DOOR_INFO;
-
-typedef struct __unaligned {
-    int16_t count;
-    DOOR_INFO door[];
-} DOOR_INFOS;
-
-typedef struct __unaligned {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int16_t intensity1;
-    int16_t intensity2;
-    int32_t falloff1;
-    int32_t falloff2;
-} LIGHT_INFO;
-
-typedef struct __unaligned {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int16_t y_rot;
-    int16_t shade1;
-    int16_t shade2;
-    int16_t static_num;
-} MESH_INFO;
-
 typedef enum {
     RF_UNDERWATER  = 0x01,
     RF_OUTSIDE     = 0x08,
@@ -764,37 +723,6 @@ typedef struct __unaligned {
     SECTOR_INFO data;
     int16_t block;
 } DOORPOS_DATA;
-
-typedef struct __unaligned {
-    int16_t *data;
-    DOOR_INFOS *doors;
-    SECTOR_INFO *sector;
-    LIGHT_INFO *light;
-    MESH_INFO *mesh;
-    XYZ_32 pos;
-    int32_t min_floor;
-    int32_t max_ceiling;
-    int16_t z_size;
-    int16_t x_size;
-    int16_t ambient1;
-    int16_t ambient2;
-    int16_t light_mode;
-    int16_t num_lights;
-    int16_t num_meshes;
-    int16_t bound_left;
-    int16_t bound_right;
-    int16_t bound_top;
-    int16_t bound_bottom;
-    uint16_t bound_active;
-    int16_t test_left;
-    int16_t test_right;
-    int16_t test_top;
-    int16_t test_bottom;
-    int16_t item_num;
-    int16_t fx_num;
-    int16_t flipped_room;
-    uint16_t flags;
-} ROOM_INFO;
 
 typedef enum {
     CAM_CHASE     = 0,
@@ -1340,13 +1268,6 @@ typedef struct __unaligned {
     int16_t fov;
     int16_t roll;
 } CINE_FRAME;
-
-typedef enum {
-    IS_INACTIVE    = 0,
-    IS_ACTIVE      = 1,
-    IS_DEACTIVATED = 2,
-    IS_INVISIBLE   = 3,
-} ITEM_STATUS;
 
 typedef struct __unaligned {
     uint16_t key[14]; // INPUT_ROLE_NUMBER_OF

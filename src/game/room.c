@@ -956,3 +956,13 @@ void __cdecl Room_TriggerMusicTrack(
         }
     }
 }
+
+int32_t Room_GetTotalCount(void)
+{
+    return g_RoomCount;
+}
+
+ROOM_INFO *Room_Get(const int32_t room_num)
+{
+    return &g_Rooms[room_num];
+}

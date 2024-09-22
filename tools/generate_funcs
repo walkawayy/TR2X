@@ -120,6 +120,7 @@ def make_types_h(types: list[str]) -> None:
         "#include <libtrx/game/lot.h>",
         "#include <libtrx/game/math.h>",
         "#include <libtrx/game/objects/common.h>",
+        "#include <libtrx/game/rooms/types.h>",
         "",
         "#include <ddraw.h>",
         "#include <ddrawi.h>",

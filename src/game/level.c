@@ -21,6 +21,7 @@ static void __cdecl M_LoadMeshBase(VFILE *file);
 static void __cdecl M_LoadMeshes(VFILE *file);
 static int32_t __cdecl M_LoadAnims(VFILE *file, int32_t **frame_pointers);
 static void __cdecl M_LoadAnimChanges(VFILE *file);
+static void __cdecl M_LoadAnimRanges(VFILE *file);
 static void __cdecl M_LoadAnimCommands(VFILE *file);
 static void __cdecl M_LoadAnimBones(VFILE *file);
 static void __cdecl M_LoadAnimFrames(VFILE *file);
@@ -288,7 +289,7 @@ static void __cdecl M_LoadAnimChanges(VFILE *const file)
     Benchmark_End(benchmark, NULL);
 }
 
-static void __cdecl Level_LoadAnimRanges(VFILE *const file)
+static void __cdecl M_LoadAnimRanges(VFILE *const file)
 {
     BENCHMARK *const benchmark = Benchmark_Start();
     const int32_t num_anim_ranges = VFile_ReadS32(file);
@@ -880,7 +881,7 @@ bool __cdecl Level_Load(const char *const file_name, const int32_t level_num)
     int32_t *frame_pointers = NULL;
     const int32_t num_anims = M_LoadAnims(file, &frame_pointers);
     M_LoadAnimChanges(file);
-    Level_LoadAnimRanges(file);
+    M_LoadAnimRanges(file);
     M_LoadAnimCommands(file);
     M_LoadAnimBones(file);
     M_LoadAnimFrames(file);

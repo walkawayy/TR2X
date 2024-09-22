@@ -19,24 +19,19 @@ static const INPUT_ROLE m_RightRoles[] = {
     INPUT_ROLE_OPTION, INPUT_ROLE_CONSOLE, (INPUT_ROLE)-1,
 };
 
-static const INPUT_ROLE *UI_ControlsController_GetInputRoles(int32_t col);
-static bool UI_ControlsController_NavigateLayout(
-    UI_CONTROLS_CONTROLLER *controller);
-static bool UI_ControlsController_NavigateInputs(
-    UI_CONTROLS_CONTROLLER *controller);
-static bool UI_ControlsController_ListenDebounce(
-    UI_CONTROLS_CONTROLLER *controller);
-static bool UI_ControlsController_Listen(UI_CONTROLS_CONTROLLER *controller);
-static bool UI_ControlsController_NavigateInputsDebounce(
-    UI_CONTROLS_CONTROLLER *controller);
+static const INPUT_ROLE *M_GetInputRoles(int32_t col);
+static bool M_NavigateLayout(UI_CONTROLS_CONTROLLER *controller);
+static bool M_NavigateInputs(UI_CONTROLS_CONTROLLER *controller);
+static bool M_ListenDebounce(UI_CONTROLS_CONTROLLER *controller);
+static bool M_Listen(UI_CONTROLS_CONTROLLER *controller);
+static bool M_NavigateInputsDebounce(UI_CONTROLS_CONTROLLER *controller);
 
-static const INPUT_ROLE *UI_ControlsController_GetInputRoles(const int32_t col)
+static const INPUT_ROLE *M_GetInputRoles(const int32_t col)
 {
     return col == 0 ? m_LeftRoles : m_RightRoles;
 }
 
-static bool UI_ControlsController_NavigateLayout(
-    UI_CONTROLS_CONTROLLER *const controller)
+static bool M_NavigateLayout(UI_CONTROLS_CONTROLLER *const controller)
 {
     if ((g_InputDB & IN_DESELECT) || (g_InputDB & IN_SELECT)) {
         controller->state = UI_CONTROLS_STATE_EXIT;
@@ -60,13 +55,12 @@ static bool UI_ControlsController_NavigateLayout(
     } else {
         return false;
     }
-    controller->active_role = UI_ControlsController_GetInputRoles(
-        controller->active_col)[controller->active_row];
+    controller->active_role =
+        M_GetInputRoles(controller->active_col)[controller->active_row];
     return true;
 }
 
-static bool UI_ControlsController_NavigateInputs(
-    UI_CONTROLS_CONTROLLER *const controller)
+static bool M_NavigateInputs(UI_CONTROLS_CONTROLLER *const controller)
 {
     if (g_InputDB & IN_DESELECT) {
         controller->state = UI_CONTROLS_STATE_EXIT;
@@ -103,13 +97,12 @@ static bool UI_ControlsController_NavigateInputs(
     } else {
         return false;
     }
-    controller->active_role = UI_ControlsController_GetInputRoles(
-        controller->active_col)[controller->active_row];
+    controller->active_role =
+        M_GetInputRoles(controller->active_col)[controller->active_row];
     return true;
 }
 
-static bool UI_ControlsController_ListenDebounce(
-    UI_CONTROLS_CONTROLLER *const controller)
+static bool M_ListenDebounce(UI_CONTROLS_CONTROLLER *const controller)
 {
     if (Input_IsAnythingPressed()) {
         return false;
@@ -119,8 +112,7 @@ static bool UI_ControlsController_ListenDebounce(
     return true;
 }
 
-static bool UI_ControlsController_Listen(
-    UI_CONTROLS_CONTROLLER *const controller)
+static bool M_Listen(UI_CONTROLS_CONTROLLER *const controller)
 {
     int32_t pressed = 0;
 
@@ -171,8 +163,7 @@ static bool UI_ControlsController_Listen(
     return true;
 }
 
-static bool UI_ControlsController_NavigateInputsDebounce(
-    UI_CONTROLS_CONTROLLER *const controller)
+static bool M_NavigateInputsDebounce(UI_CONTROLS_CONTROLLER *const controller)
 {
     if (Input_IsAnythingPressed()) {
         return false;
@@ -187,15 +178,15 @@ bool UI_ControlsController_Control(UI_CONTROLS_CONTROLLER *const controller)
 {
     switch (controller->state) {
     case UI_CONTROLS_STATE_NAVIGATE_LAYOUT:
-        return UI_ControlsController_NavigateLayout(controller);
+        return M_NavigateLayout(controller);
     case UI_CONTROLS_STATE_NAVIGATE_INPUTS:
-        return UI_ControlsController_NavigateInputs(controller);
+        return M_NavigateInputs(controller);
     case UI_CONTROLS_STATE_LISTEN_DEBOUNCE:
-        return UI_ControlsController_ListenDebounce(controller);
+        return M_ListenDebounce(controller);
     case UI_CONTROLS_STATE_LISTEN:
-        return UI_ControlsController_Listen(controller);
+        return M_Listen(controller);
     case UI_CONTROLS_STATE_NAVIGATE_INPUTS_DEBOUNCE:
-        return UI_ControlsController_NavigateInputsDebounce(controller);
+        return M_NavigateInputsDebounce(controller);
     default:
         return false;
     }
@@ -205,13 +196,13 @@ bool UI_ControlsController_Control(UI_CONTROLS_CONTROLLER *const controller)
 INPUT_ROLE UI_ControlsController_GetInputRole(
     const int32_t col, const int32_t row)
 {
-    return UI_ControlsController_GetInputRoles(col)[row];
+    return M_GetInputRoles(col)[row];
 }
 
 int32_t UI_ControlsController_GetInputRoleCount(const int32_t col)
 {
     int32_t result = 0;
-    const INPUT_ROLE *const roles = UI_ControlsController_GetInputRoles(col);
+    const INPUT_ROLE *const roles = M_GetInputRoles(col);
     while (roles[result] != (INPUT_ROLE)-1) {
         result++;
     }

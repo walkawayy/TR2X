@@ -16,25 +16,25 @@ typedef struct {
     } border;
 } UI_WINDOW;
 
-static int32_t UI_Window_GetWidth(const UI_WINDOW *self);
-static int32_t UI_Window_GetHeight(const UI_WINDOW *self);
-static void UI_Window_SetPosition(UI_WINDOW *self, int32_t x, int32_t y);
-static void UI_Window_Control(UI_WINDOW *self);
-static void UI_Window_Free(UI_WINDOW *self);
+static int32_t M_GetWidth(const UI_WINDOW *self);
+static int32_t M_GetHeight(const UI_WINDOW *self);
+static void M_SetPosition(UI_WINDOW *self, int32_t x, int32_t y);
+static void M_Control(UI_WINDOW *self);
+static void M_Free(UI_WINDOW *self);
 
-static int32_t UI_Window_GetWidth(const UI_WINDOW *const self)
+static int32_t M_GetWidth(const UI_WINDOW *const self)
 {
     return self->root->get_width(self->root) + self->border.left
         + self->border.right;
 }
 
-static int32_t UI_Window_GetHeight(const UI_WINDOW *const self)
+static int32_t M_GetHeight(const UI_WINDOW *const self)
 {
     return self->root->get_height(self->root) + self->border.top
         + self->border.bottom;
 }
 
-static void UI_Window_SetPosition(
+static void M_SetPosition(
     UI_WINDOW *const self, const int32_t x, const int32_t y)
 {
     self->root->set_position(
@@ -42,20 +42,20 @@ static void UI_Window_SetPosition(
 
     Text_SetPos(self->text, x, y);
 
-    const int32_t w = UI_Window_GetWidth(self);
-    const int32_t h = UI_Window_GetHeight(self);
+    const int32_t w = M_GetWidth(self);
+    const int32_t h = M_GetHeight(self);
     Text_AddBackground(self->text, w, h, w / 2, 0, 0, INV_COLOR_BLACK, NULL, 0);
     Text_AddOutline(self->text, true, INV_COLOR_BLUE, NULL, 0);
 }
 
-static void UI_Window_Control(UI_WINDOW *const self)
+static void M_Control(UI_WINDOW *const self)
 {
     if (self->root->control != NULL) {
         self->root->control(self->root);
     }
 }
 
-static void UI_Window_Free(UI_WINDOW *const self)
+static void M_Free(UI_WINDOW *const self)
 {
     Text_Remove(self->text);
     Memory_Free(self);
@@ -67,11 +67,11 @@ UI_WIDGET *UI_Window_Create(
 {
     UI_WINDOW *const self = Memory_Alloc(sizeof(UI_WINDOW));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)UI_Window_Control,
-        .get_width = (UI_WIDGET_GET_WIDTH)UI_Window_GetWidth,
-        .get_height = (UI_WIDGET_GET_HEIGHT)UI_Window_GetHeight,
-        .set_position = (UI_WIDGET_SET_POSITION)UI_Window_SetPosition,
-        .free = (UI_WIDGET_FREE)UI_Window_Free,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
+        .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
+        .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .free = (UI_WIDGET_FREE)M_Free,
     };
 
     self->root = root;

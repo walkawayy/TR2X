@@ -7,9 +7,9 @@
 
 #include <libtrx/utils.h>
 
-static void Requester_ClearTextStrings(REQUEST_INFO *req);
+static void M_ClearTextStrings(REQUEST_INFO *req);
 
-static void Requester_ClearTextStrings(REQUEST_INFO *const req)
+static void M_ClearTextStrings(REQUEST_INFO *const req)
 {
     Text_Remove(req->heading_text1);
     req->heading_text1 = NULL;
@@ -65,7 +65,7 @@ void __cdecl Requester_Init(REQUEST_INFO *const req)
 
 void __cdecl Requester_Shutdown(REQUEST_INFO *const req)
 {
-    Requester_ClearTextStrings(req);
+    M_ClearTextStrings(req);
     req->ready = 0;
 }
 

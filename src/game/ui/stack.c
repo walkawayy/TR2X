@@ -14,13 +14,13 @@ typedef struct {
 
 } UI_STACK;
 
-static int32_t UI_Stack_GetHeight(const UI_STACK *self);
-static int32_t UI_Stack_GetWidth(const UI_STACK *self);
-static void UI_Stack_SetPosition(UI_STACK *self, int32_t x, int32_t y);
-static void UI_Stack_Control(UI_STACK *self);
-static void UI_Stack_Free(UI_STACK *self);
+static int32_t M_GetHeight(const UI_STACK *self);
+static int32_t M_GetWidth(const UI_STACK *self);
+static void M_SetPosition(UI_STACK *self, int32_t x, int32_t y);
+static void M_Control(UI_STACK *self);
+static void M_Free(UI_STACK *self);
 
-static int32_t UI_Stack_GetWidth(const UI_STACK *const self)
+static int32_t M_GetWidth(const UI_STACK *const self)
 {
     int32_t result = 0;
     for (int32_t i = 0; i < self->children->count; i++) {
@@ -35,7 +35,7 @@ static int32_t UI_Stack_GetWidth(const UI_STACK *const self)
     return result;
 }
 
-static int32_t UI_Stack_GetHeight(const UI_STACK *const self)
+static int32_t M_GetHeight(const UI_STACK *const self)
 {
     int32_t result = 0;
     for (int32_t i = 0; i < self->children->count; i++) {
@@ -50,7 +50,7 @@ static int32_t UI_Stack_GetHeight(const UI_STACK *const self)
     return result;
 }
 
-static void UI_Stack_SetPosition(
+static void M_SetPosition(
     UI_STACK *const self, const int32_t x, const int32_t y)
 {
     self->x = x;
@@ -58,7 +58,7 @@ static void UI_Stack_SetPosition(
     UI_Stack_DoLayout((UI_WIDGET *)self);
 }
 
-static void UI_Stack_Control(UI_STACK *const self)
+static void M_Control(UI_STACK *const self)
 {
     for (int32_t i = 0; i < self->children->count; i++) {
         UI_WIDGET *const child = *(UI_WIDGET **)Vector_Get(self->children, i);
@@ -68,7 +68,7 @@ static void UI_Stack_Control(UI_STACK *const self)
     }
 }
 
-static void UI_Stack_Free(UI_STACK *const self)
+static void M_Free(UI_STACK *const self)
 {
     Vector_Free(self->children);
     Memory_Free(self);
@@ -84,11 +84,11 @@ UI_WIDGET *UI_Stack_Create(const UI_STACK_LAYOUT layout)
 {
     UI_STACK *const self = Memory_Alloc(sizeof(UI_STACK));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)UI_Stack_Control,
-        .get_width = (UI_WIDGET_GET_WIDTH)UI_Stack_GetWidth,
-        .get_height = (UI_WIDGET_GET_HEIGHT)UI_Stack_GetHeight,
-        .set_position = (UI_WIDGET_SET_POSITION)UI_Stack_SetPosition,
-        .free = (UI_WIDGET_FREE)UI_Stack_Free,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
+        .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
+        .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .free = (UI_WIDGET_FREE)M_Free,
     };
 
     self->layout = layout;
@@ -99,8 +99,8 @@ UI_WIDGET *UI_Stack_Create(const UI_STACK_LAYOUT layout)
 void UI_Stack_DoLayout(UI_WIDGET *const widget)
 {
     UI_STACK *const self = (UI_STACK *)widget;
-    const int32_t self_width = UI_Stack_GetWidth(self);
-    const int32_t self_height = UI_Stack_GetHeight(self);
+    const int32_t self_width = M_GetWidth(self);
+    const int32_t self_height = M_GetHeight(self);
     const int32_t start_x = self->x;
     const int32_t start_y = self->y;
     int32_t x = start_x;

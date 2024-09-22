@@ -14,19 +14,15 @@ typedef struct {
     UI_CONTROLS_CONTROLLER *controller;
 } UI_CONTROLS_INPUT_SELECTOR;
 
-static void UI_ControlsInputSelector_UpdateText(
-    UI_CONTROLS_INPUT_SELECTOR *self);
-static int32_t UI_ControlsInputSelector_GetWidth(
-    const UI_CONTROLS_INPUT_SELECTOR *self);
-static int32_t UI_ControlsInputSelector_GetHeight(
-    const UI_CONTROLS_INPUT_SELECTOR *self);
-static void UI_ControlsInputSelector_SetPosition(
+static void M_UpdateText(UI_CONTROLS_INPUT_SELECTOR *self);
+static int32_t M_GetWidth(const UI_CONTROLS_INPUT_SELECTOR *self);
+static int32_t M_GetHeight(const UI_CONTROLS_INPUT_SELECTOR *self);
+static void M_SetPosition(
     UI_CONTROLS_INPUT_SELECTOR *self, int32_t x, int32_t y);
-static void UI_ControlsInputSelector_Control(UI_CONTROLS_INPUT_SELECTOR *self);
-static void UI_ControlsInputSelector_Free(UI_CONTROLS_INPUT_SELECTOR *self);
+static void M_Control(UI_CONTROLS_INPUT_SELECTOR *self);
+static void M_Free(UI_CONTROLS_INPUT_SELECTOR *self);
 
-static void UI_ControlsInputSelector_UpdateText(
-    UI_CONTROLS_INPUT_SELECTOR *const self)
+static void M_UpdateText(UI_CONTROLS_INPUT_SELECTOR *const self)
 {
     const uint16_t key =
         Input_GetAssignedKey(self->controller->active_layout, self->input_role);
@@ -38,26 +34,23 @@ static void UI_ControlsInputSelector_UpdateText(
     UI_Label_ChangeText(self->label, Input_GetRoleName(self->input_role));
 }
 
-static int32_t UI_ControlsInputSelector_GetWidth(
-    const UI_CONTROLS_INPUT_SELECTOR *const self)
+static int32_t M_GetWidth(const UI_CONTROLS_INPUT_SELECTOR *const self)
 {
     return self->container->get_width(self->container);
 }
 
-static int32_t UI_ControlsInputSelector_GetHeight(
-    const UI_CONTROLS_INPUT_SELECTOR *const self)
+static int32_t M_GetHeight(const UI_CONTROLS_INPUT_SELECTOR *const self)
 {
     return self->container->get_height(self->container);
 }
 
-static void UI_ControlsInputSelector_SetPosition(
+static void M_SetPosition(
     UI_CONTROLS_INPUT_SELECTOR *const self, const int32_t x, const int32_t y)
 {
     return self->container->set_position(self->container, x, y);
 }
 
-static void UI_ControlsInputSelector_Control(
-    UI_CONTROLS_INPUT_SELECTOR *const self)
+static void M_Control(UI_CONTROLS_INPUT_SELECTOR *const self)
 {
     // Sync outlines
     UI_Label_RemoveFrame(self->label);
@@ -74,7 +67,7 @@ static void UI_ControlsInputSelector_Control(
         }
     }
 
-    UI_ControlsInputSelector_UpdateText(self);
+    M_UpdateText(self);
 
     // Flash conflicts
     UI_Label_Flash(self->choice, false, 0);
@@ -89,8 +82,7 @@ static void UI_ControlsInputSelector_Control(
     }
 }
 
-static void UI_ControlsInputSelector_Free(
-    UI_CONTROLS_INPUT_SELECTOR *const self)
+static void M_Free(UI_CONTROLS_INPUT_SELECTOR *const self)
 {
     self->label->free(self->label);
     self->choice->free(self->choice);
@@ -104,12 +96,11 @@ UI_WIDGET *UI_ControlsInputSelector_Create(
     UI_CONTROLS_INPUT_SELECTOR *const self =
         Memory_Alloc(sizeof(UI_CONTROLS_INPUT_SELECTOR));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)UI_ControlsInputSelector_Control,
-        .get_width = (UI_WIDGET_GET_WIDTH)UI_ControlsInputSelector_GetWidth,
-        .get_height = (UI_WIDGET_GET_HEIGHT)UI_ControlsInputSelector_GetHeight,
-        .set_position =
-            (UI_WIDGET_SET_POSITION)UI_ControlsInputSelector_SetPosition,
-        .free = (UI_WIDGET_FREE)UI_ControlsInputSelector_Free,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
+        .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
+        .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .free = (UI_WIDGET_FREE)M_Free,
     };
 
     self->controller = controller;
@@ -122,7 +113,7 @@ UI_WIDGET *UI_ControlsInputSelector_Create(
     UI_Stack_AddChild(self->container, self->label);
 
     // update the text on init
-    UI_ControlsInputSelector_UpdateText(self);
+    M_UpdateText(self);
 
     return (UI_WIDGET *)self;
 }

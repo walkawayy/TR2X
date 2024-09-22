@@ -12,35 +12,34 @@ typedef struct {
     UI_WIDGET **selectors;
 } UI_CONTROLS_COLUMN;
 
-static int32_t UI_ControlsColumn_GetWidth(const UI_CONTROLS_COLUMN *self);
-static int32_t UI_ControlsColumn_GetHeight(const UI_CONTROLS_COLUMN *self);
-static void UI_ControlsColumn_SetPosition(
-    UI_CONTROLS_COLUMN *self, int32_t x, int32_t y);
-static void UI_ControlsColumn_Control(UI_CONTROLS_COLUMN *self);
-static void UI_ControlsColumn_Free(UI_CONTROLS_COLUMN *self);
+static int32_t M_GetWidth(const UI_CONTROLS_COLUMN *self);
+static int32_t M_GetHeight(const UI_CONTROLS_COLUMN *self);
+static void M_SetPosition(UI_CONTROLS_COLUMN *self, int32_t x, int32_t y);
+static void M_Control(UI_CONTROLS_COLUMN *self);
+static void M_Free(UI_CONTROLS_COLUMN *self);
 
-static int32_t UI_ControlsColumn_GetWidth(const UI_CONTROLS_COLUMN *const self)
+static int32_t M_GetWidth(const UI_CONTROLS_COLUMN *const self)
 {
     return self->container->get_width(self->container);
 }
 
-static int32_t UI_ControlsColumn_GetHeight(const UI_CONTROLS_COLUMN *const self)
+static int32_t M_GetHeight(const UI_CONTROLS_COLUMN *const self)
 {
     return self->container->get_height(self->container);
 }
 
-static void UI_ControlsColumn_SetPosition(
+static void M_SetPosition(
     UI_CONTROLS_COLUMN *const self, const int32_t x, const int32_t y)
 {
     return self->container->set_position(self->container, x, y);
 }
 
-static void UI_ControlsColumn_Control(UI_CONTROLS_COLUMN *const self)
+static void M_Control(UI_CONTROLS_COLUMN *const self)
 {
     self->container->control(self->container);
 }
 
-static void UI_ControlsColumn_Free(UI_CONTROLS_COLUMN *const self)
+static void M_Free(UI_CONTROLS_COLUMN *const self)
 {
     for (int32_t i = 0; i < self->selector_count; i++) {
         self->selectors[i]->free(self->selectors[i]);
@@ -55,11 +54,11 @@ UI_WIDGET *UI_ControlsColumn_Create(
 {
     UI_CONTROLS_COLUMN *const self = Memory_Alloc(sizeof(UI_CONTROLS_COLUMN));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)UI_ControlsColumn_Control,
-        .get_width = (UI_WIDGET_GET_WIDTH)UI_ControlsColumn_GetWidth,
-        .get_height = (UI_WIDGET_GET_HEIGHT)UI_ControlsColumn_GetHeight,
-        .set_position = (UI_WIDGET_SET_POSITION)UI_ControlsColumn_SetPosition,
-        .free = (UI_WIDGET_FREE)UI_ControlsColumn_Free,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
+        .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
+        .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .free = (UI_WIDGET_FREE)M_Free,
     };
 
     self->selector_count = UI_ControlsController_GetInputRoleCount(column);

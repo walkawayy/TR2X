@@ -17,29 +17,29 @@
 #define MAKE_Q_ID(g) ((g >> 16) & 0xFF)
 #define MAKE_ZSORT(z) ((uint32_t)(z))
 
-static D3DCOLOR Output_ShadeLight(uint32_t shade);
-static D3DCOLOR Output_ShadeColor(
+static D3DCOLOR M_ShadeLight(uint32_t shade);
+static D3DCOLOR M_ShadeColor(
     uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha);
-static D3DCOLOR Output_ShadeLightColor(
+static D3DCOLOR M_ShadeLightColor(
     uint32_t shade, uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha);
-static double Output_CalculatePolyZ(
+static double M_CalculatePolyZ(
     SORT_TYPE sort_type, double z0, double z1, double z2, double z3);
 
-static void __fastcall Output_FlatA(int32_t y1, int32_t y2, uint8_t color_idx);
-static void __fastcall Output_TransA(int32_t y1, int32_t y2, uint8_t depth_q);
-static void __fastcall Output_GourA(int32_t y1, int32_t y2, uint8_t color_idx);
-static void __fastcall Output_GTMapA(
+static void __fastcall M_FlatA(int32_t y1, int32_t y2, uint8_t color_idx);
+static void __fastcall M_TransA(int32_t y1, int32_t y2, uint8_t depth_q);
+static void __fastcall M_GourA(int32_t y1, int32_t y2, uint8_t color_idx);
+static void __fastcall M_GTMapA(
     int32_t y1, int32_t y2, const uint8_t *tex_page);
-static void __fastcall Output_WGTMapA(
+static void __fastcall M_WGTMapA(
     int32_t y1, int32_t y2, const uint8_t *tex_page);
-static inline void Output_ClipG(
+static inline void M_ClipG(
     VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
     const VERTEX_INFO *const vtx2, const float clip);
-static inline void Output_ClipGUV(
+static inline void M_ClipGUV(
     VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
     const VERTEX_INFO *const vtx2, const float clip);
 
-static D3DCOLOR Output_ShadeColor(
+static D3DCOLOR M_ShadeColor(
     uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha)
 {
     if (g_IsShadeEffect) {
@@ -49,14 +49,14 @@ static D3DCOLOR Output_ShadeColor(
     return RGBA_MAKE(red, green, blue, alpha);
 }
 
-static D3DCOLOR Output_ShadeLight(uint32_t shade)
+static D3DCOLOR M_ShadeLight(uint32_t shade)
 {
     uint32_t value = (uint32_t)(0x1FFF - shade) >> 4;
     CLAMPG(value, 0xFF);
-    return Output_ShadeColor(value, value, value, 0xFF);
+    return M_ShadeColor(value, value, value, 0xFF);
 }
 
-static D3DCOLOR Output_ShadeLightColor(
+static D3DCOLOR M_ShadeLightColor(
     uint32_t shade, uint32_t red, uint32_t green, uint32_t blue, uint8_t alpha)
 {
     CLAMPG(shade, 0x1FFF);
@@ -67,10 +67,10 @@ static D3DCOLOR Output_ShadeLightColor(
     CLAMPG(red, 0xFF);
     CLAMPG(green, 0xFF);
     CLAMPG(blue, 0xFF);
-    return Output_ShadeColor(red, green, blue, alpha);
+    return M_ShadeColor(red, green, blue, alpha);
 }
 
-static double Output_CalculatePolyZ(
+static double M_CalculatePolyZ(
     SORT_TYPE sort_type, double z0, double z1, double z2, double z3)
 {
     double zv = 0.0;
@@ -96,7 +96,7 @@ static double Output_CalculatePolyZ(
     return zv;
 }
 
-static void __fastcall Output_FlatA(int32_t y1, int32_t y2, uint8_t color_idx)
+static void __fastcall M_FlatA(int32_t y1, int32_t y2, uint8_t color_idx)
 {
     int32_t y_size = y2 - y1;
     if (y_size <= 0) {
@@ -119,7 +119,7 @@ static void __fastcall Output_FlatA(int32_t y1, int32_t y2, uint8_t color_idx)
     }
 }
 
-static void __fastcall Output_TransA(int32_t y1, int32_t y2, uint8_t depth_q)
+static void __fastcall M_TransA(int32_t y1, int32_t y2, uint8_t depth_q)
 {
     int32_t y_size = y2 - y1;
     // TODO: depth_q should be at most 32 here
@@ -153,7 +153,7 @@ static void __fastcall Output_TransA(int32_t y1, int32_t y2, uint8_t depth_q)
     }
 }
 
-static void __fastcall Output_GourA(int32_t y1, int32_t y2, uint8_t color_idx)
+static void __fastcall M_GourA(int32_t y1, int32_t y2, uint8_t color_idx)
 {
     int32_t y_size = y2 - y1;
     if (y_size <= 0) {
@@ -190,8 +190,7 @@ static void __fastcall Output_GourA(int32_t y1, int32_t y2, uint8_t color_idx)
     }
 }
 
-static void __fastcall Output_GTMapA(
-    int32_t y1, int32_t y2, const uint8_t *tex_page)
+static void __fastcall M_GTMapA(int32_t y1, int32_t y2, const uint8_t *tex_page)
 {
     int32_t y_size = y2 - y1;
     if (y_size <= 0) {
@@ -234,7 +233,7 @@ static void __fastcall Output_GTMapA(
     }
 }
 
-static void __fastcall Output_WGTMapA(
+static void __fastcall M_WGTMapA(
     int32_t y1, int32_t y2, const uint8_t *tex_page)
 {
     int32_t y_size = y2 - y1;
@@ -280,7 +279,7 @@ static void __fastcall Output_WGTMapA(
     }
 }
 
-static inline void Output_ClipG(
+static inline void M_ClipG(
     VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
     const VERTEX_INFO *const vtx2, const float clip)
 {
@@ -288,7 +287,7 @@ static inline void Output_ClipG(
     buf->g = vtx2->g + (vtx1->g - vtx2->g) * clip;
 }
 
-static inline void Output_ClipGUV(
+static inline void M_ClipGUV(
     VERTEX_INFO *const buf, const VERTEX_INFO *const vtx1,
     const VERTEX_INFO *const vtx2, const float clip)
 {
@@ -930,35 +929,35 @@ void __cdecl Output_DrawPolyLine(const int16_t *obj_ptr)
 void __cdecl Output_DrawPolyFlat(const int16_t *obj_ptr)
 {
     if (Output_XGenX(obj_ptr + 1)) {
-        Output_FlatA(g_XGenY1, g_XGenY2, *obj_ptr);
+        M_FlatA(g_XGenY1, g_XGenY2, *obj_ptr);
     }
 }
 
 void __cdecl Output_DrawPolyTrans(const int16_t *obj_ptr)
 {
     if (Output_XGenX(obj_ptr + 1)) {
-        Output_TransA(g_XGenY1, g_XGenY2, *obj_ptr);
+        M_TransA(g_XGenY1, g_XGenY2, *obj_ptr);
     }
 }
 
 void __cdecl Output_DrawPolyGouraud(const int16_t *obj_ptr)
 {
     if (Output_XGenXG(obj_ptr + 1)) {
-        Output_GourA(g_XGenY1, g_XGenY2, *obj_ptr);
+        M_GourA(g_XGenY1, g_XGenY2, *obj_ptr);
     }
 }
 
 void __cdecl Output_DrawPolyGTMap(const int16_t *obj_ptr)
 {
     if (Output_XGenXGUV(obj_ptr + 1)) {
-        Output_GTMapA(g_XGenY1, g_XGenY2, g_TexturePageBuffer8[*obj_ptr]);
+        M_GTMapA(g_XGenY1, g_XGenY2, g_TexturePageBuffer8[*obj_ptr]);
     }
 }
 
 void __cdecl Output_DrawPolyWGTMap(const int16_t *obj_ptr)
 {
     if (Output_XGenXGUV(obj_ptr + 1)) {
-        Output_WGTMapA(g_XGenY1, g_XGenY2, g_TexturePageBuffer8[*obj_ptr]);
+        M_WGTMapA(g_XGenY1, g_XGenY2, g_TexturePageBuffer8[*obj_ptr]);
     }
 }
 
@@ -1763,7 +1762,7 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
             const float clip = (g_FltWinLeft - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinLeft;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
         } else if (vtx1->x > g_FltWinRight) {
             if (vtx2->x > g_FltWinRight) {
                 continue;
@@ -1771,19 +1770,19 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
             const float clip = (g_FltWinRight - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinRight;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
         }
 
         if (vtx2->x < g_FltWinLeft) {
             const float clip = (g_FltWinLeft - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinLeft;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
         } else if (vtx2->x > g_FltWinRight) {
             const float clip = (g_FltWinRight - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinRight;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx_buf[j++], vtx1, vtx2, clip);
         } else {
             vtx_buf[j++] = *vtx2;
         }
@@ -1808,7 +1807,7 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
             const float clip = (g_FltWinTop - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinTop;
-            Output_ClipG(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx[j++], vtx1, vtx2, clip);
         } else if (vtx1->y > g_FltWinBottom) {
             if (vtx2->y > g_FltWinBottom) {
                 continue;
@@ -1816,19 +1815,19 @@ int32_t __cdecl Output_XYGClipper(int32_t vtx_count, VERTEX_INFO *vtx)
             const float clip = (g_FltWinBottom - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinBottom;
-            Output_ClipG(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx[j++], vtx1, vtx2, clip);
         }
 
         if (vtx2->y < g_FltWinTop) {
             const float clip = (g_FltWinTop - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinTop;
-            Output_ClipG(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx[j++], vtx1, vtx2, clip);
         } else if (vtx2->y > g_FltWinBottom) {
             const float clip = (g_FltWinBottom - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinBottom;
-            Output_ClipG(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipG(&vtx[j++], vtx1, vtx2, clip);
         } else {
             vtx[j++] = *vtx2;
         }
@@ -1862,7 +1861,7 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
             float clip = (g_FltWinLeft - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinLeft;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
         } else if (vtx1->x > g_FltWinRight) {
             if (vtx2->x > g_FltWinRight) {
                 continue;
@@ -1870,19 +1869,19 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
             float clip = (g_FltWinRight - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinRight;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
         }
 
         if (vtx2->x < g_FltWinLeft) {
             float clip = (g_FltWinLeft - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinLeft;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
         } else if (vtx2->x > g_FltWinRight) {
             float clip = (g_FltWinRight - vtx2->x) / (vtx1->x - vtx2->x);
             vtx_buf[j].x = g_FltWinRight;
             vtx_buf[j].y = vtx2->y + (vtx1->y - vtx2->y) * clip;
-            Output_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx_buf[j++], vtx1, vtx2, clip);
         } else {
             vtx_buf[j++] = *vtx2;
         }
@@ -1907,7 +1906,7 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
             const float clip = (g_FltWinTop - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinTop;
-            Output_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
         } else if (vtx1->y > g_FltWinBottom) {
             if (vtx2->y > g_FltWinBottom) {
                 continue;
@@ -1915,19 +1914,19 @@ int32_t __cdecl Output_XYGUVClipper(int32_t vtx_count, VERTEX_INFO *const vtx)
             const float clip = (g_FltWinBottom - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinBottom;
-            Output_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
         }
 
         if (vtx2->y < g_FltWinTop) {
             const float clip = (g_FltWinTop - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinTop;
-            Output_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
         } else if (vtx2->y > g_FltWinBottom) {
             const float clip = (g_FltWinBottom - vtx2->y) / (vtx1->y - vtx2->y);
             vtx[j].x = vtx2->x + (vtx1->x - vtx2->x) * clip;
             vtx[j].y = g_FltWinBottom;
-            Output_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
+            M_ClipGUV(&vtx[j++], vtx1, vtx2, clip);
         } else {
             vtx[j++] = *vtx2;
         }
@@ -2020,7 +2019,7 @@ const int16_t *__cdecl Output_InsertObjectG3(
             continue;
         }
 
-        const float zv = Output_CalculatePolyZ(
+        const float zv = M_CalculatePolyZ(
             sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, -1.0);
         g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
         g_Sort3DPtr->_1 = MAKE_ZSORT(zv);
@@ -2068,7 +2067,7 @@ const int16_t *__cdecl Output_InsertObjectGT3(
             }
 
             if (clip_or == 0) {
-                const float zv = Output_CalculatePolyZ(
+                const float zv = M_CalculatePolyZ(
                     sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, -1.0);
                 g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
                 g_Sort3DPtr->_1 = MAKE_ZSORT(zv);
@@ -2211,7 +2210,7 @@ const int16_t *__cdecl Output_InsertObjectGT3(
             continue;
         }
 
-        const float zv = Output_CalculatePolyZ(
+        const float zv = M_CalculatePolyZ(
             sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, -1.0);
         g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
         g_Sort3DPtr->_1 = MAKE_ZSORT(zv);
@@ -2356,7 +2355,7 @@ const int16_t *__cdecl Output_InsertObjectG4(
             continue;
         }
 
-        const float zv = Output_CalculatePolyZ(
+        const float zv = M_CalculatePolyZ(
             sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, vtx[3]->zv);
         g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
         g_Sort3DPtr->_1 = MAKE_ZSORT(zv);
@@ -2407,7 +2406,7 @@ const int16_t *__cdecl Output_InsertObjectGT4(
             }
 
             if (clip_or == 0) {
-                const float zv = Output_CalculatePolyZ(
+                const float zv = M_CalculatePolyZ(
                     sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, vtx[3]->zv);
                 g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
                 g_Sort3DPtr->_1 = MAKE_ZSORT(zv);
@@ -2584,7 +2583,7 @@ const int16_t *__cdecl Output_InsertObjectGT4(
             continue;
         }
 
-        const float zv = Output_CalculatePolyZ(
+        const float zv = M_CalculatePolyZ(
             sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, vtx[3]->zv);
         g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
         g_Sort3DPtr->_1 = MAKE_ZSORT(zv);
@@ -3035,7 +3034,7 @@ void __cdecl Output_InsertGT3_ZBuffered(
             g_VBufferD3D[0].sy = vtx0->ys;
             g_VBufferD3D[0].sz = g_FltResZBuf - g_FltResZORhw * vtx0->rhw;
             g_VBufferD3D[0].rhw = vtx0->rhw;
-            g_VBufferD3D[0].color = Output_ShadeLight(vtx0->g);
+            g_VBufferD3D[0].color = M_ShadeLight(vtx0->g);
             g_VBufferD3D[0].tu = (double)uv0->u / (double)PHD_ONE;
             g_VBufferD3D[0].tv = (double)uv0->v / (double)PHD_ONE;
 
@@ -3043,7 +3042,7 @@ void __cdecl Output_InsertGT3_ZBuffered(
             g_VBufferD3D[1].sy = vtx1->ys;
             g_VBufferD3D[1].sz = g_FltResZBuf - g_FltResZORhw * vtx1->rhw;
             g_VBufferD3D[1].rhw = vtx1->rhw;
-            g_VBufferD3D[1].color = Output_ShadeLight(vtx1->g);
+            g_VBufferD3D[1].color = M_ShadeLight(vtx1->g);
             g_VBufferD3D[1].tu = (double)uv1->u / (double)PHD_ONE;
             g_VBufferD3D[1].tv = (double)uv1->v / (double)PHD_ONE;
 
@@ -3051,7 +3050,7 @@ void __cdecl Output_InsertGT3_ZBuffered(
             g_VBufferD3D[2].sy = vtx2->ys;
             g_VBufferD3D[2].sz = g_FltResZBuf - g_FltResZORhw * vtx2->rhw;
             g_VBufferD3D[2].rhw = vtx2->rhw;
-            g_VBufferD3D[2].color = Output_ShadeLight(vtx2->g);
+            g_VBufferD3D[2].color = M_ShadeLight(vtx2->g);
             g_VBufferD3D[2].tu = (double)uv2->u / (double)PHD_ONE;
             g_VBufferD3D[2].tv = (double)uv2->v / (double)PHD_ONE;
 
@@ -3177,7 +3176,7 @@ void __cdecl Output_InsertGT4_ZBuffered(
     g_VBufferD3D[0].sy = vtx0->ys;
     g_VBufferD3D[0].sz = g_FltResZBuf - g_FltResZORhw * vtx0->rhw;
     g_VBufferD3D[0].rhw = vtx0->rhw;
-    g_VBufferD3D[0].color = Output_ShadeLight(vtx0->g);
+    g_VBufferD3D[0].color = M_ShadeLight(vtx0->g);
     g_VBufferD3D[0].tu = (double)texture->uv[0].u / (double)PHD_ONE;
     g_VBufferD3D[0].tv = (double)texture->uv[0].v / (double)PHD_ONE;
 
@@ -3185,7 +3184,7 @@ void __cdecl Output_InsertGT4_ZBuffered(
     g_VBufferD3D[1].sy = vtx1->ys;
     g_VBufferD3D[1].sz = g_FltResZBuf - g_FltResZORhw * vtx1->rhw;
     g_VBufferD3D[1].rhw = vtx1->rhw;
-    g_VBufferD3D[1].color = Output_ShadeLight(vtx1->g);
+    g_VBufferD3D[1].color = M_ShadeLight(vtx1->g);
     g_VBufferD3D[1].tu = (double)texture->uv[1].u / (double)PHD_ONE;
     g_VBufferD3D[1].tv = (double)texture->uv[1].v / (double)PHD_ONE;
 
@@ -3193,7 +3192,7 @@ void __cdecl Output_InsertGT4_ZBuffered(
     g_VBufferD3D[2].sy = vtx2->ys;
     g_VBufferD3D[2].sz = g_FltResZBuf - g_FltResZORhw * vtx2->rhw;
     g_VBufferD3D[2].rhw = vtx2->rhw;
-    g_VBufferD3D[2].color = Output_ShadeLight(vtx2->g);
+    g_VBufferD3D[2].color = M_ShadeLight(vtx2->g);
     g_VBufferD3D[2].tu = (double)texture->uv[2].u / (double)PHD_ONE;
     g_VBufferD3D[2].tv = (double)texture->uv[2].v / (double)PHD_ONE;
 
@@ -3201,7 +3200,7 @@ void __cdecl Output_InsertGT4_ZBuffered(
     g_VBufferD3D[3].sy = vtx3->ys;
     g_VBufferD3D[3].sz = g_FltResZBuf - g_FltResZORhw * vtx3->rhw;
     g_VBufferD3D[3].rhw = vtx3->rhw;
-    g_VBufferD3D[3].color = Output_ShadeLight(vtx3->g);
+    g_VBufferD3D[3].color = M_ShadeLight(vtx3->g);
     g_VBufferD3D[3].tu = (double)texture->uv[3].u / (double)PHD_ONE;
     g_VBufferD3D[3].tv = (double)texture->uv[3].v / (double)PHD_ONE;
 
@@ -3229,7 +3228,7 @@ void __cdecl Output_InsertFlatRect_ZBuffered(
 
     const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
-        Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
+        M_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
     g_VBufferD3D[0].sx = (float)x1;
     g_VBufferD3D[0].sy = (float)y1;
@@ -3264,7 +3263,7 @@ void __cdecl Output_InsertLine_ZBuffered(
 
     const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
-        Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
+        M_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
     g_VBufferD3D[0].sx = (float)(g_PhdWinMinX + x1);
     g_VBufferD3D[0].sy = (float)(g_PhdWinMinY + y1);
@@ -3378,7 +3377,7 @@ const int16_t *__cdecl Output_InsertObjectG3_Sorted(
         }
 
         const PALETTEENTRY *const color = &g_GamePalette16[color_idx >> 8];
-        const double zv = Output_CalculatePolyZ(
+        const double zv = M_CalculatePolyZ(
             sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, -1.0);
         Output_InsertPoly_Gouraud(
             num_points, zv, color->peRed, color->peGreen, color->peBlue,
@@ -3502,7 +3501,7 @@ const int16_t *__cdecl Output_InsertObjectG4_Sorted(
         }
 
         const PALETTEENTRY *const color = &g_GamePalette16[color_idx >> 8];
-        const double zv = Output_CalculatePolyZ(
+        const double zv = M_CalculatePolyZ(
             sort_type, vtx[0]->zv, vtx[1]->zv, vtx[2]->zv, vtx[3]->zv);
         Output_InsertPoly_Gouraud(
             num_points, zv, color->peRed, color->peGreen, color->peBlue,
@@ -3575,7 +3574,7 @@ void __cdecl Output_InsertGT3_Sorted(
     }
 
     const double zv =
-        Output_CalculatePolyZ(sort_type, vtx0->zv, vtx1->zv, vtx2->zv, -1.0);
+        M_CalculatePolyZ(sort_type, vtx0->zv, vtx1->zv, vtx2->zv, -1.0);
     const POLY_TYPE poly_type =
         texture->draw_type == DRAW_OPAQUE ? POLY_HWR_GTMAP : POLY_HWR_WGTMAP;
 
@@ -3599,21 +3598,21 @@ void __cdecl Output_InsertGT3_Sorted(
             g_HWR_VertexPtr[0].sx = vtx0->xs;
             g_HWR_VertexPtr[0].sy = vtx0->ys;
             g_HWR_VertexPtr[0].rhw = vtx0->rhw;
-            g_HWR_VertexPtr[0].color = Output_ShadeLight(vtx0->g);
+            g_HWR_VertexPtr[0].color = M_ShadeLight(vtx0->g);
             g_HWR_VertexPtr[0].tu = (double)uv0->u / (double)PHD_ONE;
             g_HWR_VertexPtr[0].tv = (double)uv0->v / (double)PHD_ONE;
 
             g_HWR_VertexPtr[1].sx = vtx1->xs;
             g_HWR_VertexPtr[1].sy = vtx1->ys;
             g_HWR_VertexPtr[1].rhw = vtx1->rhw;
-            g_HWR_VertexPtr[1].color = Output_ShadeLight(vtx1->g);
+            g_HWR_VertexPtr[1].color = M_ShadeLight(vtx1->g);
             g_HWR_VertexPtr[1].tu = (double)uv1->u / (double)PHD_ONE;
             g_HWR_VertexPtr[1].tv = (double)uv1->v / (double)PHD_ONE;
 
             g_HWR_VertexPtr[2].sx = vtx2->xs;
             g_HWR_VertexPtr[2].sy = vtx2->ys;
             g_HWR_VertexPtr[2].rhw = vtx2->rhw;
-            g_HWR_VertexPtr[2].color = Output_ShadeLight(vtx2->g);
+            g_HWR_VertexPtr[2].color = M_ShadeLight(vtx2->g);
             g_HWR_VertexPtr[2].tu = (double)uv2->u / (double)PHD_ONE;
             g_HWR_VertexPtr[2].tv = (double)uv2->v / (double)PHD_ONE;
 
@@ -3720,8 +3719,8 @@ void __cdecl Output_InsertGT4_Sorted(
         return;
     }
 
-    const double zv = Output_CalculatePolyZ(
-        sort_type, vtx0->zv, vtx1->zv, vtx2->zv, vtx3->zv);
+    const double zv =
+        M_CalculatePolyZ(sort_type, vtx0->zv, vtx1->zv, vtx2->zv, vtx3->zv);
     const POLY_TYPE poly_type =
         texture->draw_type == DRAW_OPAQUE ? POLY_HWR_GTMAP : POLY_HWR_WGTMAP;
 
@@ -3745,28 +3744,28 @@ void __cdecl Output_InsertGT4_Sorted(
             g_HWR_VertexPtr[0].sx = vtx0->xs;
             g_HWR_VertexPtr[0].sy = vtx0->ys;
             g_HWR_VertexPtr[0].rhw = vtx0->rhw;
-            g_HWR_VertexPtr[0].color = Output_ShadeLight(vtx0->g);
+            g_HWR_VertexPtr[0].color = M_ShadeLight(vtx0->g);
             g_HWR_VertexPtr[0].tu = (double)texture->uv[0].u / (double)PHD_ONE;
             g_HWR_VertexPtr[0].tv = (double)texture->uv[0].v / (double)PHD_ONE;
 
             g_HWR_VertexPtr[1].sx = vtx1->xs;
             g_HWR_VertexPtr[1].sy = vtx1->ys;
             g_HWR_VertexPtr[1].rhw = vtx1->rhw;
-            g_HWR_VertexPtr[1].color = Output_ShadeLight(vtx1->g);
+            g_HWR_VertexPtr[1].color = M_ShadeLight(vtx1->g);
             g_HWR_VertexPtr[1].tu = (double)texture->uv[1].u / (double)PHD_ONE;
             g_HWR_VertexPtr[1].tv = (double)texture->uv[1].v / (double)PHD_ONE;
 
             g_HWR_VertexPtr[2].sx = vtx2->xs;
             g_HWR_VertexPtr[2].sy = vtx2->ys;
             g_HWR_VertexPtr[2].rhw = vtx2->rhw;
-            g_HWR_VertexPtr[2].color = Output_ShadeLight(vtx2->g);
+            g_HWR_VertexPtr[2].color = M_ShadeLight(vtx2->g);
             g_HWR_VertexPtr[2].tu = (double)texture->uv[2].u / (double)PHD_ONE;
             g_HWR_VertexPtr[2].tv = (double)texture->uv[2].v / (double)PHD_ONE;
 
             g_HWR_VertexPtr[3].sx = vtx3->xs;
             g_HWR_VertexPtr[3].sy = vtx3->ys;
             g_HWR_VertexPtr[3].rhw = vtx3->rhw;
-            g_HWR_VertexPtr[3].color = Output_ShadeLight(vtx3->g);
+            g_HWR_VertexPtr[3].color = M_ShadeLight(vtx3->g);
             g_HWR_VertexPtr[3].tu = (double)texture->uv[3].u / (double)PHD_ONE;
             g_HWR_VertexPtr[3].tv = (double)texture->uv[3].v / (double)PHD_ONE;
 
@@ -3830,7 +3829,7 @@ void __cdecl Output_InsertFlatRect_Sorted(
 
     const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
-        Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
+        M_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
     g_HWR_VertexPtr[0].sx = (float)x1;
     g_HWR_VertexPtr[0].sy = (float)y1;
@@ -3856,7 +3855,7 @@ void __cdecl Output_InsertLine_Sorted(
 {
     const RGB_888 *const color = &g_GamePalette8[color_idx];
     const D3DCOLOR d3d_color =
-        Output_ShadeColor(color->red, color->green, color->blue, 0xFF);
+        M_ShadeColor(color->red, color->green, color->blue, 0xFF);
 
     g_Sort3DPtr->_0 = (int32_t)g_Info3DPtr;
     g_Sort3DPtr->_1 = MAKE_ZSORT(z);
@@ -4119,7 +4118,7 @@ void __cdecl Output_InsertClippedPoly_Textured(
                 g_FltResZBuf - g_FltResZORhw * g_VBuffer[i].rhw;
         }
         g_HWR_VertexPtr[i].rhw = g_VBuffer[i].rhw;
-        g_HWR_VertexPtr[i].color = Output_ShadeLight(g_VBuffer[i].g);
+        g_HWR_VertexPtr[i].color = M_ShadeLight(g_VBuffer[i].g);
         g_HWR_VertexPtr[i].tu = tu;
         g_HWR_VertexPtr[i].tv = tv;
     }
@@ -4149,7 +4148,7 @@ void __cdecl Output_InsertPoly_Gouraud(
                 g_FltResZBuf - g_FltResZORhw * g_VBuffer[i].rhw;
         }
         g_HWR_VertexPtr[i].rhw = g_VBuffer[i].rhw;
-        g_HWR_VertexPtr[i].color = Output_ShadeLightColor(
+        g_HWR_VertexPtr[i].color = M_ShadeLightColor(
             g_VBuffer[i].g, red, green, blue,
             poly_type == POLY_HWR_TRANS ? 0x80 : 0xFF);
     }
@@ -4167,7 +4166,7 @@ void __cdecl Output_DrawClippedPoly_Textured(const int32_t vtx_count)
         vbuf_d3d->sy = vbuf->y;
         vbuf_d3d->sz = g_FltResZBuf - g_FltResZORhw * vbuf->rhw;
         vbuf_d3d->rhw = vbuf->rhw;
-        vbuf_d3d->color = Output_ShadeLight(vbuf->g);
+        vbuf_d3d->color = M_ShadeLight(vbuf->g);
 
         double tu = vbuf->u / (double)PHD_ONE / vbuf->rhw;
         double tv = vbuf->v / (double)PHD_ONE / vbuf->rhw;
@@ -4192,8 +4191,7 @@ void __cdecl Output_DrawPoly_Gouraud(
         vbuf_d3d->sy = vbuf->y;
         vbuf_d3d->sz = g_FltResZBuf - g_FltResZORhw * vbuf->rhw;
         vbuf_d3d->rhw = vbuf->rhw;
-        vbuf_d3d->color =
-            Output_ShadeLightColor(vbuf->g, red, green, blue, 0xFF);
+        vbuf_d3d->color = M_ShadeLightColor(vbuf->g, red, green, blue, 0xFF);
     }
 
     HWR_DrawPrimitive(D3DPT_TRIANGLEFAN, g_VBufferD3D, vtx_count, true);

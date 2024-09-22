@@ -50,7 +50,6 @@ static void M_ShutdownPrompt(void);
 static void M_ShutdownLogs(void);
 static void M_UpdatePromptTextstring(void);
 static void M_UpdateCaretTextstring(void);
-static COMMAND_RESULT M_Eval(const char *cmdline);
 
 extern CONSOLE_COMMAND *g_ConsoleCommands[];
 
@@ -87,56 +86,6 @@ static void M_UpdateCaretTextstring(void)
         Text_GetWidth(m_Prompt.prompt_ts) * PHD_ONE / Text_GetScaleH(PHD_ONE);
     m_Prompt.prompt_ts->text[m_Prompt.caret] = old;
     Text_SetPos(m_Prompt.caret_ts, MARGIN + width, -MARGIN);
-}
-
-static COMMAND_RESULT M_Eval(const char *const cmdline)
-{
-    const char *args = NULL;
-    const CONSOLE_COMMAND *matching_cmd = NULL;
-
-    for (int32_t i = 0;; i++) {
-        CONSOLE_COMMAND *cur_cmd = g_ConsoleCommands[i];
-        if (cur_cmd == NULL) {
-            break;
-        }
-
-        char regex[strlen(cur_cmd->prefix) + 13];
-        sprintf(regex, "^(%s)(\\s+.*)?$", cur_cmd->prefix);
-        if (!String_Match(cmdline, regex)) {
-            continue;
-        }
-
-        args = strstr(cmdline, " ");
-        if (args != NULL) {
-            args++;
-        } else {
-            args = "";
-        }
-
-        matching_cmd = cur_cmd;
-        break;
-    }
-
-    if (matching_cmd == NULL) {
-        Console_Log(GS(OSD_UNKNOWN_COMMAND), cmdline);
-        return CR_BAD_INVOCATION;
-    }
-
-    const COMMAND_RESULT result = matching_cmd->proc(args);
-    switch (result) {
-    case CR_BAD_INVOCATION:
-        Console_Log(GS(OSD_COMMAND_BAD_INVOCATION), cmdline);
-        break;
-    case CR_UNAVAILABLE:
-        Console_Log(GS(OSD_COMMAND_UNAVAILABLE));
-        break;
-    case CR_SUCCESS:
-    case CR_FAILURE:
-        // logging these statuses are supposed to be
-        // handled by the console commands themselves
-        break;
-    }
-    return result;
 }
 
 void Console_Init(void)
@@ -208,8 +157,7 @@ void Console_Confirm(void)
         return;
     }
 
-    LOG_INFO("executing command: %s", m_Prompt.text);
-    M_Eval(m_Prompt.text);
+    Console_Eval(m_Prompt.text);
     Console_Close();
 }
 
@@ -347,6 +295,11 @@ void Console_LogImpl(const char *const text)
     }
 
     m_AreAnyLogsOnScreen = true;
+}
+
+CONSOLE_COMMAND **Console_GetCommands(void)
+{
+    return g_ConsoleCommands;
 }
 
 void Console_ScrollLogs(void)

@@ -1,4 +1,5 @@
 ## [Unreleased](https://github.com/LostArtefacts/TR2X/compare/stable...develop) - ××××-××-××
+- added `/sfx` command
 
 ## [0.3](https://github.com/LostArtefacts/TR2X/compare/0.2-460-g4721b93...0.3) - 2024-09-20
 - added new console commands:

@@ -181,7 +181,8 @@ void __cdecl Sound_UpdateEffects(void)
 }
 
 void __cdecl Sound_Effect(
-    const int32_t sample_id, const XYZ_32 *const pos, const uint32_t flags)
+    const SOUND_EFFECT_ID sample_id, const XYZ_32 *const pos,
+    const uint32_t flags)
 {
     if (!g_SoundIsActive) {
         return;
@@ -344,7 +345,7 @@ void __cdecl Sound_Effect(
     }
 }
 
-void __cdecl Sound_StopEffect(const int32_t sample_id)
+void __cdecl Sound_StopEffect(const SOUND_EFFECT_ID sample_id)
 {
     if (!g_SoundIsActive) {
         return;
@@ -392,4 +393,10 @@ void __cdecl Sound_EndScene(void)
             M_ClearSlot(slot);
         }
     }
+}
+
+bool Sound_IsAvailable(const SOUND_EFFECT_ID sample_id)
+{
+    return sample_id >= 0 && sample_id < SFX_NUMBER_OF
+        && g_SampleLUT[sample_id] != -1;
 }

@@ -380,6 +380,7 @@
         "OSD_INVALID_LEVEL": "Invalid level",
         "OSD_INVALID_OBJECT": "Invalid object",
         "OSD_INVALID_ROOM": "Invalid room: %d. Valid rooms are 0-%d",
+        "OSD_INVALID_SAMPLE": "Invalid sound: %d",
         "OSD_INVALID_SAVE_SLOT": "Invalid save slot %d",
         "OSD_KILL": "Bye-bye!",
         "OSD_KILL_ALL": "Poof! %d enemies gone!",
@@ -398,6 +399,8 @@
         "OSD_POS_SET_ROOM_FAIL": "Failed to teleport to room: %d",
         "OSD_SAVE_GAME": "Saved game to save slot %d",
         "OSD_SAVE_GAME_FAIL": "Cannot save the game in the current state",
+        "OSD_SOUND_AVAILABLE_SAMPLES": "Available sounds: %s",
+        "OSD_SOUND_PLAYING_SAMPLE": "Playing sound %d",
         "OSD_UNKNOWN_COMMAND": "Unknown command: %s",
     },
 }

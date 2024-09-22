@@ -59,3 +59,7 @@ Currently supported commands:
 
 - `/exit`  
   Closes the game.
+
+- `/sfx`  
+- `/sfx {sound}`  
+  Plays a given sound sample.

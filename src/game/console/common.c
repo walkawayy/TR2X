@@ -53,6 +53,7 @@ static void M_UpdateCaretTextstring(void);
 static COMMAND_RESULT M_Eval(const char *cmdline);
 
 extern CONSOLE_COMMAND *g_ConsoleCommands[];
+
 static void M_ShutdownPrompt(void)
 {
     if (m_Prompt.prompt_ts != NULL) {
@@ -311,20 +312,13 @@ void Console_HandleChar(const uint32_t char_)
     M_UpdateCaretTextstring();
 }
 
-void Console_Log(const char *fmt, ...)
+int32_t Console_GetMaxLineLength(void)
 {
-    va_list va;
+    return TEXT_MAX_STRING_SIZE - 1;
+}
 
-    va_start(va, fmt);
-    const size_t text_length = vsnprintf(NULL, 0, fmt, va);
-    char *text = Memory_Alloc(text_length + 1);
-    va_end(va);
-
-    va_start(va, fmt);
-    vsnprintf(text, text_length + 1, fmt, va);
-    va_end(va);
-
-    LOG_INFO("%s", text);
+void Console_LogImpl(const char *const text)
+{
     int32_t dst_idx = -1;
     for (int32_t i = MAX_LOG_LINES - 1; i > 0; i--) {
         if (m_Logs[i].ts == NULL) {
@@ -353,7 +347,6 @@ void Console_Log(const char *fmt, ...)
     }
 
     m_AreAnyLogsOnScreen = true;
-    Memory_FreePointer(&text);
 }
 
 void Console_ScrollLogs(void)

@@ -2,6 +2,8 @@
 
 #include "global/types.h"
 
+#define TEXT_MAX_STRING_SIZE 64
+
 void __cdecl Text_Init(void);
 TEXTSTRING *__cdecl Text_Create(
     int32_t x, int32_t y, int32_t z, const char *string);

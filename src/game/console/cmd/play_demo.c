@@ -2,9 +2,9 @@
 
 #include "global/vars.h"
 
-static COMMAND_RESULT M_Entrypoint(const char *args);
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *ctx);
 
-static COMMAND_RESULT M_Entrypoint(const char *const args)
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *const ctx)
 {
     g_GF_OverrideDir = GFD_START_DEMO;
     return CR_SUCCESS;

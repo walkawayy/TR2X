@@ -7,29 +7,29 @@
 
 #include <stdio.h>
 
-static COMMAND_RESULT M_Entrypoint(const char *args);
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *ctx);
 
-static COMMAND_RESULT M_Entrypoint(const char *const args)
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *const ctx)
 {
     int32_t level_to_load = -1;
 
     if (level_to_load == -1) {
         int32_t num = 0;
-        if (sscanf(args, "%d", &num) == 1) {
+        if (sscanf(ctx->args, "%d", &num) == 1) {
             level_to_load = num;
         }
     }
 
-    if (level_to_load == -1 && strlen(args) >= 2) {
+    if (level_to_load == -1 && strlen(ctx->args) >= 2) {
         for (int i = 0; i < g_GameFlow.num_levels; i++) {
-            if (String_CaseSubstring(g_GF_LevelNames[i], args) != NULL) {
+            if (String_CaseSubstring(g_GF_LevelNames[i], ctx->args) != NULL) {
                 level_to_load = i;
                 break;
             }
         }
     }
 
-    if (level_to_load == -1 && String_Equivalent(args, "gym")) {
+    if (level_to_load == -1 && String_Equivalent(ctx->args, "gym")) {
         level_to_load = LV_GYM;
     }
 

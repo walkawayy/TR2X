@@ -7,9 +7,9 @@
 
 #include <libtrx/strings.h>
 
-static COMMAND_RESULT M_Entrypoint(const char *args);
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *ctx);
 
-static COMMAND_RESULT M_Entrypoint(const char *const args)
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *const ctx)
 {
     if (g_GameInfo.current_level.type == GFL_TITLE
         || g_GameInfo.current_level.type == GFL_DEMO
@@ -18,9 +18,9 @@ static COMMAND_RESULT M_Entrypoint(const char *const args)
     }
 
     bool new_state;
-    if (String_Equivalent(args, "")) {
+    if (String_Equivalent(ctx->args, "")) {
         new_state = !g_FlipStatus;
-    } else if (!String_ParseBool(args, &new_state)) {
+    } else if (!String_ParseBool(ctx->args, &new_state)) {
         return CR_BAD_INVOCATION;
     }
 

@@ -4,11 +4,11 @@
 
 #include <string.h>
 
-static COMMAND_RESULT M_Entrypoint(const char *args);
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *ctx);
 
-static COMMAND_RESULT M_Entrypoint(const char *const args)
+static COMMAND_RESULT M_Entrypoint(const COMMAND_CONTEXT *const ctx)
 {
-    if (strcmp(args, "") == 0) {
+    if (strcmp(ctx->args, "") == 0) {
         Lara_Cheat_EndLevel();
         return CR_SUCCESS;
     }

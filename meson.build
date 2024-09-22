@@ -91,7 +91,6 @@ dll_sources = [
   'src/game/camera.c',
   'src/game/clock.c',
   'src/game/collide.c',
-  'src/game/console/cmd/end_level.c',
   'src/game/console/cmd/exit_game.c',
   'src/game/console/cmd/exit_to_title.c',
   'src/game/console/cmd/flipmap.c',

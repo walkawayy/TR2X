@@ -4,7 +4,9 @@
 #include "game/objects/names.h"
 #include "global/enum_str.h"
 #include "global/types.h"
+#include "global/vars.h"
 
+#include <libtrx/game/gameflow/types.h>
 #include <libtrx/log.h>
 
 #include <assert.h>
@@ -83,4 +85,38 @@ void GF_N_LoadStrings(const int32_t level_num)
 {
     M_LoadObjectStrings(level_num);
     M_LoadGameStrings(level_num);
+}
+
+void Gameflow_OverrideCommand(const GAMEFLOW_COMMAND command)
+{
+    switch (command.action) {
+    case GF_START_GAME:
+        g_GF_OverrideDir = GFD_START_GAME | command.param;
+        break;
+    case GF_START_SAVED_GAME:
+        g_GF_OverrideDir = GFD_START_SAVED_GAME | command.param;
+        break;
+    case GF_START_CINE:
+        g_GF_OverrideDir = GFD_START_CINE;
+        break;
+    case GF_START_FMV:
+        g_GF_OverrideDir = GFD_START_FMV;
+        break;
+    case GF_START_DEMO:
+        g_GF_OverrideDir = GFD_START_DEMO;
+        break;
+    case GF_EXIT_TO_TITLE:
+        g_GF_OverrideDir = GFD_EXIT_TO_TITLE;
+        break;
+    case GF_LEVEL_COMPLETE:
+        g_GF_OverrideDir = GFD_LEVEL_COMPLETE;
+        break;
+    case GF_EXIT_GAME:
+        g_GF_OverrideDir = GFD_EXIT_GAME;
+        break;
+    default:
+        LOG_ERROR("Not implemented");
+        assert(false);
+        break;
+    }
 }

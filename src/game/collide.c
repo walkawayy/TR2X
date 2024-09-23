@@ -15,7 +15,7 @@ void __cdecl Collide_GetCollisionInfo(
     coll->shift.z = 0;
     coll->quadrant = Math_GetDirection(coll->facing);
 
-    const SECTOR_INFO *sector;
+    const SECTOR *sector;
     int32_t height;
     int32_t ceiling;
     int32_t x;
@@ -306,10 +306,10 @@ int32_t __cdecl Collide_CollideStaticObjects(
     Room_GetNearbyRooms(x, y, z, coll->radius + 50, height + 50, room_num);
 
     for (int32_t i = 0; i < g_DrawRoomsCount; i++) {
-        const ROOM_INFO *const room = &g_Rooms[g_DrawRoomsArray[i]];
+        const ROOM *const room = &g_Rooms[g_DrawRoomsArray[i]];
 
         for (int32_t j = 0; j < room->num_meshes; j++) {
-            const MESH_INFO *const mesh = &room->mesh[j];
+            const MESH *const mesh = &room->mesh[j];
             const STATIC_INFO *const sinfo = &g_StaticObjects[mesh->static_num];
 
             if (sinfo->flags & 1) {

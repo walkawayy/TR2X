@@ -709,7 +709,7 @@ typedef enum {
 typedef struct __unaligned {
     XYZ_32 pos;
     int32_t mesh_num;
-} BITE_INFO;
+} BITE;
 
 typedef enum {
     RF_UNDERWATER  = 0x01,
@@ -719,8 +719,8 @@ typedef enum {
 } ROOM_FLAG;
 
 typedef struct __unaligned {
-    SECTOR_INFO *sector;
-    SECTOR_INFO data;
+    SECTOR *sector;
+    SECTOR data;
     int16_t block;
 } DOORPOS_DATA;
 
@@ -879,8 +879,8 @@ typedef struct __unaligned {
     int16_t last;
     int16_t timer;
     int16_t speed;
-    ITEM_INFO *item;
-    ITEM_INFO *last_item;
+    ITEM *item;
+    ITEM *last_item;
     OBJECT_VECTOR *fixed;
     int32_t is_lara_mic;
     XYZ_32 mic_pos;
@@ -1502,12 +1502,12 @@ typedef enum {
     GBUF_ANIM_BONES               = 8,
     GBUF_ANIM_FRAMES              = 9,
     GBUF_ROOM_TEXTURES            = 10,
-    GBUF_ROOM_INFOS               = 11,
+    GBUF_ROOMS                    = 11,
     GBUF_ROOM_MESH                = 12,
-    GBUF_ROOM_DOOR                = 13,
+    GBUF_ROOM_PORTALS             = 13,
     GBUF_ROOM_FLOOR               = 14,
     GBUF_ROOM_LIGHTS              = 15,
-    GBUF_ROOM_STATIC_MESH_INFOS   = 16,
+    GBUF_ROOM_STATIC_MESHES       = 16,
     GBUF_FLOOR_DATA               = 17,
     GBUF_ITEMS                    = 18,
     GBUF_CAMERAS                  = 19,
@@ -1596,7 +1596,7 @@ typedef struct __unaligned {
     int32_t xv;
     int32_t yv;
     int32_t zv;
-} DOOR_VBUF;
+} PORTAL_VBUF;
 
 typedef struct __unaligned {
     BOUNDS_16 bounds;

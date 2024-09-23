@@ -146,7 +146,7 @@ void __cdecl Gun_Rifle_FireHarpoon(void)
         return;
     }
 
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->object_id = O_HARPOON_BOLT;
     item->room_num = g_LaraItem->room_num;
 
@@ -200,7 +200,7 @@ void __cdecl Gun_Rifle_FireGrenade(void)
         return;
     }
 
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->object_id = O_GRENADE;
     item->room_num = g_LaraItem->room_num;
 
@@ -230,7 +230,7 @@ void __cdecl Gun_Rifle_FireGrenade(void)
 
 void __cdecl Gun_Rifle_Draw(const LARA_GUN_TYPE weapon_type)
 {
-    ITEM_INFO *item;
+    ITEM *item;
     if (g_Lara.weapon_item != NO_ITEM) {
         item = &g_Items[g_Lara.weapon_item];
     } else {
@@ -273,7 +273,7 @@ void __cdecl Gun_Rifle_Draw(const LARA_GUN_TYPE weapon_type)
 
 void __cdecl Gun_Rifle_Undraw(const LARA_GUN_TYPE weapon_type)
 {
-    ITEM_INFO *const item = &g_Items[g_Lara.weapon_item];
+    ITEM *const item = &g_Items[g_Lara.weapon_item];
     if (g_Lara.water_status == LWS_SURFACE) {
         item->goal_anim_state = LA_G_SURF_UNDRAW;
     } else {
@@ -309,7 +309,7 @@ void __cdecl Gun_Rifle_Undraw(const LARA_GUN_TYPE weapon_type)
 void __cdecl Gun_Rifle_Animate(const LARA_GUN_TYPE weapon_type)
 {
     const bool running = weapon_type == LGT_M16 && g_LaraItem->speed != 0;
-    ITEM_INFO *const item = &g_Items[g_Lara.weapon_item];
+    ITEM *const item = &g_Items[g_Lara.weapon_item];
 
     switch (item->current_anim_state) {
     case LA_G_AIM:

@@ -6,9 +6,9 @@
 #include "global/vars.h"
 
 void __cdecl Door_Collision(
-    const int16_t item_num, ITEM_INFO *const lara_item, COLL_INFO *const coll)
+    const int16_t item_num, ITEM *const lara_item, COLL_INFO *const coll)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
 
     if (!Item_TestBoundsCollide(item, lara_item, coll->radius)) {
         return;

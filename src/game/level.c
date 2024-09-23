@@ -106,11 +106,11 @@ static void __cdecl M_LoadRooms(VFILE *const file)
         goto finish;
     }
 
-    g_Rooms = game_malloc(sizeof(ROOM_INFO) * g_RoomCount, GBUF_ROOM_INFOS);
+    g_Rooms = game_malloc(sizeof(ROOM) * g_RoomCount, GBUF_ROOMS);
     assert(g_Rooms != NULL);
 
     for (int32_t i = 0; i < g_RoomCount; i++) {
-        ROOM_INFO *const r = &g_Rooms[i];
+        ROOM *const r = &g_Rooms[i];
 
         r->pos.x = VFile_ReadS32(file);
         r->pos.y = 0;
@@ -125,22 +125,22 @@ static void __cdecl M_LoadRooms(VFILE *const file)
 
         const int16_t num_doors = VFile_ReadS16(file);
         if (num_doors <= 0) {
-            r->doors = NULL;
+            r->portals = NULL;
         } else {
-            r->doors = game_malloc(
-                sizeof(DOOR_INFO) * num_doors + sizeof(DOOR_INFOS),
-                GBUF_ROOM_DOOR);
-            r->doors->count = num_doors;
-            VFile_Read(file, r->doors->door, sizeof(DOOR_INFO) * num_doors);
+            r->portals = game_malloc(
+                sizeof(PORTAL) * num_doors + sizeof(PORTALS),
+                GBUF_ROOM_PORTALS);
+            r->portals->count = num_doors;
+            VFile_Read(file, r->portals->portal, sizeof(PORTAL) * num_doors);
         }
 
         r->z_size = VFile_ReadS16(file);
         r->x_size = VFile_ReadS16(file);
 
         r->sector = game_malloc(
-            sizeof(SECTOR_INFO) * r->z_size * r->x_size, GBUF_ROOM_FLOOR);
+            sizeof(SECTOR) * r->z_size * r->x_size, GBUF_ROOM_FLOOR);
         for (int32_t i = 0; i < r->z_size * r->x_size; i++) {
-            SECTOR_INFO *const sector = &r->sector[i];
+            SECTOR *const sector = &r->sector[i];
             sector->idx = VFile_ReadU16(file);
             sector->box = VFile_ReadS16(file);
             sector->pit_room = VFile_ReadU8(file);
@@ -157,10 +157,10 @@ static void __cdecl M_LoadRooms(VFILE *const file)
         if (!r->num_lights) {
             r->light = NULL;
         } else {
-            r->light = game_malloc(
-                sizeof(LIGHT_INFO) * r->num_lights, GBUF_ROOM_LIGHTS);
+            r->light =
+                game_malloc(sizeof(LIGHT) * r->num_lights, GBUF_ROOM_LIGHTS);
             for (int32_t i = 0; i < r->num_lights; i++) {
-                LIGHT_INFO *const light = &r->light[i];
+                LIGHT *const light = &r->light[i];
                 light->x = VFile_ReadS32(file);
                 light->y = VFile_ReadS32(file);
                 light->z = VFile_ReadS32(file);
@@ -176,9 +176,9 @@ static void __cdecl M_LoadRooms(VFILE *const file)
             r->mesh = NULL;
         } else {
             r->mesh = game_malloc(
-                sizeof(MESH_INFO) * r->num_meshes, GBUF_ROOM_STATIC_MESH_INFOS);
+                sizeof(MESH) * r->num_meshes, GBUF_ROOM_STATIC_MESHES);
             for (int32_t i = 0; i < r->num_meshes; i++) {
-                MESH_INFO *const mesh = &r->mesh[i];
+                MESH *const mesh = &r->mesh[i];
                 mesh->x = VFile_ReadS32(file);
                 mesh->y = VFile_ReadS32(file);
                 mesh->z = VFile_ReadS32(file);
@@ -348,7 +348,7 @@ static void __cdecl M_LoadObjects(VFILE *const file)
     LOG_INFO("objects: %d", num_objects);
     for (int32_t i = 0; i < num_objects; i++) {
         const GAME_OBJECT_ID object_id = VFile_ReadS32(file);
-        OBJECT_INFO *const object = &g_Objects[object_id];
+        OBJECT *const object = &g_Objects[object_id];
         object->mesh_count = VFile_ReadS16(file);
         object->mesh_idx = VFile_ReadS16(file);
         object->bone_idx = VFile_ReadS32(file);
@@ -452,7 +452,7 @@ static void __cdecl M_LoadSprites(VFILE *const file)
             VFile_Skip(file, sizeof(int16_t));
             static_object->mesh_idx = VFile_ReadS16(file);
         } else {
-            OBJECT_INFO *const object = &g_Objects[object_id];
+            OBJECT *const object = &g_Objects[object_id];
             object->mesh_count = VFile_ReadS16(file);
             object->mesh_idx = VFile_ReadS16(file);
             object->loaded = 1;
@@ -477,13 +477,13 @@ static void __cdecl M_LoadItems(VFILE *const file)
         goto finish;
     }
 
-    g_Items = game_malloc(sizeof(ITEM_INFO) * MAX_ITEMS, GBUF_ITEMS);
+    g_Items = game_malloc(sizeof(ITEM) * MAX_ITEMS, GBUF_ITEMS);
     g_LevelItemCount = num_items;
 
     Item_InitialiseArray(MAX_ITEMS);
 
     for (int32_t i = 0; i < num_items; i++) {
-        ITEM_INFO *const item = &g_Items[i];
+        ITEM *const item = &g_Items[i];
         item->object_id = VFile_ReadS16(file);
         item->room_num = VFile_ReadS16(file);
         item->pos.x = VFile_ReadS32(file);

@@ -35,8 +35,7 @@ int32_t __cdecl LOS_CheckX(
 
         while (x > target->x) {
             {
-                const SECTOR_INFO *const sector =
-                    Room_GetSector(x, y, z, &room_num);
+                const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -54,7 +53,7 @@ int32_t __cdecl LOS_CheckX(
             }
 
             {
-                const SECTOR_INFO *const sector =
+                const SECTOR *const sector =
                     Room_GetSector(x - 1, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x - 1, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x - 1, y, z);
@@ -78,8 +77,7 @@ int32_t __cdecl LOS_CheckX(
 
         while (x < target->x) {
             {
-                const SECTOR_INFO *const sector =
-                    Room_GetSector(x, y, z, &room_num);
+                const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -97,7 +95,7 @@ int32_t __cdecl LOS_CheckX(
             }
 
             {
-                const SECTOR_INFO *const sector =
+                const SECTOR *const sector =
                     Room_GetSector(x + 1, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x + 1, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x + 1, y, z);
@@ -144,8 +142,7 @@ int32_t __cdecl LOS_CheckZ(
 
         while (z > target->z) {
             {
-                const SECTOR_INFO *const sector =
-                    Room_GetSector(x, y, z, &room_num);
+                const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -163,7 +160,7 @@ int32_t __cdecl LOS_CheckZ(
             }
 
             {
-                const SECTOR_INFO *const sector =
+                const SECTOR *const sector =
                     Room_GetSector(x, y, z - 1, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z - 1);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z - 1);
@@ -187,8 +184,7 @@ int32_t __cdecl LOS_CheckZ(
 
         while (z < target->z) {
             {
-                const SECTOR_INFO *const sector =
-                    Room_GetSector(x, y, z, &room_num);
+                const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
                 if (y > height || y < ceiling) {
@@ -206,7 +202,7 @@ int32_t __cdecl LOS_CheckZ(
             }
 
             {
-                const SECTOR_INFO *const sector =
+                const SECTOR *const sector =
                     Room_GetSector(x, y, z + 1, &room_num);
                 const int32_t height = Room_GetHeight(sector, x, y, z + 1);
                 const int32_t ceiling = Room_GetCeiling(sector, x, y, z + 1);
@@ -231,7 +227,7 @@ int32_t __cdecl LOS_CheckZ(
 
 int32_t __cdecl LOS_ClipTarget(
     const GAME_VECTOR *const start, GAME_VECTOR *const target,
-    const SECTOR_INFO *const sector)
+    const SECTOR *const sector)
 {
     const int32_t dx = target->x - start->x;
     const int32_t dy = target->y - start->y;
@@ -283,7 +279,7 @@ int32_t __cdecl LOS_Check(
         target->room_num = start->room_num;
     }
 
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(target->x, target->y, target->z, &target->room_num);
 
     if (!LOS_ClipTarget(start, target, sector)) {
@@ -305,7 +301,7 @@ int32_t __cdecl LOS_CheckSmashable(
     for (int32_t i = 0; i < g_LOSNumRooms; i++) {
         for (int16_t item_num = g_Rooms[g_LOSRooms[i]].item_num;
              item_num != NO_ITEM; item_num = g_Items[item_num].next_item) {
-            const ITEM_INFO *const item = &g_Items[item_num];
+            const ITEM *const item = &g_Items[item_num];
             if (item->status == IS_DEACTIVATED) {
                 continue;
             }

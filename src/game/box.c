@@ -145,8 +145,7 @@ void __cdecl Box_TargetBox(LOT_INFO *const lot, const int16_t box_num)
 }
 
 int32_t __cdecl Box_StalkBox(
-    const ITEM_INFO *const item, const ITEM_INFO *const enemy,
-    const int16_t box_num)
+    const ITEM *const item, const ITEM *const enemy, const int16_t box_num)
 {
     const BOX_INFO *const box = &g_Boxes[box_num];
 
@@ -178,8 +177,7 @@ int32_t __cdecl Box_StalkBox(
 }
 
 int32_t __cdecl Box_EscapeBox(
-    const ITEM_INFO *const item, const ITEM_INFO *const enemy,
-    const int16_t box_num)
+    const ITEM *const item, const ITEM *const enemy, const int16_t box_num)
 {
     const BOX_INFO *const box = &g_Boxes[box_num];
     const int32_t x =
@@ -198,9 +196,9 @@ int32_t __cdecl Box_EscapeBox(
 }
 
 int32_t __cdecl Box_ValidBox(
-    const ITEM_INFO *const item, const int16_t zone_num, const int16_t box_num)
+    const ITEM *const item, const int16_t zone_num, const int16_t box_num)
 {
-    const CREATURE_INFO *const creature = item->data;
+    const CREATURE *const creature = item->data;
     int16_t *zone;
     if (creature->lot.fly) {
         zone = g_FlyZone[g_FlipStatus];
@@ -225,7 +223,7 @@ int32_t __cdecl Box_ValidBox(
 }
 
 TARGET_TYPE __cdecl Box_CalculateTarget(
-    XYZ_32 *const target, const ITEM_INFO *const item, LOT_INFO *const lot)
+    XYZ_32 *const target, const ITEM *const item, LOT_INFO *const lot)
 {
     Box_UpdateLOT(lot, BOX_MAX_EXPANSION);
 
@@ -396,7 +394,7 @@ int32_t __cdecl Box_BadFloor(
     const int32_t x, const int32_t y, const int32_t z, const int32_t box_height,
     const int32_t next_height, int16_t room_num, const LOT_INFO *const lot)
 {
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     const int16_t box_num = sector->box;
     if (box_num == NO_BOX) {
         return true;

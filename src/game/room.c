@@ -30,7 +30,7 @@ int32_t __cdecl Room_FindByPos(
     const int32_t x, const int32_t y, const int32_t z)
 {
     for (int32_t i = 0; i < g_RoomCount; i++) {
-        const ROOM_INFO *const room = &g_Rooms[i];
+        const ROOM *const room = &g_Rooms[i];
         const int32_t x1 = room->pos.x + WALL_L;
         const int32_t x2 = room->pos.x + (room->x_size - 1) * WALL_L;
         const int32_t y1 = room->max_ceiling;
@@ -94,11 +94,10 @@ void __cdecl Room_GetNewRoom(
 }
 
 int16_t __cdecl Room_GetTiltType(
-    const SECTOR_INFO *sector, const int32_t x, const int32_t y,
-    const int32_t z)
+    const SECTOR *sector, const int32_t x, const int32_t y, const int32_t z)
 {
     while (sector->pit_room != NO_ROOM) {
-        const ROOM_INFO *const room = &g_Rooms[sector->pit_room];
+        const ROOM *const room = &g_Rooms[sector->pit_room];
         const int32_t z_sector = (z - room->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - room->pos.x) >> WALL_SHIFT;
         sector = &room->sector[z_sector + x_sector * room->z_size];
@@ -114,13 +113,13 @@ int16_t __cdecl Room_GetTiltType(
     return 0;
 }
 
-SECTOR_INFO *__cdecl Room_GetSector(
+SECTOR *__cdecl Room_GetSector(
     const int32_t x, const int32_t y, const int32_t z, int16_t *const room_num)
 {
-    SECTOR_INFO *sector = NULL;
+    SECTOR *sector = NULL;
 
     while (true) {
-        const ROOM_INFO *r = &g_Rooms[*room_num];
+        const ROOM *r = &g_Rooms[*room_num];
         int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
 
@@ -157,7 +156,7 @@ SECTOR_INFO *__cdecl Room_GetSector(
     if (y >= (sector->floor << 8)) {
         while (sector->pit_room != NO_ROOM) {
             *room_num = sector->pit_room;
-            const ROOM_INFO *const r = &g_Rooms[*room_num];
+            const ROOM *const r = &g_Rooms[*room_num];
             const int32_t z_sector = ((z - r->pos.z) >> WALL_SHIFT);
             const int32_t x_sector = ((x - r->pos.x) >> WALL_SHIFT);
             sector = &r->sector[z_sector + x_sector * r->z_size];
@@ -168,7 +167,7 @@ SECTOR_INFO *__cdecl Room_GetSector(
     } else if (y < (sector->ceiling << 8)) {
         while (sector->sky_room != NO_ROOM) {
             *room_num = sector->sky_room;
-            const ROOM_INFO *const r = &g_Rooms[sector->sky_room];
+            const ROOM *const r = &g_Rooms[sector->sky_room];
             const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
             const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
             sector = &r->sector[z_sector + x_sector * r->z_size];
@@ -184,8 +183,8 @@ SECTOR_INFO *__cdecl Room_GetSector(
 int32_t __cdecl Room_GetWaterHeight(
     const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
 {
-    const SECTOR_INFO *sector = NULL;
-    const ROOM_INFO *r = NULL;
+    const SECTOR *sector = NULL;
+    const ROOM *r = NULL;
 
     do {
         r = &g_Rooms[room_num];
@@ -242,14 +241,13 @@ int32_t __cdecl Room_GetWaterHeight(
 }
 
 int32_t __cdecl Room_GetHeight(
-    const SECTOR_INFO *sector, const int32_t x, const int32_t y,
-    const int32_t z)
+    const SECTOR *sector, const int32_t x, const int32_t y, const int32_t z)
 {
     g_HeightType = 0;
     g_TriggerIndex = NULL;
 
     while (sector->pit_room != NO_ROOM) {
-        const ROOM_INFO *const r = &g_Rooms[sector->pit_room];
+        const ROOM *const r = &g_Rooms[sector->pit_room];
         const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
         sector = &r->sector[z_sector + x_sector * r->z_size];
@@ -313,9 +311,8 @@ int32_t __cdecl Room_GetHeight(
                 switch (TRIGGER_TYPE(trigger)) {
                 case TO_OBJECT:
                     const int16_t value = TRIGGER_VALUE(trigger);
-                    const ITEM_INFO *const item = &g_Items[value];
-                    const OBJECT_INFO *const object =
-                        &g_Objects[item->object_id];
+                    const ITEM *const item = &g_Items[value];
+                    const OBJECT *const object = &g_Objects[item->object_id];
                     if (object->floor) {
                         object->floor(item, x, y, z, &height);
                     }
@@ -353,7 +350,7 @@ int32_t __cdecl Room_GetHeight(
 
 void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
 {
-    ITEM_INFO *camera_item = NULL;
+    ITEM *camera_item = NULL;
     bool switch_off = false;
     bool flip = false;
     bool flip_available = false;
@@ -463,7 +460,7 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
 
         switch (TRIGGER_TYPE(trigger)) {
         case TO_OBJECT: {
-            ITEM_INFO *const item = &g_Items[value];
+            ITEM *const item = &g_Items[value];
             if (item->flags & IF_ONE_SHOT) {
                 break;
             }
@@ -645,13 +642,13 @@ void __cdecl Room_TestTriggers(const int16_t *fd, bool heavy)
 }
 
 int32_t __cdecl Room_GetCeiling(
-    const SECTOR_INFO *const sector, const int32_t x, const int32_t y,
+    const SECTOR *const sector, const int32_t x, const int32_t y,
     const int32_t z)
 {
-    const SECTOR_INFO *f = sector;
+    const SECTOR *f = sector;
 
     while (f->sky_room != NO_ROOM) {
-        const ROOM_INFO *const r = &g_Rooms[f->sky_room];
+        const ROOM *const r = &g_Rooms[f->sky_room];
         const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
         f = &r->sector[z_sector + x_sector * r->z_size];
@@ -690,7 +687,7 @@ int32_t __cdecl Room_GetCeiling(
 
     f = sector;
     while (f->pit_room != NO_ROOM) {
-        const ROOM_INFO *const r = &g_Rooms[f->pit_room];
+        const ROOM *const r = &g_Rooms[f->pit_room];
         const int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (x - r->pos.x) >> WALL_SHIFT;
         f = &r->sector[z_sector + x_sector * r->z_size];
@@ -720,9 +717,8 @@ int32_t __cdecl Room_GetCeiling(
                 switch (TRIGGER_TYPE(trigger)) {
                 case TO_OBJECT:
                     const int16_t value = TRIGGER_VALUE(trigger);
-                    const ITEM_INFO *const item = &g_Items[value];
-                    const OBJECT_INFO *const object =
-                        &g_Objects[item->object_id];
+                    const ITEM *const item = &g_Items[value];
+                    const OBJECT *const object = &g_Objects[item->object_id];
                     if (object->ceiling) {
                         object->ceiling(item, x, y, z, &height);
                     }
@@ -753,7 +749,7 @@ int32_t __cdecl Room_GetCeiling(
     return height;
 }
 
-int16_t __cdecl Room_GetDoor(const SECTOR_INFO *const sector)
+int16_t __cdecl Room_GetDoor(const SECTOR *const sector)
 {
     if (!sector->idx) {
         return NO_ROOM;
@@ -809,14 +805,13 @@ int16_t __cdecl Room_GetDoor(const SECTOR_INFO *const sector)
     return NO_ROOM;
 }
 
-void __cdecl Room_AlterFloorHeight(
-    const ITEM_INFO *const item, const int32_t height)
+void __cdecl Room_AlterFloorHeight(const ITEM *const item, const int32_t height)
 {
     int16_t room_num = item->room_num;
 
-    SECTOR_INFO *const sector =
+    SECTOR *const sector =
         Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
-    const SECTOR_INFO *ceiling = Room_GetSector(
+    const SECTOR *ceiling = Room_GetSector(
         item->pos.x, item->pos.y + height - WALL_L, item->pos.z, &room_num);
 
     if (sector->floor == NO_HEIGHT / 256) {
@@ -841,15 +836,15 @@ void __cdecl Room_AlterFloorHeight(
 void __cdecl Room_FlipMap(void)
 {
     for (int32_t i = 0; i < g_RoomCount; i++) {
-        ROOM_INFO *const r = &g_Rooms[i];
+        ROOM *const r = &g_Rooms[i];
         if (r->flipped_room == NO_ROOM_NEG) {
             continue;
         }
 
         Room_RemoveFlipItems(r);
 
-        ROOM_INFO *const flipped = &g_Rooms[r->flipped_room];
-        ROOM_INFO temp = *r;
+        ROOM *const flipped = &g_Rooms[r->flipped_room];
+        ROOM temp = *r;
         *r = *flipped;
         *flipped = temp;
 
@@ -866,12 +861,12 @@ void __cdecl Room_FlipMap(void)
     g_FlipStatus = !g_FlipStatus;
 }
 
-void __cdecl Room_RemoveFlipItems(const ROOM_INFO *const r)
+void __cdecl Room_RemoveFlipItems(const ROOM *const r)
 {
     int16_t item_num = r->item_num;
 
     while (item_num != NO_ITEM) {
-        ITEM_INFO *const item = &g_Items[item_num];
+        ITEM *const item = &g_Items[item_num];
 
         switch (item->object_id) {
         case O_MOVABLE_BLOCK_1:
@@ -895,11 +890,11 @@ void __cdecl Room_RemoveFlipItems(const ROOM_INFO *const r)
     }
 }
 
-void __cdecl Room_AddFlipItems(const ROOM_INFO *const r)
+void __cdecl Room_AddFlipItems(const ROOM *const r)
 {
     int16_t item_num = r->item_num;
     while (item_num != NO_ITEM) {
-        const ITEM_INFO *const item = &g_Items[item_num];
+        const ITEM *const item = &g_Items[item_num];
 
         switch (item->object_id) {
         case O_MOVABLE_BLOCK_1:
@@ -962,7 +957,7 @@ int32_t Room_GetTotalCount(void)
     return g_RoomCount;
 }
 
-ROOM_INFO *Room_Get(const int32_t room_num)
+ROOM *Room_Get(const int32_t room_num)
 {
     return &g_Rooms[room_num];
 }

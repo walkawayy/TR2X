@@ -7,7 +7,7 @@ LARA_INFO *Lara_GetLaraInfo(void)
     return &g_Lara;
 }
 
-ITEM_INFO *Lara_GetItem(void)
+ITEM *Lara_GetItem(void)
 {
     return g_LaraItem;
 }

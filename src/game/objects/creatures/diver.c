@@ -6,7 +6,7 @@
 #include "global/funcs.h"
 #include "global/vars.h"
 
-static BITE_INFO m_DiverBite = { .pos = { .x = 17, .y = 164, .z = 44, }, .mesh_num = 18 };
+static BITE m_DiverBite = { .pos = { .x = 17, .y = 164, .z = 44, }, .mesh_num = 18 };
 
 typedef enum {
     DIVER_ANIM_EMPTY = 0,
@@ -31,8 +31,8 @@ void __cdecl Diver_Control(int16_t item_num)
         return;
     }
 
-    ITEM_INFO *const item = &g_Items[item_num];
-    CREATURE_INFO *const creature = item->data;
+    ITEM *const item = &g_Items[item_num];
+    CREATURE *const creature = item->data;
 
     if (item->hit_points <= 0) {
         if (item->current_anim_state != DIVER_ANIM_DEATH) {

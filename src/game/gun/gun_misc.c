@@ -110,7 +110,7 @@ void __cdecl Gun_GetNewTarget(const WEAPON_INFO *const winfo)
 
     int16_t best_y_rot = 0x7FFF;
     int32_t best_dist = 0x7FFFFFFF;
-    ITEM_INFO *best_target = NULL;
+    ITEM *best_target = NULL;
 
     const int16_t max_dist = winfo->target_dist;
     for (int32_t i = 0; i < NUM_SLOTS; i++) {
@@ -119,7 +119,7 @@ void __cdecl Gun_GetNewTarget(const WEAPON_INFO *const winfo)
             continue;
         }
 
-        ITEM_INFO *const item = &g_Items[item_num];
+        ITEM *const item = &g_Items[item_num];
         if (item->hit_points <= 0) {
             continue;
         }
@@ -197,8 +197,8 @@ void __cdecl Gun_AimWeapon(const WEAPON_INFO *const winfo, LARA_ARM *const arm)
 }
 
 int32_t __cdecl Gun_FireWeapon(
-    const LARA_GUN_TYPE weapon_type, ITEM_INFO *const target,
-    const ITEM_INFO *const src, const PHD_ANGLE *const angles)
+    const LARA_GUN_TYPE weapon_type, ITEM *const target, const ITEM *const src,
+    const PHD_ANGLE *const angles)
 {
     const WEAPON_INFO *const winfo = &g_Weapons[weapon_type];
     AMMO_INFO *const ammo = Gun_GetAmmoInfo(weapon_type);
@@ -295,7 +295,7 @@ int32_t __cdecl Gun_FireWeapon(
 }
 
 void __cdecl Gun_FindTargetPoint(
-    const ITEM_INFO *const item, GAME_VECTOR *const target)
+    const ITEM *const item, GAME_VECTOR *const target)
 {
     const BOUNDS_16 *const bounds = &Item_GetBestFrame(item)->bounds;
     const int32_t x = bounds->min_x + (bounds->max_x - bounds->min_x) / 2;
@@ -310,8 +310,7 @@ void __cdecl Gun_FindTargetPoint(
 }
 
 void __cdecl Gun_HitTarget(
-    ITEM_INFO *const item, const GAME_VECTOR *const hit_pos,
-    const int32_t damage)
+    ITEM *const item, const GAME_VECTOR *const hit_pos, const int32_t damage)
 {
     if (item->hit_points > 0 && item->hit_points <= damage) {
         g_SaveGame.statistics.kills++;
@@ -326,7 +325,7 @@ void __cdecl Gun_HitTarget(
 
     if (!g_IsMonkAngry
         && (item->object_id == O_MONK_1 || item->object_id == O_MONK_2)) {
-        CREATURE_INFO *const creature = item->data;
+        CREATURE *const creature = item->data;
         creature->flags += damage;
         if ((creature->flags & 0xFFF) > MONK_FRIENDLY_FIRE_THRESHOLD
             || creature->mood == MOOD_BORED) {
@@ -338,7 +337,7 @@ void __cdecl Gun_HitTarget(
 void __cdecl Gun_SmashItem(
     const int16_t item_num, const LARA_GUN_TYPE weapon_type)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
 
     switch (item->object_id) {
     case O_WINDOW_1:

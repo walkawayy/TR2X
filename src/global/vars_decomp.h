@@ -16,7 +16,7 @@
 #define g_FlipEffect (*(int32_t*)0x004640C4) // = -1
 #define g_BoxLines (*(int32_t(*)[12][2])0x00464180)
 #define g_AssaultBestTime (*(int32_t*)0x004641F0) // = -1
-#define g_EffectRoutines (*((void(__cdecl  *(*)[32])(ITEM_INFO *item))0x004641F8))
+#define g_EffectRoutines (*((void(__cdecl  *(*)[32])(ITEM *item))0x004641F8))
 #define g_GF_NumSecrets (*(int16_t*)0x004642E8) // = 3
 #define g_GF_MusicTracks (*(int16_t(*)[16])0x004642F0)
 #define g_CineTargetAngle (*(int16_t*)0x00464310) // = 0x4000
@@ -76,9 +76,9 @@
 #define g_JumpPermitted (*(int32_t*)0x00465AD4) // = 1
 #define g_LaraOldSlideAngle (*(int16_t*)0x00465AD8) // = 1
 #define g_Weapons (*(WEAPON_INFO(*)[])0x00465AE0)
-#define g_LaraControlRoutines (*((void(__cdecl  *(*)[71])(ITEM_INFO *item, COLL_INFO *coll))0x00465CD0))
-#define g_ExtraControlRoutines (*((void(__cdecl  *(*)[11])(ITEM_INFO *item, COLL_INFO *coll))0x00465DF0))
-#define g_LaraCollisionRoutines (*((void(__cdecl  *(*)[71])(ITEM_INFO *item, COLL_INFO *coll))0x00465E20))
+#define g_LaraControlRoutines (*((void(__cdecl  *(*)[71])(ITEM *item, COLL_INFO *coll))0x00465CD0))
+#define g_ExtraControlRoutines (*((void(__cdecl  *(*)[11])(ITEM *item, COLL_INFO *coll))0x00465DF0))
+#define g_LaraCollisionRoutines (*((void(__cdecl  *(*)[71])(ITEM *item, COLL_INFO *coll))0x00465E20))
 #define g_TextSpacing (*(int8_t(*)[80])0x00466290)
 #define g_TextASCIIMap (*(int8_t(*)[])0x004662E0)
 #define g_BGND_PaletteIndex (*(int32_t*)0x00466400) // = -1
@@ -380,10 +380,10 @@
 #define g_FinalBossItem (*(int16_t(*)[5])0x005206B0)
 #define g_FinalLevelCount (*(int16_t*)0x005206BA)
 #define g_FinalBossCount (*(int16_t*)0x005206BC)
-#define g_BaddieSlots (*(CREATURE_INFO **)0x005206C0)
+#define g_BaddieSlots (*(CREATURE **)0x005206C0)
 #define g_Lara (*(LARA_INFO*)0x005206E0)
-#define g_LaraItem (*(ITEM_INFO **)0x005207BC)
-#define g_Effects (*(FX_INFO **)0x005207C0)
+#define g_LaraItem (*(ITEM **)0x005207BC)
+#define g_Effects (*(FX **)0x005207C0)
 #define g_NextEffectFree (*(int16_t*)0x005207C4)
 #define g_NextItemFree (*(int16_t*)0x005207C6)
 #define g_NextItemActive (*(int16_t*)0x005207C8)
@@ -442,7 +442,7 @@
 #define g_GF_Add2InvItems (*(char(*)[27])0x00521FC0)
 #define g_SoundEffectCount (*(int32_t*)0x00521FDC)
 #define g_SoundEffects (*(OBJECT_VECTOR **)0x00521FE0)
-#define g_Objects (*(OBJECT_INFO(*)[265])0x00522000)
+#define g_Objects (*(OBJECT(*)[265])0x00522000)
 #define g_AnimFrames (*(FRAME_INFO **)0x005251B0)
 #define g_Meshes (*(int16_t ***)0x005252B0)
 #define g_Outside (*(int32_t*)0x005252B4)
@@ -464,7 +464,7 @@
 #define g_RoomCount (*(int32_t*)0x00526180)
 #define g_IMRate (*(int32_t*)0x00526184)
 #define g_IMMatrixPtr (*(MATRIX **)0x00526188)
-#define g_Rooms (*(ROOM_INFO **)0x0052618C)
+#define g_Rooms (*(ROOM **)0x0052618C)
 #define g_CameraUnderwater (*(BOOL*)0x00526190)
 #define g_OutsideRight (*(int32_t*)0x00526198)
 #define g_OutsideTop (*(int32_t*)0x005261AC)
@@ -475,7 +475,7 @@
 #define g_FlipMaps (*(int32_t(*)[10])0x00526260)
 #define g_TriggerIndex (*(int16_t **)0x00526288)
 #define g_LOSRooms (*(int32_t(*)[20])0x005262A0)
-#define g_Items (*(ITEM_INFO **)0x005262F0)
+#define g_Items (*(ITEM **)0x005262F0)
 #define g_CineLoaded (*(int16_t*)0x005262F4)
 #define g_NumCineFrames (*(int16_t*)0x005262F6)
 #define g_CineData (*(CINE_FRAME **)0x005262F8) // = NULL

@@ -11,8 +11,8 @@
 int32_t __cdecl Effect_ExplodingDeath(
     const int16_t item_num, const int32_t mesh_bits, const int16_t damage)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
-    const OBJECT_INFO *const object = &g_Objects[item->object_id];
+    ITEM *const item = &g_Items[item_num];
+    const OBJECT *const object = &g_Objects[item->object_id];
 
     S_CalculateLight(item->pos.x, item->pos.y, item->pos.z, item->room_num);
 
@@ -36,7 +36,7 @@ int32_t __cdecl Effect_ExplodingDeath(
     if ((mesh_bits & bit) && (item->mesh_bits & bit)) {
         const int16_t fx_num = Effect_Create(item->room_num);
         if (fx_num != NO_ITEM) {
-            FX_INFO *const fx = &g_Effects[fx_num];
+            FX *const fx = &g_Effects[fx_num];
             fx->pos.x = item->pos.x + (g_MatrixPtr->_03 >> W2V_SHIFT);
             fx->pos.y = item->pos.y + (g_MatrixPtr->_13 >> W2V_SHIFT);
             fx->pos.z = item->pos.z + (g_MatrixPtr->_23 >> W2V_SHIFT);
@@ -84,7 +84,7 @@ int32_t __cdecl Effect_ExplodingDeath(
         if ((mesh_bits & bit) && (item->mesh_bits & bit)) {
             const int16_t fx_num = Effect_Create(item->room_num);
             if (fx_num != NO_ITEM) {
-                FX_INFO *const fx = &g_Effects[fx_num];
+                FX *const fx = &g_Effects[fx_num];
                 fx->pos.x = item->pos.x + (g_MatrixPtr->_03 >> W2V_SHIFT);
                 fx->pos.y = item->pos.y + (g_MatrixPtr->_13 >> W2V_SHIFT);
                 fx->pos.z = item->pos.z + (g_MatrixPtr->_23 >> W2V_SHIFT);

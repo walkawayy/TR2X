@@ -14,7 +14,7 @@
 
 void __cdecl Flame_Control(const int16_t fx_num)
 {
-    FX_INFO *const fx = &g_Effects[fx_num];
+    FX *const fx = &g_Effects[fx_num];
 
     fx->frame_num--;
     if (fx->frame_num <= g_Objects[O_FLAME].mesh_count) {

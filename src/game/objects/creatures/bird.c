@@ -19,11 +19,11 @@ typedef enum {
     BIRD_ANIM_EAT = 7,
 } BIRD_ANIM;
 
-static const BITE_INFO m_BirdBite = {
+static const BITE m_BirdBite = {
     .pos = { .x = 15, .y = 46, .z = 21 },
     .mesh_num = 6,
 };
-static const BITE_INFO m_CrowBite = {
+static const BITE m_CrowBite = {
     .pos = { .x = 2, .y = 10, .z = 60 },
     .mesh_num = 14,
 };
@@ -39,7 +39,7 @@ static const BITE_INFO m_CrowBite = {
 void __cdecl Bird_Initialise(const int16_t item_num)
 {
     Creature_Initialise(item_num);
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     if (item->object_id == O_CROW) {
         item->anim_num = g_Objects[O_CROW].anim_idx + CROW_START_ANIM;
         item->frame_num = g_Anims[item->anim_num].frame_base;
@@ -59,8 +59,8 @@ void __cdecl Bird_Control(const int16_t item_num)
         return;
     }
 
-    ITEM_INFO *const item = &g_Items[item_num];
-    CREATURE_INFO *const bird = (CREATURE_INFO *)item->data;
+    ITEM *const item = &g_Items[item_num];
+    CREATURE *const bird = (CREATURE *)item->data;
 
     if (item->hit_points <= 0) {
         switch (item->current_anim_state) {

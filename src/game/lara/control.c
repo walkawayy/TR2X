@@ -20,7 +20,7 @@
 
 static int32_t m_OpenDoorsCheatCooldown = 0;
 
-void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
+void __cdecl Lara_HandleAboveWater(ITEM *const item, COLL_INFO *const coll)
 {
     coll->old.x = item->pos.x;
     coll->old.y = item->pos.y;
@@ -92,7 +92,7 @@ void __cdecl Lara_HandleAboveWater(ITEM_INFO *const item, COLL_INFO *const coll)
     Room_TestTriggers(coll->trigger, 0);
 }
 
-void __cdecl Lara_HandleSurface(ITEM_INFO *const item, COLL_INFO *const coll)
+void __cdecl Lara_HandleSurface(ITEM *const item, COLL_INFO *const coll)
 {
     g_Camera.target_elevation = -22 * PHD_DEGREE;
 
@@ -150,7 +150,7 @@ void __cdecl Lara_HandleSurface(ITEM_INFO *const item, COLL_INFO *const coll)
     Room_TestTriggers(coll->trigger, 0);
 }
 
-void __cdecl Lara_HandleUnderwater(ITEM_INFO *const item, COLL_INFO *const coll)
+void __cdecl Lara_HandleUnderwater(ITEM *const item, COLL_INFO *const coll)
 {
     coll->old.x = item->pos.x;
     coll->old.y = item->pos.y;
@@ -241,7 +241,7 @@ void __cdecl Lara_HandleUnderwater(ITEM_INFO *const item, COLL_INFO *const coll)
 
 void __cdecl Lara_Control(const int16_t item_num)
 {
-    ITEM_INFO *const item = g_LaraItem;
+    ITEM *const item = g_LaraItem;
 
     const bool room_submerged = g_Rooms[item->room_num].flags & RF_UNDERWATER;
     const int32_t water_depth = Lara_GetWaterDepth(
@@ -494,7 +494,7 @@ void __cdecl Lara_ControlExtra(const int16_t item_num)
     Item_Animate(&g_Items[item_num]);
 }
 
-void __cdecl Lara_Animate(ITEM_INFO *const item)
+void __cdecl Lara_Animate(ITEM *const item)
 {
     item->frame_num++;
 
@@ -635,7 +635,7 @@ void __cdecl Lara_Animate(ITEM_INFO *const item)
 
 void __cdecl Lara_UseItem(const GAME_OBJECT_ID object_id)
 {
-    ITEM_INFO *const item = g_LaraItem;
+    ITEM *const item = g_LaraItem;
 
     switch (object_id) {
     case O_PISTOL_ITEM:
@@ -712,7 +712,7 @@ void __cdecl Lara_InitialiseLoad(const int16_t item_num)
 
 void __cdecl Lara_Initialise(const GF_LEVEL_TYPE type)
 {
-    ITEM_INFO *const item = g_LaraItem;
+    ITEM *const item = g_LaraItem;
 
     item->data = &g_Lara;
     item->collidable = 0;
@@ -970,7 +970,7 @@ void Lara_SwapSingleMesh(const LARA_MESH mesh, const GAME_OBJECT_ID object_id)
 void Lara_GetOffVehicle(void)
 {
     if (g_Lara.skidoo != NO_ITEM) {
-        ITEM_INFO *const vehicle = &g_Items[g_Lara.skidoo];
+        ITEM *const vehicle = &g_Items[g_Lara.skidoo];
         vehicle->anim_num = g_Objects[vehicle->object_id].anim_idx;
         vehicle->frame_num = g_Anims[vehicle->anim_num].frame_base;
         g_Lara.skidoo = NO_ITEM;
@@ -992,7 +992,7 @@ int16_t Lara_GetNearestEnemy(void)
     int16_t best_item_num = NO_ITEM;
     int16_t item_num = g_NextItemActive;
     while (item_num != NO_ITEM) {
-        const ITEM_INFO *const item = &g_Items[item_num];
+        const ITEM *const item = &g_Items[item_num];
 
         if (Creature_IsEnemy(item)) {
             const int32_t distance = Item_GetDistance(item, &g_LaraItem->pos);

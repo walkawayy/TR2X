@@ -124,7 +124,7 @@ void __cdecl DrawQuad(
 
 void __cdecl BGND_DrawInGameBackground(void)
 {
-    const OBJECT_INFO *const obj = &g_Objects[O_INV_BACKGROUND];
+    const OBJECT *const obj = &g_Objects[O_INV_BACKGROUND];
     if (!obj->loaded) {
         BGND_DrawInGameBlack();
         return;

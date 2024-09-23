@@ -19,7 +19,7 @@ static int16_t __cdecl M_FindBestBoss(void)
     int32_t best_dist = 0;
     int16_t best_item = g_FinalBossItem[0];
     for (int32_t i = 0; i < g_FinalBossCount; i++) {
-        const ITEM_INFO *const item = &g_Items[g_FinalBossItem[i]];
+        const ITEM *const item = &g_Items[g_FinalBossItem[i]];
 
         GAME_VECTOR start;
         start.pos.x = g_LaraItem->pos.x;
@@ -51,7 +51,7 @@ static int16_t __cdecl M_FindBestBoss(void)
 static void __cdecl M_ActivateLastBoss(void)
 {
     const int16_t item_num = M_FindBestBoss();
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->touch_bits = 0;
     item->status = IS_ACTIVE;
     item->mesh_bits = 0xFFFF1FFF;
@@ -62,7 +62,7 @@ static void __cdecl M_ActivateLastBoss(void)
 
 static void __cdecl M_PrepareCutscene(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     Creature_Kill(item, 0, 0, LA_EXTRA_FINAL_ANIM);
 
     g_Camera.type = CAM_CINEMATIC;

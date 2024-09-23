@@ -27,10 +27,10 @@
 #define CLIMB_SHIFT 70
 
 static void __cdecl M_TakeHit(
-    ITEM_INFO *const lara_item, const int32_t dx, const int32_t dz);
+    ITEM *const lara_item, const int32_t dx, const int32_t dz);
 
 static void __cdecl M_TakeHit(
-    ITEM_INFO *const lara_item, const int32_t dx, const int32_t dz)
+    ITEM *const lara_item, const int32_t dx, const int32_t dz)
 {
     const PHD_ANGLE hit_angle = lara_item->rot.y + PHD_180 - Math_Atan(dz, dx);
     g_Lara.hit_direction = Math_GetDirection(hit_angle);
@@ -41,7 +41,7 @@ static void __cdecl M_TakeHit(
     CLAMPG(g_Lara.hit_frame, 34);
 }
 
-void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll)
+void __cdecl Lara_GetCollisionInfo(ITEM *item, COLL_INFO *coll)
 {
     coll->facing = g_Lara.move_angle;
     Collide_GetCollisionInfo(
@@ -49,7 +49,7 @@ void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll)
         LARA_HEIGHT);
 }
 
-void __cdecl Lara_SlideSlope(ITEM_INFO *item, COLL_INFO *coll)
+void __cdecl Lara_SlideSlope(ITEM *item, COLL_INFO *coll)
 {
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = -STEP_L * 2;
@@ -86,7 +86,7 @@ void __cdecl Lara_SlideSlope(ITEM_INFO *item, COLL_INFO *coll)
     }
 }
 
-int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_HitCeiling(ITEM *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_TOP && coll->coll_type != COLL_CLAMP) {
         return 0;
@@ -105,7 +105,7 @@ int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll)
     return 1;
 }
 
-int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_DeflectEdge(ITEM *item, COLL_INFO *coll)
 {
     switch (coll->coll_type) {
     case COLL_FRONT:
@@ -132,7 +132,7 @@ int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll)
     }
 }
 
-void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll)
+void __cdecl Lara_DeflectEdgeJump(ITEM *item, COLL_INFO *coll)
 {
     Item_ShiftCol(item, coll);
     switch (coll->coll_type) {
@@ -183,7 +183,7 @@ void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll)
     }
 }
 
-void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll)
+void __cdecl Lara_SlideEdgeJump(ITEM *item, COLL_INFO *coll)
 {
     Item_ShiftCol(item, coll);
 
@@ -217,7 +217,7 @@ void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll)
 }
 
 int32_t __cdecl Lara_TestWall(
-    ITEM_INFO *item, int32_t front, int32_t right, int32_t down)
+    ITEM *item, int32_t front, int32_t right, int32_t down)
 {
     int32_t x = item->pos.x;
     int32_t y = item->pos.y + down;
@@ -261,7 +261,7 @@ int32_t __cdecl Lara_TestWall(
         break;
     }
 
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     const int32_t height = Room_GetHeight(sector, x, y, z);
     const int32_t ceiling = Room_GetCeiling(sector, x, y, z);
     if (height == NO_HEIGHT) {
@@ -273,7 +273,7 @@ int32_t __cdecl Lara_TestWall(
     return 2;
 }
 
-int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_TestHangOnClimbWall(ITEM *item, COLL_INFO *coll)
 {
     if (!g_Lara.climb_status || item->fall_speed < 0) {
         return 0;
@@ -320,7 +320,7 @@ int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll)
     }
 }
 
-int32_t __cdecl Lara_TestClimbStance(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_TestClimbStance(ITEM *item, COLL_INFO *coll)
 {
     int32_t shift_r;
     int32_t result_r = Lara_TestClimbPos(
@@ -362,7 +362,7 @@ int32_t __cdecl Lara_TestClimbStance(ITEM_INFO *item, COLL_INFO *coll)
     return 1;
 }
 
-void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll)
+void __cdecl Lara_HangTest(ITEM *item, COLL_INFO *coll)
 {
     coll->bad_pos = NO_BAD_POS;
     coll->bad_neg = NO_BAD_NEG;
@@ -496,8 +496,7 @@ void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll)
     item->pos.y += hdif;
 }
 
-int32_t __cdecl Lara_TestEdgeCatch(
-    ITEM_INFO *item, COLL_INFO *coll, int32_t *edge)
+int32_t __cdecl Lara_TestEdgeCatch(ITEM *item, COLL_INFO *coll, int32_t *edge)
 {
     const BOUNDS_16 *const bounds = Item_GetBoundsAccurate(item);
     int32_t hdif1 = coll->side_front.floor - bounds->min_y;
@@ -519,7 +518,7 @@ int32_t __cdecl Lara_TestEdgeCatch(
     return ABS(coll->side_left.floor - coll->side_right.floor) < SLOPE_DIF;
 }
 
-int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_TestHangJumpUp(ITEM *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_FRONT || !(g_Input & IN_ACTION)
         || g_Lara.gun_status != LGS_ARMLESS || coll->hit_static
@@ -561,7 +560,7 @@ int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll)
     return 1;
 }
 
-int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_TestHangJump(ITEM *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_FRONT || !(g_Input & IN_ACTION)
         || g_Lara.gun_status != LGS_ARMLESS || coll->hit_static
@@ -610,7 +609,7 @@ int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll)
     return 1;
 }
 
-int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle)
+int32_t __cdecl Lara_TestHangSwingIn(ITEM *item, PHD_ANGLE angle)
 {
     int32_t x = item->pos.x;
     int32_t y = item->pos.y;
@@ -631,13 +630,13 @@ int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle)
         break;
     }
 
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     int32_t height = Room_GetHeight(sector, x, y, z);
     int32_t ceiling = Room_GetCeiling(sector, x, y, z);
     return height != NO_HEIGHT && height - y > 0 && ceiling - y < -400;
 }
 
-int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_TestVault(ITEM *item, COLL_INFO *coll)
 {
     if (coll->coll_type != COLL_FRONT || !(g_Input & IN_ACTION)
         || g_Lara.gun_status != LGS_ARMLESS) {
@@ -730,7 +729,7 @@ int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll)
     return 1;
 }
 
-int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_TestSlide(ITEM *item, COLL_INFO *coll)
 {
     if (ABS(coll->x_tilt) <= 2 && ABS(coll->z_tilt) <= 2) {
         return 0;
@@ -779,13 +778,13 @@ int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll)
     return 1;
 }
 
-int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, int16_t ang, int32_t dist)
+int16_t __cdecl Lara_FloorFront(ITEM *item, int16_t ang, int32_t dist)
 {
     const int32_t x = item->pos.x + ((dist * Math_Sin(ang)) >> W2V_SHIFT);
     const int32_t y = item->pos.y - LARA_HEIGHT;
     const int32_t z = item->pos.z + ((dist * Math_Cos(ang)) >> W2V_SHIFT);
     int16_t room_num = item->room_num;
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     int32_t height = Room_GetHeight(sector, x, y, z);
     if (height != NO_HEIGHT) {
         height -= item->pos.y;
@@ -793,14 +792,14 @@ int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, int16_t ang, int32_t dist)
     return height;
 }
 
-int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_LandedBad(ITEM *item, COLL_INFO *coll)
 {
     const int32_t x = item->pos.x;
     const int32_t y = item->pos.y;
     const int32_t z = item->pos.z;
 
     int16_t room_num = item->room_num;
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     const int32_t height = Room_GetHeight(sector, x, y - LARA_HEIGHT, z);
     item->pos.y = height;
     item->floor = height;
@@ -820,7 +819,7 @@ int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll)
     return item->hit_points <= 0;
 }
 
-int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll)
+int32_t __cdecl Lara_CheckForLetGo(ITEM *item, COLL_INFO *coll)
 {
     item->gravity = 0;
     item->fall_speed = 0;
@@ -829,7 +828,7 @@ int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll)
     int32_t x = item->pos.x;
     int32_t y = item->pos.y;
     int32_t z = item->pos.z;
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     Room_GetHeight(sector, x, y, z);
     coll->trigger = g_TriggerIndex;
     if ((g_Input & IN_ACTION) && item->hit_points > 0) {
@@ -861,7 +860,7 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
     }
 
     const FRAME_INFO *frame_ptr = NULL;
-    const OBJECT_INFO *obj = &g_Objects[g_LaraItem->object_id];
+    const OBJECT *obj = &g_Objects[g_LaraItem->object_id];
     if (g_Lara.hit_direction >= 0) {
         LARA_ANIMATION anim_num;
         switch (g_Lara.hit_direction) {
@@ -953,10 +952,10 @@ void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint)
 }
 
 void __cdecl Lara_GetJointAbsPosition_I(
-    ITEM_INFO *item, XYZ_32 *vec, FRAME_INFO *frame1, FRAME_INFO *frame2,
+    ITEM *item, XYZ_32 *vec, FRAME_INFO *frame1, FRAME_INFO *frame2,
     int32_t frac, int32_t rate)
 {
-    const OBJECT_INFO *obj = &g_Objects[item->object_id];
+    const OBJECT *obj = &g_Objects[item->object_id];
 
     Matrix_PushUnit();
     g_MatrixPtr->_03 = 0;
@@ -1029,8 +1028,7 @@ void __cdecl Lara_GetJointAbsPosition_I(
     Matrix_Pop();
 }
 
-void __cdecl Lara_TakeHit(
-    ITEM_INFO *const lara_item, const COLL_INFO *const coll)
+void __cdecl Lara_TakeHit(ITEM *const lara_item, const COLL_INFO *const coll)
 {
     const int32_t dx = g_Lara.spaz_effect->pos.x - lara_item->pos.x;
     const int32_t dz = g_Lara.spaz_effect->pos.z - lara_item->pos.z;
@@ -1038,7 +1036,7 @@ void __cdecl Lara_TakeHit(
     g_Lara.spaz_effect_count--;
 }
 
-void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
+void __cdecl Lara_BaddieCollision(ITEM *lara_item, COLL_INFO *coll)
 {
     lara_item->hit_status = 0;
     g_Lara.hit_direction = -1;
@@ -1051,27 +1049,27 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
 
     roomies[roomies_count++] = lara_item->room_num;
 
-    DOOR_INFOS *doors = g_Rooms[roomies[0]].doors;
-    if (doors != NULL) {
-        for (int32_t i = 0; i < doors->count; i++) {
+    PORTALS *portals = g_Rooms[roomies[0]].portals;
+    if (portals != NULL) {
+        for (int32_t i = 0; i < portals->count; i++) {
             if (roomies_count >= MAX_BADDIE_COLLISION) {
                 break;
             }
-            roomies[roomies_count++] = doors->door[i].room;
+            roomies[roomies_count++] = portals->portal[i].room;
         }
     }
 
     for (int32_t i = 0; i < roomies_count; i++) {
         int16_t item_num = g_Rooms[roomies[i]].item_num;
         while (item_num != NO_ITEM) {
-            const ITEM_INFO *const item = &g_Items[item_num];
+            const ITEM *const item = &g_Items[item_num];
 
             // the collision routine can destroy the item - need to store the
             // next item beforehand
             const int16_t next_item_num = item->next_item;
 
             if (item->collidable && item->status != IS_INVISIBLE) {
-                const OBJECT_INFO *const object = &g_Objects[item->object_id];
+                const OBJECT *const object = &g_Objects[item->object_id];
                 if (object->collision) {
                     // clang-format off
                     const XYZ_32 d = {
@@ -1104,8 +1102,8 @@ void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll)
 }
 
 void __cdecl Lara_Push(
-    const ITEM_INFO *const item, ITEM_INFO *const lara_item,
-    COLL_INFO *const coll, const bool spaz_on, const bool big_push)
+    const ITEM *const item, ITEM *const lara_item, COLL_INFO *const coll,
+    const bool spaz_on, const bool big_push)
 {
     int32_t dx = lara_item->pos.x - item->pos.x;
     int32_t dz = lara_item->pos.z - item->pos.z;
@@ -1180,8 +1178,7 @@ void __cdecl Lara_Push(
     }
 }
 
-int32_t __cdecl Lara_MovePosition(
-    XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item)
+int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM *item, ITEM *lara_item)
 {
     const XYZ_16 rot = {
         .x = item->rot.x,
@@ -1207,7 +1204,7 @@ int32_t __cdecl Lara_MovePosition(
 
     if (item->object_id == O_FLARE_ITEM) {
         int16_t room_num = lara_item->room_num;
-        const SECTOR_INFO *const sector =
+        const SECTOR *const sector =
             Room_GetSector(new_pos.x, new_pos.y, new_pos.z, &room_num);
         const int32_t height =
             Room_GetHeight(sector, new_pos.x, new_pos.y, new_pos.z);
@@ -1251,7 +1248,7 @@ int32_t __cdecl Lara_TestClimb(
         return 0;
     }
 
-    const SECTOR_INFO *sector;
+    const SECTOR *sector;
     int32_t height;
     int32_t ceiling;
 
@@ -1360,7 +1357,7 @@ int32_t __cdecl Lara_TestClimb(
 }
 
 int32_t __cdecl Lara_TestClimbPos(
-    const ITEM_INFO *const item, const int32_t front, const int32_t right,
+    const ITEM *const item, const int32_t front, const int32_t right,
     const int32_t origin, const int32_t height, int32_t *const shift)
 {
     const int32_t y = item->pos.y + origin;
@@ -1405,7 +1402,7 @@ int32_t __cdecl Lara_TestClimbPos(
 }
 
 void __cdecl Lara_DoClimbLeftRight(
-    ITEM_INFO *const item, const COLL_INFO *const coll, const int32_t result,
+    ITEM *const item, const COLL_INFO *const coll, const int32_t result,
     const int32_t shift)
 {
     if (result == 1) {
@@ -1445,7 +1442,7 @@ void __cdecl Lara_DoClimbLeftRight(
 }
 
 int32_t __cdecl Lara_TestClimbUpPos(
-    const ITEM_INFO *const item, const int32_t front, const int32_t right,
+    const ITEM *const item, const int32_t front, const int32_t right,
     int32_t *const shift, int32_t *const ledge)
 {
     const int32_t y = item->pos.y - LARA_CLIMB_HEIGHT - STEP_L;
@@ -1487,7 +1484,7 @@ int32_t __cdecl Lara_TestClimbUpPos(
 
     *shift = 0;
 
-    const SECTOR_INFO *sector;
+    const SECTOR *sector;
     int32_t height;
     int32_t ceiling;
 
@@ -1548,8 +1545,8 @@ int32_t __cdecl Lara_TestClimbUpPos(
 int32_t __cdecl Lara_GetWaterDepth(
     const int32_t x, const int32_t y, const int32_t z, int16_t room_num)
 {
-    const ROOM_INFO *r = &g_Rooms[room_num];
-    const SECTOR_INFO *sector;
+    const ROOM *r = &g_Rooms[room_num];
+    const SECTOR *sector;
 
     while (true) {
         int32_t z_sector = (z - r->pos.z) >> WALL_SHIFT;
@@ -1613,12 +1610,11 @@ int32_t __cdecl Lara_GetWaterDepth(
     return NO_HEIGHT;
 }
 
-void __cdecl Lara_TestWaterDepth(
-    ITEM_INFO *const item, const COLL_INFO *const coll)
+void __cdecl Lara_TestWaterDepth(ITEM *const item, const COLL_INFO *const coll)
 {
     int16_t room_num = item->room_num;
 
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
     const int32_t water_depth =
         Lara_GetWaterDepth(item->pos.x, item->pos.y, item->pos.z, room_num);
@@ -1642,7 +1638,7 @@ void __cdecl Lara_TestWaterDepth(
     }
 }
 
-void __cdecl Lara_SwimCollision(ITEM_INFO *const item, COLL_INFO *const coll)
+void __cdecl Lara_SwimCollision(ITEM *const item, COLL_INFO *const coll)
 {
     if (item->rot.x < -PHD_90 || item->rot.x > PHD_90) {
         g_Lara.move_angle = item->rot.y + PHD_180;
@@ -1711,10 +1707,10 @@ void __cdecl Lara_SwimCollision(ITEM_INFO *const item, COLL_INFO *const coll)
 
 void __cdecl Lara_WaterCurrent(COLL_INFO *const coll)
 {
-    ITEM_INFO *const item = g_LaraItem;
+    ITEM *const item = g_LaraItem;
 
     int16_t room_num = g_LaraItem->room_num;
-    const ROOM_INFO *const r = &g_Rooms[g_LaraItem->room_num];
+    const ROOM *const r = &g_Rooms[g_LaraItem->room_num];
     const int32_t z_sector = (g_LaraItem->pos.z - r->pos.z) >> WALL_SHIFT;
     const int32_t x_sector = (g_LaraItem->pos.x - r->pos.x) >> WALL_SHIFT;
     g_LaraItem->box_num = r->sector[z_sector + x_sector * r->z_size].box;
@@ -1815,21 +1811,21 @@ void __cdecl Lara_CatchFire(void)
         return;
     }
 
-    FX_INFO *const fx = &g_Effects[fx_num];
+    FX *const fx = &g_Effects[fx_num];
     fx->frame_num = 0;
     fx->object_id = O_FLAME;
     fx->counter = -1;
     g_Lara.burn = 1;
 }
 
-void __cdecl Lara_TouchLava(ITEM_INFO *const item)
+void __cdecl Lara_TouchLava(ITEM *const item)
 {
     if (item->hit_points < 0 || g_Lara.water_status == LWS_CHEAT) {
         return;
     }
 
     int16_t room_num = item->room_num;
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(item->pos.x, MAX_HEIGHT, item->pos.z, &room_num);
     const int32_t height =
         Room_GetHeight(sector, item->pos.x, MAX_HEIGHT, item->pos.z);
@@ -1843,7 +1839,7 @@ void __cdecl Lara_TouchLava(ITEM_INFO *const item)
     for (int32_t i = 0; i < 10; i++) {
         const int16_t fx_num = Effect_Create(item->room_num);
         if (fx_num != NO_ITEM) {
-            FX_INFO *const fx = &g_Effects[fx_num];
+            FX *const fx = &g_Effects[fx_num];
             fx->object_id = O_FLAME;
             fx->frame_num =
                 g_Objects[O_FLAME].mesh_count * Random_GetControl() / 0x7FFF;
@@ -1863,7 +1859,7 @@ void __cdecl Lara_Extinguish(void)
     // put out flame objects
     int16_t fx_num = g_NextEffectActive;
     while (fx_num != NO_ITEM) {
-        FX_INFO *const fx = &g_Effects[fx_num];
+        FX *const fx = &g_Effects[fx_num];
         const int16_t next_fx_num = fx->next_active;
         if (fx->object_id == O_FLAME && fx->counter < 0) {
             fx->counter = 0;

@@ -57,7 +57,7 @@ void __cdecl Item_InitialiseArray(const int32_t num_items)
     g_NextItemActive = NO_ITEM;
     m_MaxUsedItemCount = g_LevelItemCount;
     for (int32_t i = g_NextItemFree; i < num_items - 1; i++) {
-        ITEM_INFO *const item = &g_Items[i];
+        ITEM *const item = &g_Items[i];
         item->active = 0;
         item->next_item = i + 1;
     }
@@ -85,7 +85,7 @@ void __cdecl Item_Kill(const int16_t item_num)
     Item_RemoveActive(item_num);
     Item_RemoveDrawn(item_num);
 
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     if (item == g_Lara.target) {
         g_Lara.target = NULL;
     }
@@ -105,7 +105,7 @@ void __cdecl Item_Kill(const int16_t item_num)
 
 void __cdecl Item_Initialise(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->anim_num = g_Objects[item->object_id].anim_idx;
     item->frame_num = g_Anims[item->anim_num].frame_base;
     item->goal_anim_state = g_Anims[item->anim_num].current_anim_state;
@@ -148,13 +148,13 @@ void __cdecl Item_Initialise(const int16_t item_num)
         item->status = IS_ACTIVE;
     }
 
-    ROOM_INFO *const room = &g_Rooms[item->room_num];
+    ROOM *const room = &g_Rooms[item->room_num];
     item->next_item = room->item_num;
     room->item_num = item_num;
 
     const int32_t dx = (item->pos.x - room->pos.x) >> WALL_SHIFT;
     const int32_t dz = (item->pos.z - room->pos.z) >> WALL_SHIFT;
-    const SECTOR_INFO *const sector = &room->sector[dx * room->z_size + dz];
+    const SECTOR *const sector = &room->sector[dx * room->z_size + dz];
     item->floor = sector->floor << 8;
 
     if (g_SaveGame.bonus_flag && !g_IsDemoLevelType) {
@@ -168,7 +168,7 @@ void __cdecl Item_Initialise(const int16_t item_num)
 
 void __cdecl Item_RemoveActive(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     if (!item->active) {
         return;
     }
@@ -192,7 +192,7 @@ void __cdecl Item_RemoveActive(const int16_t item_num)
 
 void __cdecl Item_RemoveDrawn(const int16_t item_num)
 {
-    const ITEM_INFO *const item = &g_Items[item_num];
+    const ITEM *const item = &g_Items[item_num];
     if (item->room_num == NO_ROOM) {
         return;
     }
@@ -214,7 +214,7 @@ void __cdecl Item_RemoveDrawn(const int16_t item_num)
 
 void __cdecl Item_AddActive(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     if (g_Objects[item->object_id].control == NULL) {
         item->status = IS_INACTIVE;
         return;
@@ -231,8 +231,8 @@ void __cdecl Item_AddActive(const int16_t item_num)
 
 void __cdecl Item_NewRoom(const int16_t item_num, const int16_t room_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
-    ROOM_INFO *room = NULL;
+    ITEM *const item = &g_Items[item_num];
+    ROOM *room = NULL;
 
     if (item->room_num != NO_ROOM) {
         room = &g_Rooms[item->room_num];
@@ -265,7 +265,7 @@ int32_t __cdecl Item_GlobalReplace(
     for (int32_t i = 0; i < g_RoomCount; i++) {
         int16_t j = g_Rooms[i].item_num;
         while (j != NO_ITEM) {
-            ITEM_INFO *const item = &g_Items[j];
+            ITEM *const item = &g_Items[j];
             if (item->object_id == src_object_id) {
                 item->object_id = dst_object_id;
                 changed++;
@@ -283,7 +283,7 @@ void __cdecl Item_ClearKilled(void)
     // improvements, generously used in Opera House and Barkhang Monastery
     int16_t link_num = g_PrevItemActive;
     while (link_num != NO_ITEM) {
-        ITEM_INFO *const item = &g_Items[link_num];
+        ITEM *const item = &g_Items[link_num];
         Item_Kill(link_num);
         link_num = item->next_active;
         item->next_active = NO_ITEM;
@@ -291,12 +291,12 @@ void __cdecl Item_ClearKilled(void)
     g_PrevItemActive = NO_ITEM;
 }
 
-bool Item_IsSmashable(const ITEM_INFO *item)
+bool Item_IsSmashable(const ITEM *item)
 {
     return (item->object_id == O_WINDOW_1 || item->object_id == O_BELL);
 }
 
-void __cdecl Item_ShiftCol(ITEM_INFO *const item, COLL_INFO *const coll)
+void __cdecl Item_ShiftCol(ITEM *const item, COLL_INFO *const coll)
 {
     item->pos.x += coll->shift.x;
     item->pos.y += coll->shift.y;
@@ -306,14 +306,14 @@ void __cdecl Item_ShiftCol(ITEM_INFO *const item, COLL_INFO *const coll)
     coll->shift.x = 0;
 }
 
-void __cdecl Item_UpdateRoom(ITEM_INFO *const item, const int32_t height)
+void __cdecl Item_UpdateRoom(ITEM *const item, const int32_t height)
 {
     int32_t x = item->pos.x;
     int32_t y = height + item->pos.y;
     int32_t z = item->pos.z;
 
     int16_t room_num = item->room_num;
-    const SECTOR_INFO *const sector = Room_GetSector(x, y, z, &room_num);
+    const SECTOR *const sector = Room_GetSector(x, y, z, &room_num);
     item->floor = Room_GetHeight(sector, x, y, z);
     if (item->room_num != room_num) {
         Item_NewRoom(g_Lara.item_num, room_num);
@@ -321,7 +321,7 @@ void __cdecl Item_UpdateRoom(ITEM_INFO *const item, const int32_t height)
 }
 
 int32_t __cdecl Item_TestBoundsCollide(
-    const ITEM_INFO *const src_item, const ITEM_INFO *const dst_item,
+    const ITEM *const src_item, const ITEM *const dst_item,
     const int32_t radius)
 {
     const BOUNDS_16 *const src_bounds = &Item_GetBestFrame(src_item)->bounds;
@@ -351,8 +351,8 @@ int32_t __cdecl Item_TestBoundsCollide(
 }
 
 int32_t __cdecl Item_TestPosition(
-    const int16_t *const bounds_in, const ITEM_INFO *const src_item,
-    const ITEM_INFO *const dst_item)
+    const int16_t *const bounds_in, const ITEM *const src_item,
+    const ITEM *const dst_item)
 {
     const OBJECT_BOUNDS bounds = M_ConvertBounds(bounds_in);
 
@@ -402,8 +402,7 @@ int32_t __cdecl Item_TestPosition(
 }
 
 void __cdecl Item_AlignPosition(
-    const XYZ_32 *const vec, const ITEM_INFO *const src_item,
-    ITEM_INFO *const dst_item)
+    const XYZ_32 *const vec, const ITEM *const src_item, ITEM *const dst_item)
 {
     dst_item->rot = src_item->rot;
     Matrix_PushUnit();
@@ -423,7 +422,7 @@ void __cdecl Item_AlignPosition(
     };
 
     int16_t room_num = dst_item->room_num;
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(new_pos.x, new_pos.y, new_pos.z, &room_num);
     const int32_t height =
         Room_GetHeight(sector, new_pos.x, new_pos.y, new_pos.z);
@@ -440,7 +439,7 @@ void __cdecl Item_AlignPosition(
     dst_item->pos.z = new_pos.z;
 }
 
-void __cdecl Item_Animate(ITEM_INFO *const item)
+void __cdecl Item_Animate(ITEM *const item)
 {
     item->hit_status = 0;
     item->touch_bits = 0;
@@ -585,8 +584,7 @@ void __cdecl Item_Animate(ITEM_INFO *const item)
     item->pos.z += (item->speed * Math_Cos(item->rot.y)) >> W2V_SHIFT;
 }
 
-int32_t __cdecl Item_GetAnimChange(
-    ITEM_INFO *const item, const ANIM *const anim)
+int32_t __cdecl Item_GetAnimChange(ITEM *const item, const ANIM *const anim)
 {
     if (item->current_anim_state == item->goal_anim_state) {
         return false;
@@ -615,7 +613,7 @@ int32_t __cdecl Item_GetAnimChange(
 }
 
 void __cdecl Item_Translate(
-    ITEM_INFO *const item, const int32_t x, const int32_t y, const int32_t z)
+    ITEM *const item, const int32_t x, const int32_t y, const int32_t z)
 {
     const int32_t c = Math_Cos(item->rot.y);
     const int32_t s = Math_Sin(item->rot.y);
@@ -624,7 +622,7 @@ void __cdecl Item_Translate(
     item->pos.z += ((c * z - s * x) >> W2V_SHIFT);
 }
 
-int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *const item)
+int32_t __cdecl Item_IsTriggerActive(ITEM *const item)
 {
     const bool ok = !(item->flags & IF_REVERSE);
 
@@ -649,7 +647,7 @@ int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *const item)
 }
 
 int32_t __cdecl Item_GetFrames(
-    const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate)
+    const ITEM *item, FRAME_INFO *frmptr[], int32_t *rate)
 {
     const ANIM *const anim = &g_Anims[item->anim_num];
     const int32_t cur_frame_num = item->frame_num - anim->frame_base;
@@ -676,7 +674,7 @@ int32_t __cdecl Item_GetFrames(
     return numerator;
 }
 
-BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
+BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM *const item)
 {
     int32_t rate;
     FRAME_INFO *frmptr[2];
@@ -698,7 +696,7 @@ BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *const item)
     return result;
 }
 
-FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *const item)
+FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM *const item)
 {
     FRAME_INFO *frmptr[2];
     int32_t rate;
@@ -707,8 +705,7 @@ FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *const item)
 }
 
 bool __cdecl Item_IsNearItem(
-    const ITEM_INFO *const item, const XYZ_32 *const pos,
-    const int32_t distance)
+    const ITEM *const item, const XYZ_32 *const pos, const int32_t distance)
 {
     const XYZ_32 d = {
         .x = pos->x - item->pos.x,
@@ -727,13 +724,12 @@ bool __cdecl Item_IsNearItem(
     return d.y >= bounds->min_y && d.y <= bounds->max_y + 100;
 }
 
-int32_t Item_GetDistance(
-    const ITEM_INFO *const item, const XYZ_32 *const target)
+int32_t Item_GetDistance(const ITEM *const item, const XYZ_32 *const target)
 {
     return XYZ_32_GetDistance(&item->pos, target);
 }
 
-ITEM_INFO *Item_Get(const int16_t item_num)
+ITEM *Item_Get(const int16_t item_num)
 {
     return &g_Items[item_num];
 }

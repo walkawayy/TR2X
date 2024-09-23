@@ -73,7 +73,7 @@ void __cdecl Boat_Initialise(const int16_t item_num)
     boat_data->water = 0;
     boat_data->pitch = 0;
 
-    ITEM_INFO *const boat = &g_Items[item_num];
+    ITEM *const boat = &g_Items[item_num];
     boat->data = boat_data;
 }
 
@@ -84,8 +84,8 @@ int32_t __cdecl Boat_CheckGeton(
         return 0;
     }
 
-    ITEM_INFO *const boat = &g_Items[item_num];
-    const ITEM_INFO *const lara = g_LaraItem;
+    ITEM *const boat = &g_Items[item_num];
+    const ITEM *const lara = g_LaraItem;
     const int32_t dist =
         ((lara->pos.z - boat->pos.z) * Math_Cos(-boat->rot.y)
          - (lara->pos.x - boat->pos.x) * Math_Sin(-boat->rot.y))
@@ -140,7 +140,7 @@ int32_t __cdecl Boat_CheckGeton(
 }
 
 void __cdecl Boat_Collision(
-    const int16_t item_num, ITEM_INFO *const lara, COLL_INFO *const coll)
+    const int16_t item_num, ITEM *const lara, COLL_INFO *const coll)
 {
     if (lara->hit_points < 0 || g_Lara.skidoo != NO_ITEM) {
         return;
@@ -172,7 +172,7 @@ void __cdecl Boat_Collision(
 
     g_Lara.water_status = LWS_ABOVE_WATER;
 
-    ITEM_INFO *const boat = &g_Items[item_num];
+    ITEM *const boat = &g_Items[item_num];
 
     lara->pos.x = boat->pos.x;
     lara->pos.y = boat->pos.y - 5;
@@ -199,7 +199,7 @@ void __cdecl Boat_Collision(
 }
 
 int32_t __cdecl Boat_TestWaterHeight(
-    const ITEM_INFO *const item, const int32_t z_off, const int32_t x_off,
+    const ITEM *const item, const int32_t z_off, const int32_t x_off,
     XYZ_32 *const pos)
 {
     // clang-format off
@@ -217,7 +217,7 @@ int32_t __cdecl Boat_TestWaterHeight(
     Room_GetSector(pos->x, pos->y, pos->z, &room_num);
     int32_t height = Room_GetWaterHeight(pos->x, pos->y, pos->z, room_num);
     if (height == NO_HEIGHT) {
-        const SECTOR_INFO *const sector =
+        const SECTOR *const sector =
             Room_GetSector(pos->x, pos->y, pos->z, &room_num);
         height = Room_GetHeight(sector, pos->x, pos->y, pos->z);
         if (height != NO_HEIGHT) {
@@ -230,11 +230,11 @@ int32_t __cdecl Boat_TestWaterHeight(
 
 void __cdecl Boat_DoShift(const int32_t boat_num)
 {
-    ITEM_INFO *const boat = &g_Items[boat_num];
+    ITEM *const boat = &g_Items[boat_num];
     int16_t item_num = g_Rooms[boat->room_num].item_num;
 
     while (item_num != NO_ITEM) {
-        ITEM_INFO *item = &g_Items[item_num];
+        ITEM *item = &g_Items[item_num];
 
         if (item->object_id == O_BOAT && item_num != boat_num
             && g_Lara.skidoo != item_num) {
@@ -274,7 +274,7 @@ void __cdecl Boat_DoShift(const int32_t boat_num)
     }
 }
 
-void __cdecl Boat_DoWakeEffect(const ITEM_INFO *const boat)
+void __cdecl Boat_DoWakeEffect(const ITEM *const boat)
 {
     g_MatrixPtr->_23 = 0;
     S_CalculateLight(boat->pos.x, boat->pos.y, boat->pos.z, boat->room_num);
@@ -288,7 +288,7 @@ void __cdecl Boat_DoWakeEffect(const ITEM_INFO *const boat)
             continue;
         }
 
-        FX_INFO *const fx = &g_Effects[fx_num];
+        FX *const fx = &g_Effects[fx_num];
         fx->object_id = O_WATER_SPRITE;
         fx->room_num = boat->room_num;
         fx->frame_num = frame;
@@ -337,7 +337,7 @@ int32_t __cdecl Boat_DoDynamics(
 
 int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
 {
-    ITEM_INFO *const boat = &g_Items[boat_num];
+    ITEM *const boat = &g_Items[boat_num];
     BOAT_INFO *const boat_data = (BOAT_INFO *)boat->data;
     boat->rot.z -= boat_data->tilt_angle;
 
@@ -426,7 +426,7 @@ int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
     }
 
     int16_t room_num = boat->room_num;
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
     int32_t height =
         Room_GetWaterHeight(boat->pos.x, boat->pos.y, boat->pos.z, room_num);
@@ -475,7 +475,7 @@ int32_t __cdecl Boat_Dynamics(const int16_t boat_num)
     return collide;
 }
 
-int32_t __cdecl Boat_UserControl(ITEM_INFO *const boat)
+int32_t __cdecl Boat_UserControl(ITEM *const boat)
 {
     int32_t no_turn = 1;
 
@@ -548,9 +548,9 @@ int32_t __cdecl Boat_UserControl(ITEM_INFO *const boat)
     return no_turn;
 }
 
-void __cdecl Boat_Animation(const ITEM_INFO *const boat, const int32_t collide)
+void __cdecl Boat_Animation(const ITEM *const boat, const int32_t collide)
 {
-    ITEM_INFO *const lara = g_LaraItem;
+    ITEM *const lara = g_LaraItem;
     const BOAT_INFO *const boat_data = (const BOAT_INFO *)boat->data;
 
     if (lara->hit_points <= 0) {
@@ -621,8 +621,8 @@ void __cdecl Boat_Animation(const ITEM_INFO *const boat, const int32_t collide)
 
 void __cdecl Boat_Control(const int16_t item_num)
 {
-    ITEM_INFO *const lara = g_LaraItem;
-    ITEM_INFO *const boat = &g_Items[item_num];
+    ITEM *const lara = g_LaraItem;
+    ITEM *const boat = &g_Items[item_num];
     BOAT_INFO *const boat_data = (BOAT_INFO *)boat->data;
 
     bool drive = false;
@@ -635,7 +635,7 @@ void __cdecl Boat_Control(const int16_t item_num)
     const int32_t hfr = Boat_TestWaterHeight(boat, BOAT_FRONT, BOAT_SIDE, &fr);
 
     int16_t room_num = boat->room_num;
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(boat->pos.x, boat->pos.y, boat->pos.z, &room_num);
     int32_t height =
         Room_GetHeight(sector, boat->pos.x, boat->pos.y, boat->pos.z);
@@ -795,7 +795,7 @@ void __cdecl Boat_Control(const int16_t item_num)
         };
 
         int16_t room_num = lara->room_num;
-        const SECTOR_INFO *const sector =
+        const SECTOR *const sector =
             Room_GetSector(pos.x, pos.y, pos.z, &room_num);
         if (Room_GetHeight(sector, pos.x, pos.y, pos.z) >= pos.y - STEP_L) {
             lara->pos.x = pos.x;
@@ -813,7 +813,7 @@ void __cdecl Boat_Control(const int16_t item_num)
 
 void __cdecl Gondola_Control(const int16_t item_num)
 {
-    ITEM_INFO *const gondola = &g_Items[item_num];
+    ITEM *const gondola = &g_Items[item_num];
 
     switch (gondola->current_anim_state) {
     case GONDOLA_FLOATING:
@@ -826,7 +826,7 @@ void __cdecl Gondola_Control(const int16_t item_num)
     case GONDOLA_SINK: {
         gondola->pos.y = gondola->pos.y + GONDOLA_SINK_SPEED;
         int16_t room_num = gondola->room_num;
-        const SECTOR_INFO *const sector = Room_GetSector(
+        const SECTOR *const sector = Room_GetSector(
             gondola->pos.x, gondola->pos.y, gondola->pos.z, &room_num);
         const int32_t height = Room_GetHeight(
             sector, gondola->pos.x, gondola->pos.y, gondola->pos.z);

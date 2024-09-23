@@ -13,7 +13,7 @@ void __cdecl Room_GetBounds(void)
 {
     while (g_BoundStart != g_BoundEnd) {
         const int16_t room_num = g_BoundRooms[g_BoundStart++ % MAX_BOUND_ROOMS];
-        ROOM_INFO *const r = &g_Rooms[room_num];
+        ROOM *const r = &g_Rooms[room_num];
         r->bound_active &= ~2;
         g_MidSort = (r->bound_active >> 8) + 1;
 
@@ -54,20 +54,20 @@ void __cdecl Room_GetBounds(void)
             }
         }
 
-        if (r->doors == NULL) {
+        if (r->portals == NULL) {
             continue;
         }
 
         Matrix_Push();
         Matrix_TranslateAbs(r->pos.x, r->pos.y, r->pos.z);
-        for (int32_t i = 0; i < r->doors->count; i++) {
-            const DOOR_INFO *const door = &r->doors->door[i];
+        for (int32_t i = 0; i < r->portals->count; i++) {
+            const PORTAL *const portal = &r->portals->portal[i];
 
             // clang-format off
             const XYZ_32 offset = {
-                .x = door->x * (r->pos.x + door->vertex[0].x - g_W2VMatrix._03),
-                .y = door->y * (r->pos.y + door->vertex[0].y - g_W2VMatrix._13),
-                .z = door->z * (r->pos.z + door->vertex[0].z - g_W2VMatrix._23),
+                .x = portal->x * (r->pos.x + portal->vertex[0].x - g_W2VMatrix._03),
+                .y = portal->y * (r->pos.y + portal->vertex[0].y - g_W2VMatrix._13),
+                .z = portal->z * (r->pos.z + portal->vertex[0].z - g_W2VMatrix._23),
             };
             // clang-format on
 
@@ -75,17 +75,17 @@ void __cdecl Room_GetBounds(void)
                 continue;
             }
 
-            Room_SetBounds(&door->x, door->room, r);
+            Room_SetBounds(&portal->x, portal->room, r);
         }
         Matrix_Pop();
     }
 }
 
 void __cdecl Room_SetBounds(
-    const int16_t *obj_ptr, int32_t room_num, const ROOM_INFO *parent)
+    const int16_t *obj_ptr, int32_t room_num, const ROOM *parent)
 {
-    ROOM_INFO *const r = &g_Rooms[room_num];
-    const DOOR_INFO *const door = (const DOOR_INFO *)(obj_ptr - 1);
+    ROOM *const r = &g_Rooms[room_num];
+    const PORTAL *const portal = (const PORTAL *)(obj_ptr - 1);
 
     // clang-format off
     if (r->bound_left <= parent->test_left &&
@@ -103,13 +103,13 @@ void __cdecl Room_SetBounds(
     int32_t bottom = parent->test_top;
     int32_t top = parent->test_bottom;
 
-    DOOR_VBUF door_vbuf[4];
+    PORTAL_VBUF portal_vbuf[4];
     int32_t z_behind = 0;
     int32_t z_too_far = 0;
 
     for (int32_t i = 0; i < 4; i++) {
-        DOOR_VBUF *const dvbuf = &door_vbuf[i];
-        const XYZ_16 *const dvtx = &door->vertex[i];
+        PORTAL_VBUF *const dvbuf = &portal_vbuf[i];
+        const XYZ_16 *const dvtx = &portal->vertex[i];
         const int32_t xv =
             dvtx->x * m->_00 + dvtx->y * m->_01 + dvtx->z * m->_02 + m->_03;
         const int32_t yv =
@@ -159,8 +159,8 @@ void __cdecl Room_SetBounds(
     }
 
     if (z_behind > 0) {
-        const DOOR_VBUF *dest = &door_vbuf[0];
-        const DOOR_VBUF *last = &door_vbuf[3];
+        const PORTAL_VBUF *dest = &portal_vbuf[0];
+        const PORTAL_VBUF *last = &portal_vbuf[3];
 
         for (int32_t i = 0; i < 4; i++, last = dest++) {
             if ((dest->zv < 0) == (last->zv < 0)) {
@@ -228,7 +228,7 @@ void __cdecl Room_SetBounds(
     }
 }
 
-void __cdecl Room_Clip(const ROOM_INFO *const r)
+void __cdecl Room_Clip(const ROOM *const r)
 {
     int32_t xv[8];
     int32_t yv[8];
@@ -352,7 +352,7 @@ void __cdecl Room_Clip(const ROOM_INFO *const r)
 
 void __cdecl Room_DrawSingleRoomGeometry(const int16_t room_num)
 {
-    ROOM_INFO *const r = &g_Rooms[room_num];
+    ROOM *const r = &g_Rooms[room_num];
 
     if (r->flags & RF_UNDERWATER) {
         S_SetupBelowWater(g_CameraUnderwater);
@@ -379,7 +379,7 @@ void __cdecl Room_DrawSingleRoomGeometry(const int16_t room_num)
 
 void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
 {
-    ROOM_INFO *const r = &g_Rooms[room_num];
+    ROOM *const r = &g_Rooms[room_num];
 
     if (r->flags & RF_UNDERWATER) {
         S_SetupBelowWater(g_CameraUnderwater);
@@ -398,7 +398,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
     g_PhdWinBottom = r->bound_bottom;
 
     for (int32_t i = 0; i < r->num_meshes; i++) {
-        const MESH_INFO *const mesh = &r->mesh[i];
+        const MESH *const mesh = &r->mesh[i];
         const STATIC_INFO *const static_obj =
             &g_StaticObjects[mesh->static_num];
         if (static_obj->flags & 2) {
@@ -422,9 +422,9 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
 
     int16_t item_num = r->item_num;
     while (item_num != NO_ITEM) {
-        ITEM_INFO *const item = &g_Items[item_num];
+        ITEM *const item = &g_Items[item_num];
         if (item->status != IS_INVISIBLE) {
-            const OBJECT_INFO *const object = &g_Objects[item->object_id];
+            const OBJECT *const object = &g_Objects[item->object_id];
             object->draw_routine(item);
         }
         item_num = item->next_item;
@@ -432,7 +432,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
 
     int16_t fx_num = r->fx_num;
     while (fx_num != NO_ITEM) {
-        const FX_INFO *const fx = &g_Effects[fx_num];
+        const FX *const fx = &g_Effects[fx_num];
         Effect_Draw(fx_num);
         fx_num = fx->next_free;
     }
@@ -447,7 +447,7 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
 
 void __cdecl Room_DrawAllRooms(const int16_t current_room)
 {
-    ROOM_INFO *const r = &g_Rooms[current_room];
+    ROOM *const r = &g_Rooms[current_room];
     r->test_left = 0;
     r->test_top = 0;
     r->test_right = g_PhdWinMaxX;

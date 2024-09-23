@@ -11,7 +11,7 @@ void __cdecl Camera_Clip(
 void __cdecl Camera_Shift(
     int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y,
     int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom);
-const SECTOR_INFO *__cdecl Camera_GoodPosition(
+const SECTOR *__cdecl Camera_GoodPosition(
     int32_t x, int32_t y, int32_t z, int16_t room_num);
 void __cdecl Camera_SmartShift(
     GAME_VECTOR *target,
@@ -19,10 +19,10 @@ void __cdecl Camera_SmartShift(
         int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y,
         int32_t target_h, int32_t left, int32_t top, int32_t right,
         int32_t bottom));
-void __cdecl Camera_Chase(const ITEM_INFO *item);
+void __cdecl Camera_Chase(const ITEM *item);
 int32_t __cdecl Camera_ShiftClamp(GAME_VECTOR *pos, int32_t clamp);
-void __cdecl Camera_Combat(const ITEM_INFO *item);
-void __cdecl Camera_Look(const ITEM_INFO *item);
+void __cdecl Camera_Combat(const ITEM *item);
+void __cdecl Camera_Look(const ITEM *item);
 void __cdecl Camera_Fixed(void);
 void __cdecl Camera_Update(void);
 void __cdecl Camera_LoadCutsceneFrame(void);

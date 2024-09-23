@@ -882,7 +882,7 @@ void __cdecl Inv_DrawInventoryItem(INVENTORY_ITEM *const inv_item)
 
     Matrix_TranslateRel(0, inv_item->y_trans, inv_item->z_trans);
     Matrix_RotYXZ(inv_item->y_rot, inv_item->x_rot, 0);
-    const OBJECT_INFO *const obj = &g_Objects[inv_item->object_id];
+    const OBJECT *const obj = &g_Objects[inv_item->object_id];
     if ((obj->flags & 1) == 0) {
         return;
     }

@@ -1217,8 +1217,8 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
             g_DynamicLightCount = 0;
 
             for (int32_t id = g_NextItemActive; id != NO_ITEM;) {
-                const ITEM_INFO *const item = &g_Items[id];
-                const OBJECT_INFO *obj = &g_Objects[item->object_id];
+                const ITEM *const item = &g_Items[id];
+                const OBJECT *obj = &g_Objects[item->object_id];
                 if (obj->control != NULL) {
                     obj->control(id);
                 }
@@ -1226,8 +1226,8 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
             }
 
             for (int32_t id = g_NextEffectActive; id != NO_ITEM;) {
-                const FX_INFO *const fx = &g_Effects[id];
-                const OBJECT_INFO *const obj = &g_Objects[fx->object_id];
+                const FX *const fx = &g_Effects[id];
+                const OBJECT *const obj = &g_Objects[fx->object_id];
                 if (obj->control != NULL) {
                     obj->control(id);
                 }
@@ -1262,7 +1262,7 @@ int32_t __cdecl Game_Cutscene_Control(const int32_t nframes)
 
 void __cdecl CutscenePlayer_Control(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->rot.y = g_Camera.target_angle;
     item->pos.x = g_Camera.pos.pos.x;
     item->pos.y = g_Camera.pos.pos.y;
@@ -1289,7 +1289,7 @@ void __cdecl CutscenePlayer_Control(const int16_t item_num)
 
 void __cdecl Lara_Control_Cutscene(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->rot.y = g_Camera.target_angle;
     item->pos.x = g_Camera.pos.pos.x;
     item->pos.y = g_Camera.pos.pos.y;
@@ -1308,12 +1308,12 @@ void __cdecl Lara_Control_Cutscene(const int16_t item_num)
 
 void __cdecl CutscenePlayer1_Initialise(const int16_t item_num)
 {
-    OBJECT_INFO *const obj = &g_Objects[O_LARA];
+    OBJECT *const obj = &g_Objects[O_LARA];
     obj->draw_routine = Lara_Draw;
     obj->control = Lara_Control_Cutscene;
 
     Item_AddActive(item_num);
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     g_Camera.pos.pos.x = item->pos.x;
     g_Camera.pos.pos.y = item->pos.y;
     g_Camera.pos.pos.z = item->pos.z;
@@ -1334,7 +1334,7 @@ void __cdecl CutscenePlayer1_Initialise(const int16_t item_num)
 void __cdecl CutscenePlayerGen_Initialise(const int16_t item_num)
 {
     Item_AddActive(item_num);
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->rot.y = 0;
     item->dynamic_light = 0;
 }
@@ -1374,7 +1374,7 @@ int32_t __cdecl Level_Initialise(
         || level_type == GFL_DEMO) {
         GetCarriedItems();
     }
-    g_Effects = game_malloc(MAX_EFFECTS * sizeof(FX_INFO), GBUF_EFFECTS_ARRAY);
+    g_Effects = game_malloc(MAX_EFFECTS * sizeof(FX), GBUF_EFFECTS_ARRAY);
     Effect_InitialiseArray();
     LOT_InitialiseArray();
     Inv_InitColors();

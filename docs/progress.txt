@@ -565,7 +565,7 @@ typedef struct __unaligned { // decompiled
     uint16_t dynamic_light: 1; // 0x0080
     uint16_t killed:        1; // 0x0100
     uint16_t pad:           7; // 0x0200…0x8000
-} ITEM_INFO;
+} ITEM;
 
 typedef struct __unaligned {
     uint32_t timer;
@@ -623,7 +623,7 @@ typedef struct __unaligned { // decompiled
     int8_t floor;
     uint8_t sky_room;
     int8_t ceiling;
-} SECTOR_INFO;
+} SECTOR;
 
 typedef struct __unaligned {
     int16_t lock_angles[4];
@@ -651,7 +651,7 @@ typedef struct __unaligned { // decompiled
     int16_t frame_num;
     int16_t counter;
     int16_t shade;
-} FX_INFO;
+} FX;
 
 typedef struct __unaligned {
     int16_t zone_num;
@@ -852,7 +852,7 @@ typedef enum {
 typedef struct __unaligned {
     XYZ_32 pos;
     int32_t mesh_num;
-} BITE_INFO;
+} BITE;
 
 typedef struct __unaligned { // decompiled
     int16_t *frame_ptr;
@@ -889,12 +889,12 @@ typedef struct __unaligned { // decompiled
     int16_t y;
     int16_t z;
     XYZ_16 vertex[4];
-} DOOR_INFO;
+} PORTAL;
 
 typedef struct __unaligned { // decompiled
     int16_t count;
-    DOOR_INFO door[];
-} DOOR_INFOS;
+    PORTAL portal[];
+} PORTALS;
 
 typedef struct __unaligned { // decompiled
     int32_t x;
@@ -904,7 +904,7 @@ typedef struct __unaligned { // decompiled
     int16_t intensity2;
     int32_t falloff1;
     int32_t falloff2;
-} LIGHT_INFO;
+} LIGHT;
 
 typedef struct __unaligned { // decompiled
     int32_t x;
@@ -914,7 +914,7 @@ typedef struct __unaligned { // decompiled
     int16_t shade1;
     int16_t shade2;
     int16_t static_num;
-} MESH_INFO;
+} MESH;
 
 typedef enum {
     RF_UNDERWATER  = 0x01,
@@ -924,17 +924,17 @@ typedef enum {
 } ROOM_FLAG;
 
 typedef struct __unaligned {
-    SECTOR_INFO *sector;
-    SECTOR_INFO data;
+    SECTOR *sector;
+    SECTOR data;
     int16_t block;
 } DOORPOS_DATA;
 
 typedef struct __unaligned { // decompiled
     int16_t *data;
-    DOOR_INFOS *doors;
-    SECTOR_INFO *sector;
-    LIGHT_INFO *light;
-    MESH_INFO *mesh;
+    PORTALS *portals;
+    SECTOR *sector;
+    LIGHT *light;
+    MESH *mesh;
     XYZ_32 pos;
     int32_t min_floor;
     int32_t max_ceiling;
@@ -958,7 +958,7 @@ typedef struct __unaligned { // decompiled
     int16_t fx_num;
     int16_t flipped_room;
     uint16_t flags;
-} ROOM_INFO;
+} ROOM;
 
 typedef struct __unaligned { // decompiled
     int16_t head_rotation;
@@ -969,8 +969,8 @@ typedef struct __unaligned { // decompiled
     MOOD_TYPE mood;
     LOT_INFO lot;
     XYZ_32 target;
-    ITEM_INFO *enemy;
-} CREATURE_INFO;
+    ITEM *enemy;
+} CREATURE;
 
 typedef enum {
     CAM_CHASE     = 0,
@@ -1116,14 +1116,14 @@ typedef struct __unaligned { // decompiled
     void (*initialise)(int16_t item_num);
     void (*control)(int16_t item_num);
     void (*floor)(
-        const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
+        const ITEM *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
     void (*ceiling)(
-        const ITEM_INFO *item, int32_t x, int32_t y, int32_t z,
+        const ITEM *item, int32_t x, int32_t y, int32_t z,
         int32_t *height);
-    void (*draw_routine)(const ITEM_INFO *item);
+    void (*draw_routine)(const ITEM *item);
     void (*collision)(int16_t
-        item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+        item_num, ITEM *lara_item, COLL_INFO *coll);
 
     int16_t anim_idx;
     int16_t hit_points;
@@ -1145,7 +1145,7 @@ typedef struct __unaligned { // decompiled
             uint16_t pad : 8;
         };
     };
-} OBJECT_INFO;
+} OBJECT;
 
 typedef struct __unaligned {
     GAME_VECTOR pos;
@@ -1167,8 +1167,8 @@ typedef struct __unaligned {
     int16_t last;
     int16_t timer;
     int16_t speed;
-    ITEM_INFO *item;
-    ITEM_INFO *last_item;
+    ITEM *item;
+    ITEM *last_item;
     OBJECT_VECTOR *fixed;
     int32_t is_lara_mic;
     XYZ_32 mic_pos;
@@ -1229,10 +1229,10 @@ typedef struct __unaligned { // decompiled
     uint16_t pad:                 11;
     int32_t water_surface_dist;
     XYZ_32 last_pos;
-    FX_INFO *spaz_effect;
+    FX *spaz_effect;
     uint32_t mesh_effects;
     int16_t *mesh_ptrs[15];
-    ITEM_INFO *target;
+    ITEM *target;
     int16_t target_angles[2];
     int16_t turn_rate;
     int16_t move_angle;
@@ -1251,7 +1251,7 @@ typedef struct __unaligned { // decompiled
     AMMO_INFO harpoon_ammo;
     AMMO_INFO grenade_ammo;
     AMMO_INFO m16_ammo;
-    CREATURE_INFO *creature;
+    CREATURE *creature;
 } LARA_INFO;
 
 typedef enum {
@@ -2548,12 +2548,12 @@ typedef enum {
     GBUF_ANIM_BONES               = 8,
     GBUF_ANIM_FRAMES              = 9,
     GBUF_ROOM_TEXTURES            = 10,
-    GBUF_ROOM_INFOS               = 11,
+    GBUF_ROOMS                    = 11,
     GBUF_ROOM_MESH                = 12,
-    GBUF_ROOM_DOOR                = 13,
+    GBUF_ROOM_PORTALS             = 13,
     GBUF_ROOM_FLOOR               = 14,
     GBUF_ROOM_LIGHTS              = 15,
-    GBUF_ROOM_STATIC_MESH_INFOS   = 16,
+    GBUF_ROOM_STATIC_MESHES       = 16,
     GBUF_FLOOR_DATA               = 17,
     GBUF_ITEMS                    = 18,
     GBUF_CAMERAS                  = 19,
@@ -2642,7 +2642,7 @@ typedef struct __unaligned {
     int32_t xv;
     int32_t yv;
     int32_t zv;
-} DOOR_VBUF;
+} PORTAL_VBUF;
 
 typedef struct __unaligned {
     BOUNDS_16 bounds;
@@ -2941,42 +2941,42 @@ typedef enum {
 # game/boat.c
 0x0040CB30  0x003C  +       void __cdecl Boat_Initialise(int16_t item_num);
 0x0040CB70  0x0170  +       int32_t __cdecl Boat_CheckGeton(int16_t item_num, COLL_INFO *coll);
-0x0040CCE0  0x015E  +       void __cdecl Boat_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x0040CE40  0x00F8  +       int32_t __cdecl Boat_TestWaterHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
+0x0040CCE0  0x015E  +       void __cdecl Boat_Collision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x0040CE40  0x00F8  +       int32_t __cdecl Boat_TestWaterHeight(ITEM *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
 0x0040CF40  0x01C1  +       void __cdecl Boat_DoShift(int32_t boat_num);
-0x0040D110  0x0174  +       void __cdecl Boat_DoWakeEffect(ITEM_INFO *boat);
+0x0040D110  0x0174  +       void __cdecl Boat_DoWakeEffect(ITEM *boat);
 0x0040D290  0x004B  +       int32_t __cdecl Boat_DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
 0x0040D2E0  0x04DD  +       int32_t __cdecl Boat_Dynamics(int16_t boat_num);
-0x0040D7C0  0x0187  +       int32_t __cdecl Boat_UserControl(ITEM_INFO *boat);
-0x0040D950  0x0169  +       void __cdecl Boat_Animation(ITEM_INFO *boat, int32_t collide);
+0x0040D7C0  0x0187  +       int32_t __cdecl Boat_UserControl(ITEM *boat);
+0x0040D950  0x0169  +       void __cdecl Boat_Animation(ITEM *boat, int32_t collide);
 0x0040DAC0  0x062A  +       void __cdecl Boat_Control(int16_t item_num);
 0x0040E0F0  0x00B3  +       void __cdecl Gondola_Control(int16_t item_num);
 
 # game/box.c
 0x0040E1B0  0x002F  +       void __cdecl Creature_Initialise(int16_t item_num);
 0x0040E1E0  0x0047  +       int32_t __cdecl Creature_Activate(int16_t item_num);
-0x0040E230  0x0242  +       void __cdecl Creature_AIInfo(ITEM_INFO *item, AI_INFO *info);
+0x0040E230  0x0242  +       void __cdecl Creature_AIInfo(ITEM *item, AI_INFO *info);
 0x0040E490  0x01F3  +       int32_t __cdecl Box_SearchLOT(LOT_INFO *lot, int32_t expansion);
 0x0040E690  0x006F  +       int32_t __cdecl Box_UpdateLOT(LOT_INFO *lot, int32_t expansion);
 0x0040E700  0x0095  +       void __cdecl Box_TargetBox(LOT_INFO *lot, int16_t box_num);
-0x0040E7A0  0x00F2  +       int32_t __cdecl Box_StalkBox(const ITEM_INFO *item, const ITEM_INFO *enemy, int16_t box_num);
-0x0040E8A0  0x00A4  +       int32_t __cdecl Box_EscapeBox(const ITEM_INFO *item, const ITEM_INFO *enemy, int16_t box_num);
-0x0040E950  0x00A7  +       int32_t __cdecl Box_ValidBox(const ITEM_INFO *item, int16_t zone_num, int16_t box_num);
-0x0040EA00  0x043F  +       void __cdecl Creature_Mood(ITEM_INFO *item, AI_INFO *info, int32_t violent);
-0x0040EE70  0x0459  +       TARGET_TYPE __cdecl Box_CalculateTarget(XYZ_32 *target, ITEM_INFO *item, LOT_INFO *lot);
+0x0040E7A0  0x00F2  +       int32_t __cdecl Box_StalkBox(const ITEM *item, const ITEM *enemy, int16_t box_num);
+0x0040E8A0  0x00A4  +       int32_t __cdecl Box_EscapeBox(const ITEM *item, const ITEM *enemy, int16_t box_num);
+0x0040E950  0x00A7  +       int32_t __cdecl Box_ValidBox(const ITEM *item, int16_t zone_num, int16_t box_num);
+0x0040EA00  0x043F  +       void __cdecl Creature_Mood(ITEM *item, AI_INFO *info, int32_t violent);
+0x0040EE70  0x0459  +       TARGET_TYPE __cdecl Box_CalculateTarget(XYZ_32 *target, ITEM *item, LOT_INFO *lot);
 0x0040F2D0  0x00F8  +       int32_t __cdecl Creature_CheckBaddieOverlap(int16_t item_num);
 0x0040F3D0  0x008B  +       int32_t __cdecl Box_BadFloor(int32_t x, int32_t y, int32_t z, int32_t box_height, int32_t next_height, int16_t room_num, LOT_INFO *lot);
 0x0040F460  0x00B8  +       void __cdecl Creature_Die(int16_t item_num, int32_t explode);
 0x0040F520  0x08CC  +       int32_t __cdecl Creature_Animate(int16_t item_num, int16_t angle, int16_t tilt);
-0x0040FDF0  0x00D5  +       int16_t __cdecl Creature_Turn(ITEM_INFO *item, int16_t maximum_turn);
-0x0040FED0  0x0035  +       void __cdecl Creature_Tilt(ITEM_INFO *item, int16_t angle);
-0x0040FF10  0x0049  +       void __cdecl Creature_Head(ITEM_INFO *item, int16_t required);
-0x0040FF60  0x004E  +       void __cdecl Creature_Neck(ITEM_INFO *item, int16_t required);
+0x0040FDF0  0x00D5  +       int16_t __cdecl Creature_Turn(ITEM *item, int16_t maximum_turn);
+0x0040FED0  0x0035  +       void __cdecl Creature_Tilt(ITEM *item, int16_t angle);
+0x0040FF10  0x0049  +       void __cdecl Creature_Head(ITEM *item, int16_t required);
+0x0040FF60  0x004E  +       void __cdecl Creature_Neck(ITEM *item, int16_t required);
 0x0040FFB0  0x00A8  +       void __cdecl Creature_Float(int16_t item_num);
-0x00410060  0x0050  +       void __cdecl Creature_Underwater(ITEM_INFO *item, int32_t depth);
-0x004100B0  0x005C  +       int16_t __cdecl Creature_Effect(ITEM_INFO *item, BITE_INFO *bite, int16_t (*__cdecl spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
+0x00410060  0x0050  +       void __cdecl Creature_Underwater(ITEM *item, int32_t depth);
+0x004100B0  0x005C  +       int16_t __cdecl Creature_Effect(ITEM *item, BITE *bite, int16_t (*__cdecl spawn)(int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot, int16_t room_num));
 0x00410110  0x0131  +       int32_t __cdecl Creature_Vault(int16_t item_num, int16_t angle, int32_t vault, int32_t shift);
-0x00410250  0x016F  +       void __cdecl Creature_Kill(ITEM_INFO *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
+0x00410250  0x016F  +       void __cdecl Creature_Kill(ITEM *item, int32_t kill_anim, int32_t kill_state, int32_t lara_kill_state);
 0x004103C0  0x01DB  +       void __cdecl Creature_GetBaddieTarget(int16_t item_num, int32_t goody);
 
 # game/camera.c
@@ -2984,12 +2984,12 @@ typedef enum {
 0x00410650  0x0372  +       void __cdecl Camera_Move(const GAME_VECTOR *target, int32_t speed);
 0x004109D0  0x00D7  +       void __cdecl Camera_Clip(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom);
 0x00410AB0  0x0154  +       void __cdecl Camera_Shift(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom);
-0x00410C10  0x0050  +       const SECTOR_INFO *__cdecl Camera_GoodPosition(int32_t x, int32_t y, int32_t z, int16_t room_num);
+0x00410C10  0x0050  +       const SECTOR *__cdecl Camera_GoodPosition(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00410C60  0x0781  +       void __cdecl Camera_SmartShift(GAME_VECTOR *target, void (*__cdecl shift)(int32_t *x, int32_t *y, int32_t *h, int32_t target_x, int32_t target_y, int32_t target_h, int32_t left, int32_t top, int32_t right, int32_t bottom));
-0x004113F0  0x00ED  +       void __cdecl Camera_Chase(const ITEM_INFO *item);
+0x004113F0  0x00ED  +       void __cdecl Camera_Chase(const ITEM *item);
 0x004114E0  0x019E  +       int32_t __cdecl Camera_ShiftClamp(GAME_VECTOR *pos, int32_t clamp);
-0x00411680  0x018E  +       void __cdecl Camera_Combat(const ITEM_INFO *item);
-0x00411810  0x01E2  +       void __cdecl Camera_Look(const ITEM_INFO *item);
+0x00411680  0x018E  +       void __cdecl Camera_Combat(const ITEM *item);
+0x00411810  0x01E2  +       void __cdecl Camera_Look(const ITEM *item);
 0x00411A00  0x0099  +       void __cdecl Camera_Fixed(void);
 0x00411AA0  0x04A9  +       void __cdecl Camera_Update(void);
 
@@ -3012,43 +3012,43 @@ typedef enum {
 0x00412FE0  0x03D2  +       int32_t __cdecl Collide_CollideStaticObjects(COLL_INFO *coll, int32_t x, int32_t y, int32_t z, int16_t room_num, int32_t height);
 0x004133D0  0x00C8  +       void __cdecl Room_GetNearbyRooms(int32_t x, int32_t y, int32_t z, int32_t r, int32_t h, int16_t room_num);
 0x004134A0  0x0055  +       void __cdecl Room_GetNewRoom(int32_t x, int32_t y, int32_t z, int16_t room_num);
-0x00413500  0x0037  +       void __cdecl Item_ShiftCol(ITEM_INFO *item, COLL_INFO *coll);
-0x00413540  0x005D  +       void __cdecl Item_UpdateRoom(ITEM_INFO *item, int32_t height);
-0x004135A0  0x0099  +       int16_t __cdecl Room_GetTiltType(const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);
-0x00413640  0x0195  +       void __cdecl Lara_BaddieCollision(ITEM_INFO *lara_item, COLL_INFO *coll);
-0x004137E0  0x0079  +       void __cdecl Lara_TakeHit(ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00413860  0x0078  +       void __cdecl Creature_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x004138E0  0x0055  +       void __cdecl Object_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00413940  0x0077  +       void __cdecl Door_Collision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x004139C0  0x0067  +       void __cdecl Object_Collision_Trap(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00413A30  0x0306  +       void __cdecl Lara_Push(ITEM_INFO *item, ITEM_INFO *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
-0x00413D40  0x00CB  +       int32_t __cdecl Item_TestBoundsCollide(const ITEM_INFO *src_item, const ITEM_INFO *dst_item, int32_t radius);
-0x00413E10  0x0137  +       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM_INFO *src_item, ITEM_INFO *dst_item);
-0x00413F50  0x013B  +       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM_INFO *src_item, ITEM_INFO *dst_item);
-0x00414090  0x0187  +       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM_INFO *item, ITEM_INFO *lara_item);
+0x00413500  0x0037  +       void __cdecl Item_ShiftCol(ITEM *item, COLL_INFO *coll);
+0x00413540  0x005D  +       void __cdecl Item_UpdateRoom(ITEM *item, int32_t height);
+0x004135A0  0x0099  +       int16_t __cdecl Room_GetTiltType(const SECTOR *sector, int32_t x, int32_t y, int32_t z);
+0x00413640  0x0195  +       void __cdecl Lara_BaddieCollision(ITEM *lara_item, COLL_INFO *coll);
+0x004137E0  0x0079  +       void __cdecl Lara_TakeHit(ITEM *lara_item, COLL_INFO *coll);
+0x00413860  0x0078  +       void __cdecl Creature_Collision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x004138E0  0x0055  +       void __cdecl Object_Collision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00413940  0x0077  +       void __cdecl Door_Collision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x004139C0  0x0067  +       void __cdecl Object_Collision_Trap(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00413A30  0x0306  +       void __cdecl Lara_Push(ITEM *item, ITEM *lara_item, COLL_INFO *coll, int32_t spaz_on, int32_t big_push);
+0x00413D40  0x00CB  +       int32_t __cdecl Item_TestBoundsCollide(const ITEM *src_item, const ITEM *dst_item, int32_t radius);
+0x00413E10  0x0137  +       int32_t __cdecl Item_TestPosition(int16_t *bounds, ITEM *src_item, ITEM *dst_item);
+0x00413F50  0x013B  +       void __cdecl Item_AlignPosition(XYZ_32 *vec, ITEM *src_item, ITEM *dst_item);
+0x00414090  0x0187  +       int32_t __cdecl Lara_MovePosition(XYZ_32 *vec, ITEM *item, ITEM *lara_item);
 0x00414220  0x016E  +R      int32_t __cdecl Misc_Move3DPosTo3DPos(PHD_3DPOS *src_pos, const PHD_3DPOS *dest_pos, int32_t velocity, PHD_ANGLE ang_add);
 
 # game/control.c
 0x00414390  0x0356  +       int32_t __cdecl Game_Control(int32_t nframes, int32_t demo_mode);
-0x004146F0  0x0338  +       void __cdecl Item_Animate(ITEM_INFO *item);
-0x00414A60  0x00AB  +       int32_t __cdecl Item_GetAnimChange(ITEM_INFO *item, const ANIM *anim);
-0x00414B10  0x005F  +       void __cdecl Item_Translate(ITEM_INFO *item, int32_t x, int32_t y, int32_t z);
-0x00414B70  0x0198  +       SECTOR_INFO *__cdecl Room_GetSector(int32_t x, int32_t y, int32_t z, int16_t *room_num);
+0x004146F0  0x0338  +       void __cdecl Item_Animate(ITEM *item);
+0x00414A60  0x00AB  +       int32_t __cdecl Item_GetAnimChange(ITEM *item, const ANIM *anim);
+0x00414B10  0x005F  +       void __cdecl Item_Translate(ITEM *item, int32_t x, int32_t y, int32_t z);
+0x00414B70  0x0198  +       SECTOR *__cdecl Room_GetSector(int32_t x, int32_t y, int32_t z, int16_t *room_num);
 0x00414D10  0x0168  +       int32_t __cdecl Room_GetWaterHeight(int32_t x, int32_t y, int32_t z, int16_t room_num);
-0x00414E80  0x0265  +       int32_t __cdecl Room_GetHeight(const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);
+0x00414E80  0x0265  +       int32_t __cdecl Room_GetHeight(const SECTOR *sector, int32_t x, int32_t y, int32_t z);
 0x00415100  0x00E7  +       void __cdecl Camera_RefreshFromTrigger(int16_t type, const int16_t *data);
 0x004151F0  0x0690  +       void __cdecl Room_TestTriggers(int16_t *data, int32_t heavy);
-0x004158D0  0x0055  +       int32_t __cdecl Item_IsTriggerActive(ITEM_INFO *item);
-0x00415930  0x023D  +       int32_t __cdecl Room_GetCeiling(const SECTOR_INFO *sector, int32_t x, int32_t y, int32_t z);
-0x00415B90  0x004E  +       int16_t __cdecl Room_GetDoor(const SECTOR_INFO *sector);
+0x004158D0  0x0055  +       int32_t __cdecl Item_IsTriggerActive(ITEM *item);
+0x00415930  0x023D  +       int32_t __cdecl Room_GetCeiling(const SECTOR *sector, int32_t x, int32_t y, int32_t z);
+0x00415B90  0x004E  +       int16_t __cdecl Room_GetDoor(const SECTOR *sector);
 0x00415BE0  0x00A0  +       int32_t __cdecl LOS_Check(const GAME_VECTOR *start, GAME_VECTOR *target);
 0x00415C80  0x02EB  +       int32_t __cdecl LOS_CheckZ(const GAME_VECTOR *start, GAME_VECTOR *target);
 0x00415F70  0x02EC  +       int32_t __cdecl LOS_CheckX(const GAME_VECTOR *start, GAME_VECTOR *target);
-0x00416260  0x00DA  +       int32_t __cdecl LOS_ClipTarget(const GAME_VECTOR *start, GAME_VECTOR *target, const SECTOR_INFO *sector);
+0x00416260  0x00DA  +       int32_t __cdecl LOS_ClipTarget(const GAME_VECTOR *start, GAME_VECTOR *target, const SECTOR *sector);
 0x00416340  0x02FE  +       int32_t __cdecl LOS_CheckSmashable(const GAME_VECTOR *start, GAME_VECTOR *target);
 0x00416640  0x00B3  +       void __cdecl Room_FlipMap(void);
-0x00416700  0x0096  +       void __cdecl Room_RemoveFlipItems(ROOM_INFO *r);
-0x004167A0  0x005C  +       void __cdecl Room_AddFlipItems(ROOM_INFO *r);
+0x00416700  0x0096  +       void __cdecl Room_RemoveFlipItems(ROOM *r);
+0x004167A0  0x005C  +       void __cdecl Room_AddFlipItems(ROOM *r);
 0x00416800  0x0024  +       void __cdecl Room_TriggerMusicTrack(int16_t value, int16_t flags, int16_t type);
 0x00416830  0x00DA  +       void __cdecl Room_TriggerMusicTrackImpl(int16_t value, int16_t flags, int16_t type);
 
@@ -3071,7 +3071,7 @@ typedef enum {
 0x004177B0  0x017F  -R      void __cdecl ControlTwinkle(int16_t fx_num);
 0x00417930  0x00D9  -R      void __cdecl CreateBartoliLight(int16_t item_num);
 0x00417A10  0x00AB  -R      int16_t __cdecl DragonFire(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
-0x00417AC0  0x02ED  -R      void __cdecl DragonCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0x00417AC0  0x02ED  -R      void __cdecl DragonCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
 0x00417DB0  0x00D9  -R      void __cdecl DragonBones(int16_t item_num);
 0x00417E90  0x0519  -R      void __cdecl DragonControl(int16_t back_num);
 0x004183E0  0x0114  -R      void __cdecl InitialiseBartoli(int16_t item_num);
@@ -3083,15 +3083,15 @@ typedef enum {
 0x00418990  0x0037  +       int32_t __cdecl Game_Draw(void);
 0x004189D0  0x02B0  +       void __cdecl Room_DrawAllRooms(int16_t current_room);
 0x00418C80  0x01C6  +       void __cdecl Room_GetBounds(void);
-0x00418E50  0x037F  +       void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM_INFO *parent);
-0x004191D0  0x03D2  +       void __cdecl Room_Clip(ROOM_INFO *r);
+0x00418E50  0x037F  +       void __cdecl Room_SetBounds(const int16_t *objptr, int32_t room_num, ROOM *parent);
+0x004191D0  0x03D2  +       void __cdecl Room_Clip(ROOM *r);
 0x004195B0  0x00B4  +       void __cdecl Room_DrawSingleRoomGeometry(int16_t room_num);
 0x00419670  0x0218  +       void __cdecl Room_DrawSingleRoomObjects(int16_t room_num);
 0x00419890  0x0147  +       void __cdecl Effect_Draw(int16_t fx_num);
-0x004199E0  0x0083  -       void __cdecl Object_DrawSpriteItem(ITEM_INFO *item);
-0x00419A70  0x0378  -       void __cdecl Object_DrawAnimatingItem(ITEM_INFO *item);
-0x00419DF0  0x0D02  +       void __cdecl Lara_Draw(const ITEM_INFO *item);
-0x0041AB20  0x0BC6  +       void __cdecl Lara_Draw_I(const ITEM_INFO *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);
+0x004199E0  0x0083  -       void __cdecl Object_DrawSpriteItem(ITEM *item);
+0x00419A70  0x0378  -       void __cdecl Object_DrawAnimatingItem(ITEM *item);
+0x00419DF0  0x0D02  +       void __cdecl Lara_Draw(const ITEM *item);
+0x0041AB20  0x0BC6  +       void __cdecl Lara_Draw_I(const ITEM *item, const FRAME_INFO *frame1, const FRAME_INFO *frame2, int32_t frac, int32_t rate);
 0x0041B710  0x0034  +       void __cdecl Matrix_InitInterpolate(int32_t frac, int32_t rate);
 0x0041B750  0x0022  +       void __cdecl Matrix_Pop_I(void);
 0x0041B780  0x0027  +       void __cdecl Matrix_Push_I(void);
@@ -3107,10 +3107,10 @@ typedef enum {
 0x0041BA80  0x01A5  +       void __cdecl Matrix_Interpolate(void);
 0x0041BC30  0x00FC  +       void __cdecl Matrix_InterpolateArm(void);
 0x0041BD30  0x014B  -       void __cdecl Gun_DrawFlash(LARA_GUN_TYPE weapon_type, int32_t clip);
-0x0041BEA0  0x00E8  -       void __cdecl Output_CalculateObjectLighting(const ITEM_INFO *item, const FRAME_INFO *frame);
-0x0041BF90  0x0092  +       int32_t __cdecl Item_GetFrames(const ITEM_INFO *item, FRAME_INFO *frmptr[], int32_t *rate);
-0x0041C030  0x007C  +       BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM_INFO *item);
-0x0041C0B0  0x0035  +       FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM_INFO *item);
+0x0041BEA0  0x00E8  -       void __cdecl Output_CalculateObjectLighting(const ITEM *item, const FRAME_INFO *frame);
+0x0041BF90  0x0092  +       int32_t __cdecl Item_GetFrames(const ITEM *item, FRAME_INFO *frmptr[], int32_t *rate);
+0x0041C030  0x007C  +       BOUNDS_16 *__cdecl Item_GetBoundsAccurate(const ITEM *item);
+0x0041C0B0  0x0035  +       FRAME_INFO *__cdecl Item_GetBestFrame(const ITEM *item);
 0x0041C0F0  0x0048  -R      void __cdecl AddDynamicLight(int32_t x, int32_t y, int32_t z, int32_t intensity, int32_t falloff);
 
 # game/eel.c
@@ -3127,63 +3127,63 @@ typedef enum {
 0x0041C7F0  0x0072  -R      void __cdecl Richochet(GAME_VECTOR *pos);
 0x0041C870  0x0030  -R      void __cdecl ControlRichochet1(int16_t fx_num);
 0x0041C8A0  0x0064  -R      void __cdecl CreateBubble(PHD_3DPOS *pos, int16_t room_num);
-0x0041C910  0x0078  -R      void __cdecl LaraBubbles(ITEM_INFO *item);
+0x0041C910  0x0078  -R      void __cdecl LaraBubbles(ITEM *item);
 0x0041C990  0x00F3  -R      void __cdecl ControlBubble1(int16_t fx_num);
-0x0041CA90  0x00C2  -R      void __cdecl Splash(ITEM_INFO *item);
+0x0041CA90  0x00C2  -R      void __cdecl Splash(ITEM *item);
 0x0041CB60  0x0071  -R      void __cdecl ControlSplash1(int16_t fx_num);
 0x0041CBE0  0x00AE  -R      void __cdecl ControlWaterSprite(int16_t fx_num);
 0x0041CC90  0x008C  -R      void __cdecl ControlSnowSprite(int16_t fx_num);
 0x0041CD20  0x00DE  -R      void __cdecl ControlHotLiquid(int16_t fx_num);
 0x0041CE00  0x013D  -R      void __cdecl WaterFall(int16_t fx_num);
-0x0041CF40  0x000B  -R      void __cdecl finish_level_effect(ITEM_INFO *item);
-0x0041CF50  0x0016  -R      void __cdecl turn180_effect(ITEM_INFO *item);
-0x0041CF70  0x0096  -R      void __cdecl floor_shake_effect(ITEM_INFO *item);
-0x0041D010  0x0040  -R      void __cdecl lara_normal_effect(ITEM_INFO *item);
-0x0041D050  0x001C  -R      void __cdecl BoilerFX(ITEM_INFO *item);
-0x0041D070  0x008F  -R      void __cdecl FloodFX(ITEM_INFO *item);
-0x0041D100  0x0023  -R      void __cdecl RubbleFX(ITEM_INFO *item);
-0x0041D130  0x002C  -R      void __cdecl ChandelierFX(ITEM_INFO *item);
-0x0041D160  0x0023  -R      void __cdecl ExplosionFX(ITEM_INFO *item);
-0x0041D190  0x001C  -R      void __cdecl PistonFX(ITEM_INFO *item);
-0x0041D1B0  0x001C  -R      void __cdecl CurtainFX(ITEM_INFO *item);
-0x0041D1D0  0x001C  -R      void __cdecl StatueFX(ITEM_INFO *item);
-0x0041D1F0  0x001C  -R      void __cdecl SetChangeFX(ITEM_INFO *item);
+0x0041CF40  0x000B  -R      void __cdecl finish_level_effect(ITEM *item);
+0x0041CF50  0x0016  -R      void __cdecl turn180_effect(ITEM *item);
+0x0041CF70  0x0096  -R      void __cdecl floor_shake_effect(ITEM *item);
+0x0041D010  0x0040  -R      void __cdecl lara_normal_effect(ITEM *item);
+0x0041D050  0x001C  -R      void __cdecl BoilerFX(ITEM *item);
+0x0041D070  0x008F  -R      void __cdecl FloodFX(ITEM *item);
+0x0041D100  0x0023  -R      void __cdecl RubbleFX(ITEM *item);
+0x0041D130  0x002C  -R      void __cdecl ChandelierFX(ITEM *item);
+0x0041D160  0x0023  -R      void __cdecl ExplosionFX(ITEM *item);
+0x0041D190  0x001C  -R      void __cdecl PistonFX(ITEM *item);
+0x0041D1B0  0x001C  -R      void __cdecl CurtainFX(ITEM *item);
+0x0041D1D0  0x001C  -R      void __cdecl StatueFX(ITEM *item);
+0x0041D1F0  0x001C  -R      void __cdecl SetChangeFX(ITEM *item);
 0x0041D210  0x003F  -R      void __cdecl ControlDingDong(int16_t item_num);
 0x0041D250  0x0037  -R      void __cdecl ControlLaraAlarm(int16_t item_num);
 0x0041D290  0x0067  -R      void __cdecl ControlAlarmSound(int16_t item_num);
 0x0041D300  0x005D  -R      void __cdecl ControlBirdTweeter(int16_t item_num);
-0x0041D360  0x0059  -R      void __cdecl DoChimeSound(ITEM_INFO *item);
+0x0041D360  0x0059  -R      void __cdecl DoChimeSound(ITEM *item);
 0x0041D3C0  0x0068  -R      void __cdecl ControlClockChimes(int16_t item_num);
-0x0041D430  0x0128  -R      void __cdecl SphereOfDoomCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0x0041D430  0x0128  -R      void __cdecl SphereOfDoomCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
 0x0041D560  0x00F0  -R      void __cdecl SphereOfDoom(int16_t item_num);
-0x0041D650  0x012D  -R      void __cdecl DrawSphereOfDoom(ITEM_INFO *item);
-0x0041D780  0x000A  -R      void __cdecl lara_hands_free(ITEM_INFO *item);
-0x0041D790  0x0005  -R      void __cdecl flip_map_effect(ITEM_INFO *item);
-0x0041D7A0  0x0043  -R      void __cdecl draw_right_gun(ITEM_INFO *item);
-0x0041D7F0  0x0043  -R      void __cdecl draw_left_gun(ITEM_INFO *item);
-0x0041D840  0x0063  -R      void __cdecl swap_meshes_with_meshswap1(ITEM_INFO *item);
-0x0041D8B0  0x0063  -R      void __cdecl swap_meshes_with_meshswap2(ITEM_INFO *item);
-0x0041D920  0x009A  -R      void __cdecl swap_meshes_with_meshswap3(ITEM_INFO *item);
-0x0041D9C0  0x0009  -R      void __cdecl invisibility_on(ITEM_INFO *item);
-0x0041D9D0  0x0016  -R      void __cdecl invisibility_off(ITEM_INFO *item);
-0x0041D9F0  0x0009  -R      void __cdecl dynamic_light_on(ITEM_INFO *item);
-0x0041DA00  0x000B  -R      void __cdecl dynamic_light_off(ITEM_INFO *item);
-0x0041DA10  0x0005  -R      void __cdecl reset_hair(ITEM_INFO *item);
-0x0041DA20  0x0024  -R      void __cdecl AssaultStart(ITEM_INFO *item);
-0x0041DA50  0x001F  -R      void __cdecl AssaultStop(ITEM_INFO *item);
-0x0041DA70  0x0017  -R      void __cdecl AssaultReset(ITEM_INFO *item);
-0x0041DA90  0x00B2  -R      void __cdecl AssaultFinished(ITEM_INFO *item);
+0x0041D650  0x012D  -R      void __cdecl DrawSphereOfDoom(ITEM *item);
+0x0041D780  0x000A  -R      void __cdecl lara_hands_free(ITEM *item);
+0x0041D790  0x0005  -R      void __cdecl flip_map_effect(ITEM *item);
+0x0041D7A0  0x0043  -R      void __cdecl draw_right_gun(ITEM *item);
+0x0041D7F0  0x0043  -R      void __cdecl draw_left_gun(ITEM *item);
+0x0041D840  0x0063  -R      void __cdecl swap_meshes_with_meshswap1(ITEM *item);
+0x0041D8B0  0x0063  -R      void __cdecl swap_meshes_with_meshswap2(ITEM *item);
+0x0041D920  0x009A  -R      void __cdecl swap_meshes_with_meshswap3(ITEM *item);
+0x0041D9C0  0x0009  -R      void __cdecl invisibility_on(ITEM *item);
+0x0041D9D0  0x0016  -R      void __cdecl invisibility_off(ITEM *item);
+0x0041D9F0  0x0009  -R      void __cdecl dynamic_light_on(ITEM *item);
+0x0041DA00  0x000B  -R      void __cdecl dynamic_light_off(ITEM *item);
+0x0041DA10  0x0005  -R      void __cdecl reset_hair(ITEM *item);
+0x0041DA20  0x0024  -R      void __cdecl AssaultStart(ITEM *item);
+0x0041DA50  0x001F  -R      void __cdecl AssaultStop(ITEM *item);
+0x0041DA70  0x0017  -R      void __cdecl AssaultReset(ITEM *item);
+0x0041DA90  0x00B2  -R      void __cdecl AssaultFinished(ITEM *item);
 
 # game/enemies.c
 0x0041DB50  0x0076  -R      int16_t __cdecl Knife(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
 0x0041DBD0  0x040B  -R      void __cdecl Cult2Control(int16_t item_num);
 0x0041E000  0x04A1  -R      void __cdecl MonkControl(int16_t item_num);
 0x0041E4D0  0x05BD  -R      void __cdecl Worker3Control(int16_t item_num);
-0x0041EAE0  0x03F7  -R      void __cdecl DrawXianLord(ITEM_INFO *item);
-0x0041EEE0  0x00A8  -R      void __cdecl XianDamage(ITEM_INFO *item, CREATURE_INFO *xian, int32_t damage);
+0x0041EAE0  0x03F7  -R      void __cdecl DrawXianLord(ITEM *item);
+0x0041EEE0  0x00A8  -R      void __cdecl XianDamage(ITEM *item, CREATURE *xian, int32_t damage);
 0x0041EF90  0x0058  -R      void __cdecl InitialiseXianLord(int16_t item_num);
 0x0041EFF0  0x0590  -R      void __cdecl XianLordControl(int16_t item_num);
-0x0041F5D0  0x0098  -R      void __cdecl WarriorSparkleTrail(ITEM_INFO *item);
+0x0041F5D0  0x0098  -R      void __cdecl WarriorSparkleTrail(ITEM *item);
 0x0041F670  0x03BA  -R      void __cdecl WarriorControl(int16_t item_num);
 
 # game/gameflow.c
@@ -3285,115 +3285,115 @@ typedef enum {
 0x00427520  0x0058  +       void __cdecl Item_ClearKilled(void);
 
 # game/lara.c
-0x00427580  0x0195  +       void __cdecl Lara_HandleAboveWater(ITEM_INFO *item, COLL_INFO *coll);
+0x00427580  0x0195  +       void __cdecl Lara_HandleAboveWater(ITEM *item, COLL_INFO *coll);
 0x00427720  0x0066  +       void __cdecl Lara_LookUpDown(void);
 0x00427790  0x0072  +       void __cdecl Lara_LookLeftRight(void);
 0x00427810  0x0089  +       void __cdecl Lara_ResetLook(void);
-0x004278A0  0x008B  +       void __cdecl Lara_State_Walk(ITEM_INFO *item, COLL_INFO *coll);
-0x00427930  0x0143  +       void __cdecl Lara_State_Run(ITEM_INFO *item, COLL_INFO *coll);
-0x00427A80  0x0148  +       void __cdecl Lara_State_Stop(ITEM_INFO *item, COLL_INFO *coll);
-0x00427BD0  0x00D3  +       void __cdecl Lara_State_ForwardJump(ITEM_INFO *item, COLL_INFO *coll);
-0x00427CB0  0x0057  +       void __cdecl Lara_State_FastBack(ITEM_INFO *item, COLL_INFO *coll);
-0x00427D10  0x008A  +       void __cdecl Lara_State_TurnRight(ITEM_INFO *item, COLL_INFO *coll);
-0x00427DA0  0x0089  +       void __cdecl Lara_State_TurnLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00427E30  0x0014  +       void __cdecl Lara_State_Death(ITEM_INFO *item, COLL_INFO *coll);
-0x00427E50  0x0040  +       void __cdecl Lara_State_FastFall(ITEM_INFO *item, COLL_INFO *coll);
-0x00427E90  0x0058  +       void __cdecl Lara_State_Hang(ITEM_INFO *item, COLL_INFO *coll);
-0x00427EF0  0x001C  +       void __cdecl Lara_State_Reach(ITEM_INFO *item, COLL_INFO *coll);
-0x00427F10  0x000A  +       void __cdecl Lara_State_Splat(ITEM_INFO *item, COLL_INFO *coll);
-0x00427F20  0x010C  +       void __cdecl Lara_State_Compress(ITEM_INFO *item, COLL_INFO *coll);
-0x00428030  0x0084  +       void __cdecl Lara_State_Back(ITEM_INFO *item, COLL_INFO *coll);
-0x004280C0  0x000B  +       void __cdecl Lara_State_Null(ITEM_INFO *item, COLL_INFO *coll);
-0x004280D0  0x004B  +       void __cdecl Lara_State_FastTurn(ITEM_INFO *item, COLL_INFO *coll);
-0x00428120  0x007C  +       void __cdecl Lara_State_StepRight(ITEM_INFO *item, COLL_INFO *coll);
-0x004281A0  0x007C  +       void __cdecl Lara_State_StepLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00428220  0x002B  +       void __cdecl Lara_State_Slide(ITEM_INFO *item, COLL_INFO *coll);
-0x00428250  0x004A  +       void __cdecl Lara_State_BackJump(ITEM_INFO *item, COLL_INFO *coll);
-0x004282A0  0x0033  +       void __cdecl Lara_State_RightJump(ITEM_INFO *item, COLL_INFO *coll);
-0x004282E0  0x0033  +       void __cdecl Lara_State_LeftJump(ITEM_INFO *item, COLL_INFO *coll);
-0x00428320  0x0013  +       void __cdecl Lara_State_UpJump(ITEM_INFO *item, COLL_INFO *coll);
-0x00428340  0x002C  +       void __cdecl Lara_State_Fallback(ITEM_INFO *item, COLL_INFO *coll);
-0x00428370  0x0035  +       void __cdecl Lara_State_HangLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x004283B0  0x0035  +       void __cdecl Lara_State_HangRight(ITEM_INFO *item, COLL_INFO *coll);
-0x004283F0  0x0018  +       void __cdecl Lara_State_SlideBack(ITEM_INFO *item, COLL_INFO *coll);
-0x00428410  0x0030  +       void __cdecl Lara_State_PushBlock(ITEM_INFO *item, COLL_INFO *coll);
-0x00428440  0x0027  +       void __cdecl Lara_State_PPReady(ITEM_INFO *item, COLL_INFO *coll);
-0x00428470  0x0030  +       void __cdecl Lara_State_Pickup(ITEM_INFO *item, COLL_INFO *coll);
-0x004284A0  0x0058  +       void __cdecl Lara_State_PickupFlare(ITEM_INFO *item, COLL_INFO *coll);
-0x00428500  0x0039  +       void __cdecl Lara_State_SwitchOn(ITEM_INFO *item, COLL_INFO *coll);
-0x00428540  0x0030  +       void __cdecl Lara_State_UseKey(ITEM_INFO *item, COLL_INFO *coll);
-0x00428570  0x001D  +       void __cdecl Lara_State_Special(ITEM_INFO *item, COLL_INFO *coll);
-0x00428590  0x002F  +       void __cdecl Lara_State_SwanDive(ITEM_INFO *item, COLL_INFO *coll);
-0x004285C0  0x0054  +       void __cdecl Lara_State_FastDive(ITEM_INFO *item, COLL_INFO *coll);
-0x00428620  0x0015  +       void __cdecl Lara_State_WaterOut(ITEM_INFO *item, COLL_INFO *coll);
-0x00428640  0x00CA  +       void __cdecl Lara_State_Wade(ITEM_INFO *item, COLL_INFO *coll);
-0x00428710  0x0096  +       void __cdecl Lara_State_DeathSlide(ITEM_INFO *item, COLL_INFO *coll);
-0x004287B0  0x004C  +       void __cdecl Lara_State_Extra_Breath(ITEM_INFO *item, COLL_INFO *coll);
-0x00428800  0x0047  +       void __cdecl Lara_State_Extra_YetiKill(ITEM_INFO *item, COLL_INFO *coll);
-0x00428850  0x0091  +       void __cdecl Lara_State_Extra_SharkKill(ITEM_INFO *item, COLL_INFO *coll);
-0x004288F0  0x0013  +       void __cdecl Lara_State_Extra_Airlock(ITEM_INFO *item, COLL_INFO *coll);
-0x00428910  0x001D  +       void __cdecl Lara_State_Extra_GongBong(ITEM_INFO *item, COLL_INFO *coll);
-0x00428930  0x0051  +       void __cdecl Lara_State_Extra_DinoKill(ITEM_INFO *item, COLL_INFO *coll);
-0x00428990  0x00BC  +       void __cdecl Lara_State_Extra_PullDagger(ITEM_INFO *item, COLL_INFO *coll);
-0x00428A50  0x004D  +       void __cdecl Lara_State_Extra_StartAnim(ITEM_INFO *item, COLL_INFO *coll);
-0x00428AA0  0x00A5  +       void __cdecl Lara_State_Extra_StartHouse(ITEM_INFO *item, COLL_INFO *coll);
-0x00428B50  0x00A3  +       void __cdecl Lara_State_Extra_FinalAnim(ITEM_INFO *item, COLL_INFO *coll);
-0x00428C00  0x0051  +       int32_t __cdecl Lara_Fallen(ITEM_INFO *item, COLL_INFO *coll);
-0x00428C60  0x009B  +       void __cdecl Lara_CollideStop(ITEM_INFO *item, COLL_INFO *coll);
-0x00428D20  0x0191  +       void __cdecl Lara_Col_Walk(ITEM_INFO *item, COLL_INFO *coll);
-0x00428EC0  0x0176  +       void __cdecl Lara_Col_Run(ITEM_INFO *item, COLL_INFO *coll);
-0x00429040  0x0081  +       void __cdecl Lara_Col_Stop(ITEM_INFO *item, COLL_INFO *coll);
-0x004290D0  0x00D7  +       void __cdecl Lara_Col_ForwardJump(ITEM_INFO *item, COLL_INFO *coll);
-0x004291B0  0x00B3  +       void __cdecl Lara_Col_FastBack(ITEM_INFO *item, COLL_INFO *coll);
-0x00429270  0x0095  +       void __cdecl Lara_Col_TurnRight(ITEM_INFO *item, COLL_INFO *coll);
-0x00429310  0x0013  +       void __cdecl Lara_Col_TurnLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00429330  0x0068  +       void __cdecl Lara_Col_Death(ITEM_INFO *item, COLL_INFO *coll);
-0x004293A0  0x0099  +       void __cdecl Lara_Col_FastFall(ITEM_INFO *item, COLL_INFO *coll);
-0x00429440  0x0127  +       void __cdecl Lara_Col_Hang(ITEM_INFO *item, COLL_INFO *coll);
-0x00429570  0x0090  +       void __cdecl Lara_Col_Reach(ITEM_INFO *item, COLL_INFO *coll);
-0x00429600  0x0059  +       void __cdecl Lara_Col_Splat(ITEM_INFO *item, COLL_INFO *coll);
-0x00429660  0x0013  +       void __cdecl Lara_Col_Land(ITEM_INFO *item, COLL_INFO *coll);
-0x00429680  0x0096  +       void __cdecl Lara_Col_Compress( ITEM_INFO *item, COLL_INFO *coll );
-0x00429720  0x00FB  +       void __cdecl Lara_Col_Back(ITEM_INFO *item, COLL_INFO *coll);
-0x00429820  0x00BE  +       void __cdecl Lara_Col_StepRight(ITEM_INFO *item, COLL_INFO *coll);
-0x004298E0  0x0013  +       void __cdecl Lara_Col_StepLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00429900  0x001E  +       void __cdecl Lara_Col_Slide(ITEM_INFO *item, COLL_INFO *coll);
-0x00429920  0x0023  +       void __cdecl Lara_Col_BackJump(ITEM_INFO *item, COLL_INFO *coll);
-0x00429950  0x0023  +       void __cdecl Lara_Col_RightJump(ITEM_INFO *item, COLL_INFO *coll);
-0x00429980  0x0023  +       void __cdecl Lara_Col_LeftJump(ITEM_INFO *item, COLL_INFO *coll);
-0x004299B0  0x011B  +       void __cdecl Lara_Col_UpJump(ITEM_INFO *item, COLL_INFO *coll);
-0x00429AD0  0x0083  +       void __cdecl Lara_Col_Fallback(ITEM_INFO *item, COLL_INFO *coll);
-0x00429B60  0x0033  +       void __cdecl Lara_Col_HangLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00429BA0  0x0033  +       void __cdecl Lara_Col_HangRight(ITEM_INFO *item, COLL_INFO *coll);
-0x00429BE0  0x0023  +       void __cdecl Lara_Col_SlideBack(ITEM_INFO *item, COLL_INFO *coll);
-0x00429C10  0x0013  +       void __cdecl Lara_Col_Null(ITEM_INFO *item, COLL_INFO *coll);
-0x00429C30  0x0081  +       void __cdecl Lara_Col_Roll(ITEM_INFO *item, COLL_INFO *coll);
-0x00429CC0  0x00B3  +       void __cdecl Lara_Col_Roll2(ITEM_INFO *item, COLL_INFO *coll);
-0x00429D80  0x0069  +       void __cdecl Lara_Col_SwanDive(ITEM_INFO *item, COLL_INFO *coll);
-0x00429DF0  0x0079  +       void __cdecl Lara_Col_FastDive(ITEM_INFO *item, COLL_INFO *coll);
-0x00429E70  0x0162  +       void __cdecl Lara_Col_Wade(ITEM_INFO *item, COLL_INFO *coll);
-0x00429FE0  0x0036  +       void __cdecl Lara_Col_Default(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A020  0x0074  +       void __cdecl Lara_Col_Jumper(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A0A0  0x0032  +       void __cdecl Lara_GetCollisionInfo(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A0E0  0x00E2  +       void __cdecl Lara_SlideSlope(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A1D0  0x0067  +       int32_t __cdecl Lara_HitCeiling(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A240  0x007F  +       int32_t __cdecl Lara_DeflectEdge(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A2C0  0x0136  +       void __cdecl Lara_DeflectEdgeJump(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A440  0x00AB  +       void __cdecl Lara_SlideEdgeJump(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A530  0x00E1  +       int32_t __cdecl Lara_TestWall(ITEM_INFO *item, int32_t front, int32_t right, int32_t down);
-0x0042A640  0x00F5  +       int32_t __cdecl Lara_TestHangOnClimbWall(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A750  0x00BE  +       int32_t __cdecl Lara_TestClimbStance(ITEM_INFO *item, COLL_INFO *coll);
-0x0042A810  0x033E  +       void __cdecl Lara_HangTest(ITEM_INFO *item, COLL_INFO *coll);
-0x0042AB70  0x00AD  +       int32_t __cdecl Lara_TestEdgeCatch(ITEM_INFO *item, COLL_INFO *coll, int32_t *edge);
-0x0042AC20  0x016D  +       int32_t __cdecl Lara_TestHangJumpUp(ITEM_INFO *item, COLL_INFO *coll);
-0x0042AD90  0x019E  +       int32_t __cdecl Lara_TestHangJump(ITEM_INFO *item, COLL_INFO *coll);
-0x0042AF30  0x00B1  +       int32_t __cdecl Lara_TestHangSwingIn(ITEM_INFO *item, PHD_ANGLE angle);
-0x0042AFF0  0x02E7  +       int32_t __cdecl Lara_TestVault(ITEM_INFO *item, COLL_INFO *coll);
-0x0042B2E0  0x0130  +       int32_t __cdecl Lara_TestSlide(ITEM_INFO *item, COLL_INFO *coll);
-0x0042B410  0x0075  +       int16_t __cdecl Lara_FloorFront(ITEM_INFO *item, PHD_ANGLE ang, int32_t dist);
-0x0042B490  0x00BB  +       int32_t __cdecl Lara_LandedBad(ITEM_INFO *item, COLL_INFO *coll);
+0x004278A0  0x008B  +       void __cdecl Lara_State_Walk(ITEM *item, COLL_INFO *coll);
+0x00427930  0x0143  +       void __cdecl Lara_State_Run(ITEM *item, COLL_INFO *coll);
+0x00427A80  0x0148  +       void __cdecl Lara_State_Stop(ITEM *item, COLL_INFO *coll);
+0x00427BD0  0x00D3  +       void __cdecl Lara_State_ForwardJump(ITEM *item, COLL_INFO *coll);
+0x00427CB0  0x0057  +       void __cdecl Lara_State_FastBack(ITEM *item, COLL_INFO *coll);
+0x00427D10  0x008A  +       void __cdecl Lara_State_TurnRight(ITEM *item, COLL_INFO *coll);
+0x00427DA0  0x0089  +       void __cdecl Lara_State_TurnLeft(ITEM *item, COLL_INFO *coll);
+0x00427E30  0x0014  +       void __cdecl Lara_State_Death(ITEM *item, COLL_INFO *coll);
+0x00427E50  0x0040  +       void __cdecl Lara_State_FastFall(ITEM *item, COLL_INFO *coll);
+0x00427E90  0x0058  +       void __cdecl Lara_State_Hang(ITEM *item, COLL_INFO *coll);
+0x00427EF0  0x001C  +       void __cdecl Lara_State_Reach(ITEM *item, COLL_INFO *coll);
+0x00427F10  0x000A  +       void __cdecl Lara_State_Splat(ITEM *item, COLL_INFO *coll);
+0x00427F20  0x010C  +       void __cdecl Lara_State_Compress(ITEM *item, COLL_INFO *coll);
+0x00428030  0x0084  +       void __cdecl Lara_State_Back(ITEM *item, COLL_INFO *coll);
+0x004280C0  0x000B  +       void __cdecl Lara_State_Null(ITEM *item, COLL_INFO *coll);
+0x004280D0  0x004B  +       void __cdecl Lara_State_FastTurn(ITEM *item, COLL_INFO *coll);
+0x00428120  0x007C  +       void __cdecl Lara_State_StepRight(ITEM *item, COLL_INFO *coll);
+0x004281A0  0x007C  +       void __cdecl Lara_State_StepLeft(ITEM *item, COLL_INFO *coll);
+0x00428220  0x002B  +       void __cdecl Lara_State_Slide(ITEM *item, COLL_INFO *coll);
+0x00428250  0x004A  +       void __cdecl Lara_State_BackJump(ITEM *item, COLL_INFO *coll);
+0x004282A0  0x0033  +       void __cdecl Lara_State_RightJump(ITEM *item, COLL_INFO *coll);
+0x004282E0  0x0033  +       void __cdecl Lara_State_LeftJump(ITEM *item, COLL_INFO *coll);
+0x00428320  0x0013  +       void __cdecl Lara_State_UpJump(ITEM *item, COLL_INFO *coll);
+0x00428340  0x002C  +       void __cdecl Lara_State_Fallback(ITEM *item, COLL_INFO *coll);
+0x00428370  0x0035  +       void __cdecl Lara_State_HangLeft(ITEM *item, COLL_INFO *coll);
+0x004283B0  0x0035  +       void __cdecl Lara_State_HangRight(ITEM *item, COLL_INFO *coll);
+0x004283F0  0x0018  +       void __cdecl Lara_State_SlideBack(ITEM *item, COLL_INFO *coll);
+0x00428410  0x0030  +       void __cdecl Lara_State_PushBlock(ITEM *item, COLL_INFO *coll);
+0x00428440  0x0027  +       void __cdecl Lara_State_PPReady(ITEM *item, COLL_INFO *coll);
+0x00428470  0x0030  +       void __cdecl Lara_State_Pickup(ITEM *item, COLL_INFO *coll);
+0x004284A0  0x0058  +       void __cdecl Lara_State_PickupFlare(ITEM *item, COLL_INFO *coll);
+0x00428500  0x0039  +       void __cdecl Lara_State_SwitchOn(ITEM *item, COLL_INFO *coll);
+0x00428540  0x0030  +       void __cdecl Lara_State_UseKey(ITEM *item, COLL_INFO *coll);
+0x00428570  0x001D  +       void __cdecl Lara_State_Special(ITEM *item, COLL_INFO *coll);
+0x00428590  0x002F  +       void __cdecl Lara_State_SwanDive(ITEM *item, COLL_INFO *coll);
+0x004285C0  0x0054  +       void __cdecl Lara_State_FastDive(ITEM *item, COLL_INFO *coll);
+0x00428620  0x0015  +       void __cdecl Lara_State_WaterOut(ITEM *item, COLL_INFO *coll);
+0x00428640  0x00CA  +       void __cdecl Lara_State_Wade(ITEM *item, COLL_INFO *coll);
+0x00428710  0x0096  +       void __cdecl Lara_State_DeathSlide(ITEM *item, COLL_INFO *coll);
+0x004287B0  0x004C  +       void __cdecl Lara_State_Extra_Breath(ITEM *item, COLL_INFO *coll);
+0x00428800  0x0047  +       void __cdecl Lara_State_Extra_YetiKill(ITEM *item, COLL_INFO *coll);
+0x00428850  0x0091  +       void __cdecl Lara_State_Extra_SharkKill(ITEM *item, COLL_INFO *coll);
+0x004288F0  0x0013  +       void __cdecl Lara_State_Extra_Airlock(ITEM *item, COLL_INFO *coll);
+0x00428910  0x001D  +       void __cdecl Lara_State_Extra_GongBong(ITEM *item, COLL_INFO *coll);
+0x00428930  0x0051  +       void __cdecl Lara_State_Extra_DinoKill(ITEM *item, COLL_INFO *coll);
+0x00428990  0x00BC  +       void __cdecl Lara_State_Extra_PullDagger(ITEM *item, COLL_INFO *coll);
+0x00428A50  0x004D  +       void __cdecl Lara_State_Extra_StartAnim(ITEM *item, COLL_INFO *coll);
+0x00428AA0  0x00A5  +       void __cdecl Lara_State_Extra_StartHouse(ITEM *item, COLL_INFO *coll);
+0x00428B50  0x00A3  +       void __cdecl Lara_State_Extra_FinalAnim(ITEM *item, COLL_INFO *coll);
+0x00428C00  0x0051  +       int32_t __cdecl Lara_Fallen(ITEM *item, COLL_INFO *coll);
+0x00428C60  0x009B  +       void __cdecl Lara_CollideStop(ITEM *item, COLL_INFO *coll);
+0x00428D20  0x0191  +       void __cdecl Lara_Col_Walk(ITEM *item, COLL_INFO *coll);
+0x00428EC0  0x0176  +       void __cdecl Lara_Col_Run(ITEM *item, COLL_INFO *coll);
+0x00429040  0x0081  +       void __cdecl Lara_Col_Stop(ITEM *item, COLL_INFO *coll);
+0x004290D0  0x00D7  +       void __cdecl Lara_Col_ForwardJump(ITEM *item, COLL_INFO *coll);
+0x004291B0  0x00B3  +       void __cdecl Lara_Col_FastBack(ITEM *item, COLL_INFO *coll);
+0x00429270  0x0095  +       void __cdecl Lara_Col_TurnRight(ITEM *item, COLL_INFO *coll);
+0x00429310  0x0013  +       void __cdecl Lara_Col_TurnLeft(ITEM *item, COLL_INFO *coll);
+0x00429330  0x0068  +       void __cdecl Lara_Col_Death(ITEM *item, COLL_INFO *coll);
+0x004293A0  0x0099  +       void __cdecl Lara_Col_FastFall(ITEM *item, COLL_INFO *coll);
+0x00429440  0x0127  +       void __cdecl Lara_Col_Hang(ITEM *item, COLL_INFO *coll);
+0x00429570  0x0090  +       void __cdecl Lara_Col_Reach(ITEM *item, COLL_INFO *coll);
+0x00429600  0x0059  +       void __cdecl Lara_Col_Splat(ITEM *item, COLL_INFO *coll);
+0x00429660  0x0013  +       void __cdecl Lara_Col_Land(ITEM *item, COLL_INFO *coll);
+0x00429680  0x0096  +       void __cdecl Lara_Col_Compress( ITEM *item, COLL_INFO *coll );
+0x00429720  0x00FB  +       void __cdecl Lara_Col_Back(ITEM *item, COLL_INFO *coll);
+0x00429820  0x00BE  +       void __cdecl Lara_Col_StepRight(ITEM *item, COLL_INFO *coll);
+0x004298E0  0x0013  +       void __cdecl Lara_Col_StepLeft(ITEM *item, COLL_INFO *coll);
+0x00429900  0x001E  +       void __cdecl Lara_Col_Slide(ITEM *item, COLL_INFO *coll);
+0x00429920  0x0023  +       void __cdecl Lara_Col_BackJump(ITEM *item, COLL_INFO *coll);
+0x00429950  0x0023  +       void __cdecl Lara_Col_RightJump(ITEM *item, COLL_INFO *coll);
+0x00429980  0x0023  +       void __cdecl Lara_Col_LeftJump(ITEM *item, COLL_INFO *coll);
+0x004299B0  0x011B  +       void __cdecl Lara_Col_UpJump(ITEM *item, COLL_INFO *coll);
+0x00429AD0  0x0083  +       void __cdecl Lara_Col_Fallback(ITEM *item, COLL_INFO *coll);
+0x00429B60  0x0033  +       void __cdecl Lara_Col_HangLeft(ITEM *item, COLL_INFO *coll);
+0x00429BA0  0x0033  +       void __cdecl Lara_Col_HangRight(ITEM *item, COLL_INFO *coll);
+0x00429BE0  0x0023  +       void __cdecl Lara_Col_SlideBack(ITEM *item, COLL_INFO *coll);
+0x00429C10  0x0013  +       void __cdecl Lara_Col_Null(ITEM *item, COLL_INFO *coll);
+0x00429C30  0x0081  +       void __cdecl Lara_Col_Roll(ITEM *item, COLL_INFO *coll);
+0x00429CC0  0x00B3  +       void __cdecl Lara_Col_Roll2(ITEM *item, COLL_INFO *coll);
+0x00429D80  0x0069  +       void __cdecl Lara_Col_SwanDive(ITEM *item, COLL_INFO *coll);
+0x00429DF0  0x0079  +       void __cdecl Lara_Col_FastDive(ITEM *item, COLL_INFO *coll);
+0x00429E70  0x0162  +       void __cdecl Lara_Col_Wade(ITEM *item, COLL_INFO *coll);
+0x00429FE0  0x0036  +       void __cdecl Lara_Col_Default(ITEM *item, COLL_INFO *coll);
+0x0042A020  0x0074  +       void __cdecl Lara_Col_Jumper(ITEM *item, COLL_INFO *coll);
+0x0042A0A0  0x0032  +       void __cdecl Lara_GetCollisionInfo(ITEM *item, COLL_INFO *coll);
+0x0042A0E0  0x00E2  +       void __cdecl Lara_SlideSlope(ITEM *item, COLL_INFO *coll);
+0x0042A1D0  0x0067  +       int32_t __cdecl Lara_HitCeiling(ITEM *item, COLL_INFO *coll);
+0x0042A240  0x007F  +       int32_t __cdecl Lara_DeflectEdge(ITEM *item, COLL_INFO *coll);
+0x0042A2C0  0x0136  +       void __cdecl Lara_DeflectEdgeJump(ITEM *item, COLL_INFO *coll);
+0x0042A440  0x00AB  +       void __cdecl Lara_SlideEdgeJump(ITEM *item, COLL_INFO *coll);
+0x0042A530  0x00E1  +       int32_t __cdecl Lara_TestWall(ITEM *item, int32_t front, int32_t right, int32_t down);
+0x0042A640  0x00F5  +       int32_t __cdecl Lara_TestHangOnClimbWall(ITEM *item, COLL_INFO *coll);
+0x0042A750  0x00BE  +       int32_t __cdecl Lara_TestClimbStance(ITEM *item, COLL_INFO *coll);
+0x0042A810  0x033E  +       void __cdecl Lara_HangTest(ITEM *item, COLL_INFO *coll);
+0x0042AB70  0x00AD  +       int32_t __cdecl Lara_TestEdgeCatch(ITEM *item, COLL_INFO *coll, int32_t *edge);
+0x0042AC20  0x016D  +       int32_t __cdecl Lara_TestHangJumpUp(ITEM *item, COLL_INFO *coll);
+0x0042AD90  0x019E  +       int32_t __cdecl Lara_TestHangJump(ITEM *item, COLL_INFO *coll);
+0x0042AF30  0x00B1  +       int32_t __cdecl Lara_TestHangSwingIn(ITEM *item, PHD_ANGLE angle);
+0x0042AFF0  0x02E7  +       int32_t __cdecl Lara_TestVault(ITEM *item, COLL_INFO *coll);
+0x0042B2E0  0x0130  +       int32_t __cdecl Lara_TestSlide(ITEM *item, COLL_INFO *coll);
+0x0042B410  0x0075  +       int16_t __cdecl Lara_FloorFront(ITEM *item, PHD_ANGLE ang, int32_t dist);
+0x0042B490  0x00BB  +       int32_t __cdecl Lara_LandedBad(ITEM *item, COLL_INFO *coll);
 0x0042B550  0x038F  +       void __cdecl Lara_GetJointAbsPosition(XYZ_32 *vec, int32_t joint);
-0x0042B8E0  0x031A  +       void __cdecl Lara_GetJointAbsPosition_I(ITEM_INFO *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
+0x0042B8E0  0x031A  +       void __cdecl Lara_GetJointAbsPosition_I(ITEM *item, XYZ_32 *vec, int16_t *frame1, int16_t *frame2, int32_t frac, int32_t rate);
 
 # game/lara1gun.c
 0x0042BC00  0x0033  +       void __cdecl Gun_Rifle_DrawMeshes(LARA_GUN_TYPE weapon_type);
@@ -3422,22 +3422,22 @@ typedef enum {
 0x0042D520  0x0330  +       void __cdecl Gun_Pistols_Animate(LARA_GUN_TYPE weapon_type);
 
 # game/laraclimb.c
-0x0042D850  0x0035  +       void __cdecl Lara_State_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x0042D890  0x0035  +       void __cdecl Lara_State_ClimbRight(ITEM_INFO *item, COLL_INFO *coll);
-0x0042D8D0  0x0075  +       void __cdecl Lara_State_ClimbStance(ITEM_INFO *item, COLL_INFO *coll);
-0x0042D950  0x0014  +       void __cdecl Lara_State_Climbing(ITEM_INFO *item, COLL_INFO *coll);
-0x0042D970  0x001E  +       void __cdecl Lara_State_ClimbEnd(ITEM_INFO *item, COLL_INFO *coll);
-0x0042D990  0x0014  +       void __cdecl Lara_State_ClimbDown(ITEM_INFO *item, COLL_INFO *coll);
-0x0042D9B0  0x005D  +       void __cdecl Lara_Col_ClimbLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x0042DA10  0x0059  +       void __cdecl Lara_Col_ClimbRight(ITEM_INFO *item, COLL_INFO *coll);
-0x0042DA70  0x020D  +       void __cdecl Lara_Col_ClimbStance(ITEM_INFO *item, COLL_INFO *coll);
-0x0042DC80  0x014D  +       void __cdecl Lara_Col_Climbing(ITEM_INFO *item, COLL_INFO *coll);
-0x0042DDD0  0x019C  +       void __cdecl Lara_Col_ClimbDown(ITEM_INFO *item, COLL_INFO *coll);
-0x0042DF70  0x00AA  +       int32_t __cdecl Lara_CheckForLetGo(ITEM_INFO *item, COLL_INFO *coll);
+0x0042D850  0x0035  +       void __cdecl Lara_State_ClimbLeft(ITEM *item, COLL_INFO *coll);
+0x0042D890  0x0035  +       void __cdecl Lara_State_ClimbRight(ITEM *item, COLL_INFO *coll);
+0x0042D8D0  0x0075  +       void __cdecl Lara_State_ClimbStance(ITEM *item, COLL_INFO *coll);
+0x0042D950  0x0014  +       void __cdecl Lara_State_Climbing(ITEM *item, COLL_INFO *coll);
+0x0042D970  0x001E  +       void __cdecl Lara_State_ClimbEnd(ITEM *item, COLL_INFO *coll);
+0x0042D990  0x0014  +       void __cdecl Lara_State_ClimbDown(ITEM *item, COLL_INFO *coll);
+0x0042D9B0  0x005D  +       void __cdecl Lara_Col_ClimbLeft(ITEM *item, COLL_INFO *coll);
+0x0042DA10  0x0059  +       void __cdecl Lara_Col_ClimbRight(ITEM *item, COLL_INFO *coll);
+0x0042DA70  0x020D  +       void __cdecl Lara_Col_ClimbStance(ITEM *item, COLL_INFO *coll);
+0x0042DC80  0x014D  +       void __cdecl Lara_Col_Climbing(ITEM *item, COLL_INFO *coll);
+0x0042DDD0  0x019C  +       void __cdecl Lara_Col_ClimbDown(ITEM *item, COLL_INFO *coll);
+0x0042DF70  0x00AA  +       int32_t __cdecl Lara_CheckForLetGo(ITEM *item, COLL_INFO *coll);
 0x0042E020  0x0263  +       int32_t __cdecl Lara_TestClimb(int32_t x, int32_t y, int32_t z, int32_t xfront, int32_t zfront, int32_t item_height, int16_t item_room, int32_t *shift);
-0x0042E290  0x00BC  +       int32_t __cdecl Lara_TestClimbPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);
-0x0042E360  0x00EF  +       void __cdecl Lara_DoClimbLeftRight(ITEM_INFO *item, COLL_INFO *coll, int32_t result, int32_t shift);
-0x0042E450  0x0235  +       int32_t __cdecl Lara_TestClimbUpPos(ITEM_INFO *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
+0x0042E290  0x00BC  +       int32_t __cdecl Lara_TestClimbPos(ITEM *item, int32_t front, int32_t right, int32_t origin, int32_t height, int32_t *shift);
+0x0042E360  0x00EF  +       void __cdecl Lara_DoClimbLeftRight(ITEM *item, COLL_INFO *coll, int32_t result, int32_t shift);
+0x0042E450  0x0235  +       int32_t __cdecl Lara_TestClimbUpPos(ITEM *item, int32_t front, int32_t right, int32_t *shift, int32_t *ledge);
 
 # game/larafire.c
 0x0042E6A0  0x04E8  +       void __cdecl Gun_Control(void);
@@ -3445,17 +3445,17 @@ typedef enum {
 0x0042EC50  0x011C  +       void __cdecl Gun_InitialiseNewWeapon(void);
 0x0042ED90  0x0194  +       void __cdecl Gun_TargetInfo(const WEAPON_INFO *winfo);
 0x0042EF30  0x021C  +       void __cdecl Gun_GetNewTarget(WEAPON_INFO *winfo);
-0x0042F150  0x00AA  +       void __cdecl Gun_FindTargetPoint(const ITEM_INFO *item, GAME_VECTOR *target);
+0x0042F150  0x00AA  +       void __cdecl Gun_FindTargetPoint(const ITEM *item, GAME_VECTOR *target);
 0x0042F200  0x00C1  +       void __cdecl Gun_AimWeapon(WEAPON_INFO *winfo, LARA_ARM *arm);
-0x0042F2D0  0x0360  +       int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM_INFO *target, const ITEM_INFO *src, const PHD_ANGLE *angles);
-0x0042F640  0x0096  +       void __cdecl Gun_HitTarget(ITEM_INFO *item, GAME_VECTOR *hitpos, int32_t damage);
+0x0042F2D0  0x0360  +       int32_t __cdecl Gun_FireWeapon(LARA_GUN_TYPE weapon_type, ITEM *target, const ITEM *src, const PHD_ANGLE *angles);
+0x0042F640  0x0096  +       void __cdecl Gun_HitTarget(ITEM *item, GAME_VECTOR *hitpos, int32_t damage);
 0x0042F6E0  0x0051  +       void __cdecl Gun_SmashItem(int16_t item_num, LARA_GUN_TYPE weapon_type);
 0x0042F740  0x003B  +       GAME_OBJECT_ID Gun_GetWeaponAnim(const LARA_GUN_TYPE gun_type);
 
 # game/laraflare.c
 0x0042F7A0  0x009D  -       int32_t __cdecl Flare_DoLight(XYZ_32 *pos, int32_t flare_age);
 0x0042F840  0x00D3  -       void __cdecl Flare_DoInHand(int32_t flare_age);
-0x0042F920  0x00F8  -       void __cdecl Flare_DrawInAir(ITEM_INFO *item);
+0x0042F920  0x00F8  -       void __cdecl Flare_DrawInAir(ITEM *item);
 0x0042FA20  0x01D7  -       void __cdecl Flare_Create(int32_t thrown);
 0x0042FC00  0x004B  -       void __cdecl Flare_SetArm(int32_t frame);
 0x0042FC50  0x0169  -       void __cdecl Flare_Draw(void);
@@ -3467,7 +3467,7 @@ typedef enum {
 
 # game/laramisc.c
 0x004302E0  0x0668  +       void __cdecl Lara_Control(int16_t item_num);
-0x00430970  0x02CD  +       void __cdecl Lara_Animate(ITEM_INFO *item);
+0x00430970  0x02CD  +       void __cdecl Lara_Animate(ITEM *item);
 0x00430C70  0x013F  +       void __cdecl Lara_UseItem(GAME_OBJECT_ID object_id);
 0x00430E30  0x00BA  +       void __cdecl Lara_CheatGetStuff(void);
 0x00430EF0  0x001B  +       void __cdecl Lara_ControlExtra(int16_t item_num);
@@ -3477,35 +3477,35 @@ typedef enum {
 0x00431570  0x00FA  +       void __cdecl Lara_InitialiseMeshes(int32_t level_num);
 
 # game/larasurf.c
-0x00431670  0x0158  +       void __cdecl Lara_HandleSurface(ITEM_INFO *item, COLL_INFO *coll);
-0x004317D0  0x0070  +       void __cdecl Lara_State_SurfSwim(ITEM_INFO *item, COLL_INFO *coll);
-0x00431840  0x005E  +       void __cdecl Lara_State_SurfBack(ITEM_INFO *item, COLL_INFO *coll);
-0x004318A0  0x0060  +       void __cdecl Lara_State_SurfLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00431900  0x0060  +       void __cdecl Lara_State_SurfRight(ITEM_INFO *item, COLL_INFO *coll);
-0x00431960  0x00EB  +       void __cdecl Lara_State_SurfTread(ITEM_INFO *item, COLL_INFO *coll);
-0x00431A50  0x0032  +       void __cdecl Lara_Col_SurfSwim(ITEM_INFO *item, COLL_INFO *coll);
-0x00431A90  0x0023  +       void __cdecl Lara_Col_SurfBack(ITEM_INFO *item, COLL_INFO *coll);
-0x00431AC0  0x0023  +       void __cdecl Lara_Col_SurfLeft(ITEM_INFO *item, COLL_INFO *coll);
-0x00431AF0  0x0023  +       void __cdecl Lara_Col_SurfRight(ITEM_INFO *item, COLL_INFO *coll);
-0x00431B20  0x001E  +       void __cdecl Lara_Col_SurfTread(ITEM_INFO *item, COLL_INFO *coll);
-0x00431B40  0x00F3  +       void __cdecl Lara_SurfaceCollision(ITEM_INFO *item, COLL_INFO *coll);
-0x00431C40  0x00E7  +       int32_t __cdecl Lara_TestWaterStepOut(ITEM_INFO *item, COLL_INFO *coll);
-0x00431D30  0x021C  +       int32_t __cdecl Lara_TestWaterClimbOut(ITEM_INFO *item, COLL_INFO *coll);
+0x00431670  0x0158  +       void __cdecl Lara_HandleSurface(ITEM *item, COLL_INFO *coll);
+0x004317D0  0x0070  +       void __cdecl Lara_State_SurfSwim(ITEM *item, COLL_INFO *coll);
+0x00431840  0x005E  +       void __cdecl Lara_State_SurfBack(ITEM *item, COLL_INFO *coll);
+0x004318A0  0x0060  +       void __cdecl Lara_State_SurfLeft(ITEM *item, COLL_INFO *coll);
+0x00431900  0x0060  +       void __cdecl Lara_State_SurfRight(ITEM *item, COLL_INFO *coll);
+0x00431960  0x00EB  +       void __cdecl Lara_State_SurfTread(ITEM *item, COLL_INFO *coll);
+0x00431A50  0x0032  +       void __cdecl Lara_Col_SurfSwim(ITEM *item, COLL_INFO *coll);
+0x00431A90  0x0023  +       void __cdecl Lara_Col_SurfBack(ITEM *item, COLL_INFO *coll);
+0x00431AC0  0x0023  +       void __cdecl Lara_Col_SurfLeft(ITEM *item, COLL_INFO *coll);
+0x00431AF0  0x0023  +       void __cdecl Lara_Col_SurfRight(ITEM *item, COLL_INFO *coll);
+0x00431B20  0x001E  +       void __cdecl Lara_Col_SurfTread(ITEM *item, COLL_INFO *coll);
+0x00431B40  0x00F3  +       void __cdecl Lara_SurfaceCollision(ITEM *item, COLL_INFO *coll);
+0x00431C40  0x00E7  +       int32_t __cdecl Lara_TestWaterStepOut(ITEM *item, COLL_INFO *coll);
+0x00431D30  0x021C  +       int32_t __cdecl Lara_TestWaterClimbOut(ITEM *item, COLL_INFO *coll);
 
 # game/laraswim.c
-0x00431F50  0x0223  +       void __cdecl Lara_HandleUnderwater(ITEM_INFO *item, COLL_INFO *coll);
-0x00432180  0x0086  +       void __cdecl Lara_SwimTurn(ITEM_INFO *item);
-0x00432210  0x006B  +       void __cdecl Lara_State_Swim(ITEM_INFO *item, COLL_INFO *coll);
-0x00432280  0x0076  +       void __cdecl Lara_State_Glide(ITEM_INFO *item, COLL_INFO *coll);
-0x00432300  0x0085  +       void __cdecl Lara_State_Tread(ITEM_INFO *item, COLL_INFO *coll);
-0x00432390  0x0014  +       void __cdecl Lara_State_Dive(ITEM_INFO *item, COLL_INFO *coll);
-0x004323B0  0x0053  +       void __cdecl Lara_State_UWDeath(ITEM_INFO *item, COLL_INFO *coll);
-0x00432410  0x000B  +       void __cdecl Lara_State_UWTwist(ITEM_INFO *item, COLL_INFO *coll);
-0x00432420  0x0013  +       void __cdecl Lara_Col_Swim(ITEM_INFO *item, COLL_INFO *coll);
-0x00432440  0x005B  +       void __cdecl Lara_Col_UWDeath(ITEM_INFO *item, COLL_INFO *coll);
+0x00431F50  0x0223  +       void __cdecl Lara_HandleUnderwater(ITEM *item, COLL_INFO *coll);
+0x00432180  0x0086  +       void __cdecl Lara_SwimTurn(ITEM *item);
+0x00432210  0x006B  +       void __cdecl Lara_State_Swim(ITEM *item, COLL_INFO *coll);
+0x00432280  0x0076  +       void __cdecl Lara_State_Glide(ITEM *item, COLL_INFO *coll);
+0x00432300  0x0085  +       void __cdecl Lara_State_Tread(ITEM *item, COLL_INFO *coll);
+0x00432390  0x0014  +       void __cdecl Lara_State_Dive(ITEM *item, COLL_INFO *coll);
+0x004323B0  0x0053  +       void __cdecl Lara_State_UWDeath(ITEM *item, COLL_INFO *coll);
+0x00432410  0x000B  +       void __cdecl Lara_State_UWTwist(ITEM *item, COLL_INFO *coll);
+0x00432420  0x0013  +       void __cdecl Lara_Col_Swim(ITEM *item, COLL_INFO *coll);
+0x00432440  0x005B  +       void __cdecl Lara_Col_UWDeath(ITEM *item, COLL_INFO *coll);
 0x004324A0  0x0192  +       int32_t __cdecl Lara_GetWaterDepth(int32_t x, int32_t y, int32_t z, int16_t room_num);
-0x00432640  0x00CE  +       void __cdecl Lara_TestWaterDepth(ITEM_INFO *item, COLL_INFO *coll);
-0x00432710  0x015C  +       void __cdecl Lara_SwimCollision(ITEM_INFO *item, COLL_INFO *coll);
+0x00432640  0x00CE  +       void __cdecl Lara_TestWaterDepth(ITEM *item, COLL_INFO *coll);
+0x00432710  0x015C  +       void __cdecl Lara_SwimCollision(ITEM *item, COLL_INFO *coll);
 0x00432870  0x01EC  +       void __cdecl Lara_WaterCurrent(COLL_INFO *coll);
 
 # game/lot.c
@@ -3513,25 +3513,25 @@ typedef enum {
 0x00432AC0  0x004F  +       void __cdecl LOT_DisableBaddieAI(int16_t item_num);
 0x00432B10  0x01B0  +       bool __cdecl LOT_EnableBaddieAI(int16_t item_num, bool always);
 0x00432CC0  0x0106  +       void __cdecl LOT_InitialiseSlot(int16_t item_num, int32_t slot);
-0x00432ED0  0x00B8  +       void __cdecl LOT_CreateZone(ITEM_INFO *item);
+0x00432ED0  0x00B8  +       void __cdecl LOT_CreateZone(ITEM *item);
 0x00432F90  0x0049  +       void __cdecl LOT_ClearLOT(LOT_INFO *lot);
 
 # game/missile.c
 0x00432FE0  0x02D0  -R      void __cdecl ControlMissile(int16_t fx_num);
-0x004332B0  0x00A7  -R      void __cdecl ShootAtLara(FX_INFO *fx);
+0x004332B0  0x00A7  -R      void __cdecl ShootAtLara(FX *fx);
 0x00433360  0x0386  +R      int32_t __cdecl Effect_ExplodingDeath(int16_t item_num, int32_t mesh_bits, int16_t damage);
 0x004336F0  0x0200  -R      void __cdecl BodyPart_Control(int16_t fx_num);
 
 # game/moveblock.c
 0x004338F0  0x002C  -R      void __cdecl InitialiseMovingBlock(int16_t item_num);
 0x00433920  0x0148  -R      void __cdecl MovableBlock(int16_t item_num);
-0x00433A70  0x0239  -R      void __cdecl MovableBlockCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00433CD0  0x004E  -R      int32_t __cdecl TestBlockMovable(ITEM_INFO *item, int32_t block_height);
-0x00433D20  0x0137  -R      int32_t __cdecl TestBlockPush(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
-0x00433E70  0x0225  -R      int32_t __cdecl TestBlockPull(ITEM_INFO *item, int32_t block_height, uint16_t quadrant);
-0x004340B0  0x00BB  +       void __cdecl Room_AlterFloorHeight(ITEM_INFO *item, int32_t height);
-0x00434170  0x0022  -R      void __cdecl DrawMovableBlock(ITEM_INFO *item);
-0x004341A0  0x006B  -R      void __cdecl DrawUnclippedItem(ITEM_INFO *item);
+0x00433A70  0x0239  -R      void __cdecl MovableBlockCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00433CD0  0x004E  -R      int32_t __cdecl TestBlockMovable(ITEM *item, int32_t block_height);
+0x00433D20  0x0137  -R      int32_t __cdecl TestBlockPush(ITEM *item, int32_t block_height, uint16_t quadrant);
+0x00433E70  0x0225  -R      int32_t __cdecl TestBlockPull(ITEM *item, int32_t block_height, uint16_t quadrant);
+0x004340B0  0x00BB  +       void __cdecl Room_AlterFloorHeight(ITEM *item, int32_t height);
+0x00434170  0x0022  -R      void __cdecl DrawMovableBlock(ITEM *item);
+0x004341A0  0x006B  -R      void __cdecl DrawUnclippedItem(ITEM *item);
 
 # game/objects.c
 0x00434210  0x00DB  -R      void __cdecl EarthQuake(int16_t item_num);
@@ -3542,7 +3542,7 @@ typedef enum {
 0x004346F0  0x007C  -R      void __cdecl InitialiseDyingMonk(int16_t item_num);
 0x00434770  0x0087  -R      void __cdecl DyingMonk(int16_t item_num);
 0x00434800  0x00BD  -R      void __cdecl ControlGongBonger(int16_t item_num);
-0x004348C0  0x00BF  -R      void __cdecl DeathSlideCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0x004348C0  0x00BF  -R      void __cdecl DeathSlideCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
 0x00434980  0x028F  -R      void __cdecl ControlDeathSlide(int16_t item_num);
 0x00434C10  0x00E3  -R      void __cdecl BigBowlControl(int16_t item_num);
 0x00434D00  0x007E  -R      void __cdecl BellControl(int16_t item_num);
@@ -3554,34 +3554,34 @@ typedef enum {
 0x004350A0  0x0032  -R      void __cdecl OpenThatDoor(DOORPOS_DATA *d);
 0x004350E0  0x03DC  -R      void __cdecl InitialiseDoor(int16_t item_num);
 0x004354C0  0x00C8  -R      void __cdecl DoorControl(int16_t item_num);
-0x00435590  0x00B1  -R      int32_t __cdecl OnDrawBridge(ITEM_INFO *item, int32_t x, int32_t y);
-0x00435650  0x0036  -R      void __cdecl DrawBridgeFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435690  0x003B  -R      void __cdecl DrawBridgeCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x004356D0  0x002C  -R      void __cdecl DrawBridgeCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0x00435590  0x00B1  -R      int32_t __cdecl OnDrawBridge(ITEM *item, int32_t x, int32_t y);
+0x00435650  0x0036  -R      void __cdecl DrawBridgeFloor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435690  0x003B  -R      void __cdecl DrawBridgeCeiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x004356D0  0x002C  -R      void __cdecl DrawBridgeCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
 0x00435700  0x0035  -R      void __cdecl InitialiseLift(int16_t item_num);
 0x00435740  0x00D4  -R      void __cdecl LiftControl(int16_t item_num);
-0x00435820  0x0179  -R      void __cdecl LiftFloorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *floor, int32_t *ceiling);
-0x004359A0  0x0035  -R      void __cdecl LiftFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x004359E0  0x0035  -R      void __cdecl LiftCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435A20  0x0016  -R      void __cdecl BridgeFlatFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435A40  0x001B  -R      void __cdecl BridgeFlatCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435A60  0x003B  -R      int32_t __cdecl GetOffset(ITEM_INFO *item, int32_t x, int32_t z);
-0x00435AA0  0x0030  -R      void __cdecl BridgeTilt1Floor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435AD0  0x0035  -R      void __cdecl BridgeTilt1Ceiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435B10  0x002F  -R      void __cdecl BridgeTilt2Floor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00435B40  0x0034  -R      void __cdecl BridgeTilt2Ceiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435820  0x0179  -R      void __cdecl LiftFloorCeiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *floor, int32_t *ceiling);
+0x004359A0  0x0035  -R      void __cdecl LiftFloor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x004359E0  0x0035  -R      void __cdecl LiftCeiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435A20  0x0016  -R      void __cdecl BridgeFlatFloor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435A40  0x001B  -R      void __cdecl BridgeFlatCeiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435A60  0x003B  -R      int32_t __cdecl GetOffset(ITEM *item, int32_t x, int32_t z);
+0x00435AA0  0x0030  -R      void __cdecl BridgeTilt1Floor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435AD0  0x0035  -R      void __cdecl BridgeTilt1Ceiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435B10  0x002F  -R      void __cdecl BridgeTilt2Floor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00435B40  0x0034  -R      void __cdecl BridgeTilt2Ceiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
 0x00435B80  0x010C  -R      void __cdecl CopterControl(int16_t item_num);
 0x00435C90  0x00D2  -R      void __cdecl GeneralControl(int16_t item_num);
 0x00435D70  0x008D  -R      void __cdecl DetonatorControl(int16_t item_num);
 
 # game/people.c
-0x00435E00  0x0085  +       bool __cdecl Creature_CanTargetEnemy(const ITEM_INFO *item, const AI_INFO *info);
+0x00435E00  0x0085  +       bool __cdecl Creature_CanTargetEnemy(const ITEM *item, const AI_INFO *info);
 0x00435E90  0x003B  -R      void __cdecl ControlGlow(int16_t fx_num);
 0x00435ED0  0x004E  -R      void __cdecl ControlGunShot(int16_t fx_num);
 0x00435F20  0x0066  -R      int16_t __cdecl GunShot(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
 0x00435F90  0x00B9  -R      int16_t __cdecl GunHit(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
 0x00436050  0x00A7  -R      int16_t __cdecl GunMiss(int32_t x, int32_t y, int32_t z, int16_t speed, PHD_ANGLE yrot, int16_t room_num);
-0x00436100  0x01C4  -R      int32_t __cdecl ShotLara(ITEM_INFO *item, AI_INFO *info, BITE_INFO *gun, int16_t extra_rotation, int32_t damage);
+0x00436100  0x01C4  -R      int32_t __cdecl ShotLara(ITEM *item, AI_INFO *info, BITE *gun, int16_t extra_rotation, int32_t damage);
 0x004362D0  0x0043  -R      void __cdecl InitialiseCult1(int16_t item_num);
 0x00436320  0x0401  -R      void __cdecl Cult1Control(int16_t item_num);
 0x00436750  0x0050  -R      void __cdecl InitialiseCult3(int16_t item_num);
@@ -3593,12 +3593,12 @@ typedef enum {
 0x00437CF0  0x0172  -R      void __cdecl WinstonControl(int16_t item_num);
 
 # game/pickup.c
-0x00437E70  0x0480  -R      void __cdecl PickUpCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x004382F0  0x020A  -R      void __cdecl SwitchCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00438500  0x00FC  -R      void __cdecl SwitchCollision2(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00438600  0x023B  -R      void __cdecl DetonatorCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00438840  0x0223  -R      void __cdecl KeyHoleCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
-0x00438A80  0x0294  -R      void __cdecl PuzzleHoleCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0x00437E70  0x0480  -R      void __cdecl PickUpCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x004382F0  0x020A  -R      void __cdecl SwitchCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00438500  0x00FC  -R      void __cdecl SwitchCollision2(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00438600  0x023B  -R      void __cdecl DetonatorCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00438840  0x0223  -R      void __cdecl KeyHoleCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
+0x00438A80  0x0294  -R      void __cdecl PuzzleHoleCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
 0x00438D40  0x0039  -R      void __cdecl SwitchControl(int16_t item_num);
 0x00438D80  0x00BD  -R      int32_t __cdecl SwitchTrigger(int16_t item_num, int16_t timer);
 0x00438E40  0x003D  -R      int32_t __cdecl KeyTrigger(int16_t item_num);
@@ -3636,26 +3636,26 @@ typedef enum {
 # game/skidoo.c
 0x0043CE30  0x0040  -R      void __cdecl InitialiseSkidoo(int16_t item_num);
 0x0043CE70  0x00E1  -R      int32_t __cdecl SkidooCheckGeton(int16_t item_num, COLL_INFO *coll);
-0x0043CF60  0x00F8  -R      void __cdecl SkidooCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);
-0x0043D060  0x01F9  -R      void __cdecl SkidooBaddieCollision(ITEM_INFO *skidoo);
-0x0043D260  0x00B2  -R      int32_t __cdecl TestHeight(ITEM_INFO *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
-0x0043D320  0x027C  -R      int32_t __cdecl DoShift(ITEM_INFO *skidoo, XYZ_32 *pos, XYZ_32 *old);
+0x0043CF60  0x00F8  -R      void __cdecl SkidooCollision(int16_t item_num, ITEM *litem, COLL_INFO *coll);
+0x0043D060  0x01F9  -R      void __cdecl SkidooBaddieCollision(ITEM *skidoo);
+0x0043D260  0x00B2  -R      int32_t __cdecl TestHeight(ITEM *item, int32_t z_off, int32_t x_off, XYZ_32 *pos);
+0x0043D320  0x027C  -R      int32_t __cdecl DoShift(ITEM *skidoo, XYZ_32 *pos, XYZ_32 *old);
 0x0043D5A0  0x0054  -R      int32_t __cdecl DoDynamics(int32_t height, int32_t fall_speed, int32_t *y);
-0x0043D600  0x0090  -R      int32_t __cdecl GetCollisionAnim(ITEM_INFO *skidoo, XYZ_32 *moved);
-0x0043D690  0x0140  -R      void __cdecl DoSnowEffect(ITEM_INFO *skidoo);
-0x0043D7D0  0x049E  -R      int32_t __cdecl SkidooDynamics(ITEM_INFO *skidoo);
-0x0043DC70  0x01B6  -R      int32_t __cdecl SkidooUserControl(ITEM_INFO *skidoo, int32_t height, int32_t *pitch);
+0x0043D600  0x0090  -R      int32_t __cdecl GetCollisionAnim(ITEM *skidoo, XYZ_32 *moved);
+0x0043D690  0x0140  -R      void __cdecl DoSnowEffect(ITEM *skidoo);
+0x0043D7D0  0x049E  -R      int32_t __cdecl SkidooDynamics(ITEM *skidoo);
+0x0043DC70  0x01B6  -R      int32_t __cdecl SkidooUserControl(ITEM *skidoo, int32_t height, int32_t *pitch);
 0x0043DE30  0x0106  -R      int32_t __cdecl SkidooCheckGetOffOK(int32_t direction);
-0x0043DF40  0x02B9  -R      void __cdecl SkidooAnimation(ITEM_INFO *skidoo, int32_t collide, int32_t dead);
-0x0043E220  0x007C  -R      void __cdecl SkidooExplode(ITEM_INFO *skidoo);
+0x0043DF40  0x02B9  -R      void __cdecl SkidooAnimation(ITEM *skidoo, int32_t collide, int32_t dead);
+0x0043E220  0x007C  -R      void __cdecl SkidooExplode(ITEM *skidoo);
 0x0043E2A0  0x0233  -R      int32_t __cdecl SkidooCheckGetOff(void);
 0x0043E4E0  0x011B  -R      void __cdecl SkidooGuns(void);
 0x0043E600  0x0440  -R      int32_t __cdecl SkidooControl(void);
-0x0043EA60  0x02D5  -R      void __cdecl DrawSkidoo(ITEM_INFO *item);
+0x0043EA60  0x02D5  -R      void __cdecl DrawSkidoo(ITEM *item);
 0x0043ED40  0x007F  -R      void __cdecl InitialiseSkidman(int16_t item_num);
 0x0043EDD0  0x03E2  -R      void __cdecl SkidManControl(int16_t rider_num);
-0x0043F1D0  0x0119  -R      void __cdecl SkidmanPush(ITEM_INFO *item, ITEM_INFO *lara_item, int32_t radius);
-0x0043F2F0  0x0081  -R      void __cdecl SkidmanCollision(int16_t item_num, ITEM_INFO *lara_item, COLL_INFO *coll);
+0x0043F1D0  0x0119  -R      void __cdecl SkidmanPush(ITEM *item, ITEM *lara_item, int32_t radius);
+0x0043F2F0  0x0081  -R      void __cdecl SkidmanCollision(int16_t item_num, ITEM *lara_item, COLL_INFO *coll);
 
 # game/sound.c
 0x0043F380  0x0031  *       int32_t __cdecl Music_GetRealTrack(int32_t track);
@@ -3666,10 +3666,10 @@ typedef enum {
 0x0043F980  0x002A  +       void __cdecl Sound_Init(void);
 
 # game/sphere.c
-0x0043F9B0  0x0128  -       int32_t __cdecl Collide_TestCollision(ITEM_INFO *item, const ITEM_INFO *lara_item);
-0x0043FAE0  0x02D8  -       int32_t __cdecl Collide_GetSpheres(const ITEM_INFO *item, SPHERE *spheres, bool world_space);
-0x0043FDC0  0x019A  -       void __cdecl Collide_GetJointAbsPosition(const ITEM_INFO *item, const XYZ_32 *vec, int32_t joint);
-0x0043FF60  0x005D  -R      void __cdecl BaddieBiteEffect(ITEM_INFO *item, BITE_INFO *bite);
+0x0043F9B0  0x0128  -       int32_t __cdecl Collide_TestCollision(ITEM *item, const ITEM *lara_item);
+0x0043FAE0  0x02D8  -       int32_t __cdecl Collide_GetSpheres(const ITEM *item, SPHERE *spheres, bool world_space);
+0x0043FDC0  0x019A  -       void __cdecl Collide_GetJointAbsPosition(const ITEM *item, const XYZ_32 *vec, int32_t joint);
+0x0043FF60  0x005D  -R      void __cdecl BaddieBiteEffect(ITEM *item, BITE *bite);
 
 # game/spider.c
 0x0043FFC0  0x00AC  -R      void __cdecl SpiderLeap(int16_t item_num, int16_t angle);
@@ -3714,16 +3714,16 @@ typedef enum {
 0x00441A50  0x00DB  -R      void __cdecl SpringBoardControl(int16_t item_num);
 0x00441B30  0x003C  -R      void __cdecl InitialiseRollingBall(int16_t item_num);
 0x00441B70  0x0347  -R      void __cdecl RollingBallControl(int16_t item_num);
-0x00441EC0  0x024A  -R      void __cdecl RollingBallCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);
-0x00442110  0x0155  -R      void __cdecl SpikeCollision(int16_t item_num, ITEM_INFO *litem, COLL_INFO *coll);
+0x00441EC0  0x024A  -R      void __cdecl RollingBallCollision(int16_t item_num, ITEM *litem, COLL_INFO *coll);
+0x00442110  0x0155  -R      void __cdecl SpikeCollision(int16_t item_num, ITEM *litem, COLL_INFO *coll);
 0x00442270  0x004F  -R      void __cdecl TrapDoorControl(int16_t item_num);
-0x004422C0  0x003A  -R      void __cdecl TrapDoorFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00442300  0x003F  -R      void __cdecl TrapDoorCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00442340  0x00A3  -R      int32_t __cdecl OnTrapDoor(ITEM_INFO *item, int32_t x, int32_t z);
+0x004422C0  0x003A  -R      void __cdecl TrapDoorFloor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00442300  0x003F  -R      void __cdecl TrapDoorCeiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00442340  0x00A3  -R      int32_t __cdecl OnTrapDoor(ITEM *item, int32_t x, int32_t z);
 0x004423F0  0x010A  -R      void __cdecl Pendulum(int16_t item_num);
 0x00442500  0x0105  -R      void __cdecl FallingBlock(int16_t item_num);
-0x00442610  0x003E  -R      void __cdecl FallingBlockFloor(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
-0x00442650  0x0044  -R      void __cdecl FallingBlockCeiling(ITEM_INFO *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00442610  0x003E  -R      void __cdecl FallingBlockFloor(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
+0x00442650  0x0044  -R      void __cdecl FallingBlockCeiling(ITEM *item, int32_t x, int32_t y, int32_t z, int32_t *height);
 0x004426A0  0x00BD  -R      void __cdecl TeethTrap(int16_t item_num);
 0x00442760  0x00E0  -R      void __cdecl FallingCeiling(int16_t item_num);
 0x00442840  0x013E  -R      void __cdecl DartEmitterControl(int16_t item_num);
@@ -3732,7 +3732,7 @@ typedef enum {
 0x00442B30  0x0090  +       void __cdecl FlameEmitter_Control(int16_t item_num);
 0x00442BC0  0x0164  +       void __cdecl Flame_Control(int16_t fx_num);
 0x00442D30  0x0049  +       void __cdecl Lara_CatchFire(void);
-0x00442D80  0x00E6  +       void __cdecl Lara_TouchLava(ITEM_INFO *item);
+0x00442D80  0x00E6  +       void __cdecl Lara_TouchLava(ITEM *item);
 0x00442E70  0x00C5  +       void __cdecl EmberEmitter_Control(int16_t item_num);
 0x00442F40  0x010B  +       void __cdecl Ember_Control(int16_t fx_num);
 
@@ -4011,11 +4011,11 @@ typedef enum {
 0x00450C80  0x0089  *R      void __cdecl S_OutputPolyList(void);
 0x00450CC0  0x0270  -R      int32_t __cdecl S_GetObjectBounds(const BOUNDS_16 *bounds);
 0x00450F30  0x0046  -R      void __cdecl S_InsertBackPolygon(int32_t x0, int32_t y0, int32_t x1, int32_t y1);
-0x00450F80  0x01F1  -R      void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM_INFO *item);
+0x00450F80  0x01F1  -R      void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM *item);
 0x00451180  0x02F6  -R      void __cdecl S_CalculateLight(int32_t x, int32_t y, int32_t z, int16_t room_num);
 0x00451480  0x0031  -R      void __cdecl S_CalculateStaticLight(int16_t adder);
-0x004514C0  0x0124  -R      void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM_INFO *room);
-0x004515F0  0x0206  -R      void __cdecl S_LightRoom(ROOM_INFO *room);
+0x004514C0  0x0124  -R      void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM *room);
+0x004515F0  0x0206  -R      void __cdecl S_LightRoom(ROOM *room);
 0x00451800  0x01CC  -R      void __cdecl S_DrawHealthBar(int32_t percent);
 0x004519D0  0x01F6  -R      void __cdecl S_DrawAirBar(int32_t percent);
 0x00451BD0  0x00C0  -R      void __cdecl AnimateTextures(int32_t ticks);
@@ -4181,7 +4181,7 @@ typedef enum {
 0x004640BC  -       int16_t g_CD_TrackID = -1;
 0x004640C4  -       int32_t g_FlipEffect = -1;
 0x004641F0  -       int32_t g_AssaultBestTime = -1;
-0x004641F8  -       void (*__cdecl g_EffectRoutines[32])(ITEM_INFO *item);
+0x004641F8  -       void (*__cdecl g_EffectRoutines[32])(ITEM *item);
 0x00464310  -       int16_t g_CineTargetAngle = 0x4000; // PHD_90
 0x004644E0  -       int32_t g_OverlayStatus = 1;
 0x004654E0  -       int16_t g_Inv_MainObjectsCount = 8;
@@ -4193,9 +4193,9 @@ typedef enum {
 0x00465A60  -       int16_t g_OptionMusicVolume = 255; // NOTE: should be 10
 0x00465AD4  -       int32_t g_JumpPermitted = 1;
 0x00465AD8  -       int16_t g_LaraOldSlideAngle = 1;
-0x00465CD0  -       void (*__cdecl g_LaraControlRoutines[71])(ITEM_INFO *item, COLL_INFO *coll);
-0x00465DF0  -       void (*__cdecl g_ExtraControlRoutines[11])(ITEM_INFO *item, COLL_INFO *coll);
-0x00465E20  -       void (*__cdecl g_LaraCollisionRoutines[71])(ITEM_INFO *item, COLL_INFO *coll);
+0x00465CD0  -       void (*__cdecl g_LaraControlRoutines[71])(ITEM *item, COLL_INFO *coll);
+0x00465DF0  -       void (*__cdecl g_ExtraControlRoutines[11])(ITEM *item, COLL_INFO *coll);
+0x00465E20  -       void (*__cdecl g_LaraCollisionRoutines[71])(ITEM *item, COLL_INFO *coll);
 0x00466290  -       int8_t g_TextSpacing[80];
 0x004662E0  -       int8_t g_TextASCIIMap[];
 0x00466400  -       int32_t g_BGND_PaletteIndex = -1;
@@ -4421,8 +4421,8 @@ typedef enum {
 0x0051E6C4  -       int32_t g_SoundIsActive;
 0x0051E9E0  -       SAVEGAME_INFO g_SaveGame;
 0x005206E0  -       LARA_INFO g_Lara;
-0x005207BC  -       ITEM_INFO *g_LaraItem;
-0x005207C0  -       FX_INFO *g_Effects;
+0x005207BC  -       ITEM *g_LaraItem;
+0x005207C0  -       FX *g_Effects;
 0x005207C4  -       int16_t g_NextEffectFree;
 0x005207C6  -       int16_t g_NextItemFree;
 0x005207C8  -       int16_t g_NextItemActive;
@@ -4431,7 +4431,7 @@ typedef enum {
 0x00521CA0  -       PICKUP_INFO g_Pickups[12];
 0x00521DE0  -       GAME_FLOW g_GameFlow;
 0x00521FDC  -       int32_t g_SoundEffectCount;
-0x00522000  -       OBJECT_INFO g_Objects[265];
+0x00522000  -       OBJECT g_Objects[265];
 0x005252B0  -       int16_t **g_Meshes;
 0x005252C0  -       MATRIX g_IMMatrixStack[256];
 0x005258F0  -       int32_t g_IMFrac;
@@ -4440,11 +4440,11 @@ typedef enum {
 0x00526180  -       int32_t g_RoomCount;
 0x00526184  -       int32_t g_IMRate;
 0x00526188  -       MATRIX *g_IMMatrixPtr;
-0x0052618C  -       ROOM_INFO *g_Rooms;
+0x0052618C  -       ROOM *g_Rooms;
 0x00526240  -       int32_t g_FlipStatus;
 0x00526288  -       int16_t *g_TriggerIndex;
 0x005262A0  -       int32_t g_LOSRooms[20];
-0x005262F0  -       ITEM_INFO *g_Items;
+0x005262F0  -       ITEM *g_Items;
 0x005262F6  -       int16_t g_NumCineFrames;
 0x005262F8  -       CINE_FRAME *g_CineData = NULL;
 0x00526300  -       PHD_3DPOS g_CinePos;
@@ -4462,12 +4462,12 @@ typedef enum {
 0x004D7EE0  -       LPDIRECTDRAW3 g_DDraw;
 0x004D8380  -       int32_t g_GameWindowX;
 0x00463150  -       GUID g_IID_IDirectDrawSurface3;
-0x004640A0  +       BITE_INFO g_CrowBite;
-0x00464090  +       BITE_INFO g_BirdBite;
+0x004640A0  +       BITE g_CrowBite;
+0x00464090  +       BITE g_BirdBite;
 0x005263C0  -       int16_t *g_FlyZone[2];
 0x005263A0  -       int16_t *g_GroundZone[][2];
 0x005263C8  -       uint16_t *g_Overlap;
-0x005206C0  -       CREATURE_INFO *g_BaddieSlots;
+0x005206C0  -       CREATURE *g_BaddieSlots;
 0x00526312  +       int16_t g_CineLevelID;
 0x005252B8  -       int32_t g_DrawRoomsCount;
 0x00525B20  -       int16_t g_DrawRoomsArray[100];

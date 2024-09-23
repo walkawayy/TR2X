@@ -32,7 +32,7 @@
 
 void __cdecl Creature_Initialise(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     item->rot.y += (Random_GetControl() - PHD_90) >> 1;
     item->collidable = 1;
     item->data = 0;
@@ -40,7 +40,7 @@ void __cdecl Creature_Initialise(const int16_t item_num)
 
 int32_t __cdecl Creature_Activate(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     if (item->status != IS_INVISIBLE) {
         return true;
     }
@@ -53,9 +53,9 @@ int32_t __cdecl Creature_Activate(const int16_t item_num)
     return true;
 }
 
-void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
+void __cdecl Creature_AIInfo(ITEM *const item, AI_INFO *const info)
 {
-    CREATURE_INFO *const creature = (CREATURE_INFO *)item->data;
+    CREATURE *const creature = (CREATURE *)item->data;
     if (creature == NULL) {
         return;
     }
@@ -76,7 +76,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
         break;
     }
 
-    ITEM_INFO *enemy = creature->enemy;
+    ITEM *enemy = creature->enemy;
     if (enemy == NULL) {
         enemy = g_LaraItem;
     }
@@ -89,7 +89,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
     }
 
     {
-        const ROOM_INFO *const r = &g_Rooms[item->room_num];
+        const ROOM *const r = &g_Rooms[item->room_num];
         const int32_t z_sector = (item->pos.z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (item->pos.x - r->pos.x) >> WALL_SHIFT;
         item->box_num = r->sector[z_sector + x_sector * r->z_size].box;
@@ -97,7 +97,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
     }
 
     {
-        const ROOM_INFO *const r = &g_Rooms[enemy->room_num];
+        const ROOM *const r = &g_Rooms[enemy->room_num];
         const int32_t z_sector = (enemy->pos.z - r->pos.z) >> WALL_SHIFT;
         const int32_t x_sector = (enemy->pos.x - r->pos.x) >> WALL_SHIFT;
         enemy->box_num = r->sector[z_sector + x_sector * r->z_size].box;
@@ -111,7 +111,7 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
         info->enemy_zone_num |= BOX_BLOCKED;
     }
 
-    const OBJECT_INFO *const object = &g_Objects[item->object_id];
+    const OBJECT *const object = &g_Objects[item->object_id];
     const int32_t z = enemy->pos.z
         - ((object->pivot_length * Math_Cos(item->rot.y)) >> W2V_SHIFT)
         - item->pos.z;
@@ -133,15 +133,15 @@ void __cdecl Creature_AIInfo(ITEM_INFO *const item, AI_INFO *const info)
 }
 
 void __cdecl Creature_Mood(
-    const ITEM_INFO *item, const AI_INFO *info, int32_t violent)
+    const ITEM *item, const AI_INFO *info, int32_t violent)
 {
-    CREATURE_INFO *const creature = item->data;
+    CREATURE *const creature = item->data;
     if (creature == NULL) {
         return;
     }
 
     const LOT_INFO *const lot = &creature->lot;
-    const ITEM_INFO *enemy = creature->enemy;
+    const ITEM *enemy = creature->enemy;
     if (creature->lot.node[item->box_num].search_num
         == (creature->lot.search_num | 0x8000)) {
         creature->lot.required_box = NO_BOX;
@@ -301,7 +301,7 @@ void __cdecl Creature_Mood(
 
 int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
 {
-    ITEM_INFO *item = &g_Items[item_num];
+    ITEM *item = &g_Items[item_num];
 
     const int32_t x = item->pos.x;
     const int32_t y = item->pos.y;
@@ -329,7 +329,7 @@ int32_t __cdecl Creature_CheckBaddieOverlap(const int16_t item_num)
 
 void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
 
     if (item->object_id == O_DRAGON_FRONT) {
         item->hit_points = 0;
@@ -341,7 +341,7 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
             Effect_ExplodingDeath(item_num, -1, 0);
         }
         const int16_t vehicle_item_num = (int16_t)(intptr_t)item->data;
-        ITEM_INFO *const vehicle_item = &g_Items[vehicle_item_num];
+        ITEM *const vehicle_item = &g_Items[vehicle_item_num];
         vehicle_item->hit_points = 0;
         return;
     }
@@ -368,7 +368,7 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
     if (g_Objects[item->object_id].intelligent) {
         int16_t pickup_num = item->carried_item;
         while (pickup_num != NO_ITEM) {
-            ITEM_INFO *const pickup = &g_Items[pickup_num];
+            ITEM *const pickup = &g_Items[pickup_num];
             pickup->pos = item->pos;
             Item_NewRoom(pickup_num, item->room_num);
             pickup_num = pickup->carried_item;
@@ -379,9 +379,9 @@ void __cdecl Creature_Die(const int16_t item_num, const bool explode)
 int32_t __cdecl Creature_Animate(
     const int16_t item_num, const int16_t angle, const int16_t tilt)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
-    const CREATURE_INFO *const creature = item->data;
-    const OBJECT_INFO *const object = &g_Objects[item->object_id];
+    ITEM *const item = &g_Items[item_num];
+    const CREATURE *const creature = item->data;
+    const OBJECT *const object = &g_Objects[item->object_id];
     if (creature == NULL) {
         return false;
     }
@@ -415,7 +415,7 @@ int32_t __cdecl Creature_Animate(
 
     int16_t room_num = item->room_num;
     Room_GetSector(old.x, y, old.z, &room_num);
-    const SECTOR_INFO *sector =
+    const SECTOR *sector =
         Room_GetSector(item->pos.x, y, item->pos.z, &room_num);
     int32_t height = g_Boxes[sector->box].height;
     int16_t next_box = lot->node[sector->box].exit_box;
@@ -600,7 +600,7 @@ int32_t __cdecl Creature_Animate(
             item->rot.x = angle;
         }
     } else {
-        const SECTOR_INFO *const sector =
+        const SECTOR *const sector =
             Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
         item->floor =
             Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
@@ -629,9 +629,9 @@ int32_t __cdecl Creature_Animate(
     return true;
 }
 
-int16_t __cdecl Creature_Turn(ITEM_INFO *const item, int16_t max_turn)
+int16_t __cdecl Creature_Turn(ITEM *const item, int16_t max_turn)
 {
-    const CREATURE_INFO *const creature = item->data;
+    const CREATURE *const creature = item->data;
     if (creature == NULL || item->speed == 0 || max_turn == 0) {
         return 0;
     }
@@ -652,16 +652,16 @@ int16_t __cdecl Creature_Turn(ITEM_INFO *const item, int16_t max_turn)
     return angle;
 }
 
-void __cdecl Creature_Tilt(ITEM_INFO *const item, int16_t angle)
+void __cdecl Creature_Tilt(ITEM *const item, int16_t angle)
 {
     angle = 4 * angle - item->rot.z;
     CLAMP(angle, -MAX_TILT, MAX_TILT);
     item->rot.z += angle;
 }
 
-void __cdecl Creature_Head(ITEM_INFO *item, int16_t required)
+void __cdecl Creature_Head(ITEM *item, int16_t required)
 {
-    CREATURE_INFO *const creature = item->data;
+    CREATURE *const creature = item->data;
     if (creature == NULL) {
         return;
     }
@@ -673,9 +673,9 @@ void __cdecl Creature_Head(ITEM_INFO *item, int16_t required)
     CLAMP(creature->head_rotation, -HEAD_ARC, HEAD_ARC);
 }
 
-void __cdecl Creature_Neck(ITEM_INFO *const item, const int16_t required)
+void __cdecl Creature_Neck(ITEM *const item, const int16_t required)
 {
-    CREATURE_INFO *const creature = item->data;
+    CREATURE *const creature = item->data;
     if (creature == NULL) {
         return;
     }
@@ -689,7 +689,7 @@ void __cdecl Creature_Neck(ITEM_INFO *const item, const int16_t required)
 
 void __cdecl Creature_Float(const int16_t item_num)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
 
     item->hit_points = DONT_TARGET;
     item->rot.x = 0;
@@ -705,7 +705,7 @@ void __cdecl Creature_Float(const int16_t item_num)
     Item_Animate(item);
 
     int16_t room_num = item->room_num;
-    const SECTOR_INFO *const sector =
+    const SECTOR *const sector =
         Room_GetSector(item->pos.x, item->pos.y, item->pos.z, &room_num);
     item->floor = Room_GetHeight(sector, item->pos.x, item->pos.y, item->pos.z);
     if (room_num != item->room_num) {
@@ -713,7 +713,7 @@ void __cdecl Creature_Float(const int16_t item_num)
     }
 }
 
-void __cdecl Creature_Underwater(ITEM_INFO *const item, const int32_t depth)
+void __cdecl Creature_Underwater(ITEM *const item, const int32_t depth)
 {
     const int32_t wh = Room_GetWaterHeight(
         item->pos.x, item->pos.y, item->pos.z, item->room_num);
@@ -730,7 +730,7 @@ void __cdecl Creature_Underwater(ITEM_INFO *const item, const int32_t depth)
 }
 
 int16_t __cdecl Creature_Effect(
-    const ITEM_INFO *const item, const BITE_INFO *const bite,
+    const ITEM *const item, const BITE *const bite,
     int16_t(__cdecl *const spawn)(
         int32_t x, int32_t y, int32_t z, int16_t speed, int16_t y_rot,
         int16_t room_num))
@@ -745,7 +745,7 @@ int32_t __cdecl Creature_Vault(
     const int16_t item_num, const int16_t angle, int32_t vault,
     const int32_t shift)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     const int16_t room_num = item->room_num;
     const XYZ_32 old = item->pos;
 
@@ -799,7 +799,7 @@ int32_t __cdecl Creature_Vault(
 }
 
 void __cdecl Creature_Kill(
-    ITEM_INFO *const item, const int32_t kill_anim, const int32_t kill_state,
+    ITEM *const item, const int32_t kill_anim, const int32_t kill_state,
     const int32_t lara_kill_state)
 {
     item->anim_num = g_Objects[item->object_id].anim_idx + kill_anim;
@@ -837,10 +837,10 @@ void __cdecl Creature_Kill(
 void __cdecl Creature_GetBaddieTarget(
     const int16_t item_num, const int32_t goody)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
-    CREATURE_INFO *const creature = item->data;
+    ITEM *const item = &g_Items[item_num];
+    CREATURE *const creature = item->data;
 
-    ITEM_INFO *best_item = NULL;
+    ITEM *best_item = NULL;
     int32_t best_distance = INT32_MAX;
     for (int32_t i = 0; i < NUM_SLOTS; i++) {
         const int16_t target_item_num = g_BaddieSlots[i].item_num;
@@ -848,7 +848,7 @@ void __cdecl Creature_GetBaddieTarget(
             continue;
         }
 
-        ITEM_INFO *target = &g_Items[target_item_num];
+        ITEM *target = &g_Items[target_item_num];
         const GAME_OBJECT_ID object_id = target->object_id;
         if (goody && object_id != O_BANDIT_1 && object_id != O_BANDIT_2) {
             continue;
@@ -886,7 +886,7 @@ void __cdecl Creature_GetBaddieTarget(
         }
     }
 
-    const ITEM_INFO *const target = creature->enemy;
+    const ITEM *const target = creature->enemy;
     if (target == NULL || target->status != IS_ACTIVE) {
         creature->enemy = best_item;
     } else {
@@ -901,9 +901,9 @@ void __cdecl Creature_GetBaddieTarget(
 }
 
 void __cdecl Creature_Collision(
-    const int16_t item_num, ITEM_INFO *const lara_item, COLL_INFO *const coll)
+    const int16_t item_num, ITEM *const lara_item, COLL_INFO *const coll)
 {
-    ITEM_INFO *const item = &g_Items[item_num];
+    ITEM *const item = &g_Items[item_num];
     if (!Item_TestBoundsCollide(item, lara_item, coll->radius)) {
         return;
     }
@@ -919,10 +919,10 @@ void __cdecl Creature_Collision(
 }
 
 int32_t __cdecl Creature_CanTargetEnemy(
-    const ITEM_INFO *const item, const AI_INFO *const info)
+    const ITEM *const item, const AI_INFO *const info)
 {
-    const CREATURE_INFO *const creature = item->data;
-    const ITEM_INFO *const enemy = creature->enemy;
+    const CREATURE *const creature = item->data;
+    const ITEM *const enemy = creature->enemy;
     if (enemy->hit_points <= 0 || !info->ahead
         || info->distance >= CREATURE_SHOOT_RANGE) {
         return 0;
@@ -943,14 +943,14 @@ int32_t __cdecl Creature_CanTargetEnemy(
     return LOS_Check(&start, &target);
 }
 
-bool Creature_IsEnemy(const ITEM_INFO *const item)
+bool Creature_IsEnemy(const ITEM *const item)
 {
     return Object_IsObjectType(item->object_id, g_EnemyObjects)
         || (g_IsMonkAngry
             && (item->object_id == O_MONK_1 || item->object_id == O_MONK_2));
 }
 
-bool Creature_IsAlly(const ITEM_INFO *const item)
+bool Creature_IsAlly(const ITEM *const item)
 {
     return Object_IsObjectType(item->object_id, g_AllyObjects);
 }

@@ -11,7 +11,7 @@ static void M_RemoveDrawn(const int16_t fx_num);
 
 static void M_RemoveActive(const int16_t fx_num)
 {
-    FX_INFO *const fx = &g_Effects[fx_num];
+    FX *const fx = &g_Effects[fx_num];
     int16_t link_num = g_NextEffectActive;
     if (link_num == fx_num) {
         g_NextEffectActive = fx->next_active;
@@ -29,7 +29,7 @@ static void M_RemoveActive(const int16_t fx_num)
 
 static void M_RemoveDrawn(const int16_t fx_num)
 {
-    FX_INFO *const fx = &g_Effects[fx_num];
+    FX *const fx = &g_Effects[fx_num];
     int16_t link_num = g_Rooms[fx->room_num].fx_num;
     if (link_num == fx_num) {
         g_Rooms[fx->room_num].fx_num = fx->next_free;
@@ -51,7 +51,7 @@ void __cdecl Effect_InitialiseArray(void)
     g_NextEffectActive = NO_ITEM;
 
     for (int32_t i = 0; i < MAX_EFFECTS - 1; i++) {
-        FX_INFO *const fx = &g_Effects[i];
+        FX *const fx = &g_Effects[i];
         fx->next_free = i + 1;
     }
     g_Effects[MAX_EFFECTS - 1].next_free = NO_ITEM;
@@ -64,10 +64,10 @@ int16_t __cdecl Effect_Create(const int16_t room_num)
         return NO_ITEM;
     }
 
-    FX_INFO *const fx = &g_Effects[fx_num];
+    FX *const fx = &g_Effects[fx_num];
     g_NextEffectFree = fx->next_free;
 
-    ROOM_INFO *const room = &g_Rooms[room_num];
+    ROOM *const room = &g_Rooms[room_num];
     fx->room_num = room_num;
     fx->next_free = room->fx_num;
     room->fx_num = fx_num;
@@ -82,7 +82,7 @@ int16_t __cdecl Effect_Create(const int16_t room_num)
 
 void __cdecl Effect_Kill(const int16_t fx_num)
 {
-    FX_INFO *const fx = &g_Effects[fx_num];
+    FX *const fx = &g_Effects[fx_num];
     M_RemoveActive(fx_num);
     M_RemoveDrawn(fx_num);
 
@@ -92,8 +92,8 @@ void __cdecl Effect_Kill(const int16_t fx_num)
 
 void __cdecl Effect_NewRoom(const int16_t fx_num, const int16_t room_num)
 {
-    FX_INFO *const fx = &g_Effects[fx_num];
-    ROOM_INFO *room = &g_Rooms[fx->room_num];
+    FX *const fx = &g_Effects[fx_num];
+    ROOM *room = &g_Rooms[fx->room_num];
 
     int16_t link_num = room->fx_num;
     if (link_num == fx_num) {
@@ -116,8 +116,8 @@ void __cdecl Effect_NewRoom(const int16_t fx_num, const int16_t room_num)
 
 void __cdecl Effect_Draw(const int16_t fx_num)
 {
-    const FX_INFO *const fx = &g_Effects[fx_num];
-    const OBJECT_INFO *const object = &g_Objects[fx->object_id];
+    const FX *const fx = &g_Effects[fx_num];
+    const OBJECT *const object = &g_Objects[fx->object_id];
     if (!object->loaded) {
         return;
     }

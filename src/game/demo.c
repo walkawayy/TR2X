@@ -113,7 +113,7 @@ void __cdecl Demo_LoadLaraPos(void)
         Item_NewRoom(g_Lara.item_num, room_num);
     }
 
-    const SECTOR_INFO *const sector = Room_GetSector(
+    const SECTOR *const sector = Room_GetSector(
         g_LaraItem->pos.x, g_LaraItem->pos.y, g_LaraItem->pos.z, &room_num);
     g_LaraItem->floor = Room_GetHeight(
         sector, g_LaraItem->pos.x, g_LaraItem->pos.y, g_LaraItem->pos.z);

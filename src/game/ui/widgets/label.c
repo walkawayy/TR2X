@@ -62,6 +62,7 @@ UI_WIDGET *UI_Label_Create(
     self->has_frame = false;
 
     self->text = Text_Create(0, 0, 16, text);
+    Text_SetMultiline(self->text, true);
 
     return (UI_WIDGET *)self;
 }

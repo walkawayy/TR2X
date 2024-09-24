@@ -22,6 +22,7 @@
 #include "game/shell.h"
 #include "game/sound.h"
 #include "game/text.h"
+#include "game/ui/common.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -561,6 +562,7 @@ void __cdecl Shell_Shutdown(void)
     if (g_ErrorMessage[0]) {
         MessageBoxA(NULL, g_ErrorMessage, NULL, MB_ICONWARNING);
     }
+    UI_Shutdown();
 }
 
 int16_t __cdecl TitleSequence(void)
@@ -749,10 +751,13 @@ bool __cdecl WinVidSpinMessageLoop(bool need_wait)
                 g_MessageLoopCounter--;
                 return 0;
             } else if (msg.message == WM_KEYDOWN) {
-                Console_HandleKeyDown(msg.wParam);
+                UI_HandleKeyDown(msg.wParam);
+                return 0;
+            } else if (msg.message == WM_KEYUP) {
+                UI_HandleKeyUp(msg.wParam);
                 return 0;
             } else if (msg.message == WM_CHAR) {
-                Console_HandleChar(msg.wParam);
+                UI_HandleChar(msg.wParam);
                 return 0;
             }
         }

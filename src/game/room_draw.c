@@ -65,9 +65,9 @@ void __cdecl Room_GetBounds(void)
 
             // clang-format off
             const XYZ_32 offset = {
-                .x = portal->x * (r->pos.x + portal->vertex[0].x - g_W2VMatrix._03),
-                .y = portal->y * (r->pos.y + portal->vertex[0].y - g_W2VMatrix._13),
-                .z = portal->z * (r->pos.z + portal->vertex[0].z - g_W2VMatrix._23),
+                .x = portal->normal.x * (r->pos.x + portal->vertex[0].x - g_W2VMatrix._03),
+                .y = portal->normal.y * (r->pos.y + portal->vertex[0].y - g_W2VMatrix._13),
+                .z = portal->normal.z * (r->pos.z + portal->vertex[0].z - g_W2VMatrix._23),
             };
             // clang-format on
 
@@ -75,7 +75,7 @@ void __cdecl Room_GetBounds(void)
                 continue;
             }
 
-            Room_SetBounds(&portal->x, portal->room, r);
+            Room_SetBounds(&portal->normal.x, portal->room_num, r);
         }
         Matrix_Pop();
     }
@@ -238,33 +238,33 @@ void __cdecl Room_Clip(const ROOM *const r)
     yv[0] = r->max_ceiling - r->pos.y;
     zv[0] = WALL_L;
 
-    xv[1] = (r->x_size - 1) * WALL_L;
+    xv[1] = (r->size.x - 1) * WALL_L;
     yv[1] = r->max_ceiling - r->pos.y;
     zv[1] = WALL_L;
 
-    xv[2] = (r->x_size - 1) * WALL_L;
+    xv[2] = (r->size.x - 1) * WALL_L;
     yv[2] = r->max_ceiling - r->pos.y;
-    zv[2] = (r->z_size - 1) * WALL_L;
+    zv[2] = (r->size.z - 1) * WALL_L;
 
     xv[3] = WALL_L;
     yv[3] = r->max_ceiling - r->pos.y;
-    zv[3] = (r->z_size - 1) * WALL_L;
+    zv[3] = (r->size.z - 1) * WALL_L;
 
     xv[4] = WALL_L;
     yv[4] = r->min_floor - r->pos.y;
     zv[4] = WALL_L;
 
-    xv[5] = (r->x_size - 1) * WALL_L;
+    xv[5] = (r->size.x - 1) * WALL_L;
     yv[5] = r->min_floor - r->pos.y;
     zv[5] = WALL_L;
 
-    xv[6] = (r->x_size - 1) * WALL_L;
+    xv[6] = (r->size.x - 1) * WALL_L;
     yv[6] = r->min_floor - r->pos.y;
-    zv[6] = (r->z_size - 1) * WALL_L;
+    zv[6] = (r->size.z - 1) * WALL_L;
 
     xv[7] = WALL_L;
     yv[7] = r->min_floor - r->pos.y;
-    zv[7] = (r->z_size - 1) * WALL_L;
+    zv[7] = (r->size.z - 1) * WALL_L;
 
     bool clip_room = false;
     bool clip[8];
@@ -398,17 +398,18 @@ void __cdecl Room_DrawSingleRoomObjects(const int16_t room_num)
     g_PhdWinBottom = r->bound_bottom;
 
     for (int32_t i = 0; i < r->num_meshes; i++) {
-        const MESH *const mesh = &r->mesh[i];
+        const MESH *const mesh = &r->meshes[i];
         const STATIC_INFO *const static_obj =
             &g_StaticObjects[mesh->static_num];
         if (static_obj->flags & 2) {
             Matrix_Push();
-            Matrix_TranslateAbs(mesh->x, mesh->y, mesh->z);
-            Matrix_RotY(mesh->y_rot);
+            Matrix_TranslateAbs(mesh->pos.x, mesh->pos.y, mesh->pos.z);
+            Matrix_RotY(mesh->rot.y);
             const int16_t bounds = S_GetObjectBounds(&static_obj->draw_bounds);
             if (bounds) {
                 S_CalculateStaticMeshLight(
-                    mesh->x, mesh->y, mesh->z, mesh->shade1, mesh->shade2, r);
+                    mesh->pos.x, mesh->pos.y, mesh->pos.z, mesh->shade_1,
+                    mesh->shade_2, r);
                 Output_InsertPolygons(g_Meshes[static_obj->mesh_idx], bounds);
             }
             Matrix_Pop();

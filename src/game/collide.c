@@ -309,7 +309,7 @@ int32_t __cdecl Collide_CollideStaticObjects(
         const ROOM *const room = &g_Rooms[g_DrawRoomsArray[i]];
 
         for (int32_t j = 0; j < room->num_meshes; j++) {
-            const MESH *const mesh = &room->mesh[j];
+            const MESH *const mesh = &room->meshes[j];
             const STATIC_INFO *const sinfo = &g_StaticObjects[mesh->static_num];
 
             if (sinfo->flags & 1) {
@@ -320,35 +320,35 @@ int32_t __cdecl Collide_CollideStaticObjects(
             int32_t x_max;
             int32_t z_min;
             int32_t z_max;
-            int32_t y_min = mesh->y + sinfo->collision_bounds.min_y;
-            int32_t y_max = mesh->y + sinfo->collision_bounds.max_y;
-            switch (mesh->y_rot) {
+            const int32_t y_min = mesh->pos.y + sinfo->collision_bounds.min_y;
+            const int32_t y_max = mesh->pos.y + sinfo->collision_bounds.max_y;
+            switch (mesh->rot.y) {
             case PHD_90:
-                x_min = mesh->x + sinfo->collision_bounds.min_z;
-                x_max = mesh->x + sinfo->collision_bounds.max_z;
-                z_min = mesh->z - sinfo->collision_bounds.max_x;
-                z_max = mesh->z - sinfo->collision_bounds.min_x;
+                x_min = mesh->pos.x + sinfo->collision_bounds.min_z;
+                x_max = mesh->pos.x + sinfo->collision_bounds.max_z;
+                z_min = mesh->pos.z - sinfo->collision_bounds.max_x;
+                z_max = mesh->pos.z - sinfo->collision_bounds.min_x;
                 break;
 
             case -PHD_180:
-                x_min = mesh->x - sinfo->collision_bounds.max_x;
-                x_max = mesh->x - sinfo->collision_bounds.min_x;
-                z_min = mesh->z - sinfo->collision_bounds.max_z;
-                z_max = mesh->z - sinfo->collision_bounds.min_z;
+                x_min = mesh->pos.x - sinfo->collision_bounds.max_x;
+                x_max = mesh->pos.x - sinfo->collision_bounds.min_x;
+                z_min = mesh->pos.z - sinfo->collision_bounds.max_z;
+                z_max = mesh->pos.z - sinfo->collision_bounds.min_z;
                 break;
 
             case -PHD_90:
-                x_min = mesh->x - sinfo->collision_bounds.max_z;
-                x_max = mesh->x - sinfo->collision_bounds.min_z;
-                z_min = mesh->z + sinfo->collision_bounds.min_x;
-                z_max = mesh->z + sinfo->collision_bounds.max_x;
+                x_min = mesh->pos.x - sinfo->collision_bounds.max_z;
+                x_max = mesh->pos.x - sinfo->collision_bounds.min_z;
+                z_min = mesh->pos.z + sinfo->collision_bounds.min_x;
+                z_max = mesh->pos.z + sinfo->collision_bounds.max_x;
                 break;
 
             default:
-                x_min = mesh->x + sinfo->collision_bounds.min_x;
-                x_max = mesh->x + sinfo->collision_bounds.max_x;
-                z_min = mesh->z + sinfo->collision_bounds.min_z;
-                z_max = mesh->z + sinfo->collision_bounds.max_z;
+                x_min = mesh->pos.x + sinfo->collision_bounds.min_x;
+                x_max = mesh->pos.x + sinfo->collision_bounds.max_x;
+                z_min = mesh->pos.z + sinfo->collision_bounds.min_z;
+                z_max = mesh->pos.z + sinfo->collision_bounds.max_z;
                 break;
             }
 

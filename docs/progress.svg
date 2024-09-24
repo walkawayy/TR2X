@@ -1144,7 +1144,7 @@
 <rect width="12" height="12" x="225" y="315" class="known"><title>void __cdecl S_PrintShadow(int16_t radius, const BOUNDS_16 *bounds, const ITEM *item);</title></rect>
 <rect width="12" height="12" x="240" y="315" class="known"><title>void __cdecl S_CalculateLight(int32_t x, int32_t y, int32_t z, int16_t room_num);</title></rect>
 <rect width="12" height="12" x="255" y="315" class="known"><title>void __cdecl S_CalculateStaticLight(int16_t adder);</title></rect>
-<rect width="12" height="12" x="270" y="315" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM *room);</title></rect>
+<rect width="12" height="12" x="270" y="315" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade_1, int32_t shade_2, ROOM *room);</title></rect>
 <rect width="12" height="12" x="285" y="315" class="known"><title>void __cdecl S_LightRoom(ROOM *room);</title></rect>
 <rect width="12" height="12" x="300" y="315" class="known"><title>void __cdecl S_DrawHealthBar(int32_t percent);</title></rect>
 <rect width="12" height="12" x="315" y="315" class="known"><title>void __cdecl S_DrawAirBar(int32_t percent);</title></rect>
@@ -1625,7 +1625,7 @@
 <rect width="12.77" height="12.58" x="626.43" y="92.72" class="known"><title>int32_t __cdecl Collide_TestCollision(ITEM *item, const ITEM *lara_item);</title></rect>
 <rect width="12.77" height="12.58" x="642.20" y="92.72" class="decompiled"><title>void __cdecl HWR_InitState(void);</title></rect>
 <rect width="12.71" height="12.58" x="657.96" y="92.72" class="decompiled"><title>void __cdecl Lara_Col_Hang(ITEM *item, COLL_INFO *coll);</title></rect>
-<rect width="12.55" height="12.58" x="673.67" y="92.72" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM *room);</title></rect>
+<rect width="12.55" height="12.58" x="673.67" y="92.72" class="known"><title>void __cdecl S_CalculateStaticMeshLight(int32_t x, int32_t y, int32_t z, int32_t shade_1, int32_t shade_2, ROOM *room);</title></rect>
 <rect width="12.34" height="12.58" x="689.23" y="92.72" class="decompiled"><title>BOOL __cdecl S_Input_Key(KEYMAP keymap);</title></rect>
 <rect width="12.23" height="12.58" x="704.57" y="92.72" class="decompiled"><title>void __cdecl Item_Kill(int16_t item_num);</title></rect>
 <rect width="12.13" height="12.58" x="719.80" y="92.72" class="decompiled"><title>void __cdecl Gun_InitialiseNewWeapon(void);</title></rect>

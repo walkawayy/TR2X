@@ -134,13 +134,13 @@ static void __cdecl M_LoadRooms(VFILE *const file)
             VFile_Read(file, r->portals->portal, sizeof(PORTAL) * num_doors);
         }
 
-        r->z_size = VFile_ReadS16(file);
-        r->x_size = VFile_ReadS16(file);
+        r->size.z = VFile_ReadS16(file);
+        r->size.x = VFile_ReadS16(file);
 
-        r->sector = game_malloc(
-            sizeof(SECTOR) * r->z_size * r->x_size, GBUF_ROOM_FLOOR);
-        for (int32_t i = 0; i < r->z_size * r->x_size; i++) {
-            SECTOR *const sector = &r->sector[i];
+        r->sectors = game_malloc(
+            sizeof(SECTOR) * r->size.z * r->size.x, GBUF_ROOM_FLOOR);
+        for (int32_t i = 0; i < r->size.z * r->size.x; i++) {
+            SECTOR *const sector = &r->sectors[i];
             sector->idx = VFile_ReadU16(file);
             sector->box = VFile_ReadS16(file);
             sector->pit_room = VFile_ReadU8(file);
@@ -149,42 +149,42 @@ static void __cdecl M_LoadRooms(VFILE *const file)
             sector->ceiling = VFile_ReadS8(file);
         }
 
-        r->ambient1 = VFile_ReadS16(file);
-        r->ambient2 = VFile_ReadS16(file);
+        r->ambient_1 = VFile_ReadS16(file);
+        r->ambient_2 = VFile_ReadS16(file);
         r->light_mode = VFile_ReadS16(file);
 
         r->num_lights = VFile_ReadS16(file);
         if (!r->num_lights) {
-            r->light = NULL;
+            r->lights = NULL;
         } else {
-            r->light =
+            r->lights =
                 game_malloc(sizeof(LIGHT) * r->num_lights, GBUF_ROOM_LIGHTS);
             for (int32_t i = 0; i < r->num_lights; i++) {
-                LIGHT *const light = &r->light[i];
-                light->x = VFile_ReadS32(file);
-                light->y = VFile_ReadS32(file);
-                light->z = VFile_ReadS32(file);
-                light->intensity1 = VFile_ReadS16(file);
-                light->intensity2 = VFile_ReadS16(file);
-                light->falloff1 = VFile_ReadS32(file);
-                light->falloff2 = VFile_ReadS32(file);
+                LIGHT *const light = &r->lights[i];
+                light->pos.x = VFile_ReadS32(file);
+                light->pos.y = VFile_ReadS32(file);
+                light->pos.z = VFile_ReadS32(file);
+                light->intensity_1 = VFile_ReadS16(file);
+                light->intensity_2 = VFile_ReadS16(file);
+                light->falloff_1 = VFile_ReadS32(file);
+                light->falloff_2 = VFile_ReadS32(file);
             }
         }
 
         r->num_meshes = VFile_ReadS16(file);
         if (!r->num_meshes) {
-            r->mesh = NULL;
+            r->meshes = NULL;
         } else {
-            r->mesh = game_malloc(
+            r->meshes = game_malloc(
                 sizeof(MESH) * r->num_meshes, GBUF_ROOM_STATIC_MESHES);
             for (int32_t i = 0; i < r->num_meshes; i++) {
-                MESH *const mesh = &r->mesh[i];
-                mesh->x = VFile_ReadS32(file);
-                mesh->y = VFile_ReadS32(file);
-                mesh->z = VFile_ReadS32(file);
-                mesh->y_rot = VFile_ReadS16(file);
-                mesh->shade1 = VFile_ReadS16(file);
-                mesh->shade2 = VFile_ReadS16(file);
+                MESH *const mesh = &r->meshes[i];
+                mesh->pos.x = VFile_ReadS32(file);
+                mesh->pos.y = VFile_ReadS32(file);
+                mesh->pos.z = VFile_ReadS32(file);
+                mesh->rot.y = VFile_ReadS16(file);
+                mesh->shade_1 = VFile_ReadS16(file);
+                mesh->shade_2 = VFile_ReadS16(file);
                 mesh->static_num = VFile_ReadS16(file);
             }
         }
@@ -490,8 +490,8 @@ static void __cdecl M_LoadItems(VFILE *const file)
         item->pos.y = VFile_ReadS32(file);
         item->pos.z = VFile_ReadS32(file);
         item->rot.y = VFile_ReadS16(file);
-        item->shade1 = VFile_ReadS16(file);
-        item->shade2 = VFile_ReadS16(file);
+        item->shade_1 = VFile_ReadS16(file);
+        item->shade_2 = VFile_ReadS16(file);
         item->flags = VFile_ReadS16(file);
         if (item->object_id < 0 || item->object_id >= O_NUMBER_OF) {
             Shell_ExitSystemFmt(

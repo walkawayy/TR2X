@@ -324,7 +324,7 @@
 #define S_PrintShadow ((void __cdecl (*)(int16_t radius, const BOUNDS_16 *bounds, const ITEM *item))0x00450F80)
 #define S_CalculateLight ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int16_t room_num))0x00451180)
 #define S_CalculateStaticLight ((void __cdecl (*)(int16_t adder))0x00451480)
-#define S_CalculateStaticMeshLight ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int32_t shade1, int32_t shade2, ROOM *room))0x004514C0)
+#define S_CalculateStaticMeshLight ((void __cdecl (*)(int32_t x, int32_t y, int32_t z, int32_t shade_1, int32_t shade_2, ROOM *room))0x004514C0)
 #define S_LightRoom ((void __cdecl (*)(ROOM *room))0x004515F0)
 #define S_DrawHealthBar ((void __cdecl (*)(int32_t percent))0x00451800)
 #define S_DrawAirBar ((void __cdecl (*)(int32_t percent))0x004519D0)

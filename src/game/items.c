@@ -154,7 +154,7 @@ void __cdecl Item_Initialise(const int16_t item_num)
 
     const int32_t dx = (item->pos.x - room->pos.x) >> WALL_SHIFT;
     const int32_t dz = (item->pos.z - room->pos.z) >> WALL_SHIFT;
-    const SECTOR *const sector = &room->sector[dx * room->z_size + dz];
+    const SECTOR *const sector = &room->sectors[dx * room->size.z + dz];
     item->floor = sector->floor << 8;
 
     if (g_SaveGame.bonus_flag && !g_IsDemoLevelType) {

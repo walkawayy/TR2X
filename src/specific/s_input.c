@@ -505,6 +505,7 @@ bool __cdecl S_Input_Update(void)
 
 bool Input_IsAnythingPressed(void)
 {
+    WinInReadKeyboard(g_DIKeys);
     for (int32_t i = 0; i < 256; i++) {
         if (KEY_DOWN(i)) {
             return true;

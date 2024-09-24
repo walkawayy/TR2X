@@ -5,8 +5,6 @@
 #include "global/vars.h"
 #include "specific/s_input.h"
 
-#include <libtrx/log.h>
-
 static const char *m_KeyNames[] = {
     NULL,   "ESC",   "1",     "2",     "3",     "4",     "5",     "6",
     "7",    "8",     "9",     "0",     "-",     "+",     "BKSP",  "TAB",
@@ -51,13 +49,13 @@ bool Input_Update(void)
 {
     bool result = S_Input_Update();
 
+    g_InputDB = Input_GetDebounced(g_Input);
+
     if (m_ListenMode) {
         g_Input = 0;
         g_InputDB = 0;
         return true;
     }
-
-    g_InputDB = Input_GetDebounced(g_Input);
 
     if (Console_IsOpened()) {
         if (g_InputDB & IN_DESELECT) {
@@ -158,4 +156,7 @@ void Input_EnterListenMode(void)
 void Input_ExitListenMode(void)
 {
     m_ListenMode = false;
+    S_Input_Update();
+    g_OldInputDB = g_Input;
+    g_InputDB = Input_GetDebounced(g_Input);
 }

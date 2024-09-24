@@ -108,7 +108,8 @@ UI_WIDGET *UI_ControlsInputSelector_Create(
 
     self->label = UI_Label_Create("", 140, 15);
     self->choice = UI_Label_Create("", 70, 15);
-    self->container = UI_Stack_Create(UI_STACK_LAYOUT_HORIZONTAL);
+    self->container = UI_Stack_Create(
+        UI_STACK_LAYOUT_HORIZONTAL, UI_STACK_AUTO_SIZE, UI_STACK_AUTO_SIZE);
     UI_Stack_AddChild(self->container, self->choice);
     UI_Stack_AddChild(self->container, self->label);
 

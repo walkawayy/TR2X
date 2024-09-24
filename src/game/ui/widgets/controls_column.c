@@ -62,7 +62,8 @@ UI_WIDGET *UI_ControlsColumn_Create(
     };
 
     self->selector_count = UI_ControlsController_GetInputRoleCount(column);
-    self->container = UI_Stack_Create(UI_STACK_LAYOUT_VERTICAL);
+    self->container = UI_Stack_Create(
+        UI_STACK_LAYOUT_VERTICAL, UI_STACK_AUTO_SIZE, UI_STACK_AUTO_SIZE);
     self->selectors = Memory_Alloc(sizeof(UI_WIDGET *) * self->selector_count);
 
     for (int32_t i = 0; i < self->selector_count; i++) {

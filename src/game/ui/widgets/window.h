@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/ui/base.h"
+#include "game/ui/widgets/base.h"
 
 UI_WIDGET *UI_Window_Create(
     UI_WIDGET *root, int32_t border_top, int32_t border_right,

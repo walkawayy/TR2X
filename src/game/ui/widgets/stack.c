@@ -1,4 +1,4 @@
-#include "game/ui/stack.h"
+#include "game/ui/widgets/stack.h"
 
 #include <libtrx/memory.h>
 #include <libtrx/utils.h>

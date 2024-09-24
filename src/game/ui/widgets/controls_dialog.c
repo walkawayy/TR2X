@@ -1,9 +1,9 @@
-#include "game/ui/controls_dialog.h"
+#include "game/ui/widgets/controls_dialog.h"
 
-#include "game/ui/controls_column.h"
-#include "game/ui/controls_layout_selector.h"
-#include "game/ui/stack.h"
-#include "game/ui/window.h"
+#include "game/ui/widgets/controls_column.h"
+#include "game/ui/widgets/controls_layout_selector.h"
+#include "game/ui/widgets/stack.h"
+#include "game/ui/widgets/window.h"
 
 #include <libtrx/memory.h>
 

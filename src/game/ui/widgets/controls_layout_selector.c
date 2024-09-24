@@ -1,6 +1,6 @@
-#include "game/ui/controls_layout_selector.h"
+#include "game/ui/widgets/controls_layout_selector.h"
 
-#include "game/ui/label.h"
+#include "game/ui/widgets/label.h"
 
 #include <libtrx/memory.h>
 

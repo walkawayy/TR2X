@@ -1,5 +1,5 @@
 #include "game/option/option.h"
-#include "game/ui/controls_dialog.h"
+#include "game/ui/widgets/controls_dialog.h"
 #include "global/vars.h"
 
 #include <libtrx/utils.h>

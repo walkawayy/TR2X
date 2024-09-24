@@ -1,4 +1,4 @@
-#include "game/ui/window.h"
+#include "game/ui/widgets/window.h"
 
 #include "game/text.h"
 

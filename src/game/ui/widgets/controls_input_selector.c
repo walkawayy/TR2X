@@ -1,7 +1,7 @@
-#include "game/ui/controls_input_selector.h"
+#include "game/ui/widgets/controls_input_selector.h"
 
-#include "game/ui/label.h"
-#include "game/ui/stack.h"
+#include "game/ui/widgets/label.h"
+#include "game/ui/widgets/stack.h"
 
 #include <libtrx/memory.h>
 

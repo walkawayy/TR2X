@@ -1,4 +1,4 @@
-#include "game/ui/label.h"
+#include "game/ui/widgets/label.h"
 
 #include "game/text.h"
 

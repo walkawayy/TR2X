@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game/ui/base.h"
+#include "game/ui/widgets/base.h"
 
 UI_WIDGET *UI_Label_Create(const char *text, int32_t width, int32_t height);
 

@@ -19,15 +19,18 @@ static void M_Free(UI_LABEL *self);
 
 static int32_t M_GetWidth(const UI_LABEL *const self)
 {
-    if (self->width < 0) {
-        return Text_GetWidth(self->text) * PHD_ONE / Text_GetScaleH(PHD_ONE);
+    if (self->width != UI_LABEL_AUTO_SIZE) {
+        return self->width;
     }
-    return self->width;
+    return Text_GetWidth(self->text) * PHD_ONE / Text_GetScaleH(PHD_ONE);
 }
 
 static int32_t M_GetHeight(const UI_LABEL *const self)
 {
-    return self->height;
+    if (self->height != UI_LABEL_AUTO_SIZE) {
+        return self->height;
+    }
+    return Text_GetHeight(self->text) * PHD_ONE / Text_GetScaleV(PHD_ONE);
 }
 
 static void M_SetPosition(
@@ -54,11 +57,12 @@ UI_WIDGET *UI_Label_Create(
         .free = (UI_WIDGET_FREE)M_Free,
     };
 
-    self->text = Text_Create(0, 0, 0, text);
-    self->text->pos.z = 16;
     self->width = width;
     self->height = height;
     self->has_frame = false;
+
+    self->text = Text_Create(0, 0, 16, text);
+
     return (UI_WIDGET *)self;
 }
 
@@ -66,6 +70,12 @@ void UI_Label_ChangeText(UI_WIDGET *const widget, const char *const text)
 {
     UI_LABEL *const self = (UI_LABEL *)widget;
     Text_ChangeText(self->text, text);
+}
+
+const char *UI_Label_GetText(UI_WIDGET *const widget)
+{
+    UI_LABEL *const self = (UI_LABEL *)widget;
+    return self->text->text;
 }
 
 void UI_Label_AddFrame(UI_WIDGET *const widget)
@@ -95,4 +105,16 @@ void UI_Label_Flash(
 {
     UI_LABEL *const self = (UI_LABEL *)widget;
     Text_Flash(self->text, enable, rate);
+}
+
+void UI_Label_SetScale(UI_WIDGET *const widget, const float scale)
+{
+    UI_LABEL *const self = (UI_LABEL *)widget;
+    Text_SetScale(self->text, PHD_ONE * scale, PHD_ONE * scale);
+}
+
+int32_t UI_Label_MeasureTextWidth(UI_WIDGET *const widget)
+{
+    UI_LABEL *const self = (UI_LABEL *)widget;
+    return Text_GetWidth(self->text) * PHD_ONE / Text_GetScaleH(PHD_ONE);
 }

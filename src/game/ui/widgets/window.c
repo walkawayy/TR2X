@@ -75,8 +75,7 @@ UI_WIDGET *UI_Window_Create(
     };
 
     self->root = root;
-    self->text = Text_Create(0, 0, 0, "");
-    self->text->pos.z = 32;
+    self->text = Text_Create(0, 0, 32, "");
     self->border.top = border_top;
     self->border.right = border_right;
     self->border.bottom = border_bottom;

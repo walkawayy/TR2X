@@ -65,7 +65,8 @@ UI_WIDGET *UI_ControlsLayoutSelector_Create(
 
     self->controller = controller;
     self->label = UI_Label_Create(
-        Input_GetLayoutName(self->controller->active_layout), -1, 25);
+        Input_GetLayoutName(self->controller->active_layout),
+        UI_LABEL_AUTO_SIZE, 25);
     UI_Label_AddFrame(self->label);
     return (UI_WIDGET *)self;
 }

@@ -13,7 +13,7 @@
 #include <string.h>
 
 #define MAX_TEXTSTRINGS 128
-#define TEXT_HEIGHT 24
+#define TEXT_HEIGHT 15
 #define TEXT_Y_SPACING 3
 #define CHAR_SECRET_1 0x7Fu
 #define CHAR_SECRET_2 0x80u
@@ -296,15 +296,12 @@ int32_t Text_GetHeight(const TEXTSTRING *const string)
     }
     int32_t height = TEXT_HEIGHT;
     char *ptr = string->text;
-    if (!*ptr) {
-        return 0;
-    }
     for (char letter = *ptr; *ptr; letter = *ptr++) {
         if (string->flags.multiline && *ptr == '\n') {
             height += TEXT_HEIGHT + TEXT_Y_SPACING;
         }
     }
-    return height * string->scale.v / PHD_ONE;
+    return height * Text_GetScaleV(string->scale.v) / PHD_ONE;
 }
 
 void __cdecl Text_Draw(void)

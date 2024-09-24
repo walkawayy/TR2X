@@ -1,7 +1,6 @@
 #include "game/ui/widgets/controls_layout_selector.h"
 
-#include "game/ui/widgets/label.h"
-
+#include <libtrx/game/ui/widgets/label.h>
 #include <libtrx/memory.h>
 
 typedef struct {
@@ -14,8 +13,9 @@ static int32_t M_GetWidth(const UI_CONTROLS_LAYOUT_SELECTOR *self);
 static int32_t M_GetHeight(const UI_CONTROLS_LAYOUT_SELECTOR *self);
 static void M_SetPosition(
     UI_CONTROLS_LAYOUT_SELECTOR *self, int32_t x, int32_t y);
-static void M_Free(UI_CONTROLS_LAYOUT_SELECTOR *self);
 static void M_Control(UI_CONTROLS_LAYOUT_SELECTOR *self);
+static void M_Draw(UI_CONTROLS_LAYOUT_SELECTOR *self);
+static void M_Free(UI_CONTROLS_LAYOUT_SELECTOR *self);
 
 static int32_t M_GetWidth(const UI_CONTROLS_LAYOUT_SELECTOR *const self)
 {
@@ -42,6 +42,16 @@ static void M_Control(UI_CONTROLS_LAYOUT_SELECTOR *const self)
     } else {
         UI_Label_RemoveFrame(self->label);
     }
+    if (self->label->control != NULL) {
+        self->label->control(self->label);
+    }
+}
+
+static void M_Draw(UI_CONTROLS_LAYOUT_SELECTOR *const self)
+{
+    if (self->label->draw != NULL) {
+        self->label->draw(self->label);
+    }
 }
 
 static void M_Free(UI_CONTROLS_LAYOUT_SELECTOR *const self)
@@ -56,10 +66,11 @@ UI_WIDGET *UI_ControlsLayoutSelector_Create(
     UI_CONTROLS_LAYOUT_SELECTOR *self =
         Memory_Alloc(sizeof(UI_CONTROLS_LAYOUT_SELECTOR));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)M_Control,
         .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
         .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
         .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .draw = (UI_WIDGET_DRAW)M_Draw,
         .free = (UI_WIDGET_FREE)M_Free,
     };
 

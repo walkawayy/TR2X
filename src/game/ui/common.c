@@ -1,43 +1,29 @@
-#include "game/ui/common.h"
+#include <libtrx/game/ui/common.h>
 
-#include <libtrx/vector.h>
+#include <windows.h>
 
-void UI_Init(void)
+int32_t UI_GetCanvasWidth(void)
 {
-    UI_Events_Init();
+    return 640;
 }
 
-void UI_Shutdown(void)
+int32_t UI_GetCanvasHeight(void)
 {
-    UI_Events_Shutdown();
+    return 480;
 }
 
-void UI_HandleKeyDown(const uint32_t key)
+UI_INPUT UI_TranslateInput(uint32_t system_keycode)
 {
-    const UI_EVENT event = {
-        .name = "key_down",
-        .sender = NULL,
-        .data = (void *)(uintptr_t)key,
-    };
-    UI_Events_Fire(&event);
-}
-
-void UI_HandleKeyUp(const uint32_t key)
-{
-    const UI_EVENT event = {
-        .name = "key_up",
-        .sender = NULL,
-        .data = (void *)(uintptr_t)key,
-    };
-    UI_Events_Fire(&event);
-}
-
-void UI_HandleChar(const uint32_t char_)
-{
-    const UI_EVENT event = {
-        .name = "char",
-        .sender = NULL,
-        .data = (void *)(uintptr_t)char_,
-    };
-    UI_Events_Fire(&event);
+    // clang-format off
+    switch (system_keycode) {
+    case VK_LEFT:   return UI_KEY_LEFT;
+    case VK_RIGHT:  return UI_KEY_RIGHT;
+    case VK_HOME:   return UI_KEY_HOME;
+    case VK_END:    return UI_KEY_END;
+    case VK_BACK:   return UI_KEY_BACK;
+    case VK_RETURN: return UI_KEY_RETURN;
+    case VK_ESCAPE: return UI_KEY_ESCAPE;
+    }
+    // clang-format on
+    return -1;
 }

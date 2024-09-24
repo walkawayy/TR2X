@@ -22,7 +22,6 @@
 #include "game/shell.h"
 #include "game/sound.h"
 #include "game/text.h"
-#include "game/ui/common.h"
 #include "global/const.h"
 #include "global/funcs.h"
 #include "global/vars.h"
@@ -30,6 +29,7 @@
 #include "lib/dinput.h"
 #include "specific/s_flagged_string.h"
 
+#include <libtrx/game/ui/common.h>
 #include <libtrx/utils.h>
 
 #include <assert.h>
@@ -757,7 +757,8 @@ bool __cdecl WinVidSpinMessageLoop(bool need_wait)
                 UI_HandleKeyUp(msg.wParam);
                 return 0;
             } else if (msg.message == WM_CHAR) {
-                UI_HandleChar(msg.wParam);
+                char insert_string[2] = { msg.wParam, '\0' };
+                UI_HandleTextEdit(insert_string);
                 return 0;
             }
         }

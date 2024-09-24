@@ -1,7 +1,6 @@
-#include "game/ui/widgets/window.h"
-
 #include "game/text.h"
 
+#include <libtrx/game/ui/widgets/window.h>
 #include <libtrx/memory.h>
 
 typedef struct {
@@ -20,6 +19,7 @@ static int32_t M_GetWidth(const UI_WINDOW *self);
 static int32_t M_GetHeight(const UI_WINDOW *self);
 static void M_SetPosition(UI_WINDOW *self, int32_t x, int32_t y);
 static void M_Control(UI_WINDOW *self);
+static void M_Draw(UI_WINDOW *self);
 static void M_Free(UI_WINDOW *self);
 
 static int32_t M_GetWidth(const UI_WINDOW *const self)
@@ -55,6 +55,13 @@ static void M_Control(UI_WINDOW *const self)
     }
 }
 
+static void M_Draw(UI_WINDOW *const self)
+{
+    if (self->root->draw != NULL) {
+        self->root->draw(self->root);
+    }
+}
+
 static void M_Free(UI_WINDOW *const self)
 {
     Text_Remove(self->text);
@@ -67,10 +74,11 @@ UI_WIDGET *UI_Window_Create(
 {
     UI_WINDOW *const self = Memory_Alloc(sizeof(UI_WINDOW));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)M_Control,
         .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
         .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
         .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .draw = (UI_WIDGET_DRAW)M_Draw,
         .free = (UI_WIDGET_FREE)M_Free,
     };
 

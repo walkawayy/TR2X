@@ -1,8 +1,8 @@
 #include "game/ui/widgets/controls_column.h"
 
 #include "game/ui/widgets/controls_input_selector.h"
-#include "game/ui/widgets/stack.h"
 
+#include <libtrx/game/ui/widgets/stack.h>
 #include <libtrx/memory.h>
 
 typedef struct {
@@ -16,6 +16,7 @@ static int32_t M_GetWidth(const UI_CONTROLS_COLUMN *self);
 static int32_t M_GetHeight(const UI_CONTROLS_COLUMN *self);
 static void M_SetPosition(UI_CONTROLS_COLUMN *self, int32_t x, int32_t y);
 static void M_Control(UI_CONTROLS_COLUMN *self);
+static void M_Draw(UI_CONTROLS_COLUMN *self);
 static void M_Free(UI_CONTROLS_COLUMN *self);
 
 static int32_t M_GetWidth(const UI_CONTROLS_COLUMN *const self)
@@ -36,7 +37,16 @@ static void M_SetPosition(
 
 static void M_Control(UI_CONTROLS_COLUMN *const self)
 {
-    self->container->control(self->container);
+    if (self->container->control != NULL) {
+        self->container->control(self->container);
+    }
+}
+
+static void M_Draw(UI_CONTROLS_COLUMN *const self)
+{
+    if (self->container->draw != NULL) {
+        self->container->draw(self->container);
+    }
 }
 
 static void M_Free(UI_CONTROLS_COLUMN *const self)
@@ -54,10 +64,11 @@ UI_WIDGET *UI_ControlsColumn_Create(
 {
     UI_CONTROLS_COLUMN *const self = Memory_Alloc(sizeof(UI_CONTROLS_COLUMN));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = (UI_WIDGET_CONTROL)M_Control,
         .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
         .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
         .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .control = (UI_WIDGET_CONTROL)M_Control,
+        .draw = (UI_WIDGET_DRAW)M_Draw,
         .free = (UI_WIDGET_FREE)M_Free,
     };
 

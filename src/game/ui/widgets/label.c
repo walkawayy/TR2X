@@ -1,7 +1,6 @@
-#include "game/ui/widgets/label.h"
-
 #include "game/text.h"
 
+#include <libtrx/game/ui/widgets/label.h>
 #include <libtrx/memory.h>
 
 typedef struct {
@@ -50,10 +49,11 @@ UI_WIDGET *UI_Label_Create(
 {
     UI_LABEL *self = Memory_Alloc(sizeof(UI_LABEL));
     self->vtable = (UI_WIDGET_VTABLE) {
-        .control = NULL,
         .get_width = (UI_WIDGET_GET_WIDTH)M_GetWidth,
         .get_height = (UI_WIDGET_GET_HEIGHT)M_GetHeight,
         .set_position = (UI_WIDGET_SET_POSITION)M_SetPosition,
+        .control = NULL,
+        .draw = NULL,
         .free = (UI_WIDGET_FREE)M_Free,
     };
 
@@ -77,6 +77,14 @@ const char *UI_Label_GetText(UI_WIDGET *const widget)
 {
     UI_LABEL *const self = (UI_LABEL *)widget;
     return self->text->text;
+}
+
+void UI_Label_SetSize(
+    UI_WIDGET *const widget, const int32_t width, const int32_t height)
+{
+    UI_LABEL *const self = (UI_LABEL *)widget;
+    self->width = width;
+    self->height = height;
 }
 
 void UI_Label_AddFrame(UI_WIDGET *const widget)
@@ -112,6 +120,12 @@ void UI_Label_SetScale(UI_WIDGET *const widget, const float scale)
 {
     UI_LABEL *const self = (UI_LABEL *)widget;
     Text_SetScale(self->text, PHD_ONE * scale, PHD_ONE * scale);
+}
+
+void UI_Label_SetZIndex(UI_WIDGET *const widget, const int32_t z_index)
+{
+    UI_LABEL *const self = (UI_LABEL *)widget;
+    self->text->pos.z = z_index;
 }
 
 int32_t UI_Label_MeasureTextWidth(UI_WIDGET *const widget)

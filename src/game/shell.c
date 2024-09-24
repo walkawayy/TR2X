@@ -10,10 +10,10 @@
 #include "game/input.h"
 #include "game/music.h"
 #include "game/sound.h"
-#include "game/ui/common.h"
 #include "global/funcs.h"
 #include "global/vars.h"
 
+#include <libtrx/game/ui/common.h>
 #include <libtrx/memory.h>
 
 #include <stdarg.h>

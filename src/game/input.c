@@ -54,7 +54,7 @@ bool Input_Update(void)
     if (m_ListenMode) {
         g_Input = 0;
         g_InputDB = 0;
-        return true;
+        return result;
     }
 
     if (g_InputDB & IN_CONSOLE) {

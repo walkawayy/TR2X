@@ -2,6 +2,7 @@
 
 #include "global/types.h"
 
+#define TEXT_HEIGHT 15
 #define TEXT_MAX_STRING_SIZE 64
 
 void __cdecl Text_Init(void);

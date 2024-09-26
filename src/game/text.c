@@ -13,7 +13,6 @@
 #include <string.h>
 
 #define MAX_TEXTSTRINGS 128
-#define TEXT_HEIGHT 15
 #define TEXT_Y_SPACING 3
 #define CHAR_SECRET_1 0x7Fu
 #define CHAR_SECRET_2 0x80u

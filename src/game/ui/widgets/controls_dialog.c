@@ -97,6 +97,7 @@ UI_WIDGET *UI_ControlsDialog_Create(UI_CONTROLS_CONTROLLER *const controller)
 
     self->outer_stack = UI_Stack_Create(
         UI_STACK_LAYOUT_VERTICAL, UI_STACK_AUTO_SIZE, UI_STACK_AUTO_SIZE);
+    UI_Stack_SetHAlign(self->outer_stack, UI_STACK_H_ALIGN_CENTER);
     UI_Stack_AddChild(self->outer_stack, self->layout_selector);
     UI_Stack_AddChild(self->outer_stack, self->column_stack);
 

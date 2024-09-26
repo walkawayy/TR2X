@@ -2,8 +2,6 @@
 #include "game/ui/widgets/controls_dialog.h"
 #include "global/vars.h"
 
-#include <libtrx/utils.h>
-
 static UI_WIDGET *m_ControlsDialog;
 static UI_CONTROLS_CONTROLLER m_ControlsDialogController;
 
@@ -21,10 +19,6 @@ void __cdecl Option_Controls(INVENTORY_ITEM *const item)
     if (m_ControlsDialog == NULL) {
         m_ControlsDialog =
             UI_ControlsDialog_Create(&m_ControlsDialogController);
-        m_ControlsDialog->set_position(
-            m_ControlsDialog,
-            (640 - m_ControlsDialog->get_width(m_ControlsDialog)) / 2,
-            (480 - m_ControlsDialog->get_height(m_ControlsDialog)) * 2 / 3);
     }
 
     m_ControlsDialog->control(m_ControlsDialog);

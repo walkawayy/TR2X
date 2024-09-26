@@ -32,8 +32,8 @@ bool Config_Read(void)
 
 bool Config_Write(void)
 {
-    const UI_EVENT event = {
-        .name = "config_change",
+    const EVENT event = {
+        .name = "change",
         .sender = NULL,
         .data = NULL,
     };

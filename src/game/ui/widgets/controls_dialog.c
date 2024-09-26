@@ -3,6 +3,7 @@
 #include "game/ui/widgets/controls_column.h"
 #include "game/ui/widgets/controls_layout_selector.h"
 
+#include <libtrx/game/ui/common.h>
 #include <libtrx/game/ui/widgets/stack.h>
 #include <libtrx/game/ui/widgets/window.h>
 #include <libtrx/memory.h>
@@ -18,12 +19,20 @@ typedef struct {
     UI_WIDGET *right_column;
 } UI_CONTROLS_DIALOG;
 
+static void M_DoLayout(UI_CONTROLS_DIALOG *self);
 static int32_t M_GetWidth(const UI_CONTROLS_DIALOG *self);
 static int32_t M_GetHeight(const UI_CONTROLS_DIALOG *self);
 static void M_SetPosition(UI_CONTROLS_DIALOG *self, int32_t x, int32_t y);
 static void M_Control(UI_CONTROLS_DIALOG *self);
 static void M_Draw(UI_CONTROLS_DIALOG *self);
 static void M_Free(UI_CONTROLS_DIALOG *self);
+
+static void M_DoLayout(UI_CONTROLS_DIALOG *const self)
+{
+    M_SetPosition(
+        self, (UI_GetCanvasWidth() - M_GetWidth(self)) / 2,
+        (UI_GetCanvasHeight() - M_GetHeight(self)) * 2 / 3);
+}
 
 static int32_t M_GetWidth(const UI_CONTROLS_DIALOG *const self)
 {
@@ -103,5 +112,6 @@ UI_WIDGET *UI_ControlsDialog_Create(UI_CONTROLS_CONTROLLER *const controller)
 
     self->window = UI_Window_Create(self->outer_stack, 5, 5, 15, 5);
 
+    M_DoLayout(self);
     return (UI_WIDGET *)self;
 }

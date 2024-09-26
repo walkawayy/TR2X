@@ -1,6 +1,7 @@
 #pragma once
 
-#include <libtrx/config/config_option.h>
+#include <libtrx/config/common.h>
+#include <libtrx/config/option.h>
 
 #include <stdbool.h>
 

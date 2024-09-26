@@ -1,7 +1,6 @@
 #pragma once
 
-#include <libtrx/config/common.h>
-#include <libtrx/config/option.h>
+#include <libtrx/config.h>
 
 #include <stdbool.h>
 
@@ -14,9 +13,3 @@ typedef struct {
 } CONFIG;
 
 extern CONFIG g_Config;
-
-bool Config_Read(void);
-bool Config_Write(void);
-void Config_Sanitize(void);
-void Config_ApplyChanges(void);
-const CONFIG_OPTION *Config_GetOptionMap(void);

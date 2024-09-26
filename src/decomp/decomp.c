@@ -1,5 +1,6 @@
 #include "decomp/decomp.h"
 
+#include "config.h"
 #include "game/background.h"
 #include "game/camera.h"
 #include "game/console/common.h"
@@ -250,6 +251,7 @@ int32_t __stdcall WinMain(
         g_StopInventory = 0;
         g_IsGameToExit = 0;
         Shell_Main();
+        Config_Write();
         Shell_Shutdown();
         SE_WriteAppSettings(&g_SavedAppSettings);
     }
@@ -563,6 +565,7 @@ void __cdecl Shell_Shutdown(void)
         MessageBoxA(NULL, g_ErrorMessage, NULL, MB_ICONWARNING);
     }
     UI_Shutdown();
+    Config_Shutdown();
 }
 
 int16_t __cdecl TitleSequence(void)
